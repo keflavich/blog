@@ -1,8 +1,0 @@
----
-layout: post
-title: "Open Questions I'm trying to answer"
-date: 2011-07-17T15:58:00-07:00
----
-
-<div class='post'>
-I still haven't dealt with <a href="http://bolocam.blogspot.com/2011/07/additional-problems.html">http://bolocam.blogspot.com/2011/07/additional-problems.html</a>, or essentiall any of <a href="http://bolocam.blogspot.com/2011/07/minor-ongoing-problems.html">http://bolocam.blogspot.com/2011/07/minor-ongoing-problems.html</a>.<br /><br />However, they're probably related to this problem:<br /><code><br />% CLEAN_ITER_STRUCT: There were            1 bolometers with high weights:       13.5047 indices:      142 or flagged indices          142<br /></code><br />which indicates that in a simulation in which there can be no outliers (in terms of weight/scale), there is one being rejected as an outlier.  That indicates that weights are being computed incorrectly, despite the fact that scales look right (so far):<br /><code><br />Relsens calibration: Scaled to bolometer #        0<br />% RELSENS_CAL_PCA: There were            0 NAN scales and            0 very low scales<br />% RELSENS_CAL_PCA: Scale Median/Mad:        1.0005510+/-     0.010990833 led to            0 scales set to zero for a total of            0 bad bolos<br />% RELSENS_CAL_PCA: Scales avg+/-std =        1.0007304355062783+/-       0.0103252880998329<br />Relsens calibration: Scaled to bolometer #        0<br />% RELSENS_CAL_PCA: There were            0 NAN scales and            0 very low scales<br />% RELSENS_CAL_PCA: Scale Median/Mad:       0.99955294+/-    0.0093122063 led to            0 scales set to zero for a total of            0 bad bolos<br />% RELSENS_CAL_PCA: Scales avg+/-std =        0.9990063123041220+/-       0.0096663438876613<br /></code></div>

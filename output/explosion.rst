@@ -1,0 +1,21 @@
+Explosion
+#########
+:date: 2012-09-20 20:02
+:author: Adam (keflavich@gmail.com)
+:tags: http://schemas.google.com/blogger/2008/kind#post, brewing, beer tasting
+
+Our "Workie Ticket", which was doing its primary in the carboy, popped
+its top. It made a mess but should still be healthy... the yeast was
+going extremely strong at the way-too-hot 78 degrees it's sitting at
+this morning. It already has a fruity aroma, though, so it's likely that
+all of our brews are going to be extremely fruity. Bleh.
+Our `Honey Brown`_, which was excellent at the start, has gotten a bit
+too dry and alcoholic. The first few sips have a strong flavor of
+alcohol to them. However, once you get into the beer, it gains a little
+bit of depth and isn't too bad... probably the alcohol talking. I think
+most of the bottles are probably overcarbonated at this point, but we
+only have a few left. Overall point: Honey beers need to be drunk within
+about a week of bottling for peak deliciousness; apparently honey dries
+out very strongly.
+
+.. _Honey Brown: http://casa.colorado.edu/~ginsbura/sketch_beers.htm

@@ -1,0 +1,13 @@
+Mountain Sun
+############
+:date: 2012-09-20 20:02
+:author: Adam (keflavich@gmail.com)
+:tags: http://schemas.google.com/blogger/2008/kind#post, beer tasting
+
+Went to the Mountain Sun, had the Thunderhead Stout and Stone's
+Levitation IPA.
+The Thunderhead Stout is one of my favorites. It's rich, slightly sweet,
+full bodied. I can't identify any particular flavors, but it's
+delicious.
+Stone's Levitation IPA is dark brown for an IPA. It's hoppy and pretty
+tasty, but nowhere near as good as the Dogfish Head IPAs.
