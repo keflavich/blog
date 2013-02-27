@@ -1,0 +1,11 @@
+---
+layout: post
+title: "SAVE / RESTORE in Python"
+date: 2008-10-17T21:46:00-07:00
+categories:
+ - python
+ - computer
+---
+
+<div class='post'>
+Save/Restore is probably the single best feature of IDL that, sadly, is very poorly replicated in Python.  For 1 or 2 dimensional variables, you can use Pylab's <code>save/load</code>, but I never use such piddling tiny arrays.  For higher dimensional objects, either using FITS files (a pain because of header definitions) or pickling ought to work.<br /><br />e.g.:<br /><code><br />import numpy<br />import pickle<br />x=ones([10,10,10,10],dtype='float64')<br />pickle.dump(x,open('x.pysav','w'))<br />X = pickle.load(open('x.pysav','r'))<br /></code></div>

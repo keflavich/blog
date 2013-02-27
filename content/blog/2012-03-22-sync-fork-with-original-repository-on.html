@@ -1,0 +1,10 @@
+---
+layout: post
+title: "Sync a fork with the original repository on Git"
+date: 2012-03-22T08:47:00-07:00
+categories:
+ - git
+---
+
+<div class='post'>
+A seemingly simple operation that I just can't seem to get right.<br /><br /><a href="http://groups.google.com/group/github/browse_thread/thread/6196487279beb2a8/181b7bc4bf7a3e16"> This page</a> gives me useless information: <br /><code><br />$ git checkout -b upstream/master <br />$ git remote add upstream git://github.com/upstream_maintainer/master.git <br />$ git pull upstream remote <br />$ git checkout master <br />$ git merge upstream/master <br /></code><br /><br />If you do that, it frankly doesn't work.  Why?  "upstream/master" etc. all have special meanings.<br /><br />Here's the real process & explanation (thanks to Erik Tollerud for some help):<br /><code><br />git checkout master  # (assuming you have a local branch named master - otherwise, pick whatever branch you want synced)<br />git remote add original git@github.com:thing/thing.git # "upstream" = "original" = "remote" - the place you're trying to sync from<br />git fetch original # 'original' being the name YOU gave for the "remote/original" repository<br />git merge master original/master # now merge the "original/master" branch (they should have  a branch named "master" too, otherwise you have to figure out which branch to get) into your master<br />git push # push your now-merged stuff back to github<br /><br /># I was instructed to use these commands.  They didn't work.<br /># git reset original # the word "original" here matches the word "original" on the previous line<br /># git reset --hard original # this will overwrite local changes<br /></code></div>

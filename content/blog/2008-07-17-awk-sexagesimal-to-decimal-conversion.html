@@ -1,0 +1,19 @@
+---
+layout: post
+title: "Awk sexagesimal to decimal conversion"
+date: 2008-07-17T09:12:00-07:00
+categories:
+ - astronomy
+ - computer
+---
+
+<div class='post'>
+In VIM I often need to convert columns of RA/Dec from Sexagesimal into Decimal format.<br /><br /><tt>%!awk '{ra = ($2+$3/60+$4/3600)*15; dec = $6+$7/60+$8/3600; print $1,"ra=",ra,",  dec=  ",$5,dec}'</tt><br /><br /><br />The far more irritating inverse operation:<br /><br /><tt> %!awk '{h=($2/15); h=h-(h\%1);  m=($2-h*15)/15*60; m=m-(m\%1); s=($2-h*15-m*15/60)/15*3600; d=-($3-$3\%1); am=(-$3-d)*60; am=am-(am\%1); as=(-$3-d-am/60)*3600; printf "\%s  \%02i:\%02i:\%02.2f<br />,  -\%02i:\%02i:\%02.2f   \%s  \%s  \%s\n" , $1,h,m,s,d,am,as,$4,$5,$6}'   </tt></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Adam</div>
+<div class='content'>
+Conversion using Python:<br /><br />http://code.google.com/p/casaradio/source/browse/branches/python/darling/convert_coords.py<br /><br />http://code.google.com/p/agpy/source/browse/trunk/agpy/ratosexagesimal.py</div>
+</div>
+</div>

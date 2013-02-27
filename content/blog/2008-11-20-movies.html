@@ -1,0 +1,11 @@
+---
+layout: post
+title: "MOVIES!"
+date: 2008-11-20T17:42:00-08:00
+categories:
+ - animation
+ - computer
+---
+
+<div class='post'>
+Making movies is surprisingly difficult.  No matter what language you use, apparently true movie files can only be made by stringing together images, i.e. there is no native movie-producing feature.   Gnuplot can do some simple animations but to do anything sophisticated you need to start delving into variables, and for that I switch to a real language.<br /><br />So, I returned to python.  As usual, it took no more than a few hours of coding and learning to come up with something.  But it bothers me that it took that long: I still think python is most deficient in its failure to create a default column-text reader like 'readcol' in IDL.  I can't complain that much, though: I wrote <a href="http://casa.colorado.edu/~ginsbura/pyreadcol.htm">my own</a> in about 5 minutes.<br /><br />Anyway, the key is to use the <code>.set_xdata</code> and <code>.set_ydata</code> functions of a plot to update a canvas.  I still don't have nearly as high a plotting speed as I'd like, but it works alright if I don't display to screen.  Probably a different backend would be more effective but I don't like to mess with backends.<br /><br />I use <code> savefig(filename,dpi=50) </code> to reduce the image quality so that it's easier for the animator to handle.<br /><br />ImageMagick's convert can be used to stitch any kind of image into a movie given that you've installed an mpeg2 encoder (fink gave me <code>mpeg2vidcodec      </code>).  The command is very simple:<br /><code><br />convert -size 300x300 *.png movie.mpg<br /></code><br /><br />I had to use a smaller image size because a series of 1000x12kb files somehow chomped ~6-8 GB of RAM and swap space.</div>

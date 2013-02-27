@@ -1,0 +1,10 @@
+---
+layout: post
+title: "Massive upgrades, new strategy?"
+date: 2008-11-17T19:55:00-08:00
+categories:
+ - pipeline
+---
+
+<div class='post'>
+A few major things today:<br />1. I renamed 'ts_to_map' to 'drizzle' and made 'ts_to_map' a wrapper that will either median combine by scans (if passed the right keywords, i.e. tstomapmedian and scans_info).  This will reject cosmic rays much more effectively than previously.<br />2. My extensive test runs on the 'weird' fields completed.  Conclusions:<br />     a. Deconvolution is DEFINITELY responsibly for the weird fuzzy effects seen esp. in l=33, l=2. <br />     b. Even a descending iterator is ineffective at alleviating this problem<br />What I still don't understand is WHY the deconvolver is behaving badly for some regions.  It is extracting peaks that are too high.<br />      c. Not deconvolving works pretty well, so I'm not really concerned.  I'm resetting the defaults to no deconvolution once my next test is done....<br />3. Started up a new test run to compare median stacking with weighted average stacking</div>

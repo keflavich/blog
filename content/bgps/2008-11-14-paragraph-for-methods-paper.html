@@ -1,0 +1,10 @@
+---
+layout: post
+title: "Paragraph for the methods paper"
+date: 2008-11-14T15:10:00-08:00
+categories:
+ - methods paper
+---
+
+<div class='post'>
+The raw data from Bolocam contains noise components from the atmosphere and instrument in addition to the astrophysical signal.  To remove the atmospheric noise, an iterative approach was required.  <br /><br /><ol><br /><li> The median across all bolometers is subtracted<br /><li> A set number of principle components are subtracted.  The principle components are the most correlated components between bolometers.  In this process both the atmosphere above the telescope - which is assumed to be constant across the field of view - and any large-scale astrophysical structure are removed.<br /><li> The timestream data is mapped into the plane of the sky.  Data points are mapped to the nearest pixel.  7.2" pixels are used so that sampling is better than Nyquist.<br /><li> The map is deconvolved using a maximum entropy deconvolution algorithm ( Based on paper by Hollis, Dorband, Yusef-Zadeh, Ap.J. Feb.1992, written by Frank Varosi at NASA/GSFC 1992)<br /><li> The deconvolved map is returned to a timestream and subtracted from the original to yield a noise-only timestream.  <br /><li> Power spectral densities are calculated for each scan in the noise timestream, and weights are calculated from these.  [At the moment, the weights are actually inverse-variance]<br /><li> The deconvolved map timestream is subtracted from the raw timestream, and then steps 1-6 are repeated on that timestream to recover flux that was oversubtracted in the first iteration.<br /></ol><br /><br />Convergence takes ???? iterations....<br />??? PCA components are subtracted [default 13]...</div>

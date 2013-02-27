@@ -1,0 +1,8 @@
+---
+layout: post
+title: "Installing qt on 10.7"
+date: 2012-12-04T22:59:00-08:00
+---
+
+<div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on"><br />Worked following these instructions: http://www.noktec.be/python/how-to-install-pyqt4-on-osx with important exceptions.<br /><br />1. I installed sip and pyqt against my virtualenv, not against the system python<br />2. I had to get g++-4.2 to precede g++-4.6 on my path, which was hard.<br /><br />This command:<br />PATH=/usr/bin:$PATH CC=g++-4.2 CXX=g++-4.2 ~/virtual-python/bin/python configure.py -d ~/virtual-python/lib/python2.7/site-packages/ --verbose<br /><br />worked, whereas this one:<br /><br />CC=g++-4.2 CXX=g++-4.2 ~/virtual-python/bin/python configure.py -d ~/virtual-python/lib/python2.7/site-packages/ --verbose<br /><br />did not.<br /><br />Similarly, needed same prefixes when doing make.<br /><div><br /></div></div></div>

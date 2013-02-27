@@ -1,0 +1,11 @@
+---
+layout: post
+title: "usetex failure in latex documents"
+date: 2010-05-25T15:35:00-07:00
+categories:
+ - latex
+ - matplotlib
+---
+
+<div class='post'>
+When I use matplotlib's internal tex (rcParams['text.useTex']=False), the postscript files generated cause errors that look like this when you try to ps2pdf them:<br /><br /><code><br />ps2pdf h2co_pilot.ps<br />Error: /rangecheck in --get--<br />Operand stack:<br />   --dict:20/25(ro)(L)--   --nostringval--   71<br />Execution stack:<br />   %interp_exit   .runexec2   --nostringval--   --nostringval--   --nostringval--   2   %stopped_push   --nostringval--   --nostringval--   --nostringval--   false   1   %stopped_push   1862   1   3   %oparray_pop   1861   1   3   %oparray_pop   1845   1   3   %oparray_pop   1739   1   3   %oparray_pop   --nostringval--   %errorexec_pop   .runexec2   --nostringval--   --nostringval--   --nostringval--   2   %stopped_push   --nostringval--   %finish_show   --nostringval--   --nostringval--   9   6   0   --nostringval--   (pdf_text_enum_t)   %op_show_continue   --nostringval--<br />Dictionary stack:<br />   --dict:1147/1684(ro)(G)--   --dict:0/20(G)--   --dict:70/200(L)--   --dict:116/300(L)--   --dict:44/200(L)--   --dict:25/42(L)--<br />Current allocation mode is local<br />Last OS error: 2<br />Current file position is 791626<br />GPL Ghostscript 8.64: Unrecoverable error, exit code 1<br />make: *** [h2co_pilot.pdf] Error 1<br /></code><br /><br />They will not open in MacOS's Preview.app either.<br /><br />Solution:  Make figures with rcParams['text.useTex'] = True</div>

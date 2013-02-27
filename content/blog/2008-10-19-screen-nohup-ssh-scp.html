@@ -1,0 +1,12 @@
+---
+layout: post
+title: "Screen, nohup, ssh, scp"
+date: 2008-10-19T20:42:00-07:00
+categories:
+ - ssh
+ - security
+ - computer
+---
+
+<div class='post'>
+I learned a lot about the above in the past day, but I didn't keep track of the links.<br /><br />First, screen is very useful: it allows you to run any task, detach the screen, and let it run in the background.  You can resume it later.<br /><br />Example:<br /><code><br />screen<br />ipython run_fitter.py<br />&lt;ctrl-a&gt; d<br />screen -r<br /></code><br /><br />Second, it's a huge pain to type a password every time I use scp and ssh.  The solution is to make a key on your computer and put it in the authorized_keys file.<br /><br /><code><br />ssh-keygen -t rsa<br />scp ~/.ssh/id_rsa ginsbura@milkyway.colorado.edu:.<br />ssh ginsbura@milkyway.colorado.edu<br />cat id_rsa >> ~/.ssh/authorized_keys<br />ssh -v ginsbura@milkyway.colorado.edu<br /></code><br /><br />Use ssh -v to figure out why it fails if it still asks you for a password.  In one case, this happened because the computer I was using expected the id to be in ~/.ssh/identity instead of ~/.ssh/id_rsa.  There may also be permissions issues (i.e. you want restrictive permissions on your ssh keys).<br /><br />With the latter, you can still use nohup, which is helpful if you want to pipe your output to a log file.</div>

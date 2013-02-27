@@ -1,0 +1,10 @@
+---
+layout: post
+title: "Montage wrapper"
+date: 2010-04-15T16:30:00-07:00
+categories:
+ - code
+---
+
+<div class='post'>
+(I'm going to try to gradually shift my blogging to this one...)<br /><br />I wrote a bash wrapper for Tom Robitaille's montage wrapper to allow fits wildcards.<br /><br /><code><br />#!/bin/bash<br /><br />origdir=`pwd`<br /><br />#echo $# $*<br /><br />if [ $# -gt 0 ]<br />then<br />    for ii in $*<br />    do<br />        if [ ${ii%=*} == 'header' ]<br />        then<br />            /usr/local/bin/montage/mGetHdr ${ii#*=} mosaic.hdr<br />        elif [ ${ii%=*} == 'outfile' ]<br />        then<br />            outfile=${ii#*=}<br />        elif [ `echo $ii | grep =` ] <br />        then<br />            params="$params,${ii%=*}='${ii#*=}'"<br />        elif [ `echo $ii | grep ".fits"` ] <br />        then<br />            files=( ${files[@]} $ii )<br />        fi<br />    done<br />fi<br />echo ${files[@]} ${#files} <br />if [ ${#files} -gt 0 ] <br />then<br />    mkdir tmp<br />    cp ${files[@]} tmp/<br />    cp mosaic.hdr tmp/<br />    cd tmp/<br />fi<br /><br />if [ -f mosaic.hdr ] <br />then <br />    echo "mosaic.hdr exists, continuing"<br /><br />    dir=`pwd`<br />    echo python -c "import montage; montage.wrappers.mosaic('$dir','$dir/mosaic',header='$dir/mosaic.hdr'$params)"<br />    python -c "import montage; montage.wrappers.mosaic('$dir','$dir/mosaic',header='$dir/mosaic.hdr'$params)"<br /><br />    cd $origdir<br />    if [ -d tmp ]<br />    then<br />        if [ $outfile ]<br />        then<br />            mv tmp/mosaic/mosaic.fits $outfile<br />        else<br />            mv tmp/mosaic mosaic<br />        fi<br />        rm -r tmp<br />    fi<br /><br />else<br />    echo "mosaic.hdr does not exist.  Quitting."<br />    cd $origdir<br />fi<br /><br /></code></div>

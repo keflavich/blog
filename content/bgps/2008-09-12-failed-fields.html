@@ -1,0 +1,10 @@
+---
+layout: post
+title: "Failed fields"
+date: 2008-09-12T15:09:00-07:00
+categories:
+ - mapping
+---
+
+<div class='post'>
+<ul><br /><li>l030 - comments were in the form ;; instead of # in the infile<br /></li><li>l055 - no such folder<br /></li><li>l026 - no infile existed; made one<br /><br /></li><li>l028 - /scratch/sliced_polychrome/l028/060605_o[**]_raw_ds5.nc are bad<br /></li><li>l031 - Downsampling seems to have failed for most of this directory.  Need to downsample all files and create a new infile<br /></li><li>l035 - /scratch/sliced_polychrome/l035/060605_o[**]_raw_ds5.nc are bad - that's all 060605 observations of l035.<br /></li><li>l036 - /scratch/sliced_polychrome/l036/070702_o25_raw_ds5.nc, /scratch/sliced_polychrome/l036/070705_o21_raw_ds5.nc are bad<br /></li><li>l038 - /scratch/sliced_polychrome/l038/060627_ob3_raw_ds5.nc, /scratch/sliced_polychrome/l038/060627_ob[3567]_raw.nc are bad - had to re-preprocess </li><li>l054 - /scratch/sliced_polychrome/l054/070724_o25_raw_ds5.nc is bad<br /></li><li>l057 - /scratch/sliced_polychrome/l057/070907_o16_raw_ds5.nc is bad</li></ul>Except for l057, there is no guarantee that the whole observation is bad, BUT the code failed on ncdf_open, so it possible the observation turned bad during downsampling/preprocessing.<br /><br />fixed: 30, 26, 55, 35, 28, 31, 38, 54, 57<br />so far all observations on 060605 are bad.</div>

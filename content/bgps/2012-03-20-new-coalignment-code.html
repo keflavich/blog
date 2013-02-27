@@ -1,0 +1,10 @@
+---
+layout: post
+title: "New coalignment code"
+date: 2012-03-20T08:08:00-07:00
+categories:
+ - alignment
+---
+
+<div class='post'>
+pixshift has been giving me issues for a long, long time.  It finally came to a head, though, when nothing I did could make l001 "work".  It turns out, when you do cross-correlation analysis, you're really only interested in the most correlated pixel, NOT the junk around it - the junk around it only provides a second-order correction.<br /><br />Well, <a href="http://solarmuri.ssl.berkeley.edu/~welsch/public/software/cross_cor_taylor.pro">cross_cor_taylor.pro</a>, a tool from the solar physics community, does exactly that.  And it works far, far better than my hacked-together pixshift code.  A lesson I should always take to heart: don't rewrite code if it's out there.  Of course, if I'd known it was out there, I wouldn't have rewritten it....<br /><br />This is how good it looks now:<br /><div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/--IDiMhSOWSg/T2idophFD3I/AAAAAAAAGxo/uwPBB9YWwrg/s1600/l029_align_to_reference.png" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" height="214" width="320" src="http://2.bp.blogspot.com/--IDiMhSOWSg/T2idophFD3I/AAAAAAAAGxo/uwPBB9YWwrg/s320/l029_align_to_reference.png" /></a></div><br /><br /><br />(the circle has radius 6", or 1-sigma)</div>

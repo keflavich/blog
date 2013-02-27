@@ -1,0 +1,10 @@
+---
+layout: post
+title: "How to make a pretty image"
+date: 2009-08-17T07:45:00-07:00
+categories:
+ - photo
+---
+
+<div class='post'>
+The most difficult requirement to satisfy is WCS matching.  Each image has to be in exactly the same pixel space in order to overlay them successfully in an image program.  The process is generally to use Montage's mProject to project the images into the same plane, then mAdd with a blank map of a given size so that the dimensions in pixels are identical.<br /><br />Once that's done, I load the images into GIMP.  However, GIMP reads .fits files as 256 bit data - which is essentially useless because most (interesting) images have a dynamical range >~1000.  So I usually make images emphasizing the faint emission in log scale with the high and low ends cut off (I use DS9 to determine high/low).  I make a second copy showing the details of the very bright regions, again in logscale but it ends up being a different log scale - essentially, my transfer function becomes a broken power law.  <br /><br />The tricks in GIMP are numerous, but primarily two:<br />1. Rotate the color table ~60 degrees<br />2. Use images as "Layer Masks" (aka alpha layers) on a solid color background<br /><br />There's also the nice trick when using radio data of using optical or some other wavelength to provide the high-resolution details, while the radio emission provides the intensity.</div>

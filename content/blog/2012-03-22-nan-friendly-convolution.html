@@ -1,0 +1,11 @@
+---
+layout: post
+title: "NaN-friendly convolution"
+date: 2012-03-22T08:30:00-07:00
+categories:
+ - python
+ - code
+---
+
+<div class='post'>
+NaN-friendly convolution is important for, e.g., masked data sets in which you want to interpolate across the masked region.<br /><br />Astropy has gained this functionality with pull request 155:<br /><a href="https://github.com/astropy/astropy/pull/155 ">https://github.com/astropy/astropy/pull/155<br /></a>but this is a "direct" convolution parallel to IDL's 'convol' routine.<br /><br />My FFT-based version now works in N dimensions and is a little cleaner:<br /><a href="http://code.google.com/p/agpy/source/browse/trunk/AG_fft_tools/convolve_nd.py ">http://code.google.com/p/agpy/source/browse/trunk/AG_fft_tools/convolve_nd.py<br /></a><br />I'm still working on writing unit tests, and I'm really not sure what the "correct" behavior at the edges is for the different cases... right now, it seems counterintuitive to me, but the code is doing what I expect it to.<br /><br />Also, Boxcar kernels always result in shifts for me... they're never supposed to.  This is a bug.<br /><br />Currently, other links to these codes:<br /><a href="http://stackoverflow.com/questions/1100100/fft-based-2d-convolution-and-correlation-in-python/8454010#8454010">http://stackoverflow.com/questions/1100100/fft-based-2d-convolution-and-correlation-in-python/8454010#8454010</a></div>

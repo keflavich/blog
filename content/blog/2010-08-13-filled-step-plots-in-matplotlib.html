@@ -1,0 +1,11 @@
+---
+layout: post
+title: "Filled step plots in matplotlib"
+date: 2010-08-13T12:20:00-07:00
+categories:
+ - matplotlib
+ - python
+---
+
+<div class='post'>
+It's not possible to do a simple filled step plot in matplotlib using default<br />commands.  Workaround:<br /><br><br /><code><pre>def steppify(arr,isX=False,interval=0):<br />    """<br />    Converts an array to double-length for step plotting<br />    """<br />    if isX and interval==0:<br />        interval = abs(arr[1]-arr[0]) / 2.0<br />        newarr = array(zip(arr-interval,arr+interval)).ravel()<br />        return newarr<br /><br />plot(xx,yy,linestyle='steps-mid',color='b',linewidth=1.5)<br />fill_between(steppify(xx[x1:x2],isX=True),<br />    steppify(yy[x1:x2])*0,<br />    steppify(yy[x1:x2]),<br />    facecolor='b',alpha=0.2)<br /></pre></code></div>

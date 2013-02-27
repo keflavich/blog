@@ -1,0 +1,18 @@
+---
+layout: post
+title: "Why can't numpy do duplicate index assignment"
+date: 2011-03-29T17:34:00-07:00
+categories:
+ - numpy
+---
+
+<div class='post'>
+<a href="http://casa.colorado.edu/~ginsbura/index.htm">AG</a><br /><br />I want to do drizzling with numpy.  It should be trivial, but it's impossible (without a for loop, afaik) instead.<br /><br /><code><br />In [2]: a = array([1,1,2,2])<br /><br />In [3]: b = arange(5)<br /><br />In [4]: b[a] += 1<br /><br />In [5]: b<br />Out[5]: array([0, 2, 3, 3, 4])<br /><br />In [6]: # but b should really be:<br /><br />In [7]: b[a] += 1<br /><br />In [8]: b<br />Out[8]: array([0, 3, 4, 3, 4])<br /></code></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Adam</div>
+<div class='content'>
+answer: numpy.bincount.  <br /><br />Also, http://code.google.com/p/agpy/source/browse/trunk/AG_image_tools/drizzle.py</div>
+</div>
+</div>

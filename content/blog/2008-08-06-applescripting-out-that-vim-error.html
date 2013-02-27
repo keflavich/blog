@@ -1,0 +1,10 @@
+---
+layout: post
+title: "Applescripting out that VIM error"
+date: 2008-08-06T10:02:00-07:00
+categories:
+ - computer
+---
+
+<div class='post'>
+I have a frequent problem where my VIM window is too large for my macbook screen but it fits on my external monitor, so when I unplug the external the VIM file bar gets stuck behind the Mac OS menu bar.  It's a huge pain to fix this normally, but I wrote/stole an applescript to fix the problem:<br /><pre><br />try<br />    tell application "Vim"<br />        activate<br />    end tell<br />    tell application "System Events"<br />        tell process "Vim"<br />            set size of the first window to {1000, 200}<br />            set position of the first window to {50, 50}<br />        end tell<br />    end tell<br />end try<br /></pre></div>

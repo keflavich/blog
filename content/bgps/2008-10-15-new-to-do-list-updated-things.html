@@ -1,0 +1,11 @@
+---
+layout: post
+title: "New to-do list, updated things...."
+date: 2008-10-15T05:50:00-07:00
+categories:
+ - mapping
+ - pipeline
+---
+
+<div class='post'>
+<code>do_maptests.pro</code> is running a bunch of different mapping parameters (pca components, deconvolution, etc.) on l000, l002, l003, l033, l083.  We'll then run bolocat on it and look for the following:<br />-number of sources found<br />-flux in sources found as a function of n_pca<br />-size of sources as function of n_pca<br />-BADNESS, e.g. blurring / unremoved atmosphere / oversubtracted sources<br /><br /><code>bolocat2reg</code> makes a region file out of a bolocat catalog.  I'd like to make a separate ds9 region file that includes the actual pointing error + the centroiding error rather than just the elliptical fit to a given source; that will be more useful for finder charts.<br /><br />My current goal is to get a nice set of images I can combine to release as a poster to Jason Glenn's student who is making pretty posters for publicity purposes; probably to promote CCAT.   Umm.... I blame the late hour for the alliteration.<br /><br />That goal also means I've been using an IRAF task to do some mosaicing (easier than writing the IDL code AGAIN):<br /><code><br />mscstack l001_5pca_map09.fits,l002_5pca_map09.fits,l000_5pca_map09.fits,l359_5pca_map09.fits,l003_5pca_map09.fits  GCCOMBINE_5pca.fits lthresh=-1<br />l001_13pca_map09_scuba_aligned.fits,l002_13pca_map09_scuba_aligned.fits,l000_13pca_map09_scuba_aligned.fits,l359_13pca_map09_scuba_aligned.fits,l003_13pca_map09_scuba_aligned.fits  GCCOMBINE.fits lthresh=-1<br />mscstack l029_13pca_map09_scuba_aligned.fits,l030_13pca_map09_scuba_aligned.fits,l031_13pca_map09_scuba_aligned.fits,l032_13pca_map09_scuba_aligned.fits,l033_13pca_map09_scuba_aligned.fits,l034_13pca_map09_scuba_aligned.fits L33COMBINE.fits lthresh=-1 hsig=5 lsig=5<br /></code></div>

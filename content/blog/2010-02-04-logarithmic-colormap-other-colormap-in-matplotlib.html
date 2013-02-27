@@ -1,0 +1,11 @@
+---
+layout: post
+title: "Logarithmic Colormap / Other Colormap in Matplotlib"
+date: 2010-02-04T18:31:00-08:00
+categories:
+ - matplotlib
+ - python
+---
+
+<div class='post'>
+This is kind of a pain to find out:<br /><br /><code><br />from matplotlib.colors import LogNorm<br /><br />im = imshow(.... cmap=... , norm=LogNorm(vmin=clevs[0], vmax=clevs[-1])) <br /></code><br /><br />It also works for contours, and can be particularly useful if you only want to display contours at a few levels, but you want the colormap to start at a different point.  e.g.:<br /><code><br />contour(xx,levels=[2,3,4,5,6,7,8,9,10],norm=matplotlib.colors.Normalize(vmin=0,vmax=10))<br /></code><br />will start at light blue instead of dark blue in the default colormap</div>

@@ -1,0 +1,11 @@
+---
+layout: post
+title: "Installing 64 bit tcl/tk on Mac OS X"
+date: 2009-07-02T17:43:00-07:00
+categories:
+ - python
+ - computer
+---
+
+<div class='post'>
+Everything is described in this post:<br />http://www.nabble.com/Error-compiling-tk-8.5.7-on-Mac-OS-X-10.5-td23790967.html<br /><br /><br />But here's a script too:<br /><code><br />curl -O 'http://osdn.dl.sourceforge.net/sourceforge/tcl/t{cl,k}8.5.7-src.tar.gz'<br />for f in t*8.5.7*.gz; do tar zxf $f; done <br />cd tcl8.5.7/unix/<br />./configure --enable-framework --enable-64-bit<br />cd tk8.5.7/unix/<br />./configure --enable-framework --enable-64-bit<br />make -j 4 -C tcl8.5.7/unix <br />make -j 4 -C tk8.5.7/unix<br />sudo make install -C tcl8.5.7/unix <br />sudo make install -C tk8.5.7/unix <br /></code><br /><br />Concerns:<br />-might be necessary to do this in the macosx directory for some reason, though Aqua doesn't support 64 bits<br />-have to recompile python to get _tkinter to work (see <a href="http://buffalothedestroyer.blogspot.com/2009/07/success-64-bit-python-with-64-bit-tcltk.html">a later post</a>)</div>

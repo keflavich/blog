@@ -1,0 +1,10 @@
+---
+layout: post
+title: "latex: producing a bibliography and paper independently"
+date: 2011-10-12T09:41:00-07:00
+categories:
+ - latex
+---
+
+<div class='post'>
+<a href="http://casa.colorado.edu/~ginsbura/index.htm">AG</a><br /><br />If you want citations to work, but you don't want your bibliography to show up, try the following:<br /><code><br />latex file.tex<br />bibtex file<br /></code><br />comment out \biblography{} line<br /><code><br />latex file.tex<br /></code><br /><br />If you latex again, it will screw up.<br /><br />To make an independent bibliography, remove all text and replace all citep/citet/cite commands with \nocite{} in a different document.  Remember to usepackage{natbib} etc.  You may have to copy over the .bbl file.</div>

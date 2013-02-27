@@ -1,0 +1,10 @@
+---
+layout: post
+title: "Hosting on my mac"
+date: 2009-04-20T07:52:00-07:00
+categories:
+ - computer
+---
+
+<div class='post'>
+I'm hosting my website off my mac; it should be accessible to the outside world now: <a href="http://eta.colorado.edu/">eta.colorado.edu</a>.<br /><br />A few things went into this....<br /><ol><br /><li> Don't install the fink version.  The two versions clash and depending on how you access your computer you could end up looking at entirely different directories (e.g. localhost and eta.colorado.edu referred to different sites for a while)<br /><li> The configuration file is /private/etc/apache2/httpd.conf<br /><li> I needed to change  DirectoryIndex to index.htm (from index.html)<br /><li> uncommmented "LoadModule php5_module        libexec/apache2/libphp5.so"<br /><li> had to allow override so that .htaccess files would work.<br /></ol></div>

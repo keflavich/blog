@@ -1,0 +1,10 @@
+---
+layout: post
+title: "PHP and CGI working in the same directory"
+date: 2008-09-13T11:15:00-07:00
+categories:
+ - computer
+---
+
+<div class='post'>
+While it's not possible to get CGI and PHP to work within the same file, you can get .html and .htm files to use cgi/php scripts alternately in the same directory with the following .htaccess file:<br /><br /><pre><br />RemoveHandler  .html<br />AddType text/html  .htm<br />AddHandler application/x-httpd-php .php .html <br />AddHandler server-parsed .htm .html <br /></pre><br /><br />If anyone can prove the previous statement false, please do!  I spent hours googling and hacking to try to get php and cgi to work within the same file.  <br /><br />Also, the way the above file is parsed makes no sense to me.  It is inverted from how I would have thought it should work.</div>

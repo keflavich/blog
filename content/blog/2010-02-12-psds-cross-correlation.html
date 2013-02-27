@@ -1,0 +1,11 @@
+---
+layout: post
+title: "PSDs, cross-correlation..."
+date: 2010-02-12T08:01:00-08:00
+categories:
+ - python
+ - agpy
+---
+
+<div class='post'>
+scipy is capable of doing fft-base cross-correlation, convolution, etc., but it requires the stsci package, which is not generally easy to install.  For that matter, scipy can be a pain some of the time.  So agpy now includes a 2D cross-correlation code and a power spectrum / power spectral density code.  These are pure-numpy codes that should be easy to use without any other bothersome dependencies.<br /><br />EDIT: I have them check for scipy (which can cause crashes if you have a bad scipy install, e.g. 32 bit executables on a 64 bit system) because scipy uses FFTW and numpy appears not to.  Also, this code & related stuff has been <a href="http://www.astrobetter.com/fourier-transforms-of-images-in-python/">discussed on astrobetyter</a><br /><br /><a href="http://code.google.com/p/agpy/"> agpy </a><br /><a href="http://code.google.com/p/agpy/source/browse/trunk/agpy/correlate2d.py"> correlate2d</a><br /><a href="http://code.google.com/p/agpy/source/browse/trunk/agpy/psds.py"> psds </a></div>

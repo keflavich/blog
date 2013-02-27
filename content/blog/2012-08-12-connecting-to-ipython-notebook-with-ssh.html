@@ -1,0 +1,8 @@
+---
+layout: post
+title: "Connecting to ipython notebook with SSH tunneling"
+date: 2012-08-12T18:23:00-07:00
+---
+
+<div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on"><div dir="ltr" style="text-align: left;" trbidi="on">My typical ssh tunnel looks something like: <code>ssh -N -f -L 8889:SERVER.colorado.edu:8889 ginsbura@SERVER.colorado.edu</code></div><br /><br />For ipython notebooks, this approach was giving me the error: <code> channel 2: open failed: connect failed: Connection refused</code>. <br /><br />The ipython notebook is at http://127.0.0.1:8888/ locally.  Therefore, the correct ssh tunnel command is: <code>ssh -N -f -L localhost:8888:localhost:8888 adam@SERVER.colorado.edu</code></div></div>

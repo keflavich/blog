@@ -1,0 +1,10 @@
+---
+layout: post
+title: "MAD flagger"
+date: 2008-11-18T08:20:00-08:00
+categories:
+ - flagging
+---
+
+<div class='post'>
+<pre><br />; The Mad Flagger<br />; Flag based on the median average deviation within a spatial pixel<br />function mad_flagger,data,inds,flags,nsig=nsig<br /><br />    t = systime(/sec)<br />    f0 = total(where(flags))<br /><br />    if n_e(nsig) eq 0 then nsig = 3    <br />    <br />    newflags = flags<br /><br />    mx=max(inds)<br />    vec3=fltarr(mx+1)<br />    h=histogram(inds,reverse_indices=ri,OMIN=om)<br />    for j=0L,n_elements(h)-1 do begin<br />        if ri[j+1] gt ri[j] then begin<br />            v_inds = [ri[ri[j]:ri[j+1]-1]]<br />            if n_e(v_inds) gt 2 then begin<br />                vec = data[v_inds]<br />;                vecmad = mad(vec)  ; the MAD is WAY too small!  I ended up rejecting 8% of points!<br />                vecmad = stddev(vec)<br />                vecmed = median(vec,/even)<br />                madreject = where( (vec gt vecmed + nsig*vecmad) or (vec lt vecmed - nsig*vecmad) )<br />                if (n_e(madreject) gt 0 and total(madreject)) gt 0 then begin<br />                    reject_inds = v_inds[madreject]<br />                    newflags[reject_inds] = 1<br />                endif <br />            endif<br />        endif<br />    endfor<br />    print,"MAD flagger took ",strc(systime(/sec)-t)," seconds and flagged ",$<br />        strc(round(total(where(newflags)) - f0)),' points'<br /><br />    return,newflags<br /><br />end<br /></pre></div>

@@ -1,0 +1,10 @@
+---
+layout: post
+title: "MOSAIC data reduction"
+date: 2009-01-14T13:05:00-08:00
+categories:
+ - iraf
+---
+
+<div class='post'>
+MOSAIC reduction is very difficult.  <br /><a href="http://www.noao.edu/noao/noaodeep/ReductionOpt/frames.html">http://www.noao.edu/noao/noaodeep/ReductionOpt/frames.html</a> has the official instructions.<br /><br />Important things:<br />Have the latest version of <a href="http://iraf.noao.edu/iraf/ftp/iraf/extern/mscred/">MSCRED</a> and <a href="http://iraf.noao.edu/iraf/ftp/iraf/extern/mscdb/">MSCDB</a> installed.  Both will give cryptic errors or "cannot open file" errors (because the files don't exist) otherwise.<br /><br /><br /><code><br />mscred<br />setinstrument kpno CCDMosaThin1<br />msccmatch obj09*.fits coords="!mscgetcat $I $C" search=60 rsearch=1 nfit=30 accept=yes interactive=no fit=no<br /></code></div>

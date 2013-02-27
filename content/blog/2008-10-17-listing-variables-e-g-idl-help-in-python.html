@@ -1,0 +1,11 @@
+---
+layout: post
+title: "Listing variables (e.g IDL help) in Python"
+date: 2008-10-17T23:02:00-07:00
+categories:
+ - python
+ - computer
+---
+
+<div class='post'>
+Again, IDL has the simple 'help' command to tell you all variables in your namespace.  Python has the same thing, but the namespace tends to be cluttered with imported functions.  The commands who, who_ls, and whos are meant for interactive use.  They are a hell of a lot more useful than var, locals, globals, and dir.  <br /><br />examples:<br /><code><br />whos float<br />whos ndarray<br />who module<br />float_vars = %who_ls float<br />grep('x',float_vars)<br /></code><br /><br />I'm afraid I don't know how to make the last two lines into a one-liner, as would be desirable.</div>

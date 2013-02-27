@@ -1,0 +1,10 @@
+---
+layout: post
+title: "IDL colors"
+date: 2008-09-03T18:11:00-07:00
+categories:
+ - computer
+---
+
+<div class='post'>
+To get IDL colors to 'work right' (i.e. a colortable has 255 colors etc), put this in a startup file:<br /><br /><pre>device, true_color = 24, retain = 2, decompose = 0<br />red = [0,1,1,0,0,1]<br />green = [0,1,0,1,0,1]<br />blue = [0,1,0,0,1,0]<br />if not strcmp(getenv('DISPLAY'),'') then $<br />   tvlct, 255*red, 255*green, 255*blue<br /></pre></div>

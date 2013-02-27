@@ -1,0 +1,11 @@
+---
+layout: post
+title: "Research Idea: Stacking Finders"
+date: 2012-09-02T21:51:00-07:00
+categories:
+ - research ideas
+ - observing
+---
+
+<div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">Idea: Stack all of the finders from spectroscopic observations. &nbsp;Finder images tend to be on lower-quality CCDs with no filter, but they frequently produce very deep observations. &nbsp;For example, the open K-band finder on TripleSpec (though it's technically not a CCD). <br /><div><br /></div><div>In order to stack them, you would need to mask out the bad pixels (already done) and compute astrometic solutions for the CCD. &nbsp;Un-warping the images will take some work, but there should be plenty of information available from thousands of observations of different fields to make this computation nearly ideal. &nbsp;Similarly, it should be possible to calibrate different pixels on the imager based on response to 2MASS standards.</div><div><br /></div><div>Applications? &nbsp;Very deep imaging of spectroscopic targets. &nbsp;Short- and long-term variability (typical finder cadence is ~a few seconds). &nbsp;Deep imaging around stars and galaxies of interest - probably far deeper than you could get with classical observing requests.</div><div><br /></div><div>This project should be achievable by a motivated undergraduate, but I think the tools for astrometric solutions need to be in place first. &nbsp;Astrometry.net is a great tool for this, but I think operates on spatial scales that are too large. &nbsp;Once basic astrometric solutions are available (e.g., pointing center for the image), I think IRAF tools could be automated to compute the complete solution, which would then be applied to all images. &nbsp;</div><div><br /></div><div>Calibration might end up being the most challenging component, since there is variable atmospheric emission (absorption) that is not filtered by the finder. &nbsp;Depending on the application, though, large calibration errors may be acceptable. &nbsp;i.e., for deep nebular observations, morphology will be more important than absolute brightness, since the line responsible for the brightness cannot be directly determined. &nbsp;Whereas, for variability, calibration is important, but it can be computed directly from other stars in the field.</div></div></div>

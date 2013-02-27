@@ -1,0 +1,11 @@
+---
+layout: post
+title: "Mercurial - behave like SVN?"
+date: 2010-11-22T18:48:00-08:00
+categories:
+ - mercurial
+ - subversion
+---
+
+<div class='post'>
+I'm trying to use hooks to make mercurial behave like svn when committing.  I like the idea that I can commit changes to my cloned repo while I'm away from the internet, but I <emph>never</emph> want that behavior when I do have internet access.  Therefore, I want to attempt to pull before updating and attempt to push after committing.  Every time.  I have been consistently very unhappy with the <tt>hg merge</tt> command.<br /><br /><code><br />[hooks]<br />precommit = hg pull; hg up<br />postcommit= hg push<br />post-pull = hg up<br /></code><br /><br />However, this doesn't work. precommit freezes with the error<br /><code>waiting for lock on working directory of [dir] held by [procnum]</code><br /><br />and pre-commit results in other errors:<br /><code><br />running hook pre-commit: hg pull; hg up<br />pulling from [source]<br />searching for changes<br />no changes found<br />running hook post-pull: hg up<br />abort: outstanding uncommitted merges<br />warning: post-pull hook exited with status 255<br />abort: outstanding uncommitted merges<br />warning: pre-commit hook exited with status 255<br /></code><br /><br /><a href="http://casa.colorado.edu/~ginsbura/index.htm">AG</a></div>

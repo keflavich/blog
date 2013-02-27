@@ -1,0 +1,10 @@
+---
+layout: post
+title: "Making a postscript plot of a gigantic fits image"
+date: 2009-01-22T09:26:00-08:00
+categories:
+ - idl
+---
+
+<div class='post'>
+<code><br />    map = readfits('MOSAIC.fits',hdr)<br /><br />    crpix1 = sxpar(hdr,'CRPIX1')<br />    crpix2 = sxpar(hdr,'CRPIX2')<br />    crval1 = sxpar(hdr,'CRVAL1')<br />    crval2 = sxpar(hdr,'CRVAL2')<br />    cd1_1 = sxpar(hdr,'CD1_1')<br />    cd2_2 = sxpar(hdr,'CD2_2')<br />   <br />    x = lindgen(n_e(map[*,0]))<br />    y = lindgen(n_e(map[0,*]))<br />    l = (x-crpix1)*cd1_1+crval1-360<br />    b = (y-crpix2)*cd2_2+crval2<br /><br />    imdisp,map,/axis,xrange=[max(l),min(l)],yrange=[min(b),max(b)],range=[-1,8]<br /></code><br /><br />This code makes use of <a href="http://cimss.ssec.wisc.edu/~gumley/idl/imdisp.pro">imdisp.pro</a>.</div>

@@ -1,0 +1,10 @@
+---
+layout: post
+title: "Gildas CLASS"
+date: 2010-04-22T08:55:00-07:00
+categories:
+ - class
+---
+
+<div class='post'>
+It's absurdly difficult to find help on GILDAS Class, probably because you can't google "class" and most people probably don't label every piece of code with "GILDAS class".<br /><br />Anyway, here are some scripts that I refer back to often:<br /><code><br />file in August2009BGPS.dat<br />file out August2009fits.dat multiple<br />on error "file out August2009fits.dat"<br />say "READ IN FILES"<br />define character sourcelist*10[300]<br />accept sourcelist /column observed_sources.txt<br />on error "continue"<br />get 1001<br />set window -100 160<br />set mask -400 -100 160 400<br />set mode x -400 400<br />set align velocity<br />for i 1 to 161<br />    say "Working on SOURCE "'i'<br />    find /source 'sourcelist[i]' /telescope "CSO 4GHZ IF1" /offset 0 0 /quality 5<br />    average<br />    on error "@avplot2 'sourcelist[i]' 'i'; next"<br />    base 3<br />    line 0<br />    min<br />    plot<br />    vis<br />    write i<br />!    on error "continue"<br />next<br /></code><br /><br />and<br /><br /><code><br />file in araya-2004.cls<br />find<br />define character filename*20<br />for i 1 to 20 <br />    say "Working on source "'i'<br />    get next<br />    let filename "araya-2004_"'i'".fits" <br />    say "fits write "'filename'" /mode spectrum"<br />    fits write 'filename' /mode spectrum<br />next<br /><br />!file in araya-2002.cls<br />!find<br />!define character filename*20<br />!for i 1 to 42 <br />!    say "Working on source "'i'<br />!    get i<br />!    let filename "araya-2002_"'i'".fits" <br />!    say "fits write "'filename'" /mode spectrum"<br />!    fits write 'filename' /mode spectrum<br />!next<br /></code></div>

@@ -1,0 +1,8 @@
+---
+layout: post
+title: "Converting a CLASS-created .fits file to a real (FITS-compliant) FITS file"
+date: 2010-09-14T12:34:00-07:00
+---
+
+<div class='post'>
+This post is to remind me, the next time I go looking, how the hell to convert from a GILDAS CLASS fits spectrum (created by <code>fits write blah.fits /mode spectrum</code>) to a FITS-compliant spectrum.<br /><br />First, remember the FITS-WCS spectral definitions: http://www.aanda.org/index.php?option=com_article&amp;access=bibcode&amp;Itemid=129&amp;bibcode=2006A%2526A...446..747GFUL<br /><br /><br />And the peculiar CLASS definitions: http://iram.fr/IRAMFR/GILDAS/doc/html/class-html/node84.html<br /><br />Key points:<br />CLASS stores the CDELT parameter as DELTAV in m/s instead of km/s and the velocity offset of the spectral frame in VELO-LSR also in m/s.<br /><br />Things to set:<br />CTYPE = VRAD<br />SPECSYS = SOURCE<br />SSYSSRC = LSRK<br />VELOSYS = frame velocity (VELO-LSR or CRVAL1)<br /><br />This information is subject to change...</div>
