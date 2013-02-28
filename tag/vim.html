@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Adam Ginsburg's blog - vim</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="../theme/css/main.css" type="text/css" />
+        <link href="../" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog ATOM Feed" />
+        
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="../css/ie.css"/>
+                <script src="../js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="../css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+                
+            
+
+                            <header>
+                <h1><a href=".." id="site-title">Adam Ginsburg's blog </a> : <a href="../compiling-vim.html" id="page-title">Compiling vim...</a></h1>
+                <time datetime="2012-09-20T20:02:00">Thu 20 September 2012</time>            </header>
+
+            <article>
+                <p>Figured I had to post this...
+I've been trying to compile command-line vim 7.3 on Mac OS X 10.7. I
+have the latest `hg clone`d version of vim. I'm stuck on ncurses.
+If I `./configure` with no options, I get the following error:
+checking --with-tlib argument... empty: automatic terminal library
+selection
+checking for tgetent in -ltinfo... no
+checking for tgetent in -lncurses... no
+checking for tgetent in -ltermlib... no
+checking for tgetent in -ltermcap... no
+checking for tgetent in -lcurses... no
+no terminal library found
+checking for tgetent()... configure: error: NOT FOUND!
+You need to install a terminal library; for example ncurses.
+Or specify the name of the library with --with-tlib.
+If instead I try `./configure --with-tlib=ncurses`
+checking --with-tlib argument... ncurses
+checking for linking with ncurses library... configure: error: FAILED
+I have Xcode 4.1. As far as I can tell, ncurses is available:
+$ file /usr/lib/libncurses.*
+/usr/lib/libncurses.5.4.dylib: Mach-O universal binary with 2
+architectures
+/usr/lib/libncurses.5.4.dylib (for architecture x86_64): Mach-O 64-bit
+dynamically linked shared library x86_64
+/usr/lib/libncurses.5.4.dylib (for architecture i386): Mach-O
+dynamically linked shared library i386
+/usr/lib/libncurses.5.dylib: Mach-O dynamically linked shared library
+i386
+/usr/lib/libncurses.dylib: Mach-O universal binary with 2 architectures
+/usr/lib/libncurses.dylib (for architecture x86_64): Mach-O 64-bit
+dynamically linked shared library x86_64
+/usr/lib/libncurses.dylib (for architecture i386): Mach-O dynamically
+linked shared library i386
+Then I changed my PATH from /usr/local/bin... to /usr/bin.....
+The problem was trying to use my /usr/local/bin/gcc instead of the mac
+default /usr/bin/gcc. Something about my locally installed gcc (4.6.1)
+caused major problems.
+I also eventually had to do this command:
+LDFLAGS=-L/usr/lib CFLAGS='-arch i386 -arch x86_64' CCFLAGS='-arch i386
+-arch x86_64' CXXFLAGS='-arch i386 -arch x86_64' ./configure
+--enable-perlinterp --enable-pythoninterp --enable-cscope
+--with-features=huge
+and then had to make sure my default python was NOT pointing to
+enthought!</p>
+            </article>
+                            <section id="article-list">
+                    <h2>Tous les articles</h2>
+                    <ol>
+                                    
+
+                 
+            <li><a href="../latex-vim-skim.html" rel="bookmark" title="Permalink to LaTeX: VIM + Skim">LaTeX: VIM + Skim</a></li>
+                </ol>
+    </section><!-- #article-list -->
+
+        <footer>
+            <nav>
+                <ul>
+                                                                    <li>:: <a href="../tags.html">Tags</a></li>
+                                </ul>
+            </nav>
+                <p id="theme-credit"><a href="http://mathieu.agopian.info/mnmlist/theme.html">Thème mnmlist</a></p>
+        </footer>
+
+</body>
+</html>

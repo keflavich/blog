@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Adam Ginsburg's blog - ssh</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="../theme/css/main.css" type="text/css" />
+        <link href="../" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog ATOM Feed" />
+        
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="../css/ie.css"/>
+                <script src="../js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="../css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+                
+            
+
+                            <header>
+                <h1><a href=".." id="site-title">Adam Ginsburg's blog </a> : <a href="../screen-nohup-ssh-scp.html" id="page-title">Screen, nohup, ssh, scp</a></h1>
+                <time datetime="2012-09-20T20:02:00">Thu 20 September 2012</time>            </header>
+
+            <article>
+                <p>I learned a lot about the above in the past day, but I didn't keep track
+of the links.
+First, screen is very useful: it allows you to run any task, detach the
+screen, and let it run in the background. You can resume it later.
+Example:
+<tt class="docutils literal">screenipython <span class="pre">run_fitter.py&lt;ctrl-a&gt;</span> dscreen <span class="pre">-r</span></tt>
+Second, it's a huge pain to type a password every time I use scp and
+ssh. The solution is to make a key on your computer and put it in the
+authorized_keys file.
+<tt class="docutils literal"><span class="pre">ssh-keygen</span> <span class="pre">-t</span> rsascp <span class="pre">~/.ssh/id_rsa</span> <span class="pre">ginsbura&#64;milkyway.colorado.edu:.ssh</span> ginsbura&#64;milkyway.colorado.educat id_rsa &gt;&gt; <span class="pre">~/.ssh/authorized_keysssh</span> <span class="pre">-v</span> ginsbura&#64;milkyway.colorado.edu</tt>
+Use ssh -v to figure out why it fails if it still asks you for a
+password. In one case, this happened because the computer I was using
+expected the id to be in ~/.ssh/identity instead of ~/.ssh/id_rsa.
+There may also be permissions issues (i.e. you want restrictive
+permissions on your ssh keys).
+With the latter, you can still use nohup, which is helpful if you want
+to pipe your output to a log file.</p>
+            </article>
+                                
+        <footer>
+            <nav>
+                <ul>
+                                                                    <li>:: <a href="../tags.html">Tags</a></li>
+                                </ul>
+            </nav>
+                <p id="theme-credit"><a href="http://mathieu.agopian.info/mnmlist/theme.html">Thème mnmlist</a></p>
+        </footer>
+
+</body>
+</html>
