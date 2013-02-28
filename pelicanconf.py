@@ -23,4 +23,4 @@ SOCIAL=()
 
 DEFAULT_PAGINATION = 10
 
-THEME='mnmlist'
+THEME='sneakyidea' # sneakyidea is default
