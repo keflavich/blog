@@ -400,4 +400,5 @@ Then tried what the site actually said, and used the hpc binaries::
 
 This is the next step, if I ever get there::
 
-    wget http://www.astromatic.net/software/sextractor
+    wget http://www.astromatic.net/download/sextractor/sextractor-2.8.6.tar.gz
+    tar -xzvf ~/Downloads/sextractor-2.8.6.tar.gz 
