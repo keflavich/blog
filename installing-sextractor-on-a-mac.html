@@ -49,47 +49,27 @@
 <p><a class="reference external" href="http://henrysmac.org/blog/2012/8/17/install-sextractor-on-os-x-lion.html">http://henrysmac.org/blog/2012/8/17/install-sextractor-on-os-x-lion.html</a></p>
 <p>Then found out that mac's tar doesn't work properly (see this note: <a class="reference external" href="http://math-atlas.sourceforge.net/atlas_install/node60.html">http://math-atlas.sourceforge.net/atlas_install/node60.html</a>)</p>
 <p>Fixed that with:</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/install_sextractor.rst</tt>, line 18)</p>
-<p>Error in &quot;code-block&quot; directive:
-1 argument(s) required, 0 supplied.</p>
-<pre class="literal-block">
-.. code-block::
-
-    wget ftp://gnu.mirror.iweb.com/gnu/tar/tar-latest.tar.gz
-    cd ~/repos/
-    tar -xzvf ~/Downloads/tar-latest.tar.gz # ironically
-    cd tar-1.26/
-    ./configure
-    make
-    make install # fails
-    sudo make install
-    hash -r
-
-
-</pre>
-</div>
+<div class="highlight"><pre>wget ftp://gnu.mirror.iweb.com/gnu/tar/tar-latest.tar.gz
+<span class="nb">cd</span> ~/repos/
+tar -xzvf ~/Downloads/tar-latest.tar.gz <span class="c"># ironically</span>
+<span class="nb">cd </span>tar-1.26/
+./configure
+make
+make install <span class="c"># fails</span>
+sudo make install
+<span class="nb">hash</span> -r
+</pre></div>
 <p>OK, try the instructions again:</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/install_sextractor.rst</tt>, line 33)</p>
-<p>Error in &quot;code-block&quot; directive:
-1 argument(s) required, 0 supplied.</p>
-<pre class="literal-block">
-.. code-block::
-
-    # first command may not work... visit that link if so
-    wget https://sourceforge.net/projects/math-atlas/files/latest/download?source=files
-    mkdir ~/repos/ATLAS3.10
-    cd ~/repos/ATLAS3.10
-    tar -xf ~/Downloads/atlas3.10.1.tar -C ./ --strip-components 1
-    mkdir build/
-    cd build/
-    ../configure -b 64 --shared --prefix=/usr/local/lib/atlas --with-netlib-lapack-tarfile=/Users/adam/Downloads/lapack-3.4.2.tar
-    make build
-
-
-</pre>
-</div>
+<div class="highlight"><pre><span class="c"># first command may not work... visit that link if so</span>
+wget https://sourceforge.net/projects/math-atlas/files/latest/download?source<span class="o">=</span>files
+mkdir ~/repos/ATLAS3.10
+<span class="nb">cd</span> ~/repos/ATLAS3.10
+tar -xf ~/Downloads/atlas3.10.1.tar -C ./ --strip-components 1
+mkdir build/
+<span class="nb">cd </span>build/
+../configure -b 64 --shared --prefix<span class="o">=</span>/usr/local/lib/atlas --with-netlib-lapack-tarfile<span class="o">=</span>/Users/adam/Downloads/lapack-3.4.2.tar
+make build
+</pre></div>
 <p>Died with errors:</p>
 <pre class="literal-block">
 ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_dMBJBmm.o ATL_dIBNBmm.o ATL_dIBJBmm.o ATL_dgemm.o ATL_dGetNB.o ATL_dGetNCNB.o ATL_dgemmNN.o ATL_dgemmNT.o ATL_dgemmTN.o ATL_dgemmTT.o ATL_dNCmmIJK.o ATL_dNCmmJIK.o ATL_dNCmmIJK_c.o ATL_dNCmmJIK_c.o ATL_daliased_gemm.o ATL_dAgemmNN.o ATL_dAgemmNT.o ATL_dAgemmTN.o ATL_dAgemmTT.o ATL_dmmJIK.o ATL_dmmIJK.o ATL_dmmJKI.o ATL_dmmK.o ATL_dmmBPP.o ATL_dmmJITcp.o ATL_dcol2blk_aX.o ATL_drow2blkT_aX.o ATL_dcol2blk_a1.o ATL_drow2blkT_a1.o ATL_dputblk_bX.o ATL_dputblk_b1.o ATL_dputblk_bn1.o ATL_dputblk_b0.o
