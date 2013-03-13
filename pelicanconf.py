@@ -5,7 +5,7 @@ AUTHOR = u'Adam Ginsburg'
 SITENAME = u"Adam Ginsburg's blog"
 SITEURL = 'http://keflavich.github.com/blog/'
 
-TIMEZONE = 'Europe/Paris'
+TIMEZONE = 'America/Denver'
 
 DEFAULT_LANG = u'en'
 
@@ -23,4 +23,4 @@ SOCIAL=()
 
 DEFAULT_PAGINATION = 10
 
-THEME='sneakyidea' # sneakyidea is default
+THEME='bootstrap' # sneakyidea is default
