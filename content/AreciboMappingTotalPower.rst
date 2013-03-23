@@ -1,6 +1,6 @@
 Arecibo Mapping: Total Power Measurements
 #########################################
-:date: 2013-03-12 20:16
+:date: 2013-03-22 22:50
 :author: Adam (keflavich@gmail.com)
 :tags: arecibo, idl
 
@@ -19,6 +19,6 @@ since the indexing is wrong, but I'm not sure yet.  I re-wrote the whole
 off-position measurement to average over all scans.  Still in progress, but the
 fitting works now. Here's an example:
 
-.. figure:: figures/total_vs_integnum.png
+.. figure:: static/images/total_vs_integnum.png
 
 
