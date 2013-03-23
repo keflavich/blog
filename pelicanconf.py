@@ -23,6 +23,8 @@ SOCIAL=()
 
 DEFAULT_PAGINATION = 10
 
-THEME='bootstrap2' # sneakyidea is default
+#THEME='bootstrap2' # sneakyidea is default
+#THEME='simple' 
+THEME='mine' 
  
 STATIC_PATHS = ['images']
