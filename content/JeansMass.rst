@@ -1,3 +1,9 @@
+Jeans Mass
+##########
+:date: 2013-03-12 20:16
+:author: Adam (keflavich@gmail.com)
+:tags: ipynb, physics
+
 Some notes about the Jeans mass scale using astropy's units.
 
 Simple approaches to determining mass scales:
@@ -35,7 +41,7 @@ where :math:`m` is the particle mass, usually assumed to be 2.8 amu.
 
 In[1]:
 
-.. code:: python
+.. code-block:: python
 
     # astropy imports
     import astropy.units as u
@@ -52,7 +58,7 @@ In[1]:
 
 In[7]:
 
-.. code:: python
+.. code-block:: python
 
     amu = c.m_p
     temperature = 10 * u.K
@@ -60,7 +66,7 @@ In[7]:
 
 In[5]:
 
-.. code:: python
+.. code-block:: python
 
     m.to(u.solMass)
 
