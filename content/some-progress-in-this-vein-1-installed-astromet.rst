@@ -1,9 +1,8 @@
-Some progress in this vein: 
-1. installed astromet...
-#####################################################
+Attempts to install astrometry.net (comment on problems-with-index-files-generation)
+####################################################################################
 :date: 2012-11-04 17:26
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#comment
+:tags: comment
 
 Some progress in this vein:
 1. installed astrometry.net (but without some graphical extras)

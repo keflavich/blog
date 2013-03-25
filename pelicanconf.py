@@ -3,6 +3,7 @@
 
 AUTHOR = u'Adam Ginsburg'
 SITENAME = u"Adam Ginsburg's blog"
+#SITESUBTITLE = u"about astronomy and coding, most likely"
 SITEURL = 'http://keflavich.github.com/blog/'
 
 TIMEZONE = 'America/Denver'
@@ -21,10 +22,12 @@ LINKS=()
 #          ('Another social link', '#'),)
 SOCIAL=()
 
-DEFAULT_PAGINATION = 10
+DEFAULT_PAGINATION = 50
 
 #THEME='bootstrap2' # sneakyidea is default
 #THEME='simple' 
 THEME='mine' 
  
 STATIC_PATHS = ['images']
+
+INLINESTYLES = True

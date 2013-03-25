@@ -6,12 +6,6 @@ The Peculiar Balmer Decrement of SN 2009ip: Constraints on Circumstellar Geometr
 
 .. raw:: html
 
-   <div dir="ltr" style="text-align: left;">
-
- [ `arXiv`_ ]
-
-.. raw:: html
-
    <div class="authors">
 
 \ `Emily M. Levesque`_, \ `Guy S. Stringfellow`_, \ `Adam G.

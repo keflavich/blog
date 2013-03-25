@@ -10,7 +10,8 @@ slopes.
 
 I suspect the problem was with these lines 
 
-..code ::
+.. this is really IDL but there's no pygment for IDL
+.. code-block:: python
 
         sorted1 = sort(totals[0:-1:2])
         sorted2 = sort(totals[1:-1:2])
@@ -20,5 +21,6 @@ off-position measurement to average over all scans.  Still in progress, but the
 fitting works now. Here's an example:
 
 .. figure:: static/images/total_vs_integnum.png
+    :width: 800px
 
 
