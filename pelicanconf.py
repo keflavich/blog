@@ -32,3 +32,5 @@ STATIC_PATHS = ['images']
 
 INLINESTYLES = True
 
+DISQUS_SITENAME = "keflavich-pelican"
+
