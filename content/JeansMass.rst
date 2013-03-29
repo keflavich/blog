@@ -74,7 +74,7 @@ Out[5]:
 
 .. math::
 
-    1.92903 \; \mathrm{M_{\odot}}
+    1.92903 \mathrm{M_{\odot}}
 
 .. parsed-literal::
 
