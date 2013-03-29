@@ -22,7 +22,7 @@ LINKS=()
 #          ('Another social link', '#'),)
 SOCIAL=()
 
-DEFAULT_PAGINATION = False
+DEFAULT_PAGINATION = 10
 
 #THEME='bootstrap2' # sneakyidea is default
 #THEME='simple' 
