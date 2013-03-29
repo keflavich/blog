@@ -34,3 +34,5 @@ INLINESTYLES = True
 
 DISQUS_SITENAME = "keflavich-pelican"
 
+BGIMAGE='images/GC_4096sq_bolo.png'
+
