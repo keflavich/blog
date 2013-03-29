@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="../theme/css/style.css" />
+<head>
+                <title>Adam Ginsburg's blog - Articles by Adam (keflavich@gmail.com)</title>
+        <meta charset="utf-8" />
+                <link href="http://keflavich.github.com/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+                                                                        </head>
+
+<body id="index" class="home">
+        <header id="banner" class="body" >
+            <div id="header" style='background-image: url("../static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+                <h1 style="color: #C4C4C4;"><a class="header" href="..">Adam Ginsburg's blog <strong></strong></a></h1>
+            </div>
+        </header><!-- /#banner -->
+        <nav id="menu"><ul>
+                                          </ul></nav><!-- /#menu -->
+        <section id="content">
+<h2>Articles by Adam (keflavich@gmail.com)</h2>
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../ds9-commands-to-test-distortion-mapping.html" rel="bookmark" title="Permalink to ds9 commands to test distortion mapping">
+                    ds9 commands to test distortion mapping</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><p>trying to figure out whether I'm screwing something up in the distortion
+map phase... the -scale limits command here is new and useful</p>
+<pre class="literal-block">
+ds9 testfields_*pix5*_map0.fits -cmap sls -scale limits 0 .005 -zoom 4 -match frames wcs -match scales -match colorbars &amp;ds9 testfields_*pix15*_map0.fits -cmap sls -scale limits 0 .003 -zoom 4 -match frames wcs -match scales -match colorbars &amp;ds9 testfields_*pix10*_map0.fits -cmap sls -scale limits 0 .004 -zoom 4 -match frames wcs -match scales -match colorbars &amp;
+</pre>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../ds9-crosshairs-on-command-line.html" rel="bookmark" title="Permalink to DS9 - crosshairs on command line">
+                    DS9 - crosshairs on command line</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><tt class="docutils literal">ds9 pmm*_map0.fits <span class="pre">-zscale</span> <span class="pre">-match</span> scales <span class="pre">-zoom</span> 4 <span class="pre">-match</span> frames wcs <span class="pre">-crosshair</span> 17:33:02.7 <span class="pre">-13:04:49.5</span> wcs fk5 <span class="pre">-lock</span> crosshairs wcs &amp;</tt>
+<tt class="docutils literal">ds9 pmp*_map0.fits <span class="pre">-zscale</span> <span class="pre">-match</span> scales <span class="pre">-zoom</span> 4 <span class="pre">-match</span> frames wcs <span class="pre">-crosshair</span> 17:33:02.7 <span class="pre">-13:04:49.5</span> wcs fk5 <span class="pre">-lock</span> crosshairs wcs &amp;</tt>
+<tt class="docutils literal">ds9 mpp*_map0.fits <span class="pre">-zscale</span> <span class="pre">-match</span> scales <span class="pre">-zoom</span> 4 <span class="pre">-match</span> frames wcs <span class="pre">-crosshair</span> 17:33:02.7 <span class="pre">-13:04:49.5</span> wcs fk5 <span class="pre">-lock</span> crosshairs wcs &amp;</tt>
+<tt class="docutils literal">ds9 mpm*_map0.fits <span class="pre">-zscale</span> <span class="pre">-match</span> scales <span class="pre">-zoom</span> 4 <span class="pre">-match</span> frames wcs <span class="pre">-crosshair</span> 17:33:02.7 <span class="pre">-13:04:49.5</span> wcs fk5 <span class="pre">-lock</span> crosshairs wcs &amp;</tt>
+DS9's crosshairs are extremely useful for checking on WCS coordinate
+matching, especially when they can be set precisely using the command
+line. I don't know how to set the coordinates exactly interactively...
+that may come later.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../ds9-gaussian-fitting.html" rel="bookmark" title="Permalink to DS9 gaussian fitting">
+                    DS9 gaussian fitting</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>One thing DS9 desperately needs is an interactive gaussian fitter. I
+have NOT implemented one yet, but it is high on my to do list. Has
+anyone else (googlers?) tried or succeeded in implementing such a thing?
+Ideally, something with NO dependencies: if I write one, it will require
+python, numpy, and probably pyds9 - ick. Straight-up TCL would be very
+much preferable.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../dying-dock.html" rel="bookmark" title="Permalink to Dying Dock">
+                    Dying Dock</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>My dock keeps dying. Repeatedly. Over and over.
+Only solution so far:
+<tt class="docutils literal">ps <span class="pre">-vax</span> | grep <span class="pre">-E</span> &quot;Dock|PID&quot;kill <span class="pre">-HUP</span> PIDkill <span class="pre">-s</span> SIGCHLD PID</tt>
+And similarly for problems with Chrome + /usr/sbin/mDNSResponder. They
+tend to go bad together.... no clues yet from the system logs.
+Ironically, the crash reporter seems to fail the most often...</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../electron-cyclotron-masers-from-planets-around-white-dwarves.html" rel="bookmark" title="Permalink to Electron-Cyclotron Masers from planets around White Dwarves">
+                    Electron-Cyclotron Masers from planets around White Dwarves</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I believe two departures from the stated topic become a rule rather than
+an exception. OK, so this is now a blog about generally interesting
+astronomical topics.
+Today's topic is planets around white dwarves. First, why do we care?
+Well, everyone wants to find more planets, and in this case we'd be
+seeing planets that survived the deaths of their host stars.
+When a main sequence star like the sun reaches a certain age (around 10
+billion years old for the sun), it expands and cools, becoming a red
+giant. At this point, depending on a number of factors including the
+mass of the star, it can engulf the planets around it. If this happens,
+the planets experience a drag force (think &quot;wind resistance&quot;) as they
+move through the star's atmosphere and they spiral in to the center,
+where they burn up and are destroyed.
+<a href="#id3"><span class="problematic" id="id4">`|image0|`_</span></a>
+However, if the star is just the right size and the planet is in just
+the right place, something more interesting may happen. The Red Giant
+phase lasts for a few hundred million years, after which it undergoes an
+Asymptotic Giant Branch (AGB) phase where it alternately grows and
+shrinks. During this phase, it will temporarily engulf a planet, but not
+for long enough to destroy it - just long enough to move it inwards a
+little bit. Of course, conditions on the planet won't be very pleasant
+during this period.
+<a href="#id5"><span class="problematic" id="id6">`|image1|`_</span></a>
+As shown in the animation, the AGB phase leads into the formation of a
+planetary nebula with a white dwarf at the center. If things went right,
+a planet could end up close to the white dwarf after the tumultuous
+period just described.
+This is an exciting proposition because it opens the possibility that we
+could detect the planet interacting with the White Dwarf's magnetic
+field. You may recall hearing that the Earth has an iron core, which is
+why it has a magnetic field surrounding it. A similar planet orbiting a
+white dwarf would generate currents, and the electrons would then flow
+onto the poles of the white dwarf and show up as hot spots, like on
+Jupiter.
+<a href="#id7"><span class="problematic" id="id8">`|image2|`_</span></a>
+The hot spots would be impossible to spot by normal methods, but on
+either side of the hot spots there are big lobes where the electrons
+will emit radio light, which is detectable by the best radio arrays on
+the ground (e.g. the <a class="reference external" href="http://en.wikipedia.org/wiki/Very_Large_Array">Very Large Array</a> and <a class="reference external" href="http://en.wikipedia.org/wiki/LOFAR">LOFAR</a>).
+<a href="#id9"><span class="problematic" id="id10">`|image3|`_</span></a>
+Why should we care? Well, besides just detecting the presence of a
+planet, we would be able to tell something about the conductivity of its
+core, which is very difficult in any other situation. We might also be
+able to say whether the planet has a magnetosphere and therefore was
+Earth-like. Finally, we could say something definitive about the
+eventual fate of the Earth... in about 4.5 billion years.
+This post was based on papers by Andrew Willes and Kinwah Wu in <a class="reference external" href="http://cdsads.u-strasbg.fr/abs/2004MNRAS.348..285W">2004</a>
+and <a class="reference external" href="http://cdsads.u-strasbg.fr/abs/2005A%26A...432.1091W">2005</a>.</p>
+<div class="system-messages section">
+<h2>Docutils System Messages</h2>
+<div class="system-message" id="id3">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/electron-cyclotron-masers-from-planets-around-white-dwarves.rst</tt>, line 7); <em><a href="#id4">backlink</a></em></p>
+Unknown target name: &quot;|image0|&quot;.</div>
+<div class="system-message" id="id5">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/electron-cyclotron-masers-from-planets-around-white-dwarves.rst</tt>, line 7); <em><a href="#id6">backlink</a></em></p>
+Unknown target name: &quot;|image1|&quot;.</div>
+<div class="system-message" id="id7">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/electron-cyclotron-masers-from-planets-around-white-dwarves.rst</tt>, line 7); <em><a href="#id8">backlink</a></em></p>
+Unknown target name: &quot;|image2|&quot;.</div>
+<div class="system-message" id="id9">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/electron-cyclotron-masers-from-planets-around-white-dwarves.rst</tt>, line 7); <em><a href="#id10">backlink</a></em></p>
+Unknown target name: &quot;|image3|&quot;.</div>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../eta-carinae.html" rel="bookmark" title="Permalink to Eta Carinae">
+                    Eta Carinae</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Post #4 and I'm diverging from the purported theme. But it's Eta
+Carinae, it must be discussed!
+Eta Carinae is the most amazing object in the sky, in my opinion. It has
+been the most active nearby (around 2 kiloparsecs, or 6000 light-years,
+distant - close only relative to, say, the Galactic Center or other
+galaxies) object in the past few centuries. In 1840 it brightened by a
+few magnitudes, and it has been discovered since then that this event
+was a huge explosion.
+But it wasn't a 'normal' explosion. Most exploding stars blow up and die
+in supernovae. Those are awesome events that sometimes completely
+annihilate a star and sometimes leave a black hole or neutron star
+behind.
+This explosion was nearly as powerful as a supernova, but the star is
+still there. And it turns out that there are TWO stars there. There are
+a number of different theories going around, but this system is
+incredibly difficult to observe because there's just <em>so much</em> stuff
+there.
+The prevailing theory is that there are two stars, one around 80 solar
+masses, the other around 20. Either one of these on its own would be
+pretty big, hot, and impressive. Two together is something pretty
+impressive - but actually not that uncommon.
+Other pairs of hot, massive stars are observed frequently. One example
+is WR 40, in which two 80 solar mass stars are orbiting one another. The
+curious thing is that most of these massive stars have very circular
+orbits, but in Eta Carinae the small star has a very eccentric orbit
+around the large star.
+One explanation for this - which is not widely accepted yet because it's
+very hard to confirm, but it's plausible - is that Eta Carinae used to
+be a nearly equal-mass binary system like WR40, but one of the stars
+blew off its outer envelope (the outer part of the star) in a huge
+explosion, and when it lost this mass its orbit changed. One bit of
+evidence in favor of this hypothesis is that the small star has a very
+fast wind - 3000 km/s, which is faster than any normal star's wind. Wolf
+Rayet stars have winds that fast, though, and they are stars with
+blown-off envelopes. It's going to take a lot of skilled observations to
+confirm this, though.
+Another neat thing is that the smaller star disappears on its closest
+approach to the large star. Why? The large star is losing mass at a very
+fast rate - about a Jupiter mass every year! That's more than a million
+times as fast as the sun is losing its mass in the Solar Wind. All of
+this mass loss has an interesting result - you can't see the star, you
+only see the outside of its wind. But the small star passes inside the
+'sphere' that is producing the wind, and so it's as though the small
+star was going inside the large one! You don't see it at all during
+closest approach.
+I get excited about this star... I'd like to add a lot more on it, and
+so you might see Luminous Blue Variables as a recurring theme on this
+blog. I hope to post a lot of pictures and add some links to references
+too.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../evla-information.html" rel="bookmark" title="Permalink to EVLA information">
+                    EVLA information</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>It has been really hard to find EVLA information like beam size, largest
+angular scale, sensitivity, etc. on the VLA pages because all of the
+google searches point to old VLA information. The most useful and recent
+<a class="reference external" href="http://evlaguides.nrao.edu/index.php?title=Category:Status">EVLA information on beam size and largest angular scale is here</a></p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../explosion.html" rel="bookmark" title="Permalink to Explosion">
+                    Explosion</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Our &quot;Workie Ticket&quot;, which was doing its primary in the carboy, popped
+its top. It made a mess but should still be healthy... the yeast was
+going extremely strong at the way-too-hot 78 degrees it's sitting at
+this morning. It already has a fruity aroma, though, so it's likely that
+all of our brews are going to be extremely fruity. Bleh.
+Our <a class="reference external" href="http://casa.colorado.edu/~ginsbura/sketch_beers.htm">Honey Brown</a>, which was excellent at the start, has gotten a bit
+too dry and alcoholic. The first few sips have a strong flavor of
+alcohol to them. However, once you get into the beer, it gains a little
+bit of depth and isn't too bad... probably the alcohol talking. I think
+most of the bottles are probably overcarbonated at this point, but we
+only have a few left. Overall point: Honey beers need to be drunk within
+about a week of bottling for peak deliciousness; apparently honey dries
+out very strongly.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../extracting-figures-from-papers.html" rel="bookmark" title="Permalink to Extracting figures from papers">
+                    Extracting figures from papers</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I want to automatically extract figures from papers, but of course most
+papers come in .pdf, not .ps form...
+This site has a great tool for extracting figures from .ps papers:
+<a class="reference external" href="http://www-hermes.desy.de/notes/extras/postscript.html">http://www-hermes.desy.de/notes/extras/postscript.html</a>
+If anyone can tell me how to do the same thing for .pdfs (automatically
+extract figures from pdfs) I'd appreciate it.
+Update 12/13/08: One solution is listed at
+<a class="reference external" href="http://ubuntuforums.org/showthread.php?t=884002">http://ubuntuforums.org/showthread.php?t=884002</a>: use pdfimages, part
+of the xpdf package.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../failure-to-compile-64-bit-gtk-on-mac-os.html" rel="bookmark" title="Permalink to Failure to compile 64 bit gtk on mac os">
+                    Failure to compile 64 bit gtk on mac os</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Attempted to install gtk+-2.17.2 on my mac. Had to install:
+glib-2.21.2
+which would not let me compile with multiple architectures, and
+pkgconfig-0.9.0,
+which won't configure because:
+<tt class="docutils literal">configure: configuring in <span class="pre">glib-1.2.8configure:</span> running /bin/sh <span class="pre">'./configure'</span> <span class="pre">--prefix=/usr/local</span>&nbsp; CC= CFLAGS= LDFLAGS= <span class="pre">--cache-file=/dev/null</span> <span class="pre">--srcdir=.configure:</span> warning: CC=: invalid host typeconfigure: warning: CFLAGS=: invalid host typeconfigure: error: can only configure for one host and one target at a timeconfigure: error: /bin/sh <span class="pre">'./configure'</span> failed for <span class="pre">glib-1.2.8</span></tt>
+which is bs because I don't have any compiler flags set.
+So, gtk+ seems hopeless.
+UPDATE: 0.9.0 is not the latest version, 0.23.0 is. Dumb version
+numbering.
+GTK is absurd to install. You need:
+pkg-config
+glib
+cairo</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/failure-to-compile-64-bit-gtk-on-mac-os.rst</tt>, line 21)</p>
+Unexpected indentation.</div>
+<blockquote>
+pixman</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/failure-to-compile-64-bit-gtk-on-mac-os.rst</tt>, line 22)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<p>pango (MUST be installed AFTER cairo)
+<a class="reference external" href="http://ftp.gnome.org/pub/gnome/sources/atk/">atk</a>
+<a class="reference external" href="ftp://ftp.remotesensing.org/pub/libtiff/">libtiff</a>
+<a class="reference external" href="http://www.ijg.org/">libjpg</a>
+<a class="reference external" href="http://www.openjpeg.org/index.php">jpeg2000</a> - but I just passed a flag to not do this because it didn't
+install right. --without-libjasper
+<a class="reference external" href="http://fontconfig.org/wiki/">fontconfig</a> I mean, really? at this point it's just ridiculous....
+and finally, it died with this:
+checking Pango flags... configure: error:
+*** Pango not found. Pango built with Cairo support is required
+*** to build GTK+. See <a class="reference external" href="http://www.pango.org">http://www.pango.org</a> for Pango information.
+which meant that I had to reinstall Pango because I had installed it
+before Cairo.
+I believe this is where the term <a class="reference external" href="http://en.wikipedia.org/wiki/Dependency_hell">dependency hell</a> comes from.
+Also, I don't think any of these are x86-64 compatible.
+Then I'm STILL not done.
+PyGTK dies with an import error on dsextras, which a painful google
+search traces to pygobject. pygobject makes and installs fine.... but
+then I find out it installed to
+/usr/local/lib/python2.6/site-packages/gtk-2.0/, which is obviously not
+on my python path since I installed a framework.
+So:
+./configure --prefix=/Library/Frameworks/Python.framework/Versions/2.6/
+in both pygobject and pygtk.
+Oh, guess what? Need pycairo too. What happens there? What you'd guess:
+ld warning: in
+/Developer/SDKs/MacOSX10.5.sdk/usr/local/lib/libcairo.dylib, file is not
+of required architecture
+so when I configure pygtk:
+The following modules will be built:
+atk
+pango
+The following modules will NOT be built:
+pangocairo
+gtk
+gtk.glade
+gtk.unixprint
+Damn. That blows.
+python-64 -c &quot;import gtk&quot;
+ImportError:
+dlopen(/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/gtk-2.0/glib/_glib.so,
+2): no suitable image found. Did find:</p>
+<p>/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/gtk-2.0/glib/_glib.so:
+mach-o, but wrong architecture
+FAIL.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+                        <a href="../author/adam-keflavichgmailcom4.html">&laquo;</a>
+                Page 5 / 23
+            <a href="../author/adam-keflavichgmailcom6.html">&raquo;</a>
+    </p>
+</section><!-- /#content -->
+        <footer id="contentinfo" class="body">
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

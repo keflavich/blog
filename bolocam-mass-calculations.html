@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="./theme/css/style.css" />
+<head>
+                <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+                <link href="http://keflavich.github.com/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+                                                <link href="http://keflavich.github.com/blog/feeds/misc.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+                                        </head>
+
+<body id="index" class="home">
+        <header id="banner" class="body" >
+            <div id="header" style='background-image: url("./static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+                <h1 style="color: #C4C4C4;"><a class="header" href=".">Adam Ginsburg's blog <strong></strong></a></h1>
+            </div>
+        </header><!-- /#banner -->
+        <nav id="menu"><ul>
+                                          </ul></nav><!-- /#menu -->
+        <section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="./bolocam-mass-calculations.html" rel="bookmark"
+         title="Permalink to Bolocam Mass Calculations">Bolocam Mass Calculations</a></h2>
+  
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2013-03-25T11:14:00">
+      Mon 25 March 2013
+    </abbr>
+        <address class="vcard author">
+      By <a class="url fn" href="./author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a>
+    </address>
+      </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Adopt an effective Bolocam center frequency,  f = 271.1 GHz</p>
+<p>Use Ossenkopf, V. &amp; Henning, Th. 1994, A&amp;A, 291, 943 Table 1. [<a class="reference external" href="http://adsabs.harvard.edu/abs/1994A%26A...291..943O">http://adsabs.harvard.edu/abs/1994A%26A...291..943O</a>]
+Interpolate last two entries (lambda = 1.0 mm and 1.3 mm to f)</p>
+<p>This gives kappa = 0.01166 cm^2 g^-1 (or round to 0.0117)
+for gas-to-dust = 100.
+But the slope between these 2 points is only 1.61!</p>
+<p>The points in OH94 table 1 jump around and locally give a variety of
+slopes around 1.8.  A fit to kappa longward of 100 microns
+gives a slope of 1.8.</p>
+<p>Interpolating kappa from 1.00 mm where OH5 gives kappa(1.00) = 0.0137
+(for a gas-to-dust ratio = 100) to 271.1 GHz (= 1.1058 mm)
+using a slope of 1.8 gives:</p>
+<p><strong>:math:`kappa = 0.01143 cm^{2} g^{-1}`</strong></p>
+<p>This is the same as the value used by Enoch, so let's adopt it
+(round to 0.0114), but note that this was calculated for 271.1 GHz.</p>
+<p>For the v1.0 data, the BGPS has the following properties:</p>
+<p>effective beam FWHM = 33&quot;</p>
+<p>gaussian beam sigma = 14.01&quot;    (= FWHM / sqrt (8*ln(2))</p>
+<p>effective beam radius = 19.82&quot;    (= FWHM / sqrt (4*ln(2))</p>
+<p>This is the radius of a circular top-hat function that has the
+same solid angle as a gaussian.  At a distance of
+D = 1 kpc, this radius corresponds to a length  = <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>2</mn><mo>.</mo><mn>9</mn><mn>7</mn><mi>x</mi><mn>1</mn><msup><mn>0</mn>
+<mrow><mn>1</mn><mn>7</mn></mrow></msup></mrow></math> cm.
+The effective beam solid angle is,</p>
+<blockquote>
+<blockquote>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>Ω</mo><mo>=</mo><mn>2</mn><mo>.</mo><mn>9</mn><mn>0</mn><mn>2</mn><mi>x</mi><mn>1</mn><msup><mn>0</mn>
+<mrow><mo>-</mo><mn>8</mn></mrow></msup></mrow></math> sr.</blockquote>
+<p>Adopt a fiducial dust temperature for mass calculations,</p>
+<blockquote>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msub><mi>T</mi><mi>d</mi></msub><mo>=</mo><mn>2</mn><mn>0</mn><mi>K</mi></mrow></math></blockquote>
+</blockquote>
+<p>The total mass per Jy at <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msub><mi>D</mi>
+<mrow><mi>k</mi><mi>p</mi><mi>c</mi></mrow></msub></mrow></math> = 1 kpc is given by</p>
+<p><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>M</mi><mo>=</mo><mn>1</mn><mo>.</mo><mn>0</mn><mi>x</mi><mn>1</mn><msup><mn>0</mn>
+<mrow><mo>-</mo><mn>2</mn><mn>3</mn></mrow></msup><mo>*</mo><mi>S</mi><mo>(</mo><mi>J</mi><mi>y</mi><mo>)</mo><mo>*</mo><msup><mi>D</mi><mn>2</mn></msup><mo>/</mo><mi>κ</mi><mo>*</mo><msub><mi>B</mi><mi>n</mi></msub><mi>u</mi><mo>(</mo><mi>T</mi><mo>)</mo></mrow></math></p>
+<p>:math:`  =  14.30 * [e^(13.01/T(K) - 1] * S(Jy) * D^2_{kpc}`    (Solar masses)</p>
+<blockquote>
+<dl class="docutils">
+<dt>For T = 20 K</dt>
+<dd><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>M</mi><mo>=</mo><mn>1</mn><mn>3</mn><mo>.</mo><mn>0</mn><mn>7</mn><mo>*</mo><mi>S</mi><mo>(</mo><mi>J</mi><mi>y</mi><mo>)</mo><mo>*</mo><msubsup><mi>D</mi>
+<mrow><mi>k</mi><mi>p</mi><mi>c</mi></mrow><mn>2</mn></msubsup><msub><mi>M</mi>
+<mrow><mo>⊙</mo></mrow></msub></mrow></math>      (Solar masses)</dd>
+</dl>
+</blockquote>
+<dl class="docutils">
+<dt>This corresponds to a beam-filling column density of H_2,</dt>
+<dd><p class="first">N(H2) = 2.19e+22 * [e^(13.01/T(K) - 1] * S(Jy)             (cm^-2)</p>
+<p class="last">For T = 20 K
+N(H2) = 2.01 x 10^{22} * S(Jy)    (cm^{-2})
+A_V = 21.1 magnitudes per Jy</p>
+</dd>
+<dt>where I used the Bohlin &amp; Savage calibration,</dt>
+<dd>A_V = 1 mag. &lt;=&gt; N(H) = 1.9 x 10^{20} cm^{-2} and
+N(H_2) = N(H) / 2</dd>
+</dl>
+
+  </div><!-- /.entry-content -->
+</section>
+        <footer id="contentinfo" class="body">
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

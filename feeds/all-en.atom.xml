@@ -1,5 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.com/blog/" rel="alternate"></link><link href="http://keflavich.github.com/blog/feeds/all-en.atom.xml" rel="self"></link><id>http://keflavich.github.com/blog/</id><updated>2013-03-22T22:50:00-06:00</updated><entry><title>Arecibo Mapping: Total Power Measurements</title><link href="http://keflavich.github.com/blog/arecibo-mapping-total-power-measurements.html" rel="alternate"></link><updated>2013-03-22T22:50:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2013-03-22:arecibo-mapping-total-power-measurements.html</id><summary type="html">&lt;p&gt;Worked on reducing the Arecibo continuum data.  There were some serious
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.com/blog/" rel="alternate"></link><link href="http://keflavich.github.com/blog/feeds/all-en.atom.xml" rel="self"></link><id>http://keflavich.github.com/blog/</id><updated>2013-03-25T11:14:00-06:00</updated><entry><title>Bolocam Mass Calculations</title><link href="http://keflavich.github.com/blog/bolocam-mass-calculations.html" rel="alternate"></link><updated>2013-03-25T11:14:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2013-03-25:bolocam-mass-calculations.html</id><summary type="html">&lt;p&gt;Adopt an effective Bolocam center frequency,  f = 271.1 GHz&lt;/p&gt;
+&lt;p&gt;Use Ossenkopf, V. &amp;amp; Henning, Th. 1994, A&amp;amp;A, 291, 943 Table 1. [&lt;a class="reference external" href="http://adsabs.harvard.edu/abs/1994A%26A...291..943O"&gt;http://adsabs.harvard.edu/abs/1994A%26A...291..943O&lt;/a&gt;]
+Interpolate last two entries (lambda = 1.0 mm and 1.3 mm to f)&lt;/p&gt;
+&lt;p&gt;This gives kappa = 0.01166 cm^2 g^-1 (or round to 0.0117)
+for gas-to-dust = 100.
+But the slope between these 2 points is only 1.61!&lt;/p&gt;
+&lt;p&gt;The points in OH94 table 1 jump around and locally give a variety of
+slopes around 1.8.  A fit to kappa longward of 100 microns
+gives a slope of 1.8.&lt;/p&gt;
+&lt;p&gt;Interpolating kappa from 1.00 mm where OH5 gives kappa(1.00) = 0.0137
+(for a gas-to-dust ratio = 100) to 271.1 GHz (= 1.1058 mm)
+using a slope of 1.8 gives:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;:math:`kappa = 0.01143 cm^{2} g^{-1}`&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This is the same as the value used by Enoch, so let's adopt it
+(round to 0.0114), but note that this was calculated for 271.1 GHz.&lt;/p&gt;
+&lt;p&gt;For the v1.0 data, the BGPS has the following properties:&lt;/p&gt;
+&lt;p&gt;effective beam FWHM = 33&amp;quot;&lt;/p&gt;
+&lt;p&gt;gaussian beam sigma = 14.01&amp;quot;    (= FWHM / sqrt (8*ln(2))&lt;/p&gt;
+&lt;p&gt;effective beam radius = 19.82&amp;quot;    (= FWHM / sqrt (4*ln(2))&lt;/p&gt;
+&lt;p&gt;This is the radius of a circular top-hat function that has the
+same solid angle as a gaussian.  At a distance of
+D = 1 kpc, this radius corresponds to a length  = &lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;mrow&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mo&gt;.&lt;/mo&gt;&lt;mn&gt;9&lt;/mn&gt;&lt;mn&gt;7&lt;/mn&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;msup&gt;&lt;mn&gt;0&lt;/mn&gt;
+&lt;mrow&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mn&gt;7&lt;/mn&gt;&lt;/mrow&gt;&lt;/msup&gt;&lt;/mrow&gt;&lt;/math&gt; cm.
+The effective beam solid angle is,&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;mrow&gt;&lt;mo&gt;Ω&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mo&gt;.&lt;/mo&gt;&lt;mn&gt;9&lt;/mn&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;msup&gt;&lt;mn&gt;0&lt;/mn&gt;
+&lt;mrow&gt;&lt;mo&gt;-&lt;/mo&gt;&lt;mn&gt;8&lt;/mn&gt;&lt;/mrow&gt;&lt;/msup&gt;&lt;/mrow&gt;&lt;/math&gt; sr.&lt;/blockquote&gt;
+&lt;p&gt;Adopt a fiducial dust temperature for mass calculations,&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;/msub&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mi&gt;K&lt;/mi&gt;&lt;/mrow&gt;&lt;/math&gt;&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The total mass per Jy at &lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;D&lt;/mi&gt;
+&lt;mrow&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;/math&gt; = 1 kpc is given by&lt;/p&gt;
+&lt;p&gt;&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;mrow&gt;&lt;mi&gt;M&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo&gt;.&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;msup&gt;&lt;mn&gt;0&lt;/mn&gt;
+&lt;mrow&gt;&lt;mo&gt;-&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;/mrow&gt;&lt;/msup&gt;&lt;mo&gt;*&lt;/mo&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;mi&gt;J&lt;/mi&gt;&lt;mi&gt;y&lt;/mi&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;mo&gt;*&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;mo&gt;/&lt;/mo&gt;&lt;mi&gt;κ&lt;/mi&gt;&lt;mo&gt;*&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/msub&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;/math&gt;&lt;/p&gt;
+&lt;p&gt;:math:`  =  14.30 * [e^(13.01/T(K) - 1] * S(Jy) * D^2_{kpc}`    (Solar masses)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;For T = 20 K&lt;/dt&gt;
+&lt;dd&gt;&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+&lt;mrow&gt;&lt;mi&gt;M&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;mo&gt;.&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mn&gt;7&lt;/mn&gt;&lt;mo&gt;*&lt;/mo&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;mi&gt;J&lt;/mi&gt;&lt;mi&gt;y&lt;/mi&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;mo&gt;*&lt;/mo&gt;&lt;msubsup&gt;&lt;mi&gt;D&lt;/mi&gt;
+&lt;mrow&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;/mrow&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msubsup&gt;&lt;msub&gt;&lt;mi&gt;M&lt;/mi&gt;
+&lt;mrow&gt;&lt;mo&gt;⊙&lt;/mo&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;/math&gt;      (Solar masses)&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/blockquote&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;This corresponds to a beam-filling column density of H_2,&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first"&gt;N(H2) = 2.19e+22 * [e^(13.01/T(K) - 1] * S(Jy)             (cm^-2)&lt;/p&gt;
+&lt;p class="last"&gt;For T = 20 K
+N(H2) = 2.01 x 10^{22} * S(Jy)    (cm^{-2})
+A_V = 21.1 magnitudes per Jy&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;where I used the Bohlin &amp;amp; Savage calibration,&lt;/dt&gt;
+&lt;dd&gt;A_V = 1 mag. &amp;lt;=&amp;gt; N(H) = 1.9 x 10^{20} cm^{-2} and
+N(H_2) = N(H) / 2&lt;/dd&gt;
+&lt;/dl&gt;
+</summary><category term="physics"></category><category term="bgps"></category><category term="dust"></category></entry><entry><title>Arecibo Mapping: Total Power Measurements</title><link href="http://keflavich.github.com/blog/arecibo-mapping-total-power-measurements.html" rel="alternate"></link><updated>2013-03-22T22:50:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2013-03-22:arecibo-mapping-total-power-measurements.html</id><summary type="html">&lt;p&gt;Worked on reducing the Arecibo continuum data.  There were some serious
 problems with the off positions previously, in particular generating weird
 slopes.&lt;/p&gt;
 &lt;p&gt;I suspect the problem was with these lines&lt;/p&gt;
@@ -135,13 +197,11 @@ WARNING: ConfigurationDefaultMissingWarning: Requested default configuration fil
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;solMass&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Out[5]:&lt;/p&gt;
-&lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/JeansMass.rst&lt;/tt&gt;, line 77)&lt;/p&gt;
-&lt;p&gt;
-Illegal character: "$"&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-$1.92903 \; \mathrm{M_{\odot}}$
-&lt;/pre&gt;
+&lt;div&gt;
+&lt;math xmlns="http://www.w3.org/1998/Math/MathML" mode="display"&gt;
+&lt;mtable&gt;
+&lt;mtr&gt;
+&lt;mtd&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo&gt;.&lt;/mo&gt;&lt;mn&gt;9&lt;/mn&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mn&gt;9&lt;/mn&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;mtext&gt;M_{\odot&lt;/mtext&gt;&lt;/mtd&gt;&lt;/mtr&gt;&lt;/mtable&gt;&lt;/math&gt;
 &lt;/div&gt;
 &lt;pre class="literal-block"&gt;
 &amp;lt;Quantity 1.92902547696 solMass&amp;gt;
