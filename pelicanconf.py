@@ -26,7 +26,8 @@ DEFAULT_PAGINATION = 10
 
 #THEME='bootstrap2' # sneakyidea is default
 #THEME='simple' 
-THEME='mine' 
+THEME='waterspill-en' 
+THEME='mine'
  
 STATIC_PATHS = ['images']
 
@@ -35,4 +36,9 @@ INLINESTYLES = True
 DISQUS_SITENAME = "keflavich-pelican"
 
 BGIMAGE='images/GC_4096sq_bolo.png'
+
+DISPLAY_PAGES_ON_MENU = False
+SUPPRESS_CATEGORIES_ON_MENU = True
+
+MENUITEMS = {'Home':'http://www.adamgginsburg.com','Index':'index.html'}.items()
 
