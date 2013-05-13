@@ -39,6 +39,8 @@ BGIMAGE='images/GC_4096sq_bolo.png'
 
 DISPLAY_PAGES_ON_MENU = False
 SUPPRESS_CATEGORIES_ON_MENU = True
+SHOW_TAGS=False
+SHOW_RECENT=True
 
 MENUITEMS = {'Home':'http://www.adamgginsburg.com','Index':'index.html'}.items()
 
