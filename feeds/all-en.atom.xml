@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.com/blog/" rel="alternate"></link><link href="http://keflavich.github.com/blog/feeds/all-en.atom.xml" rel="self"></link><id>http://keflavich.github.com/blog/</id><updated>2013-03-25T11:14:00-06:00</updated><entry><title>Bolocam Mass Calculations</title><link href="http://keflavich.github.com/blog/bolocam-mass-calculations.html" rel="alternate"></link><updated>2013-03-25T11:14:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2013-03-25:bolocam-mass-calculations.html</id><summary type="html">&lt;p&gt;Adopt an effective Bolocam center frequency,  f = 271.1 GHz&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.com/blog/" rel="alternate"></link><link href="http://keflavich.github.com/blog/feeds/all-en.atom.xml" rel="self"></link><id>http://keflavich.github.com/blog/</id><updated>2013-05-13T09:26:00-06:00</updated><entry><title>Recovering from "Startup drive out of memory"</title><link href="http://keflavich.github.com/blog/recovering-from-startup-drive-out-of-memory.html" rel="alternate"></link><updated>2013-05-13T09:26:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2013-05-13:recovering-from-startup-drive-out-of-memory.html</id><summary type="html">&lt;p&gt;To continue frozen processes, you need to find all sleeping procs and restart them with &lt;tt class="docutils literal"&gt;kill &lt;span class="pre"&gt;-CONT&lt;/span&gt;&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;In principle, this command should do that:&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;ps &lt;span class="pre"&gt;-A&lt;/span&gt; &lt;span class="pre"&gt;-o&lt;/span&gt; tpgid,uid,pid,state,flags | awk &lt;span class="pre"&gt;'$1!=&amp;quot;0&amp;quot;&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class="pre"&gt;$2==501&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class="pre"&gt;$4==&amp;quot;S&amp;quot;&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class="pre"&gt;$5!=&amp;quot;4000410c&amp;quot;&lt;/span&gt; {print &amp;quot;kill &lt;span class="pre"&gt;-CONT&lt;/span&gt; &amp;quot; $3}' | bash&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;Without the flags exclusion, this failed for me on apple's VNC server:
+&lt;tt class="docutils literal"&gt;ps &lt;span class="pre"&gt;-A&lt;/span&gt; &lt;span class="pre"&gt;-o&lt;/span&gt; tpgid,uid,pid,state,flags | awk &lt;span class="pre"&gt;'$2==501&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class="pre"&gt;$4==&amp;quot;S&amp;quot;&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class="pre"&gt;$5!=&amp;quot;4000410c&amp;quot;&lt;/span&gt; {print &amp;quot;kill &lt;span class="pre"&gt;-CONT&lt;/span&gt; &amp;quot; $3}' | bash&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;This is necessary for recovering mac processes:
+&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;-A&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Display information about other users' processes, including those without controlling terminals.&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;The outputs from the &lt;tt class="docutils literal"&gt;ps&lt;/tt&gt; process are:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;tpgid      control terminal process group ID&lt;/li&gt;
+&lt;li&gt;pid        process ID&lt;/li&gt;
+&lt;li&gt;uid        effective user ID&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+</summary><category term="mac"></category><category term="memory"></category><category term="crash"></category></entry><entry><title>Bolocam Mass Calculations</title><link href="http://keflavich.github.com/blog/bolocam-mass-calculations.html" rel="alternate"></link><updated>2013-03-25T11:14:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2013-03-25:bolocam-mass-calculations.html</id><summary type="html">&lt;p&gt;Adopt an effective Bolocam center frequency,  f = 271.1 GHz&lt;/p&gt;
 &lt;p&gt;Use Ossenkopf, V. &amp;amp; Henning, Th. 1994, A&amp;amp;A, 291, 943 Table 1. [&lt;a class="reference external" href="http://adsabs.harvard.edu/abs/1994A%26A...291..943O"&gt;http://adsabs.harvard.edu/abs/1994A%26A...291..943O&lt;/a&gt;]
 Interpolate last two entries (lambda = 1.0 mm and 1.3 mm to f)&lt;/p&gt;
 &lt;p&gt;This gives kappa = 0.01166 cm^2 g^-1 (or round to 0.0117)
@@ -20,34 +35,34 @@ using a slope of 1.8 gives:&lt;/p&gt;
 &lt;p&gt;effective beam radius = 19.82&amp;quot;    (= FWHM / sqrt (4*ln(2))&lt;/p&gt;
 &lt;p&gt;This is the radius of a circular top-hat function that has the
 same solid angle as a gaussian.  At a distance of
-D = 1 kpc, this radius corresponds to a length  = &lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-&lt;mrow&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mo&gt;.&lt;/mo&gt;&lt;mn&gt;9&lt;/mn&gt;&lt;mn&gt;7&lt;/mn&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;msup&gt;&lt;mn&gt;0&lt;/mn&gt;
-&lt;mrow&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mn&gt;7&lt;/mn&gt;&lt;/mrow&gt;&lt;/msup&gt;&lt;/mrow&gt;&lt;/math&gt; cm.
+D = 1 kpc, this radius corresponds to a length  = &lt;span class="math"&gt;
+\(2.97 x 10^{17}\)&lt;/span&gt;
+ cm.
 The effective beam solid angle is,&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;blockquote&gt;
-&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-&lt;mrow&gt;&lt;mo&gt;Ω&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mo&gt;.&lt;/mo&gt;&lt;mn&gt;9&lt;/mn&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;msup&gt;&lt;mn&gt;0&lt;/mn&gt;
-&lt;mrow&gt;&lt;mo&gt;-&lt;/mo&gt;&lt;mn&gt;8&lt;/mn&gt;&lt;/mrow&gt;&lt;/msup&gt;&lt;/mrow&gt;&lt;/math&gt; sr.&lt;/blockquote&gt;
+&lt;span class="math"&gt;
+\(\Omega = 2.902 x 10^{-8}\)&lt;/span&gt;
+ sr.&lt;/blockquote&gt;
 &lt;p&gt;Adopt a fiducial dust temperature for mass calculations,&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;/msub&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mi&gt;K&lt;/mi&gt;&lt;/mrow&gt;&lt;/math&gt;&lt;/blockquote&gt;
+&lt;span class="math"&gt;
+\(T_d = 20K\)&lt;/span&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;The total mass per Jy at &lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;D&lt;/mi&gt;
-&lt;mrow&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;/math&gt; = 1 kpc is given by&lt;/p&gt;
-&lt;p&gt;&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-&lt;mrow&gt;&lt;mi&gt;M&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo&gt;.&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;msup&gt;&lt;mn&gt;0&lt;/mn&gt;
-&lt;mrow&gt;&lt;mo&gt;-&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;/mrow&gt;&lt;/msup&gt;&lt;mo&gt;*&lt;/mo&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;mi&gt;J&lt;/mi&gt;&lt;mi&gt;y&lt;/mi&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;mo&gt;*&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;mo&gt;/&lt;/mo&gt;&lt;mi&gt;κ&lt;/mi&gt;&lt;mo&gt;*&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/msub&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;/math&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The total mass per Jy at &lt;span class="math"&gt;
+\(D_{kpc}\)&lt;/span&gt;
+ = 1 kpc is given by&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;
+\(M = 1.0 x 10^{-23} * S(Jy) * D^2 / \kappa * B_nu(T)\)&lt;/span&gt;
+&lt;/p&gt;
 &lt;p&gt;:math:`  =  14.30 * [e^(13.01/T(K) - 1] * S(Jy) * D^2_{kpc}`    (Solar masses)&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;dl class="docutils"&gt;
 &lt;dt&gt;For T = 20 K&lt;/dt&gt;
-&lt;dd&gt;&lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-&lt;mrow&gt;&lt;mi&gt;M&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;mo&gt;.&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mn&gt;7&lt;/mn&gt;&lt;mo&gt;*&lt;/mo&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;mi&gt;J&lt;/mi&gt;&lt;mi&gt;y&lt;/mi&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;mo&gt;*&lt;/mo&gt;&lt;msubsup&gt;&lt;mi&gt;D&lt;/mi&gt;
-&lt;mrow&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;/mrow&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msubsup&gt;&lt;msub&gt;&lt;mi&gt;M&lt;/mi&gt;
-&lt;mrow&gt;&lt;mo&gt;⊙&lt;/mo&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;/math&gt;      (Solar masses)&lt;/dd&gt;
+&lt;dd&gt;&lt;span class="math"&gt;
+\(M = 13.07 * S(Jy) * D^2_{kpc} M_{\odot}\)&lt;/span&gt;
+      (Solar masses)&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;/blockquote&gt;
 &lt;dl class="docutils"&gt;
@@ -77,105 +92,68 @@ fitting works now. Here's an example:&lt;/p&gt;
 &lt;/div&gt;
 </summary><category term="arecibo"></category><category term="idl"></category></entry><entry><title>Jeans Mass</title><link href="http://keflavich.github.com/blog/jeans-mass.html" rel="alternate"></link><updated>2013-03-12T20:16:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2013-03-12:jeans-mass.html</id><summary type="html">&lt;p&gt;Some notes about the Jeans mass scale using astropy's units.&lt;/p&gt;
 &lt;p&gt;Simple approaches to determining mass scales:&lt;/p&gt;
-&lt;div&gt;
-&lt;math xmlns="http://www.w3.org/1998/Math/MathML" mode="display"&gt;
-&lt;mtable&gt;
-&lt;mtr&gt;
-&lt;mtd&gt;&lt;msub&gt;&lt;mi&gt;v&lt;/mi&gt;
-&lt;mrow&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;msqrt&gt;
-&lt;mrow&gt;&lt;mfrac&gt;
-&lt;mrow&gt;&lt;mi&gt;G&lt;/mi&gt;&lt;mi&gt;M&lt;/mi&gt;&lt;/mrow&gt;
-&lt;mrow&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;/mrow&gt;&lt;/msqrt&gt;&lt;/mtd&gt;&lt;/mtr&gt;&lt;/mtable&gt;&lt;/math&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+v_{esc} = \sqrt{\frac{G M}{R}}
+\end{equation*}
 &lt;/div&gt;
 &lt;p&gt;Isothermal equation of state:&lt;/p&gt;
-&lt;div&gt;
-&lt;math xmlns="http://www.w3.org/1998/Math/MathML" mode="display"&gt;
-&lt;mtable&gt;
-&lt;mtr&gt;
-&lt;mtd&gt;&lt;mi&gt;P&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi&gt;ρ&lt;/mi&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;/mtd&gt;&lt;/mtr&gt;&lt;/mtable&gt;&lt;/math&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+P = \rho k T
+\end{equation*}
 &lt;/div&gt;
-&lt;div&gt;
-&lt;math xmlns="http://www.w3.org/1998/Math/MathML" mode="display"&gt;
-&lt;mtable&gt;
-&lt;mtr&gt;
-&lt;mtd&gt;&lt;msub&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;/msub&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;msqrt&gt;
-&lt;mrow&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mo&gt;/&lt;/mo&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;/mrow&gt;&lt;/msqrt&gt;&lt;/mtd&gt;&lt;/mtr&gt;&lt;/mtable&gt;&lt;/math&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+c_s = \sqrt{2 k T / m}
+\end{equation*}
 &lt;/div&gt;
-&lt;p&gt;Setting &lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;v&lt;/mi&gt;
-&lt;mrow&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;/math&gt; yields the mass scale:&lt;/p&gt;
-&lt;div&gt;
-&lt;math xmlns="http://www.w3.org/1998/Math/MathML" mode="display"&gt;
-&lt;mtable&gt;
-&lt;mtr&gt;
-&lt;mtd&gt;&lt;mi&gt;M&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mfrac&gt;
-&lt;mrow&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;/mrow&gt;
-&lt;mrow&gt;&lt;mi&gt;G&lt;/mi&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;mfrac&gt;
-&lt;mrow&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;/mrow&gt;
-&lt;mrow&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mfrac&gt;
-&lt;mrow&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;msubsup&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msubsup&gt;&lt;/mrow&gt;
-&lt;mrow&gt;&lt;mi&gt;G&lt;/mi&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;/mtd&gt;&lt;/mtr&gt;&lt;/mtable&gt;&lt;/math&gt;
+&lt;p&gt;Setting &lt;span class="math"&gt;
+\(v_{esc} = c_s\)&lt;/span&gt;
+ yields the mass scale:&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+M = \frac{R}{G}  \frac{2 k T}{m} = \frac{R c_s^2}{G}
+\end{equation*}
 &lt;/div&gt;
-&lt;p&gt;Using &lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-&lt;mrow&gt;&lt;mi&gt;ρ&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mfrac&gt;
-&lt;mrow&gt;&lt;mi&gt;M&lt;/mi&gt;&lt;/mrow&gt;
-&lt;mrow&gt;&lt;mn&gt;4&lt;/mn&gt;&lt;mo&gt;/&lt;/mo&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;mi&gt;π&lt;/mi&gt;&lt;msup&gt;&lt;mi&gt;R&lt;/mi&gt;
-&lt;mrow&gt;&lt;mo&gt;-&lt;/mo&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;/mrow&gt;&lt;/msup&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;/mrow&gt;&lt;/math&gt;,&lt;/p&gt;
-&lt;div&gt;
-&lt;math xmlns="http://www.w3.org/1998/Math/MathML" mode="display"&gt;
-&lt;mtable&gt;
-&lt;mtr&gt;
-&lt;mtd&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;msup&gt;&lt;mfenced open="(" close=")"&gt;
-&lt;mrow&gt;&lt;mfrac&gt;
-&lt;mrow&gt;&lt;mi&gt;M&lt;/mi&gt;&lt;/mrow&gt;
-&lt;mrow&gt;&lt;mn&gt;4&lt;/mn&gt;&lt;mo&gt;/&lt;/mo&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;mi&gt;π&lt;/mi&gt;&lt;mi&gt;ρ&lt;/mi&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;/mrow&gt;&lt;/mfenced&gt;
-&lt;mrow&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo&gt;/&lt;/mo&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;/mrow&gt;&lt;/msup&gt;&lt;/mtd&gt;&lt;/mtr&gt;&lt;/mtable&gt;&lt;/math&gt;
+&lt;p&gt;Using &lt;span class="math"&gt;
+\(\rho = \frac{M}{ 4/3 \pi R^{-3} }\)&lt;/span&gt;
+,&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+R = \left(\frac{M}{4/3 \pi \rho}\right)^{1/3}
+\end{equation*}
 &lt;/div&gt;
-&lt;div&gt;
-&lt;math xmlns="http://www.w3.org/1998/Math/MathML" mode="display"&gt;
-&lt;mtable&gt;
-&lt;mtr&gt;
-&lt;mtd&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;/mtd&gt;&lt;/mtr&gt;&lt;/mtable&gt;&lt;/math&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+so
+\end{equation*}
 &lt;/div&gt;
-&lt;div&gt;
-&lt;math xmlns="http://www.w3.org/1998/Math/MathML" mode="display"&gt;
-&lt;mtable&gt;
-&lt;mtr&gt;
-&lt;mtd&gt;&lt;mi&gt;M&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;M&lt;/mi&gt;
-&lt;mrow&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo&gt;/&lt;/mo&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;/mrow&gt;&lt;/msup&gt;&lt;mfrac&gt;
-&lt;mrow&gt;&lt;msubsup&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msubsup&gt;&lt;/mrow&gt;
-&lt;mrow&gt;&lt;mi&gt;G&lt;/mi&gt;&lt;msup&gt;&lt;mi&gt;ρ&lt;/mi&gt;
-&lt;mrow&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo&gt;/&lt;/mo&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;/mrow&gt;&lt;/msup&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;/mtd&gt;&lt;/mtr&gt;&lt;/mtable&gt;&lt;/math&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+M = M^{1/3} \frac{c_s^2}{G \rho^{1/3}}
+\end{equation*}
 &lt;/div&gt;
 &lt;p&gt;which rearranges to&lt;/p&gt;
-&lt;div&gt;
-&lt;math xmlns="http://www.w3.org/1998/Math/MathML" mode="display"&gt;
-&lt;mtable&gt;
-&lt;mtr&gt;
-&lt;mtd&gt;&lt;mi&gt;M&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mfrac&gt;
-&lt;mrow&gt;&lt;msubsup&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;
-&lt;mrow&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;/mrow&gt;&lt;/msubsup&gt;&lt;/mrow&gt;
-&lt;mrow&gt;&lt;msup&gt;&lt;mi&gt;G&lt;/mi&gt;
-&lt;mrow&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;mo&gt;/&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/mrow&gt;&lt;/msup&gt;&lt;msup&gt;&lt;mi&gt;ρ&lt;/mi&gt;
-&lt;mrow&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo&gt;/&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/mrow&gt;&lt;/msup&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;/mtd&gt;&lt;/mtr&gt;&lt;/mtable&gt;&lt;/math&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+M = \frac{c_s^{3}}{G^{3/2} \rho^{1/2}}
+\end{equation*}
 &lt;/div&gt;
-&lt;p&gt;where &lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-&lt;mrow&gt;&lt;mi&gt;M&lt;/mi&gt;&lt;/mrow&gt;&lt;/math&gt; is now &lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;M&lt;/mi&gt;&lt;mi&gt;J&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;/math&gt;, the Jeans mass. In terms of
+&lt;p&gt;where &lt;span class="math"&gt;
+\(M\)&lt;/span&gt;
+ is now &lt;span class="math"&gt;
+\(M_J\)&lt;/span&gt;
+, the Jeans mass. In terms of
 temperature, this is:&lt;/p&gt;
-&lt;div&gt;
-&lt;math xmlns="http://www.w3.org/1998/Math/MathML" mode="display"&gt;
-&lt;mtable&gt;
-&lt;mtr&gt;
-&lt;mtd&gt;&lt;msub&gt;&lt;mi&gt;M&lt;/mi&gt;&lt;mi&gt;J&lt;/mi&gt;&lt;/msub&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mfrac&gt;
-&lt;mrow&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;msup&gt;&lt;mo&gt;)&lt;/mo&gt;
-&lt;mrow&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;mo&gt;/&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/mrow&gt;&lt;/msup&gt;&lt;/mrow&gt;
-&lt;mrow&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;mi&gt;G&lt;/mi&gt;&lt;msup&gt;&lt;mo&gt;)&lt;/mo&gt;
-&lt;mrow&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;mo&gt;/&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/mrow&gt;&lt;/msup&gt;&lt;msup&gt;&lt;mi&gt;ρ&lt;/mi&gt;
-&lt;mrow&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo&gt;/&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/mrow&gt;&lt;/msup&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;/mtd&gt;&lt;/mtr&gt;&lt;/mtable&gt;&lt;/math&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+M_J = \frac{(2 k T)^{3/2}}{(m G)^{3/2} \rho^{1/2}}
+\end{equation*}
 &lt;/div&gt;
-&lt;p&gt;where &lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
-&lt;mrow&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;/mrow&gt;&lt;/math&gt; is the particle mass, usually assumed to be 2.8 amu.&lt;/p&gt;
+&lt;p&gt;where &lt;span class="math"&gt;
+\(m\)&lt;/span&gt;
+ is the particle mass, usually assumed to be 2.8 amu.&lt;/p&gt;
 &lt;p&gt;In[1]:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# astropy imports&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;astropy.units&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;u&lt;/span&gt;
@@ -197,11 +175,10 @@ WARNING: ConfigurationDefaultMissingWarning: Requested default configuration fil
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;solMass&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Out[5]:&lt;/p&gt;
-&lt;div&gt;
-&lt;math xmlns="http://www.w3.org/1998/Math/MathML" mode="display"&gt;
-&lt;mtable&gt;
-&lt;mtr&gt;
-&lt;mtd&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo&gt;.&lt;/mo&gt;&lt;mn&gt;9&lt;/mn&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mn&gt;9&lt;/mn&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;mtext&gt;M_{\odot&lt;/mtext&gt;&lt;/mtd&gt;&lt;/mtr&gt;&lt;/mtable&gt;&lt;/math&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+1.92903 \mathrm{M_{\odot}}
+\end{equation*}
 &lt;/div&gt;
 &lt;pre class="literal-block"&gt;
 &amp;lt;Quantity 1.92902547696 solMass&amp;gt;
@@ -625,7 +602,7 @@ src=&amp;quot;&lt;a class="reference external" href="https://apis.google.com/js/
 &lt;div class="post-share-buttons goog-inline-block"&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/p&gt;&lt;div class="post-footer-line post-footer-line-2"&gt;&lt;/p&gt;&lt;p&gt;,&lt;/p&gt;
 &lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;div class="post-footer-line post-footer-line-3"&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;div class="status-msg-wrap"&gt;&lt;/p&gt;&lt;div class="status-msg-body"&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;div class="status-msg-border"&gt;&lt;/p&gt;&lt;div class="status-msg-bg"&gt;&lt;/p&gt;&lt;div class="status-msg-hidden"&gt;&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;div style="clear: both;"&gt;&lt;/div&gt;&lt;/p&gt;&lt;div class="comment-form"&gt;&lt;/p&gt;&lt;h4 id="comment-post-message"&gt;&lt;/p&gt;&lt;p&gt;&lt;p&gt;&lt;a href="#id1"&gt;&lt;span class="problematic" id="id2"&gt;``&lt;/span&gt;&lt;/a&gt;_&lt;/p&gt;
 &lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/template-adam-ginsburgs-research-publications.rst&lt;/tt&gt;, line 2307); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/template-adam-ginsburgs-research-publications.rst&lt;/tt&gt;, line 2307); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Inline literal start-string without end-string.&lt;/div&gt;
 &lt;/h4&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;p&gt;&lt;script type="text/javascript"&gt;&lt;/p&gt;&lt;p&gt;      BLOG_CMT_createIframe('&lt;data:post.apprpcrelaypath&gt;&lt;/data:post.apprpcrelaypath&gt;', '&lt;data:post.communityid&gt;&lt;/data:post.communityid&gt;');&lt;/p&gt;&lt;p&gt;    &lt;/script&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;div class="comments" id="comments"&gt;&lt;/p&gt;&lt;div class="section" id="id3"&gt;
 &lt;h2&gt;:&lt;/h2&gt;
@@ -636,7 +613,7 @@ Inline literal start-string without end-string.&lt;/div&gt;
 &lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;div class="mobile-link-button" id="blog-pager-older-link"&gt;&lt;/p&gt;&lt;p&gt;&amp;amp;rsaquo;&lt;/p&gt;
 &lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;div class="mobile-link-button" id="blog-pager-home-link"&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;div class="mobile-desktop-link"&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;div class="clear"&gt;&lt;/div&gt;&lt;/p&gt;&lt;div class="date-outer"&gt;&lt;/p&gt;&lt;/p&gt;&lt;div class="date-posts"&gt;&lt;/p&gt;&lt;div class="post-outer"&gt;&lt;/p&gt;&lt;div class="post hentry uncustomized-post-template" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"&gt;&lt;/p&gt;&lt;h3 class="post-title entry-title" itemprop="name"&gt;&lt;/p&gt;&lt;p&gt;&lt;/h3&gt;&lt;/p&gt;&lt;div class="post-header"&gt;&lt;/p&gt;&lt;div class="post-header-line-1"&gt;&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;div class="post-body entry-content" expr:id="&amp;quot;post-body-&amp;quot; + data:post.id" itemprop="articleBody"&gt;&lt;/p&gt;&lt;div style="clear: both;"&gt;&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;div class="post-footer"&gt;&lt;/p&gt;&lt;div class="post-footer-line post-footer-line-1"&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;div class="post-footer-line post-footer-line-2"&gt;&lt;/p&gt;&lt;div class="mobile-link-button goog-inline-block" id="mobile-share-button"&gt;&lt;/p&gt;&lt;p&gt;&lt;a href="#id4"&gt;&lt;span class="problematic" id="id5"&gt;``&lt;/span&gt;&lt;/a&gt;_&lt;/p&gt;
 &lt;div class="system-message" id="id4"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/template-adam-ginsburgs-research-publications.rst&lt;/tt&gt;, line 2768); &lt;em&gt;&lt;a href="#id5"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/template-adam-ginsburgs-research-publications.rst&lt;/tt&gt;, line 2768); &lt;em&gt;&lt;a href="#id5"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Inline literal start-string without end-string.&lt;/div&gt;
 &lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;div class="goog-inline-block dummy-container"&gt;&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;div class="figure align-center"&gt;
 &lt;img alt="" src="http://img2.blogblog.com/img/icon18_edit_allbkg.gif" /&gt;
@@ -681,11 +658,11 @@ Inline literal start-string without end-string.&lt;/div&gt;
 &lt;/ul&gt;
 &lt;/p&gt;&lt;dl class="profile-datablock"&gt;&lt;/p&gt;&lt;p&gt;&lt;dt class="profile-data"&gt;&lt;/p&gt;&lt;p&gt;&lt;/dt&gt;&lt;/p&gt;&lt;p&gt;&lt;dd class="profile-data"&gt;&lt;/dd&gt;&lt;/p&gt;&lt;p&gt;&lt;dd class="profile-textblock"&gt;&lt;/dd&gt;&lt;/p&gt;&lt;p&gt;&lt;/dl&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;div class="widget-content"&gt;&lt;/p&gt;&lt;p&gt;&lt;script type="text/javascript"&gt;&lt;/p&gt;&lt;p&gt;      window.___gcfg = {"lang": "&lt;data:language&gt;&lt;/data:language&gt;"};&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;      (function() {&lt;/p&gt;&lt;p&gt;        var po = document.createElement('script'); po.type = 'text/javascript';&lt;/p&gt;&lt;p&gt;        po.async = true; po.src = '&lt;data:plusoneapiurl&gt;&lt;/data:plusoneapiurl&gt;';&lt;/p&gt;&lt;p&gt;        var s = document.getElementsByTagName('script')[0];&lt;/p&gt;&lt;p&gt;        s.parentNode.insertBefore(po, s);&lt;/p&gt;&lt;p&gt;      })();&lt;/p&gt;&lt;p&gt;    &lt;/script&gt;&lt;/p&gt;&lt;p&gt;&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;!-- _: javascript:void(0) --&gt;
 &lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/template-adam-ginsburgs-research-publications.rst&lt;/tt&gt;, line 4547)&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/template-adam-ginsburgs-research-publications.rst&lt;/tt&gt;, line 4547)&lt;/p&gt;
 malformed hyperlink target.&lt;/div&gt;
 &lt;!-- _: javascript:void(0); --&gt;
 &lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/template-adam-ginsburgs-research-publications.rst&lt;/tt&gt;, line 4548)&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/template-adam-ginsburgs-research-publications.rst&lt;/tt&gt;, line 4548)&lt;/p&gt;
 malformed hyperlink target.&lt;/div&gt;
 &lt;/div&gt;
 </summary><category term="http://schemas.google.com/blogger/2008/kind#template"></category></entry><entry><title>The Peculiar Balmer Decrement of SN 2009ip: Constraints on Circumstellar Geometry</title><link href="http://keflavich.github.com/blog/the-peculiar-balmer-decrement-of-sn-2009ip-constraints-on-circumstellar-geometry.html" rel="alternate"></link><updated>2012-11-21T21:01:00-07:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2012-11-21:the-peculiar-balmer-decrement-of-sn-2009ip-constraints-on-circumstellar-geometry.html</id><summary type="html">&lt;div class="authors"&gt;&lt;p&gt;&lt;a class="reference external" href="http://arxiv.org/find/astro-ph/1/au:+Levesque_E/0/1/0/all/0/1"&gt;Emily M. Levesque&lt;/a&gt;,&amp;nbsp;&lt;a class="reference external" href="http://arxiv.org/find/astro-ph/1/au:+Stringfellow_G/0/1/0/all/0/1"&gt;Guy S. Stringfellow&lt;/a&gt;,&amp;nbsp;&lt;a class="reference external" href="http://arxiv.org/find/astro-ph/1/au:+Ginsburg_A/0/1/0/all/0/1"&gt;Adam G.
@@ -744,7 +721,7 @@ with&amp;nbsp;&lt;a class="reference external" href="https://github.com/keflavic
 &lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/p&gt;&lt;div class="system-messages section"&gt;
 &lt;h2&gt;Docutils System Messages&lt;/h2&gt;
 &lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/the-peculiar-balmer-decrement-of-sn-2009ip-constraints-on-circumstellar-geometry.rst&lt;/tt&gt;, line 102); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/the-peculiar-balmer-decrement-of-sn-2009ip-constraints-on-circumstellar-geometry.rst&lt;/tt&gt;, line 102); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;|image0|&amp;quot;.&lt;/div&gt;
 &lt;/div&gt;
 </summary><category term="http://schemas.google.com/blogger/2008/kind#post"></category><category term="publication"></category></entry><entry><title>Galactic H2CO Densitometry I: Pilot survey of Ultracompact HII regions and methodology</title><link href="http://keflavich.github.com/blog/galactic-h2co-densitometry-i-pilot-survey-of-ultracompact-hii-regions-and-methodology.html" rel="alternate"></link><updated>2012-11-21T04:59:00-07:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2012-11-21:galactic-h2co-densitometry-i-pilot-survey-of-ultracompact-hii-regions-and-methodology.html</id><summary type="html">&lt;p&gt;[ &lt;a class="reference external" href="http://adsabs.harvard.edu/abs/2011ApJ...736..149G"&gt;ADS&lt;/a&gt; ] [ &lt;a class="reference external" href="http://eta.colorado.edu/papers/h2co_pilot_draft0607.pdf"&gt;Full Version&lt;/a&gt; ]&lt;/p&gt;
@@ -770,13 +747,13 @@ number densities of H&lt;sub&gt;2&lt;/sub&gt;.&lt;/p&gt;
 &lt;/p&gt;&lt;div class="system-messages section"&gt;
 &lt;h2&gt;Docutils System Messages&lt;/h2&gt;
 &lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/galactic-h2co-densitometry-i-pilot-survey-of-ultracompact-hii-regions-and-methodology.rst&lt;/tt&gt;, line 23); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/galactic-h2co-densitometry-i-pilot-survey-of-ultracompact-hii-regions-and-methodology.rst&lt;/tt&gt;, line 23); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;|image0|&amp;quot;.&lt;/div&gt;
 &lt;div class="system-message" id="id3"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/galactic-h2co-densitometry-i-pilot-survey-of-ultracompact-hii-regions-and-methodology.rst&lt;/tt&gt;, line 37); &lt;em&gt;&lt;a href="#id4"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/galactic-h2co-densitometry-i-pilot-survey-of-ultracompact-hii-regions-and-methodology.rst&lt;/tt&gt;, line 37); &lt;em&gt;&lt;a href="#id4"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;|image1|&amp;quot;.&lt;/div&gt;
 &lt;div class="system-message" id="id5"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/galactic-h2co-densitometry-i-pilot-survey-of-ultracompact-hii-regions-and-methodology.rst&lt;/tt&gt;, line 51); &lt;em&gt;&lt;a href="#id6"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/galactic-h2co-densitometry-i-pilot-survey-of-ultracompact-hii-regions-and-methodology.rst&lt;/tt&gt;, line 51); &lt;em&gt;&lt;a href="#id6"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;|image2|&amp;quot;.&lt;/div&gt;
 &lt;/div&gt;
 </summary><category term="http://schemas.google.com/blogger/2008/kind#post"></category><category term="star formation"></category><category term="first author"></category><category term="formaldehyde"></category><category term="publication"></category></entry><entry><title>Short timescale variability in Orion? Nope.</title><link href="http://keflavich.github.com/blog/short-timescale-variability-in-orion-nope.html" rel="alternate"></link><updated>2012-11-19T17:07:00-07:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2012-11-19:short-timescale-variability-in-orion-nope.html</id><summary type="html">&lt;div dir="ltr" style="text-align: left;"&gt;&lt;p&gt;I attempted to use TripleSpec finder / guider images to search for
@@ -1129,7 +1106,7 @@ different airmasses (2.3 vs 1.05)&lt;/p&gt;
 &lt;/div&gt;&lt;/p&gt;&lt;div class="system-messages section"&gt;
 &lt;h2&gt;Docutils System Messages&lt;/h2&gt;
 &lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/research-idea-nir-variation.rst&lt;/tt&gt;, line 19); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/research-idea-nir-variation.rst&lt;/tt&gt;, line 19); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;|image0|&amp;quot;.&lt;/div&gt;
 &lt;/div&gt;
 </summary><category term="http://schemas.google.com/blogger/2008/kind#post"></category><category term="research ideas"></category></entry><entry><title>Research Idea: Stacking Finders</title><link href="http://keflavich.github.com/blog/research-idea-stacking-finders.html" rel="alternate"></link><updated>2012-09-20T20:07:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2012-09-20:research-idea-stacking-finders.html</id><summary type="html">&lt;div dir="ltr" style="text-align: left;"&gt;&lt;p&gt;Idea: Stack all of the finders from spectroscopic observations. &amp;nbsp;Finder
@@ -1168,7 +1145,7 @@ uniform sampling immediately before bed each night.&lt;/p&gt;
 &lt;div class="system-messages section"&gt;
 &lt;h2&gt;Docutils System Messages&lt;/h2&gt;
 &lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/1-year-of-data.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/1-year-of-data.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;|image0|&amp;quot;.&lt;/div&gt;
 &lt;/div&gt;
 </summary><category term="http://schemas.google.com/blogger/2008/kind#post"></category><category term="me"></category></entry><entry><title>#6 on Astro-ph today</title><link href="http://keflavich.github.com/blog/6-on-astro-ph-today.html" rel="alternate"></link><updated>2012-09-20T20:02:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2012-09-20:6-on-astro-ph-today.html</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://arxiv.org/abs/0910.2990"&gt;IRAS 05358 on astro-ph&lt;/a&gt;. Check out &lt;a class="reference external" href="http://casa.colorado.edu/~ginsbura/iras05358.htm"&gt;my page on the region&lt;/a&gt; too.&lt;/p&gt;
@@ -1258,21 +1235,21 @@ Cloud&lt;/a&gt; &lt;a href="#id7"&gt;&lt;span class="problematic" id="id8"&gt;`a
 Continuum Emission in the Galactic Center Region&lt;/a&gt;
 The same set of links is reproduced at &lt;a class="reference external" href="http://code.google.com/p/bgpspipeline/"&gt;the pipeline googlecode page&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/bgps-data-paper-published.rst&lt;/tt&gt;, line 27); &lt;em&gt;&lt;a href="#id1"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/bgps-data-paper-published.rst&lt;/tt&gt;, line 27); &lt;em&gt;&lt;a href="#id1"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Duplicate explicit target name: &amp;quot;arxiv&amp;quot;.&lt;/div&gt;
 &lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/bgps-data-paper-published.rst&lt;/tt&gt;, line 29); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/bgps-data-paper-published.rst&lt;/tt&gt;, line 29); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Duplicate explicit target name: &amp;quot;arxiv&amp;quot;.&lt;/div&gt;
 &lt;div class="system-messages section"&gt;
 &lt;h2&gt;Docutils System Messages&lt;/h2&gt;
 &lt;div class="system-message" id="id3"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/bgps-data-paper-published.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id4"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/bgps-data-paper-published.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id4"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Duplicate target name, cannot be used as a unique reference: &amp;quot;arxiv&amp;quot;.&lt;/div&gt;
 &lt;div class="system-message" id="id5"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/bgps-data-paper-published.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id6"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/bgps-data-paper-published.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id6"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Duplicate target name, cannot be used as a unique reference: &amp;quot;arxiv&amp;quot;.&lt;/div&gt;
 &lt;div class="system-message" id="id7"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/bgps-data-paper-published.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id8"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/bgps-data-paper-published.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id8"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Duplicate target name, cannot be used as a unique reference: &amp;quot;arxiv&amp;quot;.&lt;/div&gt;
 &lt;/div&gt;
 </summary><category term="http://schemas.google.com/blogger/2008/kind#post"></category><category term="astronomy"></category><category term="bgps"></category></entry><entry><title>BGPS public release</title><link href="http://keflavich.github.com/blog/bgps-public-release.html" rel="alternate"></link><updated>2012-09-20T20:02:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2012-09-20:bgps-public-release.html</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://irsa.ipac.caltech.edu/"&gt;http://irsa.ipac.caltech.edu/&lt;/a&gt;&lt;/p&gt;
@@ -1498,7 +1475,7 @@ worth the ridiculous price I paid for it, whatever that was.&lt;/p&gt;
 &lt;div class="system-messages section"&gt;
 &lt;h2&gt;Docutils System Messages&lt;/h2&gt;
 &lt;div class="system-message" id="id2"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/detexify.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id3"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/detexify.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id3"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;|image0|&amp;quot;.&lt;/div&gt;
 &lt;/div&gt;
 </summary><category term="http://schemas.google.com/blogger/2008/kind#post"></category><category term="latex"></category></entry><entry><title>Do not install 10.5.5</title><link href="http://keflavich.github.com/blog/do-not-install-1055.html" rel="alternate"></link><updated>2012-09-20T20:02:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2012-09-20:do-not-install-1055.html</id><summary type="html">&lt;p&gt;Well, I didn't obey that excellent advice from Charles. I installed the
@@ -1584,16 +1561,16 @@ and &lt;a class="reference external" href="http://cdsads.u-strasbg.fr/abs/2005A%
 &lt;div class="system-messages section"&gt;
 &lt;h2&gt;Docutils System Messages&lt;/h2&gt;
 &lt;div class="system-message" id="id3"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/electron-cyclotron-masers-from-planets-around-white-dwarves.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id4"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/electron-cyclotron-masers-from-planets-around-white-dwarves.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id4"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;|image0|&amp;quot;.&lt;/div&gt;
 &lt;div class="system-message" id="id5"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/electron-cyclotron-masers-from-planets-around-white-dwarves.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id6"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/electron-cyclotron-masers-from-planets-around-white-dwarves.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id6"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;|image1|&amp;quot;.&lt;/div&gt;
 &lt;div class="system-message" id="id7"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/electron-cyclotron-masers-from-planets-around-white-dwarves.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id8"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/electron-cyclotron-masers-from-planets-around-white-dwarves.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id8"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;|image2|&amp;quot;.&lt;/div&gt;
 &lt;div class="system-message" id="id9"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/electron-cyclotron-masers-from-planets-around-white-dwarves.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id10"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/electron-cyclotron-masers-from-planets-around-white-dwarves.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id10"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;|image3|&amp;quot;.&lt;/div&gt;
 &lt;/div&gt;
 </summary><category term="http://schemas.google.com/blogger/2008/kind#post"></category><category term="exoplanets"></category></entry><entry><title>Eta Carinae</title><link href="http://keflavich.github.com/blog/eta-carinae.html" rel="alternate"></link><updated>2012-09-20T20:02:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2012-09-20:eta-carinae.html</id><summary type="html">&lt;p&gt;Post #4 and I'm diverging from the purported theme. But it's Eta
@@ -1686,12 +1663,12 @@ pkg-config
 glib
 cairo&lt;/p&gt;
 &lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/failure-to-compile-64-bit-gtk-on-mac-os.rst&lt;/tt&gt;, line 21)&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/failure-to-compile-64-bit-gtk-on-mac-os.rst&lt;/tt&gt;, line 21)&lt;/p&gt;
 Unexpected indentation.&lt;/div&gt;
 &lt;blockquote&gt;
 pixman&lt;/blockquote&gt;
 &lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/failure-to-compile-64-bit-gtk-on-mac-os.rst&lt;/tt&gt;, line 22)&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/failure-to-compile-64-bit-gtk-on-mac-os.rst&lt;/tt&gt;, line 22)&lt;/p&gt;
 Block quote ends without a blank line; unexpected unindent.&lt;/div&gt;
 &lt;p&gt;pango (MUST be installed AFTER cairo)
 &lt;a class="reference external" href="http://ftp.gnome.org/pub/gnome/sources/atk/"&gt;atk&lt;/a&gt;
@@ -1756,7 +1733,7 @@ while, e.g., this one:
 &lt;a href="#id1"&gt;&lt;span class="problematic" id="id2"&gt;``&lt;/span&gt;&lt;/a&gt;make -f make.osx PYVERSION=2.6 PREFIX=/Users/adam/repos/mpl_dependencies/ fetch deps mpl_install ``
 didn't. I guess because that one doesn't actually install anything.&lt;/p&gt;
 &lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/finally-got-matplotlib-to-install.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/finally-got-matplotlib-to-install.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Inline literal start-string without end-string.&lt;/div&gt;
 </summary><category term="http://schemas.google.com/blogger/2008/kind#post"></category><category term="matplotlib"></category><category term="computer"></category></entry><entry><title>find and xargs</title><link href="http://keflavich.github.com/blog/find-and-xargs.html" rel="alternate"></link><updated>2012-09-20T20:02:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2012-09-20:find-and-xargs.html</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://www.kalamazoolinux.org/tech/find.html"&gt;pretty useful info on find and xargs&lt;/a&gt;, e.g.
 &lt;tt class="docutils literal"&gt;find /scratch/adam_work/ &lt;span class="pre"&gt;-name&lt;/span&gt; 'mmm*sav' | xargs rm&lt;/tt&gt;&lt;/p&gt;
@@ -1826,7 +1803,7 @@ using a variety of layers, opacities, etc.&lt;/p&gt;
 &lt;div class="system-messages section"&gt;
 &lt;h2&gt;Docutils System Messages&lt;/h2&gt;
 &lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/galactic-center-photo-contest.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/galactic-center-photo-contest.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;|image0|&amp;quot;.&lt;/div&gt;
 &lt;/div&gt;
 </summary><category term="http://schemas.google.com/blogger/2008/kind#post"></category><category term="photo"></category><category term="millimeter"></category><category term="galactic center"></category></entry><entry><title>Galactic Formaldehyde Densitometry Project</title><link href="http://keflavich.github.com/blog/galactic-formaldehyde-densitometry-project.html" rel="alternate"></link><updated>2012-09-20T20:02:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2012-09-20:galactic-formaldehyde-densitometry-project.html</id><summary type="html">&lt;p&gt;The Galactic Formaldehyde Densitometry Project is finally official and
@@ -2009,7 +1986,7 @@ Concerns:
 though Aqua doesn't support 64 bits
 -have to recompile python to get _tkinter to work (see &lt;a class="reference external" href="http://buffalothedestroyer.blogspot.com/2009/07/success-64-bit-python-with-64-bit-tcltk.html"&gt;a later post&lt;/a&gt;)&lt;/p&gt;
 &lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/installing-64-bit-tcltk-on-mac-os-x.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/installing-64-bit-tcltk-on-mac-os-x.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Inline literal start-string without end-string.&lt;/div&gt;
 </summary><category term="http://schemas.google.com/blogger/2008/kind#post"></category><category term="python"></category><category term="computer"></category></entry><entry><title>Installing Snow Leopard</title><link href="http://keflavich.github.com/blog/installing-snow-leopard.html" rel="alternate"></link><updated>2012-09-20T20:02:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2012-09-20:installing-snow-leopard.html</id><summary type="html">&lt;p&gt;I'm going to attempt to install snow leopard today. This post will serve
 as a record of the difficulties I run into.
@@ -2037,7 +2014,7 @@ that I had been using to set the tab title&lt;/p&gt;
 &lt;li&gt;&lt;p class="first"&gt;My locate db broke. Needed repair:
 &lt;a href="#id1"&gt;&lt;span class="problematic" id="id2"&gt;``&lt;/span&gt;&lt;/a&gt;sudo /usr/libexec/locate.updatedb ``&lt;/p&gt;
 &lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/installing-snow-leopard.rst&lt;/tt&gt;, line 28); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/installing-snow-leopard.rst&lt;/tt&gt;, line 28); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Inline literal start-string without end-string.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -2059,19 +2036,19 @@ do this until I run into another problem. Numpy build successfully&lt;/p&gt;
 instructions (but make sure to edit the site.cfg in scipy, not just
 the one in numpy)&lt;/p&gt;
 &lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/installing-snow-leopard.rst&lt;/tt&gt;, line 42)&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/installing-snow-leopard.rst&lt;/tt&gt;, line 42)&lt;/p&gt;
 &lt;p&gt;Unexpected indentation.&lt;/p&gt;
 &lt;/div&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Had to add the following code:&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/installing-snow-leopard.rst&lt;/tt&gt;, line 43)&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/installing-snow-leopard.rst&lt;/tt&gt;, line 43)&lt;/p&gt;
 &lt;p&gt;Block quote ends without a blank line; unexpected unindent.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;`` sudo cp AMD/Lib/libamd.a /System/Library/Frameworks/Python.framework/Versions/2.6/libsudo cp UMFPACK/Lib/libumfpack.a /System/Library/Frameworks/Python.framework/Versions/2.6/libsudo cp AMD/Include/amd.h /System/Library/Frameworks/Python.framework/Versions/2.6/includesudo cp UFconfig/UFconfig.h /System/Library/Frameworks/Python.framework/Versions/2.6/includesudo cp UMFPACK/Include/&lt;a href="#id3"&gt;&lt;span class="problematic" id="id4"&gt;*&lt;/span&gt;&lt;/a&gt;.h /System/Library/Frameworks/Python.framework/Versions/2.6/include``&lt;/p&gt;
 &lt;div class="system-message" id="id3"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/installing-snow-leopard.rst&lt;/tt&gt;, line 43); &lt;em&gt;&lt;a href="#id4"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/installing-snow-leopard.rst&lt;/tt&gt;, line 43); &lt;em&gt;&lt;a href="#id4"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Inline emphasis start-string without end-string.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -2156,18 +2133,18 @@ directory. It's available &lt;a class="reference external" href="http://code.goo
 function! WhichTab(filename)    &amp;quot; Try to determine whether file is open in any tab.      &amp;quot; Return number of tab it's open in    let buffername = bufname(a:filename)    if buffername == &amp;quot;&amp;quot;        return 0    endif    let buffernumber = bufnr(buffername)    &amp;quot; tabdo will loop through pages and leave you on the last one;    &amp;quot; this is to make sure we don't leave the current page    let currenttab = tabpagenr()    let tab_arr = []    tabdo let tab_arr += tabpagebuflist()    &amp;quot; return to current page    exec &amp;quot;tabnext &amp;quot;.currenttab    &amp;quot; Start checking tab numbers for matches    let i = 0    for tnum in tab_arr        let i += 1        echo &amp;quot;tnum: &amp;quot;.tnum.&amp;quot; buff: &amp;quot;.buffernumber.&amp;quot; i: &amp;quot;.i        if tnum == buffernumber            return i        endif    endforendfunctionfunction! WhichWindow(filename)    &amp;quot; Try to determine whether the file is open in any GVIM *window*    let serverlist = split(serverlist(),&amp;quot;\n&amp;quot;)    &amp;quot;let currentserver = ????    for server in serverlist        let remotetabnum = remote_expr(server,             \&amp;quot;WhichTab('&amp;quot;.a:filename.&amp;quot;')&amp;quot;)        if remotetabnum != 0            return server        endif    endforendfunction
 &lt;/pre&gt;
 &lt;/p&gt;&lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/latex-vim-skim.rst&lt;/tt&gt;, line 77); &lt;em&gt;&lt;a href="#id1"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/latex-vim-skim.rst&lt;/tt&gt;, line 77); &lt;em&gt;&lt;a href="#id1"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Duplicate explicit target name: &amp;quot;download link&amp;quot;.&lt;/div&gt;
 &lt;div class="system-messages section"&gt;
 &lt;h2&gt;Docutils System Messages&lt;/h2&gt;
 &lt;div class="system-message" id="id2"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/latex-vim-skim.rst&lt;/tt&gt;, line 27); &lt;em&gt;&lt;a href="#id3"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/latex-vim-skim.rst&lt;/tt&gt;, line 27); &lt;em&gt;&lt;a href="#id3"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Duplicate target name, cannot be used as a unique reference: &amp;quot;download link&amp;quot;.&lt;/div&gt;
 &lt;div class="system-message" id="id4"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/latex-vim-skim.rst&lt;/tt&gt;, line 49); &lt;em&gt;&lt;a href="#id5"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/latex-vim-skim.rst&lt;/tt&gt;, line 49); &lt;em&gt;&lt;a href="#id5"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;|image0|&amp;quot;.&lt;/div&gt;
 &lt;div class="system-message" id="id6"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/latex-vim-skim.rst&lt;/tt&gt;, line 55); &lt;em&gt;&lt;a href="#id7"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/latex-vim-skim.rst&lt;/tt&gt;, line 55); &lt;em&gt;&lt;a href="#id7"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Duplicate target name, cannot be used as a unique reference: &amp;quot;download link&amp;quot;.&lt;/div&gt;
 &lt;/div&gt;
 </summary><category term="http://schemas.google.com/blogger/2008/kind#post"></category><category term="latex"></category><category term="vim"></category><category term="code"></category></entry><entry><title>Listing variables (e.g IDL help) in Python</title><link href="http://keflavich.github.com/blog/listing-variables-eg-idl-help-in-python.html" rel="alternate"></link><updated>2012-09-20T20:02:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2012-09-20:listing-variables-eg-idl-help-in-python.html</id><summary type="html">&lt;p&gt;Again, IDL has the simple 'help' command to tell you all variables in
@@ -2272,7 +2249,7 @@ Sadly, straight CO 3-2 intensity isn't included, but perhaps I can
 create that myself.&lt;/p&gt;
 &lt;!-- _ --&gt;
 &lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/marc-pounds-toolbox.rst&lt;/tt&gt;, line 14)&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/marc-pounds-toolbox.rst&lt;/tt&gt;, line 14)&lt;/p&gt;
 Explicit markup ends without a blank line; unexpected unindent.&lt;/div&gt;
 &lt;p&gt;Line Ratio as a function of density, incident flux from Marc Pound: &lt;a class="reference external" href="http://dustem.astro.umd.edu/pdrt/quickmodels.html"&gt;http://dustem.astro.umd.edu/pdrt/quickmodels.html&lt;/a&gt;&lt;/p&gt;
 </summary><category term="http://schemas.google.com/blogger/2008/kind#post"></category><category term="astronomy"></category></entry><entry><title>mathematica</title><link href="http://keflavich.github.com/blog/mathematica.html" rel="alternate"></link><updated>2012-09-20T20:02:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2012-09-20:mathematica.html</id><summary type="html">&lt;p&gt;//. and /. use 'rules' of the form {x-&amp;gt;y} for substitutions
@@ -2466,17 +2443,17 @@ GC was featured in:
 `http://www.strudel.org.uk/blog/astro/000855.shtml`_&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;!-- _`http://www.denverptc.org/denver.html --&gt;
 &lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/my-works-featured.rst&lt;/tt&gt;, line 19)&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/my-works-featured.rst&lt;/tt&gt;, line 19)&lt;/p&gt;
 malformed hyperlink target.&lt;/div&gt;
 &lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/my-works-featured.rst&lt;/tt&gt;, line 20)&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/my-works-featured.rst&lt;/tt&gt;, line 20)&lt;/p&gt;
 Explicit markup ends without a blank line; unexpected unindent.&lt;/div&gt;
 &lt;p&gt;&lt;cite&gt;: http://www.denverptc.org/denver.html
 .. _`http://www.strudel.org.uk/blog/astro/000855.shtml&lt;/cite&gt;: &lt;a class="reference external" href="http://www.strudel.org.uk/blog/astro/000855.shtml"&gt;http://www.strudel.org.uk/blog/astro/000855.shtml&lt;/a&gt;&lt;/p&gt;
 &lt;div class="system-messages section"&gt;
 &lt;h2&gt;Docutils System Messages&lt;/h2&gt;
 &lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/my-works-featured.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/my-works-featured.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;http://www.denverptc.org/denver.html `_ gc was featured in: `http://www.strudel.org.uk/blog/astro/000855.shtml&amp;quot;.&lt;/div&gt;
 &lt;/div&gt;
 </summary><category term="http://schemas.google.com/blogger/2008/kind#post"></category><category term="photo"></category></entry><entry><title>NaN-friendly convolution</title><link href="http://keflavich.github.com/blog/nan-friendly-convolution.html" rel="alternate"></link><updated>2012-09-20T20:02:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2012-09-20:nan-friendly-convolution.html</id><summary type="html">&lt;p&gt;NaN-friendly convolution is important for, e.g., masked data sets in
@@ -2498,10 +2475,10 @@ Currently, other links to these codes:
 `http://stackoverflow.com/questions/1100100/fft-based-2d-convolution-and-correlation-in-python/8454010#8454010`_&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;!-- _`https://github.com/astropy/astropy/pull/155 --&gt;
 &lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/nan-friendly-convolution.rst&lt;/tt&gt;, line 25)&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/nan-friendly-convolution.rst&lt;/tt&gt;, line 25)&lt;/p&gt;
 malformed hyperlink target.&lt;/div&gt;
 &lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/nan-friendly-convolution.rst&lt;/tt&gt;, line 26)&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/nan-friendly-convolution.rst&lt;/tt&gt;, line 26)&lt;/p&gt;
 Explicit markup ends without a blank line; unexpected unindent.&lt;/div&gt;
 &lt;p&gt;&lt;cite&gt;: https://github.com/astropy/astropy/pull/155
 .. _`http://code.google.com/p/agpy/source/browse/trunk/AG_fft_tools/convolve_nd.py
@@ -2510,7 +2487,7 @@ Explicit markup ends without a blank line; unexpected unindent.&lt;/div&gt;
 &lt;div class="system-messages section"&gt;
 &lt;h2&gt;Docutils System Messages&lt;/h2&gt;
 &lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/nan-friendly-convolution.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/nan-friendly-convolution.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;https://github.com/astropy/astropy/pull/155 `_but this is a &amp;quot;direct&amp;quot; convolution parallel to idl's 'convol' routine. my fft-based version now works in n dimensions and is a little cleaner: `http://code.google.com/p/agpy/source/browse/trunk/ag_fft_tools/convolve_nd.py `_ i'm still working on writing unit tests, and i'm really not sure what the &amp;quot;correct&amp;quot; behavior at the edges is for the different cases... right now, it seems counterintuitive to me, but the code is doing what i expect it to. also, boxcar kernels always result in shifts for me... they're never supposed to. this is a bug. currently, other links to these codes: `http://stackoverflow.com/questions/1100100/fft-based-2d-convolution-and-correlation-in-python/8454010#8454010&amp;quot;.&lt;/div&gt;
 &lt;/div&gt;
 </summary><category term="http://schemas.google.com/blogger/2008/kind#post"></category><category term="python"></category><category term="code"></category></entry><entry><title>Neat new things....</title><link href="http://keflavich.github.com/blog/neat-new-things.html" rel="alternate"></link><updated>2012-09-20T20:02:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2012-09-20:neat-new-things.html</id><summary type="html">&lt;p&gt;1. &lt;a class="reference external" href="http://www.pas.rochester.edu/~mpecaut/sptool/"&gt;sptool&lt;/a&gt; is a quick way to compare standards to stellar spectra.
@@ -2569,20 +2546,20 @@ multiple velocity components, but they are also likely to be convolved
 with them.&lt;/p&gt;
 &lt;!-- _`http://sites.google.com/site/iras05358/figure-discussion/figures/iras05358\_triple\_17.29.png?attredirects=0 --&gt;
 &lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/observing-1020.rst&lt;/tt&gt;, line 19)&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/observing-1020.rst&lt;/tt&gt;, line 19)&lt;/p&gt;
 malformed hyperlink target.&lt;/div&gt;
 &lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/observing-1020.rst&lt;/tt&gt;, line 20)&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/observing-1020.rst&lt;/tt&gt;, line 20)&lt;/p&gt;
 Explicit markup ends without a blank line; unexpected unindent.&lt;/div&gt;
 &lt;p&gt;&lt;a href="#id1"&gt;&lt;span class="problematic" id="id2"&gt;`&lt;/span&gt;&lt;/a&gt;: &lt;a class="reference external" href="http://sites.google.com/site/iras05358/figure-discussion/figures/iras05358_triple_17.29.png?attredirects=0"&gt;http://sites.google.com/site/iras05358/figure-discussion/figures/iras05358_triple_17.29.png?attredirects=0&lt;/a&gt;
 .. _Gaussfitting Cube Collapser: &lt;a class="reference external" href="http://casa.colorado.edu/~ginsbura/pygausscollapse.htm"&gt;http://casa.colorado.edu/~ginsbura/pygausscollapse.htm&lt;/a&gt;&lt;/p&gt;
 &lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/observing-1020.rst&lt;/tt&gt;, line 20); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/observing-1020.rst&lt;/tt&gt;, line 20); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Inline interpreted text or phrase reference start-string without end-string.&lt;/div&gt;
 &lt;div class="system-messages section"&gt;
 &lt;h2&gt;Docutils System Messages&lt;/h2&gt;
 &lt;div class="system-message" id="id3"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/observing-1020.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id4"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/observing-1020.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id4"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;http://sites.google.com/site/iras05358/figure-discussion/figures/iras05358_triple_17.29.png?attredirects=0 `_ my automated fitter (`gaussfitting cube collapser&amp;quot;.&lt;/div&gt;
 &lt;/div&gt;
 </summary><category term="http://schemas.google.com/blogger/2008/kind#post"></category><category term="python"></category><category term="observing"></category></entry><entry><title>Observing @ GBT: Signs of good &amp; bad data</title><link href="http://keflavich.github.com/blog/observing-gbt-signs-of-good-bad-data.html" rel="alternate"></link><updated>2012-09-20T20:02:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2012-09-20:observing-gbt-signs-of-good-bad-data.html</id><summary type="html">&lt;div style="text-align: left;"&gt;&lt;/div&gt;&lt;p&gt;So far, all of the observations for the H&lt;sub&gt;2&lt;/sub&gt;CO densitometry
@@ -2609,13 +2586,13 @@ temperature TREC is nonsensical.&lt;/p&gt;
 &lt;/p&gt;&lt;div class="system-messages section"&gt;
 &lt;h2&gt;Docutils System Messages&lt;/h2&gt;
 &lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/observing-gbt-signs-of-good-bad-data.rst&lt;/tt&gt;, line 31); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/observing-gbt-signs-of-good-bad-data.rst&lt;/tt&gt;, line 31); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;|image0|&amp;quot;.&lt;/div&gt;
 &lt;div class="system-message" id="id3"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/observing-gbt-signs-of-good-bad-data.rst&lt;/tt&gt;, line 63); &lt;em&gt;&lt;a href="#id4"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/observing-gbt-signs-of-good-bad-data.rst&lt;/tt&gt;, line 63); &lt;em&gt;&lt;a href="#id4"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;|image1|&amp;quot;.&lt;/div&gt;
 &lt;div class="system-message" id="id5"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/observing-gbt-signs-of-good-bad-data.rst&lt;/tt&gt;, line 104); &lt;em&gt;&lt;a href="#id6"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/observing-gbt-signs-of-good-bad-data.rst&lt;/tt&gt;, line 104); &lt;em&gt;&lt;a href="#id6"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;|image2|&amp;quot;.&lt;/div&gt;
 &lt;/div&gt;
 </summary><category term="http://schemas.google.com/blogger/2008/kind#post"></category><category term="GBT"></category></entry><entry><title>Observing run summary</title><link href="http://keflavich.github.com/blog/observing-run-summary.html" rel="alternate"></link><updated>2012-09-20T20:02:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2012-09-20:observing-run-summary.html</id><summary type="html">&lt;p&gt;3 nights of worse than grade 4 weather (tau ~.4, i.e. the atmosphere is
@@ -2649,7 +2626,7 @@ rain on my night. Sad, no DIS time for P Cyg.&lt;/p&gt;
 &lt;/div&gt;&lt;/p&gt;&lt;div class="system-messages section"&gt;
 &lt;h2&gt;Docutils System Messages&lt;/h2&gt;
 &lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/offset-symbols.rst&lt;/tt&gt;, line 13); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/offset-symbols.rst&lt;/tt&gt;, line 13); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;|image0|&amp;quot;.&lt;/div&gt;
 &lt;/div&gt;
 </summary><category term="http://schemas.google.com/blogger/2008/kind#post"></category></entry><entry><title>Orion in the Infrared and Millimeter</title><link href="http://keflavich.github.com/blog/orion-in-the-infrared-and-millimeter.html" rel="alternate"></link><updated>2012-09-20T20:02:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2012-09-20:orion-in-the-infrared-and-millimeter.html</id><summary type="html">&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;p&gt;&lt;a href="#id1"&gt;&lt;span class="problematic" id="id2"&gt;`|image0|`_&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
@@ -2677,7 +2654,7 @@ new stars...&lt;/p&gt;
 &lt;/p&gt;&lt;div class="system-messages section"&gt;
 &lt;h2&gt;Docutils System Messages&lt;/h2&gt;
 &lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/orion-in-the-infrared-and-millimeter.rst&lt;/tt&gt;, line 11); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/orion-in-the-infrared-and-millimeter.rst&lt;/tt&gt;, line 11); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;|image0|&amp;quot;.&lt;/div&gt;
 &lt;/div&gt;
 </summary><category term="http://schemas.google.com/blogger/2008/kind#post"></category></entry><entry><title>Outreach Observing</title><link href="http://keflavich.github.com/blog/outreach-observing.html" rel="alternate"></link><updated>2012-09-20T20:02:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2012-09-20:outreach-observing.html</id><summary type="html">&lt;p&gt;&lt;p&gt;Some notes for this Friday...
@@ -2696,7 +2673,7 @@ my Fe II image, which is now reproduced here:&lt;/p&gt;
 &lt;/div&gt;&lt;/p&gt;&lt;div class="system-messages section"&gt;
 &lt;h2&gt;Docutils System Messages&lt;/h2&gt;
 &lt;div class="system-message" id="id2"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/p-cygni.rst&lt;/tt&gt;, line 15); &lt;em&gt;&lt;a href="#id3"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/p-cygni.rst&lt;/tt&gt;, line 15); &lt;em&gt;&lt;a href="#id3"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;|image0|&amp;quot;.&lt;/div&gt;
 &lt;/div&gt;
 </summary><category term="http://schemas.google.com/blogger/2008/kind#post"></category><category term="picture"></category></entry><entry><title>Parallactic Angle</title><link href="http://keflavich.github.com/blog/parallactic-angle.html" rel="alternate"></link><updated>2012-09-20T20:02:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2012-09-20:parallactic-angle.html</id><summary type="html">&lt;p&gt;So it turns out parallactic angle and field rotation are essentially the
@@ -2832,7 +2809,7 @@ I got some help from
 &lt;a href="#id1"&gt;&lt;span class="problematic" id="id2"&gt;``&lt;/span&gt;&lt;/a&gt;./configure --enable-framework --enable-universalsdk=/Developer/SDKs/MacOSX10.6.sdk MACOSX_DEPLOYMENT_TARGET=10.6 --with-universal-archs=intel -with-readline-dir=/usr/localmake -j 17make -j 17 test ``
 `` make `` results:&lt;/p&gt;
 &lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/python-64-bit-on-mac-os-x-106-snow-leopard.rst&lt;/tt&gt;, line 11); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/python-64-bit-on-mac-os-x-106-snow-leopard.rst&lt;/tt&gt;, line 11); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Inline literal start-string without end-string.&lt;/div&gt;
 &lt;pre class="literal-block"&gt;
 Python build finished, but the necessary bits to build these modules were not found:_bsddb             dl                 gdbm            imageop            linuxaudiodev      ossaudiodev     spwd               sunaudiodev                        To find the necessary bits, look in setup.py in detect_modules() for the module's name.
@@ -2890,7 +2867,7 @@ In order to get it to run, I had to do the following:&lt;/p&gt;
 &lt;li&gt;&lt;p class="first"&gt;Install CFITSIO with &lt;a href="#id1"&gt;&lt;span class="problematic" id="id2"&gt;``&lt;/span&gt;&lt;/a&gt;CFLAGS=&amp;quot;-arch x86_64 -arch i386 -g -O2&amp;quot; `` to
 /usr/local/lib&lt;/p&gt;
 &lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/ratran-on-mac-os-x.rst&lt;/tt&gt;, line 14); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/ratran-on-mac-os-x.rst&lt;/tt&gt;, line 14); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Inline literal start-string without end-string.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -3058,7 +3035,7 @@ crashed precipitously.&lt;/p&gt;
 &lt;div class="system-messages section"&gt;
 &lt;h2&gt;Docutils System Messages&lt;/h2&gt;
 &lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/site-visits-comps.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/site-visits-comps.rst&lt;/tt&gt;, line 7); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 Unknown target name: &amp;quot;|image0|&amp;quot;.&lt;/div&gt;
 &lt;/div&gt;
 </summary><category term="http://schemas.google.com/blogger/2008/kind#post"></category></entry><entry><title>skill set</title><link href="http://keflavich.github.com/blog/skill-set.html" rel="alternate"></link><updated>2012-09-20T20:02:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2012-09-20:skill-set.html</id><summary type="html">&lt;p&gt;is it a marketable skill that I can bring down almost any computer
@@ -3255,7 +3232,7 @@ STSCI development group, and APLpy underway, we're getting closer.&lt;/p&gt;
 &lt;/dd&gt;
 &lt;/dl&gt;
 &lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/characterizing-precursors-to-stellar-clusters-with-herschel.rst&lt;/tt&gt;, line 9)&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/characterizing-precursors-to-stellar-clusters-with-herschel.rst&lt;/tt&gt;, line 9)&lt;/p&gt;
 Definition list ends without a blank line; unexpected unindent.&lt;/div&gt;
 &lt;p&gt;Fuller, P. Martin, S. Molinari, J. Mottram, N. Peretto, L. Testi, M.A.
 Thompson 2011&lt;/p&gt;
