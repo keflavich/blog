@@ -31,7 +31,7 @@
                                 <li><a href="../tag/photo.html">photo</a></li>
                                 <li><a href="../tag/sage.html">SAGE</a></li>
                                 <li><a href="../tag/arecibo.html">arecibo</a></li>
-                                <li><a href="../tag/subversion.html">subversion</a></li>
+                                <li><a href="../tag/blog.html">blog</a></li>
                                 <li><a href="../tag/animation.html">animation</a></li>
                                 <li><a href="../tag/teaching.html">teaching</a></li>
                                 <li><a href="../tag/crash.html">crash</a></li>
@@ -53,6 +53,7 @@
                                 <li><a href="../tag/humor.html">humor</a></li>
                                 <li><a href="../tag/bolocam.html">bolocam</a></li>
                                 <li><a href="../tag/review.html">review</a></li>
+                                <li><a href="../tag/bolocat.html">bolocat</a></li>
                                 <li><a href="../tag/internet.html">internet</a></li>
                                 <li><a href="../tag/iraf.html">iraf</a></li>
                                 <li><a href="../tag/brewing.html">brewing</a></li>
@@ -71,7 +72,7 @@
                                 <li><a href="../tag/unix.html">unix</a></li>
                                 <li><a href="../tag/gardening.html">gardening</a></li>
                                 <li><a href="../tag/comic.html">comic</a></li>
-                                <li><a href="../tag/blog.html">blog</a></li>
+                                <li><a href="../tag/subversion.html">subversion</a></li>
                                 <li><a href="../tag/git.html">git</a></li>
                                 <li><a href="../tag/publication.html">publication</a></li>
                                 <li><a href="../tag/marketable-skills.html">marketable skills</a></li>
@@ -83,10 +84,12 @@
                                 <li><a href="../tag/formaldehyde.html">formaldehyde</a></li>
                                 <li><a href="../tag/me.html">me</a></li>
                                 <li><a href="../tag/post-agb.html">post-agb</a></li>
+                                <li><a href="../tag/pointsource.html">pointsource</a></li>
                                 <li><a href="../tag/meta.html">meta</a></li>
                                 <li><a href="../tag/install.html">install</a></li>
                                 <li><a href="../tag/postscript.html">postscript</a></li>
                                 <li><a href="../tag/intro.html">intro</a></li>
+                                <li><a href="../tag/simulations.html">simulations</a></li>
                                 <li><a href="../tag/gnuplot.html">gnuplot</a></li>
                                 <li><a href="../tag/travel.html">travel</a></li>
                                 <li><a href="../tag/mathematica.html">mathematica</a></li>
@@ -121,6 +124,24 @@
 <h2>Articles by Adam (keflavich@gmail.com)</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../idl-colors.html" rel="bookmark" title="Permalink to IDL colors">
+                    IDL colors</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><p>To get IDL colors to 'work right' (i.e. a colortable has 255 colors
+etc), put this in a startup file:</p>
+<pre class="literal-block">
+device, true_color = 24, retain = 2, decompose = 0red = [0,1,1,0,0,1]green = [0,1,0,1,0,1]blue = [0,1,0,0,1,0]if not strcmp(getenv('DISPLAY'),'') then $   tvlct, 255*red, 255*green, 255*blue
+</pre>
+</p> </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -860,112 +881,6 @@ make install - no compiler opts as they killed the install</p>
         <div class="entry-content"> <p>IRAF has special syntax to append/replace, so you can do something like:
 <tt class="docutils literal">imarith *.fits - dark.fits <span class="pre">ds_//*.fits</span></tt>
 ...though I can't remember right now how to do replacement etc.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="../jeans-mass.html" rel="bookmark" title="Permalink to Jeans Mass">
-                    Jeans Mass</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-03-12T20:16:00"> Tue 12 March 2013 </abbr>
-            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Some notes about the Jeans mass scale using astropy's units.</p>
-<p>Simple approaches to determining mass scales:</p>
-<div class="math">
-\begin{equation*}
-v_{esc} = \sqrt{\frac{G M}{R}}
-\end{equation*}
-</div>
-<p>Isothermal equation of state:</p>
-<div class="math">
-\begin{equation*}
-P = \rho k T
-\end{equation*}
-</div>
-<div class="math">
-\begin{equation*}
-c_s = \sqrt{2 k T / m}
-\end{equation*}
-</div>
-<p>Setting <span class="math">
-\(v_{esc} = c_s\)</span>
- yields the mass scale:</p>
-<div class="math">
-\begin{equation*}
-M = \frac{R}{G}  \frac{2 k T}{m} = \frac{R c_s^2}{G}
-\end{equation*}
-</div>
-<p>Using <span class="math">
-\(\rho = \frac{M}{ 4/3 \pi R^{-3} }\)</span>
-,</p>
-<div class="math">
-\begin{equation*}
-R = \left(\frac{M}{4/3 \pi \rho}\right)^{1/3}
-\end{equation*}
-</div>
-<div class="math">
-\begin{equation*}
-so
-\end{equation*}
-</div>
-<div class="math">
-\begin{equation*}
-M = M^{1/3} \frac{c_s^2}{G \rho^{1/3}}
-\end{equation*}
-</div>
-<p>which rearranges to</p>
-<div class="math">
-\begin{equation*}
-M = \frac{c_s^{3}}{G^{3/2} \rho^{1/2}}
-\end{equation*}
-</div>
-<p>where <span class="math">
-\(M\)</span>
- is now <span class="math">
-\(M_J\)</span>
-, the Jeans mass. In terms of
-temperature, this is:</p>
-<div class="math">
-\begin{equation*}
-M_J = \frac{(2 k T)^{3/2}}{(m G)^{3/2} \rho^{1/2}}
-\end{equation*}
-</div>
-<p>where <span class="math">
-\(m\)</span>
- is the particle mass, usually assumed to be 2.8 amu.</p>
-<p>In[1]:</p>
-<div class="highlight"><pre><span class="c"># astropy imports</span>
-<span class="kn">import</span> <span class="nn">astropy.units</span> <span class="kn">as</span> <span class="nn">u</span>
-<span class="kn">import</span> <span class="nn">astropy.constants</span> <span class="kn">as</span> <span class="nn">c</span>
-<span class="c"># turn off verbose but unnecessary information</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s">&#39;ignore&#39;</span><span class="p">)</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">UnitsWarning</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</pre></div>
-<pre class="literal-block">
-WARNING: ConfigurationDefaultMissingWarning: Requested default configuration file /Users/adam/repos/astropy/astropy/astropy.cfg is not a file. Cannot install default profile. If you are importing from source, this is expected. [astropy]
-</pre>
-<p>In[7]:</p>
-<div class="highlight"><pre><span class="n">amu</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">m_p</span>
-<span class="n">temperature</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">K</span>
-<span class="n">m</span> <span class="o">=</span> <span class="p">(((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">k_B</span> <span class="o">*</span> <span class="n">temperature</span><span class="p">)</span><span class="o">**</span><span class="mf">1.5</span> <span class="o">/</span> <span class="p">((</span><span class="mf">2.8</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">m_p</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">G</span><span class="p">)</span><span class="o">**</span><span class="mf">1.5</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.8</span><span class="o">*</span><span class="mf">1e4</span><span class="o">*</span><span class="n">amu</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mf">2.</span><span class="p">))))</span><span class="o">.</span><span class="n">cgs</span>
-</pre></div>
-<p>In[5]:</p>
-<div class="highlight"><pre><span class="n">m</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">solMass</span><span class="p">)</span>
-</pre></div>
-<p>Out[5]:</p>
-<div class="math">
-\begin{equation*}
-1.92903 \mathrm{M_{\odot}}
-\end{equation*}
-</div>
-<pre class="literal-block">
-&lt;Quantity 1.92902547696 solMass&gt;
-</pre>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

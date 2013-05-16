@@ -31,7 +31,7 @@
                                 <li><a href="../tag/photo.html">photo</a></li>
                                 <li><a href="../tag/sage.html">SAGE</a></li>
                                 <li><a href="../tag/arecibo.html">arecibo</a></li>
-                                <li><a href="../tag/subversion.html">subversion</a></li>
+                                <li><a href="../tag/blog.html">blog</a></li>
                                 <li><a href="../tag/animation.html">animation</a></li>
                                 <li><a href="../tag/teaching.html">teaching</a></li>
                                 <li><a href="../tag/crash.html">crash</a></li>
@@ -53,6 +53,7 @@
                                 <li><a href="../tag/humor.html">humor</a></li>
                                 <li><a href="../tag/bolocam.html">bolocam</a></li>
                                 <li><a href="../tag/review.html">review</a></li>
+                                <li><a href="../tag/bolocat.html">bolocat</a></li>
                                 <li><a href="../tag/internet.html">internet</a></li>
                                 <li><a href="../tag/iraf.html">iraf</a></li>
                                 <li><a href="../tag/brewing.html">brewing</a></li>
@@ -71,7 +72,7 @@
                                 <li><a href="../tag/unix.html">unix</a></li>
                                 <li><a href="../tag/gardening.html">gardening</a></li>
                                 <li><a href="../tag/comic.html">comic</a></li>
-                                <li><a href="../tag/blog.html">blog</a></li>
+                                <li><a href="../tag/subversion.html">subversion</a></li>
                                 <li><a href="../tag/git.html">git</a></li>
                                 <li><a href="../tag/publication.html">publication</a></li>
                                 <li><a href="../tag/marketable-skills.html">marketable skills</a></li>
@@ -83,10 +84,12 @@
                                 <li><a href="../tag/formaldehyde.html">formaldehyde</a></li>
                                 <li><a href="../tag/me.html">me</a></li>
                                 <li><a href="../tag/post-agb.html">post-agb</a></li>
+                                <li><a href="../tag/pointsource.html">pointsource</a></li>
                                 <li><a href="../tag/meta.html">meta</a></li>
                                 <li><a href="../tag/install.html">install</a></li>
                                 <li><a href="../tag/postscript.html">postscript</a></li>
                                 <li><a href="../tag/intro.html">intro</a></li>
+                                <li><a href="../tag/simulations.html">simulations</a></li>
                                 <li><a href="../tag/gnuplot.html">gnuplot</a></li>
                                 <li><a href="../tag/travel.html">travel</a></li>
                                 <li><a href="../tag/mathematica.html">mathematica</a></li>
@@ -121,6 +124,86 @@
 <h2>Articles by Adam (keflavich@gmail.com)</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../failure-to-compile-64-bit-gtk-on-mac-os.html" rel="bookmark" title="Permalink to Failure to compile 64 bit gtk on mac os">
+                    Failure to compile 64 bit gtk on mac os</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Attempted to install gtk+-2.17.2 on my mac. Had to install:
+glib-2.21.2
+which would not let me compile with multiple architectures, and
+pkgconfig-0.9.0,
+which won't configure because:
+<tt class="docutils literal">configure: configuring in <span class="pre">glib-1.2.8configure:</span> running /bin/sh <span class="pre">'./configure'</span> <span class="pre">--prefix=/usr/local</span>&nbsp; CC= CFLAGS= LDFLAGS= <span class="pre">--cache-file=/dev/null</span> <span class="pre">--srcdir=.configure:</span> warning: CC=: invalid host typeconfigure: warning: CFLAGS=: invalid host typeconfigure: error: can only configure for one host and one target at a timeconfigure: error: /bin/sh <span class="pre">'./configure'</span> failed for <span class="pre">glib-1.2.8</span></tt>
+which is bs because I don't have any compiler flags set.
+So, gtk+ seems hopeless.
+UPDATE: 0.9.0 is not the latest version, 0.23.0 is. Dumb version
+numbering.
+GTK is absurd to install. You need:
+pkg-config
+glib
+cairo</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Volumes/disk5/Users/adam/repos/blog/content/failure-to-compile-64-bit-gtk-on-mac-os.rst</tt>, line 21)</p>
+Unexpected indentation.</div>
+<blockquote>
+pixman</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/Volumes/disk5/Users/adam/repos/blog/content/failure-to-compile-64-bit-gtk-on-mac-os.rst</tt>, line 22)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<p>pango (MUST be installed AFTER cairo)
+<a class="reference external" href="http://ftp.gnome.org/pub/gnome/sources/atk/">atk</a>
+<a class="reference external" href="ftp://ftp.remotesensing.org/pub/libtiff/">libtiff</a>
+<a class="reference external" href="http://www.ijg.org/">libjpg</a>
+<a class="reference external" href="http://www.openjpeg.org/index.php">jpeg2000</a> - but I just passed a flag to not do this because it didn't
+install right. --without-libjasper
+<a class="reference external" href="http://fontconfig.org/wiki/">fontconfig</a> I mean, really? at this point it's just ridiculous....
+and finally, it died with this:
+checking Pango flags... configure: error:
+*** Pango not found. Pango built with Cairo support is required
+*** to build GTK+. See <a class="reference external" href="http://www.pango.org">http://www.pango.org</a> for Pango information.
+which meant that I had to reinstall Pango because I had installed it
+before Cairo.
+I believe this is where the term <a class="reference external" href="http://en.wikipedia.org/wiki/Dependency_hell">dependency hell</a> comes from.
+Also, I don't think any of these are x86-64 compatible.
+Then I'm STILL not done.
+PyGTK dies with an import error on dsextras, which a painful google
+search traces to pygobject. pygobject makes and installs fine.... but
+then I find out it installed to
+/usr/local/lib/python2.6/site-packages/gtk-2.0/, which is obviously not
+on my python path since I installed a framework.
+So:
+./configure --prefix=/Library/Frameworks/Python.framework/Versions/2.6/
+in both pygobject and pygtk.
+Oh, guess what? Need pycairo too. What happens there? What you'd guess:
+ld warning: in
+/Developer/SDKs/MacOSX10.5.sdk/usr/local/lib/libcairo.dylib, file is not
+of required architecture
+so when I configure pygtk:
+The following modules will be built:
+atk
+pango
+The following modules will NOT be built:
+pangocairo
+gtk
+gtk.glade
+gtk.unixprint
+Damn. That blows.
+python-64 -c &quot;import gtk&quot;
+ImportError:
+dlopen(/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/gtk-2.0/glib/_glib.so,
+2): no suitable image found. Did find:</p>
+<p>/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/gtk-2.0/glib/_glib.so:
+mach-o, but wrong architecture
+FAIL.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -326,38 +409,6 @@ using a variety of layers, opacities, etc.</p>
 <p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Volumes/disk5/Users/adam/repos/blog/content/galactic-center-photo-contest.rst</tt>, line 7); <em><a href="#id2">backlink</a></em></p>
 Unknown target name: &quot;|image0|&quot;.</div>
 </div>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="../galactic-formaldehyde-densitometry-project.html" rel="bookmark" title="Permalink to Galactic Formaldehyde Densitometry Project">
-                    Galactic Formaldehyde Densitometry Project</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>The Galactic Formaldehyde Densitometry Project is finally official and
-on its way. I am PI of a joint Arecibo / Green Bank Telescope project to
-survey formaldehyde, H2CO, in a sample of ~400 &quot;dust clumps&quot; in the
-Galactic Plane. The clumps represent condensations within larger
-molecular clouds that are likely to be forming stars, particularly
-massive stars and star clusters.
-Formaldehyde is uniquely useful for measuring densities of these gas
-clumps. Because of a collisional selection effect, the low-lying
-K-doublet transitions of H2CO undergo &quot;anti-inversion&quot;, which means
-their lower-energy states are overpopulated relative to the higher
-states, and it can therefore be seen in absorption against the cosmic
-microwave background. This unique property removes a key bias present in
-emission line studies in which variable excitation conditions can
-dominate the observability of a line.
-For the next few posts, I will include calibration and data reduction
-information from the observations in this survey. The Green Bank
-observations are well underway, with nearly half of the sources observed
-(though many at poor sensitivity) and the Arecibo observations have been
-approved.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
