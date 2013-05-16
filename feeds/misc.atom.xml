@@ -8,24 +8,20 @@ Bolocat:&lt;/p&gt;
 capability of recovering accurate flux density measurements from a realistic
 sky using bolocat.&lt;/p&gt;
 &lt;p&gt;However, the above figures show a simulation only for one set of parameters,
-with &lt;span class="math"&gt;
-\(\alpha=1\)&lt;/span&gt;
+with &lt;span class="math"&gt;\(\alpha=1\)&lt;/span&gt;
  in the power-law flux distribution, which unfortunately
 is not realistic according to &amp;quot;Figure 8&amp;quot;:&lt;/p&gt;
 &lt;img alt="https://github.com/keflavich/bgpsv2/raw/master/figures/l030_higal_bgps_powerspec_compare.png" src="https://github.com/keflavich/bgpsv2/raw/master/figures/l030_higal_bgps_powerspec_compare.png" style="width: 800px;" /&gt;
 &lt;p&gt;So I've started up a new experiment, experiment #23, to examine this problem.&lt;/p&gt;
 &lt;p&gt;The problem has a few layers:&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;The reason I used &lt;span class="math"&gt;
-\(\alpha=1\)&lt;/span&gt;
+&lt;li&gt;The reason I used &lt;span class="math"&gt;\(\alpha=1\)&lt;/span&gt;
  is that it looks much like a realistic
 BGPS map after processing, in the sense that most of the field is empty
-but there are a few hundred sources in the map.  However, &lt;span class="math"&gt;
-\(\alpha=1\)&lt;/span&gt;
+but there are a few hundred sources in the map.  However, &lt;span class="math"&gt;\(\alpha=1\)&lt;/span&gt;
 
 is not a realistic representation of the measured power spectra.&lt;/li&gt;
-&lt;li&gt;&lt;span class="math"&gt;
-\(\alpha=2\)&lt;/span&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(\alpha=2\)&lt;/span&gt;
  maps with the previous normalization had a peak value of
 18 Jy, which resulted in heavily signal-dominated output maps that did not
 resemble BGPS maps.&lt;/li&gt;
@@ -47,8 +43,7 @@ distributed map.&lt;/li&gt;
 &lt;li&gt;The normalizations used in experiment #21, the angular transfer function
 measurement, were selected such that there would be high signal-to-noise at
 all angular scales.  This means that white noise would not be dominant on
-any angular scale, since white noise is equivalent to &lt;span class="math"&gt;
-\(\alpha=0\)&lt;/span&gt;
+any angular scale, since white noise is equivalent to &lt;span class="math"&gt;\(\alpha=0\)&lt;/span&gt;
 .  So
 it wasn't crazy to use these ridiculously high-flux maps, but it is not
 feasible to use the same maps for analysis of point sources.  In maps for
@@ -93,33 +88,27 @@ using a slope of 1.8 gives:&lt;/p&gt;
 &lt;p&gt;effective beam radius = 19.82&amp;quot;    (= FWHM / sqrt (4*ln(2))&lt;/p&gt;
 &lt;p&gt;This is the radius of a circular top-hat function that has the
 same solid angle as a gaussian.  At a distance of
-D = 1 kpc, this radius corresponds to a length  = &lt;span class="math"&gt;
-\(2.97 x 10^{17}\)&lt;/span&gt;
+D = 1 kpc, this radius corresponds to a length  = &lt;span class="math"&gt;\(2.97 x 10^{17}\)&lt;/span&gt;
  cm.
 The effective beam solid angle is,&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;blockquote&gt;
-&lt;span class="math"&gt;
-\(\Omega = 2.902 x 10^{-8}\)&lt;/span&gt;
+&lt;span class="math"&gt;\(\Omega = 2.902 x 10^{-8}\)&lt;/span&gt;
  sr.&lt;/blockquote&gt;
 &lt;p&gt;Adopt a fiducial dust temperature for mass calculations,&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;span class="math"&gt;
-\(T_d = 20K\)&lt;/span&gt;
+&lt;span class="math"&gt;\(T_d = 20K\)&lt;/span&gt;
 &lt;/blockquote&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;The total mass per Jy at &lt;span class="math"&gt;
-\(D_{kpc}\)&lt;/span&gt;
+&lt;p&gt;The total mass per Jy at &lt;span class="math"&gt;\(D_{kpc}\)&lt;/span&gt;
  = 1 kpc is given by&lt;/p&gt;
-&lt;p&gt;&lt;span class="math"&gt;
-\(M = 1.0 x 10^{-23} * S(Jy) * D^2 / \kappa * B_nu(T)\)&lt;/span&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(M = 1.0 x 10^{-23} * S(Jy) * D^2 / \kappa * B_nu(T)\)&lt;/span&gt;
 &lt;/p&gt;
 &lt;p&gt;:math:`  =  14.30 * [e^(13.01/T(K) - 1] * S(Jy) * D^2_{kpc}`    (Solar masses)&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;dl class="docutils"&gt;
 &lt;dt&gt;For T = 20 K&lt;/dt&gt;
-&lt;dd&gt;&lt;span class="math"&gt;
-\(M = 13.07 * S(Jy) * D^2_{kpc} M_{\odot}\)&lt;/span&gt;
+&lt;dd&gt;&lt;span class="math"&gt;\(M = 13.07 * S(Jy) * D^2_{kpc} M_{\odot}\)&lt;/span&gt;
       (Solar masses)&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;/blockquote&gt;
@@ -166,16 +155,14 @@ P = \rho k T
 c_s = \sqrt{2 k T / m}
 \end{equation*}
 &lt;/div&gt;
-&lt;p&gt;Setting &lt;span class="math"&gt;
-\(v_{esc} = c_s\)&lt;/span&gt;
+&lt;p&gt;Setting &lt;span class="math"&gt;\(v_{esc} = c_s\)&lt;/span&gt;
  yields the mass scale:&lt;/p&gt;
 &lt;div class="math"&gt;
 \begin{equation*}
 M = \frac{R}{G}  \frac{2 k T}{m} = \frac{R c_s^2}{G}
 \end{equation*}
 &lt;/div&gt;
-&lt;p&gt;Using &lt;span class="math"&gt;
-\(\rho = \frac{M}{ 4/3 \pi R^{-3} }\)&lt;/span&gt;
+&lt;p&gt;Using &lt;span class="math"&gt;\(\rho = \frac{M}{ 4/3 \pi R^{-3} }\)&lt;/span&gt;
 ,&lt;/p&gt;
 &lt;div class="math"&gt;
 \begin{equation*}
@@ -198,10 +185,8 @@ M = M^{1/3} \frac{c_s^2}{G \rho^{1/3}}
 M = \frac{c_s^{3}}{G^{3/2} \rho^{1/2}}
 \end{equation*}
 &lt;/div&gt;
-&lt;p&gt;where &lt;span class="math"&gt;
-\(M\)&lt;/span&gt;
- is now &lt;span class="math"&gt;
-\(M_J\)&lt;/span&gt;
+&lt;p&gt;where &lt;span class="math"&gt;\(M\)&lt;/span&gt;
+ is now &lt;span class="math"&gt;\(M_J\)&lt;/span&gt;
 , the Jeans mass. In terms of
 temperature, this is:&lt;/p&gt;
 &lt;div class="math"&gt;
@@ -209,8 +194,7 @@ temperature, this is:&lt;/p&gt;
 M_J = \frac{(2 k T)^{3/2}}{(m G)^{3/2} \rho^{1/2}}
 \end{equation*}
 &lt;/div&gt;
-&lt;p&gt;where &lt;span class="math"&gt;
-\(m\)&lt;/span&gt;
+&lt;p&gt;where &lt;span class="math"&gt;\(m\)&lt;/span&gt;
  is the particle mass, usually assumed to be 2.8 amu.&lt;/p&gt;
 &lt;p&gt;In[1]:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# astropy imports&lt;/span&gt;
