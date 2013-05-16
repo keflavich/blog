@@ -5,13 +5,15 @@ BGPS Point Source Recovery
 :tags: bgps, simulations, pointsource, bolocat
 
 
-In the last couple drafts of the BGPS paper (e.g. [the May 15, 2013 draft
-https://github.com/keflavich/bgpsv2/blob/master/v2_draft0515.pdf?raw=true]),
+In the last couple drafts of the BGPS paper (e.g. `the May 15, 2013 draft
+<https://github.com/keflavich/bgpsv2/blob/master/v2_draft0515.pdf?raw=true>`_),
 we've included a single simulation demonstrating the flux recovery of the
 Bolocat:
 
 .. image:: https://raw.github.com/keflavich/bgpsv2/master/figures/in_vs_out_bolocat_FLUX_40.png?login=keflavich&token=8ff3096beef7bf15627a7a6b7363cb49
+    :width: 800
 .. image:: https://raw.github.com/keflavich/bgpsv2/master/figures/in_vs_out_bolocat_FLUX_120.png?login=keflavich&token=2c6e9896c5df6824e9881c94d6af542f
+    :width: 800
 
 These figures are regarded as very important, as they demonstrate the
 capability of recovering accurate flux density measurements from a realistic
@@ -22,6 +24,7 @@ with :math:`\alpha=1` in the power-law flux distribution, which unfortunately
 is not realistic according to "Figure 8":
 
 .. image:: https://github.com/keflavich/bgpsv2/raw/master/figures/l030_higal_bgps_powerspec_compare.png
+    :width: 800
 
 
 So I've started up a new experiment, experiment #23, to examine this problem. 
