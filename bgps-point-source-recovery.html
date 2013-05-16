@@ -115,6 +115,23 @@ maps to be primarily noise-dominated with a handful of bright features
 either caused by adding point sources directly or from the local peaks in
 the power-law distributed flux.</li>
 </ol>
+<p>Some notes along the way:</p>
+<blockquote>
+<ul class="simple">
+<li>Using a power-law background, the point-source sensitivity is much worse
+than without a power-law background.   This is intuitive: a 100 mJy source
+on a 200 mJy background (which may easily include power fluctuations on the
+smallest scales of comparable magnitude) is not going to be recovered.</li>
+<li>Doubly important: a 1 Jy source should have <em>peak</em> amplitude 1 Jy, but the
+current method of adding point sources adds them as delta functions that are
+later convolved, conserving the <em>total flux</em> rather than the <em>peak flux</em>.
+This needs to be changed!</li>
+</ul>
+</blockquote>
+<p>Here are some examples of what the before/after look like with point sources added.
+The first has bright sources, the second faint sources:</p>
+<img alt="static/images/bgps-point-source-recovery/BGPS_exp23_bright.png" src="static/images/bgps-point-source-recovery/BGPS_exp23_bright.png" style="width: 800px;" />
+<img alt="static/images/bgps-point-source-recovery/BGPS_exp23_missingsrcs.png" src="static/images/bgps-point-source-recovery/BGPS_exp23_missingsrcs.png" style="width: 800px;" />
 
   </div><!-- /.entry-content -->
 </section>
