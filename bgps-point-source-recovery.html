@@ -202,13 +202,21 @@ which is exactly the right answer according to the pipeline.  1.02 comes from
 taking a much more local background subtraction from r=40 to r=80 arcsec,
 which isn't really acceptable.  If we go from r=60 to r=120, the disagreement remains
 fairly bad, with f=0.38 Jy/beam, but certainly a lot better.</p>
+<pre class="literal-block">
+Bolocat after the correction:
+In [297]: [m20[61][f] for f in fields]
+Out[297]: [0.18015364, 0.18674377, 0.00578439, 0.25477698, 0.29759517, 0.0041758944]
+
+In [298]: [inp[61][f] for f in fields]
+Out[298]: [0.1896538, 1.3536235, 1.0216572, 0.40137589, 10.77737, 1.0119308]
+</pre>
 <p>This may mean that we'll need to re-do aperture extraction with a tighter
 background region everywhere.  I made the change to <tt class="docutils literal">object_photometry</tt>.</p>
 <p>However, even with the change, even in the best case, <tt class="docutils literal">FLUX_120</tt> appears to
 be totally unreliable.  <tt class="docutils literal">FLUX_80</tt> is acceptable with the change, but only for
 bright sources (for faint sources, &lt;1 Jy, there is no recovery at all - I think this
 must be an issue of the source brightness still not being calculated correctly):</p>
-<img alt="static/images/bgps-point-source-recovery/exp23_recoverytests/in_vs_out_bolocat_FLUX_80_bright_1.0E-05.png" src="static/images/bgps-point-source-recovery/exp23_recoverytests/in_vs_out_bolocat_FLUX_80_bright_1.0E-05.png" style="width: 800px;" />
+<img alt="static/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_80_bright_1.0E-05.png" src="static/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_80_bright_1.0E-05.png" style="width: 800px;" />
 <p>I'll have to continue this analysis tomorrow once the full suite of simulations
 has completed, but I strongly suspect that we'll have to recommend strictly
 against using <tt class="docutils literal">FLUX_120</tt> if the background is expected to be <span class="math">\(\alpha=2\)</span>
