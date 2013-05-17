@@ -4,25 +4,53 @@
                 <title>Adam Ginsburg's blog</title>
         <meta charset="utf-8" />
                 <link href="http://keflavich.github.com/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
-                                                <link href="http://keflavich.github.com/blog/feeds/.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
-                                        </head>
+                                                                        <!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href=".">Adam Ginsburg's blog <strong></strong></a></h1>
+                <h1><a href="http://keflavich.github.com/blog">Adam Ginsburg's blog <strong></strong></a></h1>
         </header><!-- /#banner -->
         <nav id="menu"><ul>
                     <li><a href="http://www.adamgginsburg.com">Home</a></li>
                     <li><a href="index.html">Index</a></li>
-                                      <li><a href="./category/misc.html">misc</a></li>
-                          </ul></nav><!-- /#menu -->
+                                                    <li><a href="http://keflavich.github.com/blog/category/misc.html">misc</a></li>
+                                      </ul></nav><!-- /#menu -->
         <ul>
-    <li><a href="./category/misc.html">misc</a></li>
+    <li><a href="http://keflavich.github.com/blog/category/misc.html">misc</a></li>
 </ul>
         <footer id="contentinfo" class="body">
                 <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
-                which takes great advantage of <a href="http://python.org">Python</a>.
+                Powered by <a href="http://getpelican.com/">Pelican</a>
                 </address><!-- /#about -->
         </footer><!-- /#contentinfo -->
 </body>

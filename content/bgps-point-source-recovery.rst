@@ -64,4 +64,127 @@ The problem has a few layers:
    either caused by adding point sources directly or from the local peaks in
    the power-law distributed flux.
 
+Some notes along the way:
+
+ * Using a power-law background, the point-source sensitivity is much worse
+   than without a power-law background.   This is intuitive: a 100 mJy source
+   on a 200 mJy background (which may easily include power fluctuations on the
+   smallest scales of comparable magnitude) is not going to be recovered.
+ * Doubly important: a 1 Jy source should have *peak* amplitude 1 Jy, but the
+   current method of adding point sources adds them as delta functions that are
+   later convolved, conserving the *total flux* rather than the *peak flux*.
+   This needs to be changed! (has been now)
+
+Here are some examples of what the before/after look like with point sources added.
+The first has bright sources, the second faint sources:
+
+.. image:: static/images/bgps-point-source-recovery/BGPS_exp23_bright.png
+    :width: 800
+.. image:: static/images/bgps-point-source-recovery/BGPS_exp23_missingsrcs.png
+    :width: 800
+
+
+With these new figures, the 40" apertures work fine, but the 120" apertures are
+still utterly junk.  This does not make sense.
+
+.. image:: static/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_40_testexp23.png
+    :width: 800
+.. image:: static/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_80_testexp23.png
+    :width: 800
+.. image:: static/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_120_testexp23.png
+    :width: 800
+
+A careful analysis of a single source shows that something is wrong.  Here are some annular extractions
+followed by the image:
+
+::
+
+    Input Map:
+    reg sum npix    mean    median  min         max     var         stddev      rms 
+    --- --- ----    ----    ------  ---         ---     ---         ------      --- 
+    1   26.3323 22  1.19692 1.18083 1.10787     1.28825 0.00208826  0.0456975   1.1978  
+    2   77.8553 74  1.0521  1.047   1.00426     1.123   0.000929507 0.0304878   1.05254 
+    3   124.868 122 1.02351 1.02869 0.996566    1.04427 0.000260295 0.0161337   1.02363 
+
+    Output Map:
+    reg sum         npix    mean        median      min         max         var         stddev      rms 
+    --- ---         ----    ----        ------      ---         ---         ---         ------      --- 
+    1   3.89157     23      0.169199    0.175204    0.086872    0.255151    0.00206254  0.0454152   0.175188    
+    2   2.06843     74      0.0279517   0.0275116   -0.0695484  0.155258    0.00210834  0.0459167   0.0537554   
+    3   0.502601    123     0.00408619  0.00629906  -0.121023   0.0834974   0.00143969  0.0379432   0.0381626   
+
+    Backgrounds:
+    Input Map:
+    reg  sum      npix  mean      median    min       max      var          stddev     rms
+    ---  ---      ----  ----      ------    ---       ---      ---          ------     ---
+    1    297.054  291   1.0208    1.02293   0.98094   1.05234  0.000313419  0.0177037  1.02096
+    3    2538.6   2618  0.969671  0.972413  0.859551  1.12495  0.0015557    0.0394423  0.970473
+
+    Output Map:
+    reg  sum      npix  mean        median      min        max       var         stddev     rms
+    ---  ---      ----  ----        ------      ---        ---       ---         ------     ---
+    1    1.49461  291   0.00513613  0.00729431  -0.121023  0.133141  0.001586    0.0398247  0.0401545
+    3    5.83372  2618  0.00222831  0.00194597  -0.195075  0.181155  0.00211747  0.046016   0.0460699
+    
+    Bolocat for this source:
+    In [200]: fields
+    Out[200]: ['FLUX_40', 'FLUX_40_NOBG', 'BG_40', 'FLUX_120', 'FLUX_120_NOBG', 'BG_120']
+
+    In [198]: [inp[61][f] for f in fields]
+    Out[198]: [0.1896538, 1.3536235, 0.38071653, 0.83893013, 10.77737, 0.42352486]
+
+    In [199]: [m20[61][f] for f in fields]
+    Out[199]: [0.18015364, 0.18674377, -0.016305592, 0.2868295, 0.29759517, -0.00027596406]
+        
+    
+ 
+.. image:: static/images/bgps-point-source-recovery/annulus_exam.png
+    :width: 800
+
+With background apertures:
+
+.. image:: static/images/bgps-point-source-recovery/annulus_exam_bgapers.png
+    :width: 800
+
+However, note that the background are computed using the ``mmm.pro``
+sky-background estimation procedure over a range :math:`2r` to :math:`4r`
+(i.e., 40-80" and 120-240" radius for the 40" and 120" diameter apertures).
+
+The numbers shown by ds9 disagree fairly severely with those from bolocat.
+In particular, it appears that the background estimate returned by ``mmm.pro``
+is off by a factor of 2, in this case giving 0.42 instead of 0.97.  Turns out
+this was due to an indexing error that did not affect the pipeline results in
+any way.
+
+Out of date analysis:
+Bolocat's flux total in the 120" aperture is 10.77 Jy/beam, background is 0.42
+Jy/beam.  There are 218 pixels.  The resulting flux should be
+(10.77-0.42*218/23.8), but this gives 6.9 instead of the expected 0.84.  Why?
+
+If we do the same with the ds9 numbers, we get a total of 9.62 Jy/beam,
+background 0.97 Jy/beam average, so: (9.62 - 0.97*218/23.8) = 0.74.
+This is consistent with bolocat, and very very wrong.
+
+If we take our background to be 1.02 instead of 0.97, we get 0.28 Jy/beam,
+which is exactly the right answer according to the pipeline.  1.02 comes from
+taking a much more local background subtraction from r=40 to r=80 arcsec,
+which isn't really acceptable.  If we go from r=60 to r=120, the disagreement remains
+fairly bad, with f=0.38 Jy/beam, but certainly a lot better.
+
+This may mean that we'll need to re-do aperture extraction with a tighter
+background region everywhere.  I made the change to ``object_photometry``.
+
+However, even with the change, even in the best case, ``FLUX_120`` appears to
+be totally unreliable.  ``FLUX_80`` is acceptable with the change, but only for
+bright sources (for faint sources, <1 Jy, there is no recovery at all - I think this
+must be an issue of the source brightness still not being calculated correctly):
+
+.. image:: static/images/bgps-point-source-recovery/exp23_recoverytests/in_vs_out_bolocat_FLUX_80_bright_1.0E-05.png
+    :width: 800
+
+I'll have to continue this analysis tomorrow once the full suite of simulations
+has completed, but I strongly suspect that we'll have to recommend strictly
+against using ``FLUX_120`` if the background is expected to be :math:`\alpha=2`
+distributed.
+
 

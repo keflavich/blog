@@ -27,7 +27,7 @@ DEFAULT_PAGINATION = 10
 #THEME='bootstrap2' # sneakyidea is default
 THEME='mine'
 THEME='waterspill-en' 
-THEME='simple' 
+THEME='simple_editable' 
  
 STATIC_PATHS = ['images']
 
@@ -43,4 +43,6 @@ SHOW_TAGS=False
 SHOW_RECENT=True
 
 MENUITEMS = {'Home':'http://www.adamgginsburg.com','Index':'index.html'}.items()
+
+#PLUGINS = ["latex"]
 
