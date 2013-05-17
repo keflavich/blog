@@ -222,6 +222,56 @@ has completed, but I strongly suspect that we'll have to recommend strictly
 against using <tt class="docutils literal">FLUX_120</tt> if the background is expected to be <span class="math">\(\alpha=2\)</span>
 
 distributed.</p>
+<div class="section" id="day-2">
+<h2>Day 2</h2>
+<p>The simulations have partly completed.  After correcting the error with
+convolved point sources vs.  delta functions, I reset the flux distributions to
+be 0.05 to 1.0 Jy for the &quot;faint&quot; distribution and 0.1 to 50.0 Jy for the
+&quot;bright&quot; distribution (both with power-law distributions <span class="math">\(\alpha=2\)</span>
+).</p>
+<p>The results can be summarized:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>In the presence of complex background, i.e power-law distributed flux density
+with amplitude comparable to the detected source brightness, only the smallest
+aperture (40&quot;) is reliable (i.e., recovers a flux in the input and
+processed map).</li>
+<li>The recovered flux density has a very high dispersion in the presence of
+high-amplitude power-law flux.  &quot;Very high&quot; = <span class="math">\(\sigma \gtrsim 1\)</span>
+
+around a mean of 1.</li>
+<li>There is no evident dependence of the maps on the atmospheric properties.
+Therefore, there's no sense in varying the atmospheric properties in the
+simulations.</li>
+</ol>
+</blockquote>
+<p>I decided the simulations needed changing again.  First, there was excessive
+sampling in astro/atmo parameter space; this is not needed (see point 3).  More
+important is the power-law distribution map's peak flux.  Also, it is more
+important to get decent sampling of bright-ish sources than to have a
+&quot;physically accurate&quot; point source distribution; the distribution of sources
+does not affect the recovery, but it does affect the signal-to-noise of the
+recovery <em>measurement</em>.  Please don't ask me to defend this statement; it would
+require another 10 hours of computer time + me time that I really don't want to
+allocate, but I'm confident that it is true.</p>
+<p>The essential conclusion is that, for <span class="math">\(\alpha=2\)</span>
+, point source recovery
+is only possible if the point source is brighter than the background, which is
+a very intuitive result.  Background annulus subtraction isn't very effective
+at pulling out sources.</p>
+<p>Conclusions:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>These experiments show that source recovery is very poor in the presence of a
+bright power-law background: it is not possible to reliably extract point
+sources from a map filled with power-law distributed emission brighter than or
+comparable to the point sources.</li>
+<li>The 120&quot; apertures aren't really good for anything.</li>
+<li>There is so much source-extraction parameter space out there that any
+further study would really deserve its own paper.</li>
+</ol>
+</blockquote>
+</div>
 
   </div><!-- /.entry-content -->
 </section>

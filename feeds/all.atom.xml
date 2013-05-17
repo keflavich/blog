@@ -159,6 +159,56 @@ has completed, but I strongly suspect that we'll have to recommend strictly
 against using &lt;tt class="docutils literal"&gt;FLUX_120&lt;/tt&gt; if the background is expected to be &lt;span class="math"&gt;\(\alpha=2\)&lt;/span&gt;
 
 distributed.&lt;/p&gt;
+&lt;div class="section" id="day-2"&gt;
+&lt;h2&gt;Day 2&lt;/h2&gt;
+&lt;p&gt;The simulations have partly completed.  After correcting the error with
+convolved point sources vs.  delta functions, I reset the flux distributions to
+be 0.05 to 1.0 Jy for the &amp;quot;faint&amp;quot; distribution and 0.1 to 50.0 Jy for the
+&amp;quot;bright&amp;quot; distribution (both with power-law distributions &lt;span class="math"&gt;\(\alpha=2\)&lt;/span&gt;
+).&lt;/p&gt;
+&lt;p&gt;The results can be summarized:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;In the presence of complex background, i.e power-law distributed flux density
+with amplitude comparable to the detected source brightness, only the smallest
+aperture (40&amp;quot;) is reliable (i.e., recovers a flux in the input and
+processed map).&lt;/li&gt;
+&lt;li&gt;The recovered flux density has a very high dispersion in the presence of
+high-amplitude power-law flux.  &amp;quot;Very high&amp;quot; = &lt;span class="math"&gt;\(\sigma \gtrsim 1\)&lt;/span&gt;
+
+around a mean of 1.&lt;/li&gt;
+&lt;li&gt;There is no evident dependence of the maps on the atmospheric properties.
+Therefore, there's no sense in varying the atmospheric properties in the
+simulations.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I decided the simulations needed changing again.  First, there was excessive
+sampling in astro/atmo parameter space; this is not needed (see point 3).  More
+important is the power-law distribution map's peak flux.  Also, it is more
+important to get decent sampling of bright-ish sources than to have a
+&amp;quot;physically accurate&amp;quot; point source distribution; the distribution of sources
+does not affect the recovery, but it does affect the signal-to-noise of the
+recovery &lt;em&gt;measurement&lt;/em&gt;.  Please don't ask me to defend this statement; it would
+require another 10 hours of computer time + me time that I really don't want to
+allocate, but I'm confident that it is true.&lt;/p&gt;
+&lt;p&gt;The essential conclusion is that, for &lt;span class="math"&gt;\(\alpha=2\)&lt;/span&gt;
+, point source recovery
+is only possible if the point source is brighter than the background, which is
+a very intuitive result.  Background annulus subtraction isn't very effective
+at pulling out sources.&lt;/p&gt;
+&lt;p&gt;Conclusions:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;These experiments show that source recovery is very poor in the presence of a
+bright power-law background: it is not possible to reliably extract point
+sources from a map filled with power-law distributed emission brighter than or
+comparable to the point sources.&lt;/li&gt;
+&lt;li&gt;The 120&amp;quot; apertures aren't really good for anything.&lt;/li&gt;
+&lt;li&gt;There is so much source-extraction parameter space out there that any
+further study would really deserve its own paper.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
 </summary><category term="bgps"></category><category term="simulations"></category><category term="pointsource"></category><category term="bolocat"></category></entry><entry><title>Recovering from "Startup drive out of memory"</title><link href="http://keflavich.github.com/blog/recovering-from-startup-drive-out-of-memory.html" rel="alternate"></link><updated>2013-05-13T09:26:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2013-05-13:recovering-from-startup-drive-out-of-memory.html</id><summary type="html">&lt;p&gt;To continue frozen processes, you need to find all sleeping procs and restart them with &lt;tt class="docutils literal"&gt;kill &lt;span class="pre"&gt;-CONT&lt;/span&gt;&lt;/tt&gt;.&lt;/p&gt;
 &lt;p&gt;In principle, this command should do that:&lt;/p&gt;
 &lt;p&gt;&lt;tt class="docutils literal"&gt;ps &lt;span class="pre"&gt;-A&lt;/span&gt; &lt;span class="pre"&gt;-o&lt;/span&gt; tpgid,uid,pid,state,flags | awk &lt;span class="pre"&gt;'$1!=&amp;quot;0&amp;quot;&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class="pre"&gt;$2==501&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class="pre"&gt;$4==&amp;quot;S&amp;quot;&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class="pre"&gt;$5!=&amp;quot;4000410c&amp;quot;&lt;/span&gt; {print &amp;quot;kill &lt;span class="pre"&gt;-CONT&lt;/span&gt; &amp;quot; $3}' | bash&lt;/tt&gt;&lt;/p&gt;
@@ -186,50 +236,67 @@ gives a slope of 1.8.&lt;/p&gt;
 &lt;p&gt;Interpolating kappa from 1.00 mm where OH5 gives kappa(1.00) = 0.0137
 (for a gas-to-dust ratio = 100) to 271.1 GHz (= 1.1058 mm)
 using a slope of 1.8 gives:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;:math:`kappa = 0.01143 cm^{2} g^{-1}`&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\kappa = 0.01143 cm^{2} g^{-1}\)&lt;/span&gt;
+&lt;/p&gt;
 &lt;p&gt;This is the same as the value used by Enoch, so let's adopt it
 (round to 0.0114), but note that this was calculated for 271.1 GHz.&lt;/p&gt;
 &lt;p&gt;For the v1.0 data, the BGPS has the following properties:&lt;/p&gt;
 &lt;p&gt;effective beam FWHM = 33&amp;quot;&lt;/p&gt;
-&lt;p&gt;gaussian beam sigma = 14.01&amp;quot;    (= FWHM / sqrt (8*ln(2))&lt;/p&gt;
-&lt;p&gt;effective beam radius = 19.82&amp;quot;    (= FWHM / sqrt (4*ln(2))&lt;/p&gt;
+&lt;p&gt;gaussian beam sigma = 14.01&amp;quot;    (= FWHM / :math:&lt;a href="#id1"&gt;&lt;span class="problematic" id="id2"&gt;`&lt;/span&gt;&lt;/a&gt;sqrt{(8*ln(2))})&lt;/p&gt;
+&lt;div class="system-message" id="id1"&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/BolocamMass.rst&lt;/tt&gt;, line 33); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Inline interpreted text or phrase reference start-string without end-string.&lt;/div&gt;
+&lt;p&gt;effective beam radius = 19.82&amp;quot;    (= FWHM / :math:&lt;a href="#id3"&gt;&lt;span class="problematic" id="id4"&gt;`&lt;/span&gt;&lt;/a&gt;sqrt{(4*ln(2))})&lt;/p&gt;
+&lt;div class="system-message" id="id3"&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/Volumes/disk5/Users/adam/repos/blog/content/BolocamMass.rst&lt;/tt&gt;, line 35); &lt;em&gt;&lt;a href="#id4"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Inline interpreted text or phrase reference start-string without end-string.&lt;/div&gt;
 &lt;p&gt;This is the radius of a circular top-hat function that has the
 same solid angle as a gaussian.  At a distance of
 D = 1 kpc, this radius corresponds to a length  = &lt;span class="math"&gt;\(2.97 x 10^{17}\)&lt;/span&gt;
  cm.
-The effective beam solid angle is,&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;span class="math"&gt;\(\Omega = 2.902 x 10^{-8}\)&lt;/span&gt;
- sr.&lt;/blockquote&gt;
-&lt;p&gt;Adopt a fiducial dust temperature for mass calculations,&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;span class="math"&gt;\(T_d = 20K\)&lt;/span&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
+The effective beam solid angle is &lt;span class="math"&gt;\(\Omega = 2.902 x 10^{-8}\)&lt;/span&gt;
+ sr.&lt;/p&gt;
+&lt;p&gt;Adopt a fiducial dust temperature for mass calculations, &lt;span class="math"&gt;\(T_d = 20K\)&lt;/span&gt;
+&lt;/p&gt;
 &lt;p&gt;The total mass per Jy at &lt;span class="math"&gt;\(D_{kpc}\)&lt;/span&gt;
  = 1 kpc is given by&lt;/p&gt;
-&lt;p&gt;&lt;span class="math"&gt;\(M = 1.0 x 10^{-23} * S(Jy) * D^2 / \kappa * B_nu(T)\)&lt;/span&gt;
-&lt;/p&gt;
-&lt;p&gt;:math:`  =  14.30 * [e^(13.01/T(K) - 1] * S(Jy) * D^2_{kpc}`    (Solar masses)&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;dl class="docutils"&gt;
-&lt;dt&gt;For T = 20 K&lt;/dt&gt;
-&lt;dd&gt;&lt;span class="math"&gt;\(M = 13.07 * S(Jy) * D^2_{kpc} M_{\odot}\)&lt;/span&gt;
-      (Solar masses)&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;/blockquote&gt;
-&lt;dl class="docutils"&gt;
-&lt;dt&gt;This corresponds to a beam-filling column density of H_2,&lt;/dt&gt;
-&lt;dd&gt;&lt;p class="first"&gt;N(H2) = 2.19e+22 * [e^(13.01/T(K) - 1] * S(Jy)             (cm^-2)&lt;/p&gt;
-&lt;p class="last"&gt;For T = 20 K
+&lt;div class="math"&gt;
+\begin{equation*}
+M = 1.0 x 10^{-23} * S(Jy) * D^2 / \kappa * B_nu(T)
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+=  14.30 * [e^(13.01/T(K) - 1] * S(Jy) * D^2_{kpc}    \textrm{(Solar masses)}
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;For &lt;span class="math"&gt;\(T = 20 K\)&lt;/span&gt;
+:&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+M = 13.07 * S(Jy) * D^2_{kpc} M_{\odot}      \textrm{(Solar masses)}
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;This corresponds to a beam-filling column density of H_2,&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+N(H2) = 2.19e+22 * [e^(13.01/T(K) - 1] * S(Jy)             (cm^-2)
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;For T = 20 K&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
 N(H2) = 2.01 x 10^{22} * S(Jy)    (cm^{-2})
-A_V = 21.1 magnitudes per Jy&lt;/p&gt;
-&lt;/dd&gt;
-&lt;dt&gt;where I used the Bohlin &amp;amp; Savage calibration,&lt;/dt&gt;
-&lt;dd&gt;A_V = 1 mag. &amp;lt;=&amp;gt; N(H) = 1.9 x 10^{20} cm^{-2} and
-N(H_2) = N(H) / 2&lt;/dd&gt;
-&lt;/dl&gt;
+A_V = 21.1 magnitudes per Jy
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;where we use the Bohlin &amp;amp; Savage calibration&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+A_V = 1 mag. &amp;lt;=&amp;gt; N(H) = 1.9 x 10^{20} cm^{-2} and
+N(H_2) = N(H) / 2
+\end{equation*}
+&lt;/div&gt;
 </summary><category term="physics"></category><category term="bgps"></category><category term="dust"></category></entry><entry><title>Arecibo Mapping: Total Power Measurements</title><link href="http://keflavich.github.com/blog/arecibo-mapping-total-power-measurements.html" rel="alternate"></link><updated>2013-03-22T22:50:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.com/blog,2013-03-22:arecibo-mapping-total-power-measurements.html</id><summary type="html">&lt;p&gt;Worked on reducing the Arecibo continuum data.  There were some serious
 problems with the off positions previously, in particular generating weird
 slopes.&lt;/p&gt;
