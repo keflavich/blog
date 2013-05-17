@@ -171,6 +171,16 @@ taking a much more local background subtraction from r=40 to r=80 arcsec,
 which isn't really acceptable.  If we go from r=60 to r=120, the disagreement remains
 fairly bad, with f=0.38 Jy/beam, but certainly a lot better.
 
+::
+
+    Bolocat after the correction:
+    In [297]: [m20[61][f] for f in fields]
+    Out[297]: [0.18015364, 0.18674377, 0.00578439, 0.25477698, 0.29759517, 0.0041758944]
+
+    In [298]: [inp[61][f] for f in fields]
+    Out[298]: [0.1896538, 1.3536235, 1.0216572, 0.40137589, 10.77737, 1.0119308]
+        
+
 This may mean that we'll need to re-do aperture extraction with a tighter
 background region everywhere.  I made the change to ``object_photometry``.
 
@@ -179,7 +189,7 @@ be totally unreliable.  ``FLUX_80`` is acceptable with the change, but only for
 bright sources (for faint sources, <1 Jy, there is no recovery at all - I think this
 must be an issue of the source brightness still not being calculated correctly):
 
-.. image:: static/images/bgps-point-source-recovery/exp23_recoverytests/in_vs_out_bolocat_FLUX_80_bright_1.0E-05.png
+.. image:: static/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_80_bright_1.0E-05.png
     :width: 800
 
 I'll have to continue this analysis tomorrow once the full suite of simulations
@@ -188,3 +198,88 @@ against using ``FLUX_120`` if the background is expected to be :math:`\alpha=2`
 distributed.
 
 
+Day 2
+-----
+
+The simulations have partly completed.  After correcting the error with
+convolved point sources vs.  delta functions, I reset the flux distributions to
+be 0.05 to 1.0 Jy for the "faint" distribution and 0.1 to 50.0 Jy for the
+"bright" distribution (both with power-law distributions :math:`\alpha=2`).
+
+The results can be summarized:
+
+ 1. In the presence of complex background, i.e power-law distributed flux density
+    with amplitude comparable to the detected source brightness, only the smallest
+    aperture (40") is reliable (i.e., recovers a flux in the input and
+    processed map).  
+ 2. The recovered flux density has a very high dispersion in the presence of
+    high-amplitude power-law flux.  "Very high" = :math:`\sigma \gtrsim 1`
+    around a mean of 1.
+ 3. There is no evident dependence of the maps on the atmospheric properties.
+    Therefore, there's no sense in varying the atmospheric properties in the
+    simulations.
+
+I decided the simulations needed changing again.  First, there was excessive
+sampling in astro/atmo parameter space; this is not needed (see point 3).  More
+important is the power-law distribution map's peak flux.  Also, it is more
+important to get decent sampling of bright-ish sources than to have a
+"physically accurate" point source distribution; the distribution of sources
+does not affect the recovery, but it does affect the signal-to-noise of the
+recovery *measurement*.  Please don't ask me to defend this statement; it would
+require another 10 hours of computer time + me time that I really don't want to
+allocate, but I'm confident that it is true.
+
+The essential conclusion is that, for :math:`\alpha=2`, point source recovery
+is only possible if the point source is brighter than the background, which is
+a very intuitive result.  Background annulus subtraction isn't very effective
+at pulling out sources.
+
+Conclusions:
+
+ 1. These experiments show that source recovery is very poor in the presence of a
+    bright power-law background: it is not possible to reliably extract point
+    sources from a map filled with power-law distributed emission brighter than or
+    comparable to the point sources.
+ 2. The 120" apertures aren't really good for anything.
+ 3. There is so much source-extraction parameter space out there that any
+    further study would really deserve its own paper.
+
+
+
+Additional plots of interest:
+
+40" aperture in the presence of a bright background with faint sources:
+
+.. image:: static/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_40_faint_5.0E-03.png
+    :width: 800
+
+Versus the same with a faint background:
+
+.. image:: static/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_40_faint_1.0E-03.png
+    :width: 800
+    
+
+Compare these to the 120" equivalents (bright then faint background):
+
+.. image:: static/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_120_faint_p5.0E-03.png
+    :width: 800
+.. image:: static/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_120_faint_p1.0E-03.png
+    :width: 800
+
+It's fairly easy to see why there are issues with the bright background and the
+120" apertures.  In this image, bright background on the left, faint background
+on the right, with faint sources (0.1-1 Jy).
+
+.. image:: static/images/bgps-point-source-recovery/faint_vs_bright_background.png
+    :width: 800
+
+
+It's more helpful to look at that previous image with the source contours
+superposed.  These images really give a nice feel for what it means to have
+point sources subsumed in :math:`\alpha=2` background.
+
+.. image:: static/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp5.0E-05_sky-2.0_seed00_peak5.0E-03_smooth_withptsrc_label_compare.png
+    :width: 800
+
+.. image:: static/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp3.2E-05_sky-2.0_seed00_peak1.0E-03_smooth_withptsrc_label_compare.png
+    :width: 800
