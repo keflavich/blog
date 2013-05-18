@@ -42,13 +42,17 @@ BGIMAGE='images/GC_4096sq_bolo.png'
 DISPLAY_PAGES_ON_MENU = False
 SUPPRESS_CATEGORIES_ON_MENU = True
 SHOW_TAGS=False
-SHOW_SIDEBAR=False
+SHOW_SIDEBAR=True
 SHOW_RECENT=True
+
+DATE_FORMATS = {'en':"%Y/%m/%d"}
 
 import ordereddict
 MENUITEMS = ordereddict.OrderedDict({'Home':'http://www.adamgginsburg.com',
              'Main':'index.html',
+             'Tags':'tags.html',
              'Recent':'archives.html'}).items()
 
 #PLUGINS = ["latex"]
 
+USE_FOLDER_AS_CATEGORY = True
