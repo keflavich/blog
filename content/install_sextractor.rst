@@ -45,7 +45,14 @@ OK, try the instructions again:
 
 Died with errors::
 
-    ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_dMBJBmm.o ATL_dIBNBmm.o ATL_dIBJBmm.o ATL_dgemm.o ATL_dGetNB.o ATL_dGetNCNB.o ATL_dgemmNN.o ATL_dgemmNT.o ATL_dgemmTN.o ATL_dgemmTT.o ATL_dNCmmIJK.o ATL_dNCmmJIK.o ATL_dNCmmIJK_c.o ATL_dNCmmJIK_c.o ATL_daliased_gemm.o ATL_dAgemmNN.o ATL_dAgemmNT.o ATL_dAgemmTN.o ATL_dAgemmTT.o ATL_dmmJIK.o ATL_dmmIJK.o ATL_dmmJKI.o ATL_dmmK.o ATL_dmmBPP.o ATL_dmmJITcp.o ATL_dcol2blk_aX.o ATL_drow2blkT_aX.o ATL_dcol2blk_a1.o ATL_drow2blkT_a1.o ATL_dputblk_bX.o ATL_dputblk_b1.o ATL_dputblk_bn1.o ATL_dputblk_b0.o
+    ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_dMBJBmm.o
+        ATL_dIBNBmm.o ATL_dIBJBmm.o ATL_dgemm.o ATL_dGetNB.o ATL_dGetNCNB.o
+        ATL_dgemmNN.o ATL_dgemmNT.o ATL_dgemmTN.o ATL_dgemmTT.o ATL_dNCmmIJK.o
+        ATL_dNCmmJIK.o ATL_dNCmmIJK_c.o ATL_dNCmmJIK_c.o ATL_daliased_gemm.o
+        ATL_dAgemmNN.o ATL_dAgemmNT.o ATL_dAgemmTN.o ATL_dAgemmTT.o ATL_dmmJIK.o
+        ATL_dmmIJK.o ATL_dmmJKI.o ATL_dmmK.o ATL_dmmBPP.o ATL_dmmJITcp.o
+        ATL_dcol2blk_aX.o ATL_drow2blkT_aX.o ATL_dcol2blk_a1.o ATL_drow2blkT_a1.o
+        ATL_dputblk_bX.o ATL_dputblk_b1.o ATL_dputblk_bn1.o ATL_dputblk_b0.o
     ar: fatal error in /usr/bin/ranlib
     make[4]: *** [dlib.grd] Error 1
     make[3]: *** [dlib] Error 2
@@ -157,7 +164,14 @@ Died with errors::
     make[5]: Nothing to be done for `dlib'.
     make[4]: Nothing to be done for `dusergemm'.
     make -j 4 dlib.grd
-    ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_dMBJBmm.o ATL_dIBNBmm.o ATL_dIBJBmm.o ATL_dgemm.o ATL_dGetNB.o ATL_dGetNCNB.o ATL_dgemmNN.o ATL_dgemmNT.o ATL_dgemmTN.o ATL_dgemmTT.o ATL_dNCmmIJK.o ATL_dNCmmJIK.o ATL_dNCmmIJK_c.o ATL_dNCmmJIK_c.o ATL_daliased_gemm.o ATL_dAgemmNN.o ATL_dAgemmNT.o ATL_dAgemmTN.o ATL_dAgemmTT.o ATL_dmmJIK.o ATL_dmmIJK.o ATL_dmmJKI.o ATL_dmmK.o ATL_dmmBPP.o ATL_dmmJITcp.o ATL_dcol2blk_aX.o ATL_drow2blkT_aX.o ATL_dcol2blk_a1.o ATL_drow2blkT_a1.o ATL_dputblk_bX.o ATL_dputblk_b1.o ATL_dputblk_bn1.o ATL_dputblk_b0.o
+    ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_dMBJBmm.o
+        ATL_dIBNBmm.o ATL_dIBJBmm.o ATL_dgemm.o ATL_dGetNB.o ATL_dGetNCNB.o
+        ATL_dgemmNN.o ATL_dgemmNT.o ATL_dgemmTN.o ATL_dgemmTT.o ATL_dNCmmIJK.o
+        ATL_dNCmmJIK.o ATL_dNCmmIJK_c.o ATL_dNCmmJIK_c.o ATL_daliased_gemm.o
+        ATL_dAgemmNN.o ATL_dAgemmNT.o ATL_dAgemmTN.o ATL_dAgemmTT.o ATL_dmmJIK.o
+        ATL_dmmIJK.o ATL_dmmJKI.o ATL_dmmK.o ATL_dmmBPP.o ATL_dmmJITcp.o
+        ATL_dcol2blk_aX.o ATL_drow2blkT_aX.o ATL_dcol2blk_a1.o ATL_drow2blkT_a1.o
+        ATL_dputblk_bX.o ATL_dputblk_b1.o ATL_dputblk_bn1.o ATL_dputblk_b0.o
     ar: fatal error in /usr/bin/ranlib
     make[4]: *** [dlib.grd] Error 1
     make[3]: *** [dlib] Error 2
@@ -194,7 +208,14 @@ Died with errors::
 
     Died with errors:
 
-    ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_sMBJBmm.o ATL_sIBNBmm.o ATL_sIBJBmm.o ATL_sgemm.o ATL_sGetNB.o ATL_sGetNCNB.o ATL_sgemmNN.o ATL_sgemmNT.o ATL_sgemmTN.o ATL_sgemmTT.o ATL_sNCmmIJK.o ATL_sNCmmJIK.o ATL_sNCmmIJK_c.o ATL_sNCmmJIK_c.o ATL_saliased_gemm.o ATL_sAgemmNN.o ATL_sAgemmNT.o ATL_sAgemmTN.o ATL_sAgemmTT.o ATL_smmJIK.o ATL_smmIJK.o ATL_smmJKI.o ATL_smmK.o ATL_smmBPP.o ATL_smmJITcp.o ATL_scol2blk_aX.o ATL_srow2blkT_aX.o ATL_scol2blk_a1.o ATL_srow2blkT_a1.o ATL_sputblk_bX.o ATL_sputblk_b1.o ATL_sputblk_bn1.o ATL_sputblk_b0.o
+    ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_sMBJBmm.o
+        ATL_sIBNBmm.o ATL_sIBJBmm.o ATL_sgemm.o ATL_sGetNB.o ATL_sGetNCNB.o
+        ATL_sgemmNN.o ATL_sgemmNT.o ATL_sgemmTN.o ATL_sgemmTT.o ATL_sNCmmIJK.o
+        ATL_sNCmmJIK.o ATL_sNCmmIJK_c.o ATL_sNCmmJIK_c.o ATL_saliased_gemm.o
+        ATL_sAgemmNN.o ATL_sAgemmNT.o ATL_sAgemmTN.o ATL_sAgemmTT.o ATL_smmJIK.o
+        ATL_smmIJK.o ATL_smmJKI.o ATL_smmK.o ATL_smmBPP.o ATL_smmJITcp.o
+        ATL_scol2blk_aX.o ATL_srow2blkT_aX.o ATL_scol2blk_a1.o ATL_srow2blkT_a1.o
+        ATL_sputblk_bX.o ATL_sputblk_b1.o ATL_sputblk_bn1.o ATL_sputblk_b0.o
     ranlib /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a
     touch slib.grd
     cd /Users/adam/repos/ATLAS3.10/build/src/blas/level3 ; make slib
@@ -251,10 +272,19 @@ Then tried what the site actually said, and used the hpc binaries::
     tar -xzf ~/Downloads/gcc-lion.tar.gz -C ~/repos/hpc/ --strip-components 2
     tar -xzf ~/Downloads/gfortran-lion.tar.gz -C ~/repos/hpc/ --strip-components 2
 
-    CC=/Users/adam/repos/hpc/bin/gcc PATH=/Users/adam/repos/hpc/bin:$PATH ../configure -b 64 --shared --prefix=/usr/local/lib/atlas --with-netlib-lapack-tarfile=/Users/adam/Downloads/lapack-3.4.2.tar 
+    CC=/Users/adam/repos/hpc/bin/gcc PATH=/Users/adam/repos/hpc/bin:$PATH
+        ../configure -b 64 --shared --prefix=/usr/local/lib/atlas
+        --with-netlib-lapack-tarfile=/Users/adam/Downloads/lapack-3.4.2.tar 
 
 
-    ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_dMBJBmm.o ATL_dIBNBmm.o ATL_dIBJBmm.o ATL_dgemm.o ATL_dGetNB.o ATL_dGetNCNB.o ATL_dgemmNN.o ATL_dgemmNT.o ATL_dgemmTN.o ATL_dgemmTT.o ATL_dNCmmIJK.o ATL_dNCmmJIK.o ATL_dNCmmIJK_c.o ATL_dNCmmJIK_c.o ATL_daliased_gemm.o ATL_dAgemmNN.o ATL_dAgemmNT.o ATL_dAgemmTN.o ATL_dAgemmTT.o ATL_dmmJIK.o ATL_dmmIJK.o ATL_dmmJKI.o ATL_dmmK.o ATL_dmmBPP.o ATL_dmmJITcp.o ATL_dcol2blk_aX.o ATL_drow2blkT_aX.o ATL_dcol2blk_a1.o ATL_drow2blkT_a1.o ATL_dputblk_bX.o ATL_dputblk_b1.o ATL_dputblk_bn1.o ATL_dputblk_b0.o
+    ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_dMBJBmm.o
+        ATL_dIBNBmm.o ATL_dIBJBmm.o ATL_dgemm.o ATL_dGetNB.o ATL_dGetNCNB.o
+        ATL_dgemmNN.o ATL_dgemmNT.o ATL_dgemmTN.o ATL_dgemmTT.o ATL_dNCmmIJK.o
+        ATL_dNCmmJIK.o ATL_dNCmmIJK_c.o ATL_dNCmmJIK_c.o ATL_daliased_gemm.o
+        ATL_dAgemmNN.o ATL_dAgemmNT.o ATL_dAgemmTN.o ATL_dAgemmTT.o ATL_dmmJIK.o
+        ATL_dmmIJK.o ATL_dmmJKI.o ATL_dmmK.o ATL_dmmBPP.o ATL_dmmJITcp.o
+        ATL_dcol2blk_aX.o ATL_drow2blkT_aX.o ATL_dcol2blk_a1.o ATL_drow2blkT_a1.o
+        ATL_dputblk_bX.o ATL_dputblk_b1.o ATL_dputblk_bn1.o ATL_dputblk_b0.o
     ar: fatal error in /usr/bin/ranlib
     make[4]: *** [dlib.grd] Error 1
     make[3]: *** [dlib] Error 2
@@ -366,7 +396,14 @@ Then tried what the site actually said, and used the hpc binaries::
     make[5]: Nothing to be done for `dlib'.
     make[4]: Nothing to be done for `dusergemm'.
     make -j 4 dlib.grd
-    ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_dMBJBmm.o ATL_dIBNBmm.o ATL_dIBJBmm.o ATL_dgemm.o ATL_dGetNB.o ATL_dGetNCNB.o ATL_dgemmNN.o ATL_dgemmNT.o ATL_dgemmTN.o ATL_dgemmTT.o ATL_dNCmmIJK.o ATL_dNCmmJIK.o ATL_dNCmmIJK_c.o ATL_dNCmmJIK_c.o ATL_daliased_gemm.o ATL_dAgemmNN.o ATL_dAgemmNT.o ATL_dAgemmTN.o ATL_dAgemmTT.o ATL_dmmJIK.o ATL_dmmIJK.o ATL_dmmJKI.o ATL_dmmK.o ATL_dmmBPP.o ATL_dmmJITcp.o ATL_dcol2blk_aX.o ATL_drow2blkT_aX.o ATL_dcol2blk_a1.o ATL_drow2blkT_a1.o ATL_dputblk_bX.o ATL_dputblk_b1.o ATL_dputblk_bn1.o ATL_dputblk_b0.o
+    ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_dMBJBmm.o
+        ATL_dIBNBmm.o ATL_dIBJBmm.o ATL_dgemm.o ATL_dGetNB.o ATL_dGetNCNB.o
+        ATL_dgemmNN.o ATL_dgemmNT.o ATL_dgemmTN.o ATL_dgemmTT.o ATL_dNCmmIJK.o
+        ATL_dNCmmJIK.o ATL_dNCmmIJK_c.o ATL_dNCmmJIK_c.o ATL_daliased_gemm.o
+        ATL_dAgemmNN.o ATL_dAgemmNT.o ATL_dAgemmTN.o ATL_dAgemmTT.o ATL_dmmJIK.o
+        ATL_dmmIJK.o ATL_dmmJKI.o ATL_dmmK.o ATL_dmmBPP.o ATL_dmmJITcp.o
+        ATL_dcol2blk_aX.o ATL_drow2blkT_aX.o ATL_dcol2blk_a1.o ATL_drow2blkT_a1.o
+        ATL_dputblk_bX.o ATL_dputblk_b1.o ATL_dputblk_bn1.o ATL_dputblk_b0.o
     ar: fatal error in /usr/bin/ranlib
     make[4]: *** [dlib.grd] Error 1
     make[3]: *** [dlib] Error 2

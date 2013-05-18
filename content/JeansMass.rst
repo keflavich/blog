@@ -53,7 +53,10 @@ In[1]:
 
 .. parsed-literal::
 
-    WARNING: ConfigurationDefaultMissingWarning: Requested default configuration file /Users/adam/repos/astropy/astropy/astropy.cfg is not a file. Cannot install default profile. If you are importing from source, this is expected. [astropy]
+    WARNING: ConfigurationDefaultMissingWarning: Requested default
+    configuration file /Users/adam/repos/astropy/astropy/astropy.cfg is not a
+    file. Cannot install default profile. If you are importing from source,
+    this is expected. [astropy]
 
 
 In[7]:

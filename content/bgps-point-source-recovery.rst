@@ -23,7 +23,7 @@ However, the above figures show a simulation only for one set of parameters,
 with :math:`\alpha=1` in the power-law flux distribution, which unfortunately
 is not realistic according to "Figure 8":
 
-.. image:: https://github.com/keflavich/bgpsv2/raw/master/figures/l030_higal_bgps_powerspec_compare.png
+.. image:: https://raw.github.com/keflavich/bgpsv2/master/figures/l030_higal_bgps_powerspec_compare.png?login=keflavich&token=fa363ee3e28903c751c2a3c9f2b318a0
     :width: 800
 
 
