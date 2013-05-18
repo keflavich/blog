@@ -1,0 +1,41 @@
+Uh?
+###
+:date: 2009-01-15 18:22
+:author: Adam (noreply@blogger.com)
+:tags: http://schemas.google.com/blogger/2008/kind#post, alignment
+:slug: uh
+
+.. raw:: html
+
+   <p>
+
+I'm not sure the error reported yesterday is reproducible.
+Tonight, I started a complete re-mapping of the entire survey. The new
+mapping will include beam-smoothed maps and more complete header
+parameters.
+I need to re-check the L111 mapping. It looks like the region with NGC
+7538 in it did alright, but the southeast region didn't do so well. The
+combined maps are probably better than in any previous iteration,
+though.
+Tomorrow's tests will include L024 presumably.
+It's time to get to work on this stuff. There is definitely a reasonably
+efficient way to go through all of this stuff; the most difficult part
+is post-facto error checking.
+Here are some awk commands I found useful (the \\'s are because of VI):
+`` awk '{printf( $0); if ($2 \!= 0){ printf(" \%4i\%4i",$4-443,$5-207) }; if($4\!=0){printf(" \%4i,\%4i",$2-272,$3-742)}; printf("\n") }' align/l111_fitslist_shiftfind.txt``
+``awk '{print $6,$7}' align/l111_fitslist_shiftfind.txt > align/shifts_all_lb.txt``
+One important point: I had to add a parameter to the header file to say
+whether the current pointing model was used or not. It matters when
+applying the offsets. Note that since I'm using the pointing model to
+make all the individual maps, we actually have to stick with this
+current set of pointing models for all coaligned maps.
+The current models:
+
+::
+
+    #   Definition of coefficientts:#   start/end mjd are the start/end modified Julian date of a given pointing model#   the 'a' coefficients are for the AZIMUTH OFFSET, the b coefficients are for the ZENITH ANGLE OFFSET#   a0/b0 are constants (e.g. the mean)#   [ab][12] are the 1st and 2nd coefficients of Azimuth.  They have been fiated to zero for most of#   the past year or three.#   [ab][34] are the 1st and 2nd coefficients of Zenith Angle.#   A 'pointing model' is therefore something like this:#   azoff = a0 + a3*alt + a4*alt^2#   altoff = b0 + b3*alt + b4*alt^2##   It is important that the start_mjd/end_mjd be in ascending order##   WARNING: LATER THAN JULY 2007 DEFAULTS TO JULY 2007 WHICH WILL PROBABLY RESULT IN ERRORS!#   I don't have a September 2007 model yet.##   start_mjd      end_mjd               a0              a1            a2              a3             a4                 b0             b1             b2             b3                b4       realdate      53522.5      53582.5       -9.2413685             0.0           0.0   -0.0066354359  -0.0015110883          7.0392221            0.0            0.0   -0.053635657    -0.00047042481       20050601      53614.5      53643.5        84.969583             0.0           0.0      -2.4339154    0.016300937          126.00164            0.0            0.0     -2.4424431       0.015455417       20050901      53887.5      53947.5        9.5305281             0.0           0.0    -0.053191181  -0.0029300592         0.13425019            0.0            0.0     0.48160040     -0.0092814256       20060601      53979.5      54008.5       -98.980381             0.0           0.0      0.65354164   -0.012414466          52.841380            0.0            0.0      1.6705743      -0.020893018       20060901      54101.5      54252.5       -99.078392             0.0           0.0        0.105270   -0.005943491          86.896333            0.0            0.0     0.54257415      -0.011919129       20070101      54252.5      54288         -103.03831             0.0           0.0      0.20972540  -0.0060336987          100.74491            0.0            0.0   0.0099012827     -0.0033331895       20070601#      54288        54313         -99.078392             0.0           0.0      0.10527000  -0.0059434911          86.896333            0.0            0.0     0.54257415      -0.011919129       20070707      54288        54313         -98.803883             0.0           0.0      0.11810246  -0.0051207995          91.720516            0.0            0.0     0.18953269      -0.0078189793       20070707      54313        54500         -99.078392             0.0           0.0      0.10527000  -0.0059434911          86.896333            0.0            0.0     0.54257415      -0.011919129       20070707mjd2date,53522.5 ,y,m,d & print,y,m,dmjd2date,53614.5 ,y,m,d & print,y,m,dmjd2date,53887.5 ,y,m,d & print,y,m,dmjd2date,53979.5 ,y,m,d & print,y,m,dmjd2date,54101.5 ,y,m,d & print,y,m,dmjd2date,54252.5 ,y,m,d & print,y,m,dmjd2date,54288   ,y,m,d & print,y,m,d
+
+.. raw:: html
+
+   </p>
+

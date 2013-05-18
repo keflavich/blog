@@ -1,0 +1,10 @@
+4 errors
+########
+:date: 2008-11-28 16:46
+:author: Adam (noreply@blogger.com)
+:tags: http://schemas.google.com/blogger/2008/kind#post, errors
+:slug: 4-errors
+
+l047, l083, l359 (l000 is in /usb, l359 is in /scratch), l136p15
+Only 83 is a code error, the others are file location errors. l083 is an
+error in 'pixshift' with subscripting and will require real debugging.
