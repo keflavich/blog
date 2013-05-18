@@ -2,7 +2,7 @@ Why astronomy is important
 ##########################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 
 Preface: This is not a good argument for why astronomy is important now.
 But it may be in the future.

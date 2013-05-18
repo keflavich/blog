@@ -2,7 +2,7 @@ matplotlib 64 bit installs never work
 #####################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, matplotlib, computer
+:tags: googlepost, matplotlib, computer
 
 a clue as to why:
 functional ft2font.so:

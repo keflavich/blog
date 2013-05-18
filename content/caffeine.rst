@@ -2,7 +2,7 @@ Caffeine
 ########
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, me
+:tags: googlepost, me
 
 Caffeine consumption stopped around mid-October. I think it was when I
 got back from observing so October 20 give or take. Re-started

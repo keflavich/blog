@@ -2,7 +2,7 @@ Research Idea: Stacking Finders
 ###############################
 :date: 2012-09-20 20:07
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, research ideas, observing
+:tags: googlepost, research ideas, observing
 
 .. raw:: html
 

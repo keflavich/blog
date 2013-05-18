@@ -2,7 +2,7 @@ More beer tastes
 ################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, beer tasting
+:tags: googlepost, beer tasting
 
 Stone Vertical Epic 8: described as an overhopped Belgian, and I think
 they hit the mark exactly. It was pleasant and drinkable, with a strong

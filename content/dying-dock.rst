@@ -2,7 +2,7 @@ Dying Dock
 ##########
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, computer
+:tags: googlepost, computer
 
 My dock keeps dying. Repeatedly. Over and over.
 Only solution so far:

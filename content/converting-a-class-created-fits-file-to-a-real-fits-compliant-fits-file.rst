@@ -2,7 +2,7 @@ Converting a CLASS-created .fits file to a real (FITS-compliant) FITS file
 ##########################################################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 
 This post is to remind me, the next time I go looking, how the hell to
 convert from a GILDAS CLASS fits spectrum (created by

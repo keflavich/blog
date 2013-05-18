@@ -2,7 +2,7 @@ Delirium Nocturne
 #################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, beer tasting
+:tags: googlepost, beer tasting
 
 Delirium Tremens is a tasty beer itself, I think. I'm drinking Delirium
 Nocturne right now. It has a cool (opaque!) bottle, plus a pink elephant

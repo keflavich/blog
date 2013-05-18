@@ -2,7 +2,7 @@ SAVE / RESTORE in Python
 ########################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, python, computer
+:tags: googlepost, python, computer
 
 Save/Restore is probably the single best feature of IDL that, sadly, is
 very poorly replicated in Python. For 1 or 2 dimensional variables, you

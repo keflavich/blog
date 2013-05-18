@@ -2,7 +2,7 @@ Defining a Molecular Cloud
 ##########################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, intro
+:tags: googlepost, intro
 
 I'm going to try to answer a few questions [this post is in-progress and
 will be updated]:

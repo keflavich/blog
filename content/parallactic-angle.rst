@@ -2,7 +2,7 @@ Parallactic Angle
 #################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, astronomy
+:tags: googlepost, astronomy
 
 So it turns out parallactic angle and field rotation are essentially the
 same thing. While working on the data pipeline for the Bolocam Galactic

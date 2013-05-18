@@ -2,7 +2,7 @@ weekend
 #######
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, python, iraf
+:tags: googlepost, python, iraf
 
 What did I do this weekend?
 -upgraded PyRAF from 1.6.1 to 1.7

@@ -2,7 +2,7 @@ meta
 ####
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, meta
+:tags: googlepost, meta
 
 Why a blog? I've been strongly opposed to blogs for the longest time
 (after all, Desert Strike coined the word BLOG as an acronym for

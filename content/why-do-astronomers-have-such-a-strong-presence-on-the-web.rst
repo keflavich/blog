@@ -2,7 +2,7 @@ Why do astronomers have such a strong presence on the web?
 ##########################################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, astronomers
+:tags: googlepost, astronomers
 
 I'm not making this a complete post, just a few examples of blogs and
 websites I'm aware of. But we do have a strong presence on the web -

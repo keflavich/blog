@@ -2,7 +2,7 @@ Guinness and Dogfish Head
 #########################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, beer tasting
+:tags: googlepost, beer tasting
 
 First, the Guinness: I'm drinking a Guinness Extra Stout right now. I'm
 a big fan of the normal Guinness Stout, but the extra stout is bitter -

@@ -2,7 +2,7 @@ An Infrared Through Radio Study of the Properties and Evolution of IRDC Clumps
 ##############################################################################
 :date: 2011-07-11 16:46
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, star formation, publication, bolocam
+:tags: googleblog, star formation, publication, bolocam
 
 `ADS`_
 `arXiv`_

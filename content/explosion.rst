@@ -2,7 +2,7 @@ Explosion
 #########
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, brewing, beer tasting
+:tags: googlepost, brewing, beer tasting
 
 Our "Workie Ticket", which was doing its primary in the carboy, popped
 its top. It made a mess but should still be healthy... the yeast was

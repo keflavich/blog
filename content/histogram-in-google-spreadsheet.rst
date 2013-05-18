@@ -2,7 +2,7 @@ Histogram in Google Spreadsheet
 ###############################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, spreadsheet
+:tags: googlepost, spreadsheet
 
 It's not easy to make a histogram in google spreadsheets without
 replicating data. The "countif" function would be great, except it only

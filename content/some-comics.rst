@@ -2,7 +2,7 @@ some comics
 ###########
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, comic
+:tags: googlepost, comic
 
 http://ableandbaker.net/index.php?comic=198
 http://ableandbaker.net/index.php?comic=222

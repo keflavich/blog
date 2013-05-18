@@ -2,7 +2,7 @@ Mathematica & Series expansions
 ###############################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mathematica
+:tags: googlepost, mathematica
 
 Mathematica does something stupid and incomprehensible (to me) with
 their series expansions. For no clear reason, it makes the

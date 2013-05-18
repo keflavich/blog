@@ -2,7 +2,7 @@ Using Guider images to achieve ~arcsecond pointing accuracy
 ###########################################################
 :date: 2012-10-05 14:46
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, research ideas, astronomy, observing
+:tags: googlepost, research ideas, astronomy, observing
 
 .. raw:: html
 

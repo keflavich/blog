@@ -2,7 +2,7 @@ Pumphouse Brewery Review
 ########################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, beer tasting
+:tags: googlepost, beer tasting
 
 Went to the pumphouse brewery last night and 'tasted' 4 beers.
 First, for a brewpub, it's pretty weird to serve tastes in single-sip

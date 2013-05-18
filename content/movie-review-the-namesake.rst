@@ -2,7 +2,7 @@ Movie Review: The Namesake
 ##########################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, movie review
+:tags: googlepost, movie review
 
 The Namesake was pretty damned boring. The rich white girl might have
 been flaky and a touch rich-bitchy, but she was attractive, she loved

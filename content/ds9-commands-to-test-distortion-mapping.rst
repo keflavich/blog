@@ -2,7 +2,7 @@ ds9 commands to test distortion mapping
 #######################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, ds9, bgps
+:tags: googlepost, ds9, bgps
 
 .. raw:: html
 

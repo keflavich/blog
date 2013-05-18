@@ -2,7 +2,7 @@ Galactic Formaldehyde Densitometry Project
 ##########################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, formaldehyde
+:tags: googlepost, formaldehyde
 
 The Galactic Formaldehyde Densitometry Project is finally official and
 on its way. I am PI of a joint Arecibo / Green Bank Telescope project to

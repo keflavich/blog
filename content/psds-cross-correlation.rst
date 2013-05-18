@@ -2,7 +2,7 @@ PSDs, cross-correlation...
 ##########################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, python, agpy
+:tags: googlepost, python, agpy
 
 scipy is capable of doing fft-base cross-correlation, convolution, etc.,
 but it requires the stsci package, which is not generally easy to

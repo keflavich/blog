@@ -2,7 +2,7 @@ usetex failure in latex documents
 #################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, latex, matplotlib
+:tags: googlepost, latex, matplotlib
 
 When I use matplotlib's internal tex (rcParams['text.useTex']=False),
 the postscript files generated cause errors that look like this when you

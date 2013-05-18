@@ -2,7 +2,7 @@ Planned Serendipity: H-alpha maps around O-stars
 ################################################
 :date: 2012-10-11 14:13
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, research ideas
+:tags: googlepost, research ideas
 
 .. raw:: html
 

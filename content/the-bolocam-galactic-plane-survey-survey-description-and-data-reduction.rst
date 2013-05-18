@@ -2,7 +2,7 @@ The Bolocam Galactic Plane Survey: Survey Description and Data Reduction
 ########################################################################
 :date: 2011-07-11 16:29
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, publication, bolocam
+:tags: googlepost, publication, bolocam
 
 `ADS`_
 `arXiv`_

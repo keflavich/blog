@@ -2,7 +2,7 @@ wget
 ####
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, computer
+:tags: googlepost, computer
 
 wget is very useful for acquiring data from, e.g., IRSA, the NASA
 Infrared Science Archive.

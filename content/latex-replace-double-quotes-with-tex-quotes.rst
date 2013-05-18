@@ -2,7 +2,7 @@ LaTeX: replace double quotes with tex quotes
 ############################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, latex
+:tags: googlepost, latex
 
 People often make the mistake of putting " in place of \`\` in LaTeX
 documents. To repair this, the only easy solution is something like:

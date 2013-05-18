@@ -2,7 +2,7 @@ pwv
 ###
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, song
+:tags: googlepost, song
 
 precipitable water vapor, precipitable water vapor, go away, come again
 some other observer's day

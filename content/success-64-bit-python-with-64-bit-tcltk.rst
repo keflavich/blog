@@ -2,7 +2,7 @@ SUCCESS!  64 bit python with 64 bit tcl/tk!!!
 #############################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, python
+:tags: googlepost, python
 
 After a long, tedious process (see previous posts), I got 64 bit python,
 64 bit tcl/tk, and 64 bit tkinter all to work! I can now use the TkAgg

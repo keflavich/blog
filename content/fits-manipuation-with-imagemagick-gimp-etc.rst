@@ -2,7 +2,7 @@ FITS manipuation with imagemagick, gimp, etc.
 #############################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, photo, unix
+:tags: googlepost, photo, unix
 
 It is possible to convert .fits files to .png, .jpg, etc:
 `` convert -normalize a.fits a.png ``

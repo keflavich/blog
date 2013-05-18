@@ -2,7 +2,7 @@ Next Generation Astronomy
 #########################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, meta-astronomy
+:tags: googlepost, meta-astronomy
 
 A brief commentary on a recent article `Next Generation Astronomy`_:
 I'm probably one of the folks who will be working on making that future

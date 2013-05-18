@@ -2,7 +2,7 @@ my scipy install...
 ###################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, python
+:tags: googlepost, python
 
 As far as I was able to reconstruct, my scipy install looked like this
 when it went well:

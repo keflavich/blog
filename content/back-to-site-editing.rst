@@ -2,7 +2,7 @@ Back to site editing
 ####################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, computer
+:tags: googlepost, computer
 
 I'm editing class web pages, php, cgi, etc. again. I don't think I ever
 really understood how to do this, but I'd like to know how to use PHP to

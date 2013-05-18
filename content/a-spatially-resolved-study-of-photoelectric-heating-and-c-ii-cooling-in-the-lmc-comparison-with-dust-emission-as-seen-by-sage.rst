@@ -2,7 +2,7 @@ A spatially resolved study of photoelectric heating and [C II] cooling in the LM
 ################################################################################################################################
 :date: 2011-07-11 16:22
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, SAGE, publication
+:tags: googleblog, SAGE, publication
 
 `ADS`_
 `arXiv`_

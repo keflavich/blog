@@ -2,7 +2,7 @@ How to make a pretty image
 ##########################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, photo
+:tags: googlepost, photo
 
 The most difficult requirement to satisfy is WCS matching. Each image
 has to be in exactly the same pixel space in order to overlay them

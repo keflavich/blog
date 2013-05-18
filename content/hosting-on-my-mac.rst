@@ -2,7 +2,7 @@ Hosting on my mac
 #################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, computer
+:tags: googlepost, computer
 
 I'm hosting my website off my mac; it should be accessible to the
 outside world now: `eta.colorado.edu`_.

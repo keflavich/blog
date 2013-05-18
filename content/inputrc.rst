@@ -2,7 +2,7 @@
 ########
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, unix, computer
+:tags: googlepost, unix, computer
 
 New unix stuff!
 This is, again, stuff I'd searched for forever but never found the right

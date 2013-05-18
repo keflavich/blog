@@ -2,7 +2,7 @@ BASH discoveries, readline questions
 ####################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, bash, python, unix, computer
+:tags: googlepost, bash, python, unix, computer
 
 1. `` shopt -p ``
 Maybe my hostname completion worked and then stopped working because the

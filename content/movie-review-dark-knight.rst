@@ -2,7 +2,7 @@ Movie Review: Dark Knight
 #########################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, movie review
+:tags: googlepost, movie review
 
 Definitely the best movie in the past... 3 years? IMAX didn't add much
 to the experience though.

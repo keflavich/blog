@@ -2,7 +2,7 @@ Merging postscripts
 ###################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, computer, postscript
+:tags: googlepost, computer, postscript
 
 This is essential and really difficult to find answers to, but this guy
 gave it:

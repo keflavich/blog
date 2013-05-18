@@ -2,7 +2,7 @@ World Wide Stout
 ################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, beer tasting
+:tags: googlepost, beer tasting
 
 Last night, had ~4oz of `Dogfish Head's World Wide Stout`_. It was the
 Nov 2007 batch and was WAY too sweet. Just like the `Stone Russian

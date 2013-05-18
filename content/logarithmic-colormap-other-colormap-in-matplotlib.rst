@@ -2,7 +2,7 @@ Logarithmic Colormap / Other Colormap in Matplotlib
 ###################################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, matplotlib, python
+:tags: googlepost, matplotlib, python
 
 This is kind of a pain to find out:
 ``from matplotlib.colors import LogNormim = imshow(.... cmap=... , norm=LogNorm(vmin=clevs[0], vmax=clevs[-1])) ``

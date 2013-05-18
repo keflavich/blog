@@ -2,7 +2,7 @@ astro-better post
 #################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, astronomy, meta
+:tags: googlepost, astronomy, meta
 
 I `contributed to a post`_ on `Astro Better`_ asking about mosaicing
 software.

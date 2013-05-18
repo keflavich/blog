@@ -2,18 +2,12 @@ The Peculiar Balmer Decrement of SN 2009ip: Constraints on Circumstellar Geometr
 #################################################################################
 :date: 2012-11-21 21:01
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, publication
+:tags: googlepost, publication
 
-.. raw:: html
 
-   <div class="authors">
+`Emily M. Levesque`_, `Guy S. Stringfellow`_, `Adam G.
+Ginsburg`_, `John Bally`_, `Brian A. Keeney`_
 
-\ `Emily M. Levesque`_, \ `Guy S. Stringfellow`_, \ `Adam G.
-Ginsburg`_, \ `John Bally`_, \ `Brian A. Keeney`_\ 
-
-.. raw:: html
-
-   </div>
 
 --------------
 
@@ -44,19 +38,10 @@ This Balmer decrement is weird, because all normal effects will
    H-alpha.  This is known as "Case C recombination" (see `Xu et al
    1992`_, Figure 1)
 
-.. raw:: html
-
-   <div>
 
 So what can increase the Balmer decrement?  Two possibilities: 
 
-.. raw:: html
 
-   </div>
-
-.. raw:: html
-
-   <div>
 
 #. Hydrogen reaches local densities above 10\ :sup:`13` cm\ :sup:`-3`:
    above these densities, it reaches collisional equilibrium with the
@@ -71,21 +56,9 @@ So what can increase the Balmer decrement?  Two possibilities: 
    work, or does the "Case-C" situation kick in too hard first?), but it
    is a plausible alternative.
 
-.. raw:: html
 
-   <div>
 
-.. raw:: html
 
-   </div>
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div>
 
 If you want to see my calculations in action, check out the `ipython
 notebook`_ performing the calculations.
@@ -95,27 +68,9 @@ Einstein A values between the relevant levels
 (from `http://physics.nist.gov/cgi-bin/ASD/lines1.pl`_, generated
 with \ `https://github.com/keflavich/energyleveldiagrams`_).
 
-.. raw:: html
 
-   <div class="separator" style="clear: both; text-align: center;">
+.. image:: http://1.bp.blogspot.com/-L1C1rEu7cSQ/UK1A2KuTwcI/AAAAAAAAHRo/49TKIW0TChQ/s640/EnergyLevelDiagram.png
 
-`|image0|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   </p>
 
 .. _arXiv: http://arxiv.org/abs/1211.4577
 .. _Emily M. Levesque: http://arxiv.org/find/astro-ph/1/au:+Levesque_E/0/1/0/all/0/1
@@ -129,5 +84,4 @@ with \ `https://github.com/keflavich/energyleveldiagrams`_).
 .. _`https://github.com/keflavich/energyleveldiagrams`: https://github.com/keflavich/energyleveldiagrams
 .. _|image1|: http://1.bp.blogspot.com/-L1C1rEu7cSQ/UK1A2KuTwcI/AAAAAAAAHRo/49TKIW0TChQ/s1600/EnergyLevelDiagram.png
 
-.. |image0| image:: http://1.bp.blogspot.com/-L1C1rEu7cSQ/UK1A2KuTwcI/AAAAAAAAHRo/49TKIW0TChQ/s640/EnergyLevelDiagram.png
 .. |image1| image:: http://1.bp.blogspot.com/-L1C1rEu7cSQ/UK1A2KuTwcI/AAAAAAAAHRo/49TKIW0TChQ/s640/EnergyLevelDiagram.png

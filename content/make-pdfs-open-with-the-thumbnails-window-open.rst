@@ -2,7 +2,7 @@ Make PDFs open with the thumbnails window open
 ##############################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pdf
+:tags: googlepost, pdf
 
 Neat trick I picked up from here:
 http://www.ghostscript.com/~ghostgum/pdftips.htm

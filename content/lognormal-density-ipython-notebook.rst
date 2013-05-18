@@ -2,7 +2,7 @@ Lognormal Density / IPython Notebook
 ####################################
 :date: 2012-09-20 20:07
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, research notes, ipython notebook
+:tags: googlepost, research notes, ipython notebook
 
 An experiment with log normal density distributions (simple, pretty
 obvious) and a test of including ipython notebooks in blog posts. To do

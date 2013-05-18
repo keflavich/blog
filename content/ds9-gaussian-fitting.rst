@@ -2,7 +2,7 @@ DS9 gaussian fitting
 ####################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, ds9, python
+:tags: googlepost, ds9, python
 
 One thing DS9 desperately needs is an interactive gaussian fitter. I
 have NOT implemented one yet, but it is high on my to do list. Has

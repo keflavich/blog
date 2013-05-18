@@ -2,7 +2,7 @@ Reinstalling a system
 #####################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, python, computer
+:tags: googlepost, python, computer
 
 Python died tonight when I foolishly tried to update numpy or
 matplotlib. One was not compatible with the other in upgraded form, and

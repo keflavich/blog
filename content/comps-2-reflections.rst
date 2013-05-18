@@ -2,7 +2,7 @@ Comps 2 reflections
 ###################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, grad school
+:tags: googlepost, grad school
 
 Comps 2 included some successes and some failures.
 The most successful part of my Comps preparation was the Monday talk.

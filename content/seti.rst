@@ -2,7 +2,7 @@ SETI
 ####
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, astronomy
+:tags: googlepost, astronomy
 
 I read a `paper on ArXiv`_ today about SETI, and talked to `Jeremy
 Darling`_ about water masers. This got me thinking: the best way to

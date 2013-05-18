@@ -2,7 +2,7 @@ My starred reader articles
 ##########################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, papers
+:tags: googlepost, papers
 
 Just posting up a few papers I found interesting.
 `Peng Wang and Tom Abel's paper on outflow feedback in clusters`_

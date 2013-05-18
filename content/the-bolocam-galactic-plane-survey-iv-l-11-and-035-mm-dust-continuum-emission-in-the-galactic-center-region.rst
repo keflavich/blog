@@ -2,7 +2,7 @@ The Bolocam Galactic Plane Survey IV: λ = 1.1 and 0.35 mm Dust Continuum Emissi
 ###############################################################################################################
 :date: 2011-07-11 16:37
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, publication, bolocam
+:tags: googlepost, publication, bolocam
 
 `ADS`_
 `arXiv`_

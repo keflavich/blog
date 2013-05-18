@@ -2,7 +2,7 @@ Python 64 bit!
 ##############
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, computer
+:tags: googlepost, computer
 
 I got python 64 bit to compile, but it required a number of tricky
 steps.

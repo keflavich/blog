@@ -2,7 +2,7 @@ Russell Owen, DS9
 #################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, ds9
+:tags: googlepost, ds9
 
 As I might have expected, Russell Owen from the University of Washington
 - the man responsible for the Telescope User Interface, TUI, on the

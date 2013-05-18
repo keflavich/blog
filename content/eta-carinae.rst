@@ -2,7 +2,7 @@ Eta Carinae
 ###########
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, stars
+:tags: googlepost, stars
 
 Post #4 and I'm diverging from the purported theme. But it's Eta
 Carinae, it must be discussed!

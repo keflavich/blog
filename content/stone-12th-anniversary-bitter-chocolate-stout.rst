@@ -2,7 +2,7 @@ Stone 12th Anniversary Bitter Chocolate Stout
 #############################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, beer tasting
+:tags: googlepost, beer tasting
 
 Tried this 9.2% bomber last night, and even drinking it over the course
 of an hour and a half I could feel my nose not feeling afterwards.

@@ -2,7 +2,7 @@ Mountain Sun
 ############
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, beer tasting
+:tags: googlepost, beer tasting
 
 Went to the Mountain Sun, had the Thunderhead Stout and Stone's
 Levitation IPA.

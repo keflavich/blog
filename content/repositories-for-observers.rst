@@ -2,7 +2,7 @@ Repositories for observers
 ##########################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, internet, agpy, astronomy
+:tags: googlepost, internet, agpy, astronomy
 
 I should have posted these a while ago....
 `casaradio`_ is a subversion repository for folks at `The Center for

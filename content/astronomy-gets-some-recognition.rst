@@ -2,7 +2,7 @@ Astronomy gets some recognition
 ###############################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 
 First off, `this guy`_ does some amazing work, like `measuring the
 galactic rotation curve`_. He got recognized by the `Colbert Report`_.

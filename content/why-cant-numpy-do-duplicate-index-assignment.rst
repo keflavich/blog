@@ -2,7 +2,7 @@ Why can't numpy do duplicate index assignment
 #############################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, numpy
+:tags: googlepost, numpy
 
 `AG`_
 I want to do drizzling with numpy. It should be trivial, but it's

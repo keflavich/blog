@@ -2,7 +2,7 @@ cython vs f2py
 ##############
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, python, computer
+:tags: googlepost, python, computer
 
 I had a go at optimizing some code this past week, and ended up learning
 to use both cython and f2py.

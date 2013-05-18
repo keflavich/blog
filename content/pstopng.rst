@@ -2,7 +2,7 @@ pstopng
 #######
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, postscript
+:tags: googlepost, postscript
 
 Following `this thread`_ and my need to convert IDL .ps files to .pngs
 so that I can view them in Mac Preview without having to go through an

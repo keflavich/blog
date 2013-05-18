@@ -2,7 +2,7 @@ Neat new things....
 ###################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, astronomy, computer
+:tags: googlepost, astronomy, computer
 
 1. `sptool`_ is a quick way to compare standards to stellar spectra.
 Nice, I'd been looking for a tool like that.

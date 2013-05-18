@@ -2,7 +2,7 @@ Python magic / advanced numpy indexing
 ######################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, python
+:tags: googlepost, python
 
 Yeah, indexing python arrays should really be easy.
 `Stefan van der Walt's page`_

@@ -2,7 +2,7 @@ Awk sexagesimal to decimal conversion
 #####################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, astronomy, computer
+:tags: googlepost, astronomy, computer
 
 In VIM I often need to convert columns of RA/Dec from Sexagesimal into
 Decimal format.

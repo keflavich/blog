@@ -2,7 +2,7 @@ gardening
 #########
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, gardening
+:tags: googlepost, gardening
 
 I realized I don't have a gardening category and I should.
 I have eaten 2 garden tomatoes. There have been a total of 3 that

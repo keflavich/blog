@@ -2,7 +2,7 @@ Year in review
 ##############
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, beer tasting, python, meta
+:tags: googlepost, beer tasting, python, meta
 
 It's been just over a year since I started this blog. I posted a LOT
 more than I thought I would. Also, I apparently dropped the tradition of

@@ -2,7 +2,7 @@ Star-forming Region Sh 2-233IR. I. Deep Near-infrared Observations toward the Em
 #######################################################################################################
 :date: 2011-07-18 15:15
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, star formation, publication
+:tags: googlepost, star formation, publication
 
 `ADS`_
 `arXiv`_

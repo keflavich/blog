@@ -2,7 +2,7 @@ Listing variables (e.g IDL help) in Python
 ##########################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, python, computer
+:tags: googlepost, python, computer
 
 Again, IDL has the simple 'help' command to tell you all variables in
 your namespace. Python has the same thing, but the namespace tends to be

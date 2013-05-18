@@ -2,7 +2,7 @@ Mac terminal stuff
 ##################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, computer
+:tags: googlepost, computer
 
 xterm-color has some annoying features when SSHing to other compys,
 including 'top' not functioning properly. The error I receive:

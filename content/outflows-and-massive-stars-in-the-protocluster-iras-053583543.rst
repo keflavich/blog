@@ -2,7 +2,7 @@ Outflows and Massive Stars in the protocluster IRAS 05358+3543
 ##############################################################
 :date: 2011-07-11 16:47
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, star formation, first author, publication, outflows
+:tags: googlepost, star formation, first author, publication, outflows
 
 `ADS`_
 `arXiv`_

@@ -2,7 +2,7 @@ Observing run summary
 #####################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, observing
+:tags: googlepost, observing
 
 3 nights of worse than grade 4 weather (tau ~.4, i.e. the atmosphere is
 nearly opaque) have given me a few interesting results.

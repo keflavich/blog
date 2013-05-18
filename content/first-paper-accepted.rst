@@ -2,7 +2,7 @@ First paper accepted
 ####################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, astronomy
+:tags: googlepost, astronomy
 
 `My Comps II paper on IRAS 05358+3543`_ was accepted by ApJ on
 Wednesday. It will show up on arxiv in a few days and I'll post the link

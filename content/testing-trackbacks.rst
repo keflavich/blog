@@ -2,7 +2,7 @@ Testing trackbacks?
 ###################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, blog, code
+:tags: googlepost, blog, code
 
 I just want to see if "trackbacks" work at all. I recently posted about
 `histograms on google spreadsheets`_.

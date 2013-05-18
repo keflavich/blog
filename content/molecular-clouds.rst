@@ -2,7 +2,7 @@ Molecular Clouds
 ################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, intro
+:tags: googlepost, intro
 
 `I`_'m starting a blog on Molecular Clouds partly for the International
 Year of Astronomy. Ideally, I'd like to present a tour of the W3/4/5

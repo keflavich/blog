@@ -2,7 +2,7 @@ public perception of astronomers
 ################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, astronomers
+:tags: googlepost, astronomers
 
 `Public Perception of Astronomers`_
 While the article has some.... almost-interesting points, I don't agree

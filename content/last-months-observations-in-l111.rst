@@ -2,7 +2,7 @@ Last month's observations in L111
 #################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, l111, observing
+:tags: googlepost, l111, observing
 
 Mapped sources:
 SH 2-156 [no high resolution observations; covered by 1.2m CO 1-0

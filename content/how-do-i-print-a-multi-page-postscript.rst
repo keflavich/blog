@@ -2,7 +2,7 @@ How do I print a multi-page postscript?
 #######################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, gnuplot, computer, postscript
+:tags: googlepost, gnuplot, computer, postscript
 
 I want to print a multi-page postscript duplexed and, if possible, two
 per page. pstopng, pstopdf, and the variants failed me horribly by

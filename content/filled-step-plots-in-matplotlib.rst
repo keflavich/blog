@@ -2,7 +2,7 @@ Filled step plots in matplotlib
 ###############################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, matplotlib, python
+:tags: googlepost, matplotlib, python
 
 .. raw:: html
 

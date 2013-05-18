@@ -2,7 +2,7 @@ Herschel observations of the W43 "mini-starburst"
 #################################################
 :date: 2011-07-11 16:38
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, publication
+:tags: googlepost, publication
 
 `ADS`_
 `arXiv`_

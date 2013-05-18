@@ -2,7 +2,7 @@ IMF and number of massive stars per cluster
 ###########################################
 :date: 2012-09-20 20:07
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, research notes, ipython notebook
+:tags: googlepost, research notes, ipython notebook
 
 Some experiments determining what fraction of massive stars form in
 clusters above a given mass, given a few assumptions about the cluster

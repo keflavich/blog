@@ -2,7 +2,7 @@ Do not install 10.5.5
 #####################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, computer
+:tags: googlepost, computer
 
 Well, I didn't obey that excellent advice from Charles. I installed the
 10.5.5 update. Now DS9 - in my opinion, one of the heartiest and most

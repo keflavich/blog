@@ -2,7 +2,7 @@ Kinematics and H2 morphology of the multipolar post-AGB star IRAS 16594-4656
 ############################################################################
 :date: 2011-07-11 16:18
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, post-agb, publication
+:tags: googlepost, post-agb, publication
 
 `ADS`_
 `arXiv`_

@@ -2,7 +2,7 @@ Mercurial - behave like SVN?
 ############################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mercurial, subversion
+:tags: googlepost, mercurial, subversion
 
 I'm trying to use hooks to make mercurial behave like svn when
 committing. I like the idea that I can commit changes to my cloned repo

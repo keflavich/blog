@@ -2,7 +2,7 @@ Ultimate today
 ##############
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, teaching, ultimate
+:tags: googlepost, teaching, ultimate
 
 We went 2-1 in the tournament, losing the final in a windy game on
 universe point, 15-14. We won the first game 13-5 or 13-6, and the

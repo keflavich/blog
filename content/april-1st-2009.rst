@@ -2,7 +2,7 @@ April 1st, 2009
 ###############
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, humor
+:tags: googlepost, humor
 
 No April fools' day would be complete without scientists' contributions:
 http://arxiv.org/abs/0903.5308

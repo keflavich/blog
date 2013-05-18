@@ -2,7 +2,7 @@ ps2pdf keep resolution, crop to bounding box
 ############################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pdf, postscript
+:tags: googlepost, pdf, postscript
 
 ``  ps2pdf -dEPSCrop -dAutoRotatePages=/None -dAutoFilterColorImages=false -dColorImageFilter=/FlateEncode -dUseFlateCompression=true l007_displaycrop.ps ``
 ref: `this post`_

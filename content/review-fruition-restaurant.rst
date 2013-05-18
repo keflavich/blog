@@ -2,7 +2,7 @@ Review: Fruition restaurant
 ###########################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, review
+:tags: googlepost, review
 
 I ate at `Fruition restaurant`_ last night with the family. They serve
 `haute cuisine`_. I had the beef coulotte. It was pretty tasty, but

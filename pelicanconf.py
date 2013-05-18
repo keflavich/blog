@@ -4,6 +4,8 @@
 AUTHOR = u'Adam Ginsburg'
 SITENAME = u"Adam Ginsburg's blog"
 #SITESUBTITLE = u"about astronomy and coding, most likely"
+SITEURL = 'file://localhost/Volumes/disk5/Users/adam/repos/blog/output'
+SITEURL = ""
 SITEURL = 'http://keflavich.github.com/blog/'
 
 TIMEZONE = 'America/Denver'
@@ -25,9 +27,9 @@ SOCIAL=()
 DEFAULT_PAGINATION = 10
 
 #THEME='bootstrap2' # sneakyidea is default
-THEME='mine'
 THEME='waterspill-en' 
 THEME='simple_editable' 
+THEME='mine'
  
 STATIC_PATHS = ['images']
 
@@ -39,10 +41,14 @@ BGIMAGE='images/GC_4096sq_bolo.png'
 
 DISPLAY_PAGES_ON_MENU = False
 SUPPRESS_CATEGORIES_ON_MENU = True
-SHOW_TAGS=False
+SHOW_TAGS=True
+SHOW_SIDEBAR=True
 SHOW_RECENT=True
 
-MENUITEMS = {'Home':'http://www.adamgginsburg.com','Index':'index.html'}.items()
+import ordereddict
+MENUITEMS = ordereddict.OrderedDict({'Home':'http://www.adamgginsburg.com',
+             'Main':'index.html',
+             'Recent':'archives.html'}).items()
 
 #PLUGINS = ["latex"]
 

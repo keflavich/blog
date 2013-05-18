@@ -2,7 +2,7 @@ latex: producing a bibliography and paper independently
 #######################################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, latex
+:tags: googlepost, latex
 
 `AG`_
 If you want citations to work, but you don't want your bibliography to

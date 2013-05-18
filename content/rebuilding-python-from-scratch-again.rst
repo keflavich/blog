@@ -2,7 +2,7 @@ Rebuilding python from scratch again
 ####################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, python, mac
+:tags: googlepost, python, mac
 
 I got scipy working a week or two ago, but doing so killed matplotib's
 tkagg. So, I switched to the MacOSX backend, which worked ok until I

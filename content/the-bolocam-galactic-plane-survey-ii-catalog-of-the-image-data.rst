@@ -2,7 +2,7 @@ The Bolocam Galactic Plane Survey. II. Catalog of the Image Data
 ################################################################
 :date: 2011-07-11 16:32
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, publication, bolocam
+:tags: googlepost, publication, bolocam
 
 `ADS`_
 `arXiv`_

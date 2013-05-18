@@ -2,7 +2,7 @@ Sync a fork with the original repository on Git
 ###############################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, git
+:tags: googlepost, git
 
 A seemingly simple operation that I just can't seem to get right.
 `This page`_ gives me useless information:

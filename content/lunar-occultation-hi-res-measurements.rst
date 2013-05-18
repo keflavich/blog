@@ -2,7 +2,7 @@ Lunar Occultation Hi-Res measurements
 #####################################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, astronomy
+:tags: googlepost, astronomy
 
 The folks at the VLT have come up with a means of achieving extremely
 high resolution from the ground: Observe when the moon occults a source

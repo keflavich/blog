@@ -2,7 +2,7 @@ Montage wrapper
 ###############
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, code
+:tags: googlepost, code
 
 (I'm going to try to gradually shift my blogging to this one...)
 I wrote a bash wrapper for Tom Robitaille's montage wrapper to allow

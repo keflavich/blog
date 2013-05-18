@@ -2,7 +2,7 @@ Short timescale variability in Orion?  Nope.
 ############################################
 :date: 2012-11-19 17:07
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 
 .. raw:: html
 

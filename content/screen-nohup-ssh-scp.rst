@@ -2,7 +2,7 @@ Screen, nohup, ssh, scp
 #######################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, ssh, security, computer
+:tags: googlepost, ssh, security, computer
 
 I learned a lot about the above in the past day, but I didn't keep track
 of the links.

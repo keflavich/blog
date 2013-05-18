@@ -2,7 +2,7 @@ Compiling vim...
 ################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, install, vim
+:tags: googlepost, install, vim
 
 Figured I had to post this...
 I've been trying to compile command-line vim 7.3 on Mac OS X 10.7. I

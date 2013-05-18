@@ -2,7 +2,7 @@ Python: one-line arrays
 #######################
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, python
+:tags: googlepost, python
 
 Ahhh, refreshing:
 ``      whscan = asarray([arange(scanlen)+i for i in scans_info[:,0]]).ravel()``

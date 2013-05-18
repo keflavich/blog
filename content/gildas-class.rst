@@ -2,7 +2,7 @@ Gildas CLASS
 ############
 :date: 2012-09-20 20:02
 :author: Adam (keflavich@gmail.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, class
+:tags: googlepost, class
 
 It's absurdly difficult to find help on GILDAS Class, probably because
 you can't google "class" and most people probably don't label every
