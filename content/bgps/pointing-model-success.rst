@@ -2,7 +2,7 @@ Pointing model success
 ######################
 :date: 2008-09-02 15:11
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pointing, mapping, pipeline
+:tags: googlepost, pointing, mapping, pipeline
 :slug: pointing-model-success
 
 /scratch/adam\_work/plots/models\_myptgmdl\_0707.ps

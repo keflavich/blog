@@ -2,7 +2,7 @@ Scripting the Whole Survey
 ##########################
 :date: 2008-09-16 00:43
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, alignment, mapping, pipeline
+:tags: googlepost, alignment, mapping, pipeline
 :slug: scripting-the-whole-survey
 
 .. raw:: html

@@ -2,7 +2,7 @@ Flagger images
 ##############
 :date: 2009-01-17 16:13
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, methods paper, flagging
+:tags: googlepost, methods paper, flagging
 :slug: flagger-images
 
 James requested sample images from the flagger for the methods paper.

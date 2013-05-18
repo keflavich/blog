@@ -2,7 +2,7 @@ Bolocat v1-v2 comparison
 ########################
 :date: 2011-08-23 04:39
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, bolocat, version comparison
+:tags: googlepost, bolocat, version comparison
 :slug: bolocat-v1-v2-comparison
 
 For this experiment, I ran Bolocat on all of the v1 and v2 images using

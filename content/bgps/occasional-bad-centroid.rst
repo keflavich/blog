@@ -2,7 +2,7 @@ Occasional bad centroid
 #######################
 :date: 2008-08-06 20:04
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pointing
+:tags: googlepost, pointing
 :slug: occasional-bad-centroid
 
 `|image0|`_

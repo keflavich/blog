@@ -2,7 +2,7 @@ Back to work
 ############
 :date: 2009-01-13 16:45
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, data release
+:tags: googlepost, data release
 :slug: back-to-work
 
 I started working again yesterday, mostly looking at the 31PCA

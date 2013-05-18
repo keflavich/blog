@@ -2,7 +2,7 @@ Eimers project
 ##############
 :date: 2009-03-21 01:24
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, analysis
+:tags: googlepost, analysis
 :slug: eimers-project
 
 Project for Marc Eimers:

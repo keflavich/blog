@@ -2,7 +2,7 @@ PSF modeling
 ############
 :date: 2011-05-22 01:19
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, simulation, pipeline
+:tags: googlepost, simulation, pipeline
 :slug: psf-modeling
 
 There haven't been many posts recently because I've primarily been

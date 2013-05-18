@@ -2,7 +2,7 @@ Median drizzling
 ################
 :date: 2008-11-18 16:11
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping
+:tags: googlepost, mapping
 :slug: median-drizzling
 
 `http://groups.google.com/group/comp.lang.idl-pvwave/browse\_thread/thread/762770933591238d`_

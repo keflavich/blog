@@ -2,7 +2,7 @@ News, modifications
 ###################
 :date: 2008-08-03 07:19
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pointing
+:tags: googlepost, pointing
 :slug: news-modifications
 
 RA / Dec mapping did change centroid locations, but not really for the

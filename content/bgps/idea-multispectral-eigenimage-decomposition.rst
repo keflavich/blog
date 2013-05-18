@@ -2,7 +2,7 @@ Idea: Multispectral Eigenimage decomposition...
 ###############################################
 :date: 2012-12-22 02:53
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 :slug: idea-multispectral-eigenimage-decomposition
 
 .. raw:: html

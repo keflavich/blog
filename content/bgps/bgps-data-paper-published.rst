@@ -2,7 +2,7 @@ BGPS data paper published
 #########################
 :date: 2010-11-03 15:22
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 :slug: bgps-data-paper-published
 
  \*[[http://irsa.ipac.caltech.edu/data/BOLOCAM\_GPS/bgps\_methods.pdf

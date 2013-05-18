@@ -2,7 +2,7 @@ distortion mapping failures
 ###########################
 :date: 2009-01-25 16:08
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 :slug: distortion-mapping-failures
 
 So, despite the fact that I clearly have a distortion mapper working,

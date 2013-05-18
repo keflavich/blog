@@ -2,7 +2,7 @@ More cleaning modifications
 ###########################
 :date: 2008-08-12 17:01
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pipeline
+:tags: googlepost, pipeline
 :slug: more-cleaning-modifications
 
 I had removed sigmadeglitch from deline, now it's permanently gone. I

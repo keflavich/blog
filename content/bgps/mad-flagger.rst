@@ -2,7 +2,7 @@ MAD flagger
 ###########
 :date: 2008-11-19 04:50
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, flagging
+:tags: googlepost, flagging
 :slug: mad-flagger
 
 .. raw:: html

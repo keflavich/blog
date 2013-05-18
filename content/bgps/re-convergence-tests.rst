@@ -2,7 +2,7 @@ Re: Convergence Tests
 #####################
 :date: 2008-08-23 17:03
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping
+:tags: googlepost, mapping
 :slug: re-convergence-tests
 
 Made a little code to check out convergence, but frankly it's pretty

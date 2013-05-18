@@ -2,7 +2,7 @@ Alignment
 #########
 :date: 2008-09-06 18:32
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping
+:tags: googlepost, mapping
 :slug: alignment
 
 a few items...

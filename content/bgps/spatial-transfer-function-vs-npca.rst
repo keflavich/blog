@@ -2,7 +2,7 @@ Spatial Transfer Function vs. nPCA
 ##################################
 :date: 2011-08-10 16:29
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, simulation
+:tags: googlepost, simulation
 :slug: spatial-transfer-function-vs-npca
 
 A demonstration that the spatial transfer function can be improved to

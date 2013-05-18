@@ -2,7 +2,7 @@ Cross-Correlation Offsets Revisited
 ###################################
 :date: 2012-09-08 08:06
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, alignment, pointing
+:tags: googlepost, alignment, pointing
 :slug: cross-correlation-offsets-revisited
 
 .. raw:: html

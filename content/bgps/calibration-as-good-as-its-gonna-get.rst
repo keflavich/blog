@@ -2,7 +2,7 @@ Calibration: As good as it's gonna get
 ######################################
 :date: 2011-12-02 23:25
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, calibration
+:tags: googlepost, calibration
 :slug: calibration-as-good-as-its-gonna-get
 
 .. raw:: html

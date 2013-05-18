@@ -2,7 +2,7 @@ beam locations & peak fluxes
 ############################
 :date: 2009-02-01 19:50
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, calibration
+:tags: googlepost, calibration
 :slug: beam-locations-peak-fluxes
 
 .. raw:: html

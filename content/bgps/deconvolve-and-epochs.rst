@@ -2,7 +2,7 @@ Deconvolve and Epochs
 #####################
 :date: 2011-04-05 18:12
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, distortion mapping, weighting, pipeline
+:tags: googlepost, distortion mapping, weighting, pipeline
 :slug: deconvolve-and-epochs
 
 I've spent a large portion of the last week working on the deconvolver.

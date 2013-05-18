@@ -2,7 +2,7 @@ Final calibration curves (yeah... sure)
 #######################################
 :date: 2011-08-26 17:26
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, calibration
+:tags: googlepost, calibration
 :slug: final-calibration-curves-yeah-sure
 
 I've finished rederiving the calibration curves self-consistently. These

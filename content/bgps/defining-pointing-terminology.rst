@@ -2,7 +2,7 @@ Defining Pointing Terminology
 #############################
 :date: 2008-07-30 21:50
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, documentation, pointing
+:tags: googlepost, documentation, pointing
 :slug: defining-pointing-terminology
 
 There has been a lot of confusion about pointing terminology.

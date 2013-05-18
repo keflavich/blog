@@ -2,7 +2,7 @@ filling factors
 ###############
 :date: 2009-01-25 06:00
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, analysis
+:tags: googlepost, analysis
 :slug: filling-factors
 
 to do: histogram per square degree, plot cumulative > some bin number

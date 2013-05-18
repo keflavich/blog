@@ -2,7 +2,7 @@ Direct comparison of column-density power spectra
 #################################################
 :date: 2011-06-29 04:43
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, analysis
+:tags: googlepost, analysis
 :slug: direct-comparison-of-column-density-power-spectra
 
 I've multiplied the 13CO integrated data cube, the Herschel 500

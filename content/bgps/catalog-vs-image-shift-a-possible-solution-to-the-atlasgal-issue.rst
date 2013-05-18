@@ -2,7 +2,7 @@ Catalog vs Image shift?  A possible solution to the ATLASGAL issue
 ##################################################################
 :date: 2012-12-26 23:02
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pointing
+:tags: googlepost, pointing
 :slug: catalog-vs-image-shift-a-possible-solution-to-the-atlasgal-issue
 
 .. raw:: html

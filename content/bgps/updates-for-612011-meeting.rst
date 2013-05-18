@@ -2,7 +2,7 @@ Updates for 6/1/2011 meeting
 ############################
 :date: 2011-06-01 21:40
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 :slug: updates-for-612011-meeting
 
 This is going to be a mishmash of various things....

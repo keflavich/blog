@@ -2,7 +2,7 @@ additional problems
 ###################
 :date: 2011-07-12 19:08
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 :slug: additional-problems
 
 There are a few cases in the L=30 field that look awful. 050706\_o31

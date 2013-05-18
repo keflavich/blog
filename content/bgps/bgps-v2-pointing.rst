@@ -2,7 +2,7 @@ BGPS V2 pointing
 ################
 :date: 2012-05-23 23:59
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, v2.0, pointing, version comparison
+:tags: googlepost, v2.0, pointing, version comparison
 :slug: bgps-v2-pointing
 
 BGPS V2.0 pointing offsets relative to V1 and Herschel:

@@ -49,7 +49,7 @@ DATE_FORMATS = {'en':"%Y/%m/%d"}
 
 import ordereddict
 MENUITEMS = ordereddict.OrderedDict({'Home':'http://www.adamgginsburg.com',
-             'Main':'index.html',
+             'Blog Index':'index.html',
              'Tags':'tags.html',
              'Recent':'archives.html'}).items()
 

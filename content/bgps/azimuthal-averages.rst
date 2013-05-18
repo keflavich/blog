@@ -2,7 +2,7 @@ Azimuthal Averages
 ##################
 :date: 2011-04-27 19:45
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, simulation, pipeline
+:tags: googlepost, simulation, pipeline
 :slug: azimuthal-averages
 
 We noted in discussion yesterday that the aperture sum in the (nearly

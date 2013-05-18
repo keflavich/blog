@@ -2,7 +2,7 @@ flagger
 #######
 :date: 2008-11-22 01:37
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, flagging
+:tags: googlepost, flagging
 :slug: flagger
 
 Discovered that the flagger causes some pretty serious problems if you

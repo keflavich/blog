@@ -2,7 +2,7 @@ Getting rid of haloes
 #####################
 :date: 2012-03-31 00:28
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, artifacts, deconvolution, mapping
+:tags: googlepost, artifacts, deconvolution, mapping
 :slug: getting-rid-of-haloes
 
 Haloes are when images look like this:

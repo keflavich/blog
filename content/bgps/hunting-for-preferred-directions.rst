@@ -2,7 +2,7 @@ Hunting for preferred directions
 ################################
 :date: 2011-06-06 03:58
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, simulation
+:tags: googlepost, simulation
 :slug: hunting-for-preferred-directions
 
 In our last group meeting, we discussed simulations using filamentary

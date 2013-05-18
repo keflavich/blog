@@ -2,7 +2,7 @@ Rewriting pipeline again
 ########################
 :date: 2008-11-14 20:42
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 :slug: rewriting-pipeline-again
 
 Not entirely, but I realized my code had become... clunky, at best.

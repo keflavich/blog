@@ -2,7 +2,7 @@ Gem OB1 comparisons
 ###################
 :date: 2009-03-09 00:07
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping, simulation
+:tags: googlepost, mapping, simulation
 :slug: gem-ob1-comparisons
 
 I'm running 0,1,2,3,5,7,10,16, and 19 PCA component 51 iteration maps of

@@ -2,7 +2,7 @@ ds1-ds5 comparisons
 ###################
 :date: 2011-04-26 21:54
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, downsampling, pipeline
+:tags: googlepost, downsampling, pipeline
 :slug: ds1-ds5-comparisons
 
 I'm comparing simulated ds1-ds5 to real ds1-ds5 comparison tests.

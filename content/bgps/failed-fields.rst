@@ -2,7 +2,7 @@ Failed fields
 #############
 :date: 2008-09-13 21:00
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping
+:tags: googlepost, mapping
 :slug: failed-fields
 
 -  l030 - comments were in the form ;; instead of # in the infile

@@ -2,7 +2,7 @@ A new series of problems
 ########################
 :date: 2009-03-03 00:52
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 :slug: a-new-series-of-problems
 
 #. There are severe (~5 pixel) pointing offsets in the MOSAICs. They are

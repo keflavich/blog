@@ -2,7 +2,7 @@ Recovery as a function of bolometer noise part 2
 ################################################
 :date: 2011-05-27 23:49
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, simulation
+:tags: googlepost, simulation
 :slug: recovery-as-a-function-of-bolometer-noise-part-2
 
 In the Experiment 7 simulations I was running, I observed greater noise

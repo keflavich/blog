@@ -2,7 +2,7 @@ Glitches and errors
 ###################
 :date: 2008-08-11 04:24
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 :slug: glitches-and-errors
 
 It's definitely important to get rid of the spikes and, more

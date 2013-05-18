@@ -2,7 +2,7 @@ Broken rotation
 ###############
 :date: 2008-09-09 01:34
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping
+:tags: googlepost, mapping
 :slug: broken-rotation
 
 I have to echo James in saying how remarkable it is than anything I ever

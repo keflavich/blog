@@ -2,7 +2,7 @@ Making maps faster
 ##################
 :date: 2011-02-07 04:39
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping, pipeline
+:tags: googlepost, mapping, pipeline
 :slug: making-maps-faster
 
 The fundamental problem at this point is making the pipeline run faster.

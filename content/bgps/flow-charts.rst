@@ -2,7 +2,7 @@ Flow Charts
 ###########
 :date: 2011-12-31 02:53
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pipeline
+:tags: googlepost, pipeline
 :slug: flow-charts
 
 Made with `this code`_ and `graphviz`_.

@@ -2,7 +2,7 @@ Return to Deconvolution
 #######################
 :date: 2009-02-23 18:55
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping
+:tags: googlepost, mapping
 :slug: return-to-deconvolution
 
 I ran the v0.7 reductions with deconvolution on for 50 iterations. I had

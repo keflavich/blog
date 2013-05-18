@@ -2,7 +2,7 @@ Methods Paper: Figures / analysis to produce
 ############################################
 :date: 2009-03-04 03:43
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, methods paper
+:tags: googlepost, methods paper
 :slug: methods-paper-figures-analysis-to-produce
 
 The methods paper needs some justification of the number of PCA

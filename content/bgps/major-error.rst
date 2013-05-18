@@ -2,7 +2,7 @@ Major Error
 ###########
 :date: 2012-01-06 23:29
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 :slug: major-error
 
 This was a big problem:

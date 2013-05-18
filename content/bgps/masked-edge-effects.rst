@@ -2,7 +2,7 @@ Masked edge effects?
 ####################
 :date: 2011-07-13 20:28
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, simulation
+:tags: googlepost, simulation
 :slug: masked-edge-effects
 
 I raised the possibility that the ratty edges of a scan could affect the

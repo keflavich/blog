@@ -2,7 +2,7 @@ locating beams
 ##############
 :date: 2009-03-20 21:18
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, distortion mapping
+:tags: googlepost, distortion mapping
 :slug: locating-beams
 
 `|image0|`_

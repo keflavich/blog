@@ -2,7 +2,7 @@ Updates today
 #############
 :date: 2008-08-25 23:35
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pointing, pipeline
+:tags: googlepost, pointing, pipeline
 :slug: updates-today
 
 I updated the FITS header writing pieces of the software today, we

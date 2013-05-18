@@ -2,7 +2,7 @@ FFTs and unlucky primes
 #######################
 :date: 2008-08-12 17:04
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping
+:tags: googlepost, mapping
 :slug: ffts-and-unlucky-primes
 
 I've encountered a lot (!) of unlucky prime numbers that I'm trying to

@@ -2,7 +2,7 @@ New to-do list, updated things....
 ##################################
 :date: 2008-10-15 12:57
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping, pipeline
+:tags: googlepost, mapping, pipeline
 :slug: new-to-do-list-updated-things
 
 ``do_maptests.pro`` is running a bunch of different mapping parameters

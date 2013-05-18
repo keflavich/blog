@@ -2,7 +2,7 @@
 ###########################
 :date: 2011-07-10 19:41
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, problems, pipeline, minor
+:tags: googlepost, problems, pipeline, minor
 :slug: minor-ongoing-problems
 
 Since I have many tasks running in parallel, I need to summarize them

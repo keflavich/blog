@@ -2,7 +2,7 @@ a bunch of plots
 ################
 :date: 2009-03-03 01:06
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, plots
+:tags: googlepost, plots
 :slug: a-bunch-of-plots
 
 `|image0|`_

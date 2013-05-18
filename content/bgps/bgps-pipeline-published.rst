@@ -2,7 +2,7 @@ BGPS Pipeline Published
 #######################
 :date: 2010-06-11 19:59
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pipeline
+:tags: googlepost, pipeline
 :slug: bgps-pipeline-published
 
 The BGPS pipeline has officially been released on `Google Code`_.

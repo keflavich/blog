@@ -2,7 +2,7 @@ BOLOCAM PIPELINE BLOG
 #####################
 :date: 2008-07-30 21:30
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, administrative
+:tags: googlepost, administrative
 :slug: bolocam-pipeline-blog
 
 Guy pointed out in the CU meeting today that we need a better way to

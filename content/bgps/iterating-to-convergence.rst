@@ -2,7 +2,7 @@ Iterating to Convergence
 ########################
 :date: 2008-08-25 17:42
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, iterating, mapping
+:tags: googlepost, iterating, mapping
 :slug: iterating-to-convergence
 
 `|image0|`_

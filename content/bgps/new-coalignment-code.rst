@@ -2,7 +2,7 @@ New coalignment code
 ####################
 :date: 2012-03-20 15:06
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 :slug: new-coalignment-code
 
 pixshift has been giving me issues for a long, long time. It finally

@@ -2,7 +2,7 @@ Recovery for an Airy
 ####################
 :date: 2011-04-12 01:38
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 :slug: recovery-for-an-airy
 
 .. raw:: html

@@ -2,7 +2,7 @@ Mapped, but no dice
 ###################
 :date: 2008-08-06 15:22
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pointing
+:tags: googlepost, pointing
 :slug: mapped-but-no-dice
 
 Finished mapping what I think are all of the pointing sources. However,

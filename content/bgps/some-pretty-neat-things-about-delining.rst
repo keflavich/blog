@@ -2,7 +2,7 @@ Some pretty neat things about delining....
 ##########################################
 :date: 2011-02-03 04:50
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pipeline, deline
+:tags: googlepost, pipeline, deline
 :slug: some-pretty-neat-things-about-delining
 
 Well, I did the work, so might as well come up with some plots...

@@ -2,7 +2,7 @@ Tests running
 #############
 :date: 2011-04-08 17:48
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 :slug: tests-running
 
 -  Re-doing December 2010 calibration (remember to check & compare AFGL

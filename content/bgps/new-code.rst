@@ -2,7 +2,7 @@ New code
 ########
 :date: 2008-09-05 21:00
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pipeline
+:tags: googlepost, pipeline
 :slug: new-code
 
 Done for the day after this (observing tonight)

@@ -2,7 +2,7 @@ outer galaxy fields done
 ########################
 :date: 2008-10-13 14:47
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping
+:tags: googlepost, mapping
 :slug: outer-galaxy-fields-done
 
 they're small files

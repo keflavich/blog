@@ -2,7 +2,7 @@ Recovery as a function of bolometer noise
 #########################################
 :date: 2011-05-26 18:47
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, simulation
+:tags: googlepost, simulation
 :slug: recovery-as-a-function-of-bolometer-noise
 
 One clear simulation result comes from varying the amplitude of the

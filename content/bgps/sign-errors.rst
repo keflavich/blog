@@ -2,7 +2,7 @@ sign errors
 ###########
 :date: 2009-02-01 19:50
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, calibration
+:tags: googlepost, calibration
 :slug: sign-errors
 
 pinned down the problem. Was a minor sign error in the offsets. Why is

@@ -2,7 +2,7 @@ A detailed look at l086
 #######################
 :date: 2009-03-04 21:35
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping
+:tags: googlepost, mapping
 :slug: a-detailed-look-at-l086
 
 Despite a slew of alignment errors, it appears that the alignment for

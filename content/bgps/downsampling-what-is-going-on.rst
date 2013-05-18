@@ -2,7 +2,7 @@ Downsampling - what is going on?
 ################################
 :date: 2011-02-11 04:19
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pipeline
+:tags: googlepost, pipeline
 :slug: downsampling-what-is-going-on
 
 The downsampling failure I `noted`_ `previously`_ appears to be

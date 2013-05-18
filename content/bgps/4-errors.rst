@@ -2,7 +2,7 @@
 ########
 :date: 2008-11-28 16:46
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, errors
+:tags: googlepost, errors
 :slug: 4-errors
 
 l047, l083, l359 (l000 is in /usb, l359 is in /scratch), l136p15

@@ -2,7 +2,7 @@ distortion mapping done?
 ########################
 :date: 2009-02-02 00:12
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, calibration
+:tags: googlepost, calibration
 :slug: distortion-mapping-done
 
 Created 'beam\_locations\_0707.txt' from uranus\_070702\_o42 with a few

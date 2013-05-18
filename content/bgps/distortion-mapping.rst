@@ -2,7 +2,7 @@ distortion mapping
 ##################
 :date: 2009-01-24 19:18
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, calibration
+:tags: googlepost, calibration
 :slug: distortion-mapping
 
 Between sign errors, failures to fit, and.... I really don't know WHAT

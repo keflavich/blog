@@ -2,7 +2,7 @@ Pointing update
 ###############
 :date: 2008-08-01 22:30
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pointing
+:tags: googlepost, pointing
 :slug: pointing-update
 
 I believe I've completely dealt with the projection issues. There are a

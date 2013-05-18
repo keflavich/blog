@@ -2,7 +2,7 @@ Deconvolution vs. Not
 #####################
 :date: 2008-11-28 19:39
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping
+:tags: googlepost, mapping
 :slug: deconvolution-vs-not
 
 I've done some by-eye comparisons of deconvolutions vs no deconvolution.

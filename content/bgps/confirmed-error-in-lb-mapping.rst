@@ -2,7 +2,7 @@ Confirmed error in L/B mapping
 ##############################
 :date: 2008-08-28 01:32
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pointing, mapping
+:tags: googlepost, pointing, mapping
 :slug: confirmed-error-in-lb-mapping
 
 I've used my simulated data and confirmed that there is in fact an error

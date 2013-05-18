@@ -2,7 +2,7 @@ Modifications
 #############
 :date: 2008-08-19 18:07
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pipeline
+:tags: googlepost, pipeline
 :slug: modifications
 
 Things that have been changed in the past 24 hours that are very

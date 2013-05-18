@@ -2,7 +2,7 @@ Gem OB1
 #######
 :date: 2009-01-14 23:49
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping
+:tags: googlepost, mapping
 :slug: gem-ob1
 
 With Miranda's help, I discovered some serious errors in Gem OB1 and

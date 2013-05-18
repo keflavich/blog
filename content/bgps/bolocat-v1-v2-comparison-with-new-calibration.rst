@@ -2,7 +2,7 @@ Bolocat v1-v2 comparison with new calibration
 #############################################
 :date: 2011-08-30 21:04
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, bolocat, version comparison
+:tags: googlepost, bolocat, version comparison
 :slug: bolocat-v1-v2-comparison-with-new-calibration
 
 .. raw:: html

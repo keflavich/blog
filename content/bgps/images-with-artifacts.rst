@@ -2,7 +2,7 @@ Images with artifacts
 #####################
 :date: 2008-08-07 23:42
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping
+:tags: googlepost, mapping
 :slug: images-with-artifacts
 
 Here's the list from 0507:

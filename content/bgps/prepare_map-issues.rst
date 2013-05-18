@@ -2,7 +2,7 @@ prepare_map issues
 ##################
 :date: 2008-09-01 16:31
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping
+:tags: googlepost, mapping
 :slug: prepare_map-issues
 
 The problem: There is a bulk offset that can range from small to ~22'

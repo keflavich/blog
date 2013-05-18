@@ -2,7 +2,7 @@ On the list for today....
 #########################
 :date: 2008-08-23 13:42
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pipeline
+:tags: googlepost, pipeline
 :slug: on-the-list-for-today
 
 Since my gigantic mapping run is still going, I'm going to work

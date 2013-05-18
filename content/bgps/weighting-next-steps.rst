@@ -2,7 +2,7 @@ Weighting - next steps
 ######################
 :date: 2008-11-15 01:04
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 :slug: weighting-next-steps
 
 Idea: 'edge taper' for scans. The scan start/end usually has higher

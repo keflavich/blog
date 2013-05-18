@@ -2,7 +2,7 @@ Wow - FFT failure
 #################
 :date: 2008-08-12 15:11
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pipeline
+:tags: googlepost, pipeline
 :slug: wow-fft-failure
 
 On my huge Cygnus run, the fft keeps failing in the deline code. It's

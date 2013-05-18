@@ -2,7 +2,7 @@ RELEASE
 #######
 :date: 2009-06-22 23:30
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 :slug: release
 
 Finally.

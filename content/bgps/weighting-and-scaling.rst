@@ -2,7 +2,7 @@ Weighting and Scaling
 #####################
 :date: 2011-04-19 23:08
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 :slug: weighting-and-scaling
 
 The "simple" relative sensitivity calibration was causing serious

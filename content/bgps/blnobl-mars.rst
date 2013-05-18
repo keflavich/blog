@@ -2,7 +2,7 @@ BL/noBL Mars
 ############
 :date: 2009-02-01 03:22
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, calibration
+:tags: googlepost, calibration
 :slug: blnobl-mars
 
 .. raw:: html

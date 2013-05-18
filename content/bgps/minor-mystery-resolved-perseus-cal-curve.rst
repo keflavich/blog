@@ -2,7 +2,7 @@ Minor mystery resolved: Perseus cal curve
 #########################################
 :date: 2010-06-07 22:32
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, perseus, calibration
+:tags: googlepost, perseus, calibration
 :slug: minor-mystery-resolved-perseus-cal-curve
 
 When I started working on the Perseus data again, I decided to use the

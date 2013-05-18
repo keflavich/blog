@@ -2,7 +2,7 @@ Delining
 ########
 :date: 2011-02-03 04:54
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pipeline, deline
+:tags: googlepost, pipeline, deline
 :slug: delining
 
 Delining refers to the process of removing electronic noise that is

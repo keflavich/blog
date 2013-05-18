@@ -2,7 +2,7 @@ Rant: calc_beam_locations
 #########################
 :date: 2009-02-06 18:24
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 :slug: rant-calc_beam_locations
 
 It took me a few days to figure this out, but "calc\_beam\_locations" is

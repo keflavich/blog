@@ -2,7 +2,7 @@ L111 observation notes
 ######################
 :date: 2008-12-09 11:40
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pointing
+:tags: googlepost, pointing
 :slug: l111-observation-notes
 
 `|fixed offsets|`_\ `|raw cso ptg|`_\ `|pointing model applied|`_

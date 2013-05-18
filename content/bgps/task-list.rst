@@ -2,7 +2,7 @@ Task List
 #########
 :date: 2008-08-22 00:29
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, data release, mapping, pipeline
+:tags: googlepost, data release, mapping, pipeline
 :slug: task-list
 
 For the moment, I'm going to leave the pointing alone. This leaves us

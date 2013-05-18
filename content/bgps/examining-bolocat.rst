@@ -2,7 +2,7 @@ Examining bolocat
 #################
 :date: 2011-07-27 22:51
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, bolocat, analysis, simulation
+:tags: googlepost, bolocat, analysis, simulation
 :slug: examining-bolocat
 
 Just in case we were wondering, the V1 bolocat is completely

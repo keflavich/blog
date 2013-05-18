@@ -2,7 +2,7 @@ Definitive Testing
 ##################
 :date: 2011-04-11 19:09
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, testing, pipeline
+:tags: googlepost, testing, pipeline
 :slug: definitive-testing
 
 It is now possible to make artificial timestreams!

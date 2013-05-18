@@ -2,7 +2,7 @@ Big run this weekend...
 #######################
 :date: 2008-08-09 17:22
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping
+:tags: googlepost, mapping
 :slug: big-run-this-weekend
 
 In case anyone is wondering why Milkyway is going really slowly, I'm

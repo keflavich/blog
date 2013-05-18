@@ -2,7 +2,7 @@ Paragraph for the methods paper
 ###############################
 :date: 2008-11-15 00:25
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, methods paper
+:tags: googlepost, methods paper
 :slug: paragraph-for-the-methods-paper
 
 The raw data from Bolocam contains noise components from the atmosphere

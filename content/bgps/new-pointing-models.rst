@@ -2,7 +2,7 @@ New pointing models
 ###################
 :date: 2008-08-21 20:45
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pointing
+:tags: googlepost, pointing
 :slug: new-pointing-models
 
 I decided to try to fit the pointing model as a full alt/az or ra/dec

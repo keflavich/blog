@@ -2,7 +2,7 @@ Uh?
 ###
 :date: 2009-01-15 18:22
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, alignment
+:tags: googlepost, alignment
 :slug: uh
 
 .. raw:: html

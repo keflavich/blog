@@ -2,7 +2,7 @@ Delining - Maps
 ###############
 :date: 2011-02-03 22:16
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping, pipeline, deline
+:tags: googlepost, mapping, pipeline, deline
 :slug: delining-maps
 
 First comment - delining has **no effect** on downsampled data. At least

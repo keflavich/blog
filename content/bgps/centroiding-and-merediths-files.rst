@@ -2,7 +2,7 @@ Centroiding and Meredith's files
 ################################
 :date: 2008-08-13 03:54
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pointing
+:tags: googlepost, pointing
 :slug: centroiding-and-merediths-files
 
 I tried the pointing offset calculations on Meredith's maps and I still

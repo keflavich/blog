@@ -2,7 +2,7 @@ Bolocat V1 vs V2
 ################
 :date: 2012-05-24 17:59
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 :slug: bolocat-v1-vs-v2
 
 I've done some very extensive comparison of v1 and v2. The plots below

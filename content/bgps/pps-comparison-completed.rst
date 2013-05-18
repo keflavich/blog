@@ -2,7 +2,7 @@ PPS comparison completed
 ########################
 :date: 2010-06-24 15:24
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, analysis, discrepancy
+:tags: googlepost, analysis, discrepancy
 :slug: pps-comparison-completed
 
 The PPS scale factor seems to hold for many different (and ridiculous)

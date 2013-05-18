@@ -2,7 +2,7 @@ Implementing weighting
 ######################
 :date: 2008-11-09 04:56
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, weighting
+:tags: googlepost, weighting
 :slug: implementing-weighting
 
 Not as easy as it ought to be.

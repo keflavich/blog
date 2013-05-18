@@ -2,7 +2,7 @@ Aperture Photometry
 ###################
 :date: 2011-08-13 02:50
 :author: Jared (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, aperture photometry, point source
+:tags: googlepost, aperture photometry, point source
 :slug: aperture-photometry
 
 So the code to add point sources to the maps and perform basic aperture

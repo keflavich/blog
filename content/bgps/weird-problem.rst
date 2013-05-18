@@ -2,7 +2,7 @@ Weird problem
 #############
 :date: 2011-03-31 02:25
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, errors
+:tags: googlepost, errors
 :slug: weird-problem
 
 I'm remapping everything, and there's a really strange situation in

@@ -2,7 +2,7 @@ Careful comparison of ds1 and ds5
 #################################
 :date: 2011-03-29 15:23
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, calibration, pipeline
+:tags: googlepost, calibration, pipeline
 :slug: careful-comparison-of-ds1-and-ds5
 
 I looked very closely at the timestream and maps of 101208\_o11 and had

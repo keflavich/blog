@@ -2,7 +2,7 @@ Alignment success stories
 #########################
 :date: 2008-09-15 04:33
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, alignment
+:tags: googlepost, alignment
 :slug: alignment-success-stories
 
 `|image0|`_

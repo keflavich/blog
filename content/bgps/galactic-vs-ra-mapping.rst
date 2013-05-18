@@ -2,7 +2,7 @@ Galactic vs. RA mapping
 #######################
 :date: 2008-07-31 20:57
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pipeline
+:tags: googlepost, pipeline
 :slug: galactic-vs-ra-mapping
 
 They don't match up. This is a serious problem.

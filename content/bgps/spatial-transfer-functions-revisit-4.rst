@@ -2,7 +2,7 @@ Spatial Transfer Functions, revisit 4
 #####################################
 :date: 2011-08-05 18:56
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, analysis, testing, simulation, pipeline
+:tags: googlepost, analysis, testing, simulation, pipeline
 :slug: spatial-transfer-functions-revisit-4
 
 Last report was a bit of a fiasco. There were problems all over the

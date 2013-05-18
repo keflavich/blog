@@ -2,7 +2,7 @@
 ####################
 :date: 2009-02-01 20:26
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, calibration
+:tags: googlepost, calibration
 :slug: 0707-distortion-maps
 
 `|image0|`_

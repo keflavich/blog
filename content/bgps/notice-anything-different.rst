@@ -2,7 +2,7 @@ Notice anything different?
 ##########################
 :date: 2008-08-21 01:08
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pointing, pipeline
+:tags: googlepost, pointing, pipeline
 :slug: notice-anything-different
 
 About milkyway? This post is a red herring, but:

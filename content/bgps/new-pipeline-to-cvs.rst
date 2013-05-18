@@ -2,7 +2,7 @@ New Pipeline to CVS
 ###################
 :date: 2008-07-30 21:36
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, cvs, pipeline
+:tags: googlepost, cvs, pipeline
 :slug: new-pipeline-to-cvs
 
 Open topic - what needs to be done to put the new pipeline on the CVS?

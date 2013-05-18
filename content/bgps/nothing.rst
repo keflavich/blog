@@ -2,7 +2,7 @@ Nothing
 #######
 :date: 2008-08-06 00:32
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pipeline
+:tags: googlepost, pipeline
 :slug: nothing
 
 No progress today. Spent the whole day re-mapping pointing sources and

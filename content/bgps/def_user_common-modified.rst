@@ -2,7 +2,7 @@ def_user_common modified
 ########################
 :date: 2008-11-23 15:21
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pipeline
+:tags: googlepost, pipeline
 :slug: def_user_common-modified
 
 The NP doesn't work without USER\_COMMON defined because at a single

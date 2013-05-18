@@ -2,7 +2,7 @@ Cleaning ideas
 ##############
 :date: 2008-08-11 15:20
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 :slug: cleaning-ideas
 
 It's proving very difficult to get rid of glitches, so here are some

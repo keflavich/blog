@@ -2,7 +2,7 @@ planet fluxes
 #############
 :date: 2009-02-06 22:39
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, calibration
+:tags: googlepost, calibration
 :slug: planet-fluxes
 
 ; ephemerides from the JCMT

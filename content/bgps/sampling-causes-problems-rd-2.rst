@@ -2,7 +2,7 @@ Sampling Causes Problems: Rd 2
 ##############################
 :date: 2011-04-19 17:39
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, downsampling, simulation, pipeline
+:tags: googlepost, downsampling, simulation, pipeline
 :slug: sampling-causes-problems-rd-2
 
 Proof that a well-sampled timestream / gaussian is recovered better than

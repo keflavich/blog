@@ -2,7 +2,7 @@ Pointing model failure
 ######################
 :date: 2008-12-09 11:40
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pointing, mapping
+:tags: googlepost, pointing, mapping
 :slug: pointing-model-failure
 
 `|l33|`_

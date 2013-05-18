@@ -2,7 +2,7 @@ Downsampling has serious negative effects on the data
 #####################################################
 :date: 2011-01-20 20:16
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping, calibration
+:tags: googlepost, mapping, calibration
 :slug: downsampling-has-serious-negative-effects-on-the-data
 
 Background: Downsampling is performed using Old Pipeline code called

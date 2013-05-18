@@ -2,7 +2,7 @@ Calibration Offsets Revisited
 #############################
 :date: 2011-11-16 01:05
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, calibration
+:tags: googlepost, calibration
 :slug: calibration-offsets-revisited
 
 The agreement with Motte et al 2007 is now perfect with a vertical

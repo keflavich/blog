@@ -2,7 +2,7 @@ Examining deconvolution strategies
 ##################################
 :date: 2011-04-07 22:05
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 :slug: examining-deconvolution-strategies
 
 This is a direct continuation of what I did yesterday (but only posted

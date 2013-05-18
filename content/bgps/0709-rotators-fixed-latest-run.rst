@@ -2,7 +2,7 @@
 ###############################
 :date: 2009-01-17 14:26
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping
+:tags: googlepost, mapping
 :slug: 0709-rotators-fixed-latest-run
 
 0709 11-13 needed to be 83.88 degrees, they're all fixed now.

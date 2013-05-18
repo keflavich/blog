@@ -2,7 +2,7 @@ Astrophysical Signal Modeling
 #############################
 :date: 2011-05-24 17:39
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, simulation, pipeline
+:tags: googlepost, simulation, pipeline
 :slug: astrophysical-signal-modeling
 
 Here we finally get into the meat of the simulations. The goal is to

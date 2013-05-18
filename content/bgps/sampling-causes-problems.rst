@@ -2,7 +2,7 @@ Sampling causes problems
 ########################
 :date: 2011-04-18 23:39
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, downsampling, pipeline
+:tags: googlepost, downsampling, pipeline
 :slug: sampling-causes-problems
 
 One of the simplest experiments that can be run is a point-source

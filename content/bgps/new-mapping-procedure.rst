@@ -2,7 +2,7 @@ New mapping procedure
 #####################
 :date: 2009-01-15 18:21
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping
+:tags: googlepost, mapping
 :slug: new-mapping-procedure
 
 I cut down the number of maps made by the pipeline from 80 to 30 by

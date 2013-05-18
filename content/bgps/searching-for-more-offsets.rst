@@ -2,7 +2,7 @@ Searching for more offsets
 ##########################
 :date: 2008-08-12 21:35
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pointing
+:tags: googlepost, pointing
 :slug: searching-for-more-offsets
 
 The defining feature of my pointing calculations - and their

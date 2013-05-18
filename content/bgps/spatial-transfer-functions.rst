@@ -2,7 +2,7 @@ Spatial Transfer Functions
 ##########################
 :date: 2011-07-13 18:54
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, simulation
+:tags: googlepost, simulation
 :slug: spatial-transfer-functions
 
 The majority of the past week has been dedicated to debugging; it looks

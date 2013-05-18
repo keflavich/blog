@@ -2,7 +2,7 @@ Looking back at the old pipeline
 ################################
 :date: 2008-08-07 16:33
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pipeline
+:tags: googlepost, pipeline
 :slug: looking-back-at-the-old-pipeline
 
 .. raw:: html

@@ -2,7 +2,7 @@ Some good news, some.... not news.
 ##################################
 :date: 2008-08-24 20:09
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping, pipeline
+:tags: googlepost, mapping, pipeline
 :slug: some-good-news-some-not-news
 
 I've been mapping all weekend. It turns out that if you do 25 mapping

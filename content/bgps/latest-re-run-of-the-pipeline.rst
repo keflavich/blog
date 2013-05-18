@@ -2,7 +2,7 @@ Latest re-run of the pipeline
 #############################
 :date: 2008-11-09 03:15
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pipeline, errors
+:tags: googlepost, pipeline, errors
 :slug: latest-re-run-of-the-pipeline
 
 Wow. A lot of errors this time around.

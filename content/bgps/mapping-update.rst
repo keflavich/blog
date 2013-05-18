@@ -2,7 +2,7 @@ Mapping update
 ##############
 :date: 2008-09-16 20:38
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping
+:tags: googlepost, mapping
 :slug: mapping-update
 
 .. raw:: html

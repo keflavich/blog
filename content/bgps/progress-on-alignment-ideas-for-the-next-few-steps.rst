@@ -2,7 +2,7 @@ Progress on alignment, ideas for the next few steps
 ###################################################
 :date: 2008-09-15 02:19
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pipeline
+:tags: googlepost, pipeline
 :slug: progress-on-alignment-ideas-for-the-next-few-steps
 
 Alignment: I did a more thorough test of the aligner, and found an error

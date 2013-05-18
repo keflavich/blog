@@ -2,7 +2,7 @@ something is wrong in 0507....
 ##############################
 :date: 2008-08-07 00:01
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, mapping
+:tags: googlepost, mapping
 :slug: something-is-wrong-in-0507
 
 `|image0|`_

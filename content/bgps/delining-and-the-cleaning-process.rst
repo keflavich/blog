@@ -2,7 +2,7 @@ Delining and the Cleaning process
 #################################
 :date: 2011-02-03 19:49
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, cleaning, pipeline, deline
+:tags: googlepost, cleaning, pipeline, deline
 :slug: delining-and-the-cleaning-process
 
 One item I forgot to mention last night was the effects of

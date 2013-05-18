@@ -2,7 +2,7 @@ Observation distribution
 ########################
 :date: 2008-08-04 21:57
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, documentation
+:tags: googlepost, documentation
 :slug: observation-distribution
 
 .. raw:: html

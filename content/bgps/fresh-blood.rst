@@ -2,7 +2,7 @@ fresh blood
 ###########
 :date: 2008-09-08 23:34
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, team
+:tags: googlepost, team
 :slug: fresh-blood
 
 hate to put it this way, but probably true - bolocam will eat us all.

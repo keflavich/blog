@@ -2,7 +2,7 @@ Progress, but still ds1-ds5 issues
 ##################################
 :date: 2011-03-30 02:47
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, downsampling, calibration, pipeline
+:tags: googlepost, downsampling, calibration, pipeline
 :slug: progress-but-still-ds1-ds5-issues
 
 ds1 and ds5 agree pretty well with the recent upgrades to delining and

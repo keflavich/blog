@@ -2,7 +2,7 @@ How does Bolocam data improve greybody fits?
 ############################################
 :date: 2012-06-23 09:11
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post
+:tags: googlepost
 :slug: how-does-bolocam-data-improve-greybody-fits
 
 .. raw:: html

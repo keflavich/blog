@@ -2,7 +2,7 @@ PPS analysis: suggests a possible solution to the discrepancy
 #############################################################
 :date: 2010-06-21 18:17
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, analysis, discrepancy
+:tags: googlepost, analysis, discrepancy
 :slug: pps-analysis-suggests-a-possible-solution-to-the-discrepancy
 
 The comparisons I mentioned in the previous post are sort of done.  They

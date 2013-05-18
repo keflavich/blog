@@ -2,7 +2,7 @@ Pipeline Flowcharts
 ###################
 :date: 2010-06-07 22:39
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pipeline
+:tags: googlepost, pipeline
 :slug: pipeline-flowcharts
 
 In the process of hunting down a supposed calibration error, I

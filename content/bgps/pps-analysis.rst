@@ -2,7 +2,7 @@ PPS analysis
 ############
 :date: 2010-06-16 18:06
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, calibration
+:tags: googlepost, calibration
 :slug: pps-analysis
 
 I've started looking at PPS fields to see if I can glean any additional

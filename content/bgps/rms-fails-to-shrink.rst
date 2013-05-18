@@ -2,7 +2,7 @@ RMS fails to shrink
 ###################
 :date: 2008-08-12 13:51
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pointing
+:tags: googlepost, pointing
 :slug: rms-fails-to-shrink
 
 Spent a while today working on these plots after rejecting every obvious

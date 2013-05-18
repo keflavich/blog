@@ -2,7 +2,7 @@ A workaround for individual maps?
 #################################
 :date: 2011-03-24 00:33
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, iterating, mapping, flagging, pipeline
+:tags: googlepost, iterating, mapping, flagging, pipeline
 :slug: a-workaround-for-individual-maps
 
 I closely examined the timestreams of 101208\_ob7 as I said I would

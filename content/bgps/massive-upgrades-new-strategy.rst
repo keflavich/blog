@@ -2,7 +2,7 @@ Massive upgrades, new strategy?
 ###############################
 :date: 2008-11-18 04:01
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pipeline
+:tags: googlepost, pipeline
 :slug: massive-upgrades-new-strategy
 
 A few major things today:

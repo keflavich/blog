@@ -2,7 +2,7 @@ Inconsistent
 ############
 :date: 2008-08-17 18:56
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, pointing
+:tags: googlepost, pointing
 :slug: inconsistent
 
 James: "I think it's fair to say, though, that there is some problem

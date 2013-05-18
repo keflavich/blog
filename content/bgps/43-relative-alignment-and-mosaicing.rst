@@ -2,7 +2,7 @@
 ####################################
 :date: 2009-03-04 02:57
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, methods paper
+:tags: googlepost, methods paper
 :slug: 43-relative-alignment-and-mosaicing
 
 Relative alignment was performed by finding the peak of the

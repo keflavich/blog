@@ -2,7 +2,7 @@ Measuring preferred angles in the Herschel data on larger scales
 ################################################################
 :date: 2011-06-07 22:09
 :author: Adam (noreply@blogger.com)
-:tags: http://schemas.google.com/blogger/2008/kind#post, simulation
+:tags: googlepost, simulation
 :slug: measuring-preferred-angles-in-the-herschel-data-on-larger-scales
 
 This is something of a repeat of yesterday's exercise, but for Herschel
