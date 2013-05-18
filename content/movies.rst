@@ -23,8 +23,11 @@ I use `` savefig(filename,dpi=50) `` to reduce the image quality so that
 it's easier for the animator to handle.
 ImageMagick's convert can be used to stitch any kind of image into a
 movie given that you've installed an mpeg2 encoder (fink gave me
-``mpeg2vidcodec      ``). The command is very simple:
+``mpeg2vidcodec``). 
+
+The command is very simple:
 ``convert -size 300x300 *.png movie.mpg``
+
 I had to use a smaller image size because a series of 1000x12kb files
 somehow chomped ~6-8 GB of RAM and swap space.
 
