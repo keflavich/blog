@@ -157,42 +157,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/movies.html" rel="bookmark" title="Permalink to MOVIES!">
-                    MOVIES!</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Making movies is surprisingly difficult. No matter what language you
-use, apparently true movie files can only be made by stringing together
-images, i.e. there is no native movie-producing feature. Gnuplot can do
-some simple animations but to do anything sophisticated you need to
-start delving into variables, and for that I switch to a real language.
-So, I returned to python. As usual, it took no more than a few hours of
-coding and learning to come up with something. But it bothers me that it
-took that long: I still think python is most deficient in its failure to
-create a default column-text reader like 'readcol' in IDL. I can't
-complain that much, though: I wrote <a class="reference external" href="http://casa.colorado.edu/~ginsbura/pyreadcol.htm">my own</a> in about 5 minutes.
-Anyway, the key is to use the <tt class="docutils literal">.set_xdata</tt> and <tt class="docutils literal">.set_ydata</tt>
-functions of a plot to update a canvas. I still don't have nearly as
-high a plotting speed as I'd like, but it works alright if I don't
-display to screen. Probably a different backend would be more effective
-but I don't like to mess with backends.
-I use `` savefig(filename,dpi=50) `` to reduce the image quality so that
-it's easier for the animator to handle.
-ImageMagick's convert can be used to stitch any kind of image into a
-movie given that you've installed an mpeg2 encoder (fink gave me
-<tt class="docutils literal">mpeg2vidcodec&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">``).</span> The command is very simple:
-``convert <span class="pre">-size</span> 300x300 *.png movie.mpg</tt>
-I had to use a smaller image size because a series of 1000x12kb files
-somehow chomped ~6-8 GB of RAM and swap space.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
                 <a href="http://keflavich.github.com/blog/my-genes.html" rel="bookmark" title="Permalink to my genes">
                     my genes</a>
             </h2> 
@@ -280,27 +244,11 @@ installed via the incredibly complicated series of steps listed here:
 article: <a class="reference external" href="http://www.scienceinschool.org/2008/issue10/tamaradavis">http://www.scienceinschool.org/2008/issue10/tamaradavis</a>,
 though the image has little to do with the subject in question. Noodle
 (can't remember her real name... that's sad on my part) is in the
-picture. Neat!
-This might not be something to be proud of:
-<a href="#id1"><span class="problematic" id="id2">`http://www.denverptc.org/denver.html
-`_
-GC was featured in:
-`http://www.strudel.org.uk/blog/astro/000855.shtml`_</span></a></p>
-<!-- _`http://www.denverptc.org/denver.html -->
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/Volumes/disk5/Users/adam/repos/blog/content/my-works-featured.rst</tt>, line 19)</p>
-malformed hyperlink target.</div>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/Volumes/disk5/Users/adam/repos/blog/content/my-works-featured.rst</tt>, line 20)</p>
-Explicit markup ends without a blank line; unexpected unindent.</div>
-<p><cite>: http://www.denverptc.org/denver.html
-.. _`http://www.strudel.org.uk/blog/astro/000855.shtml</cite>: <a class="reference external" href="http://www.strudel.org.uk/blog/astro/000855.shtml">http://www.strudel.org.uk/blog/astro/000855.shtml</a></p>
-<div class="system-messages section">
-<h2>Docutils System Messages</h2>
-<div class="system-message" id="id1">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Volumes/disk5/Users/adam/repos/blog/content/my-works-featured.rst</tt>, line 7); <em><a href="#id2">backlink</a></em></p>
-Unknown target name: &quot;http://www.denverptc.org/denver.html `_ gc was featured in: `http://www.strudel.org.uk/blog/astro/000855.shtml&quot;.</div>
-</div>
+picture. Neat!</p>
+<p>This might not be something to be proud of:
+<a class="reference external" href="http://www.denverptc.org/denver.html">http://www.denverptc.org/denver.html</a></p>
+<p>GC was featured in:
+<a class="reference external" href="http://www.strudel.org.uk/blog/astro/000855.shtml">http://www.strudel.org.uk/blog/astro/000855.shtml</a></p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
@@ -315,39 +263,20 @@ Unknown target name: &quot;http://www.denverptc.org/denver.html `_ gc was featur
             <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
             <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>NaN-friendly convolution is important for, e.g., masked data sets in
-which you want to interpolate across the masked region.
-Astropy has gained this functionality with pull request 155:
-<a href="#id1"><span class="problematic" id="id2">`https://github.com/astropy/astropy/pull/155
-`_\ but this is a &quot;direct&quot; convolution parallel to IDL's 'convol'
-routine.
-My FFT-based version now works in N dimensions and is a little cleaner:
-`http://code.google.com/p/agpy/source/browse/trunk/AG\_fft\_tools/convolve\_nd.py
-`_
-I'm still working on writing unit tests, and I'm really not sure what
+which you want to interpolate across the masked region.</p>
+<p>Astropy has gained this functionality with pull request 155:
+<a class="reference external" href="https://github.com/astropy/astropy/pull/155">https://github.com/astropy/astropy/pull/155</a> but this is a &quot;direct&quot; convolution parallel to IDL's 'convol'
+routine.</p>
+<p>My FFT-based version now works in N dimensions and is a little cleaner:
+<a class="reference external" href="http://code.google.com/p/agpy/source/browse/trunk/AG_fft_tools/convolve_nd.py">http://code.google.com/p/agpy/source/browse/trunk/AG_fft_tools/convolve_nd.py</a></p>
+<p>I'm still working on writing unit tests, and I'm really not sure what
 the &quot;correct&quot; behavior at the edges is for the different cases... right
 now, it seems counterintuitive to me, but the code is doing what I
-expect it to.
-Also, Boxcar kernels always result in shifts for me... they're never
-supposed to. This is a bug.
-Currently, other links to these codes:
-`http://stackoverflow.com/questions/1100100/fft-based-2d-convolution-and-correlation-in-python/8454010#8454010`_</span></a></p>
-<!-- _`https://github.com/astropy/astropy/pull/155 -->
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/Volumes/disk5/Users/adam/repos/blog/content/nan-friendly-convolution.rst</tt>, line 25)</p>
-malformed hyperlink target.</div>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/Volumes/disk5/Users/adam/repos/blog/content/nan-friendly-convolution.rst</tt>, line 26)</p>
-Explicit markup ends without a blank line; unexpected unindent.</div>
-<p><cite>: https://github.com/astropy/astropy/pull/155
-.. _`http://code.google.com/p/agpy/source/browse/trunk/AG_fft_tools/convolve_nd.py
-`: http://code.google.com/p/agpy/source/browse/trunk/AG_fft_tools/convolve_nd.py
-.. _`http://stackoverflow.com/questions/1100100/fft-based-2d-convolution-and-correlation-in-python/8454010#8454010</cite>: <a class="reference external" href="http://stackoverflow.com/questions/1100100/fft-based-2d-convolution-and-correlation-in-python/8454010#8454010">http://stackoverflow.com/questions/1100100/fft-based-2d-convolution-and-correlation-in-python/8454010#8454010</a></p>
-<div class="system-messages section">
-<h2>Docutils System Messages</h2>
-<div class="system-message" id="id1">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Volumes/disk5/Users/adam/repos/blog/content/nan-friendly-convolution.rst</tt>, line 7); <em><a href="#id2">backlink</a></em></p>
-Unknown target name: &quot;https://github.com/astropy/astropy/pull/155 `_but this is a &quot;direct&quot; convolution parallel to idl's 'convol' routine. my fft-based version now works in n dimensions and is a little cleaner: `http://code.google.com/p/agpy/source/browse/trunk/ag_fft_tools/convolve_nd.py `_ i'm still working on writing unit tests, and i'm really not sure what the &quot;correct&quot; behavior at the edges is for the different cases... right now, it seems counterintuitive to me, but the code is doing what i expect it to. also, boxcar kernels always result in shifts for me... they're never supposed to. this is a bug. currently, other links to these codes: `http://stackoverflow.com/questions/1100100/fft-based-2d-convolution-and-correlation-in-python/8454010#8454010&quot;.</div>
-</div>
+expect it to.</p>
+<p>Also, Boxcar kernels always result in shifts for me... they're never
+supposed to. This is a bug.</p>
+<p>Currently, other links to these codes:
+<a class="reference external" href="http://stackoverflow.com/questions/1100100/fft-based-2d-convolution-and-correlation-in-python/8454010#8454010">http://stackoverflow.com/questions/1100100/fft-based-2d-convolution-and-correlation-in-python/8454010#8454010</a></p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
@@ -411,6 +340,24 @@ data.
 At the same time, the <a class="reference external" href="http://starlink.jach.hawaii.edu/starlink/">STARLINK</a> folks do a much better job than I do,
 and I already spend about half of my time comparing different archival
 data sets... so I think his crystal ball is overall very accurate.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.com/blog/no-coffee-day-make-me-useless.html" rel="bookmark" title="Permalink to no-coffee day make me useless">
+                    no-coffee day make me useless</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I had a few productive hours after my run, then things kinda went
+downhill.... in the morning, I wrote two <a class="reference external" href="http://casa.colorado.edu/~ginsbura/ds9_imalign.htm">guides</a> and then taught
+someone else to use that stuff and then I tried to write up my lecture
+for tomorrow and totally failed. I didn't accomplish anything after
+about 1 pm. Lesson to me: don't ride no-coffee days at work.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

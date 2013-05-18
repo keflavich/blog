@@ -370,7 +370,7 @@ Any other ideas?</p>
         <footer class="post-info">
             <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
             <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p><p><a class="reference external" href="http://agpy.googlecode.com/svn/trunk/macvim-skim/macvim-skim-install.sh">macvim-skim-install.sh</a> is my install script for using MacVim.app with
+        <div class="entry-content"> <p><a class="reference external" href="http://agpy.googlecode.com/svn/trunk/macvim-skim/macvim-skim-install.sh">macvim-skim-install.sh</a> is my install script for using MacVim.app with
 Skim.app.
 The <a class="reference external" href="http://code.google.com/p/agpy/wiki/macvimskim">agpy wiki page</a> has instructions that are probably more clear; I
 don't really like the colorscheme / layout of this blog.
@@ -392,37 +392,22 @@ posterity (I hope to update the agpy version to <a class="reference external" hr
 few hours later, I HAVE replaced the code. Below are the old applescript
 version, then the new, vim-based version
 <tt class="docutils literal"><span class="pre">#!/bin/bashfile=&quot;$1&quot;line=&quot;$2&quot;[</span> <span class="pre">&quot;${file:0:1}&quot;</span> == &quot;/&quot; ] || <span class="pre">file=&quot;${PWD}/$file&quot;#</span> Use Applescript to activate VIM, find file, and load it# the 'delay' command is needed to prevent command/control/shift from sticking when this# is activated (e.g., from Skim, where the command is <span class="pre">command-shift-click)##</span> key code 53 is &quot;escape&quot; to escape to command mode in VIMexec osascript <span class="pre">\-e</span> &quot;delay 0.2&quot; <span class="pre">\-e</span> &quot;tell application \&quot;MacVim\&quot; to activate&quot; <span class="pre">\-e</span> &quot;tell application \&quot;System <span class="pre">Events\&quot;&quot;</span> <span class="pre">\-e</span> &quot;&nbsp; tell process <span class="pre">\&quot;MacVim\&quot;&quot;</span> <span class="pre">\-e</span> &quot;&nbsp;&nbsp;&nbsp; key code 53 <span class="pre">&quot;\-e</span> &quot;&nbsp;&nbsp;&nbsp; keystroke <span class="pre">\&quot;:set</span> hidden\&quot; &amp; return &quot; <span class="pre">\-e</span> &quot;&nbsp;&nbsp;&nbsp; keystroke <span class="pre">\&quot;:if</span> <span class="pre">bufexists(bufname('$file'))\&quot;</span> &amp; return &quot; <span class="pre">\-e</span> &quot;&nbsp;&nbsp;&nbsp; keystroke <span class="pre">\&quot;:exe</span> <span class="pre">\\\&quot;:buffer</span> <span class="pre">\\\&quot;</span> . <span class="pre">bufnr(bufname('$file'))\&quot;</span>&nbsp; &amp; return &quot; <span class="pre">\-e</span> &quot;&nbsp;&nbsp;&nbsp; keystroke <span class="pre">\&quot;:else</span> \&quot; &amp; return &quot; <span class="pre">\-e</span> &quot;&nbsp;&nbsp;&nbsp; keystroke <span class="pre">\&quot;:echo</span> <span class="pre">\\\&quot;Could</span> not load <span class="pre">file\\\&quot;</span> \&quot; &amp; return &quot; <span class="pre">\-e</span> &quot;&nbsp;&nbsp;&nbsp; keystroke <span class="pre">\&quot;:endif\&quot;</span> &amp; return &quot; <span class="pre">\-e</span> &quot;&nbsp;&nbsp;&nbsp; keystroke <span class="pre">\&quot;:$line\&quot;</span> &amp; return &quot; <span class="pre">\-e</span> &quot;&nbsp; end tell&quot; <span class="pre">\-e</span> &quot;end tell&quot;</tt>
-New code: <a href="#id2"><span class="problematic" id="id3">`download link`_</span></a></p>
+New code: <a class="reference external" href="http://agpy.googlecode.com/svn/trunk/macvim-skim/macvim-load-line">download link A</a></p>
 <pre class="literal-block">
 #!/bin/bash# Install directions:# Put this file somewhere in your path and make it executable# To set up in Skim, go to Preferences:Sync# Change Preset: to Custom# Change Command: to macvim-load-line# Change Arguments: to &quot;%file&quot; %linefile=&quot;$1&quot;line=&quot;$2&quot;debug=&quot;$3&quot;echo file: $fileecho line: $lineecho debug: $debugfor server in `mvim --serverlist` do    foundfile=`mvim --servername $server --remote-expr &quot;WhichTab('$file')&quot;`    if [[ $foundfile &gt; 0 ]]    then        mvim --servername $server --remote-expr &quot;foreground()&quot;         if [[ $debug ]] ; then echo mvim --servername $server --remote-send &quot;:exec \&quot;tabnext $foundfile\&quot; &quot;; fi        mvim --servername $server --remote-send &quot;:exec \&quot;tabnext $foundfile\&quot; &quot;        if [[ $debug ]] ; then echo mvim --servername $server --remote-send &quot;:$line &quot;; fi        mvim --servername $server --remote-send &quot;:$line &quot;    fidone
 </pre>
 <p>Save that as an executable in your default path (e.g.,
 <tt class="docutils literal"><span class="pre">/usr/local/bin/macvim-load-line</span></tt>) and open Skim.app, go to
 Preferences:Sync and make the command look like this:</p>
-<div class="separator" style="clear: both; text-align: center;"><p><a href="#id4"><span class="problematic" id="id5">`|image0|`_</span></a></p>
-</div><p>You need to have mvim on your path. mvim comes with MacVim.app, but is
+<img alt="http://3.bp.blogspot.com/-SbMLRTNSxug/Tw8_0saPQUI/AAAAAAAAGrc/9Ab8bgH8Ej0/s320/Screen%2Bshot%2B2012-01-12%2Bat%2B1.17.09%2BPM.png" src="http://3.bp.blogspot.com/-SbMLRTNSxug/Tw8_0saPQUI/AAAAAAAAGrc/9Ab8bgH8Ej0/s320/Screen%2Bshot%2B2012-01-12%2Bat%2B1.17.09%2BPM.png" />
+<p>You need to have mvim on your path. mvim comes with MacVim.app, but is
 NOT installed by default. Install it by doing something like:
 `` cp /Users/adam/Downloads/MacVim-7_3-53/mvim /usr/local/bin/mvim ``
 You'll also need to install WhichTab.vim in your <tt class="docutils literal"><span class="pre">~/.vim/plugins/</span></tt>
-directory. It's available <a class="reference external" href="http://code.google.com/p/agpy/source/browse/trunk/macvim-skim/WhichTab.vim">here</a> (<a href="#id6"><span class="problematic" id="id7">`download link`_</span></a>). Here's the source:</p>
+directory. It's available <a class="reference external" href="http://code.google.com/p/agpy/source/browse/trunk/macvim-skim/WhichTab.vim">here</a> (<a class="reference external" href="http://agpy.googlecode.com/svn/trunk/macvim-skim/WhichTab.vim">download link B</a>). Here's the source:</p>
 <pre class="literal-block">
 function! WhichTab(filename)    &quot; Try to determine whether file is open in any tab.      &quot; Return number of tab it's open in    let buffername = bufname(a:filename)    if buffername == &quot;&quot;        return 0    endif    let buffernumber = bufnr(buffername)    &quot; tabdo will loop through pages and leave you on the last one;    &quot; this is to make sure we don't leave the current page    let currenttab = tabpagenr()    let tab_arr = []    tabdo let tab_arr += tabpagebuflist()    &quot; return to current page    exec &quot;tabnext &quot;.currenttab    &quot; Start checking tab numbers for matches    let i = 0    for tnum in tab_arr        let i += 1        echo &quot;tnum: &quot;.tnum.&quot; buff: &quot;.buffernumber.&quot; i: &quot;.i        if tnum == buffernumber            return i        endif    endforendfunctionfunction! WhichWindow(filename)    &quot; Try to determine whether the file is open in any GVIM *window*    let serverlist = split(serverlist(),&quot;\n&quot;)    &quot;let currentserver = ????    for server in serverlist        let remotetabnum = remote_expr(server,             \&quot;WhichTab('&quot;.a:filename.&quot;')&quot;)        if remotetabnum != 0            return server        endif    endforendfunction
 </pre>
-</p><div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/Volumes/disk5/Users/adam/repos/blog/content/latex-vim-skim.rst</tt>, line 77); <em><a href="#id1">backlink</a></em></p>
-Duplicate explicit target name: &quot;download link&quot;.</div>
-<div class="system-messages section">
-<h2>Docutils System Messages</h2>
-<div class="system-message" id="id2">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Volumes/disk5/Users/adam/repos/blog/content/latex-vim-skim.rst</tt>, line 27); <em><a href="#id3">backlink</a></em></p>
-Duplicate target name, cannot be used as a unique reference: &quot;download link&quot;.</div>
-<div class="system-message" id="id4">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Volumes/disk5/Users/adam/repos/blog/content/latex-vim-skim.rst</tt>, line 49); <em><a href="#id5">backlink</a></em></p>
-Unknown target name: &quot;|image0|&quot;.</div>
-<div class="system-message" id="id6">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Volumes/disk5/Users/adam/repos/blog/content/latex-vim-skim.rst</tt>, line 55); <em><a href="#id7">backlink</a></em></p>
-Duplicate target name, cannot be used as a unique reference: &quot;download link&quot;.</div>
-</div>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

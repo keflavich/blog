@@ -170,27 +170,21 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
   <div class="entry-content">
     <p>Mac OS X doesn't like the defaults built in to <a class="reference external" href="http://www.sron.rug.nl/~vdtak/ratran/frames.html">RATRAN</a>. It died
 unhappily with errors like:
-`` ld_classic: can't locate file for: -lcrt0.o ``
+<tt class="docutils literal">ld_classic: can't locate file for: <span class="pre">-lcrt0.o</span></tt>
 and
 <tt class="docutils literal">ld: warning: in <span class="pre">/usr/local/lib//libcfitsio.a,</span> file is not of required architecture</tt>
 In order to get it to run, I had to do the following:</p>
-<ol class="arabic">
-<li><p class="first">Install CFITSIO with <a href="#id1"><span class="problematic" id="id2">``</span></a>CFLAGS=&quot;-arch x86_64 -arch i386 -g -O2&quot; `` to
-/usr/local/lib</p>
-<div class="system-message" id="id1">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/Volumes/disk5/Users/adam/repos/blog/content/ratran-on-mac-os-x.rst</tt>, line 14); <em><a href="#id2">backlink</a></em></p>
-<p>Inline literal start-string without end-string.</p>
-</div>
-</li>
-<li><p class="first">Edit the sky/Makefile OPT variable (line 23) to read:
-<tt class="docutils literal">OPT = <span class="pre">-I.</span> <span class="pre">-O2</span> <span class="pre">-fno-automatic</span> <span class="pre">-arch</span> x86_64</tt></p>
-</li>
+<ol class="arabic simple">
+<li>Install CFITSIO with <tt class="docutils literal"><span class="pre">CFLAGS=&quot;-arch</span> x86_64 <span class="pre">-arch</span> i386 <span class="pre">-g</span> <span class="pre">-O2&quot;</span></tt> to
+/usr/local/lib</li>
+<li>Edit the sky/Makefile OPT variable (line 23) to read:
+<tt class="docutils literal">OPT = <span class="pre">-I.</span> <span class="pre">-O2</span> <span class="pre">-fno-automatic</span> <span class="pre">-arch</span> x86_64</tt></li>
 </ol>
 <p>Also, you need to set up system variables:</p>
 <pre class="literal-block">
 export RATRAN=/path/to/Ratran export RATRANRUN=/path/to/Ratran/run
 </pre>
-</p>
+
   </div><!-- /.entry-content -->
 </section>
   </div>

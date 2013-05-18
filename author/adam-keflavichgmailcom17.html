@@ -346,32 +346,56 @@ That sucks.</p>
         <footer class="post-info">
             <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
             <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p><p>After <a class="reference external" href="http://buffalothedestroyer.blogspot.com/2010/02/installing-snow-leopard.html">yesterday's disastrous attempt</a> to install various python
+        <div class="entry-content"> <p>After <a class="reference external" href="http://buffalothedestroyer.blogspot.com/2010/02/installing-snow-leopard.html">yesterday's disastrous attempt</a> to install various python
 packages, I started from scratch. First, I got rid of all of my python
 frameworks (backed up but removed from the path). Then, I compiled
-python 2.7 from scratch:
-I got some help from
+python 2.7 from scratch:</p>
+<p>I got some help from
 <a class="reference external" href="http://blog.mahmoudimus.com/2009/12/python-2-6-4-and-twisted-9-on-os-x-10-6-snow-leopard/">http://blog.mahmoudimus.com/2009/12/python-2-6-4-and-twisted-9-on-os-x-10-6-snow-leopard/</a>
-<a href="#id1"><span class="problematic" id="id2">``</span></a>./configure --enable-framework --enable-universalsdk=/Developer/SDKs/MacOSX10.6.sdk MACOSX_DEPLOYMENT_TARGET=10.6 --with-universal-archs=intel -with-readline-dir=/usr/localmake -j 17make -j 17 test ``
-`` make `` results:</p>
-<div class="system-message" id="id1">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/Volumes/disk5/Users/adam/repos/blog/content/python-64-bit-on-mac-os-x-106-snow-leopard.rst</tt>, line 11); <em><a href="#id2">backlink</a></em></p>
-Inline literal start-string without end-string.</div>
+<tt class="docutils literal">./configure <span class="pre">--enable-framework</span> <span class="pre">--enable-universalsdk=/Developer/SDKs/MacOSX10.6.sdk</span> MACOSX_DEPLOYMENT_TARGET=10.6 <span class="pre">--with-universal-archs=intel</span> <span class="pre">-with-readline-dir=/usr/localmake</span> <span class="pre">-j</span> 17make <span class="pre">-j</span> 17 test</tt>
+<tt class="docutils literal">make</tt> results:</p>
 <pre class="literal-block">
-Python build finished, but the necessary bits to build these modules were not found:_bsddb             dl                 gdbm            imageop            linuxaudiodev      ossaudiodev     spwd               sunaudiodev                        To find the necessary bits, look in setup.py in detect_modules() for the module's name.
+Python build finished, but the necessary bits to build these modules were
+not found:
+    _bsddb
+    dl
+    gdbm
+    imageop
+    linuxaudiodev
+    ossaudiodev
+    spwd
+    sunaudiodev
+To find the necessary bits, look in setup.py in detect_modules() for the
+module's name.
 </pre>
 <p>I'm not concerned about these - I don't use any of them and I assume I
 need to install some other packages to get them to work.
 During make test, I had two failures that resulted in &quot;python crash&quot;
 pop-up boxes:</p>
 <pre class="literal-block">
-test_subprocess.    this bit of output is from a test of stdout in a different process ....    this bit of output is from a test of stdout in a different process ...test_sunaudiodev
+test_subprocess.
+this bit of output is from a test of stdout in a different process ....
+this bit of output is from a test of stdout in a different process ...
+test_sunaudiodev
 </pre>
 <p>Then, I got some malloc errors:</p>
 <pre class="literal-block">
-test_ioTesting large file ops skipped on darwin.It requires 2147483648 bytes and a long time.Use 'regrtest.py -u largefile test_io' to run it.Testing large file ops skipped on darwin.It requires 2147483648 bytes and a long time.Use 'regrtest.py -u largefile test_io' to run it.python.exe(22914,0x7fff70d3ebe0) malloc: *** mmap(size=9223372036854775808) failed (error code=12)*** error: can't allocate region*** set a breakpoint in malloc_error_break to debugpython.exe(22914,0x7fff70d3ebe0) malloc: *** mmap(size=9223372036854775808) failed (error code=12)*** error: can't allocate region*** set a breakpoint in malloc_error_break to debugpython.exe(22914,0x7fff70d3ebe0) malloc: *** mmap(size=9223372036854775808) failed (error code=12)*** error: can't allocate region*** set a breakpoint in malloc_error_break to debugtest_ioctl
+test_ioTesting large file ops skipped on darwin.It requires 2147483648
+bytes and a long time.Use 'regrtest.py -u largefile test_io' to run
+it.Testing large file ops skipped on darwin.It requires 2147483648 bytes
+and a long time.Use 'regrtest.py -u largefile test_io' to run
+it.python.exe(22914,0x7fff70d3ebe0) malloc: ***
+mmap(size=9223372036854775808) failed (error code=12)*** error: can't
+allocate region*** set a breakpoint in malloc_error_break to
+debugpython.exe(22914,0x7fff70d3ebe0) malloc: ***
+mmap(size=9223372036854775808) failed (error code=12)*** error: can't
+allocate region*** set a breakpoint in malloc_error_break to
+debugpython.exe(22914,0x7fff70d3ebe0) malloc: ***
+mmap(size=9223372036854775808) failed (error code=12)*** error: can't
+allocate region*** set a breakpoint in malloc_error_break to
+debugtest_ioctl
 </pre>
-</p> </div><!-- /.entry-content   not article.summary--> 
+ </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
     <li><article class="hentry">
