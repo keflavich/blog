@@ -6,6 +6,7 @@ Weighting and high-frequency noise
 :slug: weighting-and-high-frequency-noise
 
 .. image:: http://1.bp.blogspot.com/_lsgW26mWZnU/SR4DzVCz1WI/AAAAAAAADfk/cJ70OPeqEzg/s400/psds.png
+
 Image of PSDs (with no normalization) of the raw (blue), delined and
 exponential and polynomial subtracted (white), the noise timestream
 (yellow), and the data (cyan).
@@ -18,7 +19,9 @@ preferentially subtracting certain scales but I don't know why, unless
 deconvolution is at fault.
 Edit/Update: The deconvolution is definitely at fault. Here's the same
 scan done without deconvolution:
+
 .. image:: http://3.bp.blogspot.com/_lsgW26mWZnU/SR4ZM6FPfrI/AAAAAAAADf0/baHOQwedeqs/s400/psds2.png
+
 It should have been obvious; the cyan in the first plot is the PSD of
 the deconvolution straight up, and that should have no high-frequency
 structure...
