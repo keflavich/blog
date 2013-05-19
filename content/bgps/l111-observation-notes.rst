@@ -32,6 +32,3 @@ offsets| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/SJZ5AakkcMI/AAAAAAAADL4/B
 ptg| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/SJZ5ArDzBhI/AAAAAAAADMA/Qa6nxqshl7Y/s320/l111_sep05_rawcsoptg.jpg
 .. |pointing model
 applied| image:: http://3.bp.blogspot.com/_lsgW26mWZnU/SJZ5Avg041I/AAAAAAAADMI/flj9idr7F54/s320/l111_sep05_ptgapplied.jpg
-.. |image3| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/SJZ5AakkcMI/AAAAAAAADL4/BV6bqAe26oc/s320/l111_sep05_noptgmdl_fixedoffset.jpg
-.. |image4| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/SJZ5ArDzBhI/AAAAAAAADMA/Qa6nxqshl7Y/s320/l111_sep05_rawcsoptg.jpg
-.. |image5| image:: http://3.bp.blogspot.com/_lsgW26mWZnU/SJZ5Avg041I/AAAAAAAADMI/flj9idr7F54/s320/l111_sep05_ptgapplied.jpg

@@ -35,34 +35,10 @@ to make of the difference between source mask and aperture yet,
 though... there's probably something significant in the source mask
 being forced to pick positive pixels. (and peppered pickles)
 
-.. raw:: html
+.. image:: http://2.bp.blogspot.com/-9a-O_TQx3Ek/TlMr1f-nmKI/AAAAAAAAGbs/Tp6UY_vwl_s/s320/total_v1v2_40arcsec_fit_compare.png
 
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image0|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image1|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   </p>
+.. image:: http://2.bp.blogspot.com/-zhLxvflZ-30/TlMr1mWy6kI/AAAAAAAAGb0/GH7xSizIjnk/s320/total_v1v2_sourcemask_fit_compare.png
 
 .. _|image2|: http://2.bp.blogspot.com/-9a-O_TQx3Ek/TlMr1f-nmKI/AAAAAAAAGbs/Tp6UY_vwl_s/s1600/total_v1v2_40arcsec_fit_compare.png
 .. _|image3|: http://2.bp.blogspot.com/-zhLxvflZ-30/TlMr1mWy6kI/AAAAAAAAGb0/GH7xSizIjnk/s1600/total_v1v2_sourcemask_fit_compare.png
 
-.. |image0| image:: http://2.bp.blogspot.com/-9a-O_TQx3Ek/TlMr1f-nmKI/AAAAAAAAGbs/Tp6UY_vwl_s/s320/total_v1v2_40arcsec_fit_compare.png
-.. |image1| image:: http://2.bp.blogspot.com/-zhLxvflZ-30/TlMr1mWy6kI/AAAAAAAAGb0/GH7xSizIjnk/s320/total_v1v2_sourcemask_fit_compare.png
-.. |image2| image:: http://2.bp.blogspot.com/-9a-O_TQx3Ek/TlMr1f-nmKI/AAAAAAAAGbs/Tp6UY_vwl_s/s320/total_v1v2_40arcsec_fit_compare.png
-.. |image3| image:: http://2.bp.blogspot.com/-zhLxvflZ-30/TlMr1mWy6kI/AAAAAAAAGb0/GH7xSizIjnk/s320/total_v1v2_sourcemask_fit_compare.png

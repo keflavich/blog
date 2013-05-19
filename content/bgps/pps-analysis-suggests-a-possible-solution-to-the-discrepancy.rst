@@ -22,27 +22,12 @@ should contribute to the source background because it is involved in the
 atmosphere subtraction (it's sort of "already subtracted" so you have to
 subtract from the science fields).
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image0|`_\ `|image1|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://3.bp.blogspot.com/_lsgW26mWZnU/TB-rPT7MLdI/AAAAAAAAFws/7oWTt3FOF-M/s320/BGPS_correction_factors.png
+.. image:: http://2.bp.blogspot.com/_lsgW26mWZnU/TB-rQId8G_I/AAAAAAAAFw0/NUJKQO_5zI4/s320/BGPS_correction_factor_histograms.png
 
 Next step: direct comparison between v1.0 and v2.0.  Pixel by pixel,
 aperture, and powerspectrum
 
-.. raw:: html
-
-   </p>
-
 .. _|image2|: http://3.bp.blogspot.com/_lsgW26mWZnU/TB-rPT7MLdI/AAAAAAAAFws/7oWTt3FOF-M/s1600/BGPS_correction_factors.png
 .. _|image3|: http://2.bp.blogspot.com/_lsgW26mWZnU/TB-rQId8G_I/AAAAAAAAFw0/NUJKQO_5zI4/s1600/BGPS_correction_factor_histograms.png
 
-.. |image0| image:: http://3.bp.blogspot.com/_lsgW26mWZnU/TB-rPT7MLdI/AAAAAAAAFws/7oWTt3FOF-M/s320/BGPS_correction_factors.png
-.. |image1| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/TB-rQId8G_I/AAAAAAAAFw0/NUJKQO_5zI4/s320/BGPS_correction_factor_histograms.png
-.. |image2| image:: http://3.bp.blogspot.com/_lsgW26mWZnU/TB-rPT7MLdI/AAAAAAAAFws/7oWTt3FOF-M/s320/BGPS_correction_factors.png
-.. |image3| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/TB-rQId8G_I/AAAAAAAAFw0/NUJKQO_5zI4/s320/BGPS_correction_factor_histograms.png

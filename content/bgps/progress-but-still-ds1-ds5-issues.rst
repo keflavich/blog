@@ -9,41 +9,9 @@ ds1 and ds5 agree pretty well with the recent upgrades to delining and
 deconvolution. However, there are still counterexamples, e.g.
 101208\_o13, in which ds5 < ds1:
 
-.. raw:: html
+.. image:: http://4.bp.blogspot.com/-fIJHF_x5mBI/TZI0cryJfbI/AAAAAAAAGDI/GsNfLRGNZAk/s200/101208_o13_raw_ds1.nc_indiv13pca.png
 
-   <table>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-`|image0|`_
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-`|image1|`_
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   </table>
+.. image:: http://2.bp.blogspot.com/-QRhiz8W9RDc/TZI0dGUR4UI/AAAAAAAAGDQ/WC8eLQd6_Z0/s200/101208_o13_raw_ds5.nc_indiv13pca.png
 
 The 'fitted' values agree better than the 'measured' values now that
 NANs are treated properly.
@@ -60,16 +28,8 @@ There is a discrepancy between map types for ds1 but not for ds5, which
 is actually backwards from what I would have expected, since ds1 will
 get better-sampled maps.
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image2|`_
-`|image3|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://2.bp.blogspot.com/-ARaSL7ZdDmc/TZKRcE01DnI/AAAAAAAAGDY/YMZRpRo53Hw/s320/uranus_dcfluxes_dec2010_nomask_ds1_13pca_fits_map10.png
+.. image:: http://3.bp.blogspot.com/-pWtggp0vSP4/TZKRcwZ_SrI/AAAAAAAAGDg/IqVHQSprkL8/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png
 
 Luckily, the difference between peak fitting and "measuring" results in
 very small (insignificant) changes to the calibration curve (recall
@@ -77,16 +37,8 @@ fitting is direct gaussian fitting; 'measuring' is using the
 gaussian-fit width and total flux in an ellipse to infer a peak assuming
 a point source):
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image4|`_
-`|image5|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://2.bp.blogspot.com/-E-FDTTj-4Ik/TZKVyUA8zBI/AAAAAAAAGDo/9NGubgLWBvo/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png
+.. image:: http://3.bp.blogspot.com/-GdyxFnmwQ7g/TZKVykSg57I/AAAAAAAAGDw/PPVXtfAxW0s/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_map10.png
 
 Since this work has all been done for the 'bootstrapping' observations
 that are supposed to tell us if different map sizes are compatible, I
@@ -98,10 +50,6 @@ background, though since the methods are being updated live there may be
 more changes and it will have to be re-run.... initial looks at W5 are
 BAD but L030 is GOOD (bordering on amazing))
 
-.. raw:: html
-
-   </p>
-
 .. _|image6|: http://4.bp.blogspot.com/-fIJHF_x5mBI/TZI0cryJfbI/AAAAAAAAGDI/GsNfLRGNZAk/s1600/101208_o13_raw_ds1.nc_indiv13pca.png
 .. _|image7|: http://2.bp.blogspot.com/-QRhiz8W9RDc/TZI0dGUR4UI/AAAAAAAAGDQ/WC8eLQd6_Z0/s1600/101208_o13_raw_ds5.nc_indiv13pca.png
 .. _|image8|: http://2.bp.blogspot.com/-ARaSL7ZdDmc/TZKRcE01DnI/AAAAAAAAGDY/YMZRpRo53Hw/s1600/uranus_dcfluxes_dec2010_nomask_ds1_13pca_fits_map10.png
@@ -109,15 +57,3 @@ BAD but L030 is GOOD (bordering on amazing))
 .. _|image10|: http://2.bp.blogspot.com/-E-FDTTj-4Ik/TZKVyUA8zBI/AAAAAAAAGDo/9NGubgLWBvo/s1600/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png
 .. _|image11|: http://3.bp.blogspot.com/-GdyxFnmwQ7g/TZKVykSg57I/AAAAAAAAGDw/PPVXtfAxW0s/s1600/uranus_dcfluxes_dec2010_nomask_ds5_13pca_map10.png
 
-.. |image0| image:: http://4.bp.blogspot.com/-fIJHF_x5mBI/TZI0cryJfbI/AAAAAAAAGDI/GsNfLRGNZAk/s200/101208_o13_raw_ds1.nc_indiv13pca.png
-.. |image1| image:: http://2.bp.blogspot.com/-QRhiz8W9RDc/TZI0dGUR4UI/AAAAAAAAGDQ/WC8eLQd6_Z0/s200/101208_o13_raw_ds5.nc_indiv13pca.png
-.. |image2| image:: http://2.bp.blogspot.com/-ARaSL7ZdDmc/TZKRcE01DnI/AAAAAAAAGDY/YMZRpRo53Hw/s320/uranus_dcfluxes_dec2010_nomask_ds1_13pca_fits_map10.png
-.. |image3| image:: http://3.bp.blogspot.com/-pWtggp0vSP4/TZKRcwZ_SrI/AAAAAAAAGDg/IqVHQSprkL8/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png
-.. |image4| image:: http://2.bp.blogspot.com/-E-FDTTj-4Ik/TZKVyUA8zBI/AAAAAAAAGDo/9NGubgLWBvo/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png
-.. |image5| image:: http://3.bp.blogspot.com/-GdyxFnmwQ7g/TZKVykSg57I/AAAAAAAAGDw/PPVXtfAxW0s/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_map10.png
-.. |image6| image:: http://4.bp.blogspot.com/-fIJHF_x5mBI/TZI0cryJfbI/AAAAAAAAGDI/GsNfLRGNZAk/s200/101208_o13_raw_ds1.nc_indiv13pca.png
-.. |image7| image:: http://2.bp.blogspot.com/-QRhiz8W9RDc/TZI0dGUR4UI/AAAAAAAAGDQ/WC8eLQd6_Z0/s200/101208_o13_raw_ds5.nc_indiv13pca.png
-.. |image8| image:: http://2.bp.blogspot.com/-ARaSL7ZdDmc/TZKRcE01DnI/AAAAAAAAGDY/YMZRpRo53Hw/s320/uranus_dcfluxes_dec2010_nomask_ds1_13pca_fits_map10.png
-.. |image9| image:: http://3.bp.blogspot.com/-pWtggp0vSP4/TZKRcwZ_SrI/AAAAAAAAGDg/IqVHQSprkL8/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png
-.. |image10| image:: http://2.bp.blogspot.com/-E-FDTTj-4Ik/TZKVyUA8zBI/AAAAAAAAGDo/9NGubgLWBvo/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png
-.. |image11| image:: http://3.bp.blogspot.com/-GdyxFnmwQ7g/TZKVykSg57I/AAAAAAAAGDw/PPVXtfAxW0s/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_map10.png

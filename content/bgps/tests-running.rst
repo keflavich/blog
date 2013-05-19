@@ -23,7 +23,3 @@ the ds5 data in general are abominable. They drop by 15-20% compared to
 ds1 for Mars. The problem with nodeconv appears to be extremely high
 noise maps.
 
-.. raw:: html
-
-   </p>
-

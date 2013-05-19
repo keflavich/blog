@@ -13,15 +13,7 @@ end, I use the HiGal SDP fields, looking only at their power spectra.
 They are well represented by a power law with α = 3 (shown in the dashed
 black line below).
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image0|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://2.bp.blogspot.com/-50R2lfaIGrY/TdvZi5tl5VI/AAAAAAAAGLQ/w45OC9dk3Rg/s320/sdp_psds_powerlaw.png
 
 Therefore, I've attempted to randomly sample from a similar power law
 distribution using the following IDL code:
@@ -46,50 +38,14 @@ The noise is added after the smoothing because it should be on a pixel
 scale rather than a beam scale.
 Here are some example realizations with different power laws:
 
-.. raw:: html
+.. image:: http://3.bp.blogspot.com/-vCy9Lx2RjWw/Tdvs_PO1u6I/AAAAAAAAGLw/cc7cIupQu0U/s320/exp7_fakesky_sm_realP-1.0_imagP-1.0_imagS01.0_seednum02.png
 
-   <div class="separator" style="clear: both; text-align: center;">
+.. image:: http://4.bp.blogspot.com/-qpgg2U41r6U/Tdvs_RPxARI/AAAAAAAAGL4/v5exzhhqDew/s320/exp7_fakesky_sm_realP-1.5_imagP-1.5_imagS01.0_seednum02.png
 
-`|image1|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image2|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image3|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   </p>
+.. image:: http://3.bp.blogspot.com/-2kUqO9aE8zM/Tdvs_maHaCI/AAAAAAAAGMA/u5bDCfiVuH0/s320/exp7_fakesky_sm_realP-2.0_imagP-2.0_imagS01.0_seednum02.png
 
 .. _|image4|: http://2.bp.blogspot.com/-50R2lfaIGrY/TdvZi5tl5VI/AAAAAAAAGLQ/w45OC9dk3Rg/s1600/sdp_psds_powerlaw.png
 .. _|image5|: http://3.bp.blogspot.com/-vCy9Lx2RjWw/Tdvs_PO1u6I/AAAAAAAAGLw/cc7cIupQu0U/s1600/exp7_fakesky_sm_realP-1.0_imagP-1.0_imagS01.0_seednum02.png
 .. _|image6|: http://4.bp.blogspot.com/-qpgg2U41r6U/Tdvs_RPxARI/AAAAAAAAGL4/v5exzhhqDew/s1600/exp7_fakesky_sm_realP-1.5_imagP-1.5_imagS01.0_seednum02.png
 .. _|image7|: http://3.bp.blogspot.com/-2kUqO9aE8zM/Tdvs_maHaCI/AAAAAAAAGMA/u5bDCfiVuH0/s1600/exp7_fakesky_sm_realP-2.0_imagP-2.0_imagS01.0_seednum02.png
 
-.. |image0| image:: http://2.bp.blogspot.com/-50R2lfaIGrY/TdvZi5tl5VI/AAAAAAAAGLQ/w45OC9dk3Rg/s320/sdp_psds_powerlaw.png
-.. |image1| image:: http://3.bp.blogspot.com/-vCy9Lx2RjWw/Tdvs_PO1u6I/AAAAAAAAGLw/cc7cIupQu0U/s320/exp7_fakesky_sm_realP-1.0_imagP-1.0_imagS01.0_seednum02.png
-.. |image2| image:: http://4.bp.blogspot.com/-qpgg2U41r6U/Tdvs_RPxARI/AAAAAAAAGL4/v5exzhhqDew/s320/exp7_fakesky_sm_realP-1.5_imagP-1.5_imagS01.0_seednum02.png
-.. |image3| image:: http://3.bp.blogspot.com/-2kUqO9aE8zM/Tdvs_maHaCI/AAAAAAAAGMA/u5bDCfiVuH0/s320/exp7_fakesky_sm_realP-2.0_imagP-2.0_imagS01.0_seednum02.png
-.. |image4| image:: http://2.bp.blogspot.com/-50R2lfaIGrY/TdvZi5tl5VI/AAAAAAAAGLQ/w45OC9dk3Rg/s320/sdp_psds_powerlaw.png
-.. |image5| image:: http://3.bp.blogspot.com/-vCy9Lx2RjWw/Tdvs_PO1u6I/AAAAAAAAGLw/cc7cIupQu0U/s320/exp7_fakesky_sm_realP-1.0_imagP-1.0_imagS01.0_seednum02.png
-.. |image6| image:: http://4.bp.blogspot.com/-qpgg2U41r6U/Tdvs_RPxARI/AAAAAAAAGL4/v5exzhhqDew/s320/exp7_fakesky_sm_realP-1.5_imagP-1.5_imagS01.0_seednum02.png
-.. |image7| image:: http://3.bp.blogspot.com/-2kUqO9aE8zM/Tdvs_maHaCI/AAAAAAAAGMA/u5bDCfiVuH0/s320/exp7_fakesky_sm_realP-2.0_imagP-2.0_imagS01.0_seednum02.png

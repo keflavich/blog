@@ -25,7 +25,3 @@ a single map. Ideas for faster processing:
    that are only used once on the HD during the iterative process. Is
    there any way to separate out data in a struct in this manner?
 
-.. raw:: html
-
-   </p>
-

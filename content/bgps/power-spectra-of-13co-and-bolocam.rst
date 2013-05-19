@@ -5,4 +5,3 @@ Power Spectra of 13CO and Bolocam
 :tags: googlepost
 :slug: power-spectra-of-13co-and-bolocam
 
-

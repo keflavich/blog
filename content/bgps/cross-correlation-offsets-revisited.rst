@@ -5,10 +5,6 @@ Cross-Correlation Offsets Revisited
 :tags: googlepost, alignment, pointing
 :slug: cross-correlation-offsets-revisited
 
-.. raw:: html
-
-   <div dir="ltr" style="text-align: left;">
-
 Since last time (`Taylor Expansion & Cross
 Correlation`_\ `,`_\ `Coalignment Code`_), I have attempted to re-do the
 cross-correlation with an added component: error estimates.
@@ -32,23 +28,7 @@ here:
 The results for the Bolocam data are here (only applied to v2-Herschel
 offsets):
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image0|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   </p>
+.. image:: http://2.bp.blogspot.com/-PMJx-wX23w8/UErt7G3PqfI/AAAAAAAAHOQ/-5xD6ReBRGs/s320/Offsets_XYplot.png
 
 .. _Taylor Expansion & Cross Correlation: http://bolocam.blogspot.com/2009/03/43-relative-alignment-and-mosaicing.html
 .. _,: 
@@ -60,5 +40,3 @@ offsets):
 .. _Tests and Examples: https://github.com/keflavich/image_registration/blob/master/doc/CrossCorrelationSimulation.pdf?raw=true
 .. _|image1|: http://2.bp.blogspot.com/-PMJx-wX23w8/UErt7G3PqfI/AAAAAAAAHOQ/-5xD6ReBRGs/s1600/Offsets_XYplot.png
 
-.. |image0| image:: http://2.bp.blogspot.com/-PMJx-wX23w8/UErt7G3PqfI/AAAAAAAAHOQ/-5xD6ReBRGs/s320/Offsets_XYplot.png
-.. |image1| image:: http://2.bp.blogspot.com/-PMJx-wX23w8/UErt7G3PqfI/AAAAAAAAHOQ/-5xD6ReBRGs/s320/Offsets_XYplot.png

@@ -15,35 +15,11 @@ column conversion but just guess-and-checked once or twice until I got
 something pretty close.
 The power spectra look pretty outstanding:
 
-.. raw:: html
+.. image:: http://4.bp.blogspot.com/--uPAgTvMjkk/TgqcjV9uvhI/AAAAAAAAGO4/cOe1iLuF-H0/s320/powerspectrum_comparison_512_0x1.png
 
-   <div class="separator" style="clear: both; text-align: center;">
+.. image:: http://3.bp.blogspot.com/-1Lupi5MSVpk/TgqcjsPwKFI/AAAAAAAAGPA/D9oNXIHdRtE/s320/powerspectrum_comparison_512_1x1.png
 
-`|image0|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image1|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image2|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://2.bp.blogspot.com/-P2pC9RDKUic/TgqckFwVQUI/AAAAAAAAGPI/FU8cUUZe7bc/s320/powerspectrum_comparison_512_2x1.png
 
 The bumps and wiggles in the 50-200" range are quite well-matched in
 Herschel and Bolocam. Some map edge effects are visible in the Herschel
@@ -53,35 +29,11 @@ that BGPS v1 (scaled up by 1.5) matches the others "pretty well" but is
 a worse match, in general, to the Herschel data than is the BGPS v2.
 Here are some zoomed-in plots on the inverse scale:
 
-.. raw:: html
+.. image:: http://3.bp.blogspot.com/-ldoGiyzeb2w/TgqhYPqerHI/AAAAAAAAGPQ/E1BFNEhcadw/s320/powerspectrum_comparison_512_0x1.png
 
-   <div class="separator" style="clear: both; text-align: center;">
+.. image:: http://3.bp.blogspot.com/-algBRWCXB9E/TgqhYgcwsPI/AAAAAAAAGPY/eSbDDcAYvCk/s320/powerspectrum_comparison_512_1x1.png
 
-`|image3|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image4|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image5|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://4.bp.blogspot.com/-36H34cVnAPM/TgqhY7f4kAI/AAAAAAAAGPg/HUWvO9nZwuE/s320/powerspectrum_comparison_512_2x1.png
 
 And finally, the 13CO data is totally unrepresentative of the dust data.
 There is very little agreement on any scale. This may imply that the
@@ -121,10 +73,6 @@ law, while the dust is not. What hypotheses can explain this?
    and has the same shape as the integrated power spectrum. So a
    distance effect is most likely ruled out.
 
-.. raw:: html
-
-   </p>
-
 .. _|image6|: http://4.bp.blogspot.com/--uPAgTvMjkk/TgqcjV9uvhI/AAAAAAAAGO4/cOe1iLuF-H0/s1600/powerspectrum_comparison_512_0x1.png
 .. _|image7|: http://3.bp.blogspot.com/-1Lupi5MSVpk/TgqcjsPwKFI/AAAAAAAAGPA/D9oNXIHdRtE/s1600/powerspectrum_comparison_512_1x1.png
 .. _|image8|: http://2.bp.blogspot.com/-P2pC9RDKUic/TgqckFwVQUI/AAAAAAAAGPI/FU8cUUZe7bc/s1600/powerspectrum_comparison_512_2x1.png
@@ -132,15 +80,3 @@ law, while the dust is not. What hypotheses can explain this?
 .. _|image10|: http://3.bp.blogspot.com/-algBRWCXB9E/TgqhYgcwsPI/AAAAAAAAGPY/eSbDDcAYvCk/s1600/powerspectrum_comparison_512_1x1.png
 .. _|image11|: http://4.bp.blogspot.com/-36H34cVnAPM/TgqhY7f4kAI/AAAAAAAAGPg/HUWvO9nZwuE/s1600/powerspectrum_comparison_512_2x1.png
 
-.. |image0| image:: http://4.bp.blogspot.com/--uPAgTvMjkk/TgqcjV9uvhI/AAAAAAAAGO4/cOe1iLuF-H0/s320/powerspectrum_comparison_512_0x1.png
-.. |image1| image:: http://3.bp.blogspot.com/-1Lupi5MSVpk/TgqcjsPwKFI/AAAAAAAAGPA/D9oNXIHdRtE/s320/powerspectrum_comparison_512_1x1.png
-.. |image2| image:: http://2.bp.blogspot.com/-P2pC9RDKUic/TgqckFwVQUI/AAAAAAAAGPI/FU8cUUZe7bc/s320/powerspectrum_comparison_512_2x1.png
-.. |image3| image:: http://3.bp.blogspot.com/-ldoGiyzeb2w/TgqhYPqerHI/AAAAAAAAGPQ/E1BFNEhcadw/s320/powerspectrum_comparison_512_0x1.png
-.. |image4| image:: http://3.bp.blogspot.com/-algBRWCXB9E/TgqhYgcwsPI/AAAAAAAAGPY/eSbDDcAYvCk/s320/powerspectrum_comparison_512_1x1.png
-.. |image5| image:: http://4.bp.blogspot.com/-36H34cVnAPM/TgqhY7f4kAI/AAAAAAAAGPg/HUWvO9nZwuE/s320/powerspectrum_comparison_512_2x1.png
-.. |image6| image:: http://4.bp.blogspot.com/--uPAgTvMjkk/TgqcjV9uvhI/AAAAAAAAGO4/cOe1iLuF-H0/s320/powerspectrum_comparison_512_0x1.png
-.. |image7| image:: http://3.bp.blogspot.com/-1Lupi5MSVpk/TgqcjsPwKFI/AAAAAAAAGPA/D9oNXIHdRtE/s320/powerspectrum_comparison_512_1x1.png
-.. |image8| image:: http://2.bp.blogspot.com/-P2pC9RDKUic/TgqckFwVQUI/AAAAAAAAGPI/FU8cUUZe7bc/s320/powerspectrum_comparison_512_2x1.png
-.. |image9| image:: http://3.bp.blogspot.com/-ldoGiyzeb2w/TgqhYPqerHI/AAAAAAAAGPQ/E1BFNEhcadw/s320/powerspectrum_comparison_512_0x1.png
-.. |image10| image:: http://3.bp.blogspot.com/-algBRWCXB9E/TgqhYgcwsPI/AAAAAAAAGPY/eSbDDcAYvCk/s320/powerspectrum_comparison_512_1x1.png
-.. |image11| image:: http://4.bp.blogspot.com/-36H34cVnAPM/TgqhY7f4kAI/AAAAAAAAGPg/HUWvO9nZwuE/s320/powerspectrum_comparison_512_2x1.png

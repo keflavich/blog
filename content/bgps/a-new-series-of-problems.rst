@@ -13,7 +13,3 @@ A new series of problems
    gotten slower. It now takes ~120 computer hours (72 real hours) where
    before it was taking closer to 48.
 
-.. raw:: html
-
-   </p>
-

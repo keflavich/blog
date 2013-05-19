@@ -22,29 +22,13 @@ So, the map I picked to examine was one with the most flagrantly obvious
 filamentary structure in it: the Motte DR 21 MAMBO map. It was also a
 choice of convenience because I already had the data on my laptop....
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image0|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://3.bp.blogspot.com/-ULjqyt_ofEI/TexIAK9ohhI/AAAAAAAAGM0/eCEys_tFOTA/s320/MAMBOmap.png
 
 The preferred direction is quite obvious in this map: there is a long
 filament going up and down the map. Therefore, the DC component should
 be substantially higher in one direction than the other.
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image1|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://1.bp.blogspot.com/-X7TY9wPUL7Y/TexIAZ7hH_I/AAAAAAAAGM8/IEkgX500_Os/s320/MAMBOpsd.png
 
 In the power-spectral-density image, it is quite clear that there is a
 preferred direction, though it is not obvious that the fourier transform
@@ -56,15 +40,7 @@ direction, which I have confirmed that it does with a simple experiment.
 I also don't know what the Shah function is, but it implies a periodic
 dip in the image at every 1/5th of the image, or every 50 pixels.
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image2|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://2.bp.blogspot.com/-l4qWlj1G42k/TexIAufhjSI/AAAAAAAAGNE/UqagczdWzwA/s320/MAMBOpowerspectra.png
 
 These are the power spectra averaged over different angles as labeled.
 -15 corresponds to -15 to +15, 15 corresponds to 15 to 45, etc. The
@@ -74,15 +50,7 @@ artifact of the azimuthal binning process: each pixel can only be
 assigned one angle, so the DC value isn't included in all of them...
 I'll need to find a workaround for that because it's quite deceptive.
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image3|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://4.bp.blogspot.com/-qEWk2rRrwNI/TexIBKn59FI/AAAAAAAAGNM/MXdsiKagpW4/s320/MAMBOazspectra.png
 
 The more interesting way to view the data - and perhaps to analyze maps
 - is to take *radial* averages in some range of spatial scales and plot
@@ -96,21 +64,9 @@ Another suggestion, courtesy Bruce Elmegreen, is to attempt this sort of
 asymmetric power law sampling in 3 dimensions (with only 1 or 2
 dimensions asymmetric) and then projecting down onto two dimensions.
 
-.. raw:: html
-
-   </p>
-
 .. _radialprofile.py: http://code.google.com/p/agpy/source/browse/trunk/agpy/radialprofile.py
 .. _|image4|: http://3.bp.blogspot.com/-ULjqyt_ofEI/TexIAK9ohhI/AAAAAAAAGM0/eCEys_tFOTA/s1600/MAMBOmap.png
 .. _|image5|: http://1.bp.blogspot.com/-X7TY9wPUL7Y/TexIAZ7hH_I/AAAAAAAAGM8/IEkgX500_Os/s1600/MAMBOpsd.png
 .. _|image6|: http://2.bp.blogspot.com/-l4qWlj1G42k/TexIAufhjSI/AAAAAAAAGNE/UqagczdWzwA/s1600/MAMBOpowerspectra.png
 .. _|image7|: http://4.bp.blogspot.com/-qEWk2rRrwNI/TexIBKn59FI/AAAAAAAAGNM/MXdsiKagpW4/s1600/MAMBOazspectra.png
 
-.. |image0| image:: http://3.bp.blogspot.com/-ULjqyt_ofEI/TexIAK9ohhI/AAAAAAAAGM0/eCEys_tFOTA/s320/MAMBOmap.png
-.. |image1| image:: http://1.bp.blogspot.com/-X7TY9wPUL7Y/TexIAZ7hH_I/AAAAAAAAGM8/IEkgX500_Os/s320/MAMBOpsd.png
-.. |image2| image:: http://2.bp.blogspot.com/-l4qWlj1G42k/TexIAufhjSI/AAAAAAAAGNE/UqagczdWzwA/s320/MAMBOpowerspectra.png
-.. |image3| image:: http://4.bp.blogspot.com/-qEWk2rRrwNI/TexIBKn59FI/AAAAAAAAGNM/MXdsiKagpW4/s320/MAMBOazspectra.png
-.. |image4| image:: http://3.bp.blogspot.com/-ULjqyt_ofEI/TexIAK9ohhI/AAAAAAAAGM0/eCEys_tFOTA/s320/MAMBOmap.png
-.. |image5| image:: http://1.bp.blogspot.com/-X7TY9wPUL7Y/TexIAZ7hH_I/AAAAAAAAGM8/IEkgX500_Os/s320/MAMBOpsd.png
-.. |image6| image:: http://2.bp.blogspot.com/-l4qWlj1G42k/TexIAufhjSI/AAAAAAAAGNE/UqagczdWzwA/s320/MAMBOpowerspectra.png
-.. |image7| image:: http://4.bp.blogspot.com/-qEWk2rRrwNI/TexIBKn59FI/AAAAAAAAGNM/MXdsiKagpW4/s320/MAMBOazspectra.png

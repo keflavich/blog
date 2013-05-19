@@ -17,54 +17,18 @@ in flux changes from field to field without any obvious reason.
 Example 1: A pointing field. The source is ~2% brighter in the delined
 version, but otherwise the match between the two is nearly perfect.
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image0|`_
-`|image1|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://1.bp.blogspot.com/_lsgW26mWZnU/TUskr5xAMSI/AAAAAAAAF_M/J65CutNg9hM/s320/101208_ob8_compare.png
+.. image:: http://1.bp.blogspot.com/_lsgW26mWZnU/TUsksatOJSI/AAAAAAAAF_U/9X-rM6JQmCU/s320/101208_ob8_psd.png
 
 Example 2: A bigger map, where the flux recovery is much greater when
 delining, but the background levels are also higher.
 
-.. raw:: html
+.. image:: http://4.bp.blogspot.com/_lsgW26mWZnU/TUsoBrKcQyI/AAAAAAAAF_c/junIzma1zg4/s320/101208_o11_compare.png
 
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image2|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image3|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   </p>
+.. image:: http://3.bp.blogspot.com/_lsgW26mWZnU/TUsoCFL1DiI/AAAAAAAAF_k/b1QrgajdlaE/s320/101208_o11_psd.png
 
 .. _|image4|: http://1.bp.blogspot.com/_lsgW26mWZnU/TUskr5xAMSI/AAAAAAAAF_M/J65CutNg9hM/s1600/101208_ob8_compare.png
 .. _|image5|: http://1.bp.blogspot.com/_lsgW26mWZnU/TUsksatOJSI/AAAAAAAAF_U/9X-rM6JQmCU/s1600/101208_ob8_psd.png
 .. _|image6|: http://4.bp.blogspot.com/_lsgW26mWZnU/TUsoBrKcQyI/AAAAAAAAF_c/junIzma1zg4/s1600/101208_o11_compare.png
 .. _|image7|: http://3.bp.blogspot.com/_lsgW26mWZnU/TUsoCFL1DiI/AAAAAAAAF_k/b1QrgajdlaE/s1600/101208_o11_psd.png
 
-.. |image0| image:: http://1.bp.blogspot.com/_lsgW26mWZnU/TUskr5xAMSI/AAAAAAAAF_M/J65CutNg9hM/s320/101208_ob8_compare.png
-.. |image1| image:: http://1.bp.blogspot.com/_lsgW26mWZnU/TUsksatOJSI/AAAAAAAAF_U/9X-rM6JQmCU/s320/101208_ob8_psd.png
-.. |image2| image:: http://4.bp.blogspot.com/_lsgW26mWZnU/TUsoBrKcQyI/AAAAAAAAF_c/junIzma1zg4/s320/101208_o11_compare.png
-.. |image3| image:: http://3.bp.blogspot.com/_lsgW26mWZnU/TUsoCFL1DiI/AAAAAAAAF_k/b1QrgajdlaE/s320/101208_o11_psd.png
-.. |image4| image:: http://1.bp.blogspot.com/_lsgW26mWZnU/TUskr5xAMSI/AAAAAAAAF_M/J65CutNg9hM/s320/101208_ob8_compare.png
-.. |image5| image:: http://1.bp.blogspot.com/_lsgW26mWZnU/TUsksatOJSI/AAAAAAAAF_U/9X-rM6JQmCU/s320/101208_ob8_psd.png
-.. |image6| image:: http://4.bp.blogspot.com/_lsgW26mWZnU/TUsoBrKcQyI/AAAAAAAAF_c/junIzma1zg4/s320/101208_o11_compare.png
-.. |image7| image:: http://3.bp.blogspot.com/_lsgW26mWZnU/TUsoCFL1DiI/AAAAAAAAF_k/b1QrgajdlaE/s320/101208_o11_psd.png

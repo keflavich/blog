@@ -22,7 +22,3 @@ significant:
       arcsecond, the code will spit out an error message and use
       getaltaz.
 
-.. raw:: html
-
-   </p>
-

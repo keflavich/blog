@@ -32,67 +32,27 @@ wcs-based box for Orion.
 The results... are ambiguous. Wow. In some sub-fields - within the same
 co-added map - the agreement is near-perfect.
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image0|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://1.bp.blogspot.com/-i20j3FEx758/TVR-PbQl7lI/AAAAAAAAGAY/imgMqceS9n8/s1600/v2.0_dl_omc_b_OMC4_ds1ds5_compare.png
 
 In others, ds1 is clearly > ds5 .
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image1|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://4.bp.blogspot.com/-JsRH_ZQilWM/TVR-Os6vBSI/AAAAAAAAGAQ/JRR6Trm-weo/s1600/v2.0_dl_omc_b_OMC2_ds1ds5_compare.png
 
 What's going on? ds1 does look uniformly more smooth.
 Note that the *disagreement* is nearly scale-free:\ `|image2|`_
 OK, so given the conclusion in Orion that ds1>=ds5, what's the deal with
 Uranus?
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image3|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://3.bp.blogspot.com/-AosJ1vzcYSs/TVSZjIZ81fI/AAAAAAAAGAk/qVGeaJtkbPA/s320/101208_o10_ds1ds5_compare.png
 
 The first two comparisons are for 1x1° observations; in both cases ds1 <
 ds5, but by 6% and 24% respectively! The image of Uranus looks much
 better (because of lack of parallel lines) in the second, more extreme
 case. In both cases, the ds5 excess is nearly scale-free (not shown).
 
-.. raw:: html
+.. image:: http://1.bp.blogspot.com/_lsgW26mWZnU/TVSZki9k9OI/AAAAAAAAGA0/t9LOGHOAL7Q/s320/101208_o10_ds1ds5_compare.png
 
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image4|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image5|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://2.bp.blogspot.com/_lsgW26mWZnU/TVSZj1pglLI/AAAAAAAAGAs/-4153NoAQQ0/s320/101208_o11_ds1ds5_compare.png
 
 The 3x1s are also highly discrepant. #12 shows nearly perfect agreement,
 albeit with high dispersion (low correlation) because of pixel-to-pixel
@@ -103,62 +63,22 @@ recall they're the same data set). What happened here? Maybe a glitch
 that went unflagged (mad\_flagger is off by default for individual
 scans)?
 
-.. raw:: html
+.. image:: http://3.bp.blogspot.com/-9gwzGfDBCEk/TVSZllWeBxI/AAAAAAAAGA8/x3mg5RbMScs/s320/101208_o12_ds1ds5_compare.png
 
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image6|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image7|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://3.bp.blogspot.com/-9gwzGfDBCEk/TVSZllWeBxI/AAAAAAAAGA8/x3mg5RbMScs/s320/101208_o13_ds1ds5_compare.png
 
 In observations 4 and 5, we're looking at a 40-50% excess in ds5! What
 the heck? There really is no clear explanation for this.
 
-.. raw:: html
+.. image:: http://1.bp.blogspot.com/_lsgW26mWZnU/TVSaYfZx0WI/AAAAAAAAGBE/cWbbBQCJOvk/s320/101208_ob4_ds1ds5_compare.png
 
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image8|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image9|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://2.bp.blogspot.com/_lsgW26mWZnU/TVSaZM27sqI/AAAAAAAAGBM/XR-6pttUcBo/s320/101208_ob5_ds1ds5_compare.png
 
 But... what? Magically, they come into perfect agreement when the scan
 axis nearly lines up with the coordinate axis! Or, is this just an
 effect of the worse weather on night 2?
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image10|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://3.bp.blogspot.com/_lsgW26mWZnU/TVSaaP6ISNI/AAAAAAAAGBU/PvN5aFOxBAQ/s320/101209_ob5_ds1ds5_compare.png
 
 Next thing to try: masked source map comparison. Unfortunately, masking
 royally screwed up the long scans - probably because the initial polysub
@@ -170,10 +90,6 @@ give or take, so it's not the atmospheric subtraction. Could the
 downsampling result in an offset in the bolo-scaling? Where else in the
 process could things go wrong? Tomorrow, need to investigate .sav files
 with pyflagger...
-
-.. raw:: html
-
-   </p>
 
 .. _noted: http://bolocam.blogspot.com/2011/01/downsampling-has-serious-negative.html
 .. _previously: http://bolocam.blogspot.com/2011/01/more-evidence-that-downsampling-causes.html
@@ -192,25 +108,3 @@ with pyflagger...
 .. _|image20|: http://2.bp.blogspot.com/_lsgW26mWZnU/TVSaZM27sqI/AAAAAAAAGBM/XR-6pttUcBo/s1600/101208_ob5_ds1ds5_compare.png
 .. _|image21|: http://3.bp.blogspot.com/_lsgW26mWZnU/TVSaaP6ISNI/AAAAAAAAGBU/PvN5aFOxBAQ/s1600/101209_ob5_ds1ds5_compare.png
 
-.. |image0| image:: http://1.bp.blogspot.com/-i20j3FEx758/TVR-PbQl7lI/AAAAAAAAGAY/imgMqceS9n8/s1600/v2.0_dl_omc_b_OMC4_ds1ds5_compare.png
-.. |image1| image:: http://4.bp.blogspot.com/-JsRH_ZQilWM/TVR-Os6vBSI/AAAAAAAAGAQ/JRR6Trm-weo/s1600/v2.0_dl_omc_b_OMC2_ds1ds5_compare.png
-.. |image2| image:: http://2.bp.blogspot.com/-J1XXZki2sxU/TVSXhlmGZKI/AAAAAAAAGAg/aDyQ7Sz2CfM/s320/v2.0_dl_omc_b_OMC2_ds1ds5_psd_compare.png
-.. |image3| image:: http://3.bp.blogspot.com/-AosJ1vzcYSs/TVSZjIZ81fI/AAAAAAAAGAk/qVGeaJtkbPA/s320/101208_o10_ds1ds5_compare.png
-.. |image4| image:: http://1.bp.blogspot.com/_lsgW26mWZnU/TVSZki9k9OI/AAAAAAAAGA0/t9LOGHOAL7Q/s320/101208_o10_ds1ds5_compare.png
-.. |image5| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/TVSZj1pglLI/AAAAAAAAGAs/-4153NoAQQ0/s320/101208_o11_ds1ds5_compare.png
-.. |image6| image:: http://3.bp.blogspot.com/-9gwzGfDBCEk/TVSZllWeBxI/AAAAAAAAGA8/x3mg5RbMScs/s320/101208_o12_ds1ds5_compare.png
-.. |image7| image:: http://3.bp.blogspot.com/-9gwzGfDBCEk/TVSZllWeBxI/AAAAAAAAGA8/x3mg5RbMScs/s320/101208_o13_ds1ds5_compare.png
-.. |image8| image:: http://1.bp.blogspot.com/_lsgW26mWZnU/TVSaYfZx0WI/AAAAAAAAGBE/cWbbBQCJOvk/s320/101208_ob4_ds1ds5_compare.png
-.. |image9| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/TVSaZM27sqI/AAAAAAAAGBM/XR-6pttUcBo/s320/101208_ob5_ds1ds5_compare.png
-.. |image10| image:: http://3.bp.blogspot.com/_lsgW26mWZnU/TVSaaP6ISNI/AAAAAAAAGBU/PvN5aFOxBAQ/s320/101209_ob5_ds1ds5_compare.png
-.. |image11| image:: http://1.bp.blogspot.com/-i20j3FEx758/TVR-PbQl7lI/AAAAAAAAGAY/imgMqceS9n8/s1600/v2.0_dl_omc_b_OMC4_ds1ds5_compare.png
-.. |image12| image:: http://4.bp.blogspot.com/-JsRH_ZQilWM/TVR-Os6vBSI/AAAAAAAAGAQ/JRR6Trm-weo/s1600/v2.0_dl_omc_b_OMC2_ds1ds5_compare.png
-.. |image13| image:: http://2.bp.blogspot.com/-J1XXZki2sxU/TVSXhlmGZKI/AAAAAAAAGAg/aDyQ7Sz2CfM/s320/v2.0_dl_omc_b_OMC2_ds1ds5_psd_compare.png
-.. |image14| image:: http://3.bp.blogspot.com/-AosJ1vzcYSs/TVSZjIZ81fI/AAAAAAAAGAk/qVGeaJtkbPA/s320/101208_o10_ds1ds5_compare.png
-.. |image15| image:: http://1.bp.blogspot.com/_lsgW26mWZnU/TVSZki9k9OI/AAAAAAAAGA0/t9LOGHOAL7Q/s320/101208_o10_ds1ds5_compare.png
-.. |image16| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/TVSZj1pglLI/AAAAAAAAGAs/-4153NoAQQ0/s320/101208_o11_ds1ds5_compare.png
-.. |image17| image:: http://3.bp.blogspot.com/-9gwzGfDBCEk/TVSZllWeBxI/AAAAAAAAGA8/x3mg5RbMScs/s320/101208_o12_ds1ds5_compare.png
-.. |image18| image:: http://3.bp.blogspot.com/-9gwzGfDBCEk/TVSZllWeBxI/AAAAAAAAGA8/x3mg5RbMScs/s320/101208_o13_ds1ds5_compare.png
-.. |image19| image:: http://1.bp.blogspot.com/_lsgW26mWZnU/TVSaYfZx0WI/AAAAAAAAGBE/cWbbBQCJOvk/s320/101208_ob4_ds1ds5_compare.png
-.. |image20| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/TVSaZM27sqI/AAAAAAAAGBM/XR-6pttUcBo/s320/101208_ob5_ds1ds5_compare.png
-.. |image21| image:: http://3.bp.blogspot.com/_lsgW26mWZnU/TVSaaP6ISNI/AAAAAAAAGBU/PvN5aFOxBAQ/s320/101209_ob5_ds1ds5_compare.png

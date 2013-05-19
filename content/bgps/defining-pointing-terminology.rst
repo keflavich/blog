@@ -7,33 +7,13 @@ Defining Pointing Terminology
 
 There has been a lot of confusion about pointing terminology.
 
-.. raw:: html
-
-   <ul>
-
-.. raw:: html
-
-   <li>
-
 CSO pointing model: the telescope pointing model used and written as a
 black box
-
-.. raw:: html
-
-   </li>
 
 -  has already been corrected for aberration/nutation
 -  is in current epoch coordinates (e.g. J2007.34)
 
-.. raw:: html
-
-   <li>
-
 Instrument-specific correction to pointing model
-
-.. raw:: html
-
-   </li>
 
 -  ??? also referred to as 't terms'
 -  is offset between CSO pointing model and real locations
@@ -44,10 +24,6 @@ Instrument-specific correction to pointing model
    in coordinate units delta-RA and delta-AZ would have to be scaled by
    1/cos(DEC) or 1/cos(ALT) respectively
 
-.. raw:: html
-
-   <li>
-
 FAZO and FZAO: Fixed Azimuth Offset and Fixed Zenith Angle Offset
 
 -  these are ambiguously defined in the pipeline code
@@ -57,16 +33,4 @@ FAZO and FZAO: Fixed Azimuth Offset and Fixed Zenith Angle Offset
 -  ???? or are these JUST fixed offsets, and the instrument specific
    corrections are not included? Either way, how can I separate out
    manually-applied fixed offsets from fitted-model offsets?
-
-.. raw:: html
-
-   </li>
-
-.. raw:: html
-
-   </ul>
-
-.. raw:: html
-
-   </p>
 

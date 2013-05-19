@@ -33,7 +33,3 @@ atmospheric noise, an iterative approach was required.
 Convergence takes ???? iterations....
 ??? PCA components are subtracted [default 13]...
 
-.. raw:: html
-
-   </p>
-

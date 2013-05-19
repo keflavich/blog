@@ -32,7 +32,3 @@ I'll need to be in the office to test the field mappings, though,
 because ds9 display doesn't work well over wireless. I'll do a remote
 run of the individual L111 and W5 maps to compare to previous ones.
 
-.. raw:: html
-
-   </p>
-

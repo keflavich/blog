@@ -12,31 +12,11 @@ the true source (this should be OK; it is an iterative method, after
 all). In the second iteration, though, the deconvolution model is even
 smaller and lower amplitude... and it goes on like that.
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
 |image0|
 |image1|
 
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div align="left" class="separator" style="clear: both; text-align: left;">
-
-.. raw:: html
-
-   <p>
-
 Not deconvolving results in a healthy-looking clean map - pretty much
 what you expect and want to see.
-
-.. raw:: html
-
-   </div>
 
 This implies that somehow removing an incomplete deconvolved model leads
 to more of the source being included in the 'atmosphere' than would have
@@ -83,10 +63,3 @@ happens.
 |image2|
 After that runs, I'll have to re-run the fit\_and\_plot routines
 
-.. raw:: html
-
-   </p>
-
-.. |image0| image:: http://dl.dropbox.com/u/11308804/101208_ob7_uranus_indivtest_noaddmodeltimestream008_plots_00_bolo03.png
-.. |image1| image:: http://dl.dropbox.com/u/11308804/101208_ob7_uranus_indivtest_noaddmodeltimestream008_plots_01_bolo03.png
-.. |image2| image:: http://dl.dropbox.com/u/11308804/compare_noadd_nodeconv.png

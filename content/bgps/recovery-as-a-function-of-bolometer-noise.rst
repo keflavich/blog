@@ -20,15 +20,7 @@ run, which is worrisome, since it means there is no iterative process
 There is a minor concern that some simulations over-recover the peak at
 high noise, but the effect is at a <1% level so not very worrisome.
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image0|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://1.bp.blogspot.com/-H0j13RdCays/Td6QrP78qWI/AAAAAAAAGMI/X-74WUEgYFE/s320/exp6_recovery_vs_bolonoiseRMS.png
 
 From the same set of simulations, I derive the pixel RMS of the map (the
 noise level) derived from a give individual bolometer noise. The
@@ -39,15 +31,7 @@ there were exactly sqrt(nbolos) hits per pixel). This is not exactly the
 case, and there are potential additional sources of noise. Nonetheless,
 the naive theory appears to be good enough in this simulation:
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image1|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://3.bp.blogspot.com/-ar8f4tdXUkQ/Td6fecs1WoI/AAAAAAAAGMQ/f_PwoxFp4Fo/s320/exp6_measurednoise_vs_bolonoiseRMS.png
 
 You can ignore the green/blue points in this plot; they just show that
 the std. dev. around the source is dominated by the source.
@@ -57,14 +41,6 @@ convergence of the iterator at a level better than 0.2%.
 In short, though, I'm going to use 1/sqrt(nbolos) to determine the
 appropriate input noise level in the astro simulations.
 
-.. raw:: html
-
-   </p>
-
 .. _|image2|: http://1.bp.blogspot.com/-H0j13RdCays/Td6QrP78qWI/AAAAAAAAGMI/X-74WUEgYFE/s1600/exp6_recovery_vs_bolonoiseRMS.png
 .. _|image3|: http://3.bp.blogspot.com/-ar8f4tdXUkQ/Td6fecs1WoI/AAAAAAAAGMQ/f_PwoxFp4Fo/s1600/exp6_measurednoise_vs_bolonoiseRMS.png
 
-.. |image0| image:: http://1.bp.blogspot.com/-H0j13RdCays/Td6QrP78qWI/AAAAAAAAGMI/X-74WUEgYFE/s320/exp6_recovery_vs_bolonoiseRMS.png
-.. |image1| image:: http://3.bp.blogspot.com/-ar8f4tdXUkQ/Td6fecs1WoI/AAAAAAAAGMQ/f_PwoxFp4Fo/s320/exp6_measurednoise_vs_bolonoiseRMS.png
-.. |image2| image:: http://1.bp.blogspot.com/-H0j13RdCays/Td6QrP78qWI/AAAAAAAAGMI/X-74WUEgYFE/s320/exp6_recovery_vs_bolonoiseRMS.png
-.. |image3| image:: http://3.bp.blogspot.com/-ar8f4tdXUkQ/Td6fecs1WoI/AAAAAAAAGMQ/f_PwoxFp4Fo/s320/exp6_measurednoise_vs_bolonoiseRMS.png

@@ -30,7 +30,3 @@ turned bad during downsampling/preprocessing.
 fixed: 30, 26, 55, 35, 28, 31, 38, 54, 57
 so far all observations on 060605 are bad.
 
-.. raw:: html
-
-   </p>
-

@@ -5,5 +5,4 @@ Template: bolocam data team
 :tags: http://schemas.google.com/blogger/2008/kind#template
 :slug: template-bolocam-data-team
 
-
 This post has been baleeted.

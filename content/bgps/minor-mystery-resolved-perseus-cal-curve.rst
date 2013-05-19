@@ -14,21 +14,7 @@ mean DC 4-5 V, so the relevant regime is in a very different location.
 The reference DC bias was much lower, ~2.15 V vs. 4.6 V in the 2005-2007
 BGPS and 2.6 V in the 2009 BGPS.
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image0|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   </p>
+.. image:: http://3.bp.blogspot.com/_lsgW26mWZnU/TA1yfdAS7BI/AAAAAAAAFtU/XvYiDQKi-cM/s320/CalCurveComparison.png
 
 .. _|image1|: http://3.bp.blogspot.com/_lsgW26mWZnU/TA1yfdAS7BI/AAAAAAAAFtU/XvYiDQKi-cM/s1600/CalCurveComparison.png
 
-.. |image0| image:: http://3.bp.blogspot.com/_lsgW26mWZnU/TA1yfdAS7BI/AAAAAAAAFtU/XvYiDQKi-cM/s320/CalCurveComparison.png
-.. |image1| image:: http://3.bp.blogspot.com/_lsgW26mWZnU/TA1yfdAS7BI/AAAAAAAAFtU/XvYiDQKi-cM/s320/CalCurveComparison.png

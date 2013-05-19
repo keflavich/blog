@@ -5,10 +5,6 @@ Scripting the Whole Survey
 :tags: googlepost, alignment, mapping, pipeline
 :slug: scripting-the-whole-survey
 
-.. raw:: html
-
-   <p>
-
 First, discovered more fields with some sort of failure:
 
 ::
@@ -58,8 +54,4 @@ Yearghhh.... last command was bad too.
 ::
 
     ls -d l[0-3][0-9][0-9] | sed 's:\(.*\):ls /scratch/adam_work/\1/0*_map01.fits > \1/\1_fitslist.txt:' | bashls: /scratch/adam_work/l004/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l017/0*_map01.fits: No such file or directorybash: line 12: l020/l020_fitslist.txt: Permission deniedls: /scratch/adam_work/l025/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l108/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l135/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l136/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l137/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l138/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l192/0*_map01.fits: No such file or directory
-
-.. raw:: html
-
-   </p>
 

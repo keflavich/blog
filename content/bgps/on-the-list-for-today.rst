@@ -31,7 +31,3 @@ least an estimate of degree of convergence.
 Note that the longest set there - 5515s = 1.53 hours - was 40
 iterations!
 
-.. raw:: html
-
-   </p>
-

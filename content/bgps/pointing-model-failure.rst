@@ -21,14 +21,8 @@ So.... possibilities:
 Next step, I'll use the individual maps with no ptg mdl and find out
 what the offsets should be....
 
-.. raw:: html
-
-   </p>
-
 .. _|image2|: http://2.bp.blogspot.com/_lsgW26mWZnU/SJXjh0a_cRI/AAAAAAAADBM/J3qzKAdvAE8/s1600-h/l033_pointingmodel_failure.jpg
 .. _|image3|: http://2.bp.blogspot.com/_lsgW26mWZnU/SJXjiJuyDoI/AAAAAAAADBU/mVcnF0BNdFM/s1600-h/l111_pointingmodel_failure.jpeg
 
 .. |l33| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/SJXjh0a_cRI/AAAAAAAADBM/J3qzKAdvAE8/s320/l033_pointingmodel_failure.jpg
 .. |l111| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/SJXjiJuyDoI/AAAAAAAADBU/mVcnF0BNdFM/s320/l111_pointingmodel_failure.jpeg
-.. |image2| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/SJXjh0a_cRI/AAAAAAAADBM/J3qzKAdvAE8/s320/l033_pointingmodel_failure.jpg
-.. |image3| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/SJXjiJuyDoI/AAAAAAAADBU/mVcnF0BNdFM/s320/l111_pointingmodel_failure.jpeg

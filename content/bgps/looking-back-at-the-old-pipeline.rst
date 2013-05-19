@@ -5,10 +5,6 @@ Looking back at the old pipeline
 :tags: googlepost, pipeline
 :slug: looking-back-at-the-old-pipeline
 
-.. raw:: html
-
-   <p>
-
 I've obviously missed something. So to try to figure out what it is, I'm
 going back to the old pipeline... again...
 in map\_ncdf\_reading, lines 441-448, there is something curious that
@@ -26,8 +22,4 @@ short, but extremely necessary.
 This comes back to the fact that I don't know what ANY of the variables
 in the NCDF header are supposed to be. Why are "error" variables
 actually OFFSET variables, and why didn't anyone know about them?
-
-.. raw:: html
-
-   </p>
 

@@ -26,15 +26,7 @@ outside the first null to zero in the first function, and everything
 inside the first null to zero in the second. The centers are the same,
 but the amplitudes and widths are independent.
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image0|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://3.bp.blogspot.com/-Vd8eey7FX4Q/TdhiEsk-FhI/AAAAAAAAGLA/ekzBJL8oNoE/s320/airy_modified_comparison.png
 
 The above image shows the best fit Airy and modified Airy, both in log
 scale on an identical grid. The modeled PSF was then put through the
@@ -42,15 +34,7 @@ pipeline to see it recovers the pipeline-derived PSF. The radial profile
 results are below, but note that this is only one particular realization
 of the simulation + pipeline.
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image1|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://2.bp.blogspot.com/-sxL-QjhRxUE/TdhidbXuAKI/AAAAAAAAGLI/NX9LdWqu4nM/s320/PSF_fit_plot_pipelinecompare.png
 
 Note that the model matches the first sidelobe in the "observed" PSF
 pretty well, but both before and after pipeline processing, overpredicts
@@ -64,14 +48,6 @@ There are a few "action items" remaining for this task:
 Any thoughts on better models to use? Does this seem like a good idea at
 all?
 
-.. raw:: html
-
-   </p>
-
 .. _|image2|: http://3.bp.blogspot.com/-Vd8eey7FX4Q/TdhiEsk-FhI/AAAAAAAAGLA/ekzBJL8oNoE/s1600/airy_modified_comparison.png
 .. _|image3|: http://2.bp.blogspot.com/-sxL-QjhRxUE/TdhidbXuAKI/AAAAAAAAGLI/NX9LdWqu4nM/s1600/PSF_fit_plot_pipelinecompare.png
 
-.. |image0| image:: http://3.bp.blogspot.com/-Vd8eey7FX4Q/TdhiEsk-FhI/AAAAAAAAGLA/ekzBJL8oNoE/s320/airy_modified_comparison.png
-.. |image1| image:: http://2.bp.blogspot.com/-sxL-QjhRxUE/TdhidbXuAKI/AAAAAAAAGLI/NX9LdWqu4nM/s320/PSF_fit_plot_pipelinecompare.png
-.. |image2| image:: http://3.bp.blogspot.com/-Vd8eey7FX4Q/TdhiEsk-FhI/AAAAAAAAGLA/ekzBJL8oNoE/s320/airy_modified_comparison.png
-.. |image3| image:: http://2.bp.blogspot.com/-sxL-QjhRxUE/TdhidbXuAKI/AAAAAAAAGLI/NX9LdWqu4nM/s320/PSF_fit_plot_pipelinecompare.png

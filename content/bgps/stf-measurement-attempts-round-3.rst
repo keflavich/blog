@@ -10,17 +10,11 @@ simulation parameters. Each line represents the median (i.e., mean of
 the center 2 of 4) spatial transfer function of 4 realizations of the
 listed parameters.
 
-
 .. image:: http://3.bp.blogspot.com/-qAq4e3xotf8/TjJCwJb6knI/AAAAAAAAGXA/mv7hs-uKudI/s320/stfs_atmo01_peak010_smooth.png
-
-
 
 .. image:: http://2.bp.blogspot.com/-lTKFbV1Zxno/TjJCwluvOXI/AAAAAAAAGXI/fK7qPWDF0Qw/s320/stfs_atmo10_peak010_smooth.png
 
-
-
 .. image:: http://1.bp.blogspot.com/-HNLrsuXSrvA/TjJCwx9xEBI/AAAAAAAAGXQ/a0l3Qljyp04/s320/stfs_atmo10_peak100_smooth.png
-
 
 A few unfortunate details are apparent:
 
@@ -37,17 +31,10 @@ Jared's simulations with point sources in a full size map to confirm
 this, but it seems pretty likely that the STF is different for point
 sources and extended structures.
 
-
 .. image:: http://4.bp.blogspot.com/-n0mH8DTSc80/Tji3c0tOffI/AAAAAAAAGXc/_Xd-AQMo4QU/s320/psf_ds1_reconv_arrang45_atmotest_noise%252B6.3E-04varyrelscale_amp1.0E%252B00_psds.png
-
-
 
 .. _|image4|: http://3.bp.blogspot.com/-qAq4e3xotf8/TjJCwJb6knI/AAAAAAAAGXA/mv7hs-uKudI/s1600/stfs_atmo01_peak010_smooth.png
 .. _|image5|: http://2.bp.blogspot.com/-lTKFbV1Zxno/TjJCwluvOXI/AAAAAAAAGXI/fK7qPWDF0Qw/s1600/stfs_atmo10_peak010_smooth.png
 .. _|image6|: http://1.bp.blogspot.com/-HNLrsuXSrvA/TjJCwx9xEBI/AAAAAAAAGXQ/a0l3Qljyp04/s1600/stfs_atmo10_peak100_smooth.png
 .. _|image7|: http://4.bp.blogspot.com/-n0mH8DTSc80/Tji3c0tOffI/AAAAAAAAGXc/_Xd-AQMo4QU/s1600/psf_ds1_reconv_arrang45_atmotest_noise%252B6.3E-04varyrelscale_amp1.0E%252B00_psds.png
 
-.. |image4| image:: http://3.bp.blogspot.com/-qAq4e3xotf8/TjJCwJb6knI/AAAAAAAAGXA/mv7hs-uKudI/s320/stfs_atmo01_peak010_smooth.png
-.. |image5| image:: http://2.bp.blogspot.com/-lTKFbV1Zxno/TjJCwluvOXI/AAAAAAAAGXI/fK7qPWDF0Qw/s320/stfs_atmo10_peak010_smooth.png
-.. |image6| image:: http://1.bp.blogspot.com/-HNLrsuXSrvA/TjJCwx9xEBI/AAAAAAAAGXQ/a0l3Qljyp04/s320/stfs_atmo10_peak100_smooth.png
-.. |image7| image:: http://4.bp.blogspot.com/-n0mH8DTSc80/Tji3c0tOffI/AAAAAAAAGXc/_Xd-AQMo4QU/s320/psf_ds1_reconv_arrang45_atmotest_noise%252B6.3E-04varyrelscale_amp1.0E%252B00_psds.png

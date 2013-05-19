@@ -28,6 +28,3 @@ direction, as usual. What the heck.
 .. _|image4|: http://4.bp.blogspot.com/_lsgW26mWZnU/SJousnsJDjI/AAAAAAAADMY/-hhiIoQ171A/s1600-h/g34.3_zoo.jpg
 .. _|image5|: http://3.bp.blogspot.com/_lsgW26mWZnU/SJo7MpPYjDI/AAAAAAAADNg/6_pSjjeKjLM/s1600-h/g34_0507_compare.jpg
 
-.. |image3| image:: http://picasaweb.google.com/keflavich/Bolocam/photo?authkey=OyC8l5sv3gI#5231555630189235762
-.. |image4| image:: http://4.bp.blogspot.com/_lsgW26mWZnU/SJousnsJDjI/AAAAAAAADMY/-hhiIoQ171A/s320/g34.3_zoo.jpg
-.. |image5| image:: http://3.bp.blogspot.com/_lsgW26mWZnU/SJo7MpPYjDI/AAAAAAAADNg/6_pSjjeKjLM/s320/g34_0507_compare.jpg

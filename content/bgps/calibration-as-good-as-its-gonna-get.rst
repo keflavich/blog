@@ -5,125 +5,33 @@ Calibration: As good as it's gonna get
 :tags: googlepost, calibration
 :slug: calibration-as-good-as-its-gonna-get
 
-.. raw:: html
+.. image:: http://2.bp.blogspot.com/-JLIm1-8V9pc/TtlaRJP2EoI/AAAAAAAAGoA/-gwCmjybJxs/s320/newmottecygx2_bgps_iram_comp_linefits_cross.png
 
-   <div class="separator" style="clear: both; text-align: center;">
+.. image:: http://1.bp.blogspot.com/-FkotaRfI_hk/TtlaR5VW_PI/AAAAAAAAGoM/Hd9yvKq66lU/s320/newmottecygx2_bgpsv2_iram_comp_linefits_cross.png
 
-`|image0|`_
+.. image:: http://4.bp.blogspot.com/-9xlFisqEq38/TtlaSXvv3ZI/AAAAAAAAGoY/uWvlhTeriuY/s320/newmottecygx2_bgps_iram_comp_linefits_cross_dr21.png
 
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image1|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image2|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image3|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://4.bp.blogspot.com/-MGx4yVQpxfU/TtlaS9OB3AI/AAAAAAAAGok/aMz1NHI2G9k/s320/newmottecygx2_bgpsv2_iram_comp_linefits_cross_dr21.png
 
 BGPS vs BGPSv2 in Cyg X
 
-.. raw:: html
+.. image:: http://1.bp.blogspot.com/-JMPVYUkw0nc/Ttla0-Fqn9I/AAAAAAAAGow/9c0IhC4_qlg/s320/newirdc1_bgps_iram_comp_linefits_cross.png
 
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image4|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image5|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://4.bp.blogspot.com/-knIt9Yw8FJU/Ttla1XeTfmI/AAAAAAAAGo8/d4bNvhfPf6U/s320/newirdc1_bgpsv2_iram_comp_linefits_cross.png
 
 BGPS vs BGPSv2 in IRDC1 (Rathborne)
 
-.. raw:: html
+.. image:: http://3.bp.blogspot.com/-Uw9lPIsA758/TtlbgMzryZI/AAAAAAAAGpI/3OcrHYS-8KA/s320/testregl44_bgps_s1200_comp_linefits_1.png
 
-   <div class="separator" style="clear: both; text-align: center;">
+.. image:: http://2.bp.blogspot.com/-ikkojUChsfY/Ttlbg4BnvJI/AAAAAAAAGpU/-SrRpX1GvMw/s320/testregl44_bgpsv2_s1200_comp_linefits_1.png
 
-`|image6|`_
+.. image:: http://1.bp.blogspot.com/-G6PzOBzHmtc/TtlbhbgsEQI/AAAAAAAAGpg/1K630s21FpQ/s320/testregl44_bgps_s1200_comp_linefits_2.png
 
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image7|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image8|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image9|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://3.bp.blogspot.com/-NEnpDAiVatM/Ttlbh7_cTdI/AAAAAAAAGps/FDDMbzdHbBw/s320/testregl44_bgpsv2_s1200_comp_linefits_2.png
 
 BGPS vs BGPSv2 in l=44 (comparison is SIMBA, not MAMBO)
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image10|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   </p>
+.. image:: http://1.bp.blogspot.com/-J27n1Y5t4Ug/TtleWSaYxoI/AAAAAAAAGp4/LuPMX5Iv8E0/s320/l44_regions.png
 
 .. _|image11|: http://2.bp.blogspot.com/-JLIm1-8V9pc/TtlaRJP2EoI/AAAAAAAAGoA/-gwCmjybJxs/s1600/newmottecygx2_bgps_iram_comp_linefits_cross.png
 .. _|image12|: http://1.bp.blogspot.com/-FkotaRfI_hk/TtlaR5VW_PI/AAAAAAAAGoM/Hd9yvKq66lU/s1600/newmottecygx2_bgpsv2_iram_comp_linefits_cross.png
@@ -137,25 +45,3 @@ BGPS vs BGPSv2 in l=44 (comparison is SIMBA, not MAMBO)
 .. _|image20|: http://3.bp.blogspot.com/-NEnpDAiVatM/Ttlbh7_cTdI/AAAAAAAAGps/FDDMbzdHbBw/s1600/testregl44_bgpsv2_s1200_comp_linefits_2.png
 .. _|image21|: http://1.bp.blogspot.com/-J27n1Y5t4Ug/TtleWSaYxoI/AAAAAAAAGp4/LuPMX5Iv8E0/s1600/l44_regions.png
 
-.. |image0| image:: http://2.bp.blogspot.com/-JLIm1-8V9pc/TtlaRJP2EoI/AAAAAAAAGoA/-gwCmjybJxs/s320/newmottecygx2_bgps_iram_comp_linefits_cross.png
-.. |image1| image:: http://1.bp.blogspot.com/-FkotaRfI_hk/TtlaR5VW_PI/AAAAAAAAGoM/Hd9yvKq66lU/s320/newmottecygx2_bgpsv2_iram_comp_linefits_cross.png
-.. |image2| image:: http://4.bp.blogspot.com/-9xlFisqEq38/TtlaSXvv3ZI/AAAAAAAAGoY/uWvlhTeriuY/s320/newmottecygx2_bgps_iram_comp_linefits_cross_dr21.png
-.. |image3| image:: http://4.bp.blogspot.com/-MGx4yVQpxfU/TtlaS9OB3AI/AAAAAAAAGok/aMz1NHI2G9k/s320/newmottecygx2_bgpsv2_iram_comp_linefits_cross_dr21.png
-.. |image4| image:: http://1.bp.blogspot.com/-JMPVYUkw0nc/Ttla0-Fqn9I/AAAAAAAAGow/9c0IhC4_qlg/s320/newirdc1_bgps_iram_comp_linefits_cross.png
-.. |image5| image:: http://4.bp.blogspot.com/-knIt9Yw8FJU/Ttla1XeTfmI/AAAAAAAAGo8/d4bNvhfPf6U/s320/newirdc1_bgpsv2_iram_comp_linefits_cross.png
-.. |image6| image:: http://3.bp.blogspot.com/-Uw9lPIsA758/TtlbgMzryZI/AAAAAAAAGpI/3OcrHYS-8KA/s320/testregl44_bgps_s1200_comp_linefits_1.png
-.. |image7| image:: http://2.bp.blogspot.com/-ikkojUChsfY/Ttlbg4BnvJI/AAAAAAAAGpU/-SrRpX1GvMw/s320/testregl44_bgpsv2_s1200_comp_linefits_1.png
-.. |image8| image:: http://1.bp.blogspot.com/-G6PzOBzHmtc/TtlbhbgsEQI/AAAAAAAAGpg/1K630s21FpQ/s320/testregl44_bgps_s1200_comp_linefits_2.png
-.. |image9| image:: http://3.bp.blogspot.com/-NEnpDAiVatM/Ttlbh7_cTdI/AAAAAAAAGps/FDDMbzdHbBw/s320/testregl44_bgpsv2_s1200_comp_linefits_2.png
-.. |image10| image:: http://1.bp.blogspot.com/-J27n1Y5t4Ug/TtleWSaYxoI/AAAAAAAAGp4/LuPMX5Iv8E0/s320/l44_regions.png
-.. |image11| image:: http://2.bp.blogspot.com/-JLIm1-8V9pc/TtlaRJP2EoI/AAAAAAAAGoA/-gwCmjybJxs/s320/newmottecygx2_bgps_iram_comp_linefits_cross.png
-.. |image12| image:: http://1.bp.blogspot.com/-FkotaRfI_hk/TtlaR5VW_PI/AAAAAAAAGoM/Hd9yvKq66lU/s320/newmottecygx2_bgpsv2_iram_comp_linefits_cross.png
-.. |image13| image:: http://4.bp.blogspot.com/-9xlFisqEq38/TtlaSXvv3ZI/AAAAAAAAGoY/uWvlhTeriuY/s320/newmottecygx2_bgps_iram_comp_linefits_cross_dr21.png
-.. |image14| image:: http://4.bp.blogspot.com/-MGx4yVQpxfU/TtlaS9OB3AI/AAAAAAAAGok/aMz1NHI2G9k/s320/newmottecygx2_bgpsv2_iram_comp_linefits_cross_dr21.png
-.. |image15| image:: http://1.bp.blogspot.com/-JMPVYUkw0nc/Ttla0-Fqn9I/AAAAAAAAGow/9c0IhC4_qlg/s320/newirdc1_bgps_iram_comp_linefits_cross.png
-.. |image16| image:: http://4.bp.blogspot.com/-knIt9Yw8FJU/Ttla1XeTfmI/AAAAAAAAGo8/d4bNvhfPf6U/s320/newirdc1_bgpsv2_iram_comp_linefits_cross.png
-.. |image17| image:: http://3.bp.blogspot.com/-Uw9lPIsA758/TtlbgMzryZI/AAAAAAAAGpI/3OcrHYS-8KA/s320/testregl44_bgps_s1200_comp_linefits_1.png
-.. |image18| image:: http://2.bp.blogspot.com/-ikkojUChsfY/Ttlbg4BnvJI/AAAAAAAAGpU/-SrRpX1GvMw/s320/testregl44_bgpsv2_s1200_comp_linefits_1.png
-.. |image19| image:: http://1.bp.blogspot.com/-G6PzOBzHmtc/TtlbhbgsEQI/AAAAAAAAGpg/1K630s21FpQ/s320/testregl44_bgps_s1200_comp_linefits_2.png
-.. |image20| image:: http://3.bp.blogspot.com/-NEnpDAiVatM/Ttlbh7_cTdI/AAAAAAAAGps/FDDMbzdHbBw/s320/testregl44_bgpsv2_s1200_comp_linefits_2.png
-.. |image21| image:: http://1.bp.blogspot.com/-J27n1Y5t4Ug/TtleWSaYxoI/AAAAAAAAGp4/LuPMX5Iv8E0/s320/l44_regions.png

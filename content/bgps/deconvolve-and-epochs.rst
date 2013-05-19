@@ -39,8 +39,4 @@ Because of the extensive testing this will require, it is really
 becoming essential that we develop an arbitrary map creation & testing
 routine.
 
-.. raw:: html
-
-   </p>
-
 .. _previously: http://bolocam.blogspot.com/2011/03/workaround-for-individual-maps.html

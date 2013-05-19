@@ -5,4 +5,3 @@ Minor mystery solved
 :tags: googlepost
 :slug: minor-mystery-solved
 
-

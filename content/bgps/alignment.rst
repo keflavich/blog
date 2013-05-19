@@ -18,8 +18,4 @@ a few items...
    \_infile.txt or only had single observations. What do we do about
    those fields? They'll be undersampled!
 
-.. raw:: html
-
-   </p>
-
 .. _`http://sites.google.com/site/bolocam/pipeline/alignment`: http://sites.google.com/site/bolocam/pipeline/alignment

@@ -12,17 +12,13 @@ components are convolved with a (1-gaussian) high-pass filter.
 First, the mildly good news: With a 300" FWHM large-scale cutoff, the
 filter PSD reasonably resembles the iterative map PSD:
 
-
 .. image:: http://3.bp.blogspot.com/-udANxY5rM98/Th-i7hx3qnI/AAAAAAAAGS0/kwoR30ZO5OI/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_map20filterpsds.png
-
 
 Luckily, the double-filter goes a very long way in explaining the
 scale-free flux loss. In the following diagram, I show the effect of the
 filter compared to the input map.
 
-
 .. image:: http://3.bp.blogspot.com/-iZtSoQjlzJY/Th-jf6oatlI/AAAAAAAAGS8/p8ZcznsKGpI/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_filterpsds.png
-
 
 The filter only recovers about 75% of the flux at ANY wavenumber. The
 map does slightly worse at high frequencies, which I can't explain yet.
@@ -36,9 +32,7 @@ frequencies, but quite a bit lower at higher frequencies. Also note the
 moderately poor agreement between the 'smoothed' and 'smoothed (theory)'
 lines.
 
-
 .. image:: http://4.bp.blogspot.com/-zhxfyI_XDNY/Th-qZmsMZaI/AAAAAAAAGTE/550ocw2kFx8/s320/filterfunctions_smoothedx2.png
-
 
 Finally, look at the comparison between map20 and fiiltered. The
 agreement is not bad for positive points; filtered is apparently
@@ -48,14 +42,9 @@ look at the feature at 210,300 that is negative in Map20 but positive in
 Filtered. In the real (input) map, this feature is lower than its
 surroundings - it is legitimately negative.
 
-
 .. image:: http://4.bp.blogspot.com/-zH98yuBL7lo/Th-tQIoKYCI/AAAAAAAAGTM/QNqslST6b2c/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_map20filtercompare.png
 
-
-
 .. image:: http://2.bp.blogspot.com/-bvlju06_ySU/Th-ttpCOuhI/AAAAAAAAGTU/3zoCyl5gCIY/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_filtercompare.png
-
-
 
 .. _|image5|: http://3.bp.blogspot.com/-udANxY5rM98/Th-i7hx3qnI/AAAAAAAAGS0/kwoR30ZO5OI/s1600/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_map20filterpsds.png
 .. _|image6|: http://3.bp.blogspot.com/-iZtSoQjlzJY/Th-jf6oatlI/AAAAAAAAGS8/p8ZcznsKGpI/s1600/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_filterpsds.png
@@ -63,8 +52,3 @@ surroundings - it is legitimately negative.
 .. _|image8|: http://4.bp.blogspot.com/-zH98yuBL7lo/Th-tQIoKYCI/AAAAAAAAGTM/QNqslST6b2c/s1600/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_map20filtercompare.png
 .. _|image9|: http://2.bp.blogspot.com/-bvlju06_ySU/Th-ttpCOuhI/AAAAAAAAGTU/3zoCyl5gCIY/s1600/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_filtercompare.png
 
-.. |image5| image:: http://3.bp.blogspot.com/-udANxY5rM98/Th-i7hx3qnI/AAAAAAAAGS0/kwoR30ZO5OI/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_map20filterpsds.png
-.. |image6| image:: http://3.bp.blogspot.com/-iZtSoQjlzJY/Th-jf6oatlI/AAAAAAAAGS8/p8ZcznsKGpI/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_filterpsds.png
-.. |image7| image:: http://4.bp.blogspot.com/-zhxfyI_XDNY/Th-qZmsMZaI/AAAAAAAAGTE/550ocw2kFx8/s320/filterfunctions_smoothedx2.png
-.. |image8| image:: http://4.bp.blogspot.com/-zH98yuBL7lo/Th-tQIoKYCI/AAAAAAAAGTM/QNqslST6b2c/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_map20filtercompare.png
-.. |image9| image:: http://2.bp.blogspot.com/-bvlju06_ySU/Th-ttpCOuhI/AAAAAAAAGTU/3zoCyl5gCIY/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_filtercompare.png

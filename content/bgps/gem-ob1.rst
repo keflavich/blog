@@ -15,7 +15,3 @@ fixed them.
    used, and it looks like it'll be a pain to fix the problem.
 #. GemOB1link wasn't mapped, it will be now.
 
-.. raw:: html
-
-   </p>
-

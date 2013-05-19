@@ -16,7 +16,3 @@ Open topic - what needs to be done to put the new pipeline on the CVS?
 #. Probably need to add instrument specific pointing model corrections
    for non-BGPS observations
 
-.. raw:: html
-
-   </p>
-

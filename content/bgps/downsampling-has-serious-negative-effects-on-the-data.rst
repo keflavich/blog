@@ -27,15 +27,7 @@ The scan rate was
 
 --------------
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: left;">
-
-`|image0|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://2.bp.blogspot.com/_lsgW26mWZnU/TTiWWSS-JVI/AAAAAAAAF24/4m2SFfwWkmA/s400/omc1_dstest_autocorrfits.png
 
 The beam sizes were measured from the autocorrelation maps. However,
 because there is structure on many scales
@@ -51,82 +43,22 @@ With a circle:
 Beamsize 1\_1: 29.51
 Beamsize 1\_5: 35.31
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image1|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <center>
+.. image:: http://1.bp.blogspot.com/_lsgW26mWZnU/TTiWWKeGbJI/AAAAAAAAF2w/jOEmOnDa1hw/s400/omc1_dstest_images.png
 
 The ds1 and ds5 images compared.
 
-.. raw:: html
-
-   </center>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image2|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <center>
+.. image:: http://3.bp.blogspot.com/_lsgW26mWZnU/TTiWWlzyWKI/AAAAAAAAF3A/nPCN-C0e3Jo/s400/omc1_dstest_psds.png
 
 The PSDs of the two images (on identical grids). Note that ds5 loses
 power at small spatial scales, 50% at 40"!
 
-.. raw:: html
-
-   </center>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image3|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <center>
+.. image:: http://4.bp.blogspot.com/_lsgW26mWZnU/TTiWWl3j3dI/AAAAAAAAF3I/Ef3WHEv5oXU/s400/omc1_dstest_pixel-pixel.png
 
 The pixel-pixel plot with a fit that shows a 10% overall flux loss
 (best-fit).
-
-.. raw:: html
-
-   </center>
-
-.. raw:: html
-
-   </p>
 
 .. _|image4|: http://2.bp.blogspot.com/_lsgW26mWZnU/TTiWWSS-JVI/AAAAAAAAF24/4m2SFfwWkmA/s1600/omc1_dstest_autocorrfits.png
 .. _|image5|: http://1.bp.blogspot.com/_lsgW26mWZnU/TTiWWKeGbJI/AAAAAAAAF2w/jOEmOnDa1hw/s1600/omc1_dstest_images.png
 .. _|image6|: http://3.bp.blogspot.com/_lsgW26mWZnU/TTiWWlzyWKI/AAAAAAAAF3A/nPCN-C0e3Jo/s1600/omc1_dstest_psds.png
 .. _|image7|: http://4.bp.blogspot.com/_lsgW26mWZnU/TTiWWl3j3dI/AAAAAAAAF3I/Ef3WHEv5oXU/s1600/omc1_dstest_pixel-pixel.png
 
-.. |image0| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/TTiWWSS-JVI/AAAAAAAAF24/4m2SFfwWkmA/s400/omc1_dstest_autocorrfits.png
-.. |image1| image:: http://1.bp.blogspot.com/_lsgW26mWZnU/TTiWWKeGbJI/AAAAAAAAF2w/jOEmOnDa1hw/s400/omc1_dstest_images.png
-.. |image2| image:: http://3.bp.blogspot.com/_lsgW26mWZnU/TTiWWlzyWKI/AAAAAAAAF3A/nPCN-C0e3Jo/s400/omc1_dstest_psds.png
-.. |image3| image:: http://4.bp.blogspot.com/_lsgW26mWZnU/TTiWWl3j3dI/AAAAAAAAF3I/Ef3WHEv5oXU/s400/omc1_dstest_pixel-pixel.png
-.. |image4| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/TTiWWSS-JVI/AAAAAAAAF24/4m2SFfwWkmA/s400/omc1_dstest_autocorrfits.png
-.. |image5| image:: http://1.bp.blogspot.com/_lsgW26mWZnU/TTiWWKeGbJI/AAAAAAAAF2w/jOEmOnDa1hw/s400/omc1_dstest_images.png
-.. |image6| image:: http://3.bp.blogspot.com/_lsgW26mWZnU/TTiWWlzyWKI/AAAAAAAAF3A/nPCN-C0e3Jo/s400/omc1_dstest_psds.png
-.. |image7| image:: http://4.bp.blogspot.com/_lsgW26mWZnU/TTiWWl3j3dI/AAAAAAAAF3I/Ef3WHEv5oXU/s400/omc1_dstest_pixel-pixel.png

@@ -23,7 +23,3 @@ My priority list:
 #. make maps!
 #. figure out the rest of pointing
 
-.. raw:: html
-
-   </p>
-

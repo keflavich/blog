@@ -18,22 +18,13 @@ Remember that a higher calibration curve means a LOWER recovered flux. I
 haven't finished the check, but odds are pretty good that applying these
 self-consistent cal curves will reduce the v2 data to be about 1.5.
 
-
 .. image:: http://4.bp.blogspot.com/-PRU4LQ5f-C4/TlZ9wpeFBeI/AAAAAAAAGb8/jKdJHtIqV40/s320/planet_dcfluxes_05_defaults_ds2_v2.0_13pca_map20.png
-
-
 
 .. image:: http://3.bp.blogspot.com/-AIzsETyl69g/TlZ9w50DjBI/AAAAAAAAGcE/h5ggKhH3dO4/s320/planet_dcfluxes_06_defaults_ds2_v2.0_13pca_map20.png
 
-
-
 .. image:: http://4.bp.blogspot.com/-BNWD4QQ21Ac/TlZ9xZ5eTkI/AAAAAAAAGcM/QOVbum2jXIo/s320/planet_dcfluxes_07_defaults_ds2_v2.0_13pca_map20.png
 
-
-
 .. image:: http://2.bp.blogspot.com/-OucWo74b8VY/TlZ9yFIJYQI/AAAAAAAAGcU/IBMs5YLMlYU/s320/planet_dcfluxes_09_defaults_ds2_v2.0_13pca_map20.png
-
-
 
 While no hacks were needed to produce these plots, there were abundant
 problems. There are far fewer data points than there should be. The
@@ -64,7 +55,6 @@ and apply them to the cal data... honestly that's not a bad idea in
 general... hmm... Well, we'll explore that later if I have time, that
 will take days to implement.
 
-
 .. _the previous post: http://bolocam.blogspot.com/2011/08/bolocat-v1-v2-comparison.html
 .. _\*: #asterisk"
 .. _|image4|: http://4.bp.blogspot.com/-PRU4LQ5f-C4/TlZ9wpeFBeI/AAAAAAAAGb8/jKdJHtIqV40/s1600/planet_dcfluxes_05_defaults_ds2_v2.0_13pca_map20.png
@@ -72,7 +62,3 @@ will take days to implement.
 .. _|image6|: http://4.bp.blogspot.com/-BNWD4QQ21Ac/TlZ9xZ5eTkI/AAAAAAAAGcM/QOVbum2jXIo/s1600/planet_dcfluxes_07_defaults_ds2_v2.0_13pca_map20.png
 .. _|image7|: http://2.bp.blogspot.com/-OucWo74b8VY/TlZ9yFIJYQI/AAAAAAAAGcU/IBMs5YLMlYU/s1600/planet_dcfluxes_09_defaults_ds2_v2.0_13pca_map20.png
 
-.. |image4| image:: http://4.bp.blogspot.com/-PRU4LQ5f-C4/TlZ9wpeFBeI/AAAAAAAAGb8/jKdJHtIqV40/s320/planet_dcfluxes_05_defaults_ds2_v2.0_13pca_map20.png
-.. |image5| image:: http://3.bp.blogspot.com/-AIzsETyl69g/TlZ9w50DjBI/AAAAAAAAGcE/h5ggKhH3dO4/s320/planet_dcfluxes_06_defaults_ds2_v2.0_13pca_map20.png
-.. |image6| image:: http://4.bp.blogspot.com/-BNWD4QQ21Ac/TlZ9xZ5eTkI/AAAAAAAAGcM/QOVbum2jXIo/s320/planet_dcfluxes_07_defaults_ds2_v2.0_13pca_map20.png
-.. |image7| image:: http://2.bp.blogspot.com/-OucWo74b8VY/TlZ9yFIJYQI/AAAAAAAAGcU/IBMs5YLMlYU/s320/planet_dcfluxes_09_defaults_ds2_v2.0_13pca_map20.png

@@ -22,8 +22,4 @@ sometimes...
 #. V1 sims have shown streaking, possibly because of the previous
    bullet, but certainly (in part) because cross-scans haven't worked
 
-.. raw:: html
-
-   </p>
-
 .. _Making Infiles wiki: http://code.google.com/p/bgpspipeline/wiki/MakingInfiles

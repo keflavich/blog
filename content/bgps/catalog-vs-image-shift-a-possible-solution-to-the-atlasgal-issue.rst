@@ -5,10 +5,6 @@ Catalog vs Image shift?  A possible solution to the ATLASGAL issue
 :tags: googlepost, pointing
 :slug: catalog-vs-image-shift-a-possible-solution-to-the-atlasgal-issue
 
-.. raw:: html
-
-   <div dir="ltr" style="text-align: left;">
-
 In the `previous post`_, I came up with a final plot showing the
 pointing offset was, on average, not significant, even in the ATLASGAL
 overlap zone.
@@ -17,15 +13,7 @@ The problem is probably one or two fields with a slight pointing offset,
 but a huge number of source.  l=1 has an offset of the right sign and is
 the single most source-rich degree in the survey, with 368 sources.
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image0|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://2.bp.blogspot.com/-ONF7C_v8rNk/UNpmXIEe6HI/AAAAAAAAHUI/kdf3pmUKyE0/s320/l001_catalog_image_compare.png
 
 This figure shows the v1 vs v2 source locations in grey, their average
 and standard deviation in green, and the cross-correlation offset in
@@ -49,16 +37,6 @@ sure about sub-pixel offsets, since the "model" image is never perfect.
  I think we can safely state the ~1/2 pixel offsets (~3") but I just
 don't feel confident about numbers below that range for ALL fields.
 
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   </p>
-
 .. _previous post: http://bolocam.blogspot.com/2012/12/pointing-cross-correlation-yet-again.html
 .. _|image1|: http://2.bp.blogspot.com/-ONF7C_v8rNk/UNpmXIEe6HI/AAAAAAAAHUI/kdf3pmUKyE0/s1600/l001_catalog_image_compare.png
 
-.. |image0| image:: http://2.bp.blogspot.com/-ONF7C_v8rNk/UNpmXIEe6HI/AAAAAAAAHUI/kdf3pmUKyE0/s320/l001_catalog_image_compare.png
-.. |image1| image:: http://2.bp.blogspot.com/-ONF7C_v8rNk/UNpmXIEe6HI/AAAAAAAAHUI/kdf3pmUKyE0/s320/l001_catalog_image_compare.png

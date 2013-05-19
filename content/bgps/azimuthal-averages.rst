@@ -25,39 +25,15 @@ indicating a good fit. The apertures used for summation are NOT
 displayed. The sum aperture has a radius of 90" (6.25 pixels) and the
 "Noise Aperture" has the same area as the sum aperture.
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image0|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://1.bp.blogspot.com/-nvXzUBHvsmE/TbhaQabluMI/AAAAAAAAGKc/Ks16AZ70fe0/s320/exp2_amp1.0E%252B01_map20_ds1inputcompare_point.png
 
 If we redo the analysis with a smaller aperture, the recovery is better:
 95% in the central 45". However, now the airy ring cannot account for
 any lost flux, so it still looks like there's a 5% loss intrinsic in the
 pipeline.
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image1|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   </p>
+.. image:: http://2.bp.blogspot.com/-mqisozGUA2c/Tbhx5wk04WI/AAAAAAAAGKk/AIxGRnDMZBM/s320/exp2_amp1.0E%252B01_map20_ds1inputcompare_point.png
 
 .. _|image2|: http://1.bp.blogspot.com/-nvXzUBHvsmE/TbhaQabluMI/AAAAAAAAGKc/Ks16AZ70fe0/s1600/exp2_amp1.0E%252B01_map20_ds1inputcompare_point.png
 .. _|image3|: http://2.bp.blogspot.com/-mqisozGUA2c/Tbhx5wk04WI/AAAAAAAAGKk/AIxGRnDMZBM/s1600/exp2_amp1.0E%252B01_map20_ds1inputcompare_point.png
 
-.. |image0| image:: http://1.bp.blogspot.com/-nvXzUBHvsmE/TbhaQabluMI/AAAAAAAAGKc/Ks16AZ70fe0/s320/exp2_amp1.0E%252B01_map20_ds1inputcompare_point.png
-.. |image1| image:: http://2.bp.blogspot.com/-mqisozGUA2c/Tbhx5wk04WI/AAAAAAAAGKk/AIxGRnDMZBM/s320/exp2_amp1.0E%252B01_map20_ds1inputcompare_point.png
-.. |image2| image:: http://1.bp.blogspot.com/-nvXzUBHvsmE/TbhaQabluMI/AAAAAAAAGKc/Ks16AZ70fe0/s320/exp2_amp1.0E%252B01_map20_ds1inputcompare_point.png
-.. |image3| image:: http://2.bp.blogspot.com/-mqisozGUA2c/Tbhx5wk04WI/AAAAAAAAGKk/AIxGRnDMZBM/s320/exp2_amp1.0E%252B01_map20_ds1inputcompare_point.png

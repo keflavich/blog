@@ -33,10 +33,8 @@ in James' old version:
 
 Now, some examples:
 
-
 .. image:: http://4.bp.blogspot.com/_lsgW26mWZnU/TUisqDHJ08I/AAAAAAAAF58/BpgnudfdAAw/s400/deline_timestreams_003.png
 .. image:: http://2.bp.blogspot.com/_lsgW26mWZnU/TUisqWN6ueI/AAAAAAAAF6E/yAka7dlomjo/s400/deline_psds_003.png
-
 
 The timestream (left) and PSD (right) of a "pretty good" bolometer.
 There is a lot of noise in lines, but note that the peak power is 2-3
@@ -56,10 +54,8 @@ seen that the RMS drops substantially when the lines are filtered out
 structure, so 'substantial' is really based on the RMS of the lines
 removed).
 
-
 .. image:: http://3.bp.blogspot.com/_lsgW26mWZnU/TUisq6D55wI/AAAAAAAAF6M/PZ4hyu5FkZM/s400/deline_10hz_timestreams_003.png
 .. image:: http://3.bp.blogspot.com/_lsgW26mWZnU/TUisrWpL7yI/AAAAAAAAF6U/tSsL5Jc4n-A/s400/deline_10hz_psds_003.png
-
 
 The next two plots look identical to the previous ones. In principle,
 they include the wide-band delining. However, in this case, the
@@ -67,28 +63,22 @@ satellite lines to either side of the 10 Hz line are too strong and
 prevent identification of the 10 Hz line. This is unfortunate, again,
 but no obvious solution presents itself.
 
-
 .. image:: http://1.bp.blogspot.com/_lsgW26mWZnU/TUixLZbVHPI/AAAAAAAAF6c/xCWLpb9CKX4/s400/deline_timestreams_004.png
 .. image:: http://1.bp.blogspot.com/_lsgW26mWZnU/TUixL8APCQI/AAAAAAAAF6k/j8FyKbgOdDo/s400/deline_psds_004.png
-
 
 Now we come to a truly problematic bolometer. The lines completely
 dominate the power spectrum. Narrow line removal fails.
 
-
 .. image:: http://2.bp.blogspot.com/_lsgW26mWZnU/TUixMjNxbkI/AAAAAAAAF6s/Hr8ouprcMpY/s400/deline_10hz_timestreams_004.png
 .. image:: http://1.bp.blogspot.com/_lsgW26mWZnU/TUixNMO2NsI/AAAAAAAAF60/ZAsirbb25QY/s400/deline_10hz_psds_004.png
-
 
 Wide line removal does a much, much better job, dropping the RMS by an
 order of magnitude.... but the bolometer probably still needs to be
 removed, since the astrophysical signal is 2-3 orders of magnitude below
 that.
 
-
 .. image:: http://2.bp.blogspot.com/_lsgW26mWZnU/TUizkq9x4TI/AAAAAAAAF68/2xYY86d6aTQ/s400/deline_timestreams_001.png
 .. image:: http://2.bp.blogspot.com/_lsgW26mWZnU/TUizlH0XvMI/AAAAAAAAF7E/ptDb5I3os6A/s400/deline_psds_001.png
-
 
 The 2010 data had much worse line noise and had to be delined. JS
 accomplished this by throwing out all data above a certain frequency,
@@ -96,13 +86,10 @@ but I prefer the delining approach. It is clearly effective, but again
 leaves much to be desired. Should the flagged bandwidth be increased?
 What about the extra lines around 18 Hz?
 
-
 .. image:: http://3.bp.blogspot.com/_lsgW26mWZnU/TUizln1mSCI/AAAAAAAAF7M/hTkZRUU3-ck/s400/deline_10hz_timestreams_001.png
 .. image:: http://4.bp.blogspot.com/_lsgW26mWZnU/TUizmdrMkgI/AAAAAAAAF7U/-dlB4u30hBo/s400/deline_10hz_psds_001.png
 
-
 Again, the wide line flagging fails because of the satellite lines.
-
 
 .. _|image12|: http://4.bp.blogspot.com/_lsgW26mWZnU/TUisqDHJ08I/AAAAAAAAF58/BpgnudfdAAw/s1600/deline_timestreams_003.png
 .. _|image13|: http://2.bp.blogspot.com/_lsgW26mWZnU/TUisqWN6ueI/AAAAAAAAF6E/yAka7dlomjo/s1600/deline_psds_003.png
@@ -117,15 +104,3 @@ Again, the wide line flagging fails because of the satellite lines.
 .. _|image22|: http://3.bp.blogspot.com/_lsgW26mWZnU/TUizln1mSCI/AAAAAAAAF7M/hTkZRUU3-ck/s1600/deline_10hz_timestreams_001.png
 .. _|image23|: http://4.bp.blogspot.com/_lsgW26mWZnU/TUizmdrMkgI/AAAAAAAAF7U/-dlB4u30hBo/s1600/deline_10hz_psds_001.png
 
-.. |image12| image:: http://4.bp.blogspot.com/_lsgW26mWZnU/TUisqDHJ08I/AAAAAAAAF58/BpgnudfdAAw/s400/deline_timestreams_003.png
-.. |image13| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/TUisqWN6ueI/AAAAAAAAF6E/yAka7dlomjo/s400/deline_psds_003.png
-.. |image14| image:: http://3.bp.blogspot.com/_lsgW26mWZnU/TUisq6D55wI/AAAAAAAAF6M/PZ4hyu5FkZM/s400/deline_10hz_timestreams_003.png
-.. |image15| image:: http://3.bp.blogspot.com/_lsgW26mWZnU/TUisrWpL7yI/AAAAAAAAF6U/tSsL5Jc4n-A/s400/deline_10hz_psds_003.png
-.. |image16| image:: http://1.bp.blogspot.com/_lsgW26mWZnU/TUixLZbVHPI/AAAAAAAAF6c/xCWLpb9CKX4/s400/deline_timestreams_004.png
-.. |image17| image:: http://1.bp.blogspot.com/_lsgW26mWZnU/TUixL8APCQI/AAAAAAAAF6k/j8FyKbgOdDo/s400/deline_psds_004.png
-.. |image18| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/TUixMjNxbkI/AAAAAAAAF6s/Hr8ouprcMpY/s400/deline_10hz_timestreams_004.png
-.. |image19| image:: http://1.bp.blogspot.com/_lsgW26mWZnU/TUixNMO2NsI/AAAAAAAAF60/ZAsirbb25QY/s400/deline_10hz_psds_004.png
-.. |image20| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/TUizkq9x4TI/AAAAAAAAF68/2xYY86d6aTQ/s400/deline_timestreams_001.png
-.. |image21| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/TUizlH0XvMI/AAAAAAAAF7E/ptDb5I3os6A/s400/deline_psds_001.png
-.. |image22| image:: http://3.bp.blogspot.com/_lsgW26mWZnU/TUizln1mSCI/AAAAAAAAF7M/hTkZRUU3-ck/s400/deline_10hz_timestreams_001.png
-.. |image23| image:: http://4.bp.blogspot.com/_lsgW26mWZnU/TUizmdrMkgI/AAAAAAAAF7U/-dlB4u30hBo/s400/deline_10hz_psds_001.png

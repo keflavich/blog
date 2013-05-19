@@ -27,7 +27,3 @@ For the moment, I'm going to leave the pointing alone. This leaves us
 
 Sarcasm helps me survive. Almost as much as beer.
 
-.. raw:: html
-
-   </p>
-

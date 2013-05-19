@@ -18,59 +18,15 @@ doesn't really need it)
 Here are examples of ds1 and ds5 timestreams, with and without scaling,
 and ds1 with and without delining:
 
-.. raw:: html
+.. image:: http://4.bp.blogspot.com/-KR_NYG31_O0/TZECtBAgqFI/AAAAAAAAGCg/1jC9Ys2r9Iw/s200/101208_o11_ds5_uranus_indivtesttimestream011_plots_20_bolo02.png
 
-   <div class="separator" style="clear: both; text-align: center;">
+.. image:: http://3.bp.blogspot.com/-HbK-hAXjSDs/TZECtUNe8AI/AAAAAAAAGCo/i4fsH12Iw8Y/s200/101208_o11_ds1_uranus_indivtest_delinetimestream011_plots_20_bolo02.png
 
-`|image0|`_
+.. image:: http://3.bp.blogspot.com/-edXLnDrrt5o/TZECt0No8oI/AAAAAAAAGCw/QjHg1ScBHG0/s200/101208_o11_ds1_uranus_indivtesttimestream011_plots_20_bolo02.png
 
-.. raw:: html
+.. image:: http://1.bp.blogspot.com/-4NIxFxEQ1jU/TZECuDJ1fVI/AAAAAAAAGC4/tGE5tDH_168/s200/101208_o11_ds1_uranus_indivtest_deline_noscaleacbtimestream011_plots_20_bolo02.png
 
-   </div>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image1|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image2|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image3|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image4|`_
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   </p>
+.. image:: http://2.bp.blogspot.com/-DfIepZXXCFc/TZECuhm8lwI/AAAAAAAAGDA/Awp60ZuPGps/s200/101208_o11_ds5_uranus_indivtest_noscaleacbtimestream011_plots_20_bolo02.png
 
 .. _|image5|: http://4.bp.blogspot.com/-KR_NYG31_O0/TZECtBAgqFI/AAAAAAAAGCg/1jC9Ys2r9Iw/s1600/101208_o11_ds5_uranus_indivtesttimestream011_plots_20_bolo02.png
 .. _|image6|: http://3.bp.blogspot.com/-HbK-hAXjSDs/TZECtUNe8AI/AAAAAAAAGCo/i4fsH12Iw8Y/s1600/101208_o11_ds1_uranus_indivtest_delinetimestream011_plots_20_bolo02.png
@@ -78,13 +34,3 @@ and ds1 with and without delining:
 .. _|image8|: http://1.bp.blogspot.com/-4NIxFxEQ1jU/TZECuDJ1fVI/AAAAAAAAGC4/tGE5tDH_168/s1600/101208_o11_ds1_uranus_indivtest_deline_noscaleacbtimestream011_plots_20_bolo02.png
 .. _|image9|: http://2.bp.blogspot.com/-DfIepZXXCFc/TZECuhm8lwI/AAAAAAAAGDA/Awp60ZuPGps/s1600/101208_o11_ds5_uranus_indivtest_noscaleacbtimestream011_plots_20_bolo02.png
 
-.. |image0| image:: http://4.bp.blogspot.com/-KR_NYG31_O0/TZECtBAgqFI/AAAAAAAAGCg/1jC9Ys2r9Iw/s200/101208_o11_ds5_uranus_indivtesttimestream011_plots_20_bolo02.png
-.. |image1| image:: http://3.bp.blogspot.com/-HbK-hAXjSDs/TZECtUNe8AI/AAAAAAAAGCo/i4fsH12Iw8Y/s200/101208_o11_ds1_uranus_indivtest_delinetimestream011_plots_20_bolo02.png
-.. |image2| image:: http://3.bp.blogspot.com/-edXLnDrrt5o/TZECt0No8oI/AAAAAAAAGCw/QjHg1ScBHG0/s200/101208_o11_ds1_uranus_indivtesttimestream011_plots_20_bolo02.png
-.. |image3| image:: http://1.bp.blogspot.com/-4NIxFxEQ1jU/TZECuDJ1fVI/AAAAAAAAGC4/tGE5tDH_168/s200/101208_o11_ds1_uranus_indivtest_deline_noscaleacbtimestream011_plots_20_bolo02.png
-.. |image4| image:: http://2.bp.blogspot.com/-DfIepZXXCFc/TZECuhm8lwI/AAAAAAAAGDA/Awp60ZuPGps/s200/101208_o11_ds5_uranus_indivtest_noscaleacbtimestream011_plots_20_bolo02.png
-.. |image5| image:: http://4.bp.blogspot.com/-KR_NYG31_O0/TZECtBAgqFI/AAAAAAAAGCg/1jC9Ys2r9Iw/s200/101208_o11_ds5_uranus_indivtesttimestream011_plots_20_bolo02.png
-.. |image6| image:: http://3.bp.blogspot.com/-HbK-hAXjSDs/TZECtUNe8AI/AAAAAAAAGCo/i4fsH12Iw8Y/s200/101208_o11_ds1_uranus_indivtest_delinetimestream011_plots_20_bolo02.png
-.. |image7| image:: http://3.bp.blogspot.com/-edXLnDrrt5o/TZECt0No8oI/AAAAAAAAGCw/QjHg1ScBHG0/s200/101208_o11_ds1_uranus_indivtesttimestream011_plots_20_bolo02.png
-.. |image8| image:: http://1.bp.blogspot.com/-4NIxFxEQ1jU/TZECuDJ1fVI/AAAAAAAAGC4/tGE5tDH_168/s200/101208_o11_ds1_uranus_indivtest_deline_noscaleacbtimestream011_plots_20_bolo02.png
-.. |image9| image:: http://2.bp.blogspot.com/-DfIepZXXCFc/TZECuhm8lwI/AAAAAAAAGDA/Awp60ZuPGps/s200/101208_o11_ds5_uranus_indivtest_noscaleacbtimestream011_plots_20_bolo02.png

@@ -14,30 +14,14 @@ factor of ~4 instead of ~12. The step size is the most likely culprit,
 since an 8x larger step size should result in sqrt(8)~2.8 worse noise
 per pixel.
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image0|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://1.bp.blogspot.com/-ubZ-9LXWmXQ/TeAdFoOUcZI/AAAAAAAAGMY/bSSwM2JuLyA/s320/exp8_measurednoise_vs_bolonoiseRMS.png
 
 There are some curious / worrisome artifacts that turn up and are
 evident in the recovery fraction plot. For the low-noise cases, the
 middle bolometers get totally flagged out because they are over-weighted
 (by orders of magnitude).
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image1|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://3.bp.blogspot.com/-0KKwo1wB6aI/TeAdFz6pTiI/AAAAAAAAGMg/yHGsx8j7WMM/s320/exp8_recovery_vs_bolonoiseRMS.png
 
 So I'm forced to explore via pyflagger. I will almost certainly need to
 re-run all experiments after making a change to how weights are
@@ -54,15 +38,7 @@ flagged out.
 So I added a 1% variation, which prevented flagging at the scale stage,
 but there are still some disturbing artifacts in the map:
 
-.. raw:: html
-
-   <div class="separator" style="clear: both; text-align: center;">
-
-`|image2|`_
-
-.. raw:: html
-
-   </div>
+.. image:: http://4.bp.blogspot.com/-TX2_8PsUgdM/TeA4Iu9T5FI/AAAAAAAAGMo/vfEjTGcSBp0/s320/psf_ds1_reconv_arrang45_atmotest_noise%252B1.0E-03_amp1.0E%252B00_compare.png
 
 Unfortunately, this problem requires further examination in detail. Exp
 9/10 should probably be gaussians and airys on larger step-size maps,
@@ -70,18 +46,8 @@ but the solution will require something else, possibly even a change in
 the pipeline. On the plus side, I think I can re-run experiment 7 with a
 factor of 4 instead of 12 scaling for the noise and expect it to work.
 
-.. raw:: html
-
-   </p>
-
 .. _previous post: http://bolocam.blogspot.com/2011/05/recovery-as-function-of-bolometer-noise.html
 .. _|image3|: http://1.bp.blogspot.com/-ubZ-9LXWmXQ/TeAdFoOUcZI/AAAAAAAAGMY/bSSwM2JuLyA/s1600/exp8_measurednoise_vs_bolonoiseRMS.png
 .. _|image4|: http://3.bp.blogspot.com/-0KKwo1wB6aI/TeAdFz6pTiI/AAAAAAAAGMg/yHGsx8j7WMM/s1600/exp8_recovery_vs_bolonoiseRMS.png
 .. _|image5|: http://4.bp.blogspot.com/-TX2_8PsUgdM/TeA4Iu9T5FI/AAAAAAAAGMo/vfEjTGcSBp0/s1600/psf_ds1_reconv_arrang45_atmotest_noise%252B1.0E-03_amp1.0E%252B00_compare.png
 
-.. |image0| image:: http://1.bp.blogspot.com/-ubZ-9LXWmXQ/TeAdFoOUcZI/AAAAAAAAGMY/bSSwM2JuLyA/s320/exp8_measurednoise_vs_bolonoiseRMS.png
-.. |image1| image:: http://3.bp.blogspot.com/-0KKwo1wB6aI/TeAdFz6pTiI/AAAAAAAAGMg/yHGsx8j7WMM/s320/exp8_recovery_vs_bolonoiseRMS.png
-.. |image2| image:: http://4.bp.blogspot.com/-TX2_8PsUgdM/TeA4Iu9T5FI/AAAAAAAAGMo/vfEjTGcSBp0/s320/psf_ds1_reconv_arrang45_atmotest_noise%252B1.0E-03_amp1.0E%252B00_compare.png
-.. |image3| image:: http://1.bp.blogspot.com/-ubZ-9LXWmXQ/TeAdFoOUcZI/AAAAAAAAGMY/bSSwM2JuLyA/s320/exp8_measurednoise_vs_bolonoiseRMS.png
-.. |image4| image:: http://3.bp.blogspot.com/-0KKwo1wB6aI/TeAdFz6pTiI/AAAAAAAAGMg/yHGsx8j7WMM/s320/exp8_recovery_vs_bolonoiseRMS.png
-.. |image5| image:: http://4.bp.blogspot.com/-TX2_8PsUgdM/TeA4Iu9T5FI/AAAAAAAAGMo/vfEjTGcSBp0/s320/psf_ds1_reconv_arrang45_atmotest_noise%252B1.0E-03_amp1.0E%252B00_compare.png
