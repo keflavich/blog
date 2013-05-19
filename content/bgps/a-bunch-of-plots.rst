@@ -9,6 +9,7 @@ a bunch of plots
 .. image:: http://3.bp.blogspot.com/_lsgW26mWZnU/SayCkyW19KI/AAAAAAAAEy8/Df_SgR-blY4/s400/fillfact_per_deg.png
 .. image:: http://1.bp.blogspot.com/_lsgW26mWZnU/SayCk9BDNzI/AAAAAAAAEy0/oBgJX2IWav8/s400/mean_per_deg.png
 .. image:: http://2.bp.blogspot.com/_lsgW26mWZnU/SayCksjhWmI/AAAAAAAAEys/vt0ZUY50Uqw/s400/sources_per_deg.png
+
 I wasted a lot of time making these so I figured I might as well waste a
 little space showing them.
 

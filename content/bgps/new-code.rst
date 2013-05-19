@@ -6,9 +6,11 @@ New code
 :slug: new-code
 
 Done for the day after this (observing tonight)
-two new procedures:
- alignment\_offsets\_to\_ncdf.pro
- calcoeffs\_to\_ncdf.pro
+two new procedures::
+
+ alignment_offsets_to_ncdf.pro
+ calcoeffs_to_ncdf.pro
+
 they're really easy, very nearly one-liners. Once they've been used
 once, you can just use ncdf\_varput\_scale
 Modified keyword parameters in do\_the\_pointing: offsets will always be

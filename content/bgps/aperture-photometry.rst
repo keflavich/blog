@@ -18,6 +18,7 @@ Below is a sample of the difference residual of output-input flux vs
 input flux for 40", 80" and 120" apertures
 
 .. image:: http://2.bp.blogspot.com/-j5k--Oz92T0/TkXiYHLWjQI/AAAAAAAAABc/MnRtjz6hAMo/s320/exp13_ds2_astrosky_arrang45_srcpeakalpha002.00source_range_00.1_02.0ptsrc_brightness_diffresid.png
+
 flux vs input flux will show just how correlated these are:
 
 .. image:: http://3.bp.blogspot.com/-zL6VyzobtkU/TkXix_KEExI/AAAAAAAAABk/6vYph5jtyM4/s320/exp13_ds2_astrosky_arrang45_srcpeakalpha002.00source_range_00.1_02.0ptsrc_brightness_lin.png

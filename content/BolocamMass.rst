@@ -65,12 +65,12 @@ For :math:`T = 20 K`:
 
 .. math::
   N(H2) = 2.01 x 10^{22} * S(Jy)    (cm^{-2})
-  A_V = 21.1 \textrm{magnitudes} Jy^{-1}
+  A_V = 21.1 \mathrm{magnitudes} Jy^{-1}
 
 where we use the Bohlin & Savage calibration
 
 .. math::
 
-  A_V = 1 mag. <=> N(H) = 1.9 x 10^{20} cm^{-2} \textrm{and}
+  A_V = 1 mag. <=> N(H) = 1.9 x 10^{20} cm^{-2} \mathrm{and}
   N(H_2) = N(H) / 2
 

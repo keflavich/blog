@@ -5,7 +5,10 @@ L111 observation notes
 :tags: googlepost, pointing
 :slug: l111-observation-notes
 
-`|fixed offsets|`_\ `|raw cso ptg|`_\ `|pointing model applied|`_
+.. image:: http://2.bp.blogspot.com/_lsgW26mWZnU/SJZ5AakkcMI/AAAAAAAADL4/BV6bqAe26oc/s320/l111_sep05_noptgmdl_fixedoffset.jpg
+.. image:: http://2.bp.blogspot.com/_lsgW26mWZnU/SJZ5ArDzBhI/AAAAAAAADMA/Qa6nxqshl7Y/s320/l111_sep05_rawcsoptg.jpg
+.. image:: http://3.bp.blogspot.com/_lsgW26mWZnU/SJZ5Avg041I/AAAAAAAADMI/flj9idr7F54/s320/l111_sep05_ptgapplied.jpg
+
 In L111, the failures noted in the `previous post`_ are specific to
 September 2005. By comparing the pointing model images to the "raw cso
 pointing" and "no pointing model" (the latter still have FAZO/FZAO
@@ -26,9 +29,3 @@ double-checked.
 .. _|image5|: http://3.bp.blogspot.com/_lsgW26mWZnU/SJZ5Avg041I/AAAAAAAADMI/flj9idr7F54/s1600-h/l111_sep05_ptgapplied.jpg
 .. _previous post: http://bolocam.blogspot.com/2008/08/pointing-model-failure.html
 
-.. |fixed
-offsets| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/SJZ5AakkcMI/AAAAAAAADL4/BV6bqAe26oc/s320/l111_sep05_noptgmdl_fixedoffset.jpg
-.. |raw cso
-ptg| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/SJZ5ArDzBhI/AAAAAAAADMA/Qa6nxqshl7Y/s320/l111_sep05_rawcsoptg.jpg
-.. |pointing model
-applied| image:: http://3.bp.blogspot.com/_lsgW26mWZnU/SJZ5Avg041I/AAAAAAAADMI/flj9idr7F54/s320/l111_sep05_ptgapplied.jpg

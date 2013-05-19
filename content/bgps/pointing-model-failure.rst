@@ -5,8 +5,10 @@ Pointing model failure
 :tags: googlepost, pointing, mapping
 :slug: pointing-model-failure
 
-`|l33|`_
-`|l111|`_
+.. image:: http://2.bp.blogspot.com/_lsgW26mWZnU/SJXjh0a_cRI/AAAAAAAADBM/J3qzKAdvAE8/s320/l033_pointingmodel_failure.jpg
+.. image:: http://2.bp.blogspot.com/_lsgW26mWZnU/SJXjiJuyDoI/AAAAAAAADBU/mVcnF0BNdFM/s320/l111_pointingmodel_failure.jpeg
+
+
 I attempted to map L111, L033, and W3/4/5 with the pointing model
 corrections applied. That was a failure. Two images are attached to
 illustrate the problem - relative pointing is clearly not correct
@@ -24,5 +26,3 @@ what the offsets should be....
 .. _|image2|: http://2.bp.blogspot.com/_lsgW26mWZnU/SJXjh0a_cRI/AAAAAAAADBM/J3qzKAdvAE8/s1600-h/l033_pointingmodel_failure.jpg
 .. _|image3|: http://2.bp.blogspot.com/_lsgW26mWZnU/SJXjiJuyDoI/AAAAAAAADBU/mVcnF0BNdFM/s1600-h/l111_pointingmodel_failure.jpeg
 
-.. |l33| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/SJXjh0a_cRI/AAAAAAAADBM/J3qzKAdvAE8/s320/l033_pointingmodel_failure.jpg
-.. |l111| image:: http://2.bp.blogspot.com/_lsgW26mWZnU/SJXjiJuyDoI/AAAAAAAADBU/mVcnF0BNdFM/s320/l111_pointingmodel_failure.jpeg

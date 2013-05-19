@@ -13,50 +13,18 @@ draw some conclusions:
 #. For the narrow lines, the linewidth (gaussian sigma) is 0.03 Hz. For
    the wide lines, it is 0.05.
 
-   .. raw:: html
 
-      <div class="separator" style="clear: both; text-align: center;">
-
-   `|image0|`_
-
-   .. raw:: html
-
-      </div>
-
-   .. raw:: html
-
-      <div class="separator" style="clear: both; text-align: center;">
-
-   `|image1|`_
-
-   .. raw:: html
-
-      </div>
 
 #. The amplitudes from December 2010 are ENORMOUS compared to others!
 
-   .. raw:: html
 
-      <div class="separator" style="clear: both; text-align: center;">
 
-   `|image2|`_
-
-   .. raw:: html
-
-      </div>
 
 #. The width distributions of the two are similar, though the lines
    appear to be significantly wider in July 2009
 
-   .. raw:: html
 
-      <div class="separator" style="clear: both; text-align: center;">
 
-   `|image3|`_
-
-   .. raw:: html
-
-      </div>
 
 I've also gotten to the point that I'm satisfied with how delining with
 wing suppression works. Wing suppression is 0.4-2x quicker than fitting

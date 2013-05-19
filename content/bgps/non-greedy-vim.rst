@@ -5,10 +5,9 @@ Non-greedy vim
 :tags: googlepost
 :slug: non-greedy-vim
 
-To make .\* in VIM be non-greedy (i.e. match just `out of "`_\ ``_"),
-use:
 
-::
+To make .* in VIM be non-greedy (i.e. match just ``<a href=x>`` out of ``"<a href=x> </a>"``), use::
 
-.. _out of ": x
-.. _: x
+    .\{-}
+
+

@@ -17,17 +17,20 @@ Their comparison was over the range -10 < l < 21, so it only covered a
 small fraction of the BGPS.  It covered 13 fields with independent
 pointing solutions, so it's possible that they have actually discovered
 an offset only in some of our fields.
+
 The catalog comparison, while interesting, is potentially quite flawed.
  There's no guarantee that a source extraction algorithm will measure
 source centers accurately when a "source" is just a local overdensity on
 a complex background.  Using source comparison will also lead to a bias
 towards the most source-rich fields, e.g. l000 and l001, so an offset in
 one of those fields would drastically affect the catalog offset.
+
 There is a better way to compare pointing between two images that are
 expected to be (nearly) identical.  It is well-known that
 cross-correlation is an effective technique for determining the offsets
 between two identical images; I'll briefly summarize some of the
 literature here.
+
 `Gratadour et al 2005`_ used a maximum likelihood estimator approach to
 determine the "best-fit" offset between two images.  This approach is
 comparable to `Guizar et al (2008)`_, who `implemented`_ a fast solution
@@ -41,7 +44,8 @@ theorem`_ to create a zoomed-in image of the peak pixel, which allows
 you to get much higher precision for a much lower computational cost.
 My innovation is to use the minimum $\\chi^2$ estimator to determine the
 goodness of fit and therefore error bars on the best-fit offset.
- Because the $\\chi^2$ value for each offset is simply determined by
+
+Because the $\\chi^2$ value for each offset is simply determined by
 sums and multiplication ($\\chi^2 = \\sum
 \\frac{x\_i-\\mu\_x}{\\sigma\_{x\_i}^2}$), we can compute each term that
 goes in to the $\\chi^2$ value independently with fourier transforms,
@@ -52,14 +56,20 @@ inevitably make for astronomical images.  I believe there is also a
 requirement that the errors are independent, which may be more difficult
 to satisfy, but in the Bolocam images it is satisfied, especially when
 multiple independent observations are combined.
+
 Strictly, this approach can only be used when the model data have the
 same multiplicative scale as the fitted data.  The peak will never be
 wrong using this method, but the errors could be incorrect if the model
 and data are multiplicatively offset.  In principle, this can be
 resolved in the future using a `Mellin transform`_ [see `this site`_ or
-`this`_ for a matlab approach and `this`_ for an academic paper on it].
+`this <http://www.mathworks.com/matlabcentral/fileexchange/authors/7667>`__ for
+a matlab approach and `this
+<http://www.fresnel.fr/perso/derrode/publi/Cviu01.pdf>`__ for an academic paper
+on it].
+
+
 This is the approach I have implemented
-at \ `image-registration.rtfd.org`_.  I used simulated test cases to
+at  `image-registration.rtfd.org`_.  I used simulated test cases to
 demonstrate that it is, indeed, effective and accurate.  I used this
 method to measure the offsets between the v2 data and the v1 data (which
 should, in principle, be the same as the offsets between ATLASGAL and
@@ -211,8 +221,6 @@ Here's the new v1-ATLASGAL offset plot:
 .. _Fourier scaling theorem: http://en.wikipedia.org/wiki/Fourier_transform#Basic_properties
 .. _Mellin transform: http://en.wikipedia.org/wiki/Mellin_transform
 .. _this site: http://ecocodespace.wordpress.com/category/matlab/image-matching/fourier-mellin-transform/
-.. _this: http://www.mathworks.com/matlabcentral/fileexchange/authors/7667
-.. _this: http://www.fresnel.fr/perso/derrode/publi/Cviu01.pdf
 .. _image-registration.rtfd.org: http://image-registration.rtfd.org/
 .. _|image10|: http://1.bp.blogspot.com/-LtA6owJr_vc/UMZBLK394HI/AAAAAAAAHSI/tR4F0BnFSVs/s1600/l000_catalog_image_compare_chi2contours.png
 .. _|image11|: http://1.bp.blogspot.com/-JyMtqE536LY/UMaEqOYBRxI/AAAAAAAAHSY/85nEo6rEc9k/s1600/Offsets_XYplot.png

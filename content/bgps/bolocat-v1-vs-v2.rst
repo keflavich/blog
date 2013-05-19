@@ -25,17 +25,13 @@ Ratios of v2 fluxes to v1 fluxes in the listed apertures. The curves
 represent best-fit gaussian distributions to the data after excluding
 outliers using a `minimum covariance determinant`_ method
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| `|image2|`_                                                                                                                                                           |
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| v1 vs v2 with a background subtracted around the source equal to the source area (this was not reported in Bolocat v1, but is a tool Erik implemented so I used it)   |
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+v1 vs v2 with a background subtracted around the source equal to the source
+area (this was not reported in Bolocat v1, but is a tool Erik implemented so I
+used it)  
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| `|image4|`_                                                                                                                                                                                                         |
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| v1 vs v2 in 40" apertures, as stated.  There are y=x and y=1.5x lines plotted: these are NOT fits to the data!  The green line is a Total Least Squares linear fit to the data weighted by the measured errors.     |
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+v1 vs v2 in 40" apertures, as stated.  There are y=x and y=1.5x lines plotted:
+these are NOT fits to the data!  The green line is a Total Least Squares linear
+fit to the data weighted by the measured errors.
 
 Source Mask "aperture":
 

@@ -12,12 +12,14 @@ not certain - that the ds1 images were significantly higher than ds5
 because more noise-only pixels were included with higher outliers; i.e.,
 ds1 high-outlier noise was being compared to ds5 noise that was lower
 amplitude.
+
 What led to these conclusions? First, I was getting inconsistent results
 looking at Uranus in particular - ds5 appeared to have higher fluxes
 than ds1. This was inconsistent with `earlier results`_ on OMC1. Partly,
 this is because I switched from my `hacked-together plots`_ to the much
 more refined `compare\_images`_ script, which demonstrated the effect of
 changing the cutoff of the comparison.
+
 Also, I added in a Pearson Correlation Coefficient computation. Given a
 single data set with the only difference being downsampling, the data
 should be perfectly correlated even if there is a flux offset
@@ -25,21 +27,24 @@ should be perfectly correlated even if there is a flux offset
 an indication of a problem when I started seeing correlation
 coefficients <0.90 for data that had already been sigma-cut; that means
 that noise was being included in the correlation computations.
+
 Therefore, the approach needed is to cut out the high pixels that are on
 map edges. This I accomplished by adding an 'aperture' capability to the
 compare\_images code (for Uranus) and cropping using montage and a
 wcs-based box for Orion.
+
 The results... are ambiguous. Wow. In some sub-fields - within the same
 co-added map - the agreement is near-perfect.
 
 .. image:: http://1.bp.blogspot.com/-i20j3FEx758/TVR-PbQl7lI/AAAAAAAAGAY/imgMqceS9n8/s1600/v2.0_dl_omc_b_OMC4_ds1ds5_compare.png
 
-In others, ds1 is clearly > ds5 .
+In others, ds1 is clearly > ds5.
 
 .. image:: http://4.bp.blogspot.com/-JsRH_ZQilWM/TVR-Os6vBSI/AAAAAAAAGAQ/JRR6Trm-weo/s1600/v2.0_dl_omc_b_OMC2_ds1ds5_compare.png
 
 What's going on? ds1 does look uniformly more smooth.
-Note that the *disagreement* is nearly scale-free:\ `|image2|`_
+Note that the *disagreement* is nearly scale-free:
+
 OK, so given the conclusion in Orion that ds1>=ds5, what's the deal with
 Uranus?
 

@@ -6,6 +6,7 @@ locating beams
 :slug: locating-beams
 
 .. image:: http://3.bp.blogspot.com/_lsgW26mWZnU/ScQIDaTTPhI/AAAAAAAAEzk/C67XkoQb244/s400/beamlocations_050619_default_bolopars.png
+
 White - "Default", OP-calculated beam-locations
 Red - My code's beam locations
 Yellow - Boloparams, the fiducial beam locations

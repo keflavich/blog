@@ -10,9 +10,11 @@ micron\*, and the BGPS v1.0 and v2.0 by the appropriate conversion
 factor to get the maps into units of column density assuming T=20K and
 some opacity for the dust maps. BGPS v1 has been multiplied by the 1.5
 "correction" factor.
-\* The Herschel maps are arbitrarily scaled; I didn't derive an actual
-column conversion but just guess-and-checked once or twice until I got
-something pretty close.
+
+ * The Herschel maps are arbitrarily scaled; I didn't derive an actual
+   column conversion but just guess-and-checked once or twice until I got
+   something pretty close.
+
 The power spectra look pretty outstanding:
 
 .. image:: http://4.bp.blogspot.com/--uPAgTvMjkk/TgqcjV9uvhI/AAAAAAAAGO4/cOe1iLuF-H0/s320/powerspectrum_comparison_512_0x1.png
@@ -53,25 +55,30 @@ law, while the dust is not. What hypotheses can explain this?
    quantified.
 #. There is a systematic dust opacity difference on large scales
    resulting in lower dust emission.
-    -This is almost certainly true: the dust population increases in
-   opacity with age, following OH94. Dust on the largest spatial scales
-   should not have coagulated / collected ice, leading to a lower
-   opacity on the largest scales
-    -This may also be true even though CO is present: dust coagulation
-   is less efficient than CO formation at n~10^3-10^4 (I think - again,
-   off the cuff, but consistent with OH94)
+
+    * This is almost certainly true: the dust population increases in
+      opacity with age, following OH94. Dust on the largest spatial scales
+      should not have coagulated / collected ice, leading to a lower
+      opacity on the largest scales
+    * This may also be true even though CO is present: dust coagulation
+      is less efficient than CO formation at n~10^3-10^4 (I think - again,
+      off the cuff, but consistent with OH94)
+
 #. The CO overestimates all scales, either because of incorrect bulk
    abundance or temperature considerations.
-    This is problematic..... if you drop the CO values at all scales, it
-   becomes deficient in the 50-200 arcsecond range, where the dust
-   measurements agree quite well
+
+    * This is problematic..... if you drop the CO values at all scales, it
+      becomes deficient in the 50-200 arcsecond range, where the dust
+      measurements agree quite well
+
 #. There is a preferred distance in both images
-    -It is not clear that the observed effects would occur because of
-   this
-    -It is also quite evident from other analyses that there IS a
-   preferred velocity, at least, and it completely dominates all others
-   and has the same shape as the integrated power spectrum. So a
-   distance effect is most likely ruled out.
+
+    * It is not clear that the observed effects would occur because of
+      this
+    * It is also quite evident from other analyses that there IS a
+      preferred velocity, at least, and it completely dominates all others
+      and has the same shape as the integrated power spectrum. So a
+      distance effect is most likely ruled out.
 
 .. _|image6|: http://4.bp.blogspot.com/--uPAgTvMjkk/TgqcjV9uvhI/AAAAAAAAGO4/cOe1iLuF-H0/s1600/powerspectrum_comparison_512_0x1.png
 .. _|image7|: http://3.bp.blogspot.com/-1Lupi5MSVpk/TgqcjsPwKFI/AAAAAAAAGPA/D9oNXIHdRtE/s1600/powerspectrum_comparison_512_1x1.png

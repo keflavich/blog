@@ -6,6 +6,7 @@ Iterating to Convergence
 :slug: iterating-to-convergence
 
 .. image:: http://4.bp.blogspot.com/_lsgW26mWZnU/SLLufcweELI/AAAAAAAADOs/5LV8RF28aUk/s400/iteratetoconvergence-0.png
+
 Some sample plots of flux-vs-iteration number in the Galactic Center.
 The above is for a 13-pca-component map, and the plot is of the
 northeast peak of SGR B2. The other plots (available in postscript
