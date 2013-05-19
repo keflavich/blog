@@ -1,21 +1,13 @@
 Non-greedy vim
 ##############
-:date: 2012-09-20 20:02
-:author: Adam (keflavich@gmail.com)
-:tags: googlepost, computer
+:date: 2008-09-05 01:12
+:author: Adam (noreply@blogger.com)
+:tags: googlepost
+:slug: non-greedy-vim
 
-.. raw:: html
 
-   <p>
-
-To make .\* in VIM be non-greedy (i.e. match just <a href=x> out of "<a
-href=x> </a>"), use:
-
-::
+To make .* in VIM be non-greedy (i.e. match just ``<a href=x>`` out of ``"<a href=x> </a>"``), use::
 
     .\{-}
 
-.. raw:: html
-
-   </p>
 
