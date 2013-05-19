@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="./theme/css/style.css" />
+<head>
+                <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+                <link href="http://keflavich.github.com/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+                                                <link href="http://keflavich.github.com/blog/feeds/bgps.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+                                        <!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("./static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href=".">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                            <li><a href="http://www.adamgginsburg.com">Home</a></li>
+                            <li><a href="index.html">Blog Index</a></li>
+                            <li><a href="archives.html">Recent</a></li>
+                            <li><a href="tags.html">Tags</a></li>
+                                                              </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+   <div id="sidebar">
+    <ul>
+  	  	        	  	          <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+                          <li class="post">
+                  2013/05/16
+                  <br>
+                  <a href="./bgps-point-source-recovery.html">BGPS Point Source Recovery</a>
+              </li>
+                          <li class="post">
+                  2013/05/13
+                  <br>
+                  <a href="./recovering-from-startup-drive-out-of-memory.html">Recovering from "Startup drive out of memory"</a>
+              </li>
+                          <li class="post">
+                  2013/03/25
+                  <br>
+                  <a href="./bolocam-mass-calculations.html">Bolocam Mass Calculations</a>
+              </li>
+                          <li class="post">
+                  2013/03/22
+                  <br>
+                  <a href="./arecibo-mapping-total-power-measurements.html">Arecibo Mapping: Total Power Measurements</a>
+              </li>
+                          <li class="post">
+                  2013/03/12
+                  <br>
+                  <a href="./jeans-mass.html">Jeans Mass</a>
+              </li>
+                    </ul>
+      </li>
+        
+    </ul>
+  </div><!-- end #sidebar -->
+ 
+  <div id="content">
+        <section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="./v1-vs-v2-calibration-curves.html" rel="bookmark"
+         title="Permalink to V1 vs V2: Calibration Curves">V1 vs V2: Calibration Curves</a></h2>
+  
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2011-08-25T17:09:00">
+      2011/08/25
+    </abbr>
+        <address class="vcard author">
+      By <a class="url fn" href="./author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a>
+    </address>
+      </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Why did we find a factor ~1.8 in <a class="reference external" href="http://bolocam.blogspot.com/2011/08/bolocat-v1-v2-comparison.html">the previous post</a>? Well, for
+starters we used a calibration curve that was based off of 'masking' and
+other tricky techniques.
+The calibration curves below are the first ever produced
+self-consistently, i.e. using the EXACT same pipeline with the EXACT
+same parameters as the science data. No hacks were needed to produce
+these<a class="reference external" href="#asterisk&quot;">*</a>. The recovered Volts/Jy are substantially higher than
+BGPSv1 and ALSO higher than the curve used about a year ago in an
+attempt to explain the v1 flux discrepancy.
+Remember that a higher calibration curve means a LOWER recovered flux. I
+haven't finished the check, but odds are pretty good that applying these
+self-consistent cal curves will reduce the v2 data to be about 1.5.</p>
+<img alt="http://4.bp.blogspot.com/-PRU4LQ5f-C4/TlZ9wpeFBeI/AAAAAAAAGb8/jKdJHtIqV40/s320/planet_dcfluxes_05_defaults_ds2_v2.0_13pca_map20.png" src="http://4.bp.blogspot.com/-PRU4LQ5f-C4/TlZ9wpeFBeI/AAAAAAAAGb8/jKdJHtIqV40/s320/planet_dcfluxes_05_defaults_ds2_v2.0_13pca_map20.png" />
+<img alt="http://3.bp.blogspot.com/-AIzsETyl69g/TlZ9w50DjBI/AAAAAAAAGcE/h5ggKhH3dO4/s320/planet_dcfluxes_06_defaults_ds2_v2.0_13pca_map20.png" src="http://3.bp.blogspot.com/-AIzsETyl69g/TlZ9w50DjBI/AAAAAAAAGcE/h5ggKhH3dO4/s320/planet_dcfluxes_06_defaults_ds2_v2.0_13pca_map20.png" />
+<img alt="http://4.bp.blogspot.com/-BNWD4QQ21Ac/TlZ9xZ5eTkI/AAAAAAAAGcM/QOVbum2jXIo/s320/planet_dcfluxes_07_defaults_ds2_v2.0_13pca_map20.png" src="http://4.bp.blogspot.com/-BNWD4QQ21Ac/TlZ9xZ5eTkI/AAAAAAAAGcM/QOVbum2jXIo/s320/planet_dcfluxes_07_defaults_ds2_v2.0_13pca_map20.png" />
+<img alt="http://2.bp.blogspot.com/-OucWo74b8VY/TlZ9yFIJYQI/AAAAAAAAGcU/IBMs5YLMlYU/s320/planet_dcfluxes_09_defaults_ds2_v2.0_13pca_map20.png" src="http://2.bp.blogspot.com/-OucWo74b8VY/TlZ9yFIJYQI/AAAAAAAAGcU/IBMs5YLMlYU/s320/planet_dcfluxes_09_defaults_ds2_v2.0_13pca_map20.png" />
+<p>While no hacks were needed to produce these plots, there were abundant
+problems. There are far fewer data points than there should be. The
+problems are manifold, but mostly have to do with the PCA scaling (I
+think).
+In some cases, the first scan in an observation was wildly variable.
+There looked to be an exponential or similar decay (as has been observed
+in scan turnarounds) at the observation start that took ~3 scans to
+decay to bring all of the bolometers onto a scaleable curve. This is a
+HUGE problem, because the assumption that the dominant signal is
+atmosphere is badly violated in this situation - the signal becomes
+electronics-dominated. The first PCA component is then an ugly
+step-function. With these first scans flagged out, the whole problem
+goes away, but that's a painful manual process. Automating it MAY be
+possible, but also risky.
+In other cases, particularly September 4th 2007, the atmosphere appeared
+to be negligible! While the atmospheric optical depth probably was not,
+if it was extraordinarily stable over the course of ~10 minutes, again
+we experience severe problems. A stable atmosphere means no atmospheric
+variation, which means that ACBOLOS is just noise (plus Uranus signal).
+Ironically, this is very bad for calibration - it means there is no
+common signal on which we can calibrate the bolos' relative
+sensitivities. This problem doesn't seem to affect science data,
+probably because there's no such thing as 45-minute stable atmosphere
+(especially when you're following rising/setting sources). If I REALLY
+need that data, I could snag the relative scalings from a science field
+and apply them to the cal data... honestly that's not a bad idea in
+general... hmm... Well, we'll explore that later if I have time, that
+will take days to implement.</p>
+
+  </div><!-- /.entry-content -->
+</section>
+  </div>
+        <footer id="contentinfo" class="body">
+        </footer><!-- /#contentinfo -->
+
+
+
+
+</body>
+</html>

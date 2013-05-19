@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="../theme/css/style.css" />
+<head>
+                <title>Adam Ginsburg's blog - Articles by Adam (noreply@blogger.com)</title>
+        <meta charset="utf-8" />
+                <link href="http://keflavich.github.com/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+                                                                        <!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("../static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="..">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                            <li><a href="http://www.adamgginsburg.com">Home</a></li>
+                            <li><a href="index.html">Blog Index</a></li>
+                            <li><a href="archives.html">Recent</a></li>
+                            <li><a href="tags.html">Tags</a></li>
+                                                              </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+   <div id="sidebar">
+    <ul>
+  	  	        	  	          <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+                          <li class="post">
+                  2008/08/06
+                  <br>
+                  <a href="../0507-mapping.html">0507 mapping</a>
+              </li>
+                          <li class="post">
+                  2009/02/01
+                  <br>
+                  <a href="../0707-distortion-maps.html">0707 distortion maps</a>
+              </li>
+                          <li class="post">
+                  2009/01/17
+                  <br>
+                  <a href="../0709-rotators-fixed-latest-run.html">0709 rotators fixed, latest run</a>
+              </li>
+                          <li class="post">
+                  2008/11/28
+                  <br>
+                  <a href="../4-errors.html">4 errors</a>
+              </li>
+                          <li class="post">
+                  2009/03/04
+                  <br>
+                  <a href="../43-relative-alignment-and-mosaicing.html">4.3 Relative Alignment and Mosaicing</a>
+              </li>
+                    </ul>
+      </li>
+        
+    </ul>
+  </div><!-- end #sidebar -->
+ 
+  <div id="content">
+        <section id="content">
+<h2>Articles by Adam (noreply@blogger.com)</h2>
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../weighting-and-scaling.html" rel="bookmark" title="Permalink to Weighting and Scaling">
+                    Weighting and Scaling</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-04-19T23:08:00"> 2011/04/19 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The &quot;simple&quot; relative sensitivity calibration was causing serious
+problems.
+The assumed model for a &quot;gain&quot; $G$, timestream $S$, and reference
+timestream $R$ is:
+$S = G R$
+Naively, one would assume that something like
+$G = median(S/R)$
+would work. However, it doesn't. The distribution of $G$ values looks
+like:</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../weighting-next-steps.html" rel="bookmark" title="Permalink to Weighting - next steps">
+                    Weighting - next steps</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-15T01:04:00"> 2008/11/15 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Idea: 'edge taper' for scans. The scan start/end usually has higher
+noise, so it would be good to downweight those regions slightly.
+Probably only the first/last 5% of each scan should be linearly
+downweighted.
+I'm running a lot of tests on l001 with/without deconvolution, lots of
+iterations, different pca components. They'll be done sometime tomorrow.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../weird-problem.html" rel="bookmark" title="Permalink to Weird problem">
+                    Weird problem</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-03-31T02:25:00"> 2011/03/31 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm remapping everything, and there's a really strange situation in
+ic1396... only one field has a source that doesn't have rotation
+problems, every other observation is clearly improperly rotated. The
+weird thing is that it's NOT the one you'd expect from the information
+below:
+<tt class="docutils literal"><span class="pre">readcol,'/Volumes/disk2/sliced/infiles/ic1396_infile.txt',filelist,format='A'for</span> i=0,6 do begin &amp; <span class="pre">ncdf_varget_scale,filelist[i],'array_params',ap</span> &amp; <span class="pre">print,filelist[i],ap</span> &amp; endfor/Volumes/disk2/sliced/ic1396/070911_o19_raw_ds5.nc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.70000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31.2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 70.7000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000/Volumes/disk2/sliced/ic1396/070912_o26_raw_ds5.nc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.70000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31.2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 84.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000/Volumes/disk2/sliced/ic1396_d/070913_o19_raw_ds5.nc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.70000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31.2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 84.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000/Volumes/disk2/sliced/ic1396_l/070913_o17_raw_ds5.nc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.70000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31.2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 84.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000/Volumes/disk2/sliced/ic1396_r/070913_o18_raw_ds5.nc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.70000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31.2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 84.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000/Volumes/disk2/sliced/ic1396_u/070913_o20_raw_ds5.nc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.70000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31.2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 84.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000</tt>
+One ofthese things is not like the others... but it's
+070913_o18_raw_ds5.nc, not
+/Volumes/disk2/sliced/ic1396/070911_o19_raw_ds5.nc</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../what-about-the-effects-on-the-map-unfortunately.html" rel="bookmark" title="Permalink to What about the effects on the map? Unfortunately,...">
+                    What about the effects on the map?  Unfortunately,...</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-02-02T02:12:00"> 2011/02/02 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>What about the effects on the map? Unfortunately, in the tests I've run,
+delining actually INCREASES the noise in the map! How is this possible?
+My only hypothesis is that PCA cleaning does an excellent job of
+removing the line noise, but when it is replaced with truly uncorrelated
+gaussian noise, the PCA cleaning no longer removes that component.
+But we don't want PCA cleaning to grab instrumental correlated noise; we
+want it to be limited to atmospheric noise. So ideally we want to
+completely remove the line noise without adding noise to the image...
+maybe the line regions should just be set to zero after all....</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../when-things-go-really-really-bad.html" rel="bookmark" title="Permalink to when things go really really bad">
+                    when things go really really bad</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-17T23:30:00"> 2011/07/17 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="http://4.bp.blogspot.com/-YX2VAOPAHso/TiNwkZ3l1MI/AAAAAAAAGTs/JsOe6JIxpuQ/s320/whoatrippy.png" src="http://4.bp.blogspot.com/-YX2VAOPAHso/TiNwkZ3l1MI/AAAAAAAAGTs/JsOe6JIxpuQ/s320/whoatrippy.png" />
+<p>that's all.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../wow-fft-failure.html" rel="bookmark" title="Permalink to Wow - FFT failure">
+                    Wow - FFT failure</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-12T15:11:00"> 2008/08/12 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>On my huge Cygnus run, the fft keeps failing in the deline code. It's
+actually pretty impressive, but there are 844604 points in the
+timestream. The prime factorization of 844604 is 2^2 * 211151. This is
+just damned bad luck, because I think an FFT is extremely inefficient
+when it can't factorize. What's the best workaround? ....
+9 AM update: I've rewritten the deliner to work on a scan-by-scan basis.
+It's possible that the delining failed in the past because it was
+essentially removing a constant amplitude at the line frequencies across
+the observation (or combined observations!) which is not likely to be
+true.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+                        <a href="../author/adam-noreplybloggercom19.html">&laquo;</a>
+                Page 20 / 20
+    </p>
+</section><!-- /#content -->
+  </div>
+        <footer id="contentinfo" class="body">
+        </footer><!-- /#contentinfo -->
+
+
+
+
+</body>
+</html>

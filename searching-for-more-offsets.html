@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="./theme/css/style.css" />
+<head>
+                <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+                <link href="http://keflavich.github.com/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+                                                <link href="http://keflavich.github.com/blog/feeds/bgps.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+                                        <!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("./static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href=".">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                            <li><a href="http://www.adamgginsburg.com">Home</a></li>
+                            <li><a href="index.html">Blog Index</a></li>
+                            <li><a href="archives.html">Recent</a></li>
+                            <li><a href="tags.html">Tags</a></li>
+                                                              </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+   <div id="sidebar">
+    <ul>
+  	  	        	  	          <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+                          <li class="post">
+                  2013/05/16
+                  <br>
+                  <a href="./bgps-point-source-recovery.html">BGPS Point Source Recovery</a>
+              </li>
+                          <li class="post">
+                  2013/05/13
+                  <br>
+                  <a href="./recovering-from-startup-drive-out-of-memory.html">Recovering from "Startup drive out of memory"</a>
+              </li>
+                          <li class="post">
+                  2013/03/25
+                  <br>
+                  <a href="./bolocam-mass-calculations.html">Bolocam Mass Calculations</a>
+              </li>
+                          <li class="post">
+                  2013/03/22
+                  <br>
+                  <a href="./arecibo-mapping-total-power-measurements.html">Arecibo Mapping: Total Power Measurements</a>
+              </li>
+                          <li class="post">
+                  2013/03/12
+                  <br>
+                  <a href="./jeans-mass.html">Jeans Mass</a>
+              </li>
+                    </ul>
+      </li>
+        
+    </ul>
+  </div><!-- end #sidebar -->
+ 
+  <div id="content">
+        <section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="./searching-for-more-offsets.html" rel="bookmark"
+         title="Permalink to Searching for more offsets">Searching for more offsets</a></h2>
+  
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2008-08-12T21:35:00">
+      2008/08/12
+    </abbr>
+        <address class="vcard author">
+      By <a class="url fn" href="./author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a>
+    </address>
+      </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>The defining feature of my pointing calculations - and their
+inconsistency - is that the spread for individual sources is bad, which
+means that there's still something wrong in the way the bulk ra/dec are
+being calculated.</p>
+<p>I checked apply_distortion_map_radec to see if it might have inserted
+some bulk offset, but it only changes the average position by &lt;2&quot;. That
+might be an issue, but the boresight isn't necessarily aligned with the
+mean location of the bolometers. It should be shifted by at least .3&quot;
+according to a simple average of sin/cos of the bolo_params angles.
+Comparing my pointing code to map_ncdf_reading directly:</p>
+<p>readstruct=map_ncdf_reading(filename,/nopixoff)
+offsets are small (e.g. -0.050665803 -0.0029540043 arcseconds ra/dec) if
+I don't subtract fazo/fzao
+offsets in ra/dec are remarkably close to fazo/fzao if I subtract them:</p>
+<pre class="literal-block">
+92.830656 -126.12773
+95.000000 -120.00000
+</pre>
+<p>which is because ra/dec are pretty closely aligned to az/el.
+So, any difference comes from at least one of the keyword parameters.
+Therefore I AM missing something, and that something is one of the
+keywords to map_ncdf_reading</p>
+
+  </div><!-- /.entry-content -->
+</section>
+  </div>
+        <footer id="contentinfo" class="body">
+        </footer><!-- /#contentinfo -->
+
+
+
+
+</body>
+</html>

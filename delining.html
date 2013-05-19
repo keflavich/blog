@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="./theme/css/style.css" />
+<head>
+                <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+                <link href="http://keflavich.github.com/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+                                                <link href="http://keflavich.github.com/blog/feeds/bgps.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+                                        <!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("./static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href=".">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                            <li><a href="http://www.adamgginsburg.com">Home</a></li>
+                            <li><a href="index.html">Blog Index</a></li>
+                            <li><a href="archives.html">Recent</a></li>
+                            <li><a href="tags.html">Tags</a></li>
+                                                              </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+   <div id="sidebar">
+    <ul>
+  	  	        	  	          <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+                          <li class="post">
+                  2013/05/16
+                  <br>
+                  <a href="./bgps-point-source-recovery.html">BGPS Point Source Recovery</a>
+              </li>
+                          <li class="post">
+                  2013/05/13
+                  <br>
+                  <a href="./recovering-from-startup-drive-out-of-memory.html">Recovering from "Startup drive out of memory"</a>
+              </li>
+                          <li class="post">
+                  2013/03/25
+                  <br>
+                  <a href="./bolocam-mass-calculations.html">Bolocam Mass Calculations</a>
+              </li>
+                          <li class="post">
+                  2013/03/22
+                  <br>
+                  <a href="./arecibo-mapping-total-power-measurements.html">Arecibo Mapping: Total Power Measurements</a>
+              </li>
+                          <li class="post">
+                  2013/03/12
+                  <br>
+                  <a href="./jeans-mass.html">Jeans Mass</a>
+              </li>
+                    </ul>
+      </li>
+        
+    </ul>
+  </div><!-- end #sidebar -->
+ 
+  <div id="content">
+        <section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="./delining.html" rel="bookmark"
+         title="Permalink to Delining">Delining</a></h2>
+  
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2011-02-03T04:54:00">
+      2011/02/03
+    </abbr>
+        <address class="vcard author">
+      By <a class="url fn" href="./author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a>
+    </address>
+      </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Delining refers to the process of removing electronic noise that is
+aliased to
+particular frequencies by the discrete sampling of the data. Typical
+electronic noise is at 60 Hz with some width. It gets aliased to these
+frequencies:
+<tt class="docutils literal">linefreqs = <span class="pre">[10.05+findgen(10)*1.2,10.05-((findgen(7)+1))*1.2]</span></tt>
+The 10.05 Hz and 20.10 Hz are the worst in most cases, and they are
+wider. For
+the above lines, we &quot;remove&quot; a bandwidth of 0.09 Hz by averaging over
+the
+neighboring 0.5 Hz on either side. For the wider lines, we remove 0.5 Hz
+by
+averaging over the neighboring 1.5 Hz on either side.
+There are a few new things about the delining process that did not exist
+in James' old version:</p>
+<ol class="arabic simple">
+<li>The wide-band lines are removed</li>
+<li>A check is performed before removing the lines - they are only
+removed if the line region mean is
+2-sigma above the average region (as computed via median and mad)</li>
+<li>The replaced noise is computed via median/mad, and the new noise
+level is set 5x lower than in the
+neighboring region</li>
+</ol>
+<hr class="docutils" />
+<p>Now, some examples:</p>
+<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/TUisqDHJ08I/AAAAAAAAF58/BpgnudfdAAw/s400/deline_timestreams_003.png" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUisqDHJ08I/AAAAAAAAF58/BpgnudfdAAw/s400/deline_timestreams_003.png" />
+<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TUisqWN6ueI/AAAAAAAAF6E/yAka7dlomjo/s400/deline_psds_003.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUisqWN6ueI/AAAAAAAAF6E/yAka7dlomjo/s400/deline_psds_003.png" />
+<p>The timestream (left) and PSD (right) of a &quot;pretty good&quot; bolometer.
+There is a lot of noise in lines, but note that the peak power is 2-3
+orders of magnitude below the PSD peak. In this case the &quot;Power&quot; is in
+Jy. There is little astrophysical information below ~14&quot; (9 Hz), and
+there should be none below 7.2&quot; (17 Hz), but there is plausibly
+information at these scales. It therefore makes sense to save as much
+information as possible. As can be seen in the delined PSD, the peaks
+drop by a substantial fraction, but not all the way - that's because
+these lines are wider than typically observed. Unfortunately, I don't
+have any really good ideas about how to fix this issue - I think fitting
+gaussians to each line, while attractive, is going to be prohibitively
+expensive in both programmer and processor time. However... it would be
+a very interesting project to undertake. In the timestream, it can be
+seen that the RMS drops substantially when the lines are filtered out
+(note that the timestream is strongly dominated by large-scale
+structure, so 'substantial' is really based on the RMS of the lines
+removed).</p>
+<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/TUisq6D55wI/AAAAAAAAF6M/PZ4hyu5FkZM/s400/deline_10hz_timestreams_003.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUisq6D55wI/AAAAAAAAF6M/PZ4hyu5FkZM/s400/deline_10hz_timestreams_003.png" />
+<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/TUisrWpL7yI/AAAAAAAAF6U/tSsL5Jc4n-A/s400/deline_10hz_psds_003.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUisrWpL7yI/AAAAAAAAF6U/tSsL5Jc4n-A/s400/deline_10hz_psds_003.png" />
+<p>The next two plots look identical to the previous ones. In principle,
+they include the wide-band delining. However, in this case, the
+satellite lines to either side of the 10 Hz line are too strong and
+prevent identification of the 10 Hz line. This is unfortunate, again,
+but no obvious solution presents itself.</p>
+<img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixLZbVHPI/AAAAAAAAF6c/xCWLpb9CKX4/s400/deline_timestreams_004.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixLZbVHPI/AAAAAAAAF6c/xCWLpb9CKX4/s400/deline_timestreams_004.png" />
+<img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixL8APCQI/AAAAAAAAF6k/j8FyKbgOdDo/s400/deline_psds_004.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixL8APCQI/AAAAAAAAF6k/j8FyKbgOdDo/s400/deline_psds_004.png" />
+<p>Now we come to a truly problematic bolometer. The lines completely
+dominate the power spectrum. Narrow line removal fails.</p>
+<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TUixMjNxbkI/AAAAAAAAF6s/Hr8ouprcMpY/s400/deline_10hz_timestreams_004.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUixMjNxbkI/AAAAAAAAF6s/Hr8ouprcMpY/s400/deline_10hz_timestreams_004.png" />
+<img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixNMO2NsI/AAAAAAAAF60/ZAsirbb25QY/s400/deline_10hz_psds_004.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixNMO2NsI/AAAAAAAAF60/ZAsirbb25QY/s400/deline_10hz_psds_004.png" />
+<p>Wide line removal does a much, much better job, dropping the RMS by an
+order of magnitude.... but the bolometer probably still needs to be
+removed, since the astrophysical signal is 2-3 orders of magnitude below
+that.</p>
+<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TUizkq9x4TI/AAAAAAAAF68/2xYY86d6aTQ/s400/deline_timestreams_001.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUizkq9x4TI/AAAAAAAAF68/2xYY86d6aTQ/s400/deline_timestreams_001.png" />
+<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TUizlH0XvMI/AAAAAAAAF7E/ptDb5I3os6A/s400/deline_psds_001.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUizlH0XvMI/AAAAAAAAF7E/ptDb5I3os6A/s400/deline_psds_001.png" />
+<p>The 2010 data had much worse line noise and had to be delined. JS
+accomplished this by throwing out all data above a certain frequency,
+but I prefer the delining approach. It is clearly effective, but again
+leaves much to be desired. Should the flagged bandwidth be increased?
+What about the extra lines around 18 Hz?</p>
+<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/TUizln1mSCI/AAAAAAAAF7M/hTkZRUU3-ck/s400/deline_10hz_timestreams_001.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUizln1mSCI/AAAAAAAAF7M/hTkZRUU3-ck/s400/deline_10hz_timestreams_001.png" />
+<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/TUizmdrMkgI/AAAAAAAAF7U/-dlB4u30hBo/s400/deline_10hz_psds_001.png" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUizmdrMkgI/AAAAAAAAF7U/-dlB4u30hBo/s400/deline_10hz_psds_001.png" />
+<p>Again, the wide line flagging fails because of the satellite lines.</p>
+
+  </div><!-- /.entry-content -->
+</section>
+  </div>
+        <footer id="contentinfo" class="body">
+        </footer><!-- /#contentinfo -->
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="../theme/css/style.css" />
+<head>
+                <title>Adam Ginsburg's blog - http://schemas.google.com/blogger/2008/kind#post</title>
+        <meta charset="utf-8" />
+                <link href="http://keflavich.github.com/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+                                                                        <!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("../static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="..">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                            <li><a href="http://www.adamgginsburg.com">Home</a></li>
+                            <li><a href="index.html">Blog Index</a></li>
+                            <li><a href="archives.html">Recent</a></li>
+                            <li><a href="tags.html">Tags</a></li>
+                                                              </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+   <div id="sidebar">
+    <ul>
+  	  	        	  	          <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+                          <li class="post">
+                  2012/12/26
+                  <br>
+                  <a href="../catalog-vs-image-shift-a-possible-solution-to-the-atlasgal-issue.html">Catalog vs Image shift? A possible solution to the ATLASGAL issue</a>
+              </li>
+                          <li class="post">
+                  2012/12/22
+                  <br>
+                  <a href="../idea-multispectral-eigenimage-decomposition.html">Idea: Multispectral Eigenimage decomposition...</a>
+              </li>
+                          <li class="post">
+                  2012/12/15
+                  <br>
+                  <a href="../pointing-cross-correlation-yet-again.html">Pointing & Cross-Correlation yet again</a>
+              </li>
+                          <li class="post">
+                  2012/09/08
+                  <br>
+                  <a href="../cross-correlation-offsets-revisited.html">Cross-Correlation Offsets Revisited</a>
+              </li>
+                          <li class="post">
+                  2012/06/23
+                  <br>
+                  <a href="../how-does-bolocam-data-improve-greybody-fits.html">How does Bolocam data improve greybody fits?</a>
+              </li>
+                    </ul>
+      </li>
+        
+    </ul>
+  </div><!-- end #sidebar -->
+ 
+  <div id="content">
+        <section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../pps-analysis.html" rel="bookmark" title="Permalink to PPS analysis">
+                    PPS analysis</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2010-06-16T18:06:00"> 2010/06/16 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've started looking at PPS fields to see if I can glean any additional
+information about the &quot;flux discrepancy&quot; from them.&nbsp; However, the
+results are, as usual, unenlightening.
+There is no consistent increase in flux when 3 PCA components are used
+instead of 13 PCA components - very plausibly an indication that 13 PCA
+is not too much to subtract because it's only atmosphere.&nbsp; Similarly,
+there is no obvious benefit to using a quadratic sky estimator instead
+of a PCA estimator.
+I'm using aperture photometry (without background subtraction) on
+identical fields to perform these comparisons.&nbsp; I've selected
+(arbitrarily) the l357pps source as my comparison source.&nbsp; The next step
+(ongoing) is to compare to the co-added maps and crosshatched
+large-scale maps of the same field.
+(next step) PPS &lt; single cross-hatched large-scale observation pair &lt;
+13PCA full combined map &lt; 3PCA full combined map.
+Unfortunately, this result implies that the small maps under-recover
+flux, which suggests that the large maps are too bright, which is the
+opposite of what we expect.&nbsp; Additionally, lower noise -&gt; more flux
+recovered?
+When background subtraction is included, the 3PCA and 13PCA fluxes match
+nearly perfectly.
+Despite the failure of this test (PPS &lt; full field), I will do a
+systematic comparison of PPS sources with 0PCA + masking to the large
+fields in the hopes that doing so can provide a legitimate estimate of
+the &quot;scale factor&quot; from treating small and large fields differently.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../bgps-pipeline-published.html" rel="bookmark" title="Permalink to BGPS Pipeline Published">
+                    BGPS Pipeline Published</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2010-06-11T19:59:00"> 2010/06/11 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The BGPS pipeline has officially been released on <a class="reference external" href="http://code.google.com/p/bgpspipeline/">Google Code</a>.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../aperture-photometry-on-herschel-based-simulation.html" rel="bookmark" title="Permalink to Aperture Photometry on Herschel-based simulation">
+                    Aperture Photometry on Herschel-based simulation</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2010-06-08T18:15:00"> 2010/06/08 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <div class="separator" style="clear: both; text-align: center;"><p><a href="#id1"><span class="problematic" id="id2">`|image0|`_</span></a><a href="#id3"><span class="problematic" id="id4">`|image1|`_</span></a><a href="#id5"><span class="problematic" id="id6">`|image2|`_</span></a><a href="#id7"><span class="problematic" id="id8">`|image3|`_</span></a><a href="#id9"><span class="problematic" id="id10">`|image4|`_</span></a><a href="#id11"><span class="problematic" id="id12">`|image5|`_</span></a><a href="#id13"><span class="problematic" id="id14">`|image6|`_</span></a><a href="#id15"><span class="problematic" id="id16">`|image7|`_</span></a><a href="#id17"><span class="problematic" id="id18">`|image8|`_</span></a><a href="#id19"><span class="problematic" id="id20">`|image9|`_</span></a></p>
+</div><p>Aperture Photometry on isolated and not-so-isolated sources in the
+Herschel-based BGPS simulation using the L=111 field for the &quot;noise&quot;.
+Depending on the aperture, our flux recovery can be really really low.
+The images should give an idea of the S/N.&nbsp; Background subtraction means
+subtracting the median of the image.... it works frighteningly well in
+most cases.</p>
+</p><div class="system-messages section">
+<h2>Docutils System Messages</h2>
+<div class="system-message" id="id1">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/blog/content/bgps/aperture-photometry-on-herschel-based-simulation.rst</tt>, line 12); <em><a href="#id2">backlink</a></em></p>
+Unknown target name: &quot;|image0|&quot;.</div>
+<div class="system-message" id="id3">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/blog/content/bgps/aperture-photometry-on-herschel-based-simulation.rst</tt>, line 12); <em><a href="#id4">backlink</a></em></p>
+Unknown target name: &quot;|image1|&quot;.</div>
+<div class="system-message" id="id5">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/blog/content/bgps/aperture-photometry-on-herschel-based-simulation.rst</tt>, line 12); <em><a href="#id6">backlink</a></em></p>
+Unknown target name: &quot;|image2|&quot;.</div>
+<div class="system-message" id="id7">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/blog/content/bgps/aperture-photometry-on-herschel-based-simulation.rst</tt>, line 12); <em><a href="#id8">backlink</a></em></p>
+Unknown target name: &quot;|image3|&quot;.</div>
+<div class="system-message" id="id9">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/blog/content/bgps/aperture-photometry-on-herschel-based-simulation.rst</tt>, line 12); <em><a href="#id10">backlink</a></em></p>
+Unknown target name: &quot;|image4|&quot;.</div>
+<div class="system-message" id="id11">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/blog/content/bgps/aperture-photometry-on-herschel-based-simulation.rst</tt>, line 12); <em><a href="#id12">backlink</a></em></p>
+Unknown target name: &quot;|image5|&quot;.</div>
+<div class="system-message" id="id13">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/blog/content/bgps/aperture-photometry-on-herschel-based-simulation.rst</tt>, line 12); <em><a href="#id14">backlink</a></em></p>
+Unknown target name: &quot;|image6|&quot;.</div>
+<div class="system-message" id="id15">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/blog/content/bgps/aperture-photometry-on-herschel-based-simulation.rst</tt>, line 12); <em><a href="#id16">backlink</a></em></p>
+Unknown target name: &quot;|image7|&quot;.</div>
+<div class="system-message" id="id17">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/blog/content/bgps/aperture-photometry-on-herschel-based-simulation.rst</tt>, line 12); <em><a href="#id18">backlink</a></em></p>
+Unknown target name: &quot;|image8|&quot;.</div>
+<div class="system-message" id="id19">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/blog/content/bgps/aperture-photometry-on-herschel-based-simulation.rst</tt>, line 12); <em><a href="#id20">backlink</a></em></p>
+Unknown target name: &quot;|image9|&quot;.</div>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../pipeline-flowcharts.html" rel="bookmark" title="Permalink to Pipeline Flowcharts">
+                    Pipeline Flowcharts</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2010-06-07T22:39:00"> 2010/06/07 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In the process of hunting down a supposed calibration error, I
+determined that it was necessary to generate a more intuitive graphical
+display of the pipeline. Hence, pipeline flowcharts (generated in
+keynote). The key should be self-explanatory to the degree that any part
+of these charts is understandable to an outsider. The yellow boxes
+represent wrapper scripts/functions while the rounded box bubbles show
+individual functions within these wrappers and their interrelationship.</p>
+<div class="separator" style="clear: both; text-align: center;"><p><a href="#id1"><span class="problematic" id="id2">`|image0|`_</span></a></p>
+</div><div class="separator" style="clear: both; text-align: center;"><p><a href="#id3"><span class="problematic" id="id4">`|image1|`_</span></a></p>
+</div></p><div class="system-messages section">
+<h2>Docutils System Messages</h2>
+<div class="system-message" id="id1">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/blog/content/bgps/pipeline-flowcharts.rst</tt>, line 20); <em><a href="#id2">backlink</a></em></p>
+Unknown target name: &quot;|image0|&quot;.</div>
+<div class="system-message" id="id3">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/blog/content/bgps/pipeline-flowcharts.rst</tt>, line 30); <em><a href="#id4">backlink</a></em></p>
+Unknown target name: &quot;|image1|&quot;.</div>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../minor-mystery-resolved-perseus-cal-curve.html" rel="bookmark" title="Permalink to Minor mystery resolved: Perseus cal curve">
+                    Minor mystery resolved: Perseus cal curve</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2010-06-07T22:32:00"> 2010/06/07 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>When I started working on the Perseus data again, I decided to use the
+Enoch 2006 calibration curve directly. However, it has a very different
+form than all other epochs. The reason, as revealed below, is that it
+was not forced through 0,0. Additionally, all of the BGPS data was
+observed with mean DC ~ 2-3 V, while the Perseus data was observed with
+mean DC 4-5 V, so the relevant regime is in a very different location.
+The reference DC bias was much lower, ~2.15 V vs. 4.6 V in the 2005-2007
+BGPS and 2.6 V in the 2009 BGPS.</p>
+<div class="separator" style="clear: both; text-align: center;"><p><a href="#id1"><span class="problematic" id="id2">`|image0|`_</span></a></p>
+</div></p><div class="system-messages section">
+<h2>Docutils System Messages</h2>
+<div class="system-message" id="id1">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/blog/content/bgps/minor-mystery-resolved-perseus-cal-curve.rst</tt>, line 21); <em><a href="#id2">backlink</a></em></p>
+Unknown target name: &quot;|image0|&quot;.</div>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../minor-mystery-solved.html" rel="bookmark" title="Permalink to Minor mystery solved">
+                    Minor mystery solved</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2010-06-07T22:23:00"> 2010/06/07 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content">  </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../release.html" rel="bookmark" title="Permalink to RELEASE">
+                    RELEASE</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-06-22T23:30:00"> 2009/06/22 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Finally.
+<a class="reference external" href="http://irsa.ipac.caltech.edu/">http://irsa.ipac.caltech.edu/</a></p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../eimers-project.html" rel="bookmark" title="Permalink to Eimers project">
+                    Eimers project</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-03-21T01:24:00"> 2009/03/21 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Project for Marc Eimers:
+Determine velocities to molecular clouds by a variety of methods. Start
+with l=30
+1. Find archival data, particularly from the JCMT, for each core.
+2. Compare morphologically to 13CO from GRS
+3. Find Vizier data</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../locating-beams.html" rel="bookmark" title="Permalink to locating beams">
+                    locating beams</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-03-20T21:18:00"> 2009/03/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a href="#id1"><span class="problematic" id="id2">`|image0|`_</span></a>
+White - &quot;Default&quot;, OP-calculated beam-locations
+Red - My code's beam locations
+Yellow - Boloparams, the fiducial beam locations</p>
+<div class="system-messages section">
+<h2>Docutils System Messages</h2>
+<div class="system-message" id="id1">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/blog/content/bgps/locating-beams.rst</tt>, line 8); <em><a href="#id2">backlink</a></em></p>
+Unknown target name: &quot;|image0|&quot;.</div>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../gem-ob1-comparisons.html" rel="bookmark" title="Permalink to Gem OB1 comparisons">
+                    Gem OB1 comparisons</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-03-09T00:07:00"> 2009/03/09 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm running 0,1,2,3,5,7,10,16, and 19 PCA component 51 iteration maps of
+Gem OB1 with deconvolution. No clue when they'll be done because they're
+at the end of a long queue.
+Next (important!) step is to re-run the simulations with linear source
+sizes but with different numbers of PCA components, different kernel
+sizes, etc..... there is a LOT of parameter space to cover.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+                        <a href="../tag/httpschemasgooglecomblogger2008kindpost7.html">&laquo;</a>
+                Page 8 / 18
+            <a href="../tag/httpschemasgooglecomblogger2008kindpost9.html">&raquo;</a>
+    </p>
+</section><!-- /#content -->
+  </div>
+        <footer id="contentinfo" class="body">
+        </footer><!-- /#contentinfo -->
+
+
+
+
+</body>
+</html>

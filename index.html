@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" type="text/css" href="http://keflavich.github.com/blog/theme/css/style.css" />
+<link rel="stylesheet" type="text/css" href="./theme/css/style.css" />
 <head>
                 <title>Adam Ginsburg's blog</title>
         <meta charset="utf-8" />
@@ -15,6 +15,9 @@
     },
     tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
     });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
     MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
     var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
     VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
@@ -41,17 +44,53 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 
 
     <header id="banner" class="body" >
-        <div id="header" style='background-image: url("http://keflavich.github.com/blog/static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
-            <h1 style="color: #C4C4C4;"><a class="header" href="http://keflavich.github.com/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+        <div id="header" style='background-image: url("./static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href=".">Adam Ginsburg's blog <strong></strong></a></h1>
 
             <nav id="menu"><ul id="menulist">
                             <li><a href="http://www.adamgginsburg.com">Home</a></li>
-                            <li><a href="index.html">Main</a></li>
+                            <li><a href="index.html">Blog Index</a></li>
                             <li><a href="archives.html">Recent</a></li>
+                            <li><a href="tags.html">Tags</a></li>
                                                               </ul></nav><!-- /#menu -->
         </div>
     </header><!-- /#banner -->
 
+   <div id="sidebar">
+    <ul>
+  	  	        	  	          <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+                          <li class="post">
+                  2013/05/16
+                  <br>
+                  <a href="./bgps-point-source-recovery.html">BGPS Point Source Recovery</a>
+              </li>
+                          <li class="post">
+                  2013/05/13
+                  <br>
+                  <a href="./recovering-from-startup-drive-out-of-memory.html">Recovering from "Startup drive out of memory"</a>
+              </li>
+                          <li class="post">
+                  2013/03/25
+                  <br>
+                  <a href="./bolocam-mass-calculations.html">Bolocam Mass Calculations</a>
+              </li>
+                          <li class="post">
+                  2013/03/22
+                  <br>
+                  <a href="./arecibo-mapping-total-power-measurements.html">Arecibo Mapping: Total Power Measurements</a>
+              </li>
+                          <li class="post">
+                  2013/03/12
+                  <br>
+                  <a href="./jeans-mass.html">Jeans Mass</a>
+              </li>
+                    </ul>
+      </li>
+        
+    </ul>
+  </div><!-- end #sidebar -->
  
   <div id="content">
         <section id="content">
@@ -60,13 +99,13 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/bgps-point-source-recovery.html" rel="bookmark" title="Permalink to BGPS Point Source Recovery">
+                <a href="./bgps-point-source-recovery.html" rel="bookmark" title="Permalink to BGPS Point Source Recovery">
                     BGPS Point Source Recovery</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2013-05-16T12:21:00"> Thu 16 May 2013 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2013-05-16T12:21:00"> 2013/05/16 </abbr>
+            <address class="vcard author"><a class="url fn" href="./author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>In the last couple drafts of the BGPS paper (e.g. <a class="reference external" href="https://github.com/keflavich/bgpsv2/blob/master/v2_draft0515.pdf?raw=true">the May 15, 2013 draft</a>),
 we've included a single simulation demonstrating the flux recovery of the
 Bolocat:</p>
@@ -76,21 +115,21 @@ Bolocat:</p>
 capability of recovering accurate flux density measurements from a realistic
 sky using bolocat.</p>
 <p>However, the above figures show a simulation only for one set of parameters,
-with <span class="math">\(\alpha=1\)</span>
- in the power-law flux distribution, which unfortunately
+with <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>α</mi><mo>=</mo><mn>1</mn></mrow></math> in the power-law flux distribution, which unfortunately
 is not realistic according to &quot;Figure 8&quot;:</p>
 <img alt="https://raw.github.com/keflavich/bgpsv2/master/figures/l030_higal_bgps_powerspec_compare.png?login=keflavich&amp;token=fa363ee3e28903c751c2a3c9f2b318a0" src="https://raw.github.com/keflavich/bgpsv2/master/figures/l030_higal_bgps_powerspec_compare.png?login=keflavich&amp;token=fa363ee3e28903c751c2a3c9f2b318a0" style="width: 800px;" />
 <p>So I've started up a new experiment, experiment #23, to examine this problem.</p>
 <p>The problem has a few layers:</p>
 <ol class="arabic simple">
-<li>The reason I used <span class="math">\(\alpha=1\)</span>
- is that it looks much like a realistic
+<li>The reason I used <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>α</mi><mo>=</mo><mn>1</mn></mrow></math> is that it looks much like a realistic
 BGPS map after processing, in the sense that most of the field is empty
-but there are a few hundred sources in the map.  However, <span class="math">\(\alpha=1\)</span>
-
+but there are a few hundred sources in the map.  However, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>α</mi><mo>=</mo><mn>1</mn></mrow></math>
 is not a realistic representation of the measured power spectra.</li>
-<li><span class="math">\(\alpha=2\)</span>
- maps with the previous normalization had a peak value of
+<li><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>α</mi><mo>=</mo><mn>2</mn></mrow></math> maps with the previous normalization had a peak value of
 18 Jy, which resulted in heavily signal-dominated output maps that did not
 resemble BGPS maps.</li>
 <li>The normalization is tricky.  One of the key goals of the simulations was to
@@ -111,8 +150,8 @@ distributed map.</li>
 <li>The normalizations used in experiment #21, the angular transfer function
 measurement, were selected such that there would be high signal-to-noise at
 all angular scales.  This means that white noise would not be dominant on
-any angular scale, since white noise is equivalent to <span class="math">\(\alpha=0\)</span>
-.  So
+any angular scale, since white noise is equivalent to <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>α</mi><mo>=</mo><mn>0</mn></mrow></math>.  So
 it wasn't crazy to use these ridiculously high-flux maps, but it is not
 feasible to use the same maps for analysis of point sources.  In maps for
 which we're interested in small-angular-scale features (&lt;100&quot;), we want the
@@ -186,9 +225,9 @@ Out[199]: [0.18015364, 0.18674377, -0.016305592, 0.2868295, 0.29759517, -0.00027
 <p>With background apertures:</p>
 <img alt="static/images/bgps-point-source-recovery/annulus_exam_bgapers.png" src="static/images/bgps-point-source-recovery/annulus_exam_bgapers.png" style="width: 800px;" />
 <p>However, note that the background are computed using the <tt class="docutils literal">mmm.pro</tt>
-sky-background estimation procedure over a range <span class="math">\(2r\)</span>
- to <span class="math">\(4r\)</span>
-
+sky-background estimation procedure over a range <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>2</mn><mi>r</mi></mrow></math> to <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>4</mn><mi>r</mi></mrow></math>
 (i.e., 40-80&quot; and 120-240&quot; radius for the 40&quot; and 120&quot; diameter apertures).</p>
 <p>The numbers shown by ds9 disagree fairly severely with those from bolocat.
 In particular, it appears that the background estimate returned by <tt class="docutils literal">mmm.pro</tt>
@@ -224,16 +263,16 @@ must be an issue of the source brightness still not being calculated correctly):
 <img alt="static/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_80_bright_1.0E-05.png" src="static/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_80_bright_1.0E-05.png" style="width: 800px;" />
 <p>I'll have to continue this analysis tomorrow once the full suite of simulations
 has completed, but I strongly suspect that we'll have to recommend strictly
-against using <tt class="docutils literal">FLUX_120</tt> if the background is expected to be <span class="math">\(\alpha=2\)</span>
-
+against using <tt class="docutils literal">FLUX_120</tt> if the background is expected to be <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>α</mi><mo>=</mo><mn>2</mn></mrow></math>
 distributed.</p>
 <div class="section" id="day-2">
 <h2>Day 2</h2>
 <p>The simulations have partly completed.  After correcting the error with
 convolved point sources vs.  delta functions, I reset the flux distributions to
 be 0.05 to 1.0 Jy for the &quot;faint&quot; distribution and 0.1 to 50.0 Jy for the
-&quot;bright&quot; distribution (both with power-law distributions <span class="math">\(\alpha=2\)</span>
-).</p>
+&quot;bright&quot; distribution (both with power-law distributions <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>α</mi><mo>=</mo><mn>2</mn></mrow></math>).</p>
 <p>The results can be summarized:</p>
 <blockquote>
 <ol class="arabic simple">
@@ -242,7 +281,14 @@ with amplitude comparable to the detected source brightness, only the smallest
 aperture (40&quot;) is reliable (i.e., recovers a flux in the input and
 processed map).</li>
 <li>The recovered flux density has a very high dispersion in the presence of
-high-amplitude power-law flux.  &quot;Very high&quot; = <span class="math">\(\sigma \gtrsim 1\)</span>
+high-amplitude power-law flux.  &quot;Very high&quot; = <div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/bgps-point-source-recovery.rst</tt>, line 215)</p>
+<p>
+Unknown LaTeX command: gtrsim</p>
+<pre class="literal-block">
+\sigma \gtrsim 1
+</pre>
+</div>
 
 around a mean of 1.</li>
 <li>There is no evident dependence of the maps on the atmospheric properties.
@@ -259,8 +305,8 @@ does not affect the recovery, but it does affect the signal-to-noise of the
 recovery <em>measurement</em>.  Please don't ask me to defend this statement; it would
 require another 10 hours of computer time + me time that I really don't want to
 allocate, but I'm confident that it is true.</p>
-<p>The essential conclusion is that, for <span class="math">\(\alpha=2\)</span>
-, point source recovery
+<p>The essential conclusion is that, for <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>α</mi><mo>=</mo><mn>2</mn></mrow></math>, point source recovery
 is only possible if the point source is brighter than the background, which is
 a very intuitive result.  Background annulus subtraction isn't very effective
 at pulling out sources.</p>
@@ -290,8 +336,8 @@ on the right, with faint sources (0.1-1 Jy).</p>
 <img alt="static/images/bgps-point-source-recovery/faint_vs_bright_background.png" src="static/images/bgps-point-source-recovery/faint_vs_bright_background.png" style="width: 800px;" />
 <p>It's more helpful to look at that previous image with the source contours
 superposed.  These images really give a nice feel for what it means to have
-point sources subsumed in <span class="math">\(\alpha=2\)</span>
- background.</p>
+point sources subsumed in <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>α</mi><mo>=</mo><mn>2</mn></mrow></math> background.</p>
 <img alt="static/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp5.0E-05_sky-2.0_seed00_peak5.0E-03_smooth_withptsrc_label_compare.png" src="static/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp5.0E-05_sky-2.0_seed00_peak5.0E-03_smooth_withptsrc_label_compare.png" style="width: 800px;" />
 <img alt="static/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp3.2E-05_sky-2.0_seed00_peak1.0E-03_smooth_withptsrc_label_compare.png" src="static/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp3.2E-05_sky-2.0_seed00_peak1.0E-03_smooth_withptsrc_label_compare.png" style="width: 800px;" />
 </div>
@@ -301,13 +347,13 @@ point sources subsumed in <span class="math">\(\alpha=2\)</span>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/recovering-from-startup-drive-out-of-memory.html" rel="bookmark" title="Permalink to Recovering from "Startup drive out of memory"">
+                <a href="./recovering-from-startup-drive-out-of-memory.html" rel="bookmark" title="Permalink to Recovering from "Startup drive out of memory"">
                     Recovering from &quot;Startup drive out of memory&quot;</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2013-05-13T09:26:00"> Mon 13 May 2013 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2013-05-13T09:26:00"> 2013/05/13 </abbr>
+            <address class="vcard author"><a class="url fn" href="./author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>To continue frozen processes, you need to find all sleeping procs and restart them with <tt class="docutils literal">kill <span class="pre">-CONT</span></tt>.</p>
 <p>In principle, this command should do that:</p>
 <p><tt class="docutils literal">ps <span class="pre">-A</span> <span class="pre">-o</span> tpgid,uid,pid,state,flags | awk <span class="pre">'$1!=&quot;0&quot;</span> &amp;&amp; <span class="pre">$2==501</span> &amp;&amp; <span class="pre">$4==&quot;S&quot;</span> &amp;&amp; <span class="pre">$5!=&quot;4000410c&quot;</span> {print &quot;kill <span class="pre">-CONT</span> &quot; $3}' | bash</tt></p>
@@ -329,86 +375,112 @@ point sources subsumed in <span class="math">\(\alpha=2\)</span>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/bolocam-mass-calculations.html" rel="bookmark" title="Permalink to Bolocam Mass Calculations">
+                <a href="./bolocam-mass-calculations.html" rel="bookmark" title="Permalink to Bolocam Mass Calculations">
                     Bolocam Mass Calculations</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2013-03-25T11:14:00"> Mon 25 March 2013 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2013-03-25T11:14:00"> 2013/03/25 </abbr>
+            <address class="vcard author"><a class="url fn" href="./author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Adopt an effective Bolocam center frequency,  f = 271.1 GHz</p>
 <p>Use Ossenkopf, V. &amp; Henning, Th. 1994, A&amp;A, 291, 943 Table 1. [<a class="reference external" href="http://adsabs.harvard.edu/abs/1994A%26A...291..943O">http://adsabs.harvard.edu/abs/1994A%26A...291..943O</a>]
 Interpolate last two entries (lambda = 1.0 mm and 1.3 mm to f)</p>
-<p>This gives <span class="math">\(\kappa = 0.01166 cm^2 g^{-1}\)</span>
- (or round to 0.0117)
+<p>This gives <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>κ</mi><mo>=</mo><mn>0</mn><mo>.</mo><mn>0</mn><mn>1</mn><mn>1</mn><mn>6</mn><mn>6</mn><mi>c</mi><msup><mi>m</mi><mn>2</mn></msup><msup><mi>g</mi>
+<mrow><mo>-</mo><mn>1</mn></mrow></msup></mrow></math> (or round to 0.0117)
 for gas-to-dust = 100.
 But the slope between these 2 points is only 1.61!</p>
 <p>The points in OH94 table 1 jump around and locally give a variety of
 slopes around 1.8.  A fit to kappa longward of 100 microns
 gives a slope of 1.8.</p>
-<p>Interpolating kappa from 1.00 mm where OH5 gives <span class="math">\(\kappa(1.00) = 0.0137\)</span>
-
+<p>Interpolating kappa from 1.00 mm where OH5 gives <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>κ</mi><mo>(</mo><mn>1</mn><mo>.</mo><mn>0</mn><mn>0</mn><mo>)</mo><mo>=</mo><mn>0</mn><mo>.</mo><mn>0</mn><mn>1</mn><mn>3</mn><mn>7</mn></mrow></math>
 (for a gas-to-dust ratio = 100) to 271.1 GHz (= 1.1058 mm)
 using a slope of 1.8 gives:</p>
-<p><span class="math">\(\kappa = 0.01143 cm^{2} g^{-1}\)</span>
-</p>
+<p><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>κ</mi><mo>=</mo><mn>0</mn><mo>.</mo><mn>0</mn><mn>1</mn><mn>1</mn><mn>4</mn><mn>3</mn><mi>c</mi><msup><mi>m</mi>
+<mrow><mn>2</mn></mrow></msup><msup><mi>g</mi>
+<mrow><mo>-</mo><mn>1</mn></mrow></msup></mrow></math></p>
 <p>This is the same as the value used by Enoch, so let's adopt it
 (round to 0.0114), but note that this was calculated for 271.1 GHz.</p>
 <p>For the v1.0 data, the BGPS has the following properties:</p>
 <p>effective beam FWHM = 33&quot;</p>
-<p>gaussian beam <span class="math">\(\sigma = 14.01\)</span>
-&quot;    (= FWHM / <span class="math">\(\sqrt{(8*\ln(2))}\)</span>
-)</p>
-<p>effective beam radius = 19.82&quot;    (= FWHM / <span class="math">\(\sqrt{(4*\ln(2))}\)</span>
-)</p>
+<p>gaussian beam <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>σ</mi><mo>=</mo><mn>1</mn><mn>4</mn><mo>.</mo><mn>0</mn><mn>1</mn></mrow></math>&quot;    (= FWHM / <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msqrt>
+<mrow><mo>(</mo><mn>8</mn><mo>*</mo><mo>ln</mo><mo>(</mo><mn>2</mn><mo>)</mo><mo>)</mo></mrow></msqrt></mrow></math>)</p>
+<p>effective beam radius = 19.82&quot;    (= FWHM / <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msqrt>
+<mrow><mo>(</mo><mn>4</mn><mo>*</mo><mo>ln</mo><mo>(</mo><mn>2</mn><mo>)</mo><mo>)</mo></mrow></msqrt></mrow></math>)</p>
 <p>This is the radius of a circular top-hat function that has the
 same solid angle as a gaussian.  At a distance of
-D = 1 kpc, this radius corresponds to a length  = <span class="math">\(2.97 x 10^{17}\)</span>
- cm.
-The effective beam solid angle is <span class="math">\(\Omega = 2.902 x 10^{-8}\)</span>
- sr.</p>
-<p>Adopt a fiducial dust temperature for mass calculations, <span class="math">\(T_d = 20K\)</span>
-</p>
-<p>The total mass per Jy at <span class="math">\(D_{kpc}\)</span>
- = 1 kpc is given by</p>
-<div class="math">
-\begin{equation*}
-M = 1.0 x 10^{-23} * S(Jy) * D^2 / \kappa * B_{\nu}(T)
-\end{equation*}
+D = 1 kpc, this radius corresponds to a length  = <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mn>2</mn><mo>.</mo><mn>9</mn><mn>7</mn><mi>x</mi><mn>1</mn><msup><mn>0</mn>
+<mrow><mn>1</mn><mn>7</mn></mrow></msup></mrow></math> cm.
+The effective beam solid angle is <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mo>Ω</mo><mo>=</mo><mn>2</mn><mo>.</mo><mn>9</mn><mn>0</mn><mn>2</mn><mi>x</mi><mn>1</mn><msup><mn>0</mn>
+<mrow><mo>-</mo><mn>8</mn></mrow></msup></mrow></math> sr.</p>
+<p>Adopt a fiducial dust temperature for mass calculations, <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msub><mi>T</mi><mi>d</mi></msub><mo>=</mo><mn>2</mn><mn>0</mn><mi>K</mi></mrow></math></p>
+<p>The total mass per Jy at <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msub><mi>D</mi>
+<mrow><mi>k</mi><mi>p</mi><mi>c</mi></mrow></msub></mrow></math> = 1 kpc is given by</p>
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
+<mtable>
+<mtr>
+<mtd><mi>M</mi><mo>=</mo><mn>1</mn><mo>.</mo><mn>0</mn><mi>x</mi><mn>1</mn><msup><mn>0</mn>
+<mrow><mo>-</mo><mn>2</mn><mn>3</mn></mrow></msup><mo>*</mo><mi>S</mi><mo>(</mo><mi>J</mi><mi>y</mi><mo>)</mo><mo>*</mo><msup><mi>D</mi><mn>2</mn></msup><mo>/</mo><mi>κ</mi><mo>*</mo><msub><mi>B</mi>
+<mrow><mi>ν</mi></mrow></msub><mo>(</mo><mi>T</mi><mo>)</mo></mtd></mtr></mtable></math>
 </div>
-<div class="math">
-\begin{equation*}
-=  14.30 * [e^{13.01/T(K) - 1}] * S(Jy) * D^2_{kpc}   M_{\odot}
-\end{equation*}
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
+<mtable>
+<mtr>
+<mtd><mo>=</mo><mn>1</mn><mn>4</mn><mo>.</mo><mn>3</mn><mn>0</mn><mo>*</mo><mo>[</mo><msup><mi>e</mi>
+<mrow><mn>1</mn><mn>3</mn><mo>.</mo><mn>0</mn><mn>1</mn><mo>/</mo><mi>T</mi><mo>(</mo><mi>K</mi><mo>)</mo><mo>-</mo><mn>1</mn></mrow></msup><mo>]</mo><mo>*</mo><mi>S</mi><mo>(</mo><mi>J</mi><mi>y</mi><mo>)</mo><mo>*</mo><msubsup><mi>D</mi>
+<mrow><mi>k</mi><mi>p</mi><mi>c</mi></mrow><mn>2</mn></msubsup><msub><mi>M</mi>
+<mrow><mo>⊙</mo></mrow></msub></mtd></mtr></mtable></math>
 </div>
-<p>For <span class="math">\(T = 20 K\)</span>
-:</p>
-<div class="math">
-\begin{equation*}
-M = 13.07 * S(Jy) * D^2_{kpc} M_{\odot}
-\end{equation*}
+<p>For <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>T</mi><mo>=</mo><mn>2</mn><mn>0</mn><mi>K</mi></mrow></math>:</p>
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
+<mtable>
+<mtr>
+<mtd><mi>M</mi><mo>=</mo><mn>1</mn><mn>3</mn><mo>.</mo><mn>0</mn><mn>7</mn><mo>*</mo><mi>S</mi><mo>(</mo><mi>J</mi><mi>y</mi><mo>)</mo><mo>*</mo><msubsup><mi>D</mi>
+<mrow><mi>k</mi><mi>p</mi><mi>c</mi></mrow><mn>2</mn></msubsup><msub><mi>M</mi>
+<mrow><mo>⊙</mo></mrow></msub></mtd></mtr></mtable></math>
 </div>
-<p>This corresponds to a beam-filling column density of <span class="math">\(H_2\)</span>
-,</p>
-<div class="math">
-\begin{equation*}
-N(H2) = 2.19e+22 * [e^{13.01/T(K) - 1}] * S(Jy)             (cm^{-2})
-\end{equation*}
+<p>This corresponds to a beam-filling column density of <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msub><mi>H</mi><mn>2</mn></msub></mrow></math>,</p>
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
+<mtable>
+<mtr>
+<mtd><mi>N</mi><mo>(</mo><mi>H</mi><mn>2</mn><mo>)</mo><mo>=</mo><mn>2</mn><mo>.</mo><mn>1</mn><mn>9</mn><mi>e</mi><mo>+</mo><mn>2</mn><mn>2</mn><mo>*</mo><mo>[</mo><msup><mi>e</mi>
+<mrow><mn>1</mn><mn>3</mn><mo>.</mo><mn>0</mn><mn>1</mn><mo>/</mo><mi>T</mi><mo>(</mo><mi>K</mi><mo>)</mo><mo>-</mo><mn>1</mn></mrow></msup><mo>]</mo><mo>*</mo><mi>S</mi><mo>(</mo><mi>J</mi><mi>y</mi><mo>)</mo><mo>(</mo><mi>c</mi><msup><mi>m</mi>
+<mrow><mo>-</mo><mn>2</mn></mrow></msup><mo>)</mo></mtd></mtr></mtable></math>
 </div>
-<p>For <span class="math">\(T = 20 K\)</span>
-:</p>
-<div class="math">
-\begin{equation*}
-N(H2) = 2.01 x 10^{22} * S(Jy)    (cm^{-2})
-A_V = 21.1 \textrm{magnitudes} Jy^{-1}
-\end{equation*}
+<p>For <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>T</mi><mo>=</mo><mn>2</mn><mn>0</mn><mi>K</mi></mrow></math>:</p>
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
+<mtable>
+<mtr>
+<mtd><mi>N</mi><mo>(</mo><mi>H</mi><mn>2</mn><mo>)</mo><mo>=</mo><mn>2</mn><mo>.</mo><mn>0</mn><mn>1</mn><mi>x</mi><mn>1</mn><msup><mn>0</mn>
+<mrow><mn>2</mn><mn>2</mn></mrow></msup><mo>*</mo><mi>S</mi><mo>(</mo><mi>J</mi><mi>y</mi><mo>)</mo><mo>(</mo><mi>c</mi><msup><mi>m</mi>
+<mrow><mo>-</mo><mn>2</mn></mrow></msup><mo>)</mo><msub><mi>A</mi><mi>V</mi></msub><mo>=</mo><mn>2</mn><mn>1</mn><mo>.</mo><mn>1</mn><mtext>magnitudes</mtext><mi>J</mi><msup><mi>y</mi>
+<mrow><mo>-</mo><mn>1</mn></mrow></msup></mtd></mtr></mtable></math>
 </div>
 <p>where we use the Bohlin &amp; Savage calibration</p>
-<div class="math">
-\begin{equation*}
-A_V = 1 mag. &lt;=&gt; N(H) = 1.9 x 10^{20} cm^{-2} \textrm{and}
-N(H_2) = N(H) / 2
-\end{equation*}
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
+<mtable>
+<mtr>
+<mtd><msub><mi>A</mi><mi>V</mi></msub><mo>=</mo><mn>1</mn><mi>m</mi><mi>a</mi><mi>g</mi><mo>.</mo><mo>&lt;</mo><mo>=</mo><mo>&gt;</mo><mi>N</mi><mo>(</mo><mi>H</mi><mo>)</mo><mo>=</mo><mn>1</mn><mo>.</mo><mn>9</mn><mi>x</mi><mn>1</mn><msup><mn>0</mn>
+<mrow><mn>2</mn><mn>0</mn></mrow></msup><mi>c</mi><msup><mi>m</mi>
+<mrow><mo>-</mo><mn>2</mn></mrow></msup><mtext>and</mtext><mi>N</mi><mo>(</mo><msub><mi>H</mi><mn>2</mn></msub><mo>)</mo><mo>=</mo><mi>N</mi><mo>(</mo><mi>H</mi><mo>)</mo><mo>/</mo><mn>2</mn></mtd></mtr></mtable></math>
 </div>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
@@ -416,13 +488,13 @@ N(H_2) = N(H) / 2
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/arecibo-mapping-total-power-measurements.html" rel="bookmark" title="Permalink to Arecibo Mapping: Total Power Measurements">
+                <a href="./arecibo-mapping-total-power-measurements.html" rel="bookmark" title="Permalink to Arecibo Mapping: Total Power Measurements">
                     Arecibo Mapping: Total Power Measurements</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2013-03-22T22:50:00"> Fri 22 March 2013 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2013-03-22T22:50:00"> 2013/03/22 </abbr>
+            <address class="vcard author"><a class="url fn" href="./author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Worked on reducing the Arecibo continuum data.  There were some serious
 problems with the off positions previously, in particular generating weird
 slopes.</p>
@@ -443,72 +515,114 @@ fitting works now. Here's an example:</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/jeans-mass.html" rel="bookmark" title="Permalink to Jeans Mass">
+                <a href="./jeans-mass.html" rel="bookmark" title="Permalink to Jeans Mass">
                     Jeans Mass</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2013-03-12T20:16:00"> Tue 12 March 2013 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2013-03-12T20:16:00"> 2013/03/12 </abbr>
+            <address class="vcard author"><a class="url fn" href="./author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Some notes about the Jeans mass scale using astropy's units.</p>
 <p>Simple approaches to determining mass scales:</p>
-<div class="math">
-\begin{equation*}
-v_{esc} = \sqrt{\frac{G M}{R}}
-\end{equation*}
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
+<mtable>
+<mtr>
+<mtd><msub><mi>v</mi>
+<mrow><mi>e</mi><mi>s</mi><mi>c</mi></mrow></msub><mo>=</mo><msqrt>
+<mrow><mfrac>
+<mrow><mi>G</mi><mi>M</mi></mrow>
+<mrow><mi>R</mi></mrow></mfrac></mrow></msqrt></mtd></mtr></mtable></math>
 </div>
 <p>Isothermal equation of state:</p>
-<div class="math">
-\begin{equation*}
-P = \rho k T
-\end{equation*}
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
+<mtable>
+<mtr>
+<mtd><mi>P</mi><mo>=</mo><mi>ρ</mi><mi>k</mi><mi>T</mi></mtd></mtr></mtable></math>
 </div>
-<div class="math">
-\begin{equation*}
-c_s = \sqrt{2 k T / m}
-\end{equation*}
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
+<mtable>
+<mtr>
+<mtd><msub><mi>c</mi><mi>s</mi></msub><mo>=</mo><msqrt>
+<mrow><mn>2</mn><mi>k</mi><mi>T</mi><mo>/</mo><mi>m</mi></mrow></msqrt></mtd></mtr></mtable></math>
 </div>
-<p>Setting <span class="math">\(v_{esc} = c_s\)</span>
- yields the mass scale:</p>
-<div class="math">
-\begin{equation*}
-M = \frac{R}{G}  \frac{2 k T}{m} = \frac{R c_s^2}{G}
-\end{equation*}
+<p>Setting <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msub><mi>v</mi>
+<mrow><mi>e</mi><mi>s</mi><mi>c</mi></mrow></msub><mo>=</mo><msub><mi>c</mi><mi>s</mi></msub></mrow></math> yields the mass scale:</p>
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
+<mtable>
+<mtr>
+<mtd><mi>M</mi><mo>=</mo><mfrac>
+<mrow><mi>R</mi></mrow>
+<mrow><mi>G</mi></mrow></mfrac><mfrac>
+<mrow><mn>2</mn><mi>k</mi><mi>T</mi></mrow>
+<mrow><mi>m</mi></mrow></mfrac><mo>=</mo><mfrac>
+<mrow><mi>R</mi><msubsup><mi>c</mi><mi>s</mi><mn>2</mn></msubsup></mrow>
+<mrow><mi>G</mi></mrow></mfrac></mtd></mtr></mtable></math>
 </div>
-<p>Using <span class="math">\(\rho = \frac{M}{ 4/3 \pi R^{-3} }\)</span>
-,</p>
-<div class="math">
-\begin{equation*}
-R = \left(\frac{M}{4/3 \pi \rho}\right)^{1/3}
-\end{equation*}
+<p>Using <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>ρ</mi><mo>=</mo><mfrac>
+<mrow><mi>M</mi></mrow>
+<mrow><mn>4</mn><mo>/</mo><mn>3</mn><mi>π</mi><msup><mi>R</mi>
+<mrow><mo>-</mo><mn>3</mn></mrow></msup></mrow></mfrac></mrow></math>,</p>
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
+<mtable>
+<mtr>
+<mtd><mi>R</mi><mo>=</mo><msup><mfenced open="(" close=")">
+<mrow><mfrac>
+<mrow><mi>M</mi></mrow>
+<mrow><mn>4</mn><mo>/</mo><mn>3</mn><mi>π</mi><mi>ρ</mi></mrow></mfrac></mrow></mfenced>
+<mrow><mn>1</mn><mo>/</mo><mn>3</mn></mrow></msup></mtd></mtr></mtable></math>
 </div>
-<div class="math">
-\begin{equation*}
-so
-\end{equation*}
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
+<mtable>
+<mtr>
+<mtd><mi>s</mi><mi>o</mi></mtd></mtr></mtable></math>
 </div>
-<div class="math">
-\begin{equation*}
-M = M^{1/3} \frac{c_s^2}{G \rho^{1/3}}
-\end{equation*}
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
+<mtable>
+<mtr>
+<mtd><mi>M</mi><mo>=</mo><msup><mi>M</mi>
+<mrow><mn>1</mn><mo>/</mo><mn>3</mn></mrow></msup><mfrac>
+<mrow><msubsup><mi>c</mi><mi>s</mi><mn>2</mn></msubsup></mrow>
+<mrow><mi>G</mi><msup><mi>ρ</mi>
+<mrow><mn>1</mn><mo>/</mo><mn>3</mn></mrow></msup></mrow></mfrac></mtd></mtr></mtable></math>
 </div>
 <p>which rearranges to</p>
-<div class="math">
-\begin{equation*}
-M = \frac{c_s^{3}}{G^{3/2} \rho^{1/2}}
-\end{equation*}
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
+<mtable>
+<mtr>
+<mtd><mi>M</mi><mo>=</mo><mfrac>
+<mrow><msubsup><mi>c</mi><mi>s</mi>
+<mrow><mn>3</mn></mrow></msubsup></mrow>
+<mrow><msup><mi>G</mi>
+<mrow><mn>3</mn><mo>/</mo><mn>2</mn></mrow></msup><msup><mi>ρ</mi>
+<mrow><mn>1</mn><mo>/</mo><mn>2</mn></mrow></msup></mrow></mfrac></mtd></mtr></mtable></math>
 </div>
-<p>where <span class="math">\(M\)</span>
- is now <span class="math">\(M_J\)</span>
-, the Jeans mass. In terms of
+<p>where <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>M</mi></mrow></math> is now <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msub><mi>M</mi><mi>J</mi></msub></mrow></math>, the Jeans mass. In terms of
 temperature, this is:</p>
-<div class="math">
-\begin{equation*}
-M_J = \frac{(2 k T)^{3/2}}{(m G)^{3/2} \rho^{1/2}}
-\end{equation*}
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
+<mtable>
+<mtr>
+<mtd><msub><mi>M</mi><mi>J</mi></msub><mo>=</mo><mfrac>
+<mrow><mo>(</mo><mn>2</mn><mi>k</mi><mi>T</mi><msup><mo>)</mo>
+<mrow><mn>3</mn><mo>/</mo><mn>2</mn></mrow></msup></mrow>
+<mrow><mo>(</mo><mi>m</mi><mi>G</mi><msup><mo>)</mo>
+<mrow><mn>3</mn><mo>/</mo><mn>2</mn></mrow></msup><msup><mi>ρ</mi>
+<mrow><mn>1</mn><mo>/</mo><mn>2</mn></mrow></msup></mrow></mfrac></mtd></mtr></mtable></math>
 </div>
-<p>where <span class="math">\(m\)</span>
- is the particle mass, usually assumed to be 2.8 amu.</p>
+<p>where <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><mi>m</mi></mrow></math> is the particle mass, usually assumed to be 2.8 amu.</p>
 <p>In[1]:</p>
 <div class="highlight"><pre><span class="c"># astropy imports</span>
 <span class="kn">import</span> <span class="nn">astropy.units</span> <span class="kn">as</span> <span class="nn">u</span>
@@ -533,10 +647,11 @@ this is expected. [astropy]
 <div class="highlight"><pre><span class="n">m</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">solMass</span><span class="p">)</span>
 </pre></div>
 <p>Out[5]:</p>
-<div class="math">
-\begin{equation*}
-1.92903 \mathrm{M_{\odot}}
-\end{equation*}
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
+<mtable>
+<mtr>
+<mtd><mn>1</mn><mo>.</mo><mn>9</mn><mn>2</mn><mn>9</mn><mn>0</mn><mn>3</mn><mtext>M_{\odot</mtext></mtd></mtr></mtable></math>
 </div>
 <pre class="literal-block">
 &lt;Quantity 1.92902547696 solMass&gt;
@@ -547,13 +662,13 @@ this is expected. [astropy]
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/installing-sextractor-on-a-mac.html" rel="bookmark" title="Permalink to Installing sextractor on a mac?">
+                <a href="./installing-sextractor-on-a-mac.html" rel="bookmark" title="Permalink to Installing sextractor on a mac?">
                     Installing sextractor on a mac?</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2013-02-27T18:02:00"> Wed 27 February 2013 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2013-02-27T18:02:00"> 2013/02/27 </abbr>
+            <address class="vcard author"><a class="url fn" href="./author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Attempting to install sextractor.</p>
 <p>First, tried following these instructions:</p>
 <p><a class="reference external" href="http://henrysmac.org/blog/2012/8/17/install-sextractor-on-os-x-lion.html">http://henrysmac.org/blog/2012/8/17/install-sextractor-on-os-x-lion.html</a></p>
@@ -971,182 +1086,265 @@ tar -xzvf ~/Downloads/sextractor-2.8.6.tar.gz
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/the-peculiar-balmer-decrement-of-sn-2009ip-constraints-on-circumstellar-geometry.html" rel="bookmark" title="Permalink to The Peculiar Balmer Decrement of SN 2009ip: Constraints on Circumstellar Geometry">
-                    The Peculiar Balmer Decrement of SN 2009ip: Constraints on Circumstellar Geometry</a>
+                <a href="./catalog-vs-image-shift-a-possible-solution-to-the-atlasgal-issue.html" rel="bookmark" title="Permalink to Catalog vs Image shift? A possible solution to the ATLASGAL issue">
+                    Catalog vs Image shift?  A possible solution to the ATLASGAL issue</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-11-21T21:01:00"> Wed 21 November 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p><a class="reference external" href="http://arxiv.org/find/astro-ph/1/au:+Levesque_E/0/1/0/all/0/1">Emily M. Levesque</a>,&nbsp;<a class="reference external" href="http://arxiv.org/find/astro-ph/1/au:+Stringfellow_G/0/1/0/all/0/1">Guy S. Stringfellow</a>,&nbsp;<a class="reference external" href="http://arxiv.org/find/astro-ph/1/au:+Ginsburg_A/0/1/0/all/0/1">Adam G.
-Ginsburg</a>,&nbsp;<a class="reference external" href="http://arxiv.org/find/astro-ph/1/au:+Bally_J/0/1/0/all/0/1">John Bally</a>,&nbsp;<a class="reference external" href="http://arxiv.org/find/astro-ph/1/au:+Keeney_B/0/1/0/all/0/1">Brian A. Keeney</a></p>
-<hr class="docutils" />
-<p>SN2009ip is a particularly interesting &quot;supernova&quot; since it left a
-bright remnant behind, indicating that it was instead a supernova
-impostor. &nbsp;The 2012B event, a brightening in late September 2012, looked
-like it might be a &quot;genuine supernova&quot;, but maybe not. &nbsp;Have a look at
-the other papers on this
-object:&nbsp;<a class="reference external" href="http://arxiv.org/abs/1210.3568">http://arxiv.org/abs/1210.3568</a>,&nbsp;<a class="reference external" href="http://arxiv.org/abs/1210.3347">http://arxiv.org/abs/1210.3347</a>,&nbsp;<a class="reference external" href="http://arxiv.org/abs/1209.6320">http://arxiv.org/abs/1209.6320</a>.
-A few folks at CU, primarily Guy, had acquired some spectra of SN2009ip
-right around the 2012B event. &nbsp;We had a quick look at the data and
-decided there was something really interesting in it that other groups
-(who probably had more complete data) had overlooked.
-The most interesting single point we noted was a peculiar &quot;Balmer
-Decrement&quot; (which is the ratio of H-alpha to H-beta). &nbsp;The normal Balmer
-decrement is ~3 (2.87 at n~10<sup>3</sup> and 10000K), but we observed a
-decrement of ~1.4 (and so did others, see
-e.g.&nbsp;<a class="reference external" href="http://users.northnet.com.au/~bohlsen/Nova/sn2009ip.htm">http://users.northnet.com.au/~bohlsen/Nova/sn2009ip.htm</a>).
-This Balmer decrement is weird, because all normal effects will
-<em>increase</em>&nbsp;rather than decrease the Balmer decrement.</p>
-<ul class="simple">
-<li>Interstellar reddening - affects the blue more than the red,
-therefore should decrease H-beta relative to H-alpha. &nbsp;Of course, the
-reddening towards SN2009ip has been measured to be quite low.</li>
-<li>Line Splitting due to optical depth in the H-beta line (photons
-become &quot;trapped&quot; in the n=4 state and &quot;escape&quot; via Paschen-alpha and
-H-alpha) - but this only serves to decrease H-beta and increase
-H-alpha. &nbsp;This is known as &quot;Case C recombination&quot; (see <a class="reference external" href="http://adsabs.harvard.edu/abs/1992ApJ...386..181X">Xu et al
-1992</a>, Figure 1)</li>
-</ul>
-<p>So what can increase the Balmer decrement? &nbsp;Two possibilities:</p>
-<ol class="arabic simple">
-<li>Hydrogen reaches local densities above 10<sup>13</sup> cm<sup>-3</sup>:
-above these densities, it reaches collisional equilibrium with the
-gas and adopts the gas temperature. &nbsp;At 10000K, H-beta will be a few
-times brighter than H-alpha [to-do: put exactly how much brighter...]</li>
-<li>H-alpha becomes optically thick, while H-beta remains optically thin.
-&nbsp;This is essentially a geometric argument, and is explored a little
-in the text. &nbsp;If H-alpha becomes optically thick, more hydrogen won't
-increase the H-alpha brightness, but if H-beta remains optically
-thin, more hydrogen will increase its brightness. &nbsp;Simple argument,
-and it hasn't been fully explored yet (does the radiative transfer
-work, or does the &quot;Case-C&quot; situation kick in too hard first?), but it
-is a plausible alternative.</li>
-</ol>
-<p>If you want to see my calculations in action, check out the <a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/keflavich/sn2009ip/master/SN2009ip.ipynb">ipython
-notebook</a>&nbsp;performing the calculations.
-In case you're interested in Case C recombination, here's a first step:
-a hydrogen level diagram with levels connected by the (sum of the)
-Einstein A values between the relevant levels
-(from&nbsp;<a class="reference external" href="http://physics.nist.gov/cgi-bin/ASD/lines1.pl">http://physics.nist.gov/cgi-bin/ASD/lines1.pl</a>, generated
-with&nbsp;<a class="reference external" href="https://github.com/keflavich/energyleveldiagrams">https://github.com/keflavich/energyleveldiagrams</a>).</p>
-<img alt="http://1.bp.blogspot.com/-L1C1rEu7cSQ/UK1A2KuTwcI/AAAAAAAAHRo/49TKIW0TChQ/s640/EnergyLevelDiagram.png" src="http://1.bp.blogspot.com/-L1C1rEu7cSQ/UK1A2KuTwcI/AAAAAAAAHRo/49TKIW0TChQ/s640/EnergyLevelDiagram.png" />
+            <abbr class="published" title="2012-12-26T23:02:00"> 2012/12/26 </abbr>
+            <address class="vcard author"><a class="url fn" href="./author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In the <a class="reference external" href="http://bolocam.blogspot.com/2012/12/pointing-cross-correlation-yet-again.html">previous post</a>, I came up with a final plot showing the
+pointing offset was, on average, not significant, even in the ATLASGAL
+overlap zone.
+So why did the ATLASGAL group infer a net pointing offset?
+The problem is probably one or two fields with a slight pointing offset,
+but a huge number of source. &nbsp;l=1 has an offset of the right sign and is
+the single most source-rich degree in the survey, with 368 sources.</p>
+<img alt="http://2.bp.blogspot.com/-ONF7C_v8rNk/UNpmXIEe6HI/AAAAAAAAHUI/kdf3pmUKyE0/s320/l001_catalog_image_compare.png" src="http://2.bp.blogspot.com/-ONF7C_v8rNk/UNpmXIEe6HI/AAAAAAAAHUI/kdf3pmUKyE0/s320/l001_catalog_image_compare.png" />
+<p>This figure shows the v1 vs v2 source locations in grey, their average
+and standard deviation in green, and the cross-correlation offset in
+red. &nbsp;The plot is somewhat difficult to interpret, but it appears that
+the v1 point sources are systematically more shifted to negative
+longitudes than v2, and the point sources more than the maps themselves.
+&nbsp;There may have been some reason sources were systematically selected at
+more negative longitudes in the v1 catalog; around Sgr B2 there's a lot
+of structure that had to be decomposed somehow but was not necessarily
+&quot;source&quot;.
+One thing to note is the reversal in left-right (in pixel space) vs the
+positive/negativeness in longitude. &nbsp;The above plot is correct (negative
+longitudes, as shown on the plot, are &quot;right&quot; in images), but most of my
+other plots have the X-axis flipped.
+In the end, after spending two weeks hammering my head against this, I
+find no clear evidence for an offset &nbsp;between the BGPS and Herschel or
+v1/v2 data overall or in the ATLASGAL fields. &nbsp;In any individual field,
+that statement is not necessarily true.
+Despite the strong statistical evidence, it is really hard to be really
+sure about sub-pixel offsets, since the &quot;model&quot; image is never perfect.
+&nbsp;I think we can safely state the ~1/2 pixel offsets (~3&quot;) but I just
+don't feel confident about numbers below that range for ALL fields.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/galactic-h2co-densitometry-i-pilot-survey-of-ultracompact-hii-regions-and-methodology.html" rel="bookmark" title="Permalink to Galactic H2CO Densitometry I: Pilot survey of Ultracompact HII regions and methodology">
-                    Galactic H2CO Densitometry I: Pilot survey of Ultracompact HII regions and methodology</a>
+                <a href="./template-bolocam-data-team.html" rel="bookmark" title="Permalink to Template: bolocam data team">
+                    Template: bolocam data team</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-11-21T04:59:00"> Wed 21 November 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>[ <a class="reference external" href="http://adsabs.harvard.edu/abs/2011ApJ...736..149G">ADS</a> ] [ <a class="reference external" href="http://eta.colorado.edu/papers/h2co_pilot_draft0607.pdf">Full Version</a> ]</p>
-<hr class="docutils" />
-<p>We examined 24 UCHII regions using the GBT to observe the 2-2 line of
-ortho-Formaldehyde. We measured the local gas density and compared to
-GMCs and other galaxies. We found densities in GMCs that are 1-2 orders
-of magnitude higher than the mean density in GMCs, implying that extreme
-overdensities are common even in &quot;quiescent&quot; (non-star-forming) GMCs.
-This work was almost entirely my own, but was seeded by <a class="reference external" href="http://casa.colorado.edu/~jdarling/">Jeremy
-Darling</a> Some highlight figures from the paper:</p>
-<p>A sample spectrum. On the top, black is Formaldehyde 1-1, red is
-Formaldehyde 2-2. On the bottom, blue is 13CO, red is H77α, black is
-H110α.</p>
-<p>Histograms of GMC mean densities and the densities measured directly
-from our survey. Note that even for &quot;serendipitious&quot; line of sight GMCs,
-the densities are MUCH higher than typical GMC densities.</p>
-<p>Comparison of the measured column densities of formaldehyde and inferred
-number densities of H<sub>2</sub>.</p>
+            <abbr class="published" title="2012-12-26T23:02:00"> 2012/12/26 </abbr>
+            <address class="vcard author"><a class="url fn" href="./author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>This post has been baleeted.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/short-timescale-variability-in-orion-nope.html" rel="bookmark" title="Permalink to Short timescale variability in Orion? Nope.">
-                    Short timescale variability in Orion?  Nope.</a>
+                <a href="./idea-multispectral-eigenimage-decomposition.html" rel="bookmark" title="Permalink to Idea: Multispectral Eigenimage decomposition...">
+                    Idea: Multispectral Eigenimage decomposition...</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-11-19T17:07:00"> Mon 19 November 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <div dir="ltr" style="text-align: left;"><p>I attempted to use TripleSpec finder / guider images to search for
-variability &nbsp;on short (~5s) timescales in the Orion Nebula region. &nbsp;This
-project was an offshoot of the related
-<a class="reference external" href="http://adamginsburg.blogspot.com/2012/10/using-guider-images-to-achieve.html">http://adamginsburg.blogspot.com/2012/10/using-guider-images-to-achieve.html</a>.
-&nbsp;I successfully matched the images using a particular catalog &amp; the
-ever-cool&nbsp;<a class="reference external" href="http://astrometry.net/">astrometry.net</a>with a great deal of assistance from
-<a class="reference external" href="http://www.astro.princeton.edu/~dstn/">Dustin Lang</a>&nbsp;and some from <a class="reference external" href="http://hoggresearch.blogspot.com/2012/10/time-for-astrometrynet-to-rise-again.html">David Hogg</a>. &nbsp;I'll post details of that
-process later; it proved challenging but will DEFINITELY be useful again
-in the future. &nbsp;Short story: I had to build my own indices, then fit
-twice - once for the first match, once after distortion was applied to
-re-extract the sources in the right location.
-Conveniently, one of the products output by the astrometry.net code is
-ra,dec locations and fluxes (background subtracted) for all of the
-identified sources. &nbsp;So, I used a simple script to match all sources
-within 2&quot; of a known source from my input catalog and generate
-timestream data. &nbsp;It took about an hour of processing (nested for loops
-- awful, but the only obvious choice at first. &nbsp;Half of the time was
-probably file IO anyway).
-I now had a few hundred timestreams of Orion stars. &nbsp;At this point, I
-hadn't done any kind of quality control, which was obviously a problem
-because the Trapezium and neighbors were clearly saturated. &nbsp;Also, there
-are known hot pixels that will drive some stars into weird behavior.
-&nbsp;But I ignored all of that. &nbsp;All I did for quality control was reject
-stars with more than about 5% missing data.
-I elected to go straight for PCA analysis. &nbsp;I assumed the primary
-component (the most correlated component) would be from the atmosphere,
-which is almost certainly true. &nbsp;Subtracting that off (shown in the
-notebook linked below) left some clearly correlated components left over
-- some of these are instrumental, others are correlated backgrounds,
-others are correlated saturation levels. &nbsp;I don't honestly know what all
-of the components are, but I DO know that correlated components are very
-unlikely to be intrinsic phenomena - stellar brightness isn't
-correlated.
-So I tried to cut out ALL correlated components. &nbsp;However, I think in
-the process I probably removed any useful information - even
-un-correlated signal should probably have a high amplitude (if it's
-interesting...) that will get removed through the process I used.
-&nbsp;Nonetheless, I probably have some upper limits on the 5s scale
-variability of these stars in K-band. &nbsp;Not enough to do anything like
-asteroseismology, but it was worth a day's effort.
-Here's the ipython notebook (gist &amp; nbviewer) for those interested:
-<a class="reference external" href="https://gist.github.com/4109329">https://gist.github.com/4109329</a>
-<a class="reference external" href="http://nbviewer.ipython.org/4109329/">http://nbviewer.ipython.org/4109329/</a></p>
-</div></p> </div><!-- /.entry-content   not article.summary--> 
+            <abbr class="published" title="2012-12-22T02:53:00"> 2012/12/22 </abbr>
+            <address class="vcard author"><a class="url fn" href="./author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Can use BGPS + HiGal to look for correlated (thermal) components and
+decorrelated (free-free) components. &nbsp;Obviously needs to be tried in GC
+first.
+Also, need to figure out a method to mitigate negative bowls in
+unsharp-masking for herschel-bolocam comparison</p>
+ </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/attempts-to-install-astrometrynet-comment-on-problems-with-index-files-generation.html" rel="bookmark" title="Permalink to Attempts to install astrometry.net (comment on problems-with-index-files-generation)">
-                    Attempts to install astrometry.net (comment on problems-with-index-files-generation)</a>
+                <a href="./pointing-cross-correlation-yet-again.html" rel="bookmark" title="Permalink to Pointing & Cross-Correlation yet again">
+                    Pointing &amp; Cross-Correlation yet again</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-11-04T17:26:00"> Sun 04 November 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Some progress in this vein:
-1. installed astrometry.net (but without some graphical extras)
-2. figured out how to create indexes! Finders are ~5x5', so based on
-<a class="reference external" href="http://forum.astrometry.net/index.php?p=/discussion/2/problems-with-index-files-generation/p1">this post</a> I want to use ~2-3' healpixes.
-3. I also should be using denser catalogs than the all-sky USNO B1,
-especially for infrared targets.
-So, here's a sample build command (using a CDS-based FITS table, but
-modified by me using atpy):
-build-index -v -i OMC1_optical_phot_DaRio.fits -o
-OMC1_optical_phot_DaRio_astrometryindex -N 1758</p>
+            <abbr class="published" title="2012-12-15T03:21:00"> 2012/12/15 </abbr>
+            <address class="vcard author"><a class="url fn" href="./author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Prompted in part by a <a class="reference external" href="http://arxiv.org/abs/1211.0741">recent ATLASGAL paper</a>&nbsp;identifying pointing
+offsets of about 3&quot; in the BGPS, we revisit the BGPS pointing.
+The ATLASGAL team compared the source locations in their catalog to
+source locations in the Bolocam catalog by doing &quot;nearest-match&quot;
+searches within a 40&quot; radius (see their Figure 8, reproduced here)</p>
+<img alt="http://1.bp.blogspot.com/-UJVCzHbaDCI/UMYpeAoulVI/AAAAAAAAHR4/cy5SIqL_HFQ/s320/ATLASGALvsBolocam.png" src="http://1.bp.blogspot.com/-UJVCzHbaDCI/UMYpeAoulVI/AAAAAAAAHR4/cy5SIqL_HFQ/s320/ATLASGALvsBolocam.png" />
+<p>Their comparison was over the range -10 &lt; l &lt; 21, so it only covered a
+small fraction of the BGPS. &nbsp;It covered 13 fields with independent
+pointing solutions, so it's possible that they have actually discovered
+an offset only in some of our fields.</p>
+<p>The catalog comparison, while interesting, is potentially quite flawed.
+&nbsp;There's no guarantee that a source extraction algorithm will measure
+source centers accurately when a &quot;source&quot; is just a local overdensity on
+a complex background. &nbsp;Using source comparison will also lead to a bias
+towards the most source-rich fields, e.g. l000 and l001, so an offset in
+one of those fields would drastically affect the catalog offset.</p>
+<p>There is a better way to compare pointing between two images that are
+expected to be (nearly) identical. &nbsp;It is well-known that
+cross-correlation is an effective technique for determining the offsets
+between two identical images; I'll briefly summarize some of the
+literature here.</p>
+<p><a class="reference external" href="http://adsabs.harvard.edu/abs/2005A%26A...443..357G">Gratadour et al 2005</a>&nbsp;used a maximum likelihood estimator approach to
+determine the &quot;best-fit&quot; offset between two images. &nbsp;This approach is
+comparable to <a class="reference external" href="http://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=5&amp;cad=rja&amp;ved=0CF0QFjAE&amp;url=http%3A%2F%2Fwww.optics.rochester.edu%2Fworkgroups%2Ffienup%2FPUBLICATIONS%2FMGS_OL08_EffRegistration.pdf&amp;ei=rC3GUJC9CcSA2AX3wYCIAg&amp;usg=AFQjCNHdUm0v8qYzNbvrqFRqByR_3svlSA&amp;sig2=GQztgkfvoQzAzQ7kzCJU2w">Guizar et al (2008)</a>, who <a class="reference external" href="http://www.mathworks.com/matlabcentral/fileexchange/18401-efficient-subpixel-image-registration-by-cross-correlation">implemented</a> a fast solution
+for (highly) sub-pixel image registration in matlab. &nbsp;In order for the
+image registration to be fast, it must operate in fourier space, but to
+get sub-pixel registration in fourier space, you need to either pad
+(which is slow, and increases memory use drastically) or fit some
+functional form around the peak of the cross-correlation image. &nbsp;The
+alternative approach implemented by Guizar utilizes the <a class="reference external" href="http://en.wikipedia.org/wiki/Fourier_transform#Basic_properties">Fourier scaling
+theorem</a>&nbsp;to create a zoomed-in image of the peak pixel, which allows
+you to get much higher precision for a much lower computational cost.
+My innovation is to use the minimum $\chi^2$ estimator to determine the
+goodness of fit and therefore error bars on the best-fit offset.</p>
+<p>Because the $\chi^2$ value for each offset is simply determined by
+sums and multiplication ($\chi^2 = \sum
+\frac{x_i-\mu_x}{\sigma_{x_i}^2}$), we can compute each term that
+goes in to the $\chi^2$ value independently with fourier transforms,
+then create goodness-of-fit contours around the $\chi^2$ minimum. &nbsp;The
+statistical requirement for this approach to make sense is that the
+errors on the data are gaussian distributed, which is an assumption we
+inevitably make for astronomical images. &nbsp;I believe there is also a
+requirement that the errors are independent, which may be more difficult
+to satisfy, but in the Bolocam images it is satisfied, especially when
+multiple independent observations are combined.</p>
+<p>Strictly, this approach can only be used when the model data have the
+same multiplicative scale as the fitted data. &nbsp;The peak will never be
+wrong using this method, but the errors could be incorrect if the model
+and data are multiplicatively offset. &nbsp;In principle, this can be
+resolved in the future using a <a class="reference external" href="http://en.wikipedia.org/wiki/Mellin_transform">Mellin transform</a>&nbsp;[see <a class="reference external" href="http://ecocodespace.wordpress.com/category/matlab/image-matching/fourier-mellin-transform/">this site</a>&nbsp;or
+<a class="reference external" href="http://www.mathworks.com/matlabcentral/fileexchange/authors/7667">this</a> for
+a matlab approach and <a class="reference external" href="http://www.fresnel.fr/perso/derrode/publi/Cviu01.pdf">this</a> for an academic paper
+on it].</p>
+<p>This is the approach I have implemented
+at&nbsp; <a class="reference external" href="http://image-registration.rtfd.org/">image-registration.rtfd.org</a>. &nbsp;I used simulated test cases to
+demonstrate that it is, indeed, effective and accurate. &nbsp;I used this
+method to measure the offsets between the v2 data and the v1 data (which
+should, in principle, be the same as the offsets between ATLASGAL and
+v1) and the v2 vs Herschel Hi-Gal data (which should be zero).
+There are actually a few methods implemented in image-registration, and
+I compared those. &nbsp;There's a &quot;dft&quot; and a &quot;$\chi^2$&quot; approach, which are
+the same (except $\chi^2$ includes realistic errors), a method where a
+2D gaussian is fit to the peak of the cross-correlation image, and a
+method where a 2nd-order Taylor expansion is performed around the peak
+of the cross-correlation image. &nbsp;The latter two are <em>biased</em>. &nbsp;An
+example comparison plot looks like this:</p>
+<img alt="http://1.bp.blogspot.com/-LtA6owJr_vc/UMZBLK394HI/AAAAAAAAHSI/tR4F0BnFSVs/s320/l000_catalog_image_compare_chi2contours.png" src="http://1.bp.blogspot.com/-LtA6owJr_vc/UMZBLK394HI/AAAAAAAAHSI/tR4F0BnFSVs/s320/l000_catalog_image_compare_chi2contours.png" />
+<p>The grey dots are catalog centroid positions offsets measured between v1
+and v2. &nbsp;The green cross represents the mean and standard deviation of
+the grey points. &nbsp;The other data points, as labeled, show the offsets
+between the l000 images in v1 and v2 as measured by the method shown.
+They all have errorbars plotted, but the errorbars are generally smaller
+than the points. &nbsp;The dark spot seen behind the purple point shows the
+$\chi^2$ contours out to 8-$\sigma$: the error in the offset is tiny,
+sub-arcsecond. &nbsp;In this case, the offsets nearly agree:</p>
+<p>l000 catalog dx: &nbsp;-0.31 +/- 0.68 &nbsp; dy: 1.48 +/- 0.64</p>
+<p>l000 $\chi^2$ dx: &nbsp; 1.74 +/- 0.03 &nbsp;dy: 1.41 +/- 0.03</p>
+<p>This field agreed nicely between v1 and v2.</p>
+<p>The comparison to Hi-Gal is perhaps more important; HiGal's pointing is
+calibrated based on multi-wavelength observations, some of which include
+actual stars. &nbsp;It's a space-based mission, so its pointing is more
+stable. &nbsp;And finally, being a space mission, there's a large dedicated
+team instead of a single, part-time individual working on the data.
+Our offsets from Hi-Gal are pretty small in general, though not
+trivially small.</p>
+<img alt="http://1.bp.blogspot.com/-JyMtqE536LY/UMaEqOYBRxI/AAAAAAAAHSY/85nEo6rEc9k/s320/Offsets_XYplot.png" src="http://1.bp.blogspot.com/-JyMtqE536LY/UMaEqOYBRxI/AAAAAAAAHSY/85nEo6rEc9k/s320/Offsets_XYplot.png" />
+<p>And it turns out, the region that overlaps with ATLASGAL had more
+serious pointing errors than the rest of the survey:</p>
+<img alt="http://2.bp.blogspot.com/-iXI7TUl1y9I/UMaHHXwN2oI/AAAAAAAAHSg/z3g51NHD0zk/s320/Offsets_XYplot_ATLASGALoverlap.png" src="http://2.bp.blogspot.com/-iXI7TUl1y9I/UMaHHXwN2oI/AAAAAAAAHSg/z3g51NHD0zk/s320/Offsets_XYplot_ATLASGALoverlap.png" />
+<p>(note: both of the above plots are missing L=359 because I forgot it.
+&nbsp;Fixing that now...)</p>
+<p>The clearest problem field is l=15, with a longitude offset of -6&quot;
+between v2 and HiGal.... that's not the question, though. &nbsp;Somehow I've
+lost the code that did the v1-HiGal offsets; I'll have to re-write that
+tomorrow and let it run...</p>
+<p>Update 12/13: &nbsp;I've spent the last couple days clearing up some issues
+with the offsets. &nbsp;The error bars should be MUCH smaller than in the
+above plots. &nbsp;The means are pretty similar, though.
+Short story: the offsets between v1 and Hi-Gal are greater in the
+ATLASGAL overlap regions than elsewhere, and in the right general
+direction, but not quite as serious as they claimed. &nbsp;In v2, the
+ATLASGAL overlap fields and the rest of the survey have the same mean
+offsets, and those offsets are small (-0.5&quot; in l, -1&quot; in b).
+The problem now is the table. &nbsp;If everything made sense,
+(v1-v2)+(v2-higal)+(higal-v1) = 0. &nbsp;But that clearly isn't the case,
+which implies an error in the method, which sucks since I'm claiming
+this method is superior to alternatives. &nbsp;It's possible that I'm
+actually underestimating the errors against Hi-Gal - that can be fixed
+relatively easily - but the magnitude of the error won't affect the
+centroid measurements. &nbsp;So I probably need to investigate one case very
+carefully. &nbsp;l050 is a big problem case, with vector sums &gt;1 pixel in
+both directions. &nbsp;That will be my next line of investigation.
+The approach will be:
+-crop identical fields within l050 from v1, v2, herschel
+-perform pointing comparison between them
+-check that vector sum &lt; sum of errors
+I think - and hope - the trouble is just that I'm using inconsistent
+sub-fields to compare Herschel with the two different Bolocam versions,
+which is possible because of the way I selected these sub-fields. &nbsp;I'll
+do more careful cropping, and probably re-do this analysis
+degree-by-degree (with $512^2$ fields, in the hope that it speeds up the
+FTs).
+Update 12/14:
+I've now cropped identical sections in each of the survey, 1 square
+degree (512 pixels) each - which is great for speed. &nbsp;As a sidenote, a
+little line profiling revealed that the make_cross_plots
+&nbsp;code was the slow point in the process, and it is dominated by savefig
+calls, not ffts.
+I've run a careful examination of self consistency on the l=0 field,
+with positive results: the offsets agree to well within the errorbars
+(though there is some residual error at the 0.5&quot; level).</p>
+<img alt="http://1.bp.blogspot.com/--3Q9h0Q1jA4/UMuUjQ33dCI/AAAAAAAAHS4/zSD3H26r5dA/s320/circular_selfconsistency.png" src="http://1.bp.blogspot.com/--3Q9h0Q1jA4/UMuUjQ33dCI/AAAAAAAAHS4/zSD3H26r5dA/s320/circular_selfconsistency.png" />
+<p>However, a similar inspection of l=50 resulted in a major failure:</p>
+<img alt="http://2.bp.blogspot.com/-wlwvC26eTEk/UMuYZHU179I/AAAAAAAAHTI/Csf3mBSdbGI/s320/circular_selfconsistency.png" src="http://2.bp.blogspot.com/-wlwvC26eTEk/UMuYZHU179I/AAAAAAAAHTI/Csf3mBSdbGI/s320/circular_selfconsistency.png" />
+<p>In this case, the problem is caused by W51 being exactly on the field
+edge, leading to huge cross-correlation power at dx=0, but spread over a
+large y range. &nbsp;My first thought is to try to downweight the edges,
+which can be achieved by &quot;zero-padding&quot; the noise image, but with high
+values instead of zero... or alternatively, by setting the edge region
+to zero smoothly.</p>
+<p>OK, first thought: Bad idea. &nbsp;Increasing the noise along the edges
+drastically increases the small-shift autocorrelation for the noise,
+which in turn ends up ruling out the small shifts as a fit possibility.
+&nbsp;I don't think this really makes sense mathematically, but each step
+does. &nbsp;Why would increasing the noise along the edges make the $\chi^2$
+fit worse?</p>
+<p>This revealed a serious bug in the code that, luckily, only affected
+non-uniform error maps. &nbsp;Basically, I had decomposed the $\chi^2$
+equation wrong (which is as bad as it sounds).</p>
+<p>That total mess has been resolved now. &nbsp;The image edges are downweighted
+with a gaussian of 12 pixels, error=100 outside and weight=0 outside
+(with weight^2 inside... best to just view the source if you really want
+to know the details). &nbsp;The new versions of the above diagrams:</p>
+<img alt="http://4.bp.blogspot.com/-mjPyO7LkbGc/UMuxVgSxwZI/AAAAAAAAHTY/ilRnJRaAiOQ/s320/circular_selfconsistency.png" src="http://4.bp.blogspot.com/-mjPyO7LkbGc/UMuxVgSxwZI/AAAAAAAAHTY/ilRnJRaAiOQ/s320/circular_selfconsistency.png" />
+<img alt="http://3.bp.blogspot.com/-rMiHxucSQuo/UMuxZSH63fI/AAAAAAAAHTg/W_IzmhcFCzo/s320/circular_selfconsistency.png" src="http://3.bp.blogspot.com/-rMiHxucSQuo/UMuxZSH63fI/AAAAAAAAHTg/W_IzmhcFCzo/s320/circular_selfconsistency.png" />
+<p>Less than spectacular for l=50, but acceptable given the errors, which
+are indeed significantly larger, as you might expect given the lower
+total signal in l=50. Now I need to re-run the fits on every field.</p>
+<p>OK, cool, last thing accomplished today (...by 8pm): offset comparison
+by square degree for all fields. &nbsp;Again, I don't reproduce the magnitude
+of the ATLASGAL-measured offsets, but the ATLASGAL fields are, on
+average, more offset in longitude (to the negative) than the overall
+average.</p>
+<p>Curiously, for both v1 and v2, there appears to be a -1.5 deg shift in
+latitude from Hi-Gal.</p>
+<p>The vector sums are mostly sub-arcsecond, with most exceptions at l&gt;50.
+&nbsp;l=59,64, and 65 are particularly bad - but l=50 isn't so bad. &nbsp;So I
+should do the &quot;deep&quot; examination of one or two of those fields... who
+knows what new errors I'll turn up?</p>
+<p>Here's the new v1-ATLASGAL offset plot:</p>
+<img alt="http://3.bp.blogspot.com/-iv_FsACT958/UMvsyr90haI/AAAAAAAAHTw/g56hcK6hMCw/s320/Offsets_XYplot_v1-Hi-Gal_ATLASGALoverlap.png" src="http://3.bp.blogspot.com/-iv_FsACT958/UMvsyr90haI/AAAAAAAAHTw/g56hcK6hMCw/s320/Offsets_XYplot_v1-Hi-Gal_ATLASGALoverlap.png" />
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
-        Page 1 / 23
-            <a href="http://keflavich.github.com/blog/index2.html">&raquo;</a>
+        Page 1 / 42
+            <a href="./index2.html">&raquo;</a>
     </p>
 </section><!-- /#content -->
   </div>

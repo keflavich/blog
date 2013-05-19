@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" type="text/css" href="http://keflavich.github.com/blog/theme/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../theme/css/style.css" />
 <head>
                 <title>Adam Ginsburg's blog</title>
         <meta charset="utf-8" />
@@ -16,6 +16,9 @@
     },
     tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
     });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
     MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
     var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
     VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
@@ -42,17 +45,53 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 
 
     <header id="banner" class="body" >
-        <div id="header" style='background-image: url("http://keflavich.github.com/blog/static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
-            <h1 style="color: #C4C4C4;"><a class="header" href="http://keflavich.github.com/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+        <div id="header" style='background-image: url("../static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="..">Adam Ginsburg's blog <strong></strong></a></h1>
 
             <nav id="menu"><ul id="menulist">
                             <li><a href="http://www.adamgginsburg.com">Home</a></li>
-                            <li><a href="index.html">Main</a></li>
+                            <li><a href="index.html">Blog Index</a></li>
                             <li><a href="archives.html">Recent</a></li>
+                            <li><a href="tags.html">Tags</a></li>
                                                               </ul></nav><!-- /#menu -->
         </div>
     </header><!-- /#banner -->
 
+   <div id="sidebar">
+    <ul>
+  	  	        	  	          <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+                          <li class="post">
+                  2013/05/16
+                  <br>
+                  <a href="../bgps-point-source-recovery.html">BGPS Point Source Recovery</a>
+              </li>
+                          <li class="post">
+                  2013/05/13
+                  <br>
+                  <a href="../recovering-from-startup-drive-out-of-memory.html">Recovering from "Startup drive out of memory"</a>
+              </li>
+                          <li class="post">
+                  2013/03/25
+                  <br>
+                  <a href="../bolocam-mass-calculations.html">Bolocam Mass Calculations</a>
+              </li>
+                          <li class="post">
+                  2013/03/22
+                  <br>
+                  <a href="../arecibo-mapping-total-power-measurements.html">Arecibo Mapping: Total Power Measurements</a>
+              </li>
+                          <li class="post">
+                  2013/03/12
+                  <br>
+                  <a href="../jeans-mass.html">Jeans Mass</a>
+              </li>
+                    </ul>
+      </li>
+        
+    </ul>
+  </div><!-- end #sidebar -->
  
   <div id="content">
         <section id="content">
@@ -62,70 +101,13 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/compiling-vim.html" rel="bookmark" title="Permalink to Compiling vim...">
-                    Compiling vim...</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Figured I had to post this...
-I've been trying to compile command-line vim 7.3 on Mac OS X 10.7. I
-have the latest `hg clone`d version of vim. I'm stuck on ncurses.
-If I `./configure` with no options, I get the following error:
-checking --with-tlib argument... empty: automatic terminal library
-selection
-checking for tgetent in -ltinfo... no
-checking for tgetent in -lncurses... no
-checking for tgetent in -ltermlib... no
-checking for tgetent in -ltermcap... no
-checking for tgetent in -lcurses... no
-no terminal library found
-checking for tgetent()... configure: error: NOT FOUND!
-You need to install a terminal library; for example ncurses.
-Or specify the name of the library with --with-tlib.
-If instead I try `./configure --with-tlib=ncurses`
-checking --with-tlib argument... ncurses
-checking for linking with ncurses library... configure: error: FAILED
-I have Xcode 4.1. As far as I can tell, ncurses is available:
-$ file /usr/lib/libncurses.*
-/usr/lib/libncurses.5.4.dylib: Mach-O universal binary with 2
-architectures
-/usr/lib/libncurses.5.4.dylib (for architecture x86_64): Mach-O 64-bit
-dynamically linked shared library x86_64
-/usr/lib/libncurses.5.4.dylib (for architecture i386): Mach-O
-dynamically linked shared library i386
-/usr/lib/libncurses.5.dylib: Mach-O dynamically linked shared library
-i386
-/usr/lib/libncurses.dylib: Mach-O universal binary with 2 architectures
-/usr/lib/libncurses.dylib (for architecture x86_64): Mach-O 64-bit
-dynamically linked shared library x86_64
-/usr/lib/libncurses.dylib (for architecture i386): Mach-O dynamically
-linked shared library i386
-Then I changed my PATH from /usr/local/bin... to /usr/bin.....
-The problem was trying to use my /usr/local/bin/gcc instead of the mac
-default /usr/bin/gcc. Something about my locally installed gcc (4.6.1)
-caused major problems.
-I also eventually had to do this command:
-LDFLAGS=-L/usr/lib CFLAGS='-arch i386 -arch x86_64' CCFLAGS='-arch i386
--arch x86_64' CXXFLAGS='-arch i386 -arch x86_64' ./configure
---enable-perlinterp --enable-pythoninterp --enable-cscope
---with-features=huge
-and then had to make sure my default python was NOT pointing to
-enthought!</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/comps-2-reflections.html" rel="bookmark" title="Permalink to Comps 2 reflections">
+                <a href="../comps-2-reflections.html" rel="bookmark" title="Permalink to Comps 2 reflections">
                     Comps 2 reflections</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Comps 2 included some successes and some failures.
 The most successful part of my Comps preparation was the Monday talk.
 The previous talk on Tuesday was somewhat helpful in terms of realizing
@@ -169,13 +151,13 @@ it's well worth having the project done.</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/connecting-to-ipython-notebook-with-ssh-tunneling.html" rel="bookmark" title="Permalink to Connecting to ipython notebook with SSH tunneling">
+                <a href="../connecting-to-ipython-notebook-with-ssh-tunneling.html" rel="bookmark" title="Permalink to Connecting to ipython notebook with SSH tunneling">
                     Connecting to ipython notebook with SSH tunneling</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <div dir="ltr" style="text-align: left;"><div dir="ltr" style="text-align: left;"><p>My typical ssh tunnel looks something like:
 <tt class="docutils literal">ssh <span class="pre">-N</span> <span class="pre">-f</span> <span class="pre">-L</span> 8889:SERVER.colorado.edu:8889 ginsbura&#64;SERVER.colorado.edu</tt></p>
 </div><p>For ipython notebooks, this approach was giving me the error:
@@ -189,13 +171,13 @@ the correct ssh tunnel command is:
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/converting-a-class-created-fits-file-to-a-real-fits-compliant-fits-file.html" rel="bookmark" title="Permalink to Converting a CLASS-created .fits file to a real (FITS-compliant) FITS file">
+                <a href="../converting-a-class-created-fits-file-to-a-real-fits-compliant-fits-file.html" rel="bookmark" title="Permalink to Converting a CLASS-created .fits file to a real (FITS-compliant) FITS file">
                     Converting a CLASS-created .fits file to a real (FITS-compliant) FITS file</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>This post is to remind me, the next time I go looking, how the hell to
 convert from a GILDAS CLASS fits spectrum (created by
 <tt class="docutils literal">fits write blah.fits /mode spectrum</tt>) to a FITS-compliant spectrum.
@@ -218,13 +200,13 @@ This information is subject to change...</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/converting-gildas-class-data-cubes-lmv-files-to-fits.html" rel="bookmark" title="Permalink to Converting GILDAS-CLASS data cubes (lmv files) to fits">
+                <a href="../converting-gildas-class-data-cubes-lmv-files-to-fits.html" rel="bookmark" title="Permalink to Converting GILDAS-CLASS data cubes (lmv files) to fits">
                     Converting GILDAS-CLASS data cubes (lmv files) to fits</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>As usual, CLASS documentation is nearly impossible to navigate. At the
 end of the CLASS &quot;introduction&quot; (<a class="reference external" href="iram.fr/IRAMFR/GILDAS/doc/pdf/gildas-intro.pdf">gildas-intro.pdf</a>) there is a subtle
 and obscure reference to the vector\fits command. The conversion is
@@ -237,13 +219,13 @@ actually relatively straightforward:
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/cython-vs-f2py.html" rel="bookmark" title="Permalink to cython vs f2py">
+                <a href="../cython-vs-f2py.html" rel="bookmark" title="Permalink to cython vs f2py">
                     cython vs f2py</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I had a go at optimizing some code this past week, and ended up learning
 to use both cython and f2py.
 f2py is much easier to use. If you want to write a function in fortran
@@ -261,13 +243,13 @@ Check out the plfits in:
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/danger-zone.html" rel="bookmark" title="Permalink to Danger Zone">
+                <a href="../danger-zone.html" rel="bookmark" title="Permalink to Danger Zone">
                     Danger Zone</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>The Danger Zone: Where the Buffalo Roam.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
@@ -275,13 +257,13 @@ Check out the plfits in:
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/defining-a-molecular-cloud.html" rel="bookmark" title="Permalink to Defining a Molecular Cloud">
+                <a href="../defining-a-molecular-cloud.html" rel="bookmark" title="Permalink to Defining a Molecular Cloud">
                     Defining a Molecular Cloud</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I'm going to try to answer a few questions [this post is in-progress and
 will be updated]:</p>
 <ol class="arabic simple">
@@ -342,13 +324,13 @@ that we can see through to detect the coldest emission.</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/delirium-nocturne.html" rel="bookmark" title="Permalink to Delirium Nocturne">
+                <a href="../delirium-nocturne.html" rel="bookmark" title="Permalink to Delirium Nocturne">
                     Delirium Nocturne</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Delirium Tremens is a tasty beer itself, I think. I'm drinking Delirium
 Nocturne right now. It has a cool (opaque!) bottle, plus a pink elephant
 on the label. At 8.5% it's pretty strong, but very drinkable with no
@@ -362,24 +344,44 @@ worth the ridiculous price I paid for it, whatever that was.</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/detexify.html" rel="bookmark" title="Permalink to Detexify!">
+                <a href="../detexify.html" rel="bookmark" title="Permalink to Detexify!">
                     Detexify!</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>for when you can't remember how to draw an angstrom:
 <a class="reference external" href="http://detexify.kirelabs.org/classify.html">detexify</a>
 .. image:: <a class="reference external" href="http://2.bp.blogspot.com/_lsgW26mWZnU/SydQdSeP5EI/AAAAAAAAFds/f8-29Qvef3E/s400/detexify.png">http://2.bp.blogspot.com/_lsgW26mWZnU/SydQdSeP5EI/AAAAAAAAFds/f8-29Qvef3E/s400/detexify.png</a></p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../do-not-install-1055.html" rel="bookmark" title="Permalink to Do not install 10.5.5">
+                    Do not install 10.5.5</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Well, I didn't obey that excellent advice from Charles. I installed the
+10.5.5 update. Now DS9 - in my opinion, one of the heartiest and most
+reliable programs I've dealt with in the astronomy world - won't work
+because TCL is broken. I doubt TUI or most of the other things I use
+will work either. That's a tragedy of significant proportions - I NEED
+ds9 to make my observing files! I can only pray that an update of TCL
+using port will work... if not I'm basically screwed.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
-                        <a href="http://keflavich.github.com/blog/category/misc4.html">&laquo;</a>
+                        <a href="../category/misc4.html">&laquo;</a>
                 Page 5 / 23
-            <a href="http://keflavich.github.com/blog/category/misc6.html">&raquo;</a>
+            <a href="../category/misc6.html">&raquo;</a>
     </p>
 </section><!-- /#content -->
   </div>

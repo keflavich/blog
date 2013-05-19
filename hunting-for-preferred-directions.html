@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="./theme/css/style.css" />
+<head>
+                <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+                <link href="http://keflavich.github.com/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+                                                <link href="http://keflavich.github.com/blog/feeds/bgps.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+                                        <!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("./static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href=".">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                            <li><a href="http://www.adamgginsburg.com">Home</a></li>
+                            <li><a href="index.html">Blog Index</a></li>
+                            <li><a href="archives.html">Recent</a></li>
+                            <li><a href="tags.html">Tags</a></li>
+                                                              </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+   <div id="sidebar">
+    <ul>
+  	  	        	  	          <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+                          <li class="post">
+                  2013/05/16
+                  <br>
+                  <a href="./bgps-point-source-recovery.html">BGPS Point Source Recovery</a>
+              </li>
+                          <li class="post">
+                  2013/05/13
+                  <br>
+                  <a href="./recovering-from-startup-drive-out-of-memory.html">Recovering from "Startup drive out of memory"</a>
+              </li>
+                          <li class="post">
+                  2013/03/25
+                  <br>
+                  <a href="./bolocam-mass-calculations.html">Bolocam Mass Calculations</a>
+              </li>
+                          <li class="post">
+                  2013/03/22
+                  <br>
+                  <a href="./arecibo-mapping-total-power-measurements.html">Arecibo Mapping: Total Power Measurements</a>
+              </li>
+                          <li class="post">
+                  2013/03/12
+                  <br>
+                  <a href="./jeans-mass.html">Jeans Mass</a>
+              </li>
+                    </ul>
+      </li>
+        
+    </ul>
+  </div><!-- end #sidebar -->
+ 
+  <div id="content">
+        <section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="./hunting-for-preferred-directions.html" rel="bookmark"
+         title="Permalink to Hunting for preferred directions">Hunting for preferred directions</a></h2>
+  
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2011-06-06T03:58:00">
+      2011/06/06
+    </abbr>
+        <address class="vcard author">
+      By <a class="url fn" href="./author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a>
+    </address>
+      </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>In our last group meeting, we discussed simulations using filamentary
+structures. I've been trying to determine how best to generate
+random/artificial filamentary structures in images. The first step in
+that direction is coming up with a way to measure asymmetries and
+therefore preferred directions within a real map. In order to do this,
+I've had to develop a number of new tools in agpy for azimuthally binned
+radial profiles and radially-averaged azimuthal profiles
+(<a class="reference external" href="http://code.google.com/p/agpy/source/browse/trunk/agpy/radialprofile.py">radialprofile.py</a>).
+Examining real maps is necessary because a simple sinusoidal dependence
+of the power introduces filamentation along the same directions at ALL
+scales, which is not obviously (or in some cases, obviously not) the
+correct solution. Filaments are observed on large scales, but sometimes
+there can be 'kinks' in opposite directions on small scales.
+So, the map I picked to examine was one with the most flagrantly obvious
+filamentary structure in it: the Motte DR 21 MAMBO map. It was also a
+choice of convenience because I already had the data on my laptop....</p>
+<img alt="http://3.bp.blogspot.com/-ULjqyt_ofEI/TexIAK9ohhI/AAAAAAAAGM0/eCEys_tFOTA/s320/MAMBOmap.png" src="http://3.bp.blogspot.com/-ULjqyt_ofEI/TexIAK9ohhI/AAAAAAAAGM0/eCEys_tFOTA/s320/MAMBOmap.png" />
+<p>The preferred direction is quite obvious in this map: there is a long
+filament going up and down the map. Therefore, the DC component should
+be substantially higher in one direction than the other.</p>
+<img alt="http://1.bp.blogspot.com/-X7TY9wPUL7Y/TexIAZ7hH_I/AAAAAAAAGM8/IEkgX500_Os/s320/MAMBOpsd.png" src="http://1.bp.blogspot.com/-X7TY9wPUL7Y/TexIAZ7hH_I/AAAAAAAAGM8/IEkgX500_Os/s320/MAMBOpsd.png" />
+<p>In the power-spectral-density image, it is quite clear that there is a
+preferred direction, though it is not obvious that the fourier transform
+is rotated 90 degrees from the image. My fourier intuition somewhat
+fails me here.... I realize that a broad, smooth profile in real space
+should be narrow and highly peaked in fourier space, but I don't fully
+understand why it effectively spreads out in the perpendicular
+direction, which I have confirmed that it does with a simple experiment.
+I also don't know what the Shah function is, but it implies a periodic
+dip in the image at every 1/5th of the image, or every 50 pixels.</p>
+<img alt="http://2.bp.blogspot.com/-l4qWlj1G42k/TexIAufhjSI/AAAAAAAAGNE/UqagczdWzwA/s320/MAMBOpowerspectra.png" src="http://2.bp.blogspot.com/-l4qWlj1G42k/TexIAufhjSI/AAAAAAAAGNE/UqagczdWzwA/s320/MAMBOpowerspectra.png" />
+<p>These are the power spectra averaged over different angles as labeled.
+-15 corresponds to -15 to +15, 15 corresponds to 15 to 45, etc. The
+highly peaked 75-105 power spectrum shows the large-scale filamentary
+profile. I think the difference in the DC component is actually an
+artifact of the azimuthal binning process: each pixel can only be
+assigned one angle, so the DC value isn't included in all of them...
+I'll need to find a workaround for that because it's quite deceptive.</p>
+<img alt="http://4.bp.blogspot.com/-qEWk2rRrwNI/TexIBKn59FI/AAAAAAAAGNM/MXdsiKagpW4/s320/MAMBOazspectra.png" src="http://4.bp.blogspot.com/-qEWk2rRrwNI/TexIBKn59FI/AAAAAAAAGNM/MXdsiKagpW4/s320/MAMBOazspectra.png" />
+<p>The more interesting way to view the data - and perhaps to analyze maps
+- is to take <em>radial</em> averages in some range of spatial scales and plot
+the azimuthal dependence. There is a clear sinusoid at large scales. The
+legend shows &quot;spatial frequency&quot; in 1/pixel units. The distribution
+becomes more even with angle and even changes preferred direction at
+smaller scales (higher frequencies).
+Next step is testing different approaches. I think an added,
+steeper-power-law component would probably be the best way to start.
+Another suggestion, courtesy Bruce Elmegreen, is to attempt this sort of
+asymmetric power law sampling in 3 dimensions (with only 1 or 2
+dimensions asymmetric) and then projecting down onto two dimensions.</p>
+
+  </div><!-- /.entry-content -->
+</section>
+  </div>
+        <footer id="contentinfo" class="body">
+        </footer><!-- /#contentinfo -->
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="./theme/css/style.css" />
+<head>
+                <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+                <link href="http://keflavich.github.com/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+                                                <link href="http://keflavich.github.com/blog/feeds/bgps.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+                                        <!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("./static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href=".">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                            <li><a href="http://www.adamgginsburg.com">Home</a></li>
+                            <li><a href="index.html">Blog Index</a></li>
+                            <li><a href="archives.html">Recent</a></li>
+                            <li><a href="tags.html">Tags</a></li>
+                                                              </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+   <div id="sidebar">
+    <ul>
+  	  	        	  	          <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+                          <li class="post">
+                  2013/05/16
+                  <br>
+                  <a href="./bgps-point-source-recovery.html">BGPS Point Source Recovery</a>
+              </li>
+                          <li class="post">
+                  2013/05/13
+                  <br>
+                  <a href="./recovering-from-startup-drive-out-of-memory.html">Recovering from "Startup drive out of memory"</a>
+              </li>
+                          <li class="post">
+                  2013/03/25
+                  <br>
+                  <a href="./bolocam-mass-calculations.html">Bolocam Mass Calculations</a>
+              </li>
+                          <li class="post">
+                  2013/03/22
+                  <br>
+                  <a href="./arecibo-mapping-total-power-measurements.html">Arecibo Mapping: Total Power Measurements</a>
+              </li>
+                          <li class="post">
+                  2013/03/12
+                  <br>
+                  <a href="./jeans-mass.html">Jeans Mass</a>
+              </li>
+                    </ul>
+      </li>
+        
+    </ul>
+  </div><!-- end #sidebar -->
+ 
+  <div id="content">
+        <section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="./inconsistent.html" rel="bookmark"
+         title="Permalink to Inconsistent">Inconsistent</a></h2>
+  
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2008-08-17T18:56:00">
+      2008/08/17
+    </abbr>
+        <address class="vcard author">
+      By <a class="url fn" href="./author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a>
+    </address>
+      </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>James: &quot;I think it's fair to say, though, that there is some problem
+with the simultaneous assumption that CSO coords are geo and that we are
+applying the ab/nut correction correctly.&quot;
+Yep. The relevant files are in /scratch/adam_work/plots/:
+models_noabnut_radec_0707.ps
+models_noabnut_rawcsoptg_radec_0707.ps
+models_oppositeabnut_radec_0707.ps
+models_oppositeabnut_rawcso_radec_0707.ps
+I'm afraid they're pretty confusing.
+'noabnut' means no aberration/nutation correction was applied during the
+mapping process.
+'oppositeabnut' means that an aberration/nutation correction that,
+according to the eq2hor and hor2eq texts, should actually convert
+heliocentric to geocentric, is being used on data that we believe is
+starting in a geocentric frame. There are two possibilities: 1. We are
+wrong 2. eq2hor/hor2eq are wrong.
+The 'rawcso' files have FAZO/FZAO &quot;subtracted out&quot; (removed) in pages 1
+and 3, and FAZO/FZAO added back in on pages 2 and 4. 'rawcso' means that
+we're looking at the ra/dec the CSO gave without the users' FAZO/FZAO
+corrections.
+The non-rawcso have the NCDF ra/dec vectors, with precession correction
+applied (and some form of ab/nut correction), but the FAZO/FZAO are
+still present. THESE should be equivalent to Meredith's plots, e.g.
+where FAZO_SET/FZAO_SET are on the y axis. However, that's only true
+for pages 1 and 3. Pages 2 and 4 have FAZO/FZAO essentially
+double-subtracted, so they should be ignored. Pages 1 and 3 of the
+non-rawcso files should be equivalent to pages 2 and 4 of the rawcso
+files with the exception that the sigma-rejection used to choose the
+yellow points is different.
+So what's in each page? On pages 1 and 2, the red lines are my best fit
+to the yellow data, which is the black data with an iterative sigma
+rejection applied (i.e. reject at 1 sigma, recalculate sigma from good
+data, reject at 2 sigma). The blue lines are Meredith's models. The
+right side includes only the yellow data points with the red line
+subtracted. On pages 3 and 4, the same is pretty much true except that
+ONLY the altitude-dependent line has been subtracted: there is no fit to
+azimuth.
+Also, the 'sourcecompare' files are similar. I'd check those out too.
+I still don't have the extremely low RMS that Meredith saw. I'm going to
+go through and try to reject bad data points by hand to see if I can get
+to that level. We'll see.</p>
+
+  </div><!-- /.entry-content -->
+</section>
+  </div>
+        <footer id="contentinfo" class="body">
+        </footer><!-- /#contentinfo -->
+
+
+
+
+</body>
+</html>

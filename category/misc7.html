@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" type="text/css" href="http://keflavich.github.com/blog/theme/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../theme/css/style.css" />
 <head>
                 <title>Adam Ginsburg's blog</title>
         <meta charset="utf-8" />
@@ -16,6 +16,9 @@
     },
     tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
     });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
     MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
     var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
     VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
@@ -42,17 +45,53 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 
 
     <header id="banner" class="body" >
-        <div id="header" style='background-image: url("http://keflavich.github.com/blog/static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
-            <h1 style="color: #C4C4C4;"><a class="header" href="http://keflavich.github.com/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+        <div id="header" style='background-image: url("../static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="..">Adam Ginsburg's blog <strong></strong></a></h1>
 
             <nav id="menu"><ul id="menulist">
                             <li><a href="http://www.adamgginsburg.com">Home</a></li>
-                            <li><a href="index.html">Main</a></li>
+                            <li><a href="index.html">Blog Index</a></li>
                             <li><a href="archives.html">Recent</a></li>
+                            <li><a href="tags.html">Tags</a></li>
                                                               </ul></nav><!-- /#menu -->
         </div>
     </header><!-- /#banner -->
 
+   <div id="sidebar">
+    <ul>
+  	  	        	  	          <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+                          <li class="post">
+                  2013/05/16
+                  <br>
+                  <a href="../bgps-point-source-recovery.html">BGPS Point Source Recovery</a>
+              </li>
+                          <li class="post">
+                  2013/05/13
+                  <br>
+                  <a href="../recovering-from-startup-drive-out-of-memory.html">Recovering from "Startup drive out of memory"</a>
+              </li>
+                          <li class="post">
+                  2013/03/25
+                  <br>
+                  <a href="../bolocam-mass-calculations.html">Bolocam Mass Calculations</a>
+              </li>
+                          <li class="post">
+                  2013/03/22
+                  <br>
+                  <a href="../arecibo-mapping-total-power-measurements.html">Arecibo Mapping: Total Power Measurements</a>
+              </li>
+                          <li class="post">
+                  2013/03/12
+                  <br>
+                  <a href="../jeans-mass.html">Jeans Mass</a>
+              </li>
+                    </ul>
+      </li>
+        
+    </ul>
+  </div><!-- end #sidebar -->
  
   <div id="content">
         <section id="content">
@@ -62,103 +101,13 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/failure-to-compile-64-bit-gtk-on-mac-os.html" rel="bookmark" title="Permalink to Failure to compile 64 bit gtk on mac os">
-                    Failure to compile 64 bit gtk on mac os</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Attempted to install gtk+-2.17.2 on my mac. Had to install:
-<tt class="docutils literal"><span class="pre">glib-2.21.2</span></tt>
-which would not let me compile with multiple architectures, and
-<tt class="docutils literal"><span class="pre">pkgconfig-0.9.0,</span></tt>
-which won't configure because:
-<tt class="docutils literal">configure: configuring in <span class="pre">glib-1.2.8configure:</span> running /bin/sh <span class="pre">'./configure'</span> <span class="pre">--prefix=/usr/local</span>&nbsp; CC= CFLAGS= LDFLAGS= <span class="pre">--cache-file=/dev/null</span> <span class="pre">--srcdir=.configure:</span> warning: CC=: invalid host typeconfigure: warning: CFLAGS=: invalid host typeconfigure: error: can only configure for one host and one target at a timeconfigure: error: /bin/sh <span class="pre">'./configure'</span> failed for <span class="pre">glib-1.2.8</span></tt>
-which is bs because I don't have any compiler flags set.</p>
-<p>So, gtk+ seems hopeless.
-UPDATE: 0.9.0 is not the latest version, 0.23.0 is. Dumb version
-numbering.</p>
-<p>GTK is absurd to install. You need:</p>
-<blockquote>
-<ul class="simple">
-<li>pkg-config</li>
-<li>glib</li>
-<li>cairo</li>
-<li>pixman</li>
-<li>pango (MUST be installed AFTER cairo)</li>
-<li><a class="reference external" href="http://ftp.gnome.org/pub/gnome/sources/atk/">atk</a></li>
-<li><a class="reference external" href="ftp://ftp.remotesensing.org/pub/libtiff/">libtiff</a></li>
-<li><a class="reference external" href="http://www.ijg.org/">libjpg</a></li>
-<li><a class="reference external" href="http://www.openjpeg.org/index.php">jpeg2000</a> - but I just passed a flag to not do this because it didn't install right. <tt class="docutils literal"><span class="pre">--without-libjasper</span></tt></li>
-<li><a class="reference external" href="http://fontconfig.org/wiki/">fontconfig</a> I mean, really? at this point it's just ridiculous....</li>
-</ul>
-</blockquote>
-<p>and finally, it died with this:
-checking Pango flags... configure: error:</p>
-<dl class="docutils">
-<dt>::</dt>
-<dd>*** Pango not found. Pango built with Cairo support is required
-*** to build GTK+. See <a class="reference external" href="http://www.pango.org">http://www.pango.org</a> for Pango information.</dd>
-</dl>
-<p>which meant that I had to reinstall Pango because I had installed it
-before Cairo.</p>
-<p>I believe this is where the term <a class="reference external" href="http://en.wikipedia.org/wiki/Dependency_hell">dependency hell</a> comes from.</p>
-<p>Also, I don't think any of these are x86-64 compatible.</p>
-<p>Then I'm STILL not done.
-PyGTK dies with an import error on dsextras, which a painful google
-search traces to pygobject. pygobject makes and installs fine.... but
-then I find out it installed to
-/usr/local/lib/python2.6/site-packages/gtk-2.0/, which is obviously not
-on my python path since I installed a framework.</p>
-<p>So:
-<tt class="docutils literal">./configure <span class="pre">--prefix=/Library/Frameworks/Python.framework/Versions/2.6/</span></tt>
-in both pygobject and pygtk.</p>
-<p>Oh, guess what? Need pycairo too. What happens there? What you'd guess:</p>
-<pre class="literal-block">
-ld warning: in /Developer/SDKs/MacOSX10.5.sdk/usr/local/lib/libcairo.dylib, file is not of required architecture
-</pre>
-<p>so when I configure pygtk:</p>
-<dl class="docutils">
-<dt>The following modules will be built:</dt>
-<dd><ul class="first last simple">
-<li>atk</li>
-<li>pango</li>
-</ul>
-</dd>
-<dt>The following modules will NOT be built:</dt>
-<dd><ul class="first last simple">
-<li>pangocairo</li>
-<li>gtk</li>
-<li>gtk.glade</li>
-<li>gtk.unixprint</li>
-</ul>
-</dd>
-</dl>
-<p>Damn. That blows.</p>
-<pre class="literal-block">
-python-64 -c &quot;import gtk&quot;
-ImportError:
-dlopen(/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/gtk-2.0/glib/\_glib.so,
-2): no suitable image found. Did find:
-
-/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/gtk-2.0/glib/\_glib.so:
-mach-o, but wrong architecture
-</pre>
-<p>FAIL.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/fermentation.html" rel="bookmark" title="Permalink to fermentation">
+                <a href="../fermentation.html" rel="bookmark" title="Permalink to fermentation">
                     fermentation</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>ideas + beer. Same process. They catalyze each other.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
@@ -166,13 +115,13 @@ mach-o, but wrong architecture
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/figure.html" rel="bookmark" title="Permalink to figure*">
+                <a href="../figure.html" rel="bookmark" title="Permalink to figure*">
                     figure*</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>to make figures/deluxetables span the page in LaTeX:
 \begin{figure*}
 ...
@@ -183,13 +132,13 @@ mach-o, but wrong architecture
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/filled-step-plots-in-matplotlib.html" rel="bookmark" title="Permalink to Filled step plots in matplotlib">
+                <a href="../filled-step-plots-in-matplotlib.html" rel="bookmark" title="Permalink to Filled step plots in matplotlib">
                     Filled step plots in matplotlib</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p><p>It's not possible to do a simple filled step plot in matplotlib using
 default
 commands. Workaround:</p>
@@ -202,13 +151,13 @@ def steppify(arr,isX=False,interval=0):    &quot;&quot;&quot;    Converts an arr
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/finally-got-matplotlib-to-install.html" rel="bookmark" title="Permalink to finally got matplotlib to install...">
+                <a href="../finally-got-matplotlib-to-install.html" rel="bookmark" title="Permalink to finally got matplotlib to install...">
                     finally got matplotlib to install...</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>the key is reading the readme, not just the make.osx file.</p>
 <p>These commands Just Work:
 <tt class="docutils literal">make <span class="pre">-f</span> make.osx PYVERSION=2.6 <span class="pre">PREFIX=/Users/adam/repos/mpl_dependencies/</span> fetch deps mpl_install_stdmake <span class="pre">-f</span> make.osx PYVERSION=2.7 <span class="pre">PREFIX=/Users/adam/repos/mpl_dependencies/</span> fetch deps mpl_install_std</tt></p>
@@ -221,13 +170,13 @@ didn't. I guess because that one doesn't actually install anything.</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/find-and-xargs.html" rel="bookmark" title="Permalink to find and xargs">
+                <a href="../find-and-xargs.html" rel="bookmark" title="Permalink to find and xargs">
                     find and xargs</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p><a class="reference external" href="http://www.kalamazoolinux.org/tech/find.html">pretty useful info on find and xargs</a>, e.g.
 <tt class="docutils literal">find /scratch/adam_work/ <span class="pre">-name</span> 'mmm*sav' | xargs rm</tt></p>
  </div><!-- /.entry-content   not article.summary--> 
@@ -236,13 +185,13 @@ didn't. I guess because that one doesn't actually install anything.</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/first.html" rel="bookmark" title="Permalink to First!">
+                <a href="../first.html" rel="bookmark" title="Permalink to First!">
                     First!</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>First post by <a class="reference external" href="http://casa.colorado.edu/~ginsbura/index.htm">me</a> on my own BLDG! I should transition to this address
 eventually...</p>
  </div><!-- /.entry-content   not article.summary--> 
@@ -251,13 +200,13 @@ eventually...</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/first-paper-accepted.html" rel="bookmark" title="Permalink to First paper accepted">
+                <a href="../first-paper-accepted.html" rel="bookmark" title="Permalink to First paper accepted">
                     First paper accepted</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p><a class="reference external" href="http://casa.colorado.edu/~ginsbura/iras05358.htm">My Comps II paper on IRAS 05358+3543</a> was accepted by ApJ on
 Wednesday. It will show up on arxiv in a few days and I'll post the link
 then. Unfortunately, there were significant problems rendering the
@@ -269,13 +218,13 @@ Also, working on the HISA KDA... <a class="reference external" href="http://eta.
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/fits-manipuation-with-imagemagick-gimp-etc.html" rel="bookmark" title="Permalink to FITS manipuation with imagemagick, gimp, etc.">
+                <a href="../fits-manipuation-with-imagemagick-gimp-etc.html" rel="bookmark" title="Permalink to FITS manipuation with imagemagick, gimp, etc.">
                     FITS manipuation with imagemagick, gimp, etc.</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>It is possible to convert .fits files to .png, .jpg, etc:
 `` convert -normalize a.fits a.png ``
 To get things to come out nicely, you have to do the scaling essentially
@@ -293,13 +242,13 @@ photo contest.</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/galactic-formaldehyde-densitometry-project.html" rel="bookmark" title="Permalink to Galactic Formaldehyde Densitometry Project">
+                <a href="../galactic-formaldehyde-densitometry-project.html" rel="bookmark" title="Permalink to Galactic Formaldehyde Densitometry Project">
                     Galactic Formaldehyde Densitometry Project</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> Thu 20 September 2012 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>The Galactic Formaldehyde Densitometry Project is finally official and
 on its way. I am PI of a joint Arecibo / Green Bank Telescope project to
 survey formaldehyde, H2CO, in a sample of ~400 &quot;dust clumps&quot; in the
@@ -322,11 +271,27 @@ approved.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../galaxy-map.html" rel="bookmark" title="Permalink to Galaxy Map">
+                    Galaxy Map</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>If you're ever interested in seeing a face-on view of the Milky Way,
+check out the <a class="reference external" href="http://www.spitzer.caltech.edu/Media/releases/ssc2008-10/index.shtml">Spitzer press release</a>. This link is very surprisingly
+hard to find on google.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
-                        <a href="http://keflavich.github.com/blog/category/misc6.html">&laquo;</a>
+                        <a href="../category/misc6.html">&laquo;</a>
                 Page 7 / 23
-            <a href="http://keflavich.github.com/blog/category/misc8.html">&raquo;</a>
+            <a href="../category/misc8.html">&raquo;</a>
     </p>
 </section><!-- /#content -->
   </div>

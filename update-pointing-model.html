@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="./theme/css/style.css" />
+<head>
+                <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+                <link href="http://keflavich.github.com/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+                                                <link href="http://keflavich.github.com/blog/feeds/bgps.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+                                        <!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("./static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href=".">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                            <li><a href="http://www.adamgginsburg.com">Home</a></li>
+                            <li><a href="index.html">Blog Index</a></li>
+                            <li><a href="archives.html">Recent</a></li>
+                            <li><a href="tags.html">Tags</a></li>
+                                                              </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+   <div id="sidebar">
+    <ul>
+  	  	        	  	          <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+                          <li class="post">
+                  2013/05/16
+                  <br>
+                  <a href="./bgps-point-source-recovery.html">BGPS Point Source Recovery</a>
+              </li>
+                          <li class="post">
+                  2013/05/13
+                  <br>
+                  <a href="./recovering-from-startup-drive-out-of-memory.html">Recovering from "Startup drive out of memory"</a>
+              </li>
+                          <li class="post">
+                  2013/03/25
+                  <br>
+                  <a href="./bolocam-mass-calculations.html">Bolocam Mass Calculations</a>
+              </li>
+                          <li class="post">
+                  2013/03/22
+                  <br>
+                  <a href="./arecibo-mapping-total-power-measurements.html">Arecibo Mapping: Total Power Measurements</a>
+              </li>
+                          <li class="post">
+                  2013/03/12
+                  <br>
+                  <a href="./jeans-mass.html">Jeans Mass</a>
+              </li>
+                    </ul>
+      </li>
+        
+    </ul>
+  </div><!-- end #sidebar -->
+ 
+  <div id="content">
+        <section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="./update-pointing-model.html" rel="bookmark"
+         title="Permalink to Update - Pointing Model">Update - Pointing Model</a></h2>
+  
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2008-08-01T16:43:00">
+      2008/08/01
+    </abbr>
+        <address class="vcard author">
+      By <a class="url fn" href="./author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a>
+    </address>
+      </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Update - Pointing Model 7/31/08
+The pointing model application &quot;works&quot; now, but I have a problem with
+our model. We don't get down to the &lt;10&quot; RMS offset we're looking for.
+The mean offsets are all zero, but the spread is more like 20&quot;.
+Example plots on milkyway: [see attached PDFs too]</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd>/scratch/adam_work/plots/models_ptgmdl_0506.ps
+/scratch/adam_work/plots/models_ptgmdl_0707.ps
+/scratch/adam_work/plots/models_rawcsoptg_0506.ps
+/scratch/adam_work/plots/models_rawcsoptg_0707.ps</dd>
+</dl>
+<p>On the left side are plotted &quot;all&quot; of the data points, on the right I've
+used a two-iteration 3-sigma rejection to eliminate outliers to a small
+degree.</p>
+<p>Top of these plots - as labeled - is altoff vs. alt, bottom is azoff vs.
+alt.</p>
+<p>The red lines are a 2nd order polynomial fit to the data.</p>
+<p>The cyan lines are the pointing model corrections calculated by
+Meredith.</p>
+<p>The 'ptgmdl' files have had the pointing model corrections applied. Note
+that they are centered around offsets of zero.</p>
+<p>The 'rawcsoptg' files DO NOT have pointing model corrections applied,
+and FZAO/FAZO have been REMOVED from the original pointing. Hence, these
+are RAW CSO TELESCOPE POINTING plots.</p>
+<p>Things to note:</p>
+<blockquote>
+<ul class="simple">
+<li>In the 0707 'ptgmdl' set, the az is not quite centered at zero</li>
+<li>the 0506 'ptgmdl' set still has bulk offsets</li>
+<li>the ALTOFF and AZOFF are in delta-coordinate: this means that azoff</li>
+</ul>
+</blockquote>
+<p>should be scaled by dividing by cos(alt) to put the y-axis in consistent
+units. In most cases, this means that the already large spread at higher
+altitudes is going to INCREASE. That means the problem is going to get
+worse...
+Questions:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>What is the main difference between my plots and Meredith's? i.e.  why is
+my RMS ~an order of magnitude larger?</li>
+<li>Does more outlier rejection make sense? Is there any reason not to trust
+certain observations if they visible turn out right?  PPSes are supposed to
+be &quot;absolute references&quot; for the 1x1, 3x1 maps OLD PROBLEM: PPS and large
+maps mapped with same 'pointing model' but ended up with different
+coordinates</li>
+</ol>
+</blockquote>
+
+  </div><!-- /.entry-content -->
+</section>
+  </div>
+        <footer id="contentinfo" class="body">
+        </footer><!-- /#contentinfo -->
+
+
+
+
+</body>
+</html>
