@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="http://keflavich.github.com/blog/theme/css/style.css" />
+<head>
+                <title>Adam Ginsburg's blog - pipeline</title>
+        <meta charset="utf-8" />
+                <link href="http://keflavich.github.com/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+                                                                        <!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("http://keflavich.github.com/blog/static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="http://keflavich.github.com/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                            <li><a href="http://www.adamgginsburg.com">Home</a></li>
+                            <li><a href="index.html">Blog Index</a></li>
+                            <li><a href="archives.html">Recent</a></li>
+                            <li><a href="tags.html">Tags</a></li>
+                                                              </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+   <div id="sidebar">
+    <ul>
+  	  	        	  	          <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+                          <li class="post">
+                  2011/12/31
+                  <br>
+                  <a href="http://keflavich.github.com/blog/flow-charts.html">Flow Charts</a>
+              </li>
+                          <li class="post">
+                  2011/08/05
+                  <br>
+                  <a href="http://keflavich.github.com/blog/spatial-transfer-functions-revisit-4.html">Spatial Transfer Functions, revisit 4</a>
+              </li>
+                          <li class="post">
+                  2011/07/10
+                  <br>
+                  <a href="http://keflavich.github.com/blog/minor-ongoing-problems.html">[minor] Ongoing problems...</a>
+              </li>
+                          <li class="post">
+                  2011/05/24
+                  <br>
+                  <a href="http://keflavich.github.com/blog/astrophysical-signal-modeling.html">Astrophysical Signal Modeling</a>
+              </li>
+                          <li class="post">
+                  2011/05/22
+                  <br>
+                  <a href="http://keflavich.github.com/blog/psf-modeling.html">PSF modeling</a>
+              </li>
+                    </ul>
+      </li>
+        
+    </ul>
+  </div><!-- end #sidebar -->
+ 
+  <div id="content">
+        <section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.com/blog/wow-fft-failure.html" rel="bookmark" title="Permalink to Wow - FFT failure">
+                    Wow - FFT failure</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-12T15:11:00"> 2008/08/12 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>On my huge Cygnus run, the fft keeps failing in the deline code. It's
+actually pretty impressive, but there are 844604 points in the
+timestream. The prime factorization of 844604 is 2^2 * 211151. This is
+just damned bad luck, because I think an FFT is extremely inefficient
+when it can't factorize. What's the best workaround? ....
+9 AM update: I've rewritten the deliner to work on a scan-by-scan basis.
+It's possible that the delining failed in the past because it was
+essentially removing a constant amplitude at the line frequencies across
+the observation (or combined observations!) which is not likely to be
+true.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.com/blog/looking-back-at-the-old-pipeline.html" rel="bookmark" title="Permalink to Looking back at the old pipeline">
+                    Looking back at the old pipeline</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-07T16:33:00"> 2008/08/07 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've obviously missed something. So to try to figure out what it is, I'm
+going back to the old pipeline... again...
+in map_ncdf_reading, lines 441-448, there is something curious that
+goes back to a definition-of-variables problem: ddec and dra are ADDED
+to ra and dec to get the new &quot;ra_all&quot; and &quot;dec_all&quot; variables. ddec
+and dra are calculated from eaz and eel: ERROR OFFSETS in Az and El.
+Why? What?!
+I added a new piece of code, correct_eaz_eel.pro. It is extremely
+short, but extremely necessary.</p>
+<pre class="literal-block">
+pro correct_eaz_eel,ra,dec,el,az,eel,eaz,pa    dra=-eaz*cos(!dtor*pa)*cos(!dtor*el)+eel*sin(!dtor*pa)    ddec=eaz*sin(!dtor*pa)*cos(!dtor*el)+eel*cos(!dtor*pa)    dec += ddec/3600.    ra  += dra/3600. / cos(!dtor*dec) / 15.end
+</pre>
+<p>This comes back to the fact that I don't know what ANY of the variables
+in the NCDF header are supposed to be. Why are &quot;error&quot; variables
+actually OFFSET variables, and why didn't anyone know about them?</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.com/blog/nothing.html" rel="bookmark" title="Permalink to Nothing">
+                    Nothing</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-06T00:32:00"> 2008/08/06 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>No progress today. Spent the whole day re-mapping pointing sources and
+figuring out which observations ARE pointing sources. Mapping STILL not
+done - it takes a long time when there are hundreds of separate
+observations. Also, finding some corrupt files and noting them in
+/scratch/adam_work/texts/toolarge.txt . A lot more of that work to be
+done.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.com/blog/galactic-vs-ra-mapping.html" rel="bookmark" title="Permalink to Galactic vs. RA mapping">
+                    Galactic vs. RA mapping</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-07-31T20:57:00"> 2008/07/31 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>They don't match up. This is a serious problem.
+I think it's only a problem for the GC: ad2xy refuses to map things
+right around that transition. I think it's OK elsewhere.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.com/blog/new-pipeline-to-cvs.html" rel="bookmark" title="Permalink to New Pipeline to CVS">
+                    New Pipeline to CVS</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-07-30T21:36:00"> 2008/07/30 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Open topic - what needs to be done to put the new pipeline on the CVS?</p>
+<ol class="arabic simple">
+<li>Under the assumption that it will be used by others, the
+documentation needs to be complete.</li>
+<li>Needs to be compatible with current pipeline (no name overlap)</li>
+<li>Have to fix / update some Goddard astrolib routines that have short
+integer for loops and need long integer for loops
+Which ones?</li>
+<li>Probably need to add instrument specific pointing model corrections
+for non-BGPS observations</li>
+</ol>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+                        <a href="http://keflavich.github.com/blog/tag/pipeline4.html">&laquo;</a>
+                Page 5 / 5
+    </p>
+</section><!-- /#content -->
+  </div>
+        <footer id="contentinfo" class="body">
+        </footer><!-- /#contentinfo -->
+
+
+
+
+</body>
+</html>
