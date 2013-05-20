@@ -2,7 +2,7 @@
 <html lang="en">
 <link rel="stylesheet" type="text/css" href="http://keflavich.github.io/blog/theme/css/style.css" />
 <head>
-                <title>Adam Ginsburg's blog - Articles by Adam (noreply@blogger.com)</title>
+                <title>Adam Ginsburg's blog - Articles by Adam (adam.g.ginsburg@gmail.com)</title>
         <meta charset="utf-8" />
                 <link href="http://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
                                                                         <!-- Using MathJax, with the delimiters $ -->
@@ -94,100 +94,9 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
  
   <div id="content">
         <section id="content">
-<h2>Articles by Adam (noreply@blogger.com)</h2>
+<h2>Articles by Adam (adam.g.ginsburg@gmail.com)</h2>
 
 <ul id="post-list">
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/recovery-as-a-function-of-bolometer-noise.html" rel="bookmark" title="Permalink to Recovery as a function of bolometer noise">
-                    Recovery as a function of bolometer noise</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-05-26T18:47:00"> 2011/05/26 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>One clear simulation result comes from varying the amplitude of the
-gaussian noise added to each bolometer's timestream for a fixed
-atmosphere amplitude. The atmosphere amplitude sets the <em>mean</em> value of
-the atmosphere timestream.
-Increased bolometer noise results in decreased recovery of the outer
-rings of the PSF. This is demonstrated in that the peak amplitudes
-remain constant (as long as they are still recovered) while the aperture
-sums (in 100&quot; radius apertures) decrease.
-The simulations were run on a logarithmic spacing from 1e-3 to 1e0. The
-1e0 point is missing because the peak flux wasn't recovered by the
-gaussian fitter. The model maps don't recover the source at all for this
-run, which is worrisome, since it means there is no iterative process
-There is a minor concern that some simulations over-recover the peak at
-high noise, but the effect is at a &lt;1% level so not very worrisome.</p>
-<img alt="http://1.bp.blogspot.com/-H0j13RdCays/Td6QrP78qWI/AAAAAAAAGMI/X-74WUEgYFE/s320/exp6_recovery_vs_bolonoiseRMS.png" src="http://1.bp.blogspot.com/-H0j13RdCays/Td6QrP78qWI/AAAAAAAAGMI/X-74WUEgYFE/s320/exp6_recovery_vs_bolonoiseRMS.png" />
-<p>From the same set of simulations, I derive the pixel RMS of the map (the
-noise level) derived from a give individual bolometer noise. The
-theoretical expectation would be
-Measured Noise = Input Noise / N(bolometers)
-<em>if</em> the pixel sampling and the timestream sampling were the same (i.e.
-there were exactly sqrt(nbolos) hits per pixel). This is not exactly the
-case, and there are potential additional sources of noise. Nonetheless,
-the naive theory appears to be good enough in this simulation:</p>
-<img alt="http://3.bp.blogspot.com/-ar8f4tdXUkQ/Td6fecs1WoI/AAAAAAAAGMQ/f_PwoxFp4Fo/s320/exp6_measurednoise_vs_bolonoiseRMS.png" src="http://3.bp.blogspot.com/-ar8f4tdXUkQ/Td6fecs1WoI/AAAAAAAAGMQ/f_PwoxFp4Fo/s320/exp6_measurednoise_vs_bolonoiseRMS.png" />
-<p>You can ignore the green/blue points in this plot; they just show that
-the std. dev. around the source is dominated by the source.
-Additionally, there is a noise floor, probably set by an inability to
-model the point source when the S/N gets to be ~500, preventing
-convergence of the iterator at a level better than 0.2%.
-In short, though, I'm going to use 1/sqrt(nbolos) to determine the
-appropriate input noise level in the astro simulations.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/recovery-as-a-function-of-bolometer-noise-part-2.html" rel="bookmark" title="Permalink to Recovery as a function of bolometer noise part 2">
-                    Recovery as a function of bolometer noise part 2</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-05-27T23:49:00"> 2011/05/27 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>In the Experiment 7 simulations I was running, I observed greater noise
-than expected, causing me to question the results of the <a class="reference external" href="http://bolocam.blogspot.com/2011/05/recovery-as-function-of-bolometer-noise.html">previous
-post</a>. I therefore ran Experiment 8, which is the same as Experiment 6
-from that post with a larger (320x320) map with a larger step size. The
-noise recovery remains linear, but the scaling is quite different - a
-factor of ~4 instead of ~12. The step size is the most likely culprit,
-since an 8x larger step size should result in sqrt(8)~2.8 worse noise
-per pixel.</p>
-<img alt="http://1.bp.blogspot.com/-ubZ-9LXWmXQ/TeAdFoOUcZI/AAAAAAAAGMY/bSSwM2JuLyA/s320/exp8_measurednoise_vs_bolonoiseRMS.png" src="http://1.bp.blogspot.com/-ubZ-9LXWmXQ/TeAdFoOUcZI/AAAAAAAAGMY/bSSwM2JuLyA/s320/exp8_measurednoise_vs_bolonoiseRMS.png" />
-<p>There are some curious / worrisome artifacts that turn up and are
-evident in the recovery fraction plot. For the low-noise cases, the
-middle bolometers get totally flagged out because they are over-weighted
-(by orders of magnitude).</p>
-<img alt="http://3.bp.blogspot.com/-0KKwo1wB6aI/TeAdFz6pTiI/AAAAAAAAGMg/yHGsx8j7WMM/s320/exp8_recovery_vs_bolonoiseRMS.png" src="http://3.bp.blogspot.com/-0KKwo1wB6aI/TeAdFz6pTiI/AAAAAAAAGMg/yHGsx8j7WMM/s320/exp8_recovery_vs_bolonoiseRMS.png" />
-<p>So I'm forced to explore via pyflagger. I will almost certainly need to
-re-run all experiments after making a change to how weights are
-computed.
-Well, it turns out the problem is that those 28 bolos are scaled to
-zero, even though there is nothing obvious (or even suggestive) in their
-timestream plots. This is only true when varyrelscale is off. Apparently
-varying the relative scales leads to a different problem.
-AHA! The noise is so low that the relative scales are SO well correlated
-that the signal is enough to cause problems! A plausible solution is
-therefore no change to the pipeline, but to add minimal (nominal) noise
-to the relative scales to increase the MAD so that the others don't get
-flagged out.
-So I added a 1% variation, which prevented flagging at the scale stage,
-but there are still some disturbing artifacts in the map:</p>
-<img alt="http://4.bp.blogspot.com/-TX2_8PsUgdM/TeA4Iu9T5FI/AAAAAAAAGMo/vfEjTGcSBp0/s320/psf_ds1_reconv_arrang45_atmotest_noise%252B1.0E-03_amp1.0E%252B00_compare.png" src="http://4.bp.blogspot.com/-TX2_8PsUgdM/TeA4Iu9T5FI/AAAAAAAAGMo/vfEjTGcSBp0/s320/psf_ds1_reconv_arrang45_atmotest_noise%252B1.0E-03_amp1.0E%252B00_compare.png" />
-<p>Unfortunately, this problem requires further examination in detail. Exp
-9/10 should probably be gaussians and airys on larger step-size maps,
-but the solution will require something else, possibly even a change in
-the pipeline. On the plus side, I think I can re-run experiment 7 with a
-factor of 4 instead of 12 scaling for the noise and expect it to work.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -197,7 +106,7 @@ factor of 4 instead of 12 scaling for the noise and expect it to work.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-04-12T01:38:00"> 2011/04/12 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <img alt="http://3.bp.blogspot.com/-Qj43vct-3Hw/TaOsoVQAeTI/AAAAAAAAGGY/Ju9HpmnrvCc/s320/airy_sn100.png" src="http://3.bp.blogspot.com/-Qj43vct-3Hw/TaOsoVQAeTI/AAAAAAAAGGY/Ju9HpmnrvCc/s320/airy_sn100.png" />
 <p>The recovery for an Airy function is not particularly good, since the
 pipeline assumes a purely positive response....</p>
@@ -213,7 +122,7 @@ pipeline assumes a purely positive response....</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-11-09T04:10:00"> 2008/11/09 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>redo targets:
 l068
 l086
@@ -231,7 +140,7 @@ l027</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2009-06-22T23:30:00"> 2009/06/22 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Finally.
 <a class="reference external" href="http://irsa.ipac.caltech.edu/">http://irsa.ipac.caltech.edu/</a></p>
  </div><!-- /.entry-content   not article.summary--> 
@@ -246,7 +155,7 @@ l027</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2009-02-23T18:55:00"> 2009/02/23 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I ran the v0.7 reductions with deconvolution on for 50 iterations. I had
 cut out deconvolution originally because of the funky noise maps, but
 that was partly an error on my part. There is also an issue with bright
@@ -267,7 +176,7 @@ kernel smaller to see if that recovers more of the pointlike flux.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-03-23T00:22:00"> 2011/03/23 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>The recent hiatus for paper revisions has, unfortunately, come to an
 end.
 Re-examining my work, I did quite a lot but encountered many dead-ends.
@@ -310,7 +219,7 @@ around. Still, this is the approach I have to take...</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-11-14T20:42:00"> 2008/11/14 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Not entirely, but I realized my code had become... clunky, at best.
 I'm rewriting the wrappers using structs. I HATE IDL structs, but
 they're necessary.... if only they would make them dynamically
@@ -328,7 +237,7 @@ Weighting worked to some degree, the mapping is pretty much done.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-08-12T13:51:00"> 2008/08/12 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Spent a while today working on these plots after rejecting every obvious
 bad point:
 /scratch/adam_work/plots/sourcecompare_0_rawcsoptg_0707.ps
@@ -357,7 +266,7 @@ Update 8/12/08: using RA/DEC mapping doesn't help.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-04-18T23:39:00"> 2011/04/18 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>One of the simplest experiments that can be run is a point-source
 observed in point-scan mode, i.e. with smaller step-sizes. I've done
 this for an Airy disk with noise added in the image plan but not
@@ -390,11 +299,62 @@ Also note that the flux loss increases from 7% to 20% from ds1 to ds5:</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/sampling-causes-problems-rd-2.html" rel="bookmark" title="Permalink to Sampling Causes Problems: Rd 2">
+                    Sampling Causes Problems: Rd 2</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-04-19T17:39:00"> 2011/04/19 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Proof that a well-sampled timestream / gaussian is recovered better than
+a poorly sampled one:</p>
+<img alt="http://3.bp.blogspot.com/-PVt1suBQt3s/Ta3EQqypzAI/AAAAAAAAGG4/ap-3_SKjigI/s320/airy_test_superres_ds1_smallpix_sn100timestream012_plots_16_bolo12.png" src="http://3.bp.blogspot.com/-PVt1suBQt3s/Ta3EQqypzAI/AAAAAAAAGG4/ap-3_SKjigI/s320/airy_test_superres_ds1_smallpix_sn100timestream012_plots_16_bolo12.png" />
+<img alt="http://1.bp.blogspot.com/-HMr4DXKBVMY/Ta3GE49GmcI/AAAAAAAAGHA/ULLRUq_IWn8/s320/airy_test_superres_ds1_sn100timestream012_plots_20_bolo12.png" src="http://1.bp.blogspot.com/-HMr4DXKBVMY/Ta3GE49GmcI/AAAAAAAAGHA/ULLRUq_IWn8/s320/airy_test_superres_ds1_sn100timestream012_plots_20_bolo12.png" />
+<img alt="http://3.bp.blogspot.com/-ujL_h0j-Gms/Ta3GWwcEttI/AAAAAAAAGHI/4uVLXXXhtqc/s320/airy_test_superres_ds1_smallpix_sn100_compare.png" src="http://3.bp.blogspot.com/-ujL_h0j-Gms/Ta3GWwcEttI/AAAAAAAAGHI/4uVLXXXhtqc/s320/airy_test_superres_ds1_smallpix_sn100_compare.png" />
+<img alt="http://4.bp.blogspot.com/-r98h73qcMKY/Ta3GXBKAT3I/AAAAAAAAGHQ/k3y8j427TC0/s320/airy_test_superres_ds1_sn100_compare.png" src="http://4.bp.blogspot.com/-r98h73qcMKY/Ta3GXBKAT3I/AAAAAAAAGHQ/k3y8j427TC0/s320/airy_test_superres_ds1_sn100_compare.png" />
+<p>These aren't really the most convincing, since the flux loss is only
+1-8% depending on how you count. The atmosphere-included ones have
+larger flux loss, which is important to understand... WHY does the added
+noise INCREASE the flux loss?
+Ugh, unfortunately, there is a perfect counter-example. The first image
+shows a timestream in which the input map is sampled by 7.2&quot; pixels,
+which is just shy of nyquist sampling the 1-sigma width of the gaussian
+(but is fine for the FWHM of the gaussian). The second shows 3.6&quot;
+sampling of the same. No improvement. The third, very surprisingly,
+shows significant improvement - but this was an experiment in which the
+relative scales were allowed to vary.</p>
+<img alt="http://4.bp.blogspot.com/-NIwHLJT2SOw/Ta3IAGQA4HI/AAAAAAAAGHY/N3Oju7RHhRE/s320/airy_test_ds1_reconv_arrang45_atmotest_amp1.0E-01timestream011_plots_20_bolo07.png" src="http://4.bp.blogspot.com/-NIwHLJT2SOw/Ta3IAGQA4HI/AAAAAAAAGHY/N3Oju7RHhRE/s320/airy_test_ds1_reconv_arrang45_atmotest_amp1.0E-01timestream011_plots_20_bolo07.png" />
+<img alt="http://4.bp.blogspot.com/-Qo8-kSCFMCc/Ta3IATO7P1I/AAAAAAAAGHg/Jx9ufNhabiE/s320/airy_test_ds1_reconv_arrang45_atmotest_smallpix_amp1.0E-01timestream011_plots_20_bolo07.png" src="http://4.bp.blogspot.com/-Qo8-kSCFMCc/Ta3IATO7P1I/AAAAAAAAGHg/Jx9ufNhabiE/s320/airy_test_ds1_reconv_arrang45_atmotest_smallpix_amp1.0E-01timestream011_plots_20_bolo07.png" />
+<img alt="http://3.bp.blogspot.com/-6PlqmOsDRFY/Ta3IA00cfBI/AAAAAAAAGHo/t5b2jddw5Lw/s320/airy_test_ds1_reconv_arrang45_atmotest_varyrelscale_amp1.0E-01timestream011_plots_20_bolo07.png" src="http://3.bp.blogspot.com/-6PlqmOsDRFY/Ta3IA00cfBI/AAAAAAAAGHo/t5b2jddw5Lw/s320/airy_test_ds1_reconv_arrang45_atmotest_varyrelscale_amp1.0E-01timestream011_plots_20_bolo07.png" />
+<p>The first two each had one high-weight bolometer rejected, the last had
+12 high-weight bolos rejected. So that's problably the problem....</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/scratchslicedl354070724_o10_raw_ds5nc-was-the.html" rel="bookmark" title="Permalink to /scratch/sliced/l354/070724_o10_raw_ds5.nc was the...">
+                    /scratch/sliced/l354/070724_o10_raw_ds5.nc was the...</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-09T03:49:00"> 2008/11/09 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>/scratch/sliced/l354/070724_o10_raw_ds5.nc was the reference file for
+l354 but somehow was excluded from the l354_infile. Warrants another
+check post-mapping</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
-                        <a href="http://keflavich.github.io/blog/author/adam-noreplybloggercom15.html">&laquo;</a>
+                        <a href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom15.html">&laquo;</a>
                 Page 16 / 20
-            <a href="http://keflavich.github.io/blog/author/adam-noreplybloggercom17.html">&raquo;</a>
+            <a href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom17.html">&raquo;</a>
     </p>
 </section><!-- /#content -->
   </div>

@@ -2,7 +2,7 @@
 <html lang="en">
 <link rel="stylesheet" type="text/css" href="http://keflavich.github.io/blog/theme/css/style.css" />
 <head>
-                <title>Adam Ginsburg's blog - v2.0</title>
+                <title>Adam Ginsburg's blog - Articles by Adam</title>
         <meta charset="utf-8" />
                 <link href="http://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
                                                                         <!-- Using MathJax, with the delimiters $ -->
@@ -62,14 +62,14 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
                           <li class="post">
-                  2012/05/23
+                  2012/11/04
                   <br>
-                  <a href="http://keflavich.github.io/blog/bgps-v2-pointing.html">BGPS V2 pointing</a>
+                  <a href="http://keflavich.github.io/blog/attempts-to-install-astrometrynet-comment-on-problems-with-index-files-generation.html">Attempts to install astrometry.net (comment on problems-with-index-files-generation)</a>
               </li>
                           <li class="post">
-                  2010/06/24
+                  2008/09/05
                   <br>
-                  <a href="http://keflavich.github.io/blog/v20-is-to-v10-as-___-is-to-v10.html">v2.0 is to v1.0 as ___ is to v1.0</a>
+                  <a href="http://keflavich.github.io/blog/non-greedy-vim.html">Non-greedy vim</a>
               </li>
                     </ul>
       </li>
@@ -79,50 +79,46 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
  
   <div id="content">
         <section id="content">
+<h2>Articles by Adam</h2>
 
 <ul id="post-list">
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/bgps-v2-pointing.html" rel="bookmark" title="Permalink to BGPS V2 pointing">
-                    BGPS V2 pointing</a>
+                <a href="http://keflavich.github.io/blog/attempts-to-install-astrometrynet-comment-on-problems-with-index-files-generation.html" rel="bookmark" title="Permalink to Attempts to install astrometry.net (comment on problems-with-index-files-generation)">
+                    Attempts to install astrometry.net (comment on problems-with-index-files-generation)</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-05-23T23:59:00"> 2012/05/23 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>BGPS V2.0 pointing offsets relative to V1 and Herschel:</p>
-<img alt="http://4.bp.blogspot.com/-41YC6GZJR-0/T715bELMplI/AAAAAAAAHE0/Fzk41wW8ysM/s320/Offsets_CDF.png" src="http://4.bp.blogspot.com/-41YC6GZJR-0/T715bELMplI/AAAAAAAAHE0/Fzk41wW8ysM/s320/Offsets_CDF.png" />
-<p>Cumulative Distribution Function of the total offsets.</p>
-<img alt="http://2.bp.blogspot.com/-9zPWRdGI0jY/T715bmcgVnI/AAAAAAAAHFA/K0XKvlJdO_8/s320/Offsets_Histogram.png" src="http://2.bp.blogspot.com/-9zPWRdGI0jY/T715bmcgVnI/AAAAAAAAHFA/K0XKvlJdO_8/s320/Offsets_Histogram.png" />
-<p>Histograms of the total offsets.</p>
-<img alt="http://2.bp.blogspot.com/-3hkzLY1D4KY/T715b0VfMxI/AAAAAAAAHFM/DDBXKCGu8ng/s320/Offsets_XYplot.png" src="http://2.bp.blogspot.com/-3hkzLY1D4KY/T715b0VfMxI/AAAAAAAAHFM/DDBXKCGu8ng/s320/Offsets_XYplot.png" />
-<p>X-offsets vs Y-offsets (X and Y are GLON and GLAT). The ellipses are
-centered at the mean of the X/Y offsets and have major and minor axes
-corresponding to the standard deviations.</p>
+            <abbr class="published" title="2012-11-04T17:26:00"> 2012/11/04 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam.html">Adam</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Some progress in this vein:
+1. installed astrometry.net (but without some graphical extras)
+2. figured out how to create indexes! Finders are ~5x5', so based on
+<a class="reference external" href="http://forum.astrometry.net/index.php?p=/discussion/2/problems-with-index-files-generation/p1">this post</a> I want to use ~2-3' healpixes.
+3. I also should be using denser catalogs than the all-sky USNO B1,
+especially for infrared targets.
+So, here's a sample build command (using a CDS-based FITS table, but
+modified by me using atpy):
+build-index -v -i OMC1_optical_phot_DaRio.fits -o
+OMC1_optical_phot_DaRio_astrometryindex -N 1758</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/v20-is-to-v10-as-___-is-to-v10.html" rel="bookmark" title="Permalink to v2.0 is to v1.0 as ___ is to v1.0">
-                    v2.0 is to v1.0 as ___ is to v1.0</a>
+                <a href="http://keflavich.github.io/blog/non-greedy-vim.html" rel="bookmark" title="Permalink to Non-greedy vim">
+                    Non-greedy vim</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2010-06-24T23:04:00"> 2010/06/24 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TCN8uqZ-xSI/AAAAAAAAFw8/TywL2w_ntIk/s320/l079_comparison.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TCN8uqZ-xSI/AAAAAAAAFw8/TywL2w_ntIk/s320/l079_comparison.png" />
-<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/TCN8vlKAjAI/AAAAAAAAFxE/BZE5Wlca8oU/s320/l079_comparison_psd.png" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TCN8vlKAjAI/AAAAAAAAFxE/BZE5Wlca8oU/s320/l079_comparison_psd.png" />
-<p>Apparently v2.0 recovers flux better at all scales than v1.0.&nbsp; However,
-it is noisier.&nbsp; The full comparison is available <a class="reference external" href="http://casa.colorado.edu/%7Eginsbura/bgps/v1.0_v2.0_comparison.pdf">here</a>.&nbsp; The
-trustworthy range of flux scales is 1.2-1.6ish.&nbsp; The flux is increased
-at ALL scales in most images.&nbsp; However, as was noted in comparisons with
-MAMBO, there may be curvature in the best-fit lines.&nbsp; Also, l=35 does
-not appear to scale up linearly... G34 is fainter in v2.0?
-In the low S/N fields, the PSD is more reliable than the pixel-pixel
-comparison.</p>
+            <abbr class="published" title="2008-09-05T01:12:00"> 2008/09/05 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam.html">Adam</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>To make .* in VIM be non-greedy (i.e. match just <tt class="docutils literal">&lt;a href=x&gt;</tt> out of <tt class="docutils literal">&quot;&lt;a href=x&gt; &lt;/a&gt;&quot;</tt>), use:</p>
+<pre class="literal-block">
+.\{-}
+</pre>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

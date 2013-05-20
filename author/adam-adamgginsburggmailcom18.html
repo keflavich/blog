@@ -2,7 +2,7 @@
 <html lang="en">
 <link rel="stylesheet" type="text/css" href="http://keflavich.github.io/blog/theme/css/style.css" />
 <head>
-                <title>Adam Ginsburg's blog - Articles by Adam (noreply@blogger.com)</title>
+                <title>Adam Ginsburg's blog - Articles by Adam (adam.g.ginsburg@gmail.com)</title>
         <meta charset="utf-8" />
                 <link href="http://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
                                                                         <!-- Using MathJax, with the delimiters $ -->
@@ -94,96 +94,9 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
  
   <div id="content">
         <section id="content">
-<h2>Articles by Adam (noreply@blogger.com)</h2>
+<h2>Articles by Adam (adam.g.ginsburg@gmail.com)</h2>
 
 <ul id="post-list">
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/spatial-transfer-functions.html" rel="bookmark" title="Permalink to Spatial Transfer Functions">
-                    Spatial Transfer Functions</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-07-13T18:54:00"> 2011/07/13 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>The majority of the past week has been dedicated to debugging; it looks
-like cross-scanned simulations finally work.
-The plot below is a derivation of the spatial transfer function for a
-number of different intrinsic sky power-law power spectra.</p>
-<img alt="http://2.bp.blogspot.com/-JyAPg0u9uQ8/Th3kuQh1fpI/AAAAAAAAGRs/pP7o3n9_wds/s320/Experiment10_AverageRecoveryFunction.png" src="http://2.bp.blogspot.com/-JyAPg0u9uQ8/Th3kuQh1fpI/AAAAAAAAGRs/pP7o3n9_wds/s320/Experiment10_AverageRecoveryFunction.png" />
-<p>Justifying the above plot is essential.
-First, the very steep power-laws [-3 in the example below] show a
-recovery fraction &gt;1. This is simply because their S/N was inadequate -
-the output power spectrum is nearly flat, but at a level higher than the
-sky.</p>
-<img alt="http://4.bp.blogspot.com/-JPBjsLDfP5M/Th3lw5n1xTI/AAAAAAAAGR0/aDeOmMv5s8w/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky00_seed00_peak010.00_nosmooth_compare.png" src="http://4.bp.blogspot.com/-JPBjsLDfP5M/Th3lw5n1xTI/AAAAAAAAGR0/aDeOmMv5s8w/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky00_seed00_peak010.00_nosmooth_compare.png" />
-<img alt="http://3.bp.blogspot.com/-LOCDmoLCcZs/Th3lxfnKVzI/AAAAAAAAGR8/9NCM3OroGoM/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky00_seed00_peak010.00_nosmooth_psds.png" src="http://3.bp.blogspot.com/-LOCDmoLCcZs/Th3lxfnKVzI/AAAAAAAAGR8/9NCM3OroGoM/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky00_seed00_peak010.00_nosmooth_psds.png" />
-<p>Second, the most plausible power-laws [-1.5 in the example below] show
-pretty good recovery (90-95% over the relevant range):</p>
-<img alt="http://1.bp.blogspot.com/-MTZ8WGl3ZRc/Th3mMkvv2II/AAAAAAAAGSE/0OO4Te39fPI/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky03_seed00_peak010.00_nosmooth_compare.png" src="http://1.bp.blogspot.com/-MTZ8WGl3ZRc/Th3mMkvv2II/AAAAAAAAGSE/0OO4Te39fPI/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky03_seed00_peak010.00_nosmooth_compare.png" />
-<img alt="http://2.bp.blogspot.com/-5IeTZW-ZTAw/Th3mNHPC8gI/AAAAAAAAGSM/WhIWClGWqbo/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky03_seed00_peak010.00_nosmooth_psds.png" src="http://2.bp.blogspot.com/-5IeTZW-ZTAw/Th3mNHPC8gI/AAAAAAAAGSM/WhIWClGWqbo/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky03_seed00_peak010.00_nosmooth_psds.png" />
-<img alt="http://4.bp.blogspot.com/-O6ofm7GaxUI/Th3mNgf29AI/AAAAAAAAGSU/VzQ7aL-yd_E/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky03_seed00_peak010.00_nosmooth_stf.png" src="http://4.bp.blogspot.com/-O6ofm7GaxUI/Th3mNgf29AI/AAAAAAAAGSU/VzQ7aL-yd_E/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky03_seed00_peak010.00_nosmooth_stf.png" />
-<p>There are some &quot;white&quot; power losses, particularly in the flatter
-power-spectra. My best guess is that this has something to do with the
-relative scales being offset from a mean of 1, but so far all tests to
-show that that is the cause have in fact shown no problems at all. What
-else could cause a scale-independent power loss?
-Also, the flat power spectrum (and inverted) aren't quite flat because I
-impose a &quot;galactic scale height&quot; on them. Should I stop doing that?</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/spatial-transfer-functions-revisit-4.html" rel="bookmark" title="Permalink to Spatial Transfer Functions, revisit 4">
-                    Spatial Transfer Functions, revisit 4</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-08-05T18:56:00"> 2011/08/05 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Last report was a bit of a fiasco. There were problems all over the
-place I didn't understand. I still don't but I've fixed them. My best
-guess at this point is that a pass-by-reference led to an unacceptable
-modification of an image. That doesn't even make sense - there was no
-place it could have happened - but, there you have it.
-So, going through the process step by step.
-This is the effect of smoothing an image:</p>
-<img alt="http://1.bp.blogspot.com/-3TabjiWVKm4/Tjs03gqxkxI/AAAAAAAAGXk/BQOH5FvG3CM/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky02_seed00_peak010.00_SMvsNOSM_input_psds.png" src="http://1.bp.blogspot.com/-3TabjiWVKm4/Tjs03gqxkxI/AAAAAAAAGXk/BQOH5FvG3CM/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky02_seed00_peak010.00_SMvsNOSM_input_psds.png" />
-<img alt="http://1.bp.blogspot.com/-AWglr2CHB-0/Tjs04fniKDI/AAAAAAAAGXs/MM3RCNu6x10/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky02_seed00_peak010.00_SMvsNOSM_input_compare.png" src="http://1.bp.blogspot.com/-AWglr2CHB-0/Tjs04fniKDI/AAAAAAAAGXs/MM3RCNu6x10/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky02_seed00_peak010.00_SMvsNOSM_input_compare.png" />
-<img alt="http://2.bp.blogspot.com/-5yFhvF1iOeY/Tjs1ES7HeuI/AAAAAAAAGX0/T44kJArWn2o/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky02_seed00_peak010.00_SMvsNOSM_input_stf.png" src="http://2.bp.blogspot.com/-5yFhvF1iOeY/Tjs1ES7HeuI/AAAAAAAAGX0/T44kJArWn2o/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky02_seed00_peak010.00_SMvsNOSM_input_stf.png" />
-<p>Note from the 3rd figure that 100% recovery isn't reached until ~700
-arcseconds.
-Next question: What is happening at large spatial scales in the
-flat-spectrum simulations?</p>
-<img alt="http://1.bp.blogspot.com/-Fi2EBFsPFK4/TjtLzkxRxRI/AAAAAAAAGX8/4GoYEwSaaKc/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky07_seed00_peak100.00_smooth_compare.png" src="http://1.bp.blogspot.com/-Fi2EBFsPFK4/TjtLzkxRxRI/AAAAAAAAGX8/4GoYEwSaaKc/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky07_seed00_peak100.00_smooth_compare.png" />
-<img alt="http://2.bp.blogspot.com/-P3TEAHevkEY/TjtL0BG8BbI/AAAAAAAAGYE/oC71ZTFTz3k/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky06_seed00_peak100.00_smooth_compare.png" src="http://2.bp.blogspot.com/-P3TEAHevkEY/TjtL0BG8BbI/AAAAAAAAGYE/oC71ZTFTz3k/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky06_seed00_peak100.00_smooth_compare.png" />
-<img alt="http://4.bp.blogspot.com/-g0m5hEHx8QY/TjtL00D3USI/AAAAAAAAGYM/687cgIORovk/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky05_seed00_peak100.00_smooth_compare.png" src="http://4.bp.blogspot.com/-g0m5hEHx8QY/TjtL00D3USI/AAAAAAAAGYM/687cgIORovk/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky05_seed00_peak100.00_smooth_compare.png" />
-<p>No obvious problems there.</p>
-<img alt="http://3.bp.blogspot.com/-DwXSkiyw2kE/TjtNt7XadiI/AAAAAAAAGYU/trzLma37DgM/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky05_seed00_peak100.00_smooth_psds.png" src="http://3.bp.blogspot.com/-DwXSkiyw2kE/TjtNt7XadiI/AAAAAAAAGYU/trzLma37DgM/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky05_seed00_peak100.00_smooth_psds.png" />
-<img alt="http://1.bp.blogspot.com/-Q9ItTP7uQDs/TjtNuILPfLI/AAAAAAAAGYc/w67japCoUpo/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky06_seed00_peak100.00_smooth_psds.png" src="http://1.bp.blogspot.com/-Q9ItTP7uQDs/TjtNuILPfLI/AAAAAAAAGYc/w67japCoUpo/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky06_seed00_peak100.00_smooth_psds.png" />
-<img alt="http://3.bp.blogspot.com/-mgWHY8CT3tQ/TjtNuv1jZ-I/AAAAAAAAGYk/Iddg_I2UKjo/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky07_seed00_peak100.00_smooth_psds.png" src="http://3.bp.blogspot.com/-mgWHY8CT3tQ/TjtNuv1jZ-I/AAAAAAAAGYk/Iddg_I2UKjo/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky07_seed00_peak100.00_smooth_psds.png" />
-<p>Hmm, no apparent problem here either, though one might ask why the two
-curves approach each other in sky05 (alpha=-0.5).
-So it appears that the reason for the bump up at low frequencies (long
-wavelengths) must be because of edge effects. After much hassle, I've
-addressed that by cropping images.
-Finally, the averaged results:</p>
-<img alt="http://3.bp.blogspot.com/-26KmVHKU_QY/Tjw8VVYnkkI/AAAAAAAAGY4/-R-e3mwVwZc/s320/stfs_bestmodel_fits.png" src="http://3.bp.blogspot.com/-26KmVHKU_QY/Tjw8VVYnkkI/AAAAAAAAGY4/-R-e3mwVwZc/s320/stfs_bestmodel_fits.png" />
-<img alt="http://2.bp.blogspot.com/-lPtvV465aLg/Tjw8VhQZXXI/AAAAAAAAGZA/Rib4AX6z75E/s320/stfs_bestmodels.png" src="http://2.bp.blogspot.com/-lPtvV465aLg/Tjw8VhQZXXI/AAAAAAAAGZA/Rib4AX6z75E/s320/stfs_bestmodels.png" />
-<p>So we've got an Official Spatial Transfer Function.
-However, of course, we must note that there is a dependence on the
-atmosphere amplitude to source amplitude ratio: it appears that
-large-scale structure is *easier* to recover when the atmosphere is at
-higher amplitude. This makes sense: it is easier to distinguish faint
-astrophysical signal from bright atmosphere in this case. The reason I
-didn't run simulations to test this more is that the S/N ratio on small
-scales becomes poor for the low astrophysical amplitudes.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -193,7 +106,7 @@ scales becomes poor for the low astrophysical amplitudes.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-08-03T02:51:00"> 2011/08/03 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Below are plots of the spatial transfer function for a variety of
 simulation parameters. Each line represents the median (i.e., mean of
 the center 2 of 4) spatial transfer function of 4 realizations of the
@@ -228,7 +141,7 @@ sources and extended structures.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-08-22T00:29:00"> 2008/08/22 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>For the moment, I'm going to leave the pointing alone. This leaves us
 (me) with a very long list of things to do before the data release:</p>
 <ol class="arabic simple">
@@ -262,7 +175,7 @@ above]</li>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2012-12-26T23:02:00"> 2012/12/26 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>This post has been baleeted.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
@@ -276,7 +189,7 @@ above]</li>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-08-23T00:47:00"> 2008/08/23 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/SK9Pe1q6PaI/AAAAAAAADOE/yd0bxUMCDB4/s400/EIGHT.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/SK9Pe1q6PaI/AAAAAAAADOE/yd0bxUMCDB4/s400/EIGHT.png" />
 <p>Look at that. Seriously? a 10' offset? That's ridiculous! There is no
 WAY our pointing models could be off by that much! Even if I got the
@@ -295,7 +208,7 @@ suggestions?</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-07-15T03:03:00"> 2011/07/15 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I've attempted to model the spatial filter function as a gaussian (or
 PSF) plus an inverse gaussian. i.e., the high-spatial-frequency
 components are smoothed with the PSF, and the low spatial frequency
@@ -340,7 +253,7 @@ surroundings - it is legitimately negative.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-04-08T17:48:00"> 2011/04/08 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <ul class="simple">
 <li>Re-doing December 2010 calibration (remember to check &amp; compare AFGL
 4029)</li>
@@ -371,7 +284,7 @@ noise maps.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-11-09T04:04:00"> 2008/11/09 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>the l111 reference field was 60% flagged out because of bad rotators:
 ALL PREPROC ... output is</p>
 <pre class="literal-block">
@@ -461,7 +374,7 @@ AC\_BOLOS has 1.94718e+06 NAN points, which is 0.608696 of total
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-03-28T02:01:00"> 2011/03/28 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I've concluded, based on previous posts
 <a class="reference external" href="http://bolocam.blogspot.com/2011/02/downsampling-why-is-dec-2010-different.html">http://bolocam.blogspot.com/2011/02/downsampling-why-is-dec-2010-different.html</a>,
 <a class="reference external" href="http://bolocam.blogspot.com/2011/03/revisiting-calibration-yet-again.html">http://bolocam.blogspot.com/2011/03/revisiting-calibration-yet-again.html</a>,
@@ -529,11 +442,110 @@ flux going or coming from?</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/uh.html" rel="bookmark" title="Permalink to Uh?">
+                    Uh?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-01-15T18:22:00"> 2009/01/15 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm not sure the error reported yesterday is reproducible.
+Tonight, I started a complete re-mapping of the entire survey. The new
+mapping will include beam-smoothed maps and more complete header
+parameters.
+I need to re-check the L111 mapping. It looks like the region with NGC
+7538 in it did alright, but the southeast region didn't do so well. The
+combined maps are probably better than in any previous iteration,
+though.
+Tomorrow's tests will include L024 presumably.
+It's time to get to work on this stuff. There is definitely a reasonably
+efficient way to go through all of this stuff; the most difficult part
+is post-facto error checking.
+Here are some awk commands I found useful (the \'s are because of VI):
+`` awk '{printf( $0); if ($2 != 0){ printf(&quot; %4i%4i&quot;,$4-443,$5-207) }; if($4!=0){printf(&quot; %4i,%4i&quot;,$2-272,$3-742)}; printf(&quot;n&quot;) }' align/l111_fitslist_shiftfind.txt``
+<tt class="docutils literal">awk '{print <span class="pre">$6,$7}'</span> align/l111_fitslist_shiftfind.txt &gt; align/shifts_all_lb.txt</tt>
+One important point: I had to add a parameter to the header file to say
+whether the current pointing model was used or not. It matters when
+applying the offsets. Note that since I'm using the pointing model to
+make all the individual maps, we actually have to stick with this
+current set of pointing models for all coaligned maps.
+The current models:</p>
+<pre class="literal-block">
+#   Definition of coefficientts:#   start/end mjd are the start/end modified Julian date of a given pointing model#   the 'a' coefficients are for the AZIMUTH OFFSET, the b coefficients are for the ZENITH ANGLE OFFSET#   a0/b0 are constants (e.g. the mean)#   [ab][12] are the 1st and 2nd coefficients of Azimuth.  They have been fiated to zero for most of#   the past year or three.#   [ab][34] are the 1st and 2nd coefficients of Zenith Angle.#   A 'pointing model' is therefore something like this:#   azoff = a0 + a3*alt + a4*alt^2#   altoff = b0 + b3*alt + b4*alt^2##   It is important that the start_mjd/end_mjd be in ascending order##   WARNING: LATER THAN JULY 2007 DEFAULTS TO JULY 2007 WHICH WILL PROBABLY RESULT IN ERRORS!#   I don't have a September 2007 model yet.##   start_mjd      end_mjd               a0              a1            a2              a3             a4                 b0             b1             b2             b3                b4       realdate      53522.5      53582.5       -9.2413685             0.0           0.0   -0.0066354359  -0.0015110883          7.0392221            0.0            0.0   -0.053635657    -0.00047042481       20050601      53614.5      53643.5        84.969583             0.0           0.0      -2.4339154    0.016300937          126.00164            0.0            0.0     -2.4424431       0.015455417       20050901      53887.5      53947.5        9.5305281             0.0           0.0    -0.053191181  -0.0029300592         0.13425019            0.0            0.0     0.48160040     -0.0092814256       20060601      53979.5      54008.5       -98.980381             0.0           0.0      0.65354164   -0.012414466          52.841380            0.0            0.0      1.6705743      -0.020893018       20060901      54101.5      54252.5       -99.078392             0.0           0.0        0.105270   -0.005943491          86.896333            0.0            0.0     0.54257415      -0.011919129       20070101      54252.5      54288         -103.03831             0.0           0.0      0.20972540  -0.0060336987          100.74491            0.0            0.0   0.0099012827     -0.0033331895       20070601#      54288        54313         -99.078392             0.0           0.0      0.10527000  -0.0059434911          86.896333            0.0            0.0     0.54257415      -0.011919129       20070707      54288        54313         -98.803883             0.0           0.0      0.11810246  -0.0051207995          91.720516            0.0            0.0     0.18953269      -0.0078189793       20070707      54313        54500         -99.078392             0.0           0.0      0.10527000  -0.0059434911          86.896333            0.0            0.0     0.54257415      -0.011919129       20070707mjd2date,53522.5 ,y,m,d &amp; print,y,m,dmjd2date,53614.5 ,y,m,d &amp; print,y,m,dmjd2date,53887.5 ,y,m,d &amp; print,y,m,dmjd2date,53979.5 ,y,m,d &amp; print,y,m,dmjd2date,54101.5 ,y,m,d &amp; print,y,m,dmjd2date,54252.5 ,y,m,d &amp; print,y,m,dmjd2date,54288   ,y,m,d &amp; print,y,m,d
+</pre>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/update-pointing-model.html" rel="bookmark" title="Permalink to Update - Pointing Model">
+                    Update - Pointing Model</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-01T16:43:00"> 2008/08/01 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Update - Pointing Model 7/31/08
+The pointing model application &quot;works&quot; now, but I have a problem with
+our model. We don't get down to the &lt;10&quot; RMS offset we're looking for.
+The mean offsets are all zero, but the spread is more like 20&quot;.
+Example plots on milkyway: [see attached PDFs too]</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd>/scratch/adam_work/plots/models_ptgmdl_0506.ps
+/scratch/adam_work/plots/models_ptgmdl_0707.ps
+/scratch/adam_work/plots/models_rawcsoptg_0506.ps
+/scratch/adam_work/plots/models_rawcsoptg_0707.ps</dd>
+</dl>
+<p>On the left side are plotted &quot;all&quot; of the data points, on the right I've
+used a two-iteration 3-sigma rejection to eliminate outliers to a small
+degree.</p>
+<p>Top of these plots - as labeled - is altoff vs. alt, bottom is azoff vs.
+alt.</p>
+<p>The red lines are a 2nd order polynomial fit to the data.</p>
+<p>The cyan lines are the pointing model corrections calculated by
+Meredith.</p>
+<p>The 'ptgmdl' files have had the pointing model corrections applied. Note
+that they are centered around offsets of zero.</p>
+<p>The 'rawcsoptg' files DO NOT have pointing model corrections applied,
+and FZAO/FAZO have been REMOVED from the original pointing. Hence, these
+are RAW CSO TELESCOPE POINTING plots.</p>
+<p>Things to note:</p>
+<blockquote>
+<ul class="simple">
+<li>In the 0707 'ptgmdl' set, the az is not quite centered at zero</li>
+<li>the 0506 'ptgmdl' set still has bulk offsets</li>
+<li>the ALTOFF and AZOFF are in delta-coordinate: this means that azoff</li>
+</ul>
+</blockquote>
+<p>should be scaled by dividing by cos(alt) to put the y-axis in consistent
+units. In most cases, this means that the already large spread at higher
+altitudes is going to INCREASE. That means the problem is going to get
+worse...
+Questions:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>What is the main difference between my plots and Meredith's? i.e.  why is
+my RMS ~an order of magnitude larger?</li>
+<li>Does more outlier rejection make sense? Is there any reason not to trust
+certain observations if they visible turn out right?  PPSes are supposed to
+be &quot;absolute references&quot; for the 1x1, 3x1 maps OLD PROBLEM: PPS and large
+maps mapped with same 'pointing model' but ended up with different
+coordinates</li>
+</ol>
+</blockquote>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
-                        <a href="http://keflavich.github.io/blog/author/adam-noreplybloggercom17.html">&laquo;</a>
+                        <a href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom17.html">&laquo;</a>
                 Page 18 / 20
-            <a href="http://keflavich.github.io/blog/author/adam-noreplybloggercom19.html">&raquo;</a>
+            <a href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom19.html">&raquo;</a>
     </p>
 </section><!-- /#content -->
   </div>
