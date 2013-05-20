@@ -49,10 +49,14 @@ DATE_FORMATS = {'en':"%Y/%m/%d"}
 
 import ordereddict
 MENUITEMS = ordereddict.OrderedDict({'Home':'http://www.adamgginsburg.com',
-             'Blog Index':'index.html',
-             'Tags':'tags.html',
-             'Recent':'archives.html'}).items()
+             'Blog Index':'/index.html',
+             'BGPS Blog':'/category/bgps.html',
+             'Tags':'/tags.html',
+             'Archives':'/archives.html'}).items()
 
 #PLUGINS = ["latex"]
 
 USE_FOLDER_AS_CATEGORY = True
+
+# links just don't work in pelican, do they?
+#RELATIVE_URLS = False
