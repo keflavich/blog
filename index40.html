@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" type="text/css" href="http://keflavich.github.com/blog/theme/css/style.css" />
+<link rel="stylesheet" type="text/css" href="http://keflavich.github.io/blog/theme/css/style.css" />
 <head>
                 <title>Adam Ginsburg's blog</title>
         <meta charset="utf-8" />
-                <link href="http://keflavich.github.com/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+                <link href="http://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
                                                                         <!-- Using MathJax, with the delimiters $ -->
 <!-- Conflict with pygments for the .mo and .mi -->
 <script type="text/x-mathjax-config">
@@ -44,8 +44,8 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 
 
     <header id="banner" class="body" >
-        <div id="header" style='background-image: url("http://keflavich.github.com/blog/static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
-            <h1 style="color: #C4C4C4;"><a class="header" href="http://keflavich.github.com/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+        <div id="header" style='background-image: url("http://keflavich.github.io/blog/static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="http://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
 
             <nav id="menu"><ul id="menulist">
                             <li><a href="http://www.adamgginsburg.com">Home</a></li>
@@ -62,29 +62,29 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
                           <li class="post">
+                  2013/05/20
+                  <br>
+                  <a href="http://keflavich.github.io/blog/bgps-point-source-recovery-experiment-23-results.html">BGPS Point Source Recovery - Experiment 23 results</a>
+              </li>
+                          <li class="post">
                   2013/05/16
                   <br>
-                  <a href="http://keflavich.github.com/blog/bgps-point-source-recovery.html">BGPS Point Source Recovery</a>
+                  <a href="http://keflavich.github.io/blog/bgps-point-source-recovery.html">BGPS Point Source Recovery</a>
               </li>
                           <li class="post">
                   2013/05/13
                   <br>
-                  <a href="http://keflavich.github.com/blog/recovering-from-startup-drive-out-of-memory.html">Recovering from "Startup drive out of memory"</a>
+                  <a href="http://keflavich.github.io/blog/recovering-from-startup-drive-out-of-memory.html">Recovering from "Startup drive out of memory"</a>
               </li>
                           <li class="post">
                   2013/03/25
                   <br>
-                  <a href="http://keflavich.github.com/blog/bolocam-mass-calculations.html">Bolocam Mass Calculations</a>
+                  <a href="http://keflavich.github.io/blog/bolocam-mass-calculations.html">Bolocam Mass Calculations</a>
               </li>
                           <li class="post">
                   2013/03/22
                   <br>
-                  <a href="http://keflavich.github.com/blog/arecibo-mapping-total-power-measurements.html">Arecibo Mapping: Total Power Measurements</a>
-              </li>
-                          <li class="post">
-                  2013/03/12
-                  <br>
-                  <a href="http://keflavich.github.com/blog/jeans-mass.html">Jeans Mass</a>
+                  <a href="http://keflavich.github.io/blog/arecibo-mapping-total-power-measurements.html">Arecibo Mapping: Total Power Measurements</a>
               </li>
                     </ul>
       </li>
@@ -99,13 +99,44 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/inconsistent.html" rel="bookmark" title="Permalink to Inconsistent">
+                <a href="http://keflavich.github.io/blog/modifications.html" rel="bookmark" title="Permalink to Modifications">
+                    Modifications</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-19T18:07:00"> 2008/08/19 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Things that have been changed in the past 24 hours that are very
+significant:</p>
+<ol class="arabic simple">
+<li>In apply_pointing_model, the signs of FAZO and FZAO have been
+swapped. I BELIEVE this is correct but somehow things aren't working
+out still.</li>
+<li>In do_the_pointing I have changed from &quot;eq2hor&quot; and &quot;hor2eq&quot; to
+&quot;my_eq2hor&quot; and &quot;my_hor2eq&quot;. These implement two major changes:<ol class="arabic">
+<li>The LST is passed as a parameter rather than calculated within the
+ASTROLIB code</li>
+<li>The conversion is calculated with BOTH hadec2altaz and getaltaz
+(and similar for the opposite transformation) and compared for
+error checking purposes. If they differ by more than one
+arcsecond, the code will spit out an error message and use
+getaltaz.</li>
+</ol>
+</li>
+</ol>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/inconsistent.html" rel="bookmark" title="Permalink to Inconsistent">
                     Inconsistent</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-08-17T18:56:00"> 2008/08/17 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>James: &quot;I think it's fair to say, though, that there is some problem
 with the simultaneous assumption that CSO coords are geo and that we are
 applying the ab/nut correction correctly.&quot;
@@ -153,13 +184,13 @@ to that level. We'll see.</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/direct-comparison-with-merediths-pointing-calculations.html" rel="bookmark" title="Permalink to Direct comparison with Meredith's pointing calculations">
+                <a href="http://keflavich.github.io/blog/direct-comparison-with-merediths-pointing-calculations.html" rel="bookmark" title="Permalink to Direct comparison with Meredith's pointing calculations">
                     Direct comparison with Meredith's pointing calculations</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-08-14T04:11:00"> 2008/08/14 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I've gotten to the point that I'm directly comparing my pointing
 calculations to Merediths. So far, it looks like:
 1. I can very nearly reproduce Meredith's results on her maps, though
@@ -176,13 +207,13 @@ out.</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/centroiding-and-merediths-files.html" rel="bookmark" title="Permalink to Centroiding and Meredith's files">
+                <a href="http://keflavich.github.io/blog/centroiding-and-merediths-files.html" rel="bookmark" title="Permalink to Centroiding and Meredith's files">
                     Centroiding and Meredith's files</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-08-13T03:54:00"> 2008/08/13 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I tried the pointing offset calculations on Meredith's maps and I still
 get an RMS of ~9&quot; in both RA and DEC. Check out the files:
 /scratch/adam_work/plots/models_meredith*
@@ -193,13 +224,13 @@ So... what?</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/searching-for-more-offsets.html" rel="bookmark" title="Permalink to Searching for more offsets">
+                <a href="http://keflavich.github.io/blog/searching-for-more-offsets.html" rel="bookmark" title="Permalink to Searching for more offsets">
                     Searching for more offsets</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-08-12T21:35:00"> 2008/08/12 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>The defining feature of my pointing calculations - and their
 inconsistency - is that the spread for individual sources is bad, which
 means that there's still something wrong in the way the bulk ra/dec are
@@ -228,13 +259,13 @@ keywords to map_ncdf_reading</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/ffts-and-unlucky-primes.html" rel="bookmark" title="Permalink to FFTs and unlucky primes">
+                <a href="http://keflavich.github.io/blog/ffts-and-unlucky-primes.html" rel="bookmark" title="Permalink to FFTs and unlucky primes">
                     FFTs and unlucky primes</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-08-12T17:04:00"> 2008/08/12 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I've encountered a lot (!) of unlucky prime numbers that I'm trying to
 FFT in too many places, and it basically stops the code.
 211151 was impossibly bad, 5827 is pretty bad too.
@@ -248,13 +279,13 @@ map size?</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/more-cleaning-modifications.html" rel="bookmark" title="Permalink to More cleaning modifications">
+                <a href="http://keflavich.github.io/blog/more-cleaning-modifications.html" rel="bookmark" title="Permalink to More cleaning modifications">
                     More cleaning modifications</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-08-12T17:01:00"> 2008/08/12 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I had removed sigmadeglitch from deline, now it's permanently gone. I
 think it might be worth exploring re-inserting sigmadeglitch somewhere.
 My higher-order polynomial fit is creating deeper bowls around sources,
@@ -270,13 +301,13 @@ are sampled (?).</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/wow-fft-failure.html" rel="bookmark" title="Permalink to Wow - FFT failure">
+                <a href="http://keflavich.github.io/blog/wow-fft-failure.html" rel="bookmark" title="Permalink to Wow - FFT failure">
                     Wow - FFT failure</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-08-12T15:11:00"> 2008/08/12 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>On my huge Cygnus run, the fft keeps failing in the deline code. It's
 actually pretty impressive, but there are 844604 points in the
 timestream. The prime factorization of 844604 is 2^2 * 211151. This is
@@ -293,13 +324,13 @@ true.</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/rms-fails-to-shrink.html" rel="bookmark" title="Permalink to RMS fails to shrink">
+                <a href="http://keflavich.github.io/blog/rms-fails-to-shrink.html" rel="bookmark" title="Permalink to RMS fails to shrink">
                     RMS fails to shrink</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-08-12T13:51:00"> 2008/08/12 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Spent a while today working on these plots after rejecting every obvious
 bad point:
 /scratch/adam_work/plots/sourcecompare_0_rawcsoptg_0707.ps
@@ -322,13 +353,13 @@ Update 8/12/08: using RA/DEC mapping doesn't help.</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/cleaning-ideas.html" rel="bookmark" title="Permalink to Cleaning ideas">
+                <a href="http://keflavich.github.io/blog/cleaning-ideas.html" rel="bookmark" title="Permalink to Cleaning ideas">
                     Cleaning ideas</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-08-11T15:20:00"> 2008/08/11 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>It's proving very difficult to get rid of glitches, so here are some
 more ideas:</p>
 <p>Median filter the whole timestream (downsampled) at a resolution that
@@ -349,35 +380,11 @@ residual signal.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.com/blog/glitches-and-errors.html" rel="bookmark" title="Permalink to Glitches and errors">
-                    Glitches and errors</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-11T04:24:00"> 2008/08/11 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>It's definitely important to get rid of the spikes and, more
-importantly, the exponential decay. The current function is pretty good,
-but possibly not good enough because there are some situations in which
-the turnaround decay is obviously not well-enough dealt with and results
-in high/low streaks.
-The glitches can be ~20 Jy. The problem is that they sometimes show up
-in the middle of sources (e.g. in 060609_o26). That will badly distort
-fluxes.
-My ideal is still to use a median instead of mean combination of data
-points into image points, but that seems to be impractical to implement.
-Other ideas...</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
-                        <a href="http://keflavich.github.com/blog/index39.html">&laquo;</a>
+                        <a href="http://keflavich.github.io/blog/index39.html">&laquo;</a>
                 Page 40 / 42
-            <a href="http://keflavich.github.com/blog/index41.html">&raquo;</a>
+            <a href="http://keflavich.github.io/blog/index41.html">&raquo;</a>
     </p>
 </section><!-- /#content -->
   </div>
