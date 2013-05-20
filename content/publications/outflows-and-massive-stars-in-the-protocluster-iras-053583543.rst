@@ -4,8 +4,8 @@ Outflows and Massive Stars in the protocluster IRAS 05358+3543
 :author: Adam (keflavich@gmail.com)
 :tags: googlepost, star formation, first author, publication, outflows
 
-`ADS`_
-`arXiv`_
+*First Author* [ `ADS`_ ] [ `arXiv`_ ] 
+
 A mm and near-IR study of the IRAS 05358+3543 system. Recently (2011),
 it has become clear that "protocluster" is unlikely to be the right
 label for IRAS 05358+3543. "proto-association" might be more accurate.

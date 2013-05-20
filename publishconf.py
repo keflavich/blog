@@ -8,6 +8,7 @@ from pelicanconf import *
 #SITEURL = 'file://localhost/Volumes/disk5/Users/adam/repos/blog/output'
 #SITEURL = ""
 SITEURL = 'http://keflavich.github.io/blog'
+FEED_DOMAIN = SITEURL
 
 DELETE_OUTPUT_DIRECTORY = True
 

@@ -4,7 +4,8 @@ The optically bright post-AGB population of the LMC
 :author: Adam (keflavich@gmail.com)
 :tags: googlepost, SAGE, post-agb, publication
 
-[`ADS`_ ] [`arXiv`_\ ]
+[`ADS`_ ] [`arXiv`_ ]
+
 E. van Aarle, H. Van Winckel, T. Lloyd Evans, T. Ueta, P. R. Wood, and
 A. G. Ginsburg
 

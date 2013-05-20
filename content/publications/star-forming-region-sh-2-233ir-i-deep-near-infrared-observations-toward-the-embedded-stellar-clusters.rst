@@ -4,8 +4,10 @@ Star-forming Region Sh 2-233IR. I. Deep Near-infrared Observations toward the Em
 :author: Adam (keflavich@gmail.com)
 :tags: googlepost, star formation, publication
 
-`ADS`_
-`arXiv`_
+[ `ADS`_ ] [ `arXiv`_ ]
+
+-----------------------
+
 My contributions to this paper were minor. Analysis of luminosity
 functions in the IRAS 05358+3543 region have identified different aged
 groups. The paper contributes to the picture of sequential (triggered?)

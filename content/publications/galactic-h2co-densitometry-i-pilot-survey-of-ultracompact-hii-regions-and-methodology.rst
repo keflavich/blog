@@ -4,7 +4,7 @@ Galactic H2CO Densitometry I: Pilot survey of Ultracompact HII regions and metho
 :author: Adam (keflavich@gmail.com)
 :tags: googlepost, star formation, first author, formaldehyde, publication
 
-[ `ADS`_ ] [ `Full Version`_ ]
+*First Author* [ `ADS`_ ] [ `Full Version`_ ]
 
 --------------
 

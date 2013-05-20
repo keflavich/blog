@@ -9,6 +9,7 @@ SITEURL = ""
 #SITEURL = 'http://keflavich.github.io/blog'
 
 TIMEZONE = 'America/Denver'
+PATH = "content/"
 
 DEFAULT_LANG = u'en'
 
@@ -47,12 +48,13 @@ SHOW_RECENT=True
 
 DATE_FORMATS = {'en':"%Y/%m/%d"}
 
-import ordereddict
-MENUITEMS = ordereddict.OrderedDict({'Home':'http://www.adamgginsburg.com',
-             'Blog Index':'/index.html',
-             'BGPS Blog':'/category/bgps.html',
-             'Tags':'/tags.html',
-             'Archives':'/archives.html'}).items()
+MENUITEMS = [('Homepage','http://www.adamgginsburg.com',),
+             ('Blog Index','/index.html',),
+             ('BGPS Blog','/category/bgps.html',),
+             ('Publications','/category/publications.html',),
+             ('Archives','/archives.html',),
+             ('Tags','/tags.html',),
+            ]
 
 #PLUGINS = ["latex"]
 
