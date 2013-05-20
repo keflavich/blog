@@ -17,7 +17,7 @@ This work was almost entirely my own, but was seeded by `Jeremy
 Darling`_ Some highlight figures from the paper:
 
 
-.. |image0| image:: http://1.bp.blogspot.com/-2FeB2dq7tXE/UGMxy17g_NI/AAAAAAAAHQQ/Ugswqn154-4/s400/G32.80%252B0.19_both.png
+.. image:: http://1.bp.blogspot.com/-2FeB2dq7tXE/UGMxy17g_NI/AAAAAAAAHQQ/Ugswqn154-4/s400/G32.80%252B0.19_both.png
 
 
 A sample spectrum. On the top, black is Formaldehyde 1-1, red is
@@ -25,7 +25,7 @@ Formaldehyde 2-2. On the bottom, blue is 13CO, red is H77α, black is
 H110α.
 
 
-.. |image1| image:: http://3.bp.blogspot.com/-B9zbOPROYn4/UGMxzZSsz9I/AAAAAAAAHQc/tQ_NVJNiVTE/s400/DensityHistogram.png
+.. image:: http://3.bp.blogspot.com/-B9zbOPROYn4/UGMxzZSsz9I/AAAAAAAAHQc/tQ_NVJNiVTE/s400/DensityHistogram.png
 
 
 Histograms of GMC mean densities and the densities measured directly
@@ -33,7 +33,7 @@ from our survey. Note that even for "serendipitious" line of sight GMCs,
 the densities are MUCH higher than typical GMC densities.
 
 
-.. |image2| image:: http://4.bp.blogspot.com/-jfspjzvR6Tc/UGMxz8-7dEI/AAAAAAAAHQo/chH7rwVuyhs/s400/Derived_DensityVsColumn_ExgalCompare_all_colored.png
+.. image:: http://4.bp.blogspot.com/-jfspjzvR6Tc/UGMxz8-7dEI/AAAAAAAAHQo/chH7rwVuyhs/s400/Derived_DensityVsColumn_ExgalCompare_all_colored.png
 
 
 Comparison of the measured column densities of formaldehyde and inferred
