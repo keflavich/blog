@@ -1,7 +1,7 @@
 Definitive Testing
 ##################
 :date: 2011-04-11 19:09
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, testing, pipeline
 :slug: definitive-testing
 

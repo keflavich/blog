@@ -1,7 +1,7 @@
 Alignment
 #########
 :date: 2008-09-06 18:32
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping
 :slug: alignment
 

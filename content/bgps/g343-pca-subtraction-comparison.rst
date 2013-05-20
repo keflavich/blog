@@ -1,7 +1,7 @@
 G34.3 PCA subtraction comparison
 ################################
 :date: 2008-08-24 20:30
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, maps, mapping
 :slug: g343-pca-subtraction-comparison
 

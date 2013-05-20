@@ -1,7 +1,7 @@
 STF measurement attempts, round 3?
 ##################################
 :date: 2011-08-03 02:51
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, discrepancy, simulation
 :slug: stf-measurement-attempts-round-3
 

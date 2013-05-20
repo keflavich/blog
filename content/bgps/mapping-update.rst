@@ -1,7 +1,7 @@
 Mapping update
 ##############
 :date: 2008-09-16 20:38
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping
 :slug: mapping-update
 

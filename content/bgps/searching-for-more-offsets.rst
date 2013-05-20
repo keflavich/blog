@@ -1,7 +1,7 @@
 Searching for more offsets
 ##########################
 :date: 2008-08-12 21:35
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pointing
 :slug: searching-for-more-offsets
 

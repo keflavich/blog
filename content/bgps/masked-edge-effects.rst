@@ -1,7 +1,7 @@
 Masked edge effects?
 ####################
 :date: 2011-07-13 20:28
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, simulation
 :slug: masked-edge-effects
 

@@ -1,7 +1,7 @@
 Pipeline Flowcharts
 ###################
 :date: 2010-06-07 22:39
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pipeline
 :slug: pipeline-flowcharts
 

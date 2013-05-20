@@ -1,7 +1,7 @@
 [minor] Ongoing problems...
 ###########################
 :date: 2011-07-10 19:41
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, problems, pipeline, minor
 :slug: minor-ongoing-problems
 

@@ -1,7 +1,7 @@
 L111 observation notes
 ######################
 :date: 2008-12-09 11:40
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pointing
 :slug: l111-observation-notes
 

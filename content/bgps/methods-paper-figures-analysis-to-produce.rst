@@ -1,7 +1,7 @@
 Methods Paper: Figures / analysis to produce
 ############################################
 :date: 2009-03-04 03:43
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, methods paper
 :slug: methods-paper-figures-analysis-to-produce
 

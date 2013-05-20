@@ -1,7 +1,7 @@
 Astrophysical Signal Modeling
 #############################
 :date: 2011-05-24 17:39
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, simulation, pipeline
 :slug: astrophysical-signal-modeling
 

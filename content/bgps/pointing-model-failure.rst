@@ -1,7 +1,7 @@
 Pointing model failure
 ######################
 :date: 2008-12-09 11:40
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pointing, mapping
 :slug: pointing-model-failure
 

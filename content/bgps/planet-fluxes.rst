@@ -1,7 +1,7 @@
 planet fluxes
 #############
 :date: 2009-02-06 22:39
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, calibration
 :slug: planet-fluxes
 

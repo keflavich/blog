@@ -1,7 +1,7 @@
 A new series of problems
 ########################
 :date: 2009-03-03 00:52
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost
 :slug: a-new-series-of-problems
 

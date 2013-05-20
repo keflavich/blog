@@ -1,7 +1,7 @@
 V1 vs V2: Calibration Curves
 ############################
 :date: 2011-08-25 17:09
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, calibration, version comparison
 :slug: v1-vs-v2-calibration-curves
 

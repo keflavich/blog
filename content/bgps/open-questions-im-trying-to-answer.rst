@@ -1,7 +1,7 @@
 Open Questions I'm trying to answer
 ###################################
 :date: 2011-07-17 22:58
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost
 :slug: open-questions-im-trying-to-answer
 

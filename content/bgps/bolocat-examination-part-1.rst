@@ -1,7 +1,7 @@
 Bolocat examination part 1
 ##########################
 :date: 2011-07-18 22:59
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, analysis, simulation
 :slug: bolocat-examination-part-1
 

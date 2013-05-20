@@ -1,7 +1,7 @@
 Revisiting calibration yet again
 ################################
 :date: 2011-03-23 00:22
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, planning, calibration, pipeline
 :slug: revisiting-calibration-yet-again
 

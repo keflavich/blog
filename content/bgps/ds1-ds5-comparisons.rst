@@ -1,7 +1,7 @@
 ds1-ds5 comparisons
 ###################
 :date: 2011-04-26 21:54
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, downsampling, pipeline
 :slug: ds1-ds5-comparisons
 

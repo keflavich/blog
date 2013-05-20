@@ -1,7 +1,7 @@
 More cleaning modifications
 ###########################
 :date: 2008-08-12 17:01
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pipeline
 :slug: more-cleaning-modifications
 

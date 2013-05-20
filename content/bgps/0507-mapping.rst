@@ -1,7 +1,7 @@
 0507 mapping
 ############
 :date: 2008-08-06 17:56
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping
 :slug: 0507-mapping
 

@@ -1,7 +1,7 @@
 Downsampling has serious negative effects on the data
 #####################################################
 :date: 2011-01-20 20:16
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping, calibration
 :slug: downsampling-has-serious-negative-effects-on-the-data
 

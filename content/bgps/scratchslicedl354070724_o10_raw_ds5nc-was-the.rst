@@ -1,7 +1,7 @@
 /scratch/sliced/l354/070724_o10_raw_ds5.nc was the...
 #####################################################
 :date: 2008-11-09 03:49
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: http://schemas.google.com/blogger/2008/kind#comment
 :slug: scratchslicedl354070724_o10_raw_ds5nc-was-the
 

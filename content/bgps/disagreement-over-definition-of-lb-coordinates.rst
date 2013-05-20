@@ -1,7 +1,7 @@
 Disagreement over definition of l,b coordinates
 ###############################################
 :date: 2008-09-10 22:43
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, projection
 :slug: disagreement-over-definition-of-lb-coordinates
 

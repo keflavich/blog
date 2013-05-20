@@ -4,9 +4,9 @@
 AUTHOR = u'Adam Ginsburg'
 SITENAME = u"Adam Ginsburg's blog"
 #SITESUBTITLE = u"about astronomy and coding, most likely"
-SITEURL = 'file://localhost/Volumes/disk5/Users/adam/repos/blog/output'
+#SITEURL = 'file://localhost/Volumes/disk5/Users/adam/repos/blog/output'
 SITEURL = ""
-SITEURL = 'http://keflavich.github.com/blog/'
+#SITEURL = 'http://keflavich.github.io/blog'
 
 TIMEZONE = 'America/Denver'
 
@@ -27,11 +27,11 @@ SOCIAL=()
 DEFAULT_PAGINATION = 10
 
 #THEME='bootstrap2' # sneakyidea is default
-THEME='waterspill-en' 
-THEME='simple_editable' 
+#THEME='waterspill-en' 
+#THEME='simple_editable' 
 THEME='mine'
  
-STATIC_PATHS = ['images']
+STATIC_PATHS = ['images','bgps/images']
 
 INLINESTYLES = True
 

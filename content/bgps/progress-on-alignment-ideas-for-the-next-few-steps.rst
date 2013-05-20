@@ -1,7 +1,7 @@
 Progress on alignment, ideas for the next few steps
 ###################################################
 :date: 2008-09-15 02:19
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pipeline
 :slug: progress-on-alignment-ideas-for-the-next-few-steps
 

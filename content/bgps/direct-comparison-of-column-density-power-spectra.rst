@@ -1,7 +1,7 @@
 Direct comparison of column-density power spectra
 #################################################
 :date: 2011-06-29 04:43
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, analysis
 :slug: direct-comparison-of-column-density-power-spectra
 

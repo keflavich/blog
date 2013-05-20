@@ -1,7 +1,7 @@
 v2.0 is to v1.0 as ___ is to v1.0
 #################################
 :date: 2010-06-24 23:04
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, discrepancy, v2.0
 :slug: v20-is-to-v10-as-___-is-to-v10
 

@@ -1,7 +1,7 @@
 Making maps faster
 ##################
 :date: 2011-02-07 04:39
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping, pipeline
 :slug: making-maps-faster
 

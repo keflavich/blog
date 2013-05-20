@@ -1,7 +1,7 @@
 Rant: calc_beam_locations
 #########################
 :date: 2009-02-06 18:24
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost
 :slug: rant-calc_beam_locations
 

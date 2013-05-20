@@ -1,7 +1,7 @@
 From a comparison of 3 different epochs using abou...
 #####################################################
 :date: 2011-02-12 01:30
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: http://schemas.google.com/blogger/2008/kind#comment
 :slug: from-a-comparison-of-3-different-epochs-using-abou
 

@@ -1,7 +1,7 @@
 flagger
 #######
 :date: 2008-11-22 01:37
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, flagging
 :slug: flagger
 

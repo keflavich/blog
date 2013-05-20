@@ -1,7 +1,7 @@
 BGPS V2 pointing
 ################
 :date: 2012-05-23 23:59
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, v2.0, pointing, version comparison
 :slug: bgps-v2-pointing
 

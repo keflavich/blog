@@ -1,7 +1,7 @@
 Delining and the Cleaning process
 #################################
 :date: 2011-02-03 19:49
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, cleaning, pipeline, deline
 :slug: delining-and-the-cleaning-process
 

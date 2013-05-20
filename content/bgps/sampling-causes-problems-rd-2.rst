@@ -1,7 +1,7 @@
 Sampling Causes Problems: Rd 2
 ##############################
 :date: 2011-04-19 17:39
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, downsampling, simulation, pipeline
 :slug: sampling-causes-problems-rd-2
 

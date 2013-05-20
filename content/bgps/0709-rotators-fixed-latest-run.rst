@@ -1,7 +1,7 @@
 0709 rotators fixed, latest run
 ###############################
 :date: 2009-01-17 14:26
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping
 :slug: 0709-rotators-fixed-latest-run
 

@@ -1,7 +1,7 @@
 Notice anything different?
 ##########################
 :date: 2008-08-21 01:08
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pointing, pipeline
 :slug: notice-anything-different
 

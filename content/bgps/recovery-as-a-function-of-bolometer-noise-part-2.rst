@@ -1,7 +1,7 @@
 Recovery as a function of bolometer noise part 2
 ################################################
 :date: 2011-05-27 23:49
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, simulation
 :slug: recovery-as-a-function-of-bolometer-noise-part-2
 

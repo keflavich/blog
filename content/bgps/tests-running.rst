@@ -1,7 +1,7 @@
 Tests running
 #############
 :date: 2011-04-08 17:48
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost
 :slug: tests-running
 

@@ -1,7 +1,7 @@
 Major Error
 ###########
 :date: 2012-01-06 23:29
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost
 :slug: major-error
 

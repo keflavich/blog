@@ -1,7 +1,7 @@
 Downsampling by a factor of 3 appears not to be an...
 #####################################################
 :date: 2011-01-27 22:16
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: http://schemas.google.com/blogger/2008/kind#comment
 :slug: downsampling-by-a-factor-of-3-appears-not-to-be-an
 

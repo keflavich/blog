@@ -1,7 +1,7 @@
 Re: Convergence Tests
 #####################
 :date: 2008-08-23 17:03
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping
 :slug: re-convergence-tests
 

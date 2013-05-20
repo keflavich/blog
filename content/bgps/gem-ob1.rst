@@ -1,7 +1,7 @@
 Gem OB1
 #######
 :date: 2009-01-14 23:49
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping
 :slug: gem-ob1
 

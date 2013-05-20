@@ -1,7 +1,7 @@
 Updates for 6/1/2011 meeting
 ############################
 :date: 2011-06-01 21:40
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost
 :slug: updates-for-612011-meeting
 

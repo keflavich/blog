@@ -1,7 +1,7 @@
 Pointing model success
 ######################
 :date: 2008-09-02 15:11
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pointing, mapping, pipeline
 :slug: pointing-model-success
 

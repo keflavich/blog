@@ -1,7 +1,7 @@
 distortion mapping failures
 ###########################
 :date: 2009-01-25 16:08
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost
 :slug: distortion-mapping-failures
 

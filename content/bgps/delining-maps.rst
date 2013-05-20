@@ -1,7 +1,7 @@
 Delining - Maps
 ###############
 :date: 2011-02-03 22:16
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping, pipeline, deline
 :slug: delining-maps
 

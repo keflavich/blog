@@ -1,7 +1,7 @@
 Spatial Transfer Functions, revisit 4
 #####################################
 :date: 2011-08-05 18:56
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, analysis, testing, simulation, pipeline
 :slug: spatial-transfer-functions-revisit-4
 

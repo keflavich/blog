@@ -1,7 +1,7 @@
 Mapped, but no dice
 ###################
 :date: 2008-08-06 15:22
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pointing
 :slug: mapped-but-no-dice
 

@@ -1,7 +1,7 @@
 It looks like, for AFGL 4029 combined images, ds1 ...
 #####################################################
 :date: 2011-02-14 22:55
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: http://schemas.google.com/blogger/2008/kind#comment
 :slug: it-looks-like-for-afgl-4029-combined-images-ds1
 

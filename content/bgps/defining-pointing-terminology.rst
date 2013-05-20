@@ -1,7 +1,7 @@
 Defining Pointing Terminology
 #############################
 :date: 2008-07-30 21:50
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, documentation, pointing
 :slug: defining-pointing-terminology
 

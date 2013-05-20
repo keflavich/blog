@@ -1,7 +1,7 @@
 More evidence that downsampling causes problems
 ###############################################
 :date: 2011-01-21 22:48
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping, pipeline
 :slug: more-evidence-that-downsampling-causes-problems
 

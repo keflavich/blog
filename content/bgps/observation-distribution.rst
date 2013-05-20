@@ -1,7 +1,7 @@
 Observation distribution
 ########################
 :date: 2008-08-04 21:57
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, documentation
 :slug: observation-distribution
 

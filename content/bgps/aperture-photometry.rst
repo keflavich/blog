@@ -1,7 +1,7 @@
 Aperture Photometry
 ###################
 :date: 2011-08-13 02:50
-:author: Jared (noreply@blogger.com)
+:author: Jared (adam.g.ginsburg@gmail.com)
 :tags: googlepost, aperture photometry, point source
 :slug: aperture-photometry
 

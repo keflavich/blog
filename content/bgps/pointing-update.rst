@@ -1,7 +1,7 @@
 Pointing update
 ###############
 :date: 2008-08-01 22:30
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pointing
 :slug: pointing-update
 

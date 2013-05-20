@@ -1,7 +1,7 @@
 Attempts to install astrometry.net (comment on problems-with-index-files-generation)
 ####################################################################################
 :date: 2012-11-04 17:26
-:author: Adam (noreply@blogger.com)
+:author: Adam 
 :tags: comment
 
 Some progress in this vein:

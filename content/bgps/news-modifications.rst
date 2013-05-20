@@ -1,7 +1,7 @@
 News, modifications
 ###################
 :date: 2008-08-03 07:19
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pointing
 :slug: news-modifications
 

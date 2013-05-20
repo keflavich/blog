@@ -1,7 +1,7 @@
 Return to Deconvolution
 #######################
 :date: 2009-02-23 18:55
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping
 :slug: return-to-deconvolution
 

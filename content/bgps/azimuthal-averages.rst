@@ -1,7 +1,7 @@
 Azimuthal Averages
 ##################
 :date: 2011-04-27 19:45
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, simulation, pipeline
 :slug: azimuthal-averages
 

@@ -1,7 +1,7 @@
 Cleaning ideas
 ##############
 :date: 2008-08-11 15:20
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost
 :slug: cleaning-ideas
 

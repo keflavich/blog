@@ -1,7 +1,7 @@
 Calibration Offsets Revisited
 #############################
 :date: 2011-11-16 01:05
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, calibration
 :slug: calibration-offsets-revisited
 

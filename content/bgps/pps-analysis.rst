@@ -1,7 +1,7 @@
 PPS analysis
 ############
 :date: 2010-06-16 18:06
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, calibration
 :slug: pps-analysis
 

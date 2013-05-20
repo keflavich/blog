@@ -1,7 +1,7 @@
 Fourier transforms are not commutative or distributive
 ######################################################
 :date: 2011-07-15 20:09
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, analysis
 :slug: fourier-transforms-are-not-commutative-or-distributive
 

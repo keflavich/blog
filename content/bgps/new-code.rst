@@ -1,7 +1,7 @@
 New code
 ########
 :date: 2008-09-05 21:00
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pipeline
 :slug: new-code
 

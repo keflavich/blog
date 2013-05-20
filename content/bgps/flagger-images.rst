@@ -1,7 +1,7 @@
 Flagger images
 ##############
 :date: 2009-01-17 16:13
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, methods paper, flagging
 :slug: flagger-images
 

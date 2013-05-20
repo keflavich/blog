@@ -1,7 +1,7 @@
 Weighting - next steps
 ######################
 :date: 2008-11-15 01:04
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost
 :slug: weighting-next-steps
 

@@ -1,7 +1,7 @@
 What about the effects on the map?  Unfortunately,...
 #####################################################
 :date: 2011-02-02 02:12
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: http://schemas.google.com/blogger/2008/kind#comment
 :slug: what-about-the-effects-on-the-map-unfortunately
 

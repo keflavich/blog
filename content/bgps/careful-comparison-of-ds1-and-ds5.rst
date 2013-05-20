@@ -1,7 +1,7 @@
 Careful comparison of ds1 and ds5
 #################################
 :date: 2011-03-29 15:23
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, calibration, pipeline
 :slug: careful-comparison-of-ds1-and-ds5
 

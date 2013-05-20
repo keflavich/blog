@@ -1,7 +1,7 @@
 4.3 Relative Alignment and Mosaicing
 ####################################
 :date: 2009-03-04 02:57
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, methods paper
 :slug: 43-relative-alignment-and-mosaicing
 

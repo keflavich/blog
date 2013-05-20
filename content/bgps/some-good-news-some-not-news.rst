@@ -1,7 +1,7 @@
 Some good news, some.... not news.
 ##################################
 :date: 2008-08-24 20:09
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping, pipeline
 :slug: some-good-news-some-not-news
 

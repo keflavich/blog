@@ -1,7 +1,7 @@
 Maps with problems
 ##################
 :date: 2008-09-17 14:46
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping
 :slug: maps-with-problems
 

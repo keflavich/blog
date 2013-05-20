@@ -1,7 +1,7 @@
 Modifications
 #############
 :date: 2008-08-19 18:07
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pipeline
 :slug: modifications
 

@@ -1,7 +1,7 @@
 PPS analysis: suggests a possible solution to the discrepancy
 #############################################################
 :date: 2010-06-21 18:17
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, analysis, discrepancy
 :slug: pps-analysis-suggests-a-possible-solution-to-the-discrepancy
 

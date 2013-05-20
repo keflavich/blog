@@ -1,7 +1,7 @@
 On the list for today....
 #########################
 :date: 2008-08-23 13:42
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pipeline
 :slug: on-the-list-for-today
 

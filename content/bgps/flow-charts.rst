@@ -1,7 +1,7 @@
 Flow Charts
 ###########
 :date: 2011-12-31 02:53
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pipeline
 :slug: flow-charts
 

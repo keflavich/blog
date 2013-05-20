@@ -1,7 +1,7 @@
 Galactic vs. RA mapping
 #######################
 :date: 2008-07-31 20:57
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pipeline
 :slug: galactic-vs-ra-mapping
 

@@ -1,7 +1,7 @@
 Alignment success stories
 #########################
 :date: 2008-09-15 04:33
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, alignment
 :slug: alignment-success-stories
 

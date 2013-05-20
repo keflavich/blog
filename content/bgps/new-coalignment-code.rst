@@ -1,7 +1,7 @@
 New coalignment code
 ####################
 :date: 2012-03-20 15:06
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost
 :slug: new-coalignment-code
 

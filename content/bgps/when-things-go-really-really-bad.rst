@@ -1,7 +1,7 @@
 when things go really really bad
 ################################
 :date: 2011-07-17 23:30
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost
 :slug: when-things-go-really-really-bad
 

@@ -1,7 +1,7 @@
 Downsampling - what is going on?
 ################################
 :date: 2011-02-11 04:19
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pipeline
 :slug: downsampling-what-is-going-on
 

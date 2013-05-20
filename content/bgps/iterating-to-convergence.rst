@@ -1,7 +1,7 @@
 Iterating to Convergence
 ########################
 :date: 2008-08-25 17:42
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, iterating, mapping
 :slug: iterating-to-convergence
 

@@ -1,7 +1,7 @@
 FFTs and unlucky primes
 #######################
 :date: 2008-08-12 17:04
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping
 :slug: ffts-and-unlucky-primes
 

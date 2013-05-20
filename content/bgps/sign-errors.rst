@@ -1,7 +1,7 @@
 sign errors
 ###########
 :date: 2009-02-01 19:50
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, calibration
 :slug: sign-errors
 

@@ -1,7 +1,7 @@
 PPS comparison completed
 ########################
 :date: 2010-06-24 15:24
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, analysis, discrepancy
 :slug: pps-comparison-completed
 

@@ -1,7 +1,7 @@
 Bleh, a whole day&#39;s work dedicate to new delin...
 #####################################################
 :date: 2011-02-03 03:29
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: http://schemas.google.com/blogger/2008/kind#comment
 :slug: bleh-a-whole-days-work-dedicate-to-new-delin
 

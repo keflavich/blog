@@ -1,7 +1,7 @@
 4 errors
 ########
 :date: 2008-11-28 16:46
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, errors
 :slug: 4-errors
 

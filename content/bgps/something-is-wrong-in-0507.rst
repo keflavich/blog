@@ -1,7 +1,7 @@
 something is wrong in 0507....
 ##############################
 :date: 2008-08-07 00:01
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping
 :slug: something-is-wrong-in-0507
 

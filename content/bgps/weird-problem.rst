@@ -1,7 +1,7 @@
 Weird problem
 #############
 :date: 2011-03-31 02:25
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, errors
 :slug: weird-problem
 

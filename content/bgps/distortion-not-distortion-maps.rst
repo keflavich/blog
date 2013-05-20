@@ -1,7 +1,7 @@
 Distortion (not distortion maps)
 ################################
 :date: 2008-08-06 20:40
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pointing
 :slug: distortion-not-distortion-maps
 

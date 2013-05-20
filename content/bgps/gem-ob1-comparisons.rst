@@ -1,7 +1,7 @@
 Gem OB1 comparisons
 ###################
 :date: 2009-03-09 00:07
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping, simulation
 :slug: gem-ob1-comparisons
 

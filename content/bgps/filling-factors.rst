@@ -1,7 +1,7 @@
 filling factors
 ###############
 :date: 2009-01-25 06:00
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, analysis
 :slug: filling-factors
 

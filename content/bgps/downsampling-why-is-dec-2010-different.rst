@@ -1,7 +1,7 @@
 Downsampling - Why is Dec 2010 different?
 #########################################
 :date: 2011-02-13 19:08
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost
 :slug: downsampling-why-is-dec-2010-different
 

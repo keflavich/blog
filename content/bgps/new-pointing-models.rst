@@ -1,7 +1,7 @@
 New pointing models
 ###################
 :date: 2008-08-21 20:45
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pointing
 :slug: new-pointing-models
 

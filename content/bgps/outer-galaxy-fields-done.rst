@@ -1,7 +1,7 @@
 outer galaxy fields done
 ########################
 :date: 2008-10-13 14:47
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping
 :slug: outer-galaxy-fields-done
 

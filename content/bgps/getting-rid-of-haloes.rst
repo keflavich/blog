@@ -1,7 +1,7 @@
 Getting rid of haloes
 #####################
 :date: 2012-03-31 00:28
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, artifacts, deconvolution, mapping
 :slug: getting-rid-of-haloes
 

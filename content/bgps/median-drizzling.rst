@@ -1,7 +1,7 @@
 Median drizzling
 ################
 :date: 2008-11-18 16:11
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping
 :slug: median-drizzling
 

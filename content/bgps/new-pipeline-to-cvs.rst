@@ -1,7 +1,7 @@
 New Pipeline to CVS
 ###################
 :date: 2008-07-30 21:36
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, cvs, pipeline
 :slug: new-pipeline-to-cvs
 

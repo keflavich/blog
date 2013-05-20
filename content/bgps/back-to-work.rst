@@ -1,7 +1,7 @@
 Back to work
 ############
 :date: 2009-01-13 16:45
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, data release
 :slug: back-to-work
 

@@ -1,7 +1,7 @@
 Pointing & Cross-Correlation yet again
 ######################################
 :date: 2012-12-15 03:21
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pointing
 :slug: pointing-cross-correlation-yet-again
 

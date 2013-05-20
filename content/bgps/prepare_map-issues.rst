@@ -1,7 +1,7 @@
 prepare_map issues
 ##################
 :date: 2008-09-01 16:31
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping
 :slug: prepare_map-issues
 

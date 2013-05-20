@@ -1,7 +1,7 @@
 Failed fields
 #############
 :date: 2008-09-13 21:00
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping
 :slug: failed-fields
 

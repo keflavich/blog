@@ -1,7 +1,7 @@
 Glitches and errors
 ###################
 :date: 2008-08-11 04:24
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost
 :slug: glitches-and-errors
 

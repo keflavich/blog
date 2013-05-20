@@ -1,7 +1,7 @@
 Hunting for preferred directions
 ################################
 :date: 2011-06-06 03:58
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, simulation
 :slug: hunting-for-preferred-directions
 

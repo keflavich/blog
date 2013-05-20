@@ -1,7 +1,7 @@
 Examining deconvolution strategies
 ##################################
 :date: 2011-04-07 22:05
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost
 :slug: examining-deconvolution-strategies
 

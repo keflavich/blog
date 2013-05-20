@@ -1,7 +1,7 @@
 Spatial Transfer Functions
 ##########################
 :date: 2011-07-13 18:54
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, simulation
 :slug: spatial-transfer-functions
 

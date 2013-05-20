@@ -1,7 +1,7 @@
 Final calibration curves (yeah... sure)
 #######################################
 :date: 2011-08-26 17:26
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, calibration
 :slug: final-calibration-curves-yeah-sure
 

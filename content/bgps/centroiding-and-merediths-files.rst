@@ -1,7 +1,7 @@
 Centroiding and Meredith's files
 ################################
 :date: 2008-08-13 03:54
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pointing
 :slug: centroiding-and-merediths-files
 

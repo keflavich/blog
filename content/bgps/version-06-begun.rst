@@ -1,7 +1,7 @@
 Version 0.6 begun
 #################
 :date: 2008-11-19 04:52
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping
 :slug: version-06-begun
 

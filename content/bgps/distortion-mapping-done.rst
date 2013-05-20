@@ -1,7 +1,7 @@
 distortion mapping done?
 ########################
 :date: 2009-02-02 00:12
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, calibration
 :slug: distortion-mapping-done
 

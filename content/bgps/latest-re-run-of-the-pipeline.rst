@@ -1,7 +1,7 @@
 Latest re-run of the pipeline
 #############################
 :date: 2008-11-09 03:15
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pipeline, errors
 :slug: latest-re-run-of-the-pipeline
 

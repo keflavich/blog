@@ -1,7 +1,7 @@
 TEN!?!
 ######
 :date: 2008-08-23 00:47
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pointing, mapping
 :slug: ten
 

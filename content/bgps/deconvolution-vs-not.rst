@@ -1,7 +1,7 @@
 Deconvolution vs. Not
 #####################
 :date: 2008-11-28 19:39
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping
 :slug: deconvolution-vs-not
 

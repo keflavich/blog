@@ -1,7 +1,7 @@
 Paragraph for the methods paper
 ###############################
 :date: 2008-11-15 00:25
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, methods paper
 :slug: paragraph-for-the-methods-paper
 

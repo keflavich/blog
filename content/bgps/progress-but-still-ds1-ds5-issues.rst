@@ -1,7 +1,7 @@
 Progress, but still ds1-ds5 issues
 ##################################
 :date: 2011-03-30 02:47
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, downsampling, calibration, pipeline
 :slug: progress-but-still-ds1-ds5-issues
 

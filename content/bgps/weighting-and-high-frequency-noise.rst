@@ -1,7 +1,7 @@
 Weighting and high-frequency noise
 ##################################
 :date: 2008-11-15 00:41
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, weighting
 :slug: weighting-and-high-frequency-noise
 

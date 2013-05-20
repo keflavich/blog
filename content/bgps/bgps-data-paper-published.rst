@@ -1,7 +1,7 @@
 BGPS data paper published
 #########################
 :date: 2010-11-03 15:22
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost
 :slug: bgps-data-paper-published
 

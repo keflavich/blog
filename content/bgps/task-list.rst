@@ -1,7 +1,7 @@
 Task List
 #########
 :date: 2008-08-22 00:29
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, data release, mapping, pipeline
 :slug: task-list
 

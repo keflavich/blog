@@ -1,7 +1,7 @@
 Massive upgrades, new strategy?
 ###############################
 :date: 2008-11-18 04:01
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pipeline
 :slug: massive-upgrades-new-strategy
 

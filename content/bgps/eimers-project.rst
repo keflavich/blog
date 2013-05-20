@@ -1,7 +1,7 @@
 Eimers project
 ##############
 :date: 2009-03-21 01:24
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, analysis
 :slug: eimers-project
 

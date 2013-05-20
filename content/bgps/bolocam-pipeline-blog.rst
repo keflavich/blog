@@ -1,7 +1,7 @@
 BOLOCAM PIPELINE BLOG
 #####################
 :date: 2008-07-30 21:30
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, administrative
 :slug: bolocam-pipeline-blog
 

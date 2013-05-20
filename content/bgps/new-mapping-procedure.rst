@@ -1,7 +1,7 @@
 New mapping procedure
 #####################
 :date: 2009-01-15 18:21
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping
 :slug: new-mapping-procedure
 

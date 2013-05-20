@@ -1,7 +1,7 @@
 A workaround for individual maps?
 #################################
 :date: 2011-03-24 00:33
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, iterating, mapping, flagging, pipeline
 :slug: a-workaround-for-individual-maps
 

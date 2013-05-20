@@ -1,7 +1,7 @@
 Images with artifacts
 #####################
 :date: 2008-08-07 23:42
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping
 :slug: images-with-artifacts
 

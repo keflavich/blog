@@ -1,7 +1,7 @@
 BGPS Pipeline Published
 #######################
 :date: 2010-06-11 19:59
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pipeline
 :slug: bgps-pipeline-published
 

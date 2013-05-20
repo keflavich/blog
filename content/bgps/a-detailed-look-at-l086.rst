@@ -1,7 +1,7 @@
 A detailed look at l086
 #######################
 :date: 2009-03-04 21:35
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping
 :slug: a-detailed-look-at-l086
 

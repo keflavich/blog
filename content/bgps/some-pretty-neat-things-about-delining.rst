@@ -1,7 +1,7 @@
 Some pretty neat things about delining....
 ##########################################
 :date: 2011-02-03 04:50
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pipeline, deline
 :slug: some-pretty-neat-things-about-delining
 

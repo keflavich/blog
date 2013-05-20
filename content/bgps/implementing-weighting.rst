@@ -1,7 +1,7 @@
 Implementing weighting
 ######################
 :date: 2008-11-09 04:56
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, weighting
 :slug: implementing-weighting
 

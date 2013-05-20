@@ -1,7 +1,7 @@
 def_user_common modified
 ########################
 :date: 2008-11-23 15:21
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pipeline
 :slug: def_user_common-modified
 

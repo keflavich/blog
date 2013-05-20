@@ -1,7 +1,7 @@
 the l111 reference field was 60% flagged out becau...
 #####################################################
 :date: 2008-11-09 04:04
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: http://schemas.google.com/blogger/2008/kind#comment
 :slug: the-l111-reference-field-was-60-flagged-out-becau
 

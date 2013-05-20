@@ -1,7 +1,7 @@
 Bolocat V1 vs V2
 ################
 :date: 2012-05-24 17:59
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost
 :slug: bolocat-v1-vs-v2
 

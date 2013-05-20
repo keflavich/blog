@@ -1,7 +1,7 @@
 Examining bolocat
 #################
 :date: 2011-07-27 22:51
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, bolocat, analysis, simulation
 :slug: examining-bolocat
 

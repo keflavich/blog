@@ -1,7 +1,7 @@
 a bunch of plots
 ################
 :date: 2009-03-03 01:06
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, plots
 :slug: a-bunch-of-plots
 

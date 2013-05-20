@@ -1,7 +1,7 @@
 Testing out analytic filter functions
 #####################################
 :date: 2011-07-15 03:03
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, analysis, simulation
 :slug: testing-out-analytic-filter-functions
 

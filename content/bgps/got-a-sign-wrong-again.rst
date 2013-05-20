@@ -1,7 +1,7 @@
 Got a sign wrong again
 ######################
 :date: 2008-08-21 20:40
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping
 :slug: got-a-sign-wrong-again
 

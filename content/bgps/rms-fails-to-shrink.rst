@@ -1,7 +1,7 @@
 RMS fails to shrink
 ###################
 :date: 2008-08-12 13:51
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pointing
 :slug: rms-fails-to-shrink
 

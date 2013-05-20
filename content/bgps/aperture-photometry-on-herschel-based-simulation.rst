@@ -1,7 +1,7 @@
 Aperture Photometry on Herschel-based simulation
 ################################################
 :date: 2010-06-08 18:15
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, simulation
 :slug: aperture-photometry-on-herschel-based-simulation
 

@@ -1,7 +1,7 @@
 0707 distortion maps
 ####################
 :date: 2009-02-01 20:26
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, calibration
 :slug: 0707-distortion-maps
 

@@ -1,7 +1,7 @@
 Broken rotation
 ###############
 :date: 2008-09-09 01:34
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, mapping
 :slug: broken-rotation
 

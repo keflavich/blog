@@ -1,7 +1,7 @@
 v1-v2 comparison
 ################
 :date: 2011-08-23 04:25
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, version comparison
 :slug: v1-v2-comparison
 

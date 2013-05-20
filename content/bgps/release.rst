@@ -1,7 +1,7 @@
 RELEASE
 #######
 :date: 2009-06-22 23:30
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost
 :slug: release
 

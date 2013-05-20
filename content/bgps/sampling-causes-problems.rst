@@ -1,7 +1,7 @@
 Sampling causes problems
 ########################
 :date: 2011-04-18 23:39
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, downsampling, pipeline
 :slug: sampling-causes-problems
 

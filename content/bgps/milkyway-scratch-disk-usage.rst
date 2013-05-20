@@ -1,7 +1,7 @@
 Milkyway /scratch disk usage
 ############################
 :date: 2008-07-31 22:40
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, administrative
 :slug: milkyway-scratch-disk-usage
 

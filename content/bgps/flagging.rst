@@ -1,7 +1,7 @@
 flagging
 ########
 :date: 2008-10-08 04:31
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, flagging
 :slug: flagging
 

@@ -1,7 +1,7 @@
 Updates today
 #############
 :date: 2008-08-25 23:35
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, pointing, pipeline
 :slug: updates-today
 

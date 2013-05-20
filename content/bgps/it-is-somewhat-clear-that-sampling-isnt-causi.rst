@@ -1,7 +1,7 @@
 It is somewhat clear that sampling isn&#39;t causi...
 #####################################################
 :date: 2011-04-22 02:43
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: http://schemas.google.com/blogger/2008/kind#comment
 :slug: it-is-somewhat-clear-that-sampling-isnt-causi
 

@@ -1,7 +1,7 @@
 Trying to bootstrap
 ###################
 :date: 2011-03-28 02:01
-:author: Adam (noreply@blogger.com)
+:author: Adam (adam.g.ginsburg@gmail.com)
 :tags: googlepost, downsampling, discrepancy, calibration, pipeline
 :slug: trying-to-bootstrap
 
