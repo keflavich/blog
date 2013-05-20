@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" type="text/css" href="../theme/css/style.css" />
+<link rel="stylesheet" type="text/css" href="http://keflavich.github.com/blog/theme/css/style.css" />
 <head>
                 <title>Adam Ginsburg's blog</title>
         <meta charset="utf-8" />
@@ -16,9 +16,6 @@
     },
     tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
     });
-    TeX: {
-        extensions: ["AMSmath.js", "AMSsymbols.js"]
-    }
     MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
     var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
     VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
@@ -45,8 +42,8 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 
 
     <header id="banner" class="body" >
-        <div id="header" style='background-image: url("../static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
-            <h1 style="color: #C4C4C4;"><a class="header" href="..">Adam Ginsburg's blog <strong></strong></a></h1>
+        <div id="header" style='background-image: url("http://keflavich.github.com/blog/static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="http://keflavich.github.com/blog">Adam Ginsburg's blog <strong></strong></a></h1>
 
             <nav id="menu"><ul id="menulist">
                             <li><a href="http://www.adamgginsburg.com">Home</a></li>
@@ -59,38 +56,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 
    <div id="sidebar">
     <ul>
-  	  	        	  	          <li>
-        <h3 id='recent_header'>Recent Posts</h3>
-        <ul>
-                          <li class="post">
-                  2012/12/26
-                  <br>
-                  <a href="../catalog-vs-image-shift-a-possible-solution-to-the-atlasgal-issue.html">Catalog vs Image shift? A possible solution to the ATLASGAL issue</a>
-              </li>
-                          <li class="post">
-                  2012/12/26
-                  <br>
-                  <a href="../template-bolocam-data-team.html">Template: bolocam data team</a>
-              </li>
-                          <li class="post">
-                  2012/12/22
-                  <br>
-                  <a href="../idea-multispectral-eigenimage-decomposition.html">Idea: Multispectral Eigenimage decomposition...</a>
-              </li>
-                          <li class="post">
-                  2012/12/15
-                  <br>
-                  <a href="../pointing-cross-correlation-yet-again.html">Pointing & Cross-Correlation yet again</a>
-              </li>
-                          <li class="post">
-                  2012/09/08
-                  <br>
-                  <a href="../cross-correlation-offsets-revisited.html">Cross-Correlation Offsets Revisited</a>
-              </li>
-                    </ul>
-      </li>
-        
-    </ul>
+  	  	        	  	    </ul>
   </div><!-- end #sidebar -->
  
   <div id="content">
@@ -101,13 +67,75 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="../milkyway-scratch-disk-usage.html" rel="bookmark" title="Permalink to Milkyway /scratch disk usage">
+                <a href="http://keflavich.github.com/blog/update-pointing-model.html" rel="bookmark" title="Permalink to Update - Pointing Model">
+                    Update - Pointing Model</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-01T16:43:00"> 2008/08/01 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Update - Pointing Model 7/31/08
+The pointing model application &quot;works&quot; now, but I have a problem with
+our model. We don't get down to the &lt;10&quot; RMS offset we're looking for.
+The mean offsets are all zero, but the spread is more like 20&quot;.
+Example plots on milkyway: [see attached PDFs too]</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd>/scratch/adam_work/plots/models_ptgmdl_0506.ps
+/scratch/adam_work/plots/models_ptgmdl_0707.ps
+/scratch/adam_work/plots/models_rawcsoptg_0506.ps
+/scratch/adam_work/plots/models_rawcsoptg_0707.ps</dd>
+</dl>
+<p>On the left side are plotted &quot;all&quot; of the data points, on the right I've
+used a two-iteration 3-sigma rejection to eliminate outliers to a small
+degree.</p>
+<p>Top of these plots - as labeled - is altoff vs. alt, bottom is azoff vs.
+alt.</p>
+<p>The red lines are a 2nd order polynomial fit to the data.</p>
+<p>The cyan lines are the pointing model corrections calculated by
+Meredith.</p>
+<p>The 'ptgmdl' files have had the pointing model corrections applied. Note
+that they are centered around offsets of zero.</p>
+<p>The 'rawcsoptg' files DO NOT have pointing model corrections applied,
+and FZAO/FAZO have been REMOVED from the original pointing. Hence, these
+are RAW CSO TELESCOPE POINTING plots.</p>
+<p>Things to note:</p>
+<blockquote>
+<ul class="simple">
+<li>In the 0707 'ptgmdl' set, the az is not quite centered at zero</li>
+<li>the 0506 'ptgmdl' set still has bulk offsets</li>
+<li>the ALTOFF and AZOFF are in delta-coordinate: this means that azoff</li>
+</ul>
+</blockquote>
+<p>should be scaled by dividing by cos(alt) to put the y-axis in consistent
+units. In most cases, this means that the already large spread at higher
+altitudes is going to INCREASE. That means the problem is going to get
+worse...
+Questions:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>What is the main difference between my plots and Meredith's? i.e.  why is
+my RMS ~an order of magnitude larger?</li>
+<li>Does more outlier rejection make sense? Is there any reason not to trust
+certain observations if they visible turn out right?  PPSes are supposed to
+be &quot;absolute references&quot; for the 1x1, 3x1 maps OLD PROBLEM: PPS and large
+maps mapped with same 'pointing model' but ended up with different
+coordinates</li>
+</ol>
+</blockquote>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.com/blog/milkyway-scratch-disk-usage.html" rel="bookmark" title="Permalink to Milkyway /scratch disk usage">
                     Milkyway /scratch disk usage</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-07-31T22:40:00"> 2008/07/31 </abbr>
-            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <pre class="literal-block">
 -bash-3.00$ du -h --max-depth=1 ../16K     ../lost+found80G     ../sliced1.3G    ../elatov70G     ../cleaned58G     ../mapped179G    ../sliced_polychrome4.0K    ../ironsides49G     ../coadd_mapped2.1G    ../pca_coadd2.8G    ../3pca_3iterations11M     ../centroid17M     ../lost34M     ../ptg_maps3.8G    ../montage31G     ../maps_from_polychrome93M     ../ptg_mmd32G     ../backup_from_kilauea31G     ../sharc1.8M    ../distortion6.9G    ../fake138G    ../adam_work136G    ../bgps_dir_from_polychrome815G    ../
 </pre>
@@ -117,13 +145,13 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="../galactic-vs-ra-mapping.html" rel="bookmark" title="Permalink to Galactic vs. RA mapping">
+                <a href="http://keflavich.github.com/blog/galactic-vs-ra-mapping.html" rel="bookmark" title="Permalink to Galactic vs. RA mapping">
                     Galactic vs. RA mapping</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-07-31T20:57:00"> 2008/07/31 </abbr>
-            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>They don't match up. This is a serious problem.
 I think it's only a problem for the GC: ad2xy refuses to map things
 right around that transition. I think it's OK elsewhere.</p>
@@ -133,13 +161,13 @@ right around that transition. I think it's OK elsewhere.</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="../defining-pointing-terminology.html" rel="bookmark" title="Permalink to Defining Pointing Terminology">
+                <a href="http://keflavich.github.com/blog/defining-pointing-terminology.html" rel="bookmark" title="Permalink to Defining Pointing Terminology">
                     Defining Pointing Terminology</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-07-30T21:50:00"> 2008/07/30 </abbr>
-            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>There has been a lot of confusion about pointing terminology.</p>
 <p>CSO pointing model: the telescope pointing model used and written as a
 black box</p>
@@ -174,13 +202,13 @@ manually-applied fixed offsets from fitted-model offsets?</li>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="../new-pipeline-to-cvs.html" rel="bookmark" title="Permalink to New Pipeline to CVS">
+                <a href="http://keflavich.github.com/blog/new-pipeline-to-cvs.html" rel="bookmark" title="Permalink to New Pipeline to CVS">
                     New Pipeline to CVS</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-07-30T21:36:00"> 2008/07/30 </abbr>
-            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Open topic - what needs to be done to put the new pipeline on the CVS?</p>
 <ol class="arabic simple">
 <li>Under the assumption that it will be used by others, the
@@ -198,13 +226,13 @@ for non-BGPS observations</li>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="../bolocam-pipeline-blog.html" rel="bookmark" title="Permalink to BOLOCAM PIPELINE BLOG">
+                <a href="http://keflavich.github.com/blog/bolocam-pipeline-blog.html" rel="bookmark" title="Permalink to BOLOCAM PIPELINE BLOG">
                     BOLOCAM PIPELINE BLOG</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-07-30T21:30:00"> 2008/07/30 </abbr>
-            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Guy pointed out in the CU meeting today that we need a better way to
 keep track of changes / problems / etc. The wiki's kind of a pain, and
 this will serve as something of a replacement for the e-mail-only
@@ -214,7 +242,7 @@ conversations that have been going on with the Software Power Team.</p>
     <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
-                        <a href="../category/bgps19.html">&laquo;</a>
+                        <a href="http://keflavich.github.com/blog/category/bgps19.html">&laquo;</a>
                 Page 20 / 20
     </p>
 </section><!-- /#content -->

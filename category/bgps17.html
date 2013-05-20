@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" type="text/css" href="../theme/css/style.css" />
+<link rel="stylesheet" type="text/css" href="http://keflavich.github.com/blog/theme/css/style.css" />
 <head>
                 <title>Adam Ginsburg's blog</title>
         <meta charset="utf-8" />
@@ -16,9 +16,6 @@
     },
     tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
     });
-    TeX: {
-        extensions: ["AMSmath.js", "AMSsymbols.js"]
-    }
     MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
     var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
     VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
@@ -45,8 +42,8 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 
 
     <header id="banner" class="body" >
-        <div id="header" style='background-image: url("../static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
-            <h1 style="color: #C4C4C4;"><a class="header" href="..">Adam Ginsburg's blog <strong></strong></a></h1>
+        <div id="header" style='background-image: url("http://keflavich.github.com/blog/static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="http://keflavich.github.com/blog">Adam Ginsburg's blog <strong></strong></a></h1>
 
             <nav id="menu"><ul id="menulist">
                             <li><a href="http://www.adamgginsburg.com">Home</a></li>
@@ -59,38 +56,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 
    <div id="sidebar">
     <ul>
-  	  	        	  	          <li>
-        <h3 id='recent_header'>Recent Posts</h3>
-        <ul>
-                          <li class="post">
-                  2012/12/26
-                  <br>
-                  <a href="../catalog-vs-image-shift-a-possible-solution-to-the-atlasgal-issue.html">Catalog vs Image shift? A possible solution to the ATLASGAL issue</a>
-              </li>
-                          <li class="post">
-                  2012/12/26
-                  <br>
-                  <a href="../template-bolocam-data-team.html">Template: bolocam data team</a>
-              </li>
-                          <li class="post">
-                  2012/12/22
-                  <br>
-                  <a href="../idea-multispectral-eigenimage-decomposition.html">Idea: Multispectral Eigenimage decomposition...</a>
-              </li>
-                          <li class="post">
-                  2012/12/15
-                  <br>
-                  <a href="../pointing-cross-correlation-yet-again.html">Pointing & Cross-Correlation yet again</a>
-              </li>
-                          <li class="post">
-                  2012/09/08
-                  <br>
-                  <a href="../cross-correlation-offsets-revisited.html">Cross-Correlation Offsets Revisited</a>
-              </li>
-                    </ul>
-      </li>
-        
-    </ul>
+  	  	        	  	    </ul>
   </div><!-- end #sidebar -->
  
   <div id="content">
@@ -101,13 +67,36 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="../on-the-list-for-today.html" rel="bookmark" title="Permalink to On the list for today....">
+                <a href="http://keflavich.github.com/blog/re-convergence-tests.html" rel="bookmark" title="Permalink to Re: Convergence Tests">
+                    Re: Convergence Tests</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-23T17:03:00"> 2008/08/23 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Made a little code to check out convergence, but frankly it's pretty
+easy to just build a mapcube and plot lines in the iteration axis. The
+code is in bgps_pipeline/postproc/compareiters.pro, and it is not a
+single program.
+Comparing deconvolution to no deconvolution, deconvolution is a lot
+better. Without it, there are much more substantial negative regions. In
+the GC, my test region, the noise-dominated areas were about the same,
+though the no-deconvolve map had a little bit more large scale
+structure. The signal-dominated regions were very nearly uniformly
+brighter. The deconvolved map was ~3 Jy brighter in SGR B2, or 4%.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.com/blog/on-the-list-for-today.html" rel="bookmark" title="Permalink to On the list for today....">
                     On the list for today....</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-08-23T13:42:00"> 2008/08/23 </abbr>
-            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Since my gigantic mapping run is still going, I'm going to work
 primarily on developing code for testing the maps, and determining
 important information about the mapper.
@@ -138,13 +127,13 @@ iterations!</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="../ten.html" rel="bookmark" title="Permalink to TEN!?!">
+                <a href="http://keflavich.github.com/blog/ten.html" rel="bookmark" title="Permalink to TEN!?!">
                     TEN!?!</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-08-23T00:47:00"> 2008/08/23 </abbr>
-            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/SK9Pe1q6PaI/AAAAAAAADOE/yd0bxUMCDB4/s400/EIGHT.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/SK9Pe1q6PaI/AAAAAAAADOE/yd0bxUMCDB4/s400/EIGHT.png" />
 <p>Look at that. Seriously? a 10' offset? That's ridiculous! There is no
 WAY our pointing models could be off by that much! Even if I got the
@@ -157,13 +146,13 @@ suggestions?</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="../task-list.html" rel="bookmark" title="Permalink to Task List">
+                <a href="http://keflavich.github.com/blog/task-list.html" rel="bookmark" title="Permalink to Task List">
                     Task List</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-08-22T00:29:00"> 2008/08/22 </abbr>
-            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>For the moment, I'm going to leave the pointing alone. This leaves us
 (me) with a very long list of things to do before the data release:</p>
 <ol class="arabic simple">
@@ -191,13 +180,13 @@ above]</li>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="../new-pointing-models.html" rel="bookmark" title="Permalink to New pointing models">
+                <a href="http://keflavich.github.com/blog/new-pointing-models.html" rel="bookmark" title="Permalink to New pointing models">
                     New pointing models</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-08-21T20:45:00"> 2008/08/21 </abbr>
-            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I decided to try to fit the pointing model as a full alt/az or ra/dec
 dependent thing using mpfitfun and a 12 (or 16) parameter model. It
 didn't work very well.
@@ -209,13 +198,13 @@ dependence, and see how that goes. I think it will work brilliantly.</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="../got-a-sign-wrong-again.html" rel="bookmark" title="Permalink to Got a sign wrong again">
+                <a href="http://keflavich.github.com/blog/got-a-sign-wrong-again.html" rel="bookmark" title="Permalink to Got a sign wrong again">
                     Got a sign wrong again</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-08-21T20:40:00"> 2008/08/21 </abbr>
-            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Last night's run failed because I had a wrong sign in the pointing
 model. Do over time!</p>
  </div><!-- /.entry-content   not article.summary--> 
@@ -224,13 +213,13 @@ model. Do over time!</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="../notice-anything-different.html" rel="bookmark" title="Permalink to Notice anything different?">
+                <a href="http://keflavich.github.com/blog/notice-anything-different.html" rel="bookmark" title="Permalink to Notice anything different?">
                     Notice anything different?</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-08-21T01:08:00"> 2008/08/21 </abbr>
-            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>About milkyway? This post is a red herring, but:
 I decided to go ahead and run the mapper on Cygnus, L33, L111, and the
 Galactic Center again. The pointing has gotten to the stage where I'm
@@ -261,13 +250,13 @@ not more effective than PCA subtraction, so that's one way around it.</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="../modifications.html" rel="bookmark" title="Permalink to Modifications">
+                <a href="http://keflavich.github.com/blog/modifications.html" rel="bookmark" title="Permalink to Modifications">
                     Modifications</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-08-19T18:07:00"> 2008/08/19 </abbr>
-            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Things that have been changed in the past 24 hours that are very
 significant:</p>
 <ol class="arabic simple">
@@ -292,13 +281,13 @@ getaltaz.</li>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="../inconsistent.html" rel="bookmark" title="Permalink to Inconsistent">
+                <a href="http://keflavich.github.com/blog/inconsistent.html" rel="bookmark" title="Permalink to Inconsistent">
                     Inconsistent</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-08-17T18:56:00"> 2008/08/17 </abbr>
-            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>James: &quot;I think it's fair to say, though, that there is some problem
 with the simultaneous assumption that CSO coords are geo and that we are
 applying the ab/nut correction correctly.&quot;
@@ -346,13 +335,13 @@ to that level. We'll see.</p>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="../direct-comparison-with-merediths-pointing-calculations.html" rel="bookmark" title="Permalink to Direct comparison with Meredith's pointing calculations">
+                <a href="http://keflavich.github.com/blog/direct-comparison-with-merediths-pointing-calculations.html" rel="bookmark" title="Permalink to Direct comparison with Meredith's pointing calculations">
                     Direct comparison with Meredith's pointing calculations</a>
             </h2> 
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-08-14T04:11:00"> 2008/08/14 </abbr>
-            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.com/blog/author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I've gotten to the point that I'm directly comparing my pointing
 calculations to Merediths. So far, it looks like:
 1. I can very nearly reproduce Meredith's results on her maps, though
@@ -366,28 +355,11 @@ out.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="../centroiding-and-merediths-files.html" rel="bookmark" title="Permalink to Centroiding and Meredith's files">
-                    Centroiding and Meredith's files</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-13T03:54:00"> 2008/08/13 </abbr>
-            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I tried the pointing offset calculations on Meredith's maps and I still
-get an RMS of ~9&quot; in both RA and DEC. Check out the files:
-/scratch/adam_work/plots/models_meredith*
-So... what?</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
-                        <a href="../category/bgps16.html">&laquo;</a>
+                        <a href="http://keflavich.github.com/blog/category/bgps16.html">&laquo;</a>
                 Page 17 / 20
-            <a href="../category/bgps18.html">&raquo;</a>
+            <a href="http://keflavich.github.com/blog/category/bgps18.html">&raquo;</a>
     </p>
 </section><!-- /#content -->
   </div>
