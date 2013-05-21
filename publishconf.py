@@ -5,6 +5,8 @@ import sys
 sys.path.append('.')
 from pelicanconf import *
 
+MENUITEMS = [(a,'/blog/'+b)  if 'http' not in b else (a,b) for a,b in MENUITEMS]
+
 #SITEURL = 'file://localhost/Volumes/disk5/Users/adam/repos/blog/output'
 #SITEURL = ""
 SITEURL = 'http://keflavich.github.io/blog'

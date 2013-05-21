@@ -20,11 +20,11 @@ Setting :math:`v_{esc} = c_s` yields the mass scale:
 
 .. math:: M = \frac{R}{G}  \frac{2 k T}{m} = \frac{R c_s^2}{G}
 
-Using :math:`\rho = \frac{M}{ 4/3 \pi R^{-3} }`,
+Using :math:`\rho = \frac{M}{ 4/3 \pi R^{3} }`,
 
 .. math:: R = \left(\frac{M}{4/3 \pi \rho}\right)^{1/3}
 
- so
+so
 
 .. math:: M = M^{1/3} \frac{c_s^2}{G \rho^{1/3}}
 
@@ -37,7 +37,8 @@ temperature, this is:
 
 .. math:: M_J = \frac{(2 k T)^{3/2}}{(m G)^{3/2} \rho^{1/2}}
 
-where :math:`m` is the particle mass, usually assumed to be 2.8 amu.
+where :math:`m` is the particle mass, usually assumed to be 2.8 amu. (actually,
+2.8 is for mass per H$_2$ particle, it should really be 2.3 amu)
 
 In[1]:
 
