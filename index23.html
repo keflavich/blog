@@ -65,6 +65,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
                           <li class="post">
+                  2013/06/04
+                  <br>
+                  <a href="http://keflavich.github.io/blog/hopkins-pdf-generalization.html">Hopkins PDF Generalization</a>
+              </li>
+                          <li class="post">
                   2013/05/20
                   <br>
                   <a href="http://keflavich.github.io/blog/bgps-point-source-recovery-experiment-23-results.html">BGPS Point Source Recovery - Experiment 23 results</a>
@@ -84,11 +89,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/bolocam-mass-calculations.html">Bolocam Mass Calculations</a>
               </li>
-                          <li class="post">
-                  2013/03/22
-                  <br>
-                  <a href="http://keflavich.github.io/blog/arecibo-mapping-total-power-measurements.html">Arecibo Mapping: Total Power Measurements</a>
-              </li>
                     </ul>
       </li>
         
@@ -99,6 +99,80 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/bolocat-v1-vs-v2.html" rel="bookmark" title="Permalink to Bolocat V1 vs V2">
+                    Bolocat V1 vs V2</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-05-24T17:59:00"> 2012/05/24 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've done some very extensive comparison of v1 and v2. The plots below
+are included in the current BGPS draft, but I'll go into more excessive
+detail here. ALL plots below show Version 1 fluxes versus Version 2
+fluxes using Bolocat V1 apertures. This means there are only two
+possible effects in play:</p>
+<ol class="arabic simple">
+<li>Different fluxes in the v1 and v2 maps</li>
+<li>Pointing (spatial) offsets between the v1 and v2 maps
+[see&nbsp;<a class="reference external" href="http://bolocam.blogspot.com/2012/05/bgps-v2-pointing.html">http://bolocam.blogspot.com/2012/05/bgps-v2-pointing.html</a>]</li>
+</ol>
+<p>Therefore, the plots below are just different ways of visualizing the
+same information. This holds true despite the fact that different
+&quot;correction factors&quot; appear in different plots.</p>
+<img alt="http://3.bp.blogspot.com/-gGL8rEcNr20/T75tzRC4dJI/AAAAAAAAHHM/A8KeWkBtfmc/s320/total_ratiohistograms.png" src="http://3.bp.blogspot.com/-gGL8rEcNr20/T75tzRC4dJI/AAAAAAAAHHM/A8KeWkBtfmc/s320/total_ratiohistograms.png" />
+<p>Ratios of v2 fluxes to v1 fluxes in the listed apertures. The curves
+represent best-fit gaussian distributions to the data after excluding
+outliers using a <a class="reference external" href="http://scikit-learn.org/dev/modules/generated/sklearn.covariance.MinCovDet.html">minimum covariance determinant</a> method</p>
+<p>v1 vs v2 with a background subtracted around the source equal to the source
+area (this was not reported in Bolocat v1, but is a tool Erik implemented so I
+used it)</p>
+<p>v1 vs v2 in 40&quot; apertures, as stated. &nbsp;There are y=x and y=1.5x lines plotted:
+these are NOT fits to the data! &nbsp;The green line is a Total Least Squares linear
+fit to the data weighted by the measured errors.</p>
+<p>Source Mask &quot;aperture&quot;:</p>
+<img alt="http://1.bp.blogspot.com/-YS2Jtvz4Yy0/T75pixKkYsI/AAAAAAAAHFs/iEJHrsKsBk0/s320/total_v1v2_sourcemask_bg_fit_compare.png" src="http://1.bp.blogspot.com/-YS2Jtvz4Yy0/T75pixKkYsI/AAAAAAAAHFs/iEJHrsKsBk0/s320/total_v1v2_sourcemask_bg_fit_compare.png" />
+<img alt="http://1.bp.blogspot.com/-g-ZbEUUWEpY/T75pjj26FeI/AAAAAAAAHGE/rtdSRgoMQpo/s320/total_v1v2_sourcemask_fit_compare.png" src="http://1.bp.blogspot.com/-g-ZbEUUWEpY/T75pjj26FeI/AAAAAAAAHGE/rtdSRgoMQpo/s320/total_v1v2_sourcemask_fit_compare.png" />
+<p>Same as above, but the best fit slope is steeper. The best explanation
+for the steeper slope (i.e., v2 &gt; 1.5(v1)) is that more extended flux is
+recovered in v2 around bright sources, therefore in the larger source
+masks, there is greater flux than would be recovered if a simple 1.5x
+corrective factor was applied.
+80&quot; apertures</p>
+<img alt="http://2.bp.blogspot.com/-WKtlvnFbUF4/T75piyh8tVI/AAAAAAAAHF4/FROq508X6pU/s320/total_v1v2_80arcsec_fit_compare.png" src="http://2.bp.blogspot.com/-WKtlvnFbUF4/T75piyh8tVI/AAAAAAAAHF4/FROq508X6pU/s320/total_v1v2_80arcsec_fit_compare.png" />
+<img alt="http://1.bp.blogspot.com/-EHGNHIarslc/T75yqG_AmFI/AAAAAAAAHJg/ToAicG9ynmk/s320/total_v1v2_80_nobgarcsec_fit_compare.png" src="http://1.bp.blogspot.com/-EHGNHIarslc/T75yqG_AmFI/AAAAAAAAHJg/ToAicG9ynmk/s320/total_v1v2_80_nobgarcsec_fit_compare.png" />
+<p>Same for 120&quot; apertures:</p>
+<img alt="http://1.bp.blogspot.com/-ymBFW1Y5OhY/T75piwFYrJI/AAAAAAAAHFw/07ujRFCd_Ts/s320/total_v1v2_120arcsec_fit_compare.png" src="http://1.bp.blogspot.com/-ymBFW1Y5OhY/T75piwFYrJI/AAAAAAAAHFw/07ujRFCd_Ts/s320/total_v1v2_120arcsec_fit_compare.png" />
+<img alt="http://3.bp.blogspot.com/-PMkvtoJKNVs/T75yqPe16PI/AAAAAAAAHJk/QF041ok8yQ0/s320/total_v1v2_120_nobgarcsec_fit_compare.png" src="http://3.bp.blogspot.com/-PMkvtoJKNVs/T75yqPe16PI/AAAAAAAAHJk/QF041ok8yQ0/s320/total_v1v2_120_nobgarcsec_fit_compare.png" />
+<p>For all 3 of the 40, 80 and 120&quot; apertures both, the 1.5x correction
+factor is nearly perfect (agrees to &lt;5%). &nbsp;The background subtraction
+seems to have different effects depending on aperture size. &nbsp;I welcome
+Erik to comment on this, but I do not think it is particularly
+important.
+The figures below require some explanation. &nbsp;NONE of the circular
+apertures use background subtraction in this comparison (i.e., compare
+to the RIGHT column above).
+These figures are histograms of the flux ratio within a given aperture
+as a function of flux in the v1 aperture. &nbsp;From bottom to top, the flux
+in the v1 aperture goes from 0.1 to 10 Jy. &nbsp;The X-axis shows the ratio
+of the v2 flux to the v1 flux. &nbsp;The black dots with error bars represent
+the best-fit gaussian distribution to each flux bin. &nbsp;The colorbar shows
+the log of the number of sources; the most in any bin is about
+10<sup>2.5</sup> ~ 300.
+In short, there is some sign that the ratio of v2/v1 flux varies with v1
+flux. &nbsp;This effect could be seen in the figures above since a linear fit
+is imperfect. &nbsp;The effect is not very strong. &nbsp;Again, I believe the
+explanation here is the changed spatial transfer function in v2.</p>
+<img alt="http://3.bp.blogspot.com/-bfrjMd2veR0/T75pzxm5_xI/AAAAAAAAHGs/SQ1LDR8_EoM/s320/ratio_twodhist_40.png" src="http://3.bp.blogspot.com/-bfrjMd2veR0/T75pzxm5_xI/AAAAAAAAHGs/SQ1LDR8_EoM/s320/ratio_twodhist_40.png" />
+<img alt="http://4.bp.blogspot.com/-unXyfhsIL1g/T75pkN6kWkI/AAAAAAAAHGQ/axiiWsEMO0M/s320/ratio_twodhist_80.png" src="http://4.bp.blogspot.com/-unXyfhsIL1g/T75pkN6kWkI/AAAAAAAAHGQ/axiiWsEMO0M/s320/ratio_twodhist_80.png" />
+<img alt="http://2.bp.blogspot.com/-kJEMLqkaQak/T75pkNu78XI/AAAAAAAAHGM/Dh2T4m0cD-8/s320/ratio_twodhist_120.png" src="http://2.bp.blogspot.com/-kJEMLqkaQak/T75pkNu78XI/AAAAAAAAHGM/Dh2T4m0cD-8/s320/ratio_twodhist_120.png" />
+<img alt="http://4.bp.blogspot.com/-ExDpIxfHO74/T75pkjjeKAI/AAAAAAAAHGk/pU3mE5uzcgM/s320/ratio_twodhist_sourcemask_nobg.png" src="http://4.bp.blogspot.com/-ExDpIxfHO74/T75pkjjeKAI/AAAAAAAAHGk/pU3mE5uzcgM/s320/ratio_twodhist_sourcemask_nobg.png" />
+<img alt="http://3.bp.blogspot.com/-Pru74WRl-Hg/T75pkOL1YWI/AAAAAAAAHGU/qtrMl-w59SA/s320/ratio_twodhist_sourcemask.png" src="http://3.bp.blogspot.com/-Pru74WRl-Hg/T75pkOL1YWI/AAAAAAAAHGU/qtrMl-w59SA/s320/ratio_twodhist_sourcemask.png" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -321,25 +395,6 @@ primarily at low S/N.</p>
 <p>Here are the same for all of the data reduced up to this point:</p>
 <img alt="http://2.bp.blogspot.com/-oUewyjZc9wU/Tl1QaGPeURI/AAAAAAAAGds/CHx3BtnT9sA/s320/total_v1v2_sourcemask_fit_compare.png" src="http://2.bp.blogspot.com/-oUewyjZc9wU/Tl1QaGPeURI/AAAAAAAAGds/CHx3BtnT9sA/s320/total_v1v2_sourcemask_fit_compare.png" />
 <img alt="http://1.bp.blogspot.com/-n27ucFd82VI/Tl1Qab1kbUI/AAAAAAAAGd0/kwWAceGqo5c/s320/total_v1v2_sourcemask_ratio_compare.png" src="http://1.bp.blogspot.com/-n27ucFd82VI/Tl1Qab1kbUI/AAAAAAAAGd0/kwWAceGqo5c/s320/total_v1v2_sourcemask_ratio_compare.png" />
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/final-calibration-curves-yeah-sure.html" rel="bookmark" title="Permalink to Final calibration curves (yeah... sure)">
-                    Final calibration curves (yeah... sure)</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-08-26T17:26:00"> 2011/08/26 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I've finished rederiving the calibration curves self-consistently. These
-will now be applied to the data....</p>
-<img alt="http://4.bp.blogspot.com/-Px-hpKGeiK0/TlfXKrZw3mI/AAAAAAAAGcc/mJH4Yes9K1I/s320/planet_dcfluxes_05_v2.0_13pca_ds2_defaults_map20.png" src="http://4.bp.blogspot.com/-Px-hpKGeiK0/TlfXKrZw3mI/AAAAAAAAGcc/mJH4Yes9K1I/s320/planet_dcfluxes_05_v2.0_13pca_ds2_defaults_map20.png" />
-<img alt="http://1.bp.blogspot.com/-n2uTCyFEiqQ/TlfXLCd3twI/AAAAAAAAGck/iDls4F3YpKs/s320/planet_dcfluxes_06_v2.0_13pca_ds2_defaults_map20.png" src="http://1.bp.blogspot.com/-n2uTCyFEiqQ/TlfXLCd3twI/AAAAAAAAGck/iDls4F3YpKs/s320/planet_dcfluxes_06_v2.0_13pca_ds2_defaults_map20.png" />
-<img alt="http://3.bp.blogspot.com/-361ND0Pcic0/TlfXLiczcRI/AAAAAAAAGcs/_RnBjVjrsGY/s320/planet_dcfluxes_07_v2.0_13pca_ds2_defaults_map20.png" src="http://3.bp.blogspot.com/-361ND0Pcic0/TlfXLiczcRI/AAAAAAAAGcs/_RnBjVjrsGY/s320/planet_dcfluxes_07_v2.0_13pca_ds2_defaults_map20.png" />
-<img alt="http://1.bp.blogspot.com/-Ui00rWxnoiE/TlfXL-jQw_I/AAAAAAAAGc0/9WZG7srlDok/s320/planet_dcfluxes_09_v2.0_13pca_ds2_defaults_map20.png" src="http://1.bp.blogspot.com/-Ui00rWxnoiE/TlfXL-jQw_I/AAAAAAAAGc0/9WZG7srlDok/s320/planet_dcfluxes_09_v2.0_13pca_ds2_defaults_map20.png" />
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

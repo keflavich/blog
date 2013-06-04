@@ -65,6 +65,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
                           <li class="post">
+                  2013/06/04
+                  <br>
+                  <a href="http://keflavich.github.io/blog/hopkins-pdf-generalization.html">Hopkins PDF Generalization</a>
+              </li>
+                          <li class="post">
                   2013/05/20
                   <br>
                   <a href="http://keflavich.github.io/blog/bgps-point-source-recovery-experiment-23-results.html">BGPS Point Source Recovery - Experiment 23 results</a>
@@ -84,11 +89,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/bolocam-mass-calculations.html">Bolocam Mass Calculations</a>
               </li>
-                          <li class="post">
-                  2013/03/22
-                  <br>
-                  <a href="http://keflavich.github.io/blog/arecibo-mapping-total-power-measurements.html">Arecibo Mapping: Total Power Measurements</a>
-              </li>
                     </ul>
       </li>
         
@@ -99,6 +99,36 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/0709-rotators-fixed-latest-run.html" rel="bookmark" title="Permalink to 0709 rotators fixed, latest run">
+                    0709 rotators fixed, latest run</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-01-17T14:26:00"> 2009/01/17 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>0709 11-13 needed to be 83.88 degrees, they're all fixed now.
+I flagged the l060 070911 maps; I'm not convinced that was weather,
+there were some fluctuations up to 2400 Jy! Maybe a cloud would do that
+though.</p>
+<p>Problems in the latest run:</p>
+<pre class="literal-block">
+l359 - missing files?
+Reading files from /scratch/sliced/INFILES/l359\_infile.txt
+FIELD v0.7\_l359 BEGUN at Fri Jan 16 20:11:34 2009
+MRDFITS: File access error
+% HEULER: ERROR - First parameter must be a FITS header or astrometry
+ structure
+l012 - missing files?
+% READFITS: ERROR - Unable to locate file
+ /scratch/adam\_work/l012/060614\_o10\_raw\_ds5.nc\_indiv13pca\_map01.fi
+ ts
+</pre>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -345,33 +375,6 @@ This all probably relies on testing / simulation.</p>
         <div class="entry-content"> <p>l047, l083, l359 (l000 is in /usb, l359 is in /scratch), l136p15
 Only 83 is a code error, the others are file location errors. l083 is an
 error in 'pixshift' with subscripting and will require real debugging.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/def_user_common-modified.html" rel="bookmark" title="Permalink to def_user_common modified">
-                    def_user_common modified</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-11-23T15:21:00"> 2008/11/23 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>The NP doesn't work without USER_COMMON defined because at a single
-point it makes use of the 'which' function.
-def_user_common is a disaster, though, because it calls
-get_screen_size(), which forces an X connection to be launched, which
-means that if you start a remote session and close X IDL crashes. This
-has been a constant nagging problem and has cost me ~a few days of work.
-So I commented out the offending (and offensive) line. The worst of it
-is, I'm not even convinced there's anything that uses any of that
-information. The common block is only needed to get paths, so which
-could have been written better.
-The pipeline ground to a halt for an unknown reason at an unknown point
-so I added a lot more timing outputs to try to figure out what's going
-on.
-Back to the grind...</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

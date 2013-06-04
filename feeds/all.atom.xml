@@ -1,5 +1,286 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2013-05-20T14:45:00-06:00</updated><entry><title>BGPS Point Source Recovery - Experiment 23 results</title><link href="http://keflavich.github.io/blog/bgps-point-source-recovery-experiment-23-results.html" rel="alternate"></link><updated>2013-05-20T14:45:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2013-05-20:bgps-point-source-recovery-experiment-23-results.html</id><summary type="html">&lt;p&gt;Experiment 23, run in mid-May 2013, created power-law synthetic astrophysical
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2013-06-04T15:00:00-06:00</updated><entry><title>Hopkins PDF Generalization</title><link href="http://keflavich.github.io/blog/hopkins-pdf-generalization.html" rel="alternate"></link><updated>2013-06-04T15:00:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2013-06-04:hopkins-pdf-generalization.html</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H"&gt;Hopkins 2013&lt;/a&gt; presents a non-lognormal form of the probability distribution
+function of density in turbulence, depending primarily on a parameter
+&lt;span class="math"&gt;\(T\)&lt;/span&gt;
+.  I examine some of its properties here.&lt;/p&gt;
+&lt;p&gt;The conservation equations, conservation of probability and mass&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+\int_{-\infty}^\infty P_V(\ln \rho) d \ln \rho \equiv 1
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+\int_{-\infty}^\infty\rho P_V(\ln \rho) d \ln \rho \equiv \rho_0 = 1
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;The &lt;span class="math"&gt;\(=1\)&lt;/span&gt;
+ is the definition used by &lt;a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H"&gt;Hopkins 2013&lt;/a&gt;.  Part of the goal of this document
+is to generalize to &lt;span class="math"&gt;\(\rho_0 &amp;lt;&amp;gt; 1\)&lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;The most important thing to do is determine the values of the moments of the distribution, including
+the integral corrections for the Dirac Delta function component of the PDF.&lt;/p&gt;
+&lt;div class="section" id="the-pdf"&gt;
+&lt;h2&gt;The PDF&lt;/h2&gt;
+&lt;p&gt;The full form of the Hopkins PDF is&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+P_V(\ln \rho) d \ln \rho =  \left[I_1(2\sqrt{\lambda u}) e^{-\lambda-u} \sqrt{\frac{\lambda}{u}} + e^{-\lambda} \delta(u)\right]du
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;The mass-weighted PDF is simply&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+P_M(\ln \rho) d \ln \rho =  \rho \left[I_1(2\sqrt{\lambda u}) e^{-\lambda-u} \sqrt{\frac{\lambda}{u}} + e^{-\lambda} \delta(u)\right]du
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;With definitions:&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+u\equiv \frac{\lambda}{1+T} - \frac{\ln \rho}{T}  ;  (u \geq 0)
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+\lambda \equiv \frac{S_{\ln \rho,V}}{2 T^2}
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;But note that both of these distributions can depend on &lt;span class="math"&gt;\(\rho_0\)&lt;/span&gt;
+, changing &lt;span class="math"&gt;\(u\)&lt;/span&gt;
+ to be&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+u\equiv \frac{\lambda}{1+T} - \frac{\ln (\rho/\rho_0)}{T}  ;  (u \geq 0)
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="section" id="moment-equations"&gt;
+&lt;h3&gt;Moment equations&lt;/h3&gt;
+&lt;p&gt;The important moments are the mean and variance of the volume and mass density
+probability distribution and the volume and mass &lt;em&gt;log&lt;/em&gt;-density probability
+distribution.&lt;/p&gt;
+&lt;p&gt;The definitions used here are &lt;span class="math"&gt;\(E[\rho] \equiv &amp;lt;\rho&amp;gt;_V\)&lt;/span&gt;
+, etc.  The
+variance is computed as &lt;span class="math"&gt;\(V[x]=E[x^2]-E[x]^2\)&lt;/span&gt;
+, which means we'll need to
+compute the moments of various combinations of variables.&lt;/p&gt;
+&lt;p&gt;Also, &lt;span class="math"&gt;\(S_{\ln \rho,V} \equiv V[\ln \rho_V]\)&lt;/span&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+&amp;lt;\rho&amp;gt;_V \equiv \rho_0 \equiv \int_{-\infty}^{\infty} \rho P_V(\ln \rho/\rho_0) d \ln \rho
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+&amp;lt;\ln \rho&amp;gt;_V \equiv \int_{-\infty}^{\infty} \ln \rho P_V(\ln \rho/\rho_0) d \ln \rho
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+&amp;lt;\rho&amp;gt;_M \equiv \int_{-\infty}^{\infty} \rho (\rho P_V(\ln \rho/\rho_0)) d \ln \rho
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+&amp;lt;\ln \rho&amp;gt;_M \equiv \int_{-\infty}^{\infty} \ln \rho (\rho P_V(\ln \rho/\rho_0)) d \ln \rho
+\end{equation*}
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="delta-terms"&gt;
+&lt;h3&gt;Delta terms&lt;/h3&gt;
+&lt;p&gt;These can be integrated analytically&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+&amp;lt;\rho&amp;gt;_V \equiv \rho_0 \equiv \int_{-\infty}^{\infty} \rho e^{-\lambda} \delta(\frac{\lambda}{1+T} - \frac{\ln\rho/\rho_0}{T}) \frac{d \ln \rho}{T}
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+&amp;lt;\ln \rho&amp;gt;_V \equiv \int_{-\infty}^{\infty} \ln \rho e^{-\lambda} \delta(\frac{\lambda}{1+T} - \frac{\ln\rho/\rho_0}{T}) \frac{d \ln \rho}{T}
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+&amp;lt;\rho&amp;gt;_M \equiv \int_{-\infty}^{\infty} \rho (\rho e^{-\lambda} \delta(\frac{\lambda}{1+T} - \frac{\ln\rho/\rho_0}{T})) \frac{d \ln \rho}{T}
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+&amp;lt;\ln \rho&amp;gt;_M \equiv \int_{-\infty}^{\infty} \ln \rho (\rho e^{-\lambda} \delta(\frac{\lambda}{1+T} - \frac{\ln\rho/\rho_0}{T})) \frac{d \ln \rho}{T}
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;Substitution: &lt;span class="math"&gt;\(v=\frac{\ln \rho/\rho_0}{T}\)&lt;/span&gt;
+,
+&lt;span class="math"&gt;\(dv = \frac{1}{T} d \ln \rho\)&lt;/span&gt;
+, &lt;span class="math"&gt;\(\rho=\rho_0 e^{v*T}\)&lt;/span&gt;
+, &lt;span class="math"&gt;\(\ln \rho = v T + \ln \rho_0\)&lt;/span&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+&amp;lt;\rho&amp;gt;_{V\delta} \equiv \rho_0 \equiv \int_{-\infty}^{\infty} \rho_0 e^{vT} e^{-\lambda} \delta(\frac{\lambda}{1+T} - v) d v
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+&amp;lt;\ln \rho&amp;gt;_{V\delta} \equiv \int_{-\infty}^{\infty} (vT + \ln \rho_0) e^{-\lambda} \delta(\frac{\lambda}{1+T} - v) d v
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+&amp;lt;\rho&amp;gt;_{M\delta} \equiv \int_{-\infty}^{\infty} \rho_0^2 e^{2vT} ( e^{-\lambda} \delta(\frac{\lambda}{1+T} - v)) d v
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+&amp;lt;\ln \rho&amp;gt;_{M\delta} \equiv \int_{-\infty}^{\infty} (vT + \ln \rho_0) \rho_0 e^{vT} ( e^{-\lambda} \delta(\frac{\lambda}{1+T} - v)) d v
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;Solutions:&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+&amp;lt;\rho&amp;gt;_{V\delta} = - \rho_0 \exp\left[\frac{T \lambda }{1+T} - \lambda\right] = - \rho_0 \exp\left[-\lambda \frac{1}{1+T}\right]
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+&amp;lt;\ln \rho&amp;gt;_{V\delta} = - e^{-\lambda} \frac{\lambda T}{1+T} - e^{-\lambda} \ln \rho_0
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+&amp;lt;\rho&amp;gt;_{M\delta} = - \rho_0^2 \exp\left[\frac{2 T \lambda }{1+T} - \lambda\right] = - \rho_0^2 \exp\left[\lambda\frac{T-1}{T+1}\right]
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+&amp;lt;\ln \rho&amp;gt;_{M\delta} = - \rho_0  \left( \frac{\lambda T}{1+T} + \ln \rho_0 \right) \exp\left[\frac{T \lambda }{1+T} - \lambda\right]
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+= - \rho_0 \left( \frac{\lambda T}{1+T} + \ln \rho_0 \right) \exp\left[\frac{ \lambda (T-1) }{T+1}\right]
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;Using &lt;span class="math"&gt;\(\rho_0=1\)&lt;/span&gt;
+ as defined in &lt;a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H"&gt;Hopkins 2013&lt;/a&gt; simplifies all of these a great deal.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="pdf-integrals"&gt;
+&lt;h3&gt;PDF Integrals&lt;/h3&gt;
+&lt;p&gt;These cannot be integrated analytically.&lt;/p&gt;
+&lt;p&gt;However, we can work from a few simple mathematica/sympy results:&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+\int_0^\infty I_1(x) e^{-x^2/(4L)} dx = e^L - 1
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+\int_0^\infty x^2 I_1(x) e^{-x^2/(4L)} dx = 4 L^2 * e^L
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+\int_0^\infty x^4 I_1(x) e^{-x^2/(4L)} dx = 16 L^3 (L+2) * e^L
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;We use &lt;span class="math"&gt;\(L\)&lt;/span&gt;
+ instead of &lt;span class="math"&gt;\(\lambda\)&lt;/span&gt;
+ in these equations because it is often substituted in later equations.&lt;/p&gt;
+&lt;div class="section" id="expectation-value-of-the-volume-weighted-density-e-rho"&gt;
+&lt;h4&gt;Expectation Value of the Volume-Weighted Density &lt;span class="math"&gt;\(E[\rho]\)&lt;/span&gt;
+&lt;/h4&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+E[\rho] \equiv \int \rho P_v(\ln \rho/\rho_0) d \ln \rho = \int \rho \left[I_1(2\sqrt{\lambda u}) e^{-\lambda-u} \sqrt{\frac{\lambda}{u}} + e^{-\lambda} \delta(u)\right]du
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;To get to the form of the above equations, we use the substitution&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+x = 2\sqrt{\lambda u}
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;which gives us &lt;span class="math"&gt;\(\rho\)&lt;/span&gt;
+ in terms of &lt;span class="math"&gt;\(x\)&lt;/span&gt;
+:&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+\rho = \rho_0 \exp\left[T\left(-\frac{x^2}{4\lambda} + \frac{\lambda}{1+T}\right)\right]
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;and leads to the rearrangement:&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+E[\rho] = \int \rho_0 \exp\left[T\left(-\frac{x^2}{4\lambda} + \frac{\lambda}{1+T}\right)\right] \left[I_1(x) e^{-x^2/(4\lambda)-\lambda} \right]dx + \rho_0 \exp\left(- \frac{\lambda}{1+T}\right)
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;where the rightmost term is kept from the first moment above.  The integral
+term can straightforwardly be broken apart into equations of the form shown
+above.&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+L \rightarrow \frac{\lambda}{1+T}
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+E[\rho] = \rho_0 \left[ \exp \left(-\lambda+\frac{T\lambda}{1+T}\right) \int  \left[I_1(x) e^{-x^2/(4L)} \right]dx +\exp\left(- \frac{\lambda}{1+T}\right) \right]
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+= \rho_0 \left[ \exp \left(-\lambda+\frac{T\lambda}{1+T}\right)(e^L-1)  +\exp\left(- \frac{\lambda}{1+T}\right) \right]
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+= \rho_0 \left[ \exp \left(-\lambda+\frac{T\lambda}{1+T}\right)(e^{\lambda/1+T}-1)  +\exp\left(- \frac{\lambda}{1+T}\right) \right]
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+= \rho_0 \left[ e^{-\lambda/(1+T)}(e^{\lambda/1+T}-1)  +\exp\left(- \frac{\lambda}{1+T}\right) \right]
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+= \rho_0
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;The same general approach can be followed for all expectation values, but we'll skip the detailed algebra.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="expectation-value-of-the-mass-weighted-density-e-rho-2"&gt;
+&lt;h4&gt;Expectation Value of the Mass-Weighted Density &lt;span class="math"&gt;\(E[\rho^2]\)&lt;/span&gt;
+&lt;/h4&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+E[\rho^2] = \rho_0^2 \left[ \exp\left(\lambda\frac{2 T^2}{1+3T+2T^2}\right) - \exp\left(\lambda\frac{T-1}{T+1}\right) + \exp\left(\lambda\frac{T-1}{T+1}\right) \right]
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;The right 2 terms cancel, yielding the value shown in Equation 7 of Hopkins
+2013 scaled by &lt;span class="math"&gt;\(\rho_0^2\)&lt;/span&gt;
+.  However, the right-most term is the
+correction factor from the Dirac Delta term needed to correct any
+numerical computation of the mass-weighted density.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="variance-of-the-volume-weighted-density-v-rho"&gt;
+&lt;h4&gt;Variance of the Volume-Weighted Density &lt;span class="math"&gt;\(V[\rho]\)&lt;/span&gt;
+&lt;/h4&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+V[\rho] = E[\rho^2] - E[\rho]^2 = \rho_0^2 \left[  \exp\left(\lambda\frac{2 T^2}{1+3T+2T^2}\right) - 1 \right]
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;However, the &amp;quot;correction factor&amp;quot; is still important:&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+V_\delta[\rho] = \rho_0^2 \left[ \exp\left(\lambda\frac{T-1}{T+1}\right) - \exp\left(-2\frac{\lambda}{1+T}\right) \right]
+\end{equation*}
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary><category term="turbulence"></category></entry><entry><title>BGPS Point Source Recovery - Experiment 23 results</title><link href="http://keflavich.github.io/blog/bgps-point-source-recovery-experiment-23-results.html" rel="alternate"></link><updated>2013-05-20T14:45:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2013-05-20:bgps-point-source-recovery-experiment-23-results.html</id><summary type="html">&lt;p&gt;Experiment 23, run in mid-May 2013, created power-law synthetic astrophysical
 sky maps with added point sources in order to examine the pipeline + bolocat's
 ability to recover point source flux densities accurately.&lt;/p&gt;
 &lt;p&gt;For the purpose of the BGPS v2 paper, this data is incorporated into Section

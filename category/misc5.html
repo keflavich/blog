@@ -66,6 +66,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
                           <li class="post">
+                  2013/06/04
+                  <br>
+                  <a href="http://keflavich.github.io/blog/hopkins-pdf-generalization.html">Hopkins PDF Generalization</a>
+              </li>
+                          <li class="post">
                   2013/05/13
                   <br>
                   <a href="http://keflavich.github.io/blog/recovering-from-startup-drive-out-of-memory.html">Recovering from "Startup drive out of memory"</a>
@@ -85,11 +90,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/jeans-mass.html">Jeans Mass</a>
               </li>
-                          <li class="post">
-                  2013/02/27
-                  <br>
-                  <a href="http://keflavich.github.io/blog/installing-sextractor-on-a-mac.html">Installing sextractor on a mac?</a>
-              </li>
                     </ul>
       </li>
         
@@ -101,6 +101,35 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles in the misc category</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/converting-a-class-created-fits-file-to-a-real-fits-compliant-fits-file.html" rel="bookmark" title="Permalink to Converting a CLASS-created .fits file to a real (FITS-compliant) FITS file">
+                    Converting a CLASS-created .fits file to a real (FITS-compliant) FITS file</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>This post is to remind me, the next time I go looking, how the hell to
+convert from a GILDAS CLASS fits spectrum (created by
+<tt class="docutils literal">fits write blah.fits /mode spectrum</tt>) to a FITS-compliant spectrum.
+First, remember the FITS-WCS spectral definitions:
+<a class="reference external" href="http://www.aanda.org/index.php?option=com_article&amp;access=bibcode&amp;Itemid=129&amp;bibcode=2006A%2526A...446..747GFUL">http://www.aanda.org/index.php?option=com_article&amp;access=bibcode&amp;Itemid=129&amp;bibcode=2006A%2526A...446..747GFUL</a>
+And the peculiar CLASS definitions:
+<a class="reference external" href="http://iram.fr/IRAMFR/GILDAS/doc/html/class-html/node84.html">http://iram.fr/IRAMFR/GILDAS/doc/html/class-html/node84.html</a>
+Key points:
+CLASS stores the CDELT parameter as DELTAV in m/s instead of km/s and
+the velocity offset of the spectral frame in VELO-LSR also in m/s.
+Things to set:
+CTYPE = VRAD
+SPECSYS = SOURCE
+SSYSSRC = LSRK
+VELOSYS = frame velocity (VELO-LSR or CRVAL1)
+This information is subject to change...</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -317,25 +346,6 @@ DS9's crosshairs are extremely useful for checking on WCS coordinate
 matching, especially when they can be set precisely using the command
 line. I don't know how to set the coordinates exactly interactively...
 that may come later.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/ds9-gaussian-fitting.html" rel="bookmark" title="Permalink to DS9 gaussian fitting">
-                    DS9 gaussian fitting</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>One thing DS9 desperately needs is an interactive gaussian fitter. I
-have NOT implemented one yet, but it is high on my to do list. Has
-anyone else (googlers?) tried or succeeded in implementing such a thing?
-Ideally, something with NO dependencies: if I write one, it will require
-python, numpy, and probably pyds9 - ick. Straight-up TCL would be very
-much preferable.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

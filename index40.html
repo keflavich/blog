@@ -65,6 +65,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
                           <li class="post">
+                  2013/06/04
+                  <br>
+                  <a href="http://keflavich.github.io/blog/hopkins-pdf-generalization.html">Hopkins PDF Generalization</a>
+              </li>
+                          <li class="post">
                   2013/05/20
                   <br>
                   <a href="http://keflavich.github.io/blog/bgps-point-source-recovery-experiment-23-results.html">BGPS Point Source Recovery - Experiment 23 results</a>
@@ -84,11 +89,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/bolocam-mass-calculations.html">Bolocam Mass Calculations</a>
               </li>
-                          <li class="post">
-                  2013/03/22
-                  <br>
-                  <a href="http://keflavich.github.io/blog/arecibo-mapping-total-power-measurements.html">Arecibo Mapping: Total Power Measurements</a>
-              </li>
                     </ul>
       </li>
         
@@ -99,6 +99,43 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/notice-anything-different.html" rel="bookmark" title="Permalink to Notice anything different?">
+                    Notice anything different?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-21T01:08:00"> 2008/08/21 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>About milkyway? This post is a red herring, but:
+I decided to go ahead and run the mapper on Cygnus, L33, L111, and the
+Galactic Center again. The pointing has gotten to the stage where I'm
+certain I can't do anything more without a stroke of pure brilliance or
+a conversation with someone who hasn't touched a thing - e.g. Jason -
+that suddenly enlightens me.
+In order to fully reproduce Meredith's results, I'd probably have to go
+back through and follow her 'pipeline' process step by step as well, and
+I suspect that, if I had used her method on her RA/Dec maps, I would
+have come up with exactly the same problem I currently see. Therefore, I
+won't do anything about it.
+I think the most appropriate response at this point MAY be to just fit a
+damned polynomial/sine curve in az and include that as part of the
+pointing model, but I can't justify where that comes from. All I know is
+that it's present in Meredith's data as well as my own.
+What's that next step with the PPSes? We need to do that.
+More important, though, is getting some image optimization ready FAST. I
+need to be running this stuff before September! Tonight's run will be a
+test of numbers of PCA components. At the very least, the v0.5 should
+have a consistent set of images even if we cut out the high-flux ones.
+We'll deal with that later.
+For the high flux objects, e.g. g34.3, since we have so much overlapping
+data, a simple average/magical baseline subtraction might be just as if
+not more effective than PCA subtraction, so that's one way around it.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -350,36 +387,6 @@ bad point:
 /scratch/adam_work/plots/models_rawcsoptg_0707.ps
 The net result is, I still don't have a nice small RMS offset
 Update 8/12/08: using RA/DEC mapping doesn't help.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/cleaning-ideas.html" rel="bookmark" title="Permalink to Cleaning ideas">
-                    Cleaning ideas</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-11T15:20:00"> 2008/08/11 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>It's proving very difficult to get rid of glitches, so here are some
-more ideas:</p>
-<p>Median filter the whole timestream (downsampled) at a resolution that
-will pull down the glitch peak. Subtract out the median-filtered
-timestream from the original, and look for outliers in that
-distribution: in principle, those should be glitches.</p>
-<p>Another option: subtract out the noise map AND the best-model map from
-the original timestream before trying to pull out additional astro model
-stuff. The map-to-timestream astro model can't include glitches because
-they're averaged over, but the sky-subtracted timestream DOES include
-glitches (no matter how many PCA components are removed) because
-glitches are NOT correlated across detectors. The weird thing is that
-this is effectively subtracting out exactly what was calculated from the
-sky subtraction - the question is whether subtracting it out BEFORE sky
-subtracting again gets you any benefit. If it was just noise,
-subtracting noise from noise is fine, but the &quot;noise&quot; does include some
-residual signal.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

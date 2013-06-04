@@ -65,6 +65,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
                           <li class="post">
+                  2013/06/04
+                  <br>
+                  <a href="http://keflavich.github.io/blog/hopkins-pdf-generalization.html">Hopkins PDF Generalization</a>
+              </li>
+                          <li class="post">
                   2013/05/20
                   <br>
                   <a href="http://keflavich.github.io/blog/bgps-point-source-recovery-experiment-23-results.html">BGPS Point Source Recovery - Experiment 23 results</a>
@@ -84,11 +89,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/bolocam-mass-calculations.html">Bolocam Mass Calculations</a>
               </li>
-                          <li class="post">
-                  2013/03/22
-                  <br>
-                  <a href="http://keflavich.github.io/blog/arecibo-mapping-total-power-measurements.html">Arecibo Mapping: Total Power Measurements</a>
-              </li>
                     </ul>
       </li>
         
@@ -99,6 +99,36 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/cleaning-ideas.html" rel="bookmark" title="Permalink to Cleaning ideas">
+                    Cleaning ideas</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-11T15:20:00"> 2008/08/11 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>It's proving very difficult to get rid of glitches, so here are some
+more ideas:</p>
+<p>Median filter the whole timestream (downsampled) at a resolution that
+will pull down the glitch peak. Subtract out the median-filtered
+timestream from the original, and look for outliers in that
+distribution: in principle, those should be glitches.</p>
+<p>Another option: subtract out the noise map AND the best-model map from
+the original timestream before trying to pull out additional astro model
+stuff. The map-to-timestream astro model can't include glitches because
+they're averaged over, but the sky-subtracted timestream DOES include
+glitches (no matter how many PCA components are removed) because
+glitches are NOT correlated across detectors. The weird thing is that
+this is effectively subtracting out exactly what was calculated from the
+sky subtraction - the question is whether subtracting it out BEFORE sky
+subtracting again gets you any benefit. If it was just noise,
+subtracting noise from noise is fine, but the &quot;noise&quot; does include some
+residual signal.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -300,25 +330,6 @@ the RMS of the centroids has not gone down. Now I need to go through
 each individual source and image and try to get rid of the baddies.
 There are presumably some sources with bulk offsets that can be removed
 to improve the fits. I just have to find them.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/nothing.html" rel="bookmark" title="Permalink to Nothing">
-                    Nothing</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-06T00:32:00"> 2008/08/06 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>No progress today. Spent the whole day re-mapping pointing sources and
-figuring out which observations ARE pointing sources. Mapping STILL not
-done - it takes a long time when there are hundreds of separate
-observations. Also, finding some corrupt files and noting them in
-/scratch/adam_work/texts/toolarge.txt . A lot more of that work to be
-done.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

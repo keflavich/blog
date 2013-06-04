@@ -65,6 +65,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
                           <li class="post">
+                  2013/06/04
+                  <br>
+                  <a href="http://keflavich.github.io/blog/hopkins-pdf-generalization.html">Hopkins PDF Generalization</a>
+              </li>
+                          <li class="post">
                   2013/05/20
                   <br>
                   <a href="http://keflavich.github.io/blog/bgps-point-source-recovery-experiment-23-results.html">BGPS Point Source Recovery - Experiment 23 results</a>
@@ -84,11 +89,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/bolocam-mass-calculations.html">Bolocam Mass Calculations</a>
               </li>
-                          <li class="post">
-                  2013/03/22
-                  <br>
-                  <a href="http://keflavich.github.io/blog/arecibo-mapping-total-power-measurements.html">Arecibo Mapping: Total Power Measurements</a>
-              </li>
                     </ul>
       </li>
         
@@ -99,6 +99,300 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/hopkins-pdf-generalization.html" rel="bookmark" title="Permalink to Hopkins PDF Generalization">
+                    Hopkins PDF Generalization</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-06-04T15:00:00"> 2013/06/04 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> presents a non-lognormal form of the probability distribution
+function of density in turbulence, depending primarily on a parameter
+<span class="math">\(T\)</span>
+.  I examine some of its properties here.</p>
+<p>The conservation equations, conservation of probability and mass</p>
+<div class="math">
+\begin{equation*}
+\int_{-\infty}^\infty P_V(\ln \rho) d \ln \rho \equiv 1
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+\int_{-\infty}^\infty\rho P_V(\ln \rho) d \ln \rho \equiv \rho_0 = 1
+\end{equation*}
+</div>
+<p>The <span class="math">\(=1\)</span>
+ is the definition used by <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a>.  Part of the goal of this document
+is to generalize to <span class="math">\(\rho_0 &lt;&gt; 1\)</span>
+</p>
+<p>The most important thing to do is determine the values of the moments of the distribution, including
+the integral corrections for the Dirac Delta function component of the PDF.</p>
+<div class="section" id="the-pdf">
+<h2>The PDF</h2>
+<p>The full form of the Hopkins PDF is</p>
+<div class="math">
+\begin{equation*}
+P_V(\ln \rho) d \ln \rho =  \left[I_1(2\sqrt{\lambda u}) e^{-\lambda-u} \sqrt{\frac{\lambda}{u}} + e^{-\lambda} \delta(u)\right]du
+\end{equation*}
+</div>
+<p>The mass-weighted PDF is simply</p>
+<div class="math">
+\begin{equation*}
+P_M(\ln \rho) d \ln \rho =  \rho \left[I_1(2\sqrt{\lambda u}) e^{-\lambda-u} \sqrt{\frac{\lambda}{u}} + e^{-\lambda} \delta(u)\right]du
+\end{equation*}
+</div>
+<p>With definitions:</p>
+<div class="math">
+\begin{equation*}
+u\equiv \frac{\lambda}{1+T} - \frac{\ln \rho}{T}  ;  (u \geq 0)
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+\lambda \equiv \frac{S_{\ln \rho,V}}{2 T^2}
+\end{equation*}
+</div>
+<p>But note that both of these distributions can depend on <span class="math">\(\rho_0\)</span>
+, changing <span class="math">\(u\)</span>
+ to be</p>
+<div class="math">
+\begin{equation*}
+u\equiv \frac{\lambda}{1+T} - \frac{\ln (\rho/\rho_0)}{T}  ;  (u \geq 0)
+\end{equation*}
+</div>
+<div class="section" id="moment-equations">
+<h3>Moment equations</h3>
+<p>The important moments are the mean and variance of the volume and mass density
+probability distribution and the volume and mass <em>log</em>-density probability
+distribution.</p>
+<p>The definitions used here are <span class="math">\(E[\rho] \equiv &lt;\rho&gt;_V\)</span>
+, etc.  The
+variance is computed as <span class="math">\(V[x]=E[x^2]-E[x]^2\)</span>
+, which means we'll need to
+compute the moments of various combinations of variables.</p>
+<p>Also, <span class="math">\(S_{\ln \rho,V} \equiv V[\ln \rho_V]\)</span>
+</p>
+<div class="math">
+\begin{equation*}
+&lt;\rho&gt;_V \equiv \rho_0 \equiv \int_{-\infty}^{\infty} \rho P_V(\ln \rho/\rho_0) d \ln \rho
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+&lt;\ln \rho&gt;_V \equiv \int_{-\infty}^{\infty} \ln \rho P_V(\ln \rho/\rho_0) d \ln \rho
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+&lt;\rho&gt;_M \equiv \int_{-\infty}^{\infty} \rho (\rho P_V(\ln \rho/\rho_0)) d \ln \rho
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+&lt;\ln \rho&gt;_M \equiv \int_{-\infty}^{\infty} \ln \rho (\rho P_V(\ln \rho/\rho_0)) d \ln \rho
+\end{equation*}
+</div>
+</div>
+<div class="section" id="delta-terms">
+<h3>Delta terms</h3>
+<p>These can be integrated analytically</p>
+<div class="math">
+\begin{equation*}
+&lt;\rho&gt;_V \equiv \rho_0 \equiv \int_{-\infty}^{\infty} \rho e^{-\lambda} \delta(\frac{\lambda}{1+T} - \frac{\ln\rho/\rho_0}{T}) \frac{d \ln \rho}{T}
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+&lt;\ln \rho&gt;_V \equiv \int_{-\infty}^{\infty} \ln \rho e^{-\lambda} \delta(\frac{\lambda}{1+T} - \frac{\ln\rho/\rho_0}{T}) \frac{d \ln \rho}{T}
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+&lt;\rho&gt;_M \equiv \int_{-\infty}^{\infty} \rho (\rho e^{-\lambda} \delta(\frac{\lambda}{1+T} - \frac{\ln\rho/\rho_0}{T})) \frac{d \ln \rho}{T}
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+&lt;\ln \rho&gt;_M \equiv \int_{-\infty}^{\infty} \ln \rho (\rho e^{-\lambda} \delta(\frac{\lambda}{1+T} - \frac{\ln\rho/\rho_0}{T})) \frac{d \ln \rho}{T}
+\end{equation*}
+</div>
+<p>Substitution: <span class="math">\(v=\frac{\ln \rho/\rho_0}{T}\)</span>
+,
+<span class="math">\(dv = \frac{1}{T} d \ln \rho\)</span>
+, <span class="math">\(\rho=\rho_0 e^{v*T}\)</span>
+, <span class="math">\(\ln \rho = v T + \ln \rho_0\)</span>
+</p>
+<div class="math">
+\begin{equation*}
+&lt;\rho&gt;_{V\delta} \equiv \rho_0 \equiv \int_{-\infty}^{\infty} \rho_0 e^{vT} e^{-\lambda} \delta(\frac{\lambda}{1+T} - v) d v
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+&lt;\ln \rho&gt;_{V\delta} \equiv \int_{-\infty}^{\infty} (vT + \ln \rho_0) e^{-\lambda} \delta(\frac{\lambda}{1+T} - v) d v
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+&lt;\rho&gt;_{M\delta} \equiv \int_{-\infty}^{\infty} \rho_0^2 e^{2vT} ( e^{-\lambda} \delta(\frac{\lambda}{1+T} - v)) d v
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+&lt;\ln \rho&gt;_{M\delta} \equiv \int_{-\infty}^{\infty} (vT + \ln \rho_0) \rho_0 e^{vT} ( e^{-\lambda} \delta(\frac{\lambda}{1+T} - v)) d v
+\end{equation*}
+</div>
+<p>Solutions:</p>
+<div class="math">
+\begin{equation*}
+&lt;\rho&gt;_{V\delta} = - \rho_0 \exp\left[\frac{T \lambda }{1+T} - \lambda\right] = - \rho_0 \exp\left[-\lambda \frac{1}{1+T}\right]
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+&lt;\ln \rho&gt;_{V\delta} = - e^{-\lambda} \frac{\lambda T}{1+T} - e^{-\lambda} \ln \rho_0
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+&lt;\rho&gt;_{M\delta} = - \rho_0^2 \exp\left[\frac{2 T \lambda }{1+T} - \lambda\right] = - \rho_0^2 \exp\left[\lambda\frac{T-1}{T+1}\right]
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+&lt;\ln \rho&gt;_{M\delta} = - \rho_0  \left( \frac{\lambda T}{1+T} + \ln \rho_0 \right) \exp\left[\frac{T \lambda }{1+T} - \lambda\right]
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+= - \rho_0 \left( \frac{\lambda T}{1+T} + \ln \rho_0 \right) \exp\left[\frac{ \lambda (T-1) }{T+1}\right]
+\end{equation*}
+</div>
+<p>Using <span class="math">\(\rho_0=1\)</span>
+ as defined in <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> simplifies all of these a great deal.</p>
+</div>
+<div class="section" id="pdf-integrals">
+<h3>PDF Integrals</h3>
+<p>These cannot be integrated analytically.</p>
+<p>However, we can work from a few simple mathematica/sympy results:</p>
+<div class="math">
+\begin{equation*}
+\int_0^\infty I_1(x) e^{-x^2/(4L)} dx = e^L - 1
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+\int_0^\infty x^2 I_1(x) e^{-x^2/(4L)} dx = 4 L^2 * e^L
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+\int_0^\infty x^4 I_1(x) e^{-x^2/(4L)} dx = 16 L^3 (L+2) * e^L
+\end{equation*}
+</div>
+<p>We use <span class="math">\(L\)</span>
+ instead of <span class="math">\(\lambda\)</span>
+ in these equations because it is often substituted in later equations.</p>
+<div class="section" id="expectation-value-of-the-volume-weighted-density-e-rho">
+<h4>Expectation Value of the Volume-Weighted Density <span class="math">\(E[\rho]\)</span>
+</h4>
+<div class="math">
+\begin{equation*}
+E[\rho] \equiv \int \rho P_v(\ln \rho/\rho_0) d \ln \rho = \int \rho \left[I_1(2\sqrt{\lambda u}) e^{-\lambda-u} \sqrt{\frac{\lambda}{u}} + e^{-\lambda} \delta(u)\right]du
+\end{equation*}
+</div>
+<p>To get to the form of the above equations, we use the substitution</p>
+<div class="math">
+\begin{equation*}
+x = 2\sqrt{\lambda u}
+\end{equation*}
+</div>
+<p>which gives us <span class="math">\(\rho\)</span>
+ in terms of <span class="math">\(x\)</span>
+:</p>
+<div class="math">
+\begin{equation*}
+\rho = \rho_0 \exp\left[T\left(-\frac{x^2}{4\lambda} + \frac{\lambda}{1+T}\right)\right]
+\end{equation*}
+</div>
+<p>and leads to the rearrangement:</p>
+<div class="math">
+\begin{equation*}
+E[\rho] = \int \rho_0 \exp\left[T\left(-\frac{x^2}{4\lambda} + \frac{\lambda}{1+T}\right)\right] \left[I_1(x) e^{-x^2/(4\lambda)-\lambda} \right]dx + \rho_0 \exp\left(- \frac{\lambda}{1+T}\right)
+\end{equation*}
+</div>
+<p>where the rightmost term is kept from the first moment above.  The integral
+term can straightforwardly be broken apart into equations of the form shown
+above.</p>
+<div class="math">
+\begin{equation*}
+L \rightarrow \frac{\lambda}{1+T}
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+E[\rho] = \rho_0 \left[ \exp \left(-\lambda+\frac{T\lambda}{1+T}\right) \int  \left[I_1(x) e^{-x^2/(4L)} \right]dx +\exp\left(- \frac{\lambda}{1+T}\right) \right]
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+= \rho_0 \left[ \exp \left(-\lambda+\frac{T\lambda}{1+T}\right)(e^L-1)  +\exp\left(- \frac{\lambda}{1+T}\right) \right]
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+= \rho_0 \left[ \exp \left(-\lambda+\frac{T\lambda}{1+T}\right)(e^{\lambda/1+T}-1)  +\exp\left(- \frac{\lambda}{1+T}\right) \right]
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+= \rho_0 \left[ e^{-\lambda/(1+T)}(e^{\lambda/1+T}-1)  +\exp\left(- \frac{\lambda}{1+T}\right) \right]
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+= \rho_0
+\end{equation*}
+</div>
+<p>The same general approach can be followed for all expectation values, but we'll skip the detailed algebra.</p>
+</div>
+<div class="section" id="expectation-value-of-the-mass-weighted-density-e-rho-2">
+<h4>Expectation Value of the Mass-Weighted Density <span class="math">\(E[\rho^2]\)</span>
+</h4>
+<div class="math">
+\begin{equation*}
+E[\rho^2] = \rho_0^2 \left[ \exp\left(\lambda\frac{2 T^2}{1+3T+2T^2}\right) - \exp\left(\lambda\frac{T-1}{T+1}\right) + \exp\left(\lambda\frac{T-1}{T+1}\right) \right]
+\end{equation*}
+</div>
+<p>The right 2 terms cancel, yielding the value shown in Equation 7 of Hopkins
+2013 scaled by <span class="math">\(\rho_0^2\)</span>
+.  However, the right-most term is the
+correction factor from the Dirac Delta term needed to correct any
+numerical computation of the mass-weighted density.</p>
+</div>
+<div class="section" id="variance-of-the-volume-weighted-density-v-rho">
+<h4>Variance of the Volume-Weighted Density <span class="math">\(V[\rho]\)</span>
+</h4>
+<div class="math">
+\begin{equation*}
+V[\rho] = E[\rho^2] - E[\rho]^2 = \rho_0^2 \left[  \exp\left(\lambda\frac{2 T^2}{1+3T+2T^2}\right) - 1 \right]
+\end{equation*}
+</div>
+<p>However, the &quot;correction factor&quot; is still important:</p>
+<div class="math">
+\begin{equation*}
+V_\delta[\rho] = \rho_0^2 \left[ \exp\left(\lambda\frac{T-1}{T+1}\right) - \exp\left(-2\frac{\lambda}{1+T}\right) \right]
+\end{equation*}
+</div>
+</div>
+</div>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -1114,24 +1408,6 @@ don't feel confident about numbers below that range for ALL fields.</p>
             <abbr class="published" title="2012-12-26T23:02:00"> 2012/12/26 </abbr>
             <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>This post has been baleeted.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/idea-multispectral-eigenimage-decomposition.html" rel="bookmark" title="Permalink to Idea: Multispectral Eigenimage decomposition...">
-                    Idea: Multispectral Eigenimage decomposition...</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-12-22T02:53:00"> 2012/12/22 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Can use BGPS + HiGal to look for correlated (thermal) components and
-decorrelated (free-free) components. &nbsp;Obviously needs to be tried in GC
-first.
-Also, need to figure out a method to mitigate negative bowls in
-unsharp-masking for herschel-bolocam comparison</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
