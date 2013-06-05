@@ -334,6 +334,16 @@ scaled by &lt;span class="math"&gt;\(\rho_0^2\)&lt;/span&gt;
 .  However, the right-most term is the
 correction factor from the Dirac Delta term needed to correct any
 numerical computation of the mass-weighted density.&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+E_{\delta,M}[\rho] = \exp\left(\lambda\frac{T-1}{T+1}\right)
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+E_M[\rho] = \rho_0  \exp\left(\lambda\frac{2 T^2}{1+3T+2T^2}\right)
+\end{equation*}
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="expectation-value-of-the-mass-weighted-density-squared-e-m-rho-2"&gt;
 &lt;h4&gt;Expectation Value of the Mass-Weighted Density Squared &lt;span class="math"&gt;\(E_M[\rho^2]\)&lt;/span&gt;
@@ -382,6 +392,10 @@ E_{M}[\rho^2] = \rho_0^2 \exp\left[\frac{6\lambda T^2}{3T^2+4T+1}\right]
 &lt;div class="section" id="variance-of-the-mass-weighted-density-v-m-rho-e-m-rho-2-e-m-rho-2"&gt;
 &lt;h4&gt;Variance of the Mass-Weighted Density &lt;span class="math"&gt;\(V_M[\rho] = E_M[\rho^2] - E_M[\rho]^2\)&lt;/span&gt;
 &lt;/h4&gt;
+&lt;p&gt;Since correction factors are given for &lt;span class="math"&gt;\(E_M[\rho^2]\)&lt;/span&gt;
+ and
+&lt;span class="math"&gt;\(E_M[\rho]\)&lt;/span&gt;
+, they are not included separately here:&lt;/p&gt;
 &lt;div class="math"&gt;
 \begin{equation*}
 V_M[\rho] = E_M[\rho^2] - E_M[\rho]^2
@@ -493,7 +507,7 @@ E_{left}[\ln \rho] = \exp\left(\frac{-\lambda}{1+T}\right) \left[
 \begin{equation*}
 E_{left}[\ln \rho] =
 \left(\ln \rho_0 + \frac{T\lambda}{1+T} \right)  \left(1-\exp\left[\frac{-\lambda}{1+T}\right]\right) -
-  \left(\frac{ T \lambda}{(1+T)^2}  \right)
+\left(\frac{ T \lambda}{(1+T)^2}  \right)
 \end{equation*}
 &lt;/div&gt;
 &lt;div class="math"&gt;
@@ -529,7 +543,7 @@ E_{left}[\ln^2 \rho] = e^{-\lambda} \int \left[
 \left[I_1(x) e^{-x^2/(4\lambda)} \right]dx
 \end{equation*}
 &lt;/div&gt;
-&lt;p&gt;This time it's just too ugly.  Define new variables:&lt;/p&gt;
+&lt;p&gt;This time it's just too ugly.  Define a new variable:&lt;/p&gt;
 &lt;div class="math"&gt;
 \begin{equation*}
 Q = \ln \rho_0 + \frac{T\lambda}{1+T}
@@ -618,7 +632,9 @@ E_M[\ln^2 \rho] =
 &lt;/div&gt;
 &lt;div class="math"&gt;
 \begin{equation*}
-= \ln^2 \rho_0 + 2 \ln \rho_0 \frac{T^2 \lambda}{(1+T)^2} + \left(\frac{\lambda T^2}{(1+T)^2}\right)^2 + \frac{2\lambda T^2}{(1+T)^3}
+= \ln^2 \rho_0 + 2 \ln \rho_0 \frac{T^2 \lambda}{(1+T)^2}
++ \left(\frac{\lambda T^2}{(1+T)^2}\right)^2
++ \frac{2\lambda T^2}{(1+T)^3}
 \end{equation*}
 &lt;/div&gt;
 &lt;div class="math"&gt;
@@ -631,7 +647,8 @@ E_M[\ln^2 \rho] =
 &lt;div class="math"&gt;
 \begin{equation*}
 S_{\ln \rho,M} = E_M[\ln \rho^2] - E_M[\ln \rho]^2 =
-\ln^2 \rho_0 + 2 \ln \rho_0 \frac{T^2 \lambda}{(1+T)^2} + \left(\frac{\lambda T^2}{(1+T)^2}\right)^2 + \frac{2\lambda T^2}{(1+T)^3}
+\ln^2 \rho_0 + 2 \ln \rho_0 \frac{T^2 \lambda}{(1+T)^2}
++ \left(\frac{\lambda T^2}{(1+T)^2}\right)^2 + \frac{2\lambda T^2}{(1+T)^3}
 - \left(\ln \rho_0 + \frac{T^2\lambda}{(1+T)^2}\right)^2
 \end{equation*}
 &lt;/div&gt;
