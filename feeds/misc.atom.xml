@@ -287,20 +287,6 @@ E[\rho] = \rho_0 \left[ \exp \left(-\lambda+\frac{T\lambda}{1+T}\right) \int  \l
 &lt;/div&gt;
 &lt;p&gt;The same general approach can be followed for all expectation values, but we'll skip the detailed algebra.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="section" id="expectation-value-of-the-mass-weighted-density-e-m-rho"&gt;
-&lt;h4&gt;Expectation Value of the Mass-Weighted Density &lt;span class="math"&gt;\(E_M[\rho]\)&lt;/span&gt;
-&lt;/h4&gt;
-&lt;div class="math"&gt;
-\begin{equation*}
-E[\rho^2] = \rho_0 \left[ \exp\left(\lambda\frac{2 T^2}{1+3T+2T^2}\right) - \exp\left(\lambda\frac{T-1}{T+1}\right) + \exp\left(\lambda\frac{T-1}{T+1}\right) \right]
-\end{equation*}
-&lt;/div&gt;
-&lt;p&gt;The right 2 terms cancel, yielding the value shown in Equation 7 of &lt;a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H"&gt;Hopkins 2013&lt;/a&gt;
-scaled by &lt;span class="math"&gt;\(\rho_0^2\)&lt;/span&gt;
-.  However, the right-most term is the
-correction factor from the Dirac Delta term needed to correct any
-numerical computation of the mass-weighted density.&lt;/p&gt;
-&lt;/div&gt;
 &lt;div class="section" id="variance-of-the-volume-weighted-density-v-rho-s-ln-rho-v"&gt;
 &lt;h4&gt;Variance of the Volume-Weighted Density &lt;span class="math"&gt;\(V[\rho]=S_{\ln \rho,V}\)&lt;/span&gt;
 &lt;/h4&gt;
@@ -313,6 +299,95 @@ V[\rho] = E[\rho^2] - E[\rho]^2 = \rho_0^2 \left[  \exp\left(\lambda\frac{2 T^2}
 &lt;div class="math"&gt;
 \begin{equation*}
 V_\delta[\rho] = \rho_0^2 \left[ \exp\left(\lambda\frac{T-1}{T+1}\right) - \exp\left(-2\frac{\lambda}{1+T}\right) \right]
+\end{equation*}
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="expectation-value-of-the-mass-weighted-density-e-m-rho"&gt;
+&lt;h4&gt;Expectation Value of the Mass-Weighted Density &lt;span class="math"&gt;\(E_M[\rho]\)&lt;/span&gt;
+&lt;/h4&gt;
+&lt;p&gt;Start from halfway through &lt;span class="math"&gt;\(E[\rho]\)&lt;/span&gt;
+, simply adding a factor of 2 in the exponent:&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+E_M[\rho] = \int \rho_0 \exp\left[2T\left(-\frac{x^2}{4\lambda} + \frac{\lambda}{1+T}\right)\right] \left[I_1(x) e^{-x^2/(4\lambda)-\lambda} \right]dx + \rho_0 \exp\left(- \frac{\lambda(T-1)}{1+T}\right)
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;Follow the same math, with &lt;span class="math"&gt;\(L=\frac{\lambda}{1+2T}\)&lt;/span&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+= \rho_0 \left[ \exp \left(-\lambda+\frac{2T\lambda}{1+T}\right)(e^L-1)  +\exp\left(- \frac{\lambda(T-1)}{1+T}\right) \right]
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+= \rho_0 \left[ \exp \left(\frac{(T-1)\lambda}{1+T}\right)(e^{\lambda/(1+2T)}-1)  +\exp\left(- \frac{\lambda}{1+T}\right) \right]
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+E_M[\rho] = \rho_0 \left[ \exp\left(\lambda\frac{2 T^2}{1+3T+2T^2}\right) - \exp\left(\lambda\frac{T-1}{T+1}\right) + \exp\left(\lambda\frac{T-1}{T+1}\right) \right]
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;The right 2 terms cancel, yielding the value shown in Equation 7 of &lt;a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H"&gt;Hopkins 2013&lt;/a&gt;
+scaled by &lt;span class="math"&gt;\(\rho_0^2\)&lt;/span&gt;
+.  However, the right-most term is the
+correction factor from the Dirac Delta term needed to correct any
+numerical computation of the mass-weighted density.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="expectation-value-of-the-mass-weighted-density-squared-e-m-rho-2"&gt;
+&lt;h4&gt;Expectation Value of the Mass-Weighted Density Squared &lt;span class="math"&gt;\(E_M[\rho^2]\)&lt;/span&gt;
+&lt;/h4&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+E_M[\rho^2] = \int \rho^2 \frac{\rho}{\rho_0} e^{-\lambda} \left[I_1(x) e^{-x^2/(4\lambda)} \right]dx + \int \rho^2 \frac{\rho}{\rho_0} e^{-\lambda} \delta(u) du
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+E_{\delta,M}[\rho^2] = \rho_0^2 \exp\left[\lambda\frac{2T-1}{T+1}\right]
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+E_{left}[\rho^2] = e^{-\lambda} \int
+\rho_0^2 \exp\left[3T\left(-\frac{x^2}{4\lambda} + \frac{\lambda}{1+T}\right)\right]
+\left[I_1(x) e^{-x^2/(4\lambda)} \right]
+dx
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+ = \rho_0^2 \exp\left[\frac{(2T-1)\lambda}{1+T}\right]
+\int I_1(x) e^{-(3T+1)x^2/(4\lambda)}  dx
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+ = \rho_0^2 \exp\left[\frac{(2T-1)\lambda}{1+T}\right]
+\left( \exp\left[\frac{\lambda}{3T+1}\right] - 1\right)
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+= \rho_0^2 \left(\exp\left[\frac{6\lambda T^2}{3T^2+4T+1}\right] - \exp\left[\frac{(2T-1)\lambda}{1+T}\right] \right)
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+E_{M}[\rho^2] = \rho_0^2 \exp\left[\frac{6\lambda T^2}{3T^2+4T+1}\right]
+\end{equation*}
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="variance-of-the-mass-weighted-density-v-m-rho-e-m-rho-2-e-m-rho-2"&gt;
+&lt;h4&gt;Variance of the Mass-Weighted Density &lt;span class="math"&gt;\(V_M[\rho] = E_M[\rho^2] - E_M[\rho]^2\)&lt;/span&gt;
+&lt;/h4&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+V_M[\rho] = E_M[\rho^2] - E_M[\rho]^2
+= \rho_0^2 \left( \exp\left[\frac{6\lambda T^2}{3T^2+4T+1}\right]
+-\exp\left[\lambda\frac{4 T^2}{1+3T+2T^2}\right]
+\right)
 \end{equation*}
 &lt;/div&gt;
 &lt;/div&gt;
@@ -488,11 +563,13 @@ Q^2 (e^{\lambda/(1+T)}-1)
 &lt;div class="math"&gt;
 \begin{equation*}
 E_{left}[\ln^2 \rho] =
-Q^2 (1-e^{\lambda/(1+T)})
+Q^2 (1-e^{-\lambda/(1+T)})
 - 2 Q \frac{T\lambda}{(1+T)^2}
 + \frac{\lambda T^2}{(1+T)^3} \left(\frac{\lambda}{1+T}+2\right)
 \end{equation*}
 &lt;/div&gt;
+&lt;p&gt;Add back the &lt;span class="math"&gt;\(\delta\)&lt;/span&gt;
+ termG&lt;/p&gt;
 &lt;div class="math"&gt;
 \begin{equation*}
 E_M[\ln^2 \rho] =
@@ -539,6 +616,32 @@ E_M[\ln^2 \rho] =
 + \frac{\lambda^2 T^2}{(1+T)^4}
 \end{equation*}
 &lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+= \ln^2 \rho_0 + 2 \ln \rho_0 \frac{T^2 \lambda}{(1+T)^2} + \left(\frac{\lambda T^2}{(1+T)^2}\right)^2 + \frac{2\lambda T^2}{(1+T)^3}
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+= \left(\ln \rho_0 + \frac{T^2\lambda}{(1+T)^2}\right)^2 +
+\frac{2\lambda T^2}{(1+T)^3}
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;As expected, we recover the correct relation from &lt;a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H"&gt;Hopkins 2013&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+S_{\ln \rho,M} = E_M[\ln \rho^2] - E_M[\ln \rho]^2 =
+\ln^2 \rho_0 + 2 \ln \rho_0 \frac{T^2 \lambda}{(1+T)^2} + \left(\frac{\lambda T^2}{(1+T)^2}\right)^2 + \frac{2\lambda T^2}{(1+T)^3}
+- \left(\ln \rho_0 + \frac{T^2\lambda}{(1+T)^2}\right)^2
+\end{equation*}
+&lt;/div&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+= \frac{2\lambda T^2}{(1+T)^3}
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;independent&lt;/em&gt; of &lt;span class="math"&gt;\(\rho_0\)&lt;/span&gt;
+.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
