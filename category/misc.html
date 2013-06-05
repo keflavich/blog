@@ -137,19 +137,19 @@ the integral corrections for the Dirac Delta function component of the PDF.</p>
 <p>The full form of the Hopkins PDF is</p>
 <div class="math">
 \begin{equation*}
-P_V(\ln \rho) d \ln \rho =  \left[I_1(2\sqrt{\lambda u}) e^{-\lambda-u} \sqrt{\frac{\lambda}{u}} + e^{-\lambda} \delta(u)\right]du
+P_V(\ln \rho/\rho_0) d \ln \rho =  \left[I_1(2\sqrt{\lambda u}) e^{-\lambda-u} \sqrt{\frac{\lambda}{u}} + e^{-\lambda} \delta(u)\right]du
 \end{equation*}
 </div>
-<p>The mass-weighted PDF is simply</p>
+<p>The mass-weighted PDF is</p>
 <div class="math">
 \begin{equation*}
-P_M(\ln \rho) d \ln \rho =  \rho \left[I_1(2\sqrt{\lambda u}) e^{-\lambda-u} \sqrt{\frac{\lambda}{u}} + e^{-\lambda} \delta(u)\right]du
+P_M(\ln \rho/\rho_0) d \ln \rho =  \frac{\rho}{\rho_0} \left[I_1(2\sqrt{\lambda u}) e^{-\lambda-u} \sqrt{\frac{\lambda}{u}} + e^{-\lambda} \delta(u)\right]du
 \end{equation*}
 </div>
 <p>With definitions:</p>
 <div class="math">
 \begin{equation*}
-u\equiv \frac{\lambda}{1+T} - \frac{\ln \rho}{T}  ;  (u \geq 0)
+u\equiv \frac{\lambda}{1+T} - \frac{\ln \rho/\rho_0}{T}  ;  (u \geq 0)
 \end{equation*}
 </div>
 <div class="math">
@@ -157,14 +157,14 @@ u\equiv \frac{\lambda}{1+T} - \frac{\ln \rho}{T}  ;  (u \geq 0)
 \lambda \equiv \frac{S_{\ln \rho,V}}{2 T^2}
 \end{equation*}
 </div>
-<p>But note that both of these distributions can depend on <span class="math">\(\rho_0\)</span>
-, changing <span class="math">\(u\)</span>
- to be</p>
-<div class="math">
-\begin{equation*}
-u\equiv \frac{\lambda}{1+T} - \frac{\ln (\rho/\rho_0)}{T}  ;  (u \geq 0)
-\end{equation*}
-</div>
+<p>The ratio <span class="math">\(\rho/\rho_0\)</span>
+ is needed to ensure self-consistency: the mass
+PDF must also conserve probability, which means it must be scaled by
+<span class="math">\(1/\rho_0\)</span>
+.</p>
+<!-- But note that both of these distributions can depend on :math:`\rho_0`, changing :math:`u` to be -->
+<!--  -->
+<!-- .. math:: u\equiv \frac{\lambda}{1+T} - \frac{\ln (\rho/\rho_0)}{T}  ;  (u \geq 0) -->
 <div class="section" id="moment-equations">
 <h3>Moment equations</h3>
 <p>The important moments are the mean and variance of the volume and mass density
@@ -197,6 +197,21 @@ compute the moments of various combinations of variables.</p>
 &lt;\ln \rho&gt;_M \equiv \int_{-\infty}^{\infty} \ln \rho (\rho P_V(\ln \rho/\rho_0)) d \ln \rho
 \end{equation*}
 </div>
+<div class="math">
+\begin{equation*}
+&lt;\rho^3&gt;_V \equiv \int_{-\infty}^{\infty} \rho^3 P_V(\ln \rho/\rho_0) d \ln \rho
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+&lt;\ln^2 \rho&gt;_V \equiv \int_{-\infty}^{\infty} (\ln \rho)^2 P_V(\ln \rho/\rho_0)d \ln \rho
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+&lt;\ln^2 \rho&gt;_M \equiv \int_{-\infty}^{\infty} (\ln \rho)^2 \rho P_V(\ln \rho/\rho_0)d \ln \rho
+\end{equation*}
+</div>
 <p>In the moment equations, only the input to the PDF is scaled by a mean density
 <span class="math">\(\rho_0\)</span>
 ; the &quot;weighting factors&quot; for the expectation value are not
@@ -206,7 +221,8 @@ compute the moments of various combinations of variables.</p>
 </div>
 <div class="section" id="delta-terms">
 <h3>Delta terms</h3>
-<p>These can be integrated analytically</p>
+<p>These can be integrated analytically.  In this section, I am just computing the
+means; the variances are more complicated.</p>
 <div class="math">
 \begin{equation*}
 &lt;\rho&gt;_V \equiv \rho_0 \equiv \int_{-\infty}^{\infty} \rho e^{-\lambda} \delta(\frac{\lambda}{1+T} - \frac{\ln\rho/\rho_0}{T}) \frac{d \ln \rho}{T}
@@ -219,12 +235,12 @@ compute the moments of various combinations of variables.</p>
 </div>
 <div class="math">
 \begin{equation*}
-&lt;\rho&gt;_M \equiv \int_{-\infty}^{\infty} \rho (\rho e^{-\lambda} \delta(\frac{\lambda}{1+T} - \frac{\ln\rho/\rho_0}{T})) \frac{d \ln \rho}{T}
+&lt;\rho&gt;_M \equiv \int_{-\infty}^{\infty} \rho (\frac{\rho}{\rho_0} e^{-\lambda} \delta(\frac{\lambda}{1+T} - \frac{\ln\rho/\rho_0}{T})) \frac{d \ln \rho}{T}
 \end{equation*}
 </div>
 <div class="math">
 \begin{equation*}
-&lt;\ln \rho&gt;_M \equiv \int_{-\infty}^{\infty} \ln \rho (\rho e^{-\lambda} \delta(\frac{\lambda}{1+T} - \frac{\ln\rho/\rho_0}{T})) \frac{d \ln \rho}{T}
+&lt;\ln \rho&gt;_M \equiv \int_{-\infty}^{\infty} \ln \rho (\frac{\rho}{\rho_0} e^{-\lambda} \delta(\frac{\lambda}{1+T} - \frac{\ln\rho/\rho_0}{T})) \frac{d \ln \rho}{T}
 \end{equation*}
 </div>
 <p>Substitution: <span class="math">\(v=\frac{\ln \rho/\rho_0}{T}\)</span>
@@ -245,12 +261,12 @@ compute the moments of various combinations of variables.</p>
 </div>
 <div class="math">
 \begin{equation*}
-&lt;\rho&gt;_{M\delta} \equiv \int_{-\infty}^{\infty} \rho_0^2 e^{2vT} ( e^{-\lambda} \delta(\frac{\lambda}{1+T} - v)) d v
+&lt;\rho&gt;_{M\delta} \equiv \int_{-\infty}^{\infty} \rho_0 e^{2vT} ( e^{-\lambda} \delta(\frac{\lambda}{1+T} - v)) d v
 \end{equation*}
 </div>
 <div class="math">
 \begin{equation*}
-&lt;\ln \rho&gt;_{M\delta} \equiv \int_{-\infty}^{\infty} (vT + \ln \rho_0) \rho_0 e^{vT} ( e^{-\lambda} \delta(\frac{\lambda}{1+T} - v)) d v
+&lt;\ln \rho&gt;_{M\delta} \equiv \int_{-\infty}^{\infty} (vT + \ln \rho_0) e^{vT} ( e^{-\lambda} \delta(\frac{\lambda}{1+T} - v)) d v
 \end{equation*}
 </div>
 <p>Solutions:</p>
@@ -266,17 +282,33 @@ compute the moments of various combinations of variables.</p>
 </div>
 <div class="math">
 \begin{equation*}
-&lt;\rho&gt;_{M\delta} =  \rho_0^2 \exp\left[\frac{2 T \lambda }{1+T} - \lambda\right] = \rho_0^2 \exp\left[\lambda\frac{T-1}{T+1}\right]
+&lt;\rho&gt;_{M\delta} =  \rho_0 \exp\left[\frac{2 T \lambda }{1+T} - \lambda\right] = \rho_0 \exp\left[\lambda\frac{T-1}{T+1}\right]
 \end{equation*}
 </div>
 <div class="math">
 \begin{equation*}
-&lt;\ln \rho&gt;_{M\delta} = \rho_0  \left( \frac{\lambda T}{1+T} + \ln \rho_0 \right) \exp\left[\frac{T \lambda }{1+T} - \lambda\right]
+&lt;\ln \rho&gt;_{M\delta} = \left( \frac{\lambda T}{1+T} + \ln \rho_0 \right) \exp\left[\frac{T \lambda }{1+T} - \lambda\right]
 \end{equation*}
 </div>
 <div class="math">
 \begin{equation*}
-= \rho_0 \left( \frac{\lambda T}{1+T} + \ln \rho_0 \right) \exp\left[\frac{ \lambda (T-1) }{T+1}\right]
+= \left( \frac{\lambda T}{1+T} + \ln \rho_0 \right) \exp\left[\frac{ -\lambda }{T+1}\right]
+\end{equation*}
+</div>
+<p>(for these next 3, I skipped intermediate steps)</p>
+<div class="math">
+\begin{equation*}
+&lt;\rho^3&gt;_{V\delta} =  \rho_0^2 \exp\left[\frac{3 T \lambda }{1+T} - \lambda\right] = \rho_0^2 \exp\left[\lambda\frac{2T-1}{T+1}\right]
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+&lt;\ln^2 \rho&gt;_{M\delta} = \left( \frac{\lambda T}{1+T} + \ln \rho_0 \right)^2 \exp\left[\frac{ -\lambda }{T+1}\right]
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+&lt;\ln^2 \rho&gt;_{V\delta} = \left( \frac{\lambda T}{1+T} + \ln \rho_0 \right)^2 e^{-\lambda}
 \end{equation*}
 </div>
 <p>Using <span class="math">\(\rho_0=1\)</span>
@@ -367,22 +399,22 @@ E[\rho] = \rho_0 \left[ \exp \left(-\lambda+\frac{T\lambda}{1+T}\right) \int  \l
 </div>
 <p>The same general approach can be followed for all expectation values, but we'll skip the detailed algebra.</p>
 </div>
-<div class="section" id="expectation-value-of-the-mass-weighted-density-e-rho-2">
-<h4>Expectation Value of the Mass-Weighted Density <span class="math">\(E[\rho^2]\)</span>
+<div class="section" id="expectation-value-of-the-mass-weighted-density-e-m-rho">
+<h4>Expectation Value of the Mass-Weighted Density <span class="math">\(E_M[\rho]\)</span>
 </h4>
 <div class="math">
 \begin{equation*}
-E[\rho^2] = \rho_0^2 \left[ \exp\left(\lambda\frac{2 T^2}{1+3T+2T^2}\right) - \exp\left(\lambda\frac{T-1}{T+1}\right) + \exp\left(\lambda\frac{T-1}{T+1}\right) \right]
+E[\rho^2] = \rho_0 \left[ \exp\left(\lambda\frac{2 T^2}{1+3T+2T^2}\right) - \exp\left(\lambda\frac{T-1}{T+1}\right) + \exp\left(\lambda\frac{T-1}{T+1}\right) \right]
 \end{equation*}
 </div>
-<p>The right 2 terms cancel, yielding the value shown in Equation 7 of Hopkins
-2013 scaled by <span class="math">\(\rho_0^2\)</span>
+<p>The right 2 terms cancel, yielding the value shown in Equation 7 of <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a>
+scaled by <span class="math">\(\rho_0^2\)</span>
 .  However, the right-most term is the
 correction factor from the Dirac Delta term needed to correct any
 numerical computation of the mass-weighted density.</p>
 </div>
-<div class="section" id="variance-of-the-volume-weighted-density-v-rho">
-<h4>Variance of the Volume-Weighted Density <span class="math">\(V[\rho]\)</span>
+<div class="section" id="variance-of-the-volume-weighted-density-v-rho-s-ln-rho-v">
+<h4>Variance of the Volume-Weighted Density <span class="math">\(V[\rho]=S_{\ln \rho,V}\)</span>
 </h4>
 <div class="math">
 \begin{equation*}
@@ -393,6 +425,230 @@ V[\rho] = E[\rho^2] - E[\rho]^2 = \rho_0^2 \left[  \exp\left(\lambda\frac{2 T^2}
 <div class="math">
 \begin{equation*}
 V_\delta[\rho] = \rho_0^2 \left[ \exp\left(\lambda\frac{T-1}{T+1}\right) - \exp\left(-2\frac{\lambda}{1+T}\right) \right]
+\end{equation*}
+</div>
+</div>
+<div class="section" id="expectation-value-of-the-volume-weighted-log-density-e-ln-rho">
+<h4>Expectation Value of the Volume-Weighted Log Density <span class="math">\(E[\ln \rho]\)</span>
+</h4>
+<div class="math">
+\begin{equation*}
+E[\ln \rho] = \int \ln \rho e^{-\lambda} \left[I_1(x) e^{-x^2/(4\lambda)} \right]dx + \int \ln \rho e^{-\lambda} \delta(u) du
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+E_\delta[\ln \rho] = e^{-\lambda} \left[ \frac{\lambda T}{1+T} + \ln \rho_0 \right]
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+E_{left}[\ln \rho] = \int \left[\ln \rho_0 + T\left(-\frac{x^2}{4\lambda} + \frac{\lambda}{1+T}\right) \right] e^{-\lambda} \left[I_1(x) e^{-x^2/(4\lambda)} \right]dx
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+= e^{-\lambda} \left( \int \left[\ln \rho_0 + \frac{T\lambda}{1+T}\right] \left[I_1(x) e^{-x^2/(4\lambda)} \right]dx
+- \int \frac{T x^2}{4\lambda} \left[I_1(x) e^{-x^2/(4\lambda)} \right]dx \right)
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+= e^{-\lambda} \left( \int \left[\ln \rho_0 + \frac{T\lambda}{1+T}\right](e^{\lambda}-1)
+- \frac{4 T \lambda^2 e^{\lambda}}{4\lambda} \right)
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+= \left( \left[\ln \rho_0 + \frac{T\lambda}{1+T}\right](1-e^{-\lambda})
+- T \lambda  \right)
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+E[\ln \rho] = \ln \rho_0 + \frac{T\lambda}{1+T} - T \lambda
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+= \ln \rho_0 - \frac{T^2\lambda}{1+T}
+\end{equation*}
+</div>
+</div>
+<div class="section" id="expectation-value-of-the-mass-weighted-log-density-e-m-ln-rho">
+<h4>Expectation Value of the Mass-Weighted Log Density <span class="math">\(E_M[\ln \rho]\)</span>
+</h4>
+<div class="math">
+\begin{equation*}
+E_M[\ln \rho] = \int \ln \rho \frac{\rho}{\rho_0} e^{-\lambda} \left[I_1(x) e^{-x^2/(4\lambda)} \right]dx + \int \ln \rho \frac{\rho}{\rho_0} e^{-\lambda} \delta(u) du
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+E_\delta[\ln \rho] = \left( \frac{\lambda T}{1+T} + \ln \rho_0 \right) \exp\left[\frac{ -\lambda }{T+1}\right]
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+E_{left}[\ln \rho] = e^{-\lambda} \int \left[
+\left(\ln \rho_0 + T\left(-\frac{x^2}{4\lambda} + \frac{\lambda}{1+T}\right) \right)
+\exp\left(T\left(-\frac{x^2}{4\lambda} + \frac{\lambda}{1+T}\right)\right) \right]
+\left[I_1(x) e^{-x^2/(4\lambda)} \right]dx
+\end{equation*}
+</div>
+<p>Again, separate into integrable terms:</p>
+<div class="math">
+\begin{equation*}
+= \exp\left(\frac{T\lambda}{1+T} -\lambda\right) \left[
+\left(\ln \rho_0 + \frac{T\lambda}{1+T} \right)  \left[I_1(x) e^{-(1+T)x^2/(4\lambda)} \right] +
+\left(-\frac{Tx^2}{4\lambda} \right)  \left[I_1(x) e^{-(1+T)x^2/(4\lambda)} \right]
+\right]
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+L = \frac{\lambda}{1+T}
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+E_{left}[\ln \rho] = \exp\left(\frac{T\lambda}{1+T} -\lambda\right) \left[
+\left(\ln \rho_0 + \frac{T\lambda}{1+T} \right)  \left(\exp\left[\frac{\lambda}{1+T}\right]-1\right) +
+\left(-\frac{T}{4\lambda} \right)  \left(\frac{4  \lambda^2}{(1+T)^2}  \exp\left[\frac{\lambda}{1+T}\right]\right)
+\right]
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+E_{left}[\ln \rho] = \exp\left(\frac{-\lambda}{1+T}\right) \left[
+\left(\ln \rho_0 + \frac{T\lambda}{1+T} \right)  \left(\exp\left[\frac{\lambda}{1+T}\right]-1\right) +
+\left(-\frac{T}{4\lambda} \right)  \left(\frac{4  \lambda^2}{(1+T)^2}  \exp\left[\frac{\lambda}{1+T}\right]\right)
+\right]
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+E_{left}[\ln \rho] =
+\left(\ln \rho_0 + \frac{T\lambda}{1+T} \right)  \left(1-\exp\left[\frac{-\lambda}{1+T}\right]\right) -
+  \left(\frac{ T \lambda}{(1+T)^2}  \right)
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+E_M[\ln \rho] = \left(\ln \rho_0 + \frac{T\lambda}{1+T} \right) -
+\left(\frac{ T \lambda}{(1+T)^2}  \right)
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+= \ln \rho_0 + \frac{T^2\lambda}{(1+T)^2}
+\end{equation*}
+</div>
+</div>
+<div class="section" id="expectation-value-of-the-mass-weighted-log-density-squared-e-m-ln-2-rho">
+<h4>Expectation Value of the Mass-Weighted Log Density Squared <span class="math">\(E_M[\ln^2 \rho]\)</span>
+</h4>
+<div class="math">
+\begin{equation*}
+E_M[\ln^2 \rho] = \int (\ln \rho)^2 \frac{\rho}{\rho_0} e^{-\lambda} \left[I_1(x) e^{-x^2/(4\lambda)} \right]dx + \int (\ln \rho)^2 \frac{\rho}{\rho_0} e^{-\lambda} \delta(u) du
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+E_\delta[\ln^2 \rho] = \left( \frac{\lambda T}{1+T} + \ln \rho_0 \right)^2 \exp\left[\frac{ -\lambda }{T+1}\right]
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+E_{left}[\ln^2 \rho] = e^{-\lambda} \int \left[
+\left(\ln \rho_0 + T\left(-\frac{x^2}{4\lambda} + \frac{\lambda}{1+T}\right) \right)^2
+\exp\left(T\left(-\frac{x^2}{4\lambda} + \frac{\lambda}{1+T}\right)\right) \right]
+\left[I_1(x) e^{-x^2/(4\lambda)} \right]dx
+\end{equation*}
+</div>
+<p>This time it's just too ugly.  Define new variables:</p>
+<div class="math">
+\begin{equation*}
+Q = \ln \rho_0 + \frac{T\lambda}{1+T}
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+E_{left}[\ln^2 \rho] = e^{-\lambda/(1+T)} \int \left[
+\left(Q  -\frac{T x^2}{4\lambda} \right)^2
+\exp\left(-\frac{Tx^2}{4\lambda} \right) \right]
+\left[I_1(x) e^{-x^2/(4\lambda)} \right]dx
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+E_{left}[\ln^2 \rho] = e^{-\lambda/(1+T)} \int \left[
+\left(Q^2  - 2 Q \frac{T x^2}{4\lambda} + \frac{T^2 x^4}{16\lambda^2} \right)
+\left[I_1(x) e^{-(1+T)x^2/(4\lambda)} \right]
+\right]dx
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+E_{left}[\ln^2 \rho] = e^{-\lambda/(1+T)}  \left[
+Q^2 (e^{\lambda/(1+T)}-1)
+- 2 Q \frac{T}{4\lambda} \left(\frac{4\lambda^2}{(1+T)^2} e^{\lambda/(1+T)}\right)
++ \frac{T^2}{16\lambda^2} \left(16 \frac{\lambda^3}{(1+T)^3} (\frac{\lambda}{1+T}+2) e^{\lambda/(1+T)} \right)
+\right]
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+E_{left}[\ln^2 \rho] =
+Q^2 (1-e^{\lambda/(1+T)})
+- 2 Q \frac{T\lambda}{(1+T)^2}
++ \frac{\lambda T^2}{(1+T)^3} \left(\frac{\lambda}{1+T}+2\right)
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+E_M[\ln^2 \rho] =
+Q^2
+- 2 Q \frac{T\lambda}{(1+T)^2}
++ \frac{\lambda T^2}{(1+T)^3} \left(\frac{\lambda}{1+T}+2\right)
+\end{equation*}
+</div>
+<p>Re-expand to see if it's simplifiable....</p>
+<div class="math">
+\begin{equation*}
+E_M[\ln^2 \rho] =
+\left(\ln \rho_0 + \frac{T\lambda}{1+T}\right)^2
+- 2 \left(\ln \rho_0 + \frac{T\lambda}{1+T}\right) \frac{T\lambda}{(1+T)^2}
++ \frac{\lambda T^2}{(1+T)^3} \left(\frac{\lambda}{1+T}+2\right)
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+E_M[\ln^2 \rho] =
+\ln^2 \rho_0 + 2 \ln \rho_0 \frac{T\lambda}{1+T} + \frac{T^2\lambda^2}{(1+T)^2}
+- 2 \ln \rho_0 \frac{T\lambda}{(1+T)^2} - 2 \frac{T\lambda}{1+T} \frac{T\lambda}{(1+T)^2}
++ 2 \frac{\lambda T^2}{(1+T)^3}
++ \frac{\lambda T^2}{(1+T)^3} \frac{\lambda}{1+T}
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+E_M[\ln^2 \rho] =
+\ln^2 \rho_0 + 2 \ln \rho_0 \left(\frac{T\lambda}{1+T} - \frac{T\lambda}{(1+T)^2}\right)
++ \frac{T^2\lambda^2(1+T)}{(1+T)^3}
+- 2 \frac{T^2\lambda^2}{(1+T)^3}
++ 2 \frac{\lambda T^2}{(1+T)^3}
++ \frac{\lambda^2 T^2}{(1+T)^4}
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+E_M[\ln^2 \rho] =
+\ln^2 \rho_0 + 2 \ln \rho_0 \left(\frac{T^2\lambda}{1+T}\right)
++ \frac{T^2\lambda^2(1+T)}{(1+T)^3}
+- 2 \frac{T^2\lambda^2}{(1+T)^3}
++ 2 \frac{\lambda T^2}{(1+T)^3}
++ \frac{\lambda^2 T^2}{(1+T)^4}
 \end{equation*}
 </div>
 </div>
