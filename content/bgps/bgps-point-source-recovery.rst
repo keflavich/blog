@@ -78,20 +78,20 @@ Some notes along the way:
 Here are some examples of what the before/after look like with point sources added.
 The first has bright sources, the second faint sources:
 
-.. image:: /blog/static/bgps/images/bgps-point-source-recovery/BGPS_exp23_bright.png
+.. image:: |filename|/bgps/images/bgps-point-source-recovery/BGPS_exp23_bright.png
     :width: 800
-.. image:: /blog/static/bgps/images/bgps-point-source-recovery/BGPS_exp23_missingsrcs.png
+.. image:: |filename|/bgps/images/bgps-point-source-recovery/BGPS_exp23_missingsrcs.png
     :width: 800
 
 
 With these new figures, the 40" apertures work fine, but the 120" apertures are
 still utterly junk.  This does not make sense.
 
-.. image:: /blog/static/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_40_testexp23.png
+.. image:: |filename|/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_40_testexp23.png
     :width: 800
-.. image:: /blog/static/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_80_testexp23.png
+.. image:: |filename|/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_80_testexp23.png
     :width: 800
-.. image:: /blog/static/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_120_testexp23.png
+.. image:: |filename|/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_120_testexp23.png
     :width: 800
 
 A careful analysis of a single source shows that something is wrong.  Here are some annular extractions
@@ -138,12 +138,12 @@ followed by the image:
         
     
  
-.. image:: /blog/static/bgps/images/bgps-point-source-recovery/annulus_exam.png
+.. image:: |filename|/bgps/images/bgps-point-source-recovery/annulus_exam.png
     :width: 800
 
 With background apertures:
 
-.. image:: /blog/static/bgps/images/bgps-point-source-recovery/annulus_exam_bgapers.png
+.. image:: |filename|/bgps/images/bgps-point-source-recovery/annulus_exam_bgapers.png
     :width: 800
 
 However, note that the background are computed using the ``mmm.pro``
@@ -189,7 +189,7 @@ be totally unreliable.  ``FLUX_80`` is acceptable with the change, but only for
 bright sources (for faint sources, <1 Jy, there is no recovery at all - I think this
 must be an issue of the source brightness still not being calculated correctly):
 
-.. image:: /blog/static/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_80_bright_1.0E-05.png
+.. image:: |filename|/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_80_bright_1.0E-05.png
     :width: 800
 
 I'll have to continue this analysis tomorrow once the full suite of simulations
@@ -250,27 +250,27 @@ Additional plots of interest:
 
 40" aperture in the presence of a bright background with faint sources:
 
-.. image:: /blog/static/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_40_faint_5.0E-03.png
+.. image:: |filename|/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_40_faint_5.0E-03.png
     :width: 800
 
 Versus the same with a faint background:
 
-.. image:: /blog/static/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_40_faint_1.0E-03.png
+.. image:: |filename|/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_40_faint_1.0E-03.png
     :width: 800
     
 
 Compare these to the 120" equivalents (bright then faint background):
 
-.. image:: /blog/static/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_120_faint_p5.0E-03.png
+.. image:: |filename|/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_120_faint_p5.0E-03.png
     :width: 800
-.. image:: /blog/static/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_120_faint_p1.0E-03.png
+.. image:: |filename|/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_120_faint_p1.0E-03.png
     :width: 800
 
 It's fairly easy to see why there are issues with the bright background and the
 120" apertures.  In this image, bright background on the left, faint background
 on the right, with faint sources (0.1-1 Jy).
 
-.. image:: /blog/static/bgps/images/bgps-point-source-recovery/faint_vs_bright_background.png
+.. image:: |filename|/bgps/images/bgps-point-source-recovery/faint_vs_bright_background.png
     :width: 800
 
 
@@ -278,8 +278,8 @@ It's more helpful to look at that previous image with the source contours
 superposed.  These images really give a nice feel for what it means to have
 point sources subsumed in :math:`\alpha=2` background.
 
-.. image:: /blog/static/bgps/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp5.0E-05_sky-2.0_seed00_peak5.0E-03_smooth_withptsrc_label_compare.png
+.. image:: |filename|/bgps/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp5.0E-05_sky-2.0_seed00_peak5.0E-03_smooth_withptsrc_label_compare.png
     :width: 800
 
-.. image:: /blog/static/bgps/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp3.2E-05_sky-2.0_seed00_peak1.0E-03_smooth_withptsrc_label_compare.png
+.. image:: |filename|/bgps/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp3.2E-05_sky-2.0_seed00_peak1.0E-03_smooth_withptsrc_label_compare.png
     :width: 800
