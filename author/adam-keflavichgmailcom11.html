@@ -104,6 +104,26 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/logarithmic-colormap-other-colormap-in-matplotlib.html" rel="bookmark" title="Permalink to Logarithmic Colormap / Other Colormap in Matplotlib">
+                    Logarithmic Colormap / Other Colormap in Matplotlib</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>This is kind of a pain to find out:
+<tt class="docutils literal">from matplotlib.colors import LogNormim = <span class="pre">imshow(....</span> <span class="pre">cmap=...</span> , norm=LogNorm(vmin=clevs[0], <span class="pre">vmax=clevs[-1]))</span> ``
+It also works for contours, and can be particularly useful if you only
+want to display contours at a few levels, but you want the colormap to
+start at a different point. e.g.:
+<span class="pre">``contour(xx,levels=[2,3,4,5,6,7,8,9,10],norm=matplotlib.colors.Normalize(vmin=0,vmax=10))</span></tt>
+will start at light blue instead of dark blue in the default colormap</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
                 <a href="http://keflavich.github.io/blog/login-shell.html" rel="bookmark" title="Permalink to login shell">
                     login shell</a>
             </h2> 
@@ -396,23 +416,6 @@ native Mac program, doesn't crash as often.</p>
             <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>``    map = readfits('MOSAIC.fits',hdr)    crpix1 = sxpar(hdr,'CRPIX1')    crpix2 = sxpar(hdr,'CRPIX2')    crval1 = sxpar(hdr,'CRVAL1')    crval2 = sxpar(hdr,'CRVAL2')    cd1_1 = sxpar(hdr,'CD1_1')    cd2_2 = sxpar(hdr,'CD2_2')       x = lindgen(n_e(map[<em>,0]))    y = lindgen(n_e(map[0,</em>]))    l = (x-crpix1)*cd1_1+crval1-360    b = (y-crpix2)*cd2_2+crval2    imdisp,map,/axis,xrange=[max(l),min(l)],yrange=[min(b),max(b)],range=[-1,8]``
 This code makes use of <a class="reference external" href="http://cimss.ssec.wisc.edu/~gumley/idl/imdisp.pro">imdisp.pro</a>.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/marc-pounds-toolbox.html" rel="bookmark" title="Permalink to Marc Pound's toolbox">
-                    Marc Pound's toolbox</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>This is neat:
-<a class="reference external" href="http://dustem.astro.umd.edu/pdrt/quickmodels.html">Line Ratio as a function of density, incident flux from Marc Pound</a>.
-Sadly, straight CO 3-2 intensity isn't included, but perhaps I can
-create that myself.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

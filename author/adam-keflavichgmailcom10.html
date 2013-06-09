@@ -104,6 +104,60 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/installing-snow-leopard.html" rel="bookmark" title="Permalink to Installing Snow Leopard">
+                    Installing Snow Leopard</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm going to attempt to install snow leopard today. This post will serve
+as a record of the difficulties I run into.
+Things to install (and ensure they are 64-bit):</p>
+<ul class="simple">
+<li>ipython</li>
+<li>numpy</li>
+<li>scipy</li>
+<li>matplotlib</li>
+<li>stsci-python</li>
+<li>starlink</li>
+<li>gfortran</li>
+<li>latex</li>
+<li>idl (check)</li>
+</ul>
+<p>Things that have happened:</p>
+<ol class="arabic simple">
+<li>Had to restart again (twice) to install additional updates</li>
+<li>My bash command line looked funny - something about bash changed, but
+I don't know what. The fix was easy: commented out some code from
+<a class="reference external" href="http://pseudogreen.org/blog/set_tab_names_in_leopard_terminal.html">http://pseudogreen.org/blog/set_tab_names_in_leopard_terminal.html</a>
+that I had been using to set the tab title</li>
+<li>My locate db broke. Needed repair: <tt class="docutils literal">sudo /usr/libexec/locate.updatedb</tt></li>
+<li>numpy svn failed to build:
+`` python setup.py buildRunning from numpy source directory.non-existing path in 'numpy/distutils': 'site.cfg'F2PY Version 2_8111numpy/core/setup_common.py:86: MismatchCAPIWarning: API mismatch detected, the C API version numbers have to be updated. Current C api version is 4, with checksum 59750b518272c8987f02d66445afd3f1, but recorded checksum for C API version 4 in codegen_dir/cversions.txt is 3d8940bf7b0d2a4e25be4338c14c3c85. If functions were added in the C API, you have to update C_API_VERSION  in numpy/core/setup_common.pyc.  MismatchCAPIWarning)blas_opt_info:  FOUND:    extra_link_args = ['-Wl,-framework', '-Wl,Accelerate']    define_macros = [('NO_ATLAS_INFO', 3)]    extra_compile_args = ['-faltivec', '-I/System/Library/Frameworks/vecLib.framework/Headers']lapack_opt_info:  FOUND:    extra_link_args = ['-Wl,-framework', '-Wl,Accelerate']    define_macros = [('NO_ATLAS_INFO', 3)]    extra_compile_args = ['-faltivec']running buildrunning config_ccunifing config_cc, config, build_clib, build_ext, build commands --compiler optionsrunning config_fcunifing config_fc, config, build_clib, build_ext, build commands --fcompiler optionsrunning build_srcbuild_srcbuilding py_modules sourcesbuilding library &quot;npymath&quot; sourcescustomize NAGFCompilerFound executable /usr/local/bin/f95customize AbsoftFCompilerCould not locate executable f90Found executable /usr/bin/f77absoft: no Fortran 90 compiler foundabsoft: no Fortran 90 compiler foundcustomize IBMFCompilerCould not locate executable xlf90Could not locate executable xlfcustomize IntelFCompilerCould not locate executable ifortCould not locate executable ifccustomize GnuFCompilerFound executable /usr/local/bin/g77gnu: no Fortran 90 compiler foundgnu: no Fortran 90 compiler foundcustomize Gnu95FCompilerFound executable /usr/local/bin/gfortrancustomize Gnu95FCompilercustomize Gnu95FCompiler using configC compiler: gcc -arch i386 -arch ppc -arch ppc64 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.5.sdk -fno-strict-aliasing -fno-common -dynamic -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypescompile options: '-Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/include -I/Library/Frameworks/Python.framework/Versions/2.6/include/python2.6 -c'gcc: _configtest.cgcc _configtest.o -o _configtestld: library not found for -lcrt1.10.5.ocollect2: ld returned 1 exit statusld: library not found for -lcrt1.10.5.ocollect2: ld returned 1 exit statusfailure.removing: _configtest.c _configtest.oTraceback (most recent call last):  File &quot;setup.py&quot;, line 210, in     setup_package()  File &quot;setup.py&quot;, line 203, in setup_package    configuration=configuration )  File &quot;/Users/adam/repos/numpy-svn/numpy/distutils/core.py&quot;, line 186, in setup    return old_setup(<strong>new_attr)  File &quot;/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/core.py&quot;, line 152, in setup    dist.run_commands()  File &quot;/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/dist.py&quot;, line 975, in run_commands    self.run_command(cmd)  File &quot;/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/dist.py&quot;, line 995, in run_command    cmd_obj.run()  File &quot;/Users/adam/repos/numpy-svn/numpy/distutils/command/build.py&quot;, line 37, in run    old_build.run(self)  File &quot;/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/command/build.py&quot;, line 134, in run    self.run_command(cmd_name)  File &quot;/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/cmd.py&quot;, line 333, in run_command    self.distribution.run_command(command)  File &quot;/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/dist.py&quot;, line 995, in run_command    cmd_obj.run()  File &quot;/Users/adam/repos/numpy-svn/numpy/distutils/command/build_src.py&quot;, line 152, in run    self.build_sources()  File &quot;/Users/adam/repos/numpy-svn/numpy/distutils/command/build_src.py&quot;, line 163, in build_sources    self.build_library_sources(*libname_info)  File &quot;/Users/adam/repos/numpy-svn/numpy/distutils/command/build_src.py&quot;, line 298, in build_library_sources    sources = self.generate_sources(sources, (lib_name, build_info))  File &quot;/Users/adam/repos/numpy-svn/numpy/distutils/command/build_src.py&quot;, line 385, in generate_sources    source = func(extension, build_dir)  File &quot;numpy/core/setup.py&quot;, line 670, in get_mathlib_info    raise RuntimeError(&quot;Broken toolchain: cannot link a simple C program&quot;)RuntimeError: Broken toolchain: cannot link a simple C program``
+**SOLUTION:</strong> Use the Mac OS X 10.6 python (/usr/bin/python). I will do this
+until I run into another problem. Numpy build successfully</li>
+<li>Build/install matplotlib - failed! Completely!</li>
+<li>Acquired gcc/gfortran from <a class="reference external" href="http://hpc.sourceforge.net/">hpc</a></li>
+<li>Followed instructions from <a class="reference external" href="http://blog.hyperjeff.net/?p=160">hyperjeff</a> on fortran install...</li>
+<li>Get rid of numpy 1.2.1:
+`` mv /System/Library/Frameworks/Python.framework/Versions/2.6/Extras/lib/python/numpy /System/Library/Frameworks/Python.framework/Versions/2.6/Extras/lib/python/.not_numpy.bak``</li>
+<li>Try to install scipy. Fail on missing umfpack, follow <a class="reference external" href="http://blog.hyperjeff.net/?p=160">hyperjeff</a>'s
+instructions (but make sure to edit the site.cfg in scipy, not just the one in
+numpy).
+Had to add the following code:
+<tt class="docutils literal">sudo cp AMD/Lib/libamd.a /System/Library/Frameworks/Python.framework/Versions/2.6/libsudo cp UMFPACK/Lib/libumfpack.a /System/Library/Frameworks/Python.framework/Versions/2.6/libsudo cp AMD/Include/amd.h /System/Library/Frameworks/Python.framework/Versions/2.6/includesudo cp UFconfig/UFconfig.h /System/Library/Frameworks/Python.framework/Versions/2.6/includesudo cp <span class="pre">UMFPACK/Include/*.h</span> /System/Library/Frameworks/Python.framework/Versions/2.6/include</tt></li>
+<li>Installed fftw from <a class="reference external" href="http://www.fftw.org/">fftw.org</a> with simple ./configure, make, sudo
+make install - no compiler opts as they killed the install</li>
+<li>Get SoundSource from <a class="reference external" href="http://www.rogueamoeba.com/freebies/">rogueamoeba</a></li>
+<li>Updated <a class="reference external" href="http://www.islayer.com/apps/istatmenus/">istatmenus</a></li>
+</ol>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
                 <a href="http://keflavich.github.io/blog/iraf-appendprependreplace.html" rel="bookmark" title="Permalink to IRAF append/prepend/replace">
                     IRAF append/prepend/replace</a>
             </h2> 
@@ -129,100 +183,59 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
             <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Some notes about the Jeans mass scale using astropy's units.</p>
 <p>Simple approaches to determining mass scales:</p>
-<div>
-<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
-<mtable>
-<mtr>
-<mtd><msub><mi>v</mi>
-<mrow><mi>e</mi><mi>s</mi><mi>c</mi></mrow></msub><mo>=</mo><msqrt>
-<mrow><mfrac>
-<mrow><mi>G</mi><mi>M</mi></mrow>
-<mrow><mi>R</mi></mrow></mfrac></mrow></msqrt></mtd></mtr></mtable></math>
+<div class="math">
+\begin{equation*}
+v_{esc} = \sqrt{\frac{G M}{R}}
+\end{equation*}
 </div>
 <p>Isothermal equation of state:</p>
-<div>
-<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
-<mtable>
-<mtr>
-<mtd><mi>P</mi><mo>=</mo><mi>ρ</mi><mi>k</mi><mi>T</mi></mtd></mtr></mtable></math>
+<div class="math">
+\begin{equation*}
+P = \rho k T
+\end{equation*}
 </div>
-<div>
-<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
-<mtable>
-<mtr>
-<mtd><msub><mi>c</mi><mi>s</mi></msub><mo>=</mo><msqrt>
-<mrow><mn>2</mn><mi>k</mi><mi>T</mi><mo>/</mo><mi>m</mi></mrow></msqrt></mtd></mtr></mtable></math>
+<div class="math">
+\begin{equation*}
+c_s = \sqrt{2 k T / m}
+\end{equation*}
 </div>
-<p>Setting <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><msub><mi>v</mi>
-<mrow><mi>e</mi><mi>s</mi><mi>c</mi></mrow></msub><mo>=</mo><msub><mi>c</mi><mi>s</mi></msub></mrow></math> yields the mass scale:</p>
-<div>
-<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
-<mtable>
-<mtr>
-<mtd><mi>M</mi><mo>=</mo><mfrac>
-<mrow><mi>R</mi></mrow>
-<mrow><mi>G</mi></mrow></mfrac><mfrac>
-<mrow><mn>2</mn><mi>k</mi><mi>T</mi></mrow>
-<mrow><mi>m</mi></mrow></mfrac><mo>=</mo><mfrac>
-<mrow><mi>R</mi><msubsup><mi>c</mi><mi>s</mi><mn>2</mn></msubsup></mrow>
-<mrow><mi>G</mi></mrow></mfrac></mtd></mtr></mtable></math>
+<p>Setting <span class="math">\(v_{esc} = c_s\)</span>
+ yields the mass scale:</p>
+<div class="math">
+\begin{equation*}
+M = \frac{R}{G}  \frac{2 k T}{m} = \frac{R c_s^2}{G}
+\end{equation*}
 </div>
-<p>Using <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>ρ</mi><mo>=</mo><mfrac>
-<mrow><mi>M</mi></mrow>
-<mrow><mn>4</mn><mo>/</mo><mn>3</mn><mi>π</mi><msup><mi>R</mi>
-<mrow><mn>3</mn></mrow></msup></mrow></mfrac></mrow></math>,</p>
-<div>
-<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
-<mtable>
-<mtr>
-<mtd><mi>R</mi><mo>=</mo><msup><mfenced open="(" close=")">
-<mrow><mfrac>
-<mrow><mi>M</mi></mrow>
-<mrow><mn>4</mn><mo>/</mo><mn>3</mn><mi>π</mi><mi>ρ</mi></mrow></mfrac></mrow></mfenced>
-<mrow><mn>1</mn><mo>/</mo><mn>3</mn></mrow></msup></mtd></mtr></mtable></math>
+<p>Using <span class="math">\(\rho = \frac{M}{ 4/3 \pi R^{3} }\)</span>
+,</p>
+<div class="math">
+\begin{equation*}
+R = \left(\frac{M}{4/3 \pi \rho}\right)^{1/3}
+\end{equation*}
 </div>
 <p>so</p>
-<div>
-<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
-<mtable>
-<mtr>
-<mtd><mi>M</mi><mo>=</mo><msup><mi>M</mi>
-<mrow><mn>1</mn><mo>/</mo><mn>3</mn></mrow></msup><mfrac>
-<mrow><msubsup><mi>c</mi><mi>s</mi><mn>2</mn></msubsup></mrow>
-<mrow><mi>G</mi><msup><mi>ρ</mi>
-<mrow><mn>1</mn><mo>/</mo><mn>3</mn></mrow></msup></mrow></mfrac></mtd></mtr></mtable></math>
+<div class="math">
+\begin{equation*}
+M = M^{1/3} \frac{c_s^2}{G \rho^{1/3}}
+\end{equation*}
 </div>
 <p>which rearranges to</p>
-<div>
-<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
-<mtable>
-<mtr>
-<mtd><mi>M</mi><mo>=</mo><mfrac>
-<mrow><msubsup><mi>c</mi><mi>s</mi>
-<mrow><mn>3</mn></mrow></msubsup></mrow>
-<mrow><msup><mi>G</mi>
-<mrow><mn>3</mn><mo>/</mo><mn>2</mn></mrow></msup><msup><mi>ρ</mi>
-<mrow><mn>1</mn><mo>/</mo><mn>2</mn></mrow></msup></mrow></mfrac></mtd></mtr></mtable></math>
+<div class="math">
+\begin{equation*}
+M = \frac{c_s^{3}}{G^{3/2} \rho^{1/2}}
+\end{equation*}
 </div>
-<p>where <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>M</mi></mrow></math> is now <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><msub><mi>M</mi><mi>J</mi></msub></mrow></math>, the Jeans mass. In terms of
+<p>where <span class="math">\(M\)</span>
+ is now <span class="math">\(M_J\)</span>
+, the Jeans mass. In terms of
 temperature, this is:</p>
-<div>
-<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
-<mtable>
-<mtr>
-<mtd><msub><mi>M</mi><mi>J</mi></msub><mo>=</mo><mfrac>
-<mrow><mo>(</mo><mn>2</mn><mi>k</mi><mi>T</mi><msup><mo>)</mo>
-<mrow><mn>3</mn><mo>/</mo><mn>2</mn></mrow></msup></mrow>
-<mrow><mo>(</mo><mi>m</mi><mi>G</mi><msup><mo>)</mo>
-<mrow><mn>3</mn><mo>/</mo><mn>2</mn></mrow></msup><msup><mi>ρ</mi>
-<mrow><mn>1</mn><mo>/</mo><mn>2</mn></mrow></msup></mrow></mfrac></mtd></mtr></mtable></math>
+<div class="math">
+\begin{equation*}
+M_J = \frac{(2 k T)^{3/2}}{(m G)^{3/2} \rho^{1/2}}
+\end{equation*}
 </div>
-<p>where <math xmlns="http://www.w3.org/1998/Math/MathML">
-<mrow><mi>m</mi></mrow></math> is the particle mass, usually assumed to be 2.8 amu. (actually,
+<p>where <span class="math">\(m\)</span>
+ is the particle mass, usually assumed to be 2.8 amu. (actually,
 2.8 is for mass per H$_2$ particle, it should really be 2.3 amu)</p>
 <p>In[1]:</p>
 <div class="highlight"><pre><span class="c"># astropy imports</span>
@@ -248,11 +261,10 @@ this is expected. [astropy]
 <div class="highlight"><pre><span class="n">m</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">solMass</span><span class="p">)</span>
 </pre></div>
 <p>Out[5]:</p>
-<div>
-<math xmlns="http://www.w3.org/1998/Math/MathML" mode="display">
-<mtable>
-<mtr>
-<mtd><mn>1</mn><mo>.</mo><mn>9</mn><mn>2</mn><mn>9</mn><mn>0</mn><mn>3</mn><mtext>M_{\odot</mtext></mtd></mtr></mtable></math>
+<div class="math">
+\begin{equation*}
+1.92903 \mathrm{M_{\odot}}
+\end{equation*}
 </div>
 <pre class="literal-block">
 &lt;Quantity 1.92902547696 solMass&gt;
@@ -434,26 +446,6 @@ examples:
 <tt class="docutils literal">whos floatwhos ndarraywho modulefloat_vars = %who_ls <span class="pre">floatgrep('x',float_vars)</span></tt>
 I'm afraid I don't know how to make the last two lines into a one-liner,
 as would be desirable.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/logarithmic-colormap-other-colormap-in-matplotlib.html" rel="bookmark" title="Permalink to Logarithmic Colormap / Other Colormap in Matplotlib">
-                    Logarithmic Colormap / Other Colormap in Matplotlib</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>This is kind of a pain to find out:
-<tt class="docutils literal">from matplotlib.colors import LogNormim = <span class="pre">imshow(....</span> <span class="pre">cmap=...</span> , norm=LogNorm(vmin=clevs[0], <span class="pre">vmax=clevs[-1]))</span> ``
-It also works for contours, and can be particularly useful if you only
-want to display contours at a few levels, but you want the colormap to
-start at a different point. e.g.:
-<span class="pre">``contour(xx,levels=[2,3,4,5,6,7,8,9,10],norm=matplotlib.colors.Normalize(vmin=0,vmax=10))</span></tt>
-will start at light blue instead of dark blue in the default colormap</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
