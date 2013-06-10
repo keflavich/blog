@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="../theme/css/style.css" />
+<head>
+                <title>Adam Ginsburg's blog - Articles by Adam (noreply@blogger.com)</title>
+        <meta charset="utf-8" />
+                <link href="http://keflavich.github.com/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+                                                                        <!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("../static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="..">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                            <li><a href="http://www.adamgginsburg.com">Home</a></li>
+                            <li><a href="index.html">Blog Index</a></li>
+                            <li><a href="archives.html">Recent</a></li>
+                            <li><a href="tags.html">Tags</a></li>
+                                                              </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+   <div id="sidebar">
+    <ul>
+  	  	        	  	          <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+                          <li class="post">
+                  2008/08/06
+                  <br>
+                  <a href="../0507-mapping.html">0507 mapping</a>
+              </li>
+                          <li class="post">
+                  2009/02/01
+                  <br>
+                  <a href="../0707-distortion-maps.html">0707 distortion maps</a>
+              </li>
+                          <li class="post">
+                  2009/01/17
+                  <br>
+                  <a href="../0709-rotators-fixed-latest-run.html">0709 rotators fixed, latest run</a>
+              </li>
+                          <li class="post">
+                  2008/11/28
+                  <br>
+                  <a href="../4-errors.html">4 errors</a>
+              </li>
+                          <li class="post">
+                  2009/03/04
+                  <br>
+                  <a href="../43-relative-alignment-and-mosaicing.html">4.3 Relative Alignment and Mosaicing</a>
+              </li>
+                    </ul>
+      </li>
+        
+    </ul>
+  </div><!-- end #sidebar -->
+ 
+  <div id="content">
+        <section id="content">
+<h2>Articles by Adam (noreply@blogger.com)</h2>
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../making-maps-faster.html" rel="bookmark" title="Permalink to Making maps faster">
+                    Making maps faster</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-02-07T04:39:00"> 2011/02/07 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The fundamental problem at this point is making the pipeline run faster.
+At current speeds, with undownsampled data, it may take ~days to process
+a single map. Ideas for faster processing:</p>
+<ol class="arabic simple">
+<li>Find out how long it takes to converge to 1%, 5%.... If it only
+requires 10 iterations, that's a factor of 2 savings over current
+strategies.</li>
+<li>Use downsampled data of some sort if possible. Does DS2 match DS1?
+How do we measure it? Flux-flux comparison and PSF point-source size
+measurements are the most important. Need to automate PSF
+comparison....</li>
+<li>Can we use median-combined individual images as a 0th order model? I
+bet the answer is 'yes' and will probably increase the speed of
+convergence by a large amount. Tests to run? This is probably needed
+if we are to split up the 'super-fields' into smaller sub-fields,
+otherwise overlapping data will be used less effectively.</li>
+<li>Find some way to keep bgps.raw, bgps.ra, bgps.dec, and other items
+that are only used once on the HD during the iterative process. Is
+there any way to separate out data in a struct in this manner?</li>
+</ol>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../mapped-but-no-dice.html" rel="bookmark" title="Permalink to Mapped, but no dice">
+                    Mapped, but no dice</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-06T15:22:00"> 2008/08/06 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Finished mapping what I think are all of the pointing sources. However,
+the RMS of the centroids has not gone down. Now I need to go through
+each individual source and image and try to get rid of the baddies.
+There are presumably some sources with bulk offsets that can be removed
+to improve the fits. I just have to find them.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../mapping-update.html" rel="bookmark" title="Permalink to Mapping update">
+                    Mapping update</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-09-16T20:38:00"> 2008/09/16 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I made a lot of mistakes in my script, so progress is about 12 computer
+hours behind what it should be.
+These maps are done:</p>
+<pre class="literal-block">
+/scratch/adam_work/l003/l003_13pca_map09.fits/scratch/adam_work/l006/l006_13pca_map09.fits/scratch/adam_work/l009/l009_13pca_map09.fits/scratch/adam_work/l018/l018_13pca_map09.fits/scratch/adam_work/l021/l021_13pca_map09.fits/scratch/adam_work/l024/l024_13pca_map09.fits/scratch/adam_work/l027/l027_13pca_map09.fits/scratch/adam_work/l030/l030_13pca_map09.fits/scratch/adam_work/l033/l033_13pca_map09.fits/scratch/adam_work/l036/l036_13pca_map09.fits/scratch/adam_work/l039/l039_13pca_map09.fits/scratch/adam_work/l042/l042_13pca_map09.fits/scratch/adam_work/l044/l044_13pca_map09.fits/scratch/adam_work/l048/l048_13pca_map09.fits/scratch/adam_work/l050/l050_13pca_map09.fits/scratch/adam_work/l054/l054_13pca_map09.fits/scratch/adam_work/l057/l057_13pca_map09.fits
+</pre>
+<p>Things I've learned so far:
+There is an observation (a master?) in L003 that should be the galactic
+center master.
+L018 has some really bad noise that needs fixing.
+The wackiness I saw in L024 seems to be gone now.
+L044 has the same noise stripes as L357.</p>
+<pre class="literal-block">
+/scratch/adam_work/l018/l018_13pca took 1118.3684 sec./scratch/adam_work/l018/l018_13pca_nooffs took 1106.6423 sec./scratch/adam_work/l021/l021_13pca took 1703.7266 sec./scratch/adam_work/l021/l021_13pca_nooffs took 1716.7393 sec./scratch/adam_work/l024/l024_13pca took 1622.3164 sec./scratch/adam_work/l024/l024_13pca_nooffs took 1672.3263 sec./scratch/adam_work/l027/l027_13pca took 1376.1939 sec./scratch/adam_work/l027/l027_13pca_nooffs took 1383.4335 sec./scratch/adam_work/l030/l030_13pca took 2487.1311 sec./scratch/adam_work/l030/l030_13pca_nooffs took 2543.1740 sec./scratch/adam_work/l036/l036_13pca took 549.76983 sec./scratch/adam_work/l036/l036_13pca_nooffs took 548.84132 sec./scratch/adam_work/l039/l039_13pca took 299.96889 sec./scratch/adam_work/l039/l039_13pca_nooffs took 299.16787 sec./scratch/adam_work/l042/l042_13pca took 366.34139 sec./scratch/adam_work/l042/l042_13pca_nooffs took 364.31475 sec./scratch/adam_work/l044/l044_13pca took 427.26923 sec./scratch/adam_work/l044/l044_13pca_nooffs took 424.42403 sec./scratch/adam_work/l048/l048_13pca took 313.86412 sec./scratch/adam_work/l048/l048_13pca_nooffs took 303.52545 sec./scratch/adam_work/l050/l050_13pca took 421.22899 sec./scratch/adam_work/l050/l050_13pca_nooffs took 477.16070 sec./scratch/adam_work/l054/l054_13pca took 315.14965 sec./scratch/adam_work/l054/l054_13pca_nooffs took 342.69137 sec.
+</pre>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../maps-with-problems.html" rel="bookmark" title="Permalink to Maps with problems">
+                    Maps with problems</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-09-17T14:46:00"> 2008/09/17 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>l002: fuzzy stuff - bad sky sub?
+l033: misalignment
+l004: possible misalignment? Pattern recognition fails me here
+l354: misalignment</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../masked-edge-effects.html" rel="bookmark" title="Permalink to Masked edge effects?">
+                    Masked edge effects?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-13T20:28:00"> 2011/07/13 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I raised the possibility that the ratty edges of a scan could affect the
+power spectrum measurements, leading to a scale-free power loss. This
+doesn't appear to happen... instead, the masking adds some small-scale
+power and apparently a small amount of large-scale power.</p>
+<img alt="http://1.bp.blogspot.com/-y7Bh9ngi7mY/Th3_sLpN0VI/AAAAAAAAGSc/4P67rBou5HE/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B00_sky03_seed00_peak010.00_nosmooth_test_compare.png" src="http://1.bp.blogspot.com/-y7Bh9ngi7mY/Th3_sLpN0VI/AAAAAAAAGSc/4P67rBou5HE/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B00_sky03_seed00_peak010.00_nosmooth_test_compare.png" />
+<img alt="http://4.bp.blogspot.com/-cg1akcZbUek/Th3_sicaVmI/AAAAAAAAGSk/_4sALFui9kA/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B00_sky03_seed00_peak010.00_nosmooth_test_psds.png" src="http://4.bp.blogspot.com/-cg1akcZbUek/Th3_sicaVmI/AAAAAAAAGSk/_4sALFui9kA/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B00_sky03_seed00_peak010.00_nosmooth_test_psds.png" />
+<img alt="http://2.bp.blogspot.com/-y-9SbSCsPqw/Th3_tHJGc8I/AAAAAAAAGSs/suuiw8xvwpQ/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B00_sky03_seed00_peak010.00_nosmooth_test_stf.png" src="http://2.bp.blogspot.com/-y-9SbSCsPqw/Th3_tHJGc8I/AAAAAAAAGSs/suuiw8xvwpQ/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B00_sky03_seed00_peak010.00_nosmooth_test_stf.png" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../massive-upgrades-new-strategy.html" rel="bookmark" title="Permalink to Massive upgrades, new strategy?">
+                    Massive upgrades, new strategy?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-18T04:01:00"> 2008/11/18 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>A few major things today:</p>
+<blockquote>
+<p>#. I renamed 'ts_to_map' to 'drizzle' and made 'ts_to_map' a wrapper
+that will either median combine by scans (if passed the right keywords,
+i.e. tstomapmedian and scans_info). This will reject cosmic rays much
+more effectively than previously.
+#. My extensive test runs on the 'weird' fields completed. Conclusions:</p>
+<blockquote>
+<ul>
+<li><dl class="first docutils">
+<dt>Deconvolution is DEFINITELY responsibly for the weird fuzzy effects</dt>
+<dd><p class="first last">seen esp. in l=33, l=2.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Even a descending iterator is ineffective at alleviating this</dt>
+<dd><p class="first last">problem
+What I still don't understand is WHY the deconvolver is behaving badly
+for some regions. It is extracting peaks that are too high.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Not deconvolving works pretty well, so I'm not really concerned. I'm</dt>
+<dd><p class="first last">resetting the defaults to no deconvolution once my next test is done....</p>
+</dd>
+</dl>
+</li>
+</ul>
+</blockquote>
+<ol class="arabic simple">
+<li>Started up a new test run to compare median stacking with weighted
+average stacking</li>
+</ol>
+</blockquote>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../measuring-preferred-angles-in-the-herschel-data-on-larger-scales.html" rel="bookmark" title="Permalink to Measuring preferred angles in the Herschel data on larger scales">
+                    Measuring preferred angles in the Herschel data on larger scales</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-06-07T22:09:00"> 2011/06/07 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>This is something of a repeat of yesterday's exercise, but for Herschel
+data on larger scales, where filamentation is expected (at different
+angles?) on a different scale than the Galactic plane.
+First example: L030 500 microns</p>
+<img alt="http://1.bp.blogspot.com/-wtocYOxuJGo/Te6boI6cE7I/AAAAAAAAGNU/f9h0MXIPNh8/s320/bin_l30_plw_PSD.png" src="http://1.bp.blogspot.com/-wtocYOxuJGo/Te6boI6cE7I/AAAAAAAAGNU/f9h0MXIPNh8/s320/bin_l30_plw_PSD.png" />
+<img alt="http://4.bp.blogspot.com/-HlNCVZYyly4/Te6bob1mWLI/AAAAAAAAGNc/Jq6MTJnVyWE/s320/bin_l30_plw_azprofile.png" src="http://4.bp.blogspot.com/-HlNCVZYyly4/Te6bob1mWLI/AAAAAAAAGNc/Jq6MTJnVyWE/s320/bin_l30_plw_azprofile.png" />
+<p>There is evidently a preferred direction that is correlated down to the
+resolution of the map, though the preference is smallest at the smallest
+scales. This may simply be a statement that there are more sources along
+the galactic plane, though, since there really isn't any particularly
+obvious filamentation in the image.</p>
+<img alt="http://4.bp.blogspot.com/-LfWovOR8nBk/Te6bpM-PNTI/AAAAAAAAGNk/T9il85L34p0/s320/bin_l59_plw_PSD.png" src="http://4.bp.blogspot.com/-LfWovOR8nBk/Te6bpM-PNTI/AAAAAAAAGNk/T9il85L34p0/s320/bin_l59_plw_PSD.png" />
+<img alt="http://4.bp.blogspot.com/-1_7ezH0S6tk/Te6bpokBuYI/AAAAAAAAGNs/AQL0U86N4gw/s320/bin_l59_plw_azprofile.png" src="http://4.bp.blogspot.com/-1_7ezH0S6tk/Te6bpokBuYI/AAAAAAAAGNs/AQL0U86N4gw/s320/bin_l59_plw_azprofile.png" />
+<p>In L59, on the other hand, there is at most a very weak preference
+except at the largest scales corresponding to the Galactic Plane. This
+is somewhat interesting because there IS obvious filamentation in the
+L59 image, but it does not have a preferred direction. Unfortunately, it
+is not obvious whether or where filamentation shows up in fourier space
+if it does not have a preferred direction. There is no excess at any
+spatial scale that I can pick out.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../median-drizzling.html" rel="bookmark" title="Permalink to Median drizzling">
+                    Median drizzling</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-18T16:11:00"> 2008/11/18 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a class="reference external" href="http://groups.google.com/group/comp.lang.idl-pvwave/browse_thread/thread/762770933591238d">http://groups.google.com/group/comp.lang.idl-pvwave/browse_thread/thread/762770933591238d</a>
+Someone going by the name 'wox' introduced me to a spectacularly simple
+drizzling algorithm for medianing. It will be a little less efficient
+because it can't take advantage of some 'partial sum' tricks that the
+average can, but it will median over ALL data points, which is an
+advantage.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../methods-paper-figures-analysis-to-produce.html" rel="bookmark" title="Permalink to Methods Paper: Figures / analysis to produce">
+                    Methods Paper: Figures / analysis to produce</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-03-04T03:43:00"> 2009/03/04 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The methods paper needs some justification of the number of PCA
+components used. This will require a map of some field with a range of
+number of PCA components.
+Plan:
+simulate a map of L111 (the most square field) with 0-20 PCA components
+x 21 iterations and a variety of source sizes and plot the recovered
+flux vs. number of PCA components. Ideally, do this with both
+deconvolution and not. Estimated processing time is ~24 hours.
+Also, a plot of flux vs. iteration number will be useful.
+Glitch filtering method has been modified:
+&quot;Glitches are removed by drizzling each bolometer measurement into a
+given pixel using the mapping M[p], but retaining each pixel as an array
+of measurements. Then, measurements exceeding $3\times MAD$ (Median
+Average Deviation) are flagged out in the timestream. In cases where
+there were too few ($&lt;3$) hits per pixel, the pixel was completely
+flagged out. This only occurred for pixels at scan edges.&quot;
+Data flagging:
+Partly covered by deglitching. Many scans were flagged by hand to remove
+overly noisy scans and those that were observed to confuse the iterative
+mapper. Hand flagging is more robust than automated and can remove
+features caused by the filter convolved with the glitch.
+Creation of astrophysical model:
+Not entirely sure what this section entails. Should have a subsection on
+deconvolution though.
+Jackknifing has not generally been done...</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../milkyway-scratch-disk-usage.html" rel="bookmark" title="Permalink to Milkyway /scratch disk usage">
+                    Milkyway /scratch disk usage</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-07-31T22:40:00"> 2008/07/31 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <pre class="literal-block">
+-bash-3.00$ du -h --max-depth=1 ../16K     ../lost+found80G     ../sliced1.3G    ../elatov70G     ../cleaned58G     ../mapped179G    ../sliced_polychrome4.0K    ../ironsides49G     ../coadd_mapped2.1G    ../pca_coadd2.8G    ../3pca_3iterations11M     ../centroid17M     ../lost34M     ../ptg_maps3.8G    ../montage31G     ../maps_from_polychrome93M     ../ptg_mmd32G     ../backup_from_kilauea31G     ../sharc1.8M    ../distortion6.9G    ../fake138G    ../adam_work136G    ../bgps_dir_from_polychrome815G    ../
+</pre>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+                        <a href="../author/adam-noreplybloggercom10.html">&laquo;</a>
+                Page 11 / 20
+            <a href="../author/adam-noreplybloggercom12.html">&raquo;</a>
+    </p>
+</section><!-- /#content -->
+  </div>
+        <footer id="contentinfo" class="body">
+        </footer><!-- /#contentinfo -->
+
+
+
+
+</body>
+</html>

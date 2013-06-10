@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="../theme/css/style.css" />
+<head>
+                <title>Adam Ginsburg's blog - Articles by Adam (noreply@blogger.com)</title>
+        <meta charset="utf-8" />
+                <link href="http://keflavich.github.com/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+                                                                        <!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("../static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="..">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                            <li><a href="http://www.adamgginsburg.com">Home</a></li>
+                            <li><a href="index.html">Blog Index</a></li>
+                            <li><a href="archives.html">Recent</a></li>
+                            <li><a href="tags.html">Tags</a></li>
+                                                              </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+   <div id="sidebar">
+    <ul>
+  	  	        	  	          <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+                          <li class="post">
+                  2008/08/06
+                  <br>
+                  <a href="../0507-mapping.html">0507 mapping</a>
+              </li>
+                          <li class="post">
+                  2009/02/01
+                  <br>
+                  <a href="../0707-distortion-maps.html">0707 distortion maps</a>
+              </li>
+                          <li class="post">
+                  2009/01/17
+                  <br>
+                  <a href="../0709-rotators-fixed-latest-run.html">0709 rotators fixed, latest run</a>
+              </li>
+                          <li class="post">
+                  2008/11/28
+                  <br>
+                  <a href="../4-errors.html">4 errors</a>
+              </li>
+                          <li class="post">
+                  2009/03/04
+                  <br>
+                  <a href="../43-relative-alignment-and-mosaicing.html">4.3 Relative Alignment and Mosaicing</a>
+              </li>
+                    </ul>
+      </li>
+        
+    </ul>
+  </div><!-- end #sidebar -->
+ 
+  <div id="content">
+        <section id="content">
+<h2>Articles by Adam (noreply@blogger.com)</h2>
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../uh.html" rel="bookmark" title="Permalink to Uh?">
+                    Uh?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-01-15T18:22:00"> 2009/01/15 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm not sure the error reported yesterday is reproducible.
+Tonight, I started a complete re-mapping of the entire survey. The new
+mapping will include beam-smoothed maps and more complete header
+parameters.
+I need to re-check the L111 mapping. It looks like the region with NGC
+7538 in it did alright, but the southeast region didn't do so well. The
+combined maps are probably better than in any previous iteration,
+though.
+Tomorrow's tests will include L024 presumably.
+It's time to get to work on this stuff. There is definitely a reasonably
+efficient way to go through all of this stuff; the most difficult part
+is post-facto error checking.
+Here are some awk commands I found useful (the \'s are because of VI):
+`` awk '{printf( $0); if ($2 != 0){ printf(&quot; %4i%4i&quot;,$4-443,$5-207) }; if($4!=0){printf(&quot; %4i,%4i&quot;,$2-272,$3-742)}; printf(&quot;n&quot;) }' align/l111_fitslist_shiftfind.txt``
+<tt class="docutils literal">awk '{print <span class="pre">$6,$7}'</span> align/l111_fitslist_shiftfind.txt &gt; align/shifts_all_lb.txt</tt>
+One important point: I had to add a parameter to the header file to say
+whether the current pointing model was used or not. It matters when
+applying the offsets. Note that since I'm using the pointing model to
+make all the individual maps, we actually have to stick with this
+current set of pointing models for all coaligned maps.
+The current models:</p>
+<pre class="literal-block">
+#   Definition of coefficientts:#   start/end mjd are the start/end modified Julian date of a given pointing model#   the 'a' coefficients are for the AZIMUTH OFFSET, the b coefficients are for the ZENITH ANGLE OFFSET#   a0/b0 are constants (e.g. the mean)#   [ab][12] are the 1st and 2nd coefficients of Azimuth.  They have been fiated to zero for most of#   the past year or three.#   [ab][34] are the 1st and 2nd coefficients of Zenith Angle.#   A 'pointing model' is therefore something like this:#   azoff = a0 + a3*alt + a4*alt^2#   altoff = b0 + b3*alt + b4*alt^2##   It is important that the start_mjd/end_mjd be in ascending order##   WARNING: LATER THAN JULY 2007 DEFAULTS TO JULY 2007 WHICH WILL PROBABLY RESULT IN ERRORS!#   I don't have a September 2007 model yet.##   start_mjd      end_mjd               a0              a1            a2              a3             a4                 b0             b1             b2             b3                b4       realdate      53522.5      53582.5       -9.2413685             0.0           0.0   -0.0066354359  -0.0015110883          7.0392221            0.0            0.0   -0.053635657    -0.00047042481       20050601      53614.5      53643.5        84.969583             0.0           0.0      -2.4339154    0.016300937          126.00164            0.0            0.0     -2.4424431       0.015455417       20050901      53887.5      53947.5        9.5305281             0.0           0.0    -0.053191181  -0.0029300592         0.13425019            0.0            0.0     0.48160040     -0.0092814256       20060601      53979.5      54008.5       -98.980381             0.0           0.0      0.65354164   -0.012414466          52.841380            0.0            0.0      1.6705743      -0.020893018       20060901      54101.5      54252.5       -99.078392             0.0           0.0        0.105270   -0.005943491          86.896333            0.0            0.0     0.54257415      -0.011919129       20070101      54252.5      54288         -103.03831             0.0           0.0      0.20972540  -0.0060336987          100.74491            0.0            0.0   0.0099012827     -0.0033331895       20070601#      54288        54313         -99.078392             0.0           0.0      0.10527000  -0.0059434911          86.896333            0.0            0.0     0.54257415      -0.011919129       20070707      54288        54313         -98.803883             0.0           0.0      0.11810246  -0.0051207995          91.720516            0.0            0.0     0.18953269      -0.0078189793       20070707      54313        54500         -99.078392             0.0           0.0      0.10527000  -0.0059434911          86.896333            0.0            0.0     0.54257415      -0.011919129       20070707mjd2date,53522.5 ,y,m,d &amp; print,y,m,dmjd2date,53614.5 ,y,m,d &amp; print,y,m,dmjd2date,53887.5 ,y,m,d &amp; print,y,m,dmjd2date,53979.5 ,y,m,d &amp; print,y,m,dmjd2date,54101.5 ,y,m,d &amp; print,y,m,dmjd2date,54252.5 ,y,m,d &amp; print,y,m,dmjd2date,54288   ,y,m,d &amp; print,y,m,d
+</pre>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../update-pointing-model.html" rel="bookmark" title="Permalink to Update - Pointing Model">
+                    Update - Pointing Model</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-01T16:43:00"> 2008/08/01 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Update - Pointing Model 7/31/08
+The pointing model application &quot;works&quot; now, but I have a problem with
+our model. We don't get down to the &lt;10&quot; RMS offset we're looking for.
+The mean offsets are all zero, but the spread is more like 20&quot;.
+Example plots on milkyway: [see attached PDFs too]</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd>/scratch/adam_work/plots/models_ptgmdl_0506.ps
+/scratch/adam_work/plots/models_ptgmdl_0707.ps
+/scratch/adam_work/plots/models_rawcsoptg_0506.ps
+/scratch/adam_work/plots/models_rawcsoptg_0707.ps</dd>
+</dl>
+<p>On the left side are plotted &quot;all&quot; of the data points, on the right I've
+used a two-iteration 3-sigma rejection to eliminate outliers to a small
+degree.</p>
+<p>Top of these plots - as labeled - is altoff vs. alt, bottom is azoff vs.
+alt.</p>
+<p>The red lines are a 2nd order polynomial fit to the data.</p>
+<p>The cyan lines are the pointing model corrections calculated by
+Meredith.</p>
+<p>The 'ptgmdl' files have had the pointing model corrections applied. Note
+that they are centered around offsets of zero.</p>
+<p>The 'rawcsoptg' files DO NOT have pointing model corrections applied,
+and FZAO/FAZO have been REMOVED from the original pointing. Hence, these
+are RAW CSO TELESCOPE POINTING plots.</p>
+<p>Things to note:</p>
+<blockquote>
+<ul class="simple">
+<li>In the 0707 'ptgmdl' set, the az is not quite centered at zero</li>
+<li>the 0506 'ptgmdl' set still has bulk offsets</li>
+<li>the ALTOFF and AZOFF are in delta-coordinate: this means that azoff</li>
+</ul>
+</blockquote>
+<p>should be scaled by dividing by cos(alt) to put the y-axis in consistent
+units. In most cases, this means that the already large spread at higher
+altitudes is going to INCREASE. That means the problem is going to get
+worse...
+Questions:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>What is the main difference between my plots and Meredith's? i.e.  why is
+my RMS ~an order of magnitude larger?</li>
+<li>Does more outlier rejection make sense? Is there any reason not to trust
+certain observations if they visible turn out right?  PPSes are supposed to
+be &quot;absolute references&quot; for the 1x1, 3x1 maps OLD PROBLEM: PPS and large
+maps mapped with same 'pointing model' but ended up with different
+coordinates</li>
+</ol>
+</blockquote>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../updates-for-612011-meeting.html" rel="bookmark" title="Permalink to Updates for 6/1/2011 meeting">
+                    Updates for 6/1/2011 meeting</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-06-01T21:40:00"> 2011/06/01 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>This is going to be a mishmash of various things....
+First, Jared has run the same simulations I e-mailed out through the
+V1.0 pipeline. Unfortunately, the results are not good - there is
+substantial streaking of a variety not seen in the real data in V1.
+Second, here are the simulated images from V2:
+<a class="reference external" href="http://eta.colorado.edu/bgps/simulations/Experiment7_Simulation_Images.pdf">http://eta.colorado.edu/bgps/simulations/Experiment7_Simulation_Images.pdf</a>
+Unfortunately I can't present a direct comparison because something got
+screwed up...</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../updates-today.html" rel="bookmark" title="Permalink to Updates today">
+                    Updates today</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-25T23:35:00"> 2008/08/25 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I updated the FITS header writing pieces of the software today, we
+should now have:
+N_PCA
+ITERNUM
+PPBEAM
+in all new maps.
+I'm mapping all of Cygnus degree-by-degree in RA/Dec and Galactic to try
+to measure offsets... possibly offsets as a function of l/b or ra/dec. I
+should really be doing this with PPSes, though.
+My priority list:</p>
+<ol class="arabic simple">
+<li>find out what's causing bulk offsets</li>
+<li>beat down noise in my pointing models by rejecting bad sources/points
+[has to be done from campus]</li>
+<li>test my personal special pointing models</li>
+<li>make maps!</li>
+<li>figure out the rest of pointing</li>
+</ol>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../v061-done.html" rel="bookmark" title="Permalink to v0.6.1 done">
+                    v0.6.1 done</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-21T02:42:00"> 2008/11/21 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content">  </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../v1-v2-comparison.html" rel="bookmark" title="Permalink to v1-v2 comparison">
+                    v1-v2 comparison</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-08-23T04:25:00"> 2011/08/23 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Some positive results.
+v2 is uniformly higher than v1, but at nearly 1.8, not 1.5. Some of this
+could be because of a different calibration curve (which is worth
+checking on; I'll do that later).</p>
+<img alt="http://1.bp.blogspot.com/-OJ0dGhlukDI/TkrJp3xJ3CI/AAAAAAAAGaM/2wljUfSwwiM/s320/v1.0.2_compare_to_v2.0_ds2_deconv_compare.png" src="http://1.bp.blogspot.com/-OJ0dGhlukDI/TkrJp3xJ3CI/AAAAAAAAGaM/2wljUfSwwiM/s320/v1.0.2_compare_to_v2.0_ds2_deconv_compare.png" />
+<img alt="http://4.bp.blogspot.com/-JuJNBoV9AFw/TkrJqtQVgYI/AAAAAAAAGaU/SMlGuh16ETs/s320/v1.0.2_compare_to_v2.0_ds2_deconv_deline_compare.png" src="http://4.bp.blogspot.com/-JuJNBoV9AFw/TkrJqtQVgYI/AAAAAAAAGaU/SMlGuh16ETs/s320/v1.0.2_compare_to_v2.0_ds2_deconv_deline_compare.png" />
+<img alt="http://1.bp.blogspot.com/-HIMECvNyofo/TkrJrFOgCeI/AAAAAAAAGac/6T6TTJMx0cM/s320/v1.0.2_compare_to_v2.0_ds2_deconv_madflag3_compare.png" src="http://1.bp.blogspot.com/-HIMECvNyofo/TkrJrFOgCeI/AAAAAAAAGac/6T6TTJMx0cM/s320/v1.0.2_compare_to_v2.0_ds2_deconv_madflag3_compare.png" />
+<img alt="http://1.bp.blogspot.com/-wYf-dSk8NXY/TkrJsINgC7I/AAAAAAAAGak/k6Kn6WbgxWM/s320/v1.0.2_compare_to_v2.0_ds2_deline_compare.png" src="http://1.bp.blogspot.com/-wYf-dSk8NXY/TkrJsINgC7I/AAAAAAAAGak/k6Kn6WbgxWM/s320/v1.0.2_compare_to_v2.0_ds2_deline_compare.png" />
+<img alt="http://3.bp.blogspot.com/-cMEqPyhfKDM/TkrJsmmMEpI/AAAAAAAAGas/ZgwSeLos5QQ/s320/v1.0.2_compare_to_v2.0_ds2_inversescaleweight_compare.png" src="http://3.bp.blogspot.com/-cMEqPyhfKDM/TkrJsmmMEpI/AAAAAAAAGas/ZgwSeLos5QQ/s320/v1.0.2_compare_to_v2.0_ds2_inversescaleweight_compare.png" />
+<p>While the pixel-to-pixel comparison yields values ~1.75, the aperture
+photometry is perhaps even more severe:</p>
+<img alt="http://2.bp.blogspot.com/-2kmy7UjYx-U/TkrX2i9j3KI/AAAAAAAAGbU/WTPdP7p6nHY/s320/v1.0.2_compare_to_v2.0_ds2_reconv_point.png" src="http://2.bp.blogspot.com/-2kmy7UjYx-U/TkrX2i9j3KI/AAAAAAAAGbU/WTPdP7p6nHY/s320/v1.0.2_compare_to_v2.0_ds2_reconv_point.png" />
+<img alt="http://3.bp.blogspot.com/-Uhcyj_rCPrY/TkrX2-k72nI/AAAAAAAAGbc/yePgRQO3RCU/s320/v1.0.2_compare_to_v2.0_ds2_reconv_point2.png" src="http://3.bp.blogspot.com/-Uhcyj_rCPrY/TkrX2-k72nI/AAAAAAAAGbc/yePgRQO3RCU/s320/v1.0.2_compare_to_v2.0_ds2_reconv_point2.png" />
+<p>Those are a difference of a factor of 2.5, which is rather enormous.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../v1-vs-v2-calibration-curves.html" rel="bookmark" title="Permalink to V1 vs V2: Calibration Curves">
+                    V1 vs V2: Calibration Curves</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-08-25T17:09:00"> 2011/08/25 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Why did we find a factor ~1.8 in <a class="reference external" href="http://bolocam.blogspot.com/2011/08/bolocat-v1-v2-comparison.html">the previous post</a>? Well, for
+starters we used a calibration curve that was based off of 'masking' and
+other tricky techniques.
+The calibration curves below are the first ever produced
+self-consistently, i.e. using the EXACT same pipeline with the EXACT
+same parameters as the science data. No hacks were needed to produce
+these<a class="reference external" href="#asterisk&quot;">*</a>. The recovered Volts/Jy are substantially higher than
+BGPSv1 and ALSO higher than the curve used about a year ago in an
+attempt to explain the v1 flux discrepancy.
+Remember that a higher calibration curve means a LOWER recovered flux. I
+haven't finished the check, but odds are pretty good that applying these
+self-consistent cal curves will reduce the v2 data to be about 1.5.</p>
+<img alt="http://4.bp.blogspot.com/-PRU4LQ5f-C4/TlZ9wpeFBeI/AAAAAAAAGb8/jKdJHtIqV40/s320/planet_dcfluxes_05_defaults_ds2_v2.0_13pca_map20.png" src="http://4.bp.blogspot.com/-PRU4LQ5f-C4/TlZ9wpeFBeI/AAAAAAAAGb8/jKdJHtIqV40/s320/planet_dcfluxes_05_defaults_ds2_v2.0_13pca_map20.png" />
+<img alt="http://3.bp.blogspot.com/-AIzsETyl69g/TlZ9w50DjBI/AAAAAAAAGcE/h5ggKhH3dO4/s320/planet_dcfluxes_06_defaults_ds2_v2.0_13pca_map20.png" src="http://3.bp.blogspot.com/-AIzsETyl69g/TlZ9w50DjBI/AAAAAAAAGcE/h5ggKhH3dO4/s320/planet_dcfluxes_06_defaults_ds2_v2.0_13pca_map20.png" />
+<img alt="http://4.bp.blogspot.com/-BNWD4QQ21Ac/TlZ9xZ5eTkI/AAAAAAAAGcM/QOVbum2jXIo/s320/planet_dcfluxes_07_defaults_ds2_v2.0_13pca_map20.png" src="http://4.bp.blogspot.com/-BNWD4QQ21Ac/TlZ9xZ5eTkI/AAAAAAAAGcM/QOVbum2jXIo/s320/planet_dcfluxes_07_defaults_ds2_v2.0_13pca_map20.png" />
+<img alt="http://2.bp.blogspot.com/-OucWo74b8VY/TlZ9yFIJYQI/AAAAAAAAGcU/IBMs5YLMlYU/s320/planet_dcfluxes_09_defaults_ds2_v2.0_13pca_map20.png" src="http://2.bp.blogspot.com/-OucWo74b8VY/TlZ9yFIJYQI/AAAAAAAAGcU/IBMs5YLMlYU/s320/planet_dcfluxes_09_defaults_ds2_v2.0_13pca_map20.png" />
+<p>While no hacks were needed to produce these plots, there were abundant
+problems. There are far fewer data points than there should be. The
+problems are manifold, but mostly have to do with the PCA scaling (I
+think).
+In some cases, the first scan in an observation was wildly variable.
+There looked to be an exponential or similar decay (as has been observed
+in scan turnarounds) at the observation start that took ~3 scans to
+decay to bring all of the bolometers onto a scaleable curve. This is a
+HUGE problem, because the assumption that the dominant signal is
+atmosphere is badly violated in this situation - the signal becomes
+electronics-dominated. The first PCA component is then an ugly
+step-function. With these first scans flagged out, the whole problem
+goes away, but that's a painful manual process. Automating it MAY be
+possible, but also risky.
+In other cases, particularly September 4th 2007, the atmosphere appeared
+to be negligible! While the atmospheric optical depth probably was not,
+if it was extraordinarily stable over the course of ~10 minutes, again
+we experience severe problems. A stable atmosphere means no atmospheric
+variation, which means that ACBOLOS is just noise (plus Uranus signal).
+Ironically, this is very bad for calibration - it means there is no
+common signal on which we can calibrate the bolos' relative
+sensitivities. This problem doesn't seem to affect science data,
+probably because there's no such thing as 45-minute stable atmosphere
+(especially when you're following rising/setting sources). If I REALLY
+need that data, I could snag the relative scalings from a science field
+and apply them to the cal data... honestly that's not a bad idea in
+general... hmm... Well, we'll explore that later if I have time, that
+will take days to implement.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../v20-is-to-v10-as-___-is-to-v10.html" rel="bookmark" title="Permalink to v2.0 is to v1.0 as ___ is to v1.0">
+                    v2.0 is to v1.0 as ___ is to v1.0</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2010-06-24T23:04:00"> 2010/06/24 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TCN8uqZ-xSI/AAAAAAAAFw8/TywL2w_ntIk/s320/l079_comparison.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TCN8uqZ-xSI/AAAAAAAAFw8/TywL2w_ntIk/s320/l079_comparison.png" />
+<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/TCN8vlKAjAI/AAAAAAAAFxE/BZE5Wlca8oU/s320/l079_comparison_psd.png" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TCN8vlKAjAI/AAAAAAAAFxE/BZE5Wlca8oU/s320/l079_comparison_psd.png" />
+<p>Apparently v2.0 recovers flux better at all scales than v1.0.&nbsp; However,
+it is noisier.&nbsp; The full comparison is available <a class="reference external" href="http://casa.colorado.edu/%7Eginsbura/bgps/v1.0_v2.0_comparison.pdf">here</a>.&nbsp; The
+trustworthy range of flux scales is 1.2-1.6ish.&nbsp; The flux is increased
+at ALL scales in most images.&nbsp; However, as was noted in comparisons with
+MAMBO, there may be curvature in the best-fit lines.&nbsp; Also, l=35 does
+not appear to scale up linearly... G34 is fainter in v2.0?
+In the low S/N fields, the PSD is more reliable than the pixel-pixel
+comparison.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../version-06-begun.html" rel="bookmark" title="Permalink to Version 0.6 begun">
+                    Version 0.6 begun</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-19T04:52:00"> 2008/11/19 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I started on (what I hope will be) v0.6 tonight.
+New things:
+-Sigma-rejection flagging in the spatial domain
+-Inverse-variance weighting</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../weighting-and-high-frequency-noise.html" rel="bookmark" title="Permalink to Weighting and high-frequency noise">
+                    Weighting and high-frequency noise</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-15T00:41:00"> 2008/11/15 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/SR4DzVCz1WI/AAAAAAAADfk/cJ70OPeqEzg/s400/psds.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/SR4DzVCz1WI/AAAAAAAADfk/cJ70OPeqEzg/s400/psds.png" />
+<p>Image of PSDs (with no normalization) of the raw (blue), delined and
+exponential and polynomial subtracted (white), the noise timestream
+(yellow), and the data (cyan).
+The good: It looks like all of the powerline noise got into the noise
+timestream and almost none in the data.
+The bad: weighting is based on the noise timestream so it's possible
+that the weights aren't quite right as a result
+The weird: the data PSD. What's up with that? Apparently I'm
+preferentially subtracting certain scales but I don't know why, unless
+deconvolution is at fault.
+Edit/Update: The deconvolution is definitely at fault. Here's the same
+scan done without deconvolution:</p>
+<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/SR4ZM6FPfrI/AAAAAAAADf0/baHOQwedeqs/s400/psds2.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/SR4ZM6FPfrI/AAAAAAAADf0/baHOQwedeqs/s400/psds2.png" />
+<p>It should have been obvious; the cyan in the first plot is the PSD of
+the deconvolution straight up, and that should have no high-frequency
+structure...</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+                        <a href="../author/adam-noreplybloggercom18.html">&laquo;</a>
+                Page 19 / 20
+            <a href="../author/adam-noreplybloggercom20.html">&raquo;</a>
+    </p>
+</section><!-- /#content -->
+  </div>
+        <footer id="contentinfo" class="body">
+        </footer><!-- /#contentinfo -->
+
+
+
+
+</body>
+</html>
