@@ -6,10 +6,11 @@ Hopkins PDF Generalization
 
 `Hopkins 2013`_ presents a non-lognormal form of the probability distribution
 function of density in turbulence, depending primarily on a parameter
+:math:`T`.  I examine some of its properties here.  All of the equations shown
 on this page are implemented in https://github.com/keflavich/turbulence_pdfs,
 in particular the functions ``moments_theoretical_hopkins`` and ``moments`` in
-in particular the functions ``moments_theoretical_hopkins`` and ``moments`` in
 `hopkins_pdf.py
+<https://github.com/keflavich/turbulence_pdfs/blob/master/hopkins_pdf.py>`__.
 
 The conservation equations, conservation of probability and mass
 
@@ -21,8 +22,8 @@ The conservation equations, conservation of probability and mass
 of this document is to generalize to :math:`\rho_0 <> 1`
 
 The most important thing to do is determine the values of the moments of the
-The most important thing to do is determine the values of the moments of the
-the integral corrections for the Dirac Delta function component of the PDF.
+distribution, including the integral corrections for the Dirac Delta function
+component of the PDF.
 
 The PDF
 -------
