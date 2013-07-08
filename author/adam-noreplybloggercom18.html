@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="../theme/css/style.css" />
+<head>
+                <title>Adam Ginsburg's blog - Articles by Adam (noreply@blogger.com)</title>
+        <meta charset="utf-8" />
+                <link href="http://keflavich.github.com/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+                                                                        <!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("../static/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="..">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                            <li><a href="http://www.adamgginsburg.com">Home</a></li>
+                            <li><a href="index.html">Blog Index</a></li>
+                            <li><a href="archives.html">Recent</a></li>
+                            <li><a href="tags.html">Tags</a></li>
+                                                              </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+   <div id="sidebar">
+    <ul>
+  	  	        	  	          <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+                          <li class="post">
+                  2008/08/06
+                  <br>
+                  <a href="../0507-mapping.html">0507 mapping</a>
+              </li>
+                          <li class="post">
+                  2009/02/01
+                  <br>
+                  <a href="../0707-distortion-maps.html">0707 distortion maps</a>
+              </li>
+                          <li class="post">
+                  2009/01/17
+                  <br>
+                  <a href="../0709-rotators-fixed-latest-run.html">0709 rotators fixed, latest run</a>
+              </li>
+                          <li class="post">
+                  2008/11/28
+                  <br>
+                  <a href="../4-errors.html">4 errors</a>
+              </li>
+                          <li class="post">
+                  2009/03/04
+                  <br>
+                  <a href="../43-relative-alignment-and-mosaicing.html">4.3 Relative Alignment and Mosaicing</a>
+              </li>
+                    </ul>
+      </li>
+        
+    </ul>
+  </div><!-- end #sidebar -->
+ 
+  <div id="content">
+        <section id="content">
+<h2>Articles by Adam (noreply@blogger.com)</h2>
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../spatial-transfer-functions.html" rel="bookmark" title="Permalink to Spatial Transfer Functions">
+                    Spatial Transfer Functions</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-13T18:54:00"> 2011/07/13 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The majority of the past week has been dedicated to debugging; it looks
+like cross-scanned simulations finally work.
+The plot below is a derivation of the spatial transfer function for a
+number of different intrinsic sky power-law power spectra.</p>
+<img alt="http://2.bp.blogspot.com/-JyAPg0u9uQ8/Th3kuQh1fpI/AAAAAAAAGRs/pP7o3n9_wds/s320/Experiment10_AverageRecoveryFunction.png" src="http://2.bp.blogspot.com/-JyAPg0u9uQ8/Th3kuQh1fpI/AAAAAAAAGRs/pP7o3n9_wds/s320/Experiment10_AverageRecoveryFunction.png" />
+<p>Justifying the above plot is essential.
+First, the very steep power-laws [-3 in the example below] show a
+recovery fraction &gt;1. This is simply because their S/N was inadequate -
+the output power spectrum is nearly flat, but at a level higher than the
+sky.</p>
+<img alt="http://4.bp.blogspot.com/-JPBjsLDfP5M/Th3lw5n1xTI/AAAAAAAAGR0/aDeOmMv5s8w/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky00_seed00_peak010.00_nosmooth_compare.png" src="http://4.bp.blogspot.com/-JPBjsLDfP5M/Th3lw5n1xTI/AAAAAAAAGR0/aDeOmMv5s8w/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky00_seed00_peak010.00_nosmooth_compare.png" />
+<img alt="http://3.bp.blogspot.com/-LOCDmoLCcZs/Th3lxfnKVzI/AAAAAAAAGR8/9NCM3OroGoM/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky00_seed00_peak010.00_nosmooth_psds.png" src="http://3.bp.blogspot.com/-LOCDmoLCcZs/Th3lxfnKVzI/AAAAAAAAGR8/9NCM3OroGoM/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky00_seed00_peak010.00_nosmooth_psds.png" />
+<p>Second, the most plausible power-laws [-1.5 in the example below] show
+pretty good recovery (90-95% over the relevant range):</p>
+<img alt="http://1.bp.blogspot.com/-MTZ8WGl3ZRc/Th3mMkvv2II/AAAAAAAAGSE/0OO4Te39fPI/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky03_seed00_peak010.00_nosmooth_compare.png" src="http://1.bp.blogspot.com/-MTZ8WGl3ZRc/Th3mMkvv2II/AAAAAAAAGSE/0OO4Te39fPI/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky03_seed00_peak010.00_nosmooth_compare.png" />
+<img alt="http://2.bp.blogspot.com/-5IeTZW-ZTAw/Th3mNHPC8gI/AAAAAAAAGSM/WhIWClGWqbo/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky03_seed00_peak010.00_nosmooth_psds.png" src="http://2.bp.blogspot.com/-5IeTZW-ZTAw/Th3mNHPC8gI/AAAAAAAAGSM/WhIWClGWqbo/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky03_seed00_peak010.00_nosmooth_psds.png" />
+<img alt="http://4.bp.blogspot.com/-O6ofm7GaxUI/Th3mNgf29AI/AAAAAAAAGSU/VzQ7aL-yd_E/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky03_seed00_peak010.00_nosmooth_stf.png" src="http://4.bp.blogspot.com/-O6ofm7GaxUI/Th3mNgf29AI/AAAAAAAAGSU/VzQ7aL-yd_E/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky03_seed00_peak010.00_nosmooth_stf.png" />
+<p>There are some &quot;white&quot; power losses, particularly in the flatter
+power-spectra. My best guess is that this has something to do with the
+relative scales being offset from a mean of 1, but so far all tests to
+show that that is the cause have in fact shown no problems at all. What
+else could cause a scale-independent power loss?
+Also, the flat power spectrum (and inverted) aren't quite flat because I
+impose a &quot;galactic scale height&quot; on them. Should I stop doing that?</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../spatial-transfer-functions-revisit-4.html" rel="bookmark" title="Permalink to Spatial Transfer Functions, revisit 4">
+                    Spatial Transfer Functions, revisit 4</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-08-05T18:56:00"> 2011/08/05 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Last report was a bit of a fiasco. There were problems all over the
+place I didn't understand. I still don't but I've fixed them. My best
+guess at this point is that a pass-by-reference led to an unacceptable
+modification of an image. That doesn't even make sense - there was no
+place it could have happened - but, there you have it.
+So, going through the process step by step.
+This is the effect of smoothing an image:</p>
+<img alt="http://1.bp.blogspot.com/-3TabjiWVKm4/Tjs03gqxkxI/AAAAAAAAGXk/BQOH5FvG3CM/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky02_seed00_peak010.00_SMvsNOSM_input_psds.png" src="http://1.bp.blogspot.com/-3TabjiWVKm4/Tjs03gqxkxI/AAAAAAAAGXk/BQOH5FvG3CM/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky02_seed00_peak010.00_SMvsNOSM_input_psds.png" />
+<img alt="http://1.bp.blogspot.com/-AWglr2CHB-0/Tjs04fniKDI/AAAAAAAAGXs/MM3RCNu6x10/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky02_seed00_peak010.00_SMvsNOSM_input_compare.png" src="http://1.bp.blogspot.com/-AWglr2CHB-0/Tjs04fniKDI/AAAAAAAAGXs/MM3RCNu6x10/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky02_seed00_peak010.00_SMvsNOSM_input_compare.png" />
+<img alt="http://2.bp.blogspot.com/-5yFhvF1iOeY/Tjs1ES7HeuI/AAAAAAAAGX0/T44kJArWn2o/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky02_seed00_peak010.00_SMvsNOSM_input_stf.png" src="http://2.bp.blogspot.com/-5yFhvF1iOeY/Tjs1ES7HeuI/AAAAAAAAGX0/T44kJArWn2o/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky02_seed00_peak010.00_SMvsNOSM_input_stf.png" />
+<p>Note from the 3rd figure that 100% recovery isn't reached until ~700
+arcseconds.
+Next question: What is happening at large spatial scales in the
+flat-spectrum simulations?</p>
+<img alt="http://1.bp.blogspot.com/-Fi2EBFsPFK4/TjtLzkxRxRI/AAAAAAAAGX8/4GoYEwSaaKc/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky07_seed00_peak100.00_smooth_compare.png" src="http://1.bp.blogspot.com/-Fi2EBFsPFK4/TjtLzkxRxRI/AAAAAAAAGX8/4GoYEwSaaKc/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky07_seed00_peak100.00_smooth_compare.png" />
+<img alt="http://2.bp.blogspot.com/-P3TEAHevkEY/TjtL0BG8BbI/AAAAAAAAGYE/oC71ZTFTz3k/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky06_seed00_peak100.00_smooth_compare.png" src="http://2.bp.blogspot.com/-P3TEAHevkEY/TjtL0BG8BbI/AAAAAAAAGYE/oC71ZTFTz3k/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky06_seed00_peak100.00_smooth_compare.png" />
+<img alt="http://4.bp.blogspot.com/-g0m5hEHx8QY/TjtL00D3USI/AAAAAAAAGYM/687cgIORovk/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky05_seed00_peak100.00_smooth_compare.png" src="http://4.bp.blogspot.com/-g0m5hEHx8QY/TjtL00D3USI/AAAAAAAAGYM/687cgIORovk/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky05_seed00_peak100.00_smooth_compare.png" />
+<p>No obvious problems there.</p>
+<img alt="http://3.bp.blogspot.com/-DwXSkiyw2kE/TjtNt7XadiI/AAAAAAAAGYU/trzLma37DgM/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky05_seed00_peak100.00_smooth_psds.png" src="http://3.bp.blogspot.com/-DwXSkiyw2kE/TjtNt7XadiI/AAAAAAAAGYU/trzLma37DgM/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky05_seed00_peak100.00_smooth_psds.png" />
+<img alt="http://1.bp.blogspot.com/-Q9ItTP7uQDs/TjtNuILPfLI/AAAAAAAAGYc/w67japCoUpo/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky06_seed00_peak100.00_smooth_psds.png" src="http://1.bp.blogspot.com/-Q9ItTP7uQDs/TjtNuILPfLI/AAAAAAAAGYc/w67japCoUpo/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky06_seed00_peak100.00_smooth_psds.png" />
+<img alt="http://3.bp.blogspot.com/-mgWHY8CT3tQ/TjtNuv1jZ-I/AAAAAAAAGYk/Iddg_I2UKjo/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky07_seed00_peak100.00_smooth_psds.png" src="http://3.bp.blogspot.com/-mgWHY8CT3tQ/TjtNuv1jZ-I/AAAAAAAAGYk/Iddg_I2UKjo/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky07_seed00_peak100.00_smooth_psds.png" />
+<p>Hmm, no apparent problem here either, though one might ask why the two
+curves approach each other in sky05 (alpha=-0.5).
+So it appears that the reason for the bump up at low frequencies (long
+wavelengths) must be because of edge effects. After much hassle, I've
+addressed that by cropping images.
+Finally, the averaged results:</p>
+<img alt="http://3.bp.blogspot.com/-26KmVHKU_QY/Tjw8VVYnkkI/AAAAAAAAGY4/-R-e3mwVwZc/s320/stfs_bestmodel_fits.png" src="http://3.bp.blogspot.com/-26KmVHKU_QY/Tjw8VVYnkkI/AAAAAAAAGY4/-R-e3mwVwZc/s320/stfs_bestmodel_fits.png" />
+<img alt="http://2.bp.blogspot.com/-lPtvV465aLg/Tjw8VhQZXXI/AAAAAAAAGZA/Rib4AX6z75E/s320/stfs_bestmodels.png" src="http://2.bp.blogspot.com/-lPtvV465aLg/Tjw8VhQZXXI/AAAAAAAAGZA/Rib4AX6z75E/s320/stfs_bestmodels.png" />
+<p>So we've got an Official Spatial Transfer Function.
+However, of course, we must note that there is a dependence on the
+atmosphere amplitude to source amplitude ratio: it appears that
+large-scale structure is *easier* to recover when the atmosphere is at
+higher amplitude. This makes sense: it is easier to distinguish faint
+astrophysical signal from bright atmosphere in this case. The reason I
+didn't run simulations to test this more is that the S/N ratio on small
+scales becomes poor for the low astrophysical amplitudes.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../stf-measurement-attempts-round-3.html" rel="bookmark" title="Permalink to STF measurement attempts, round 3?">
+                    STF measurement attempts, round 3?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-08-03T02:51:00"> 2011/08/03 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Below are plots of the spatial transfer function for a variety of
+simulation parameters. Each line represents the median (i.e., mean of
+the center 2 of 4) spatial transfer function of 4 realizations of the
+listed parameters.</p>
+<img alt="http://3.bp.blogspot.com/-qAq4e3xotf8/TjJCwJb6knI/AAAAAAAAGXA/mv7hs-uKudI/s320/stfs_atmo01_peak010_smooth.png" src="http://3.bp.blogspot.com/-qAq4e3xotf8/TjJCwJb6knI/AAAAAAAAGXA/mv7hs-uKudI/s320/stfs_atmo01_peak010_smooth.png" />
+<img alt="http://2.bp.blogspot.com/-lTKFbV1Zxno/TjJCwluvOXI/AAAAAAAAGXI/fK7qPWDF0Qw/s320/stfs_atmo10_peak010_smooth.png" src="http://2.bp.blogspot.com/-lTKFbV1Zxno/TjJCwluvOXI/AAAAAAAAGXI/fK7qPWDF0Qw/s320/stfs_atmo10_peak010_smooth.png" />
+<img alt="http://1.bp.blogspot.com/-HNLrsuXSrvA/TjJCwx9xEBI/AAAAAAAAGXQ/a0l3Qljyp04/s320/stfs_atmo10_peak100_smooth.png" src="http://1.bp.blogspot.com/-HNLrsuXSrvA/TjJCwx9xEBI/AAAAAAAAGXQ/a0l3Qljyp04/s320/stfs_atmo10_peak100_smooth.png" />
+<p>A few unfortunate details are apparent:</p>
+<ol class="arabic simple">
+<li>The STF is background dependent, though not strongly</li>
+<li>The STF appears to never exceed 85%, and be more typically 75%. If
+this is not matched by point-source PSDs, an explanation for the flux
+discrepancy becomes possible</li>
+<li>The 50% recovery point is much closer in than previously stated, at
+closer to 150&quot; than 300&quot;.</li>
+</ol>
+<p>Note for comparison that the recovery fraction for point sources is much
+more nearly 1, at least in the calibrator type maps. We need to wait for
+Jared's simulations with point sources in a full size map to confirm
+this, but it seems pretty likely that the STF is different for point
+sources and extended structures.</p>
+<img alt="http://4.bp.blogspot.com/-n0mH8DTSc80/Tji3c0tOffI/AAAAAAAAGXc/_Xd-AQMo4QU/s320/psf_ds1_reconv_arrang45_atmotest_noise%252B6.3E-04varyrelscale_amp1.0E%252B00_psds.png" src="http://4.bp.blogspot.com/-n0mH8DTSc80/Tji3c0tOffI/AAAAAAAAGXc/_Xd-AQMo4QU/s320/psf_ds1_reconv_arrang45_atmotest_noise%252B6.3E-04varyrelscale_amp1.0E%252B00_psds.png" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../task-list.html" rel="bookmark" title="Permalink to Task List">
+                    Task List</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-22T00:29:00"> 2008/08/22 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>For the moment, I'm going to leave the pointing alone. This leaves us
+(me) with a very long list of things to do before the data release:</p>
+<ol class="arabic simple">
+<li>Determine ideal iterative mapping strategy for low-flux fields</li>
+<li>Determine ideal iterative mapping strategy for fields with bright
+sources</li>
+<li>Optimize at least the following:<ol class="arabic">
+<li>scan flatting (polynomial subtraction)</li>
+<li>PCA subtraction</li>
+<li>Pre-PCA sky subtraction (necessary?)</li>
+<li>Deconvolution/No deconvolution</li>
+</ol>
+</li>
+<li>GENERATE MAPS [top priority, but it can't really happen til after the
+above]</li>
+<li>Assure consistency with catalogs - e.g. Motte, SCUBA, etc.</li>
+<li>Figure out what needs to go into fits header</li>
+<li>Survive semester before comps [lowest priority]</li>
+<li>sleep [oh, right, real lowest priority]</li>
+</ol>
+<p>Sarcasm helps me survive. Almost as much as beer.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../template-bolocam-data-team.html" rel="bookmark" title="Permalink to Template: bolocam data team">
+                    Template: bolocam data team</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-12-26T23:02:00"> 2012/12/26 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>This post has been baleeted.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../ten.html" rel="bookmark" title="Permalink to TEN!?!">
+                    TEN!?!</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-23T00:47:00"> 2008/08/23 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/SK9Pe1q6PaI/AAAAAAAADOE/yd0bxUMCDB4/s400/EIGHT.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/SK9Pe1q6PaI/AAAAAAAADOE/yd0bxUMCDB4/s400/EIGHT.png" />
+<p>Look at that. Seriously? a 10' offset? That's ridiculous! There is no
+WAY our pointing models could be off by that much! Even if I got the
+signs entirely wrong, that's just not possible.
+What's going on? First theory: Galactic coordinates fail. Any other
+suggestions?</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../testing-out-analytic-filter-functions.html" rel="bookmark" title="Permalink to Testing out analytic filter functions">
+                    Testing out analytic filter functions</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-15T03:03:00"> 2011/07/15 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've attempted to model the spatial filter function as a gaussian (or
+PSF) plus an inverse gaussian. i.e., the high-spatial-frequency
+components are smoothed with the PSF, and the low spatial frequency
+components are convolved with a (1-gaussian) high-pass filter.
+First, the mildly good news: With a 300&quot; FWHM large-scale cutoff, the
+filter PSD reasonably resembles the iterative map PSD:</p>
+<img alt="http://3.bp.blogspot.com/-udANxY5rM98/Th-i7hx3qnI/AAAAAAAAGS0/kwoR30ZO5OI/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_map20filterpsds.png" src="http://3.bp.blogspot.com/-udANxY5rM98/Th-i7hx3qnI/AAAAAAAAGS0/kwoR30ZO5OI/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_map20filterpsds.png" />
+<p>Luckily, the double-filter goes a very long way in explaining the
+scale-free flux loss. In the following diagram, I show the effect of the
+filter compared to the input map.</p>
+<img alt="http://3.bp.blogspot.com/-iZtSoQjlzJY/Th-jf6oatlI/AAAAAAAAGS8/p8ZcznsKGpI/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_filterpsds.png" src="http://3.bp.blogspot.com/-iZtSoQjlzJY/Th-jf6oatlI/AAAAAAAAGS8/p8ZcznsKGpI/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_filterpsds.png" />
+<p>The filter only recovers about 75% of the flux at ANY wavenumber. The
+map does slightly worse at high frequencies, which I can't explain yet.
+These show the recovery fraction of the iterative maps, a gaussian
+smoothing function with FWHM=33&quot;, and the mid-pass-filter. Map20 (no
+smooth) has a lot of additional &quot;noise power&quot; at high spatial
+frequencies; if it wasn't for the telescope filter function, we would
+apparently have pretty good high-frequency recovery. Hmph.
+Note that map20 is higher than the filter at some intermediate
+frequencies, but quite a bit lower at higher frequencies. Also note the
+moderately poor agreement between the 'smoothed' and 'smoothed (theory)'
+lines.</p>
+<img alt="http://4.bp.blogspot.com/-zhxfyI_XDNY/Th-qZmsMZaI/AAAAAAAAGTE/550ocw2kFx8/s320/filterfunctions_smoothedx2.png" src="http://4.bp.blogspot.com/-zhxfyI_XDNY/Th-qZmsMZaI/AAAAAAAAGTE/550ocw2kFx8/s320/filterfunctions_smoothedx2.png" />
+<p>Finally, look at the comparison between map20 and fiiltered. The
+agreement is not bad for positive points; filtered is apparently
+slightly higher but that can be adjusted. The problem: the filter forces
+some structures that are negative or zero to be positive. For example,
+look at the feature at 210,300 that is negative in Map20 but positive in
+Filtered. In the real (input) map, this feature is lower than its
+surroundings - it is legitimately negative.</p>
+<img alt="http://4.bp.blogspot.com/-zH98yuBL7lo/Th-tQIoKYCI/AAAAAAAAGTM/QNqslST6b2c/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_map20filtercompare.png" src="http://4.bp.blogspot.com/-zH98yuBL7lo/Th-tQIoKYCI/AAAAAAAAGTM/QNqslST6b2c/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_map20filtercompare.png" />
+<img alt="http://2.bp.blogspot.com/-bvlju06_ySU/Th-ttpCOuhI/AAAAAAAAGTU/3zoCyl5gCIY/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_filtercompare.png" src="http://2.bp.blogspot.com/-bvlju06_ySU/Th-ttpCOuhI/AAAAAAAAGTU/3zoCyl5gCIY/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_filtercompare.png" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../tests-running.html" rel="bookmark" title="Permalink to Tests running">
+                    Tests running</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-04-08T17:48:00"> 2011/04/08 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <ul class="simple">
+<li>Re-doing December 2010 calibration (remember to check &amp; compare AFGL
+4029)</li>
+<li>Mapping L351 with deconv, reconv, nodeconv</li>
+</ul>
+<p>ARGH something is wrong with l351 pointing! Is the pointing model
+broken? What HAPPENED?!
+OK, on to 4/8/2011 stuff:
+I've done more work on the Memo from a few weeks ago, and now have a
+concrete recommendation that we do some more observing in 2011. Why I
+torture myself so, I do not know....
+Examination of the 2009 tests shows that reconv is by far the superior
+approach for pointing observations as previously noted. Since reconv
+doesn't look bad, but definitely not best, for science, it might be the
+compromise we have to make. nodeconv completely fails for ds5 data, but
+the ds5 data in general are abominable. They drop by 15-20% compared to
+ds1 for Mars. The problem with nodeconv appears to be extremely high
+noise maps.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../the-l111-reference-field-was-60-flagged-out-becau.html" rel="bookmark" title="Permalink to the l111 reference field was 60% flagged out becau...">
+                    the l111 reference field was 60% flagged out becau...</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-09T04:04:00"> 2008/11/09 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>the l111 reference field was 60% flagged out because of bad rotators:
+ALL PREPROC ... output is</p>
+<pre class="literal-block">
+/scratch/adam\_work/l111/060602\_o34\_raw\_ds5.nc\_indiv13pca READING IN
+1 FILES FROM /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+Reading file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+Flagged scan 2 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by -23.2941
+Flagged scan 6 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by -24.9265
+Flagged scan 7 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by -21.3750
+Flagged scan 8 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by -25.7647
+Flagged scan 9 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by 0.110294
+Flagged scan 10 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by -26.6140
+Flagged scan 11 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by 0.143383
+Flagged scan 12 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by -27.4743
+Flagged scan 14 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by -28.3235
+Flagged scan 15 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by -24.6397
+Flagged scan 17 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by -25.4559
+Flagged scan 18 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by -30.0441
+Flagged scan 19 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by 0.110292
+Flagged scan 21 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by 0.220589
+Flagged scan 22 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by -31.8088
+Flagged scan 23 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by -27.9596
+Flagged scan 24 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by -32.7022
+Flagged scan 26 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by -33.5846
+Flagged scan 28 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by -34.4890
+Flagged scan 30 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by -35.3934
+Flagged scan 31 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by -31.3787
+Flagged scan 33 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by -0.231617
+Flagged scan 34 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by 0.121325
+Flagged scan 36 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by 0.132353
+Flagged scan 38 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by 0.209558
+Flagged scan 39 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by -0.198528
+Flagged scan 40 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by 0.231617
+Flagged scan 42 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+ because rotangle changes by 0.121325
+Did not find rpcfile /data/bgps/raw/rpc/20060602/20060602\_0811\_rpc.bin
+for file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
+Applying pointing model with alt/az off -0.00023445157 -0.00016187002
+NO OFFSETS APPLIED
+Scans 2 6 7 8 9 10
+ 11 12 14 15 17 18
+ 19 21 22 23 24 26
+ 28 30 31 33 34 36
+ 38 39 40 42
+ flagged in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc because
+of rotation
+4.2049680 sec.
+Total of 1947176 points flagged
+AC\_BOLOS has 1.94718e+06 NAN points, which is 0.608696 of total
+</pre>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="../trying-to-bootstrap.html" rel="bookmark" title="Permalink to Trying to bootstrap">
+                    Trying to bootstrap</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-03-28T02:01:00"> 2011/03/28 </abbr>
+            <address class="vcard author"><a class="url fn" href="../author/adam-noreplybloggercom.html">Adam (noreply@blogger.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've concluded, based on previous posts
+<a class="reference external" href="http://bolocam.blogspot.com/2011/02/downsampling-why-is-dec-2010-different.html">http://bolocam.blogspot.com/2011/02/downsampling-why-is-dec-2010-different.html</a>,
+<a class="reference external" href="http://bolocam.blogspot.com/2011/03/revisiting-calibration-yet-again.html">http://bolocam.blogspot.com/2011/03/revisiting-calibration-yet-again.html</a>,
+and
+<a class="reference external" href="http://bolocam.blogspot.com/2011/03/workaround-for-individual-maps.html">http://bolocam.blogspot.com/2011/03/workaround-for-individual-maps.html</a>,
+that ds5 is a problem primarily for undersampled images, i.e. those
+taken in the normal mapping mode. This makes bootstrapping a bit tricky.</p>
+<p>There are two options:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>Map Uranus and AFGL 4029 both in Volts and figure out what flux density
+AFGL 4029 must have to lie on that curve</li>
+<li>Map Uranus and compute a calibration curve, apply that calibration curve
+to AFGL 4029, and then compare derived flux densities.</li>
+</ol>
+</blockquote>
+<p>Both have the major problem that the individual AFGL 4029 maps will
+forcibly be undersampled if I use ds5 data (which is normally OK,
+according to the first paragraph). In the second case, it is possible to
+co-add the images and get around the under-sampling issue, while in the
+first case it is not because of the dependence on total loading
+(MEANDC).</p>
+<p>The real problem is that the whole goal of these observations was to
+compare the different observing methods and see if they agree (1x1, 3x1,
+pointing, etc.) since the pointing-style observations were used to
+calibrate the others. But if the 1x1s are just straight-up unreliable,
+how can we do the comparison? I think the co-added AFGL 4029 is the only
+option, but then how do I test if it's correct? It would be really nice
+to have AFGL 4029 observed with both scan types...</p>
+<p>Alright, onto the data. After last week's fix of the bad bolos, I really
+hope ds1 and ds5 agree. However, first glance at the cal curves says
+they don't. ds1 and ds2 agree, but ds5 is different.</p>
+<p>After checking them out with
+<tt class="docutils literal">ds9 <span class="pre">*ds[15]*13pca*_map10.fits</span> <span class="pre">-scale</span> limits <span class="pre">-1</span> 1000 <span class="pre">-log</span> <span class="pre">-cmap</span> hsv <span class="pre">-match</span> colorbars <span class="pre">-match</span> scales <span class="pre">-match</span> frames wcs &amp;</tt>,
+it appears that the _mask_ data is all... wrong, somehow. That's OK, I
+want to discard the mask data anyway, so I'm happy to NOT spend time
+debugging it.</p>
+<p>Even after careful examination showing that the fits look good - and
+noting that the fluxes look pretty much the same - the calibration
+curves still look rather different. Unfortunately I had to spend 3 hours
+debugging IDL plotting commands; I want to show the fits each time and
+save them as postscripts. What does &quot;xyouts&quot; with &quot;/device,/normal&quot; do?
+I thought that should plot x,y text at the coordinates specified in the
+plot window... but no, that is JUST /normalize.</p>
+<p>Anyway, realized that centroid_map treated NANs as zero. Added ERR
+keyword (with a reasonable estimate of the error) in centroid_map to
+ignore NANs. It looks like improper treatment of NANs is responsible for
+a lot of the scatter seen in the calibration plots.</p>
+<p>There is a substantial difference between the &quot;fitted&quot; peak and the
+&quot;measured&quot; peak (the latter computed by taking the sum of the pixels
+divided by the area of the fitted gaussian). It looks like the
+&quot;measured&quot; version is more robust, at first glance. However,
+unfortunately, for 101208_o11, the difference between ds1 and ds5
+exists in both quantities. I will have to examine timestreams now...
+ARGH.</p>
+<p>Well, the timestreams show... that indeed the model is lower in ds1, but
+not why. The &quot;remainder&quot; (new_astro; the stuff that never gets
+incorporated into the model but DOES get incorporated into the map)
+appears to be the same in both. Similarly, there is little to no flux in
+the PCA atmosphere, so it's not simply being cleaned out. Where is the
+flux going or coming from?</p>
+<img alt="http://3.bp.blogspot.com/-6lqGwWn650Q/TY_rgZKA9QI/AAAAAAAAGCI/Iq9O5mnmhl8/s320/101208_o11_ds1_uranus_indivtest_delinetimestream011_plots_20_bolo02.png" src="http://3.bp.blogspot.com/-6lqGwWn650Q/TY_rgZKA9QI/AAAAAAAAGCI/Iq9O5mnmhl8/s320/101208_o11_ds1_uranus_indivtest_delinetimestream011_plots_20_bolo02.png" />
+<img alt="http://1.bp.blogspot.com/-7uBbEU1tAqM/TY_rgg6Jq9I/AAAAAAAAGCQ/iaGhOSb6gtQ/s320/101208_o11_ds5_uranus_indivtesttimestream011_plots_20_bolo02.png" src="http://1.bp.blogspot.com/-7uBbEU1tAqM/TY_rgg6Jq9I/AAAAAAAAGCQ/iaGhOSb6gtQ/s320/101208_o11_ds5_uranus_indivtesttimestream011_plots_20_bolo02.png" />
+<img alt="http://1.bp.blogspot.com/-YKdZcNOjm7Q/TY_rg6tcvhI/AAAAAAAAGCY/fr4l8j-v4xI/s320/101208_o11_ds1_uranus_indivtesttimestream011_plots_20_bolo02.png" src="http://1.bp.blogspot.com/-YKdZcNOjm7Q/TY_rg6tcvhI/AAAAAAAAGCY/fr4l8j-v4xI/s320/101208_o11_ds1_uranus_indivtesttimestream011_plots_20_bolo02.png" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+                        <a href="../author/adam-noreplybloggercom17.html">&laquo;</a>
+                Page 18 / 20
+            <a href="../author/adam-noreplybloggercom19.html">&raquo;</a>
+    </p>
+</section><!-- /#content -->
+  </div>
+        <footer id="contentinfo" class="body">
+        </footer><!-- /#contentinfo -->
+
+
+
+
+</body>
+</html>
