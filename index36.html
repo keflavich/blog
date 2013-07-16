@@ -67,29 +67,29 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
                           <li class="post">
-                  2013/06/09
+                  2013/07/15
                   <br>
-                  <a href="http://keflavich.github.io/blog/gps-data-analysis.html">GPS Data Analysis</a>
+                  <a href="http://keflavich.github.io/blog/the-milky-way-as-a-star-formation-engine.html">THE MILKY WAY AS A STAR FORMATION ENGINE</a>
               </li>
                           <li class="post">
-                  2013/06/04
+                  2013/07/15
                   <br>
-                  <a href="http://keflavich.github.io/blog/hopkins-pdf-generalization.html">Hopkins PDF Generalization</a>
+                  <a href="http://keflavich.github.io/blog/the-link-between-magnetic-fields-and-cloudstar-formation.html">THE LINK BETWEEN MAGNETIC FIELDS AND CLOUD/STAR FORMATION</a>
               </li>
                           <li class="post">
-                  2013/05/20
+                  2013/07/15
                   <br>
-                  <a href="http://keflavich.github.io/blog/bgps-point-source-recovery-experiment-23-results.html">BGPS Point Source Recovery - Experiment 23 results</a>
+                  <a href="http://keflavich.github.io/blog/the-star-formation-rate-of-molecular-clouds.html">THE STAR FORMATION RATE OF MOLECULAR CLOUDS</a>
               </li>
                           <li class="post">
-                  2013/05/16
+                  2013/07/15
                   <br>
-                  <a href="http://keflavich.github.io/blog/bgps-point-source-recovery.html">BGPS Point Source Recovery</a>
+                  <a href="http://keflavich.github.io/blog/the-origin-and-universality-of-the-initial-mass-function.html">THE ORIGIN AND UNIVERSALITY OF THE INITIAL MASS FUNCTION</a>
               </li>
                           <li class="post">
-                  2013/05/13
+                  2013/07/15
                   <br>
-                  <a href="http://keflavich.github.io/blog/recovering-from-startup-drive-out-of-memory.html">Recovering from "Startup drive out of memory"</a>
+                  <a href="http://keflavich.github.io/blog/from-filamentary-networks-to-dense-cores-in-molecular-clouds-toward-a-new-paradigm-for-star-formation.html">FROM FILAMENTARY NETWORKS TO DENSE CORES IN MOLECULAR CLOUDS: TOWARD A NEW PARADIGM FOR STAR FORMATION</a>
               </li>
                     </ul>
       </li>
@@ -101,6 +101,141 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/version-06-begun.html" rel="bookmark" title="Permalink to Version 0.6 begun">
+                    Version 0.6 begun</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-19T04:52:00"> 2008/11/19 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I started on (what I hope will be) v0.6 tonight.
+New things:
+-Sigma-rejection flagging in the spatial domain
+-Inverse-variance weighting</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/mad-flagger.html" rel="bookmark" title="Permalink to MAD flagger">
+                    MAD flagger</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-19T04:50:00"> 2008/11/19 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <pre class="literal-block">
+; The Mad Flagger; Flag based on the median average deviation within a spatial pixelfunction mad_flagger,data,inds,flags,nsig=nsig    t = systime(/sec)    f0 = total(where(flags))    if n_e(nsig) eq 0 then nsig = 3            newflags = flags    mx=max(inds)    vec3=fltarr(mx+1)    h=histogram(inds,reverse_indices=ri,OMIN=om)    for j=0L,n_elements(h)-1 do begin        if ri[j+1] gt ri[j] then begin            v_inds = [ri[ri[j]:ri[j+1]-1]]            if n_e(v_inds) gt 2 then begin                vec = data[v_inds];                vecmad = mad(vec)  ; the MAD is WAY too small!  I ended up rejecting 8% of points!                vecmad = stddev(vec)                vecmed = median(vec,/even)                madreject = where( (vec gt vecmed + nsig*vecmad) or (vec lt vecmed - nsig*vecmad) )                if (n_e(madreject) gt 0 and total(madreject)) gt 0 then begin                    reject_inds = v_inds[madreject]                    newflags[reject_inds] = 1                endif             endif        endif    endfor    print,&quot;MAD flagger took &quot;,strc(systime(/sec)-t),&quot; seconds and flagged &quot;,$        strc(round(total(where(newflags)) - f0)),' points'    return,newflagsend
+</pre>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/median-drizzling.html" rel="bookmark" title="Permalink to Median drizzling">
+                    Median drizzling</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-18T16:11:00"> 2008/11/18 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a class="reference external" href="http://groups.google.com/group/comp.lang.idl-pvwave/browse_thread/thread/762770933591238d">http://groups.google.com/group/comp.lang.idl-pvwave/browse_thread/thread/762770933591238d</a>
+Someone going by the name 'wox' introduced me to a spectacularly simple
+drizzling algorithm for medianing. It will be a little less efficient
+because it can't take advantage of some 'partial sum' tricks that the
+average can, but it will median over ALL data points, which is an
+advantage.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/massive-upgrades-new-strategy.html" rel="bookmark" title="Permalink to Massive upgrades, new strategy?">
+                    Massive upgrades, new strategy?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-18T04:01:00"> 2008/11/18 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>A few major things today:</p>
+<blockquote>
+<p>#. I renamed 'ts_to_map' to 'drizzle' and made 'ts_to_map' a wrapper
+that will either median combine by scans (if passed the right keywords,
+i.e. tstomapmedian and scans_info). This will reject cosmic rays much
+more effectively than previously.
+#. My extensive test runs on the 'weird' fields completed. Conclusions:</p>
+<blockquote>
+<ul>
+<li><dl class="first docutils">
+<dt>Deconvolution is DEFINITELY responsibly for the weird fuzzy effects</dt>
+<dd><p class="first last">seen esp. in l=33, l=2.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Even a descending iterator is ineffective at alleviating this</dt>
+<dd><p class="first last">problem
+What I still don't understand is WHY the deconvolver is behaving badly
+for some regions. It is extracting peaks that are too high.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Not deconvolving works pretty well, so I'm not really concerned. I'm</dt>
+<dd><p class="first last">resetting the defaults to no deconvolution once my next test is done....</p>
+</dd>
+</dl>
+</li>
+</ul>
+</blockquote>
+<ol class="arabic simple">
+<li>Started up a new test run to compare median stacking with weighted
+average stacking</li>
+</ol>
+</blockquote>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/5x1.html" rel="bookmark" title="Permalink to 5x1?">
+                    5x1?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-17T16:32:00"> 2008/11/17 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>060609_o17 is weird looking. It appears to be TWO 3x1s with an overlap,
+but it's only 1 observation. Any idea what happened?</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/weighting-next-steps.html" rel="bookmark" title="Permalink to Weighting - next steps">
+                    Weighting - next steps</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-15T01:04:00"> 2008/11/15 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Idea: 'edge taper' for scans. The scan start/end usually has higher
+noise, so it would be good to downweight those regions slightly.
+Probably only the first/last 5% of each scan should be linearly
+downweighted.
+I'm running a lot of tests on l001 with/without deconvolution, lots of
+iterations, different pca components. They'll be done sometime tomorrow.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -207,176 +342,6 @@ sized array subtractions/multiplications. 'weight' and
 2. I guess just check and make sure stuff works. The weighted mean I'm
 using appears to be right: sum(weight * value) / sum(weight)
 I hate making lists that end up being two items....</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/l020-too.html" rel="bookmark" title="Permalink to l020 too">
-                    l020 too</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-11-09T04:10:00"> 2008/11/09 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>l020 too</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/redo-targetsl068l086l111l027.html" rel="bookmark" title="Permalink to redo targets:<br>l068<br>l086<br>l111<br>l027">
-                    redo targets:&lt;br&gt;l068&lt;br&gt;l086&lt;br&gt;l111&lt;br&gt;l027</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-11-09T04:10:00"> 2008/11/09 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>redo targets:
-l068
-l086
-l111
-l027</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/the-l111-reference-field-was-60-flagged-out-becau.html" rel="bookmark" title="Permalink to the l111 reference field was 60% flagged out becau...">
-                    the l111 reference field was 60% flagged out becau...</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-11-09T04:04:00"> 2008/11/09 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>the l111 reference field was 60% flagged out because of bad rotators:
-ALL PREPROC ... output is</p>
-<pre class="literal-block">
-/scratch/adam\_work/l111/060602\_o34\_raw\_ds5.nc\_indiv13pca READING IN
-1 FILES FROM /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
-Reading file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
-Flagged scan 2 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by -23.2941
-Flagged scan 6 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by -24.9265
-Flagged scan 7 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by -21.3750
-Flagged scan 8 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by -25.7647
-Flagged scan 9 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by 0.110294
-Flagged scan 10 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by -26.6140
-Flagged scan 11 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by 0.143383
-Flagged scan 12 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by -27.4743
-Flagged scan 14 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by -28.3235
-Flagged scan 15 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by -24.6397
-Flagged scan 17 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by -25.4559
-Flagged scan 18 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by -30.0441
-Flagged scan 19 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by 0.110292
-Flagged scan 21 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by 0.220589
-Flagged scan 22 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by -31.8088
-Flagged scan 23 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by -27.9596
-Flagged scan 24 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by -32.7022
-Flagged scan 26 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by -33.5846
-Flagged scan 28 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by -34.4890
-Flagged scan 30 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by -35.3934
-Flagged scan 31 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by -31.3787
-Flagged scan 33 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by -0.231617
-Flagged scan 34 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by 0.121325
-Flagged scan 36 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by 0.132353
-Flagged scan 38 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by 0.209558
-Flagged scan 39 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by -0.198528
-Flagged scan 40 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by 0.231617
-Flagged scan 42 in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
- because rotangle changes by 0.121325
-Did not find rpcfile /data/bgps/raw/rpc/20060602/20060602\_0811\_rpc.bin
-for file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc
-Applying pointing model with alt/az off -0.00023445157 -0.00016187002
-NO OFFSETS APPLIED
-Scans 2 6 7 8 9 10
- 11 12 14 15 17 18
- 19 21 22 23 24 26
- 28 30 31 33 34 36
- 38 39 40 42
- flagged in file /scratch/sliced/l111/060602\_o34\_raw\_ds5.nc because
-of rotation
-4.2049680 sec.
-Total of 1947176 points flagged
-AC\_BOLOS has 1.94718e+06 NAN points, which is 0.608696 of total
-</pre>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/curiously-l135p1-has-a-reference-field-that-is-on.html" rel="bookmark" title="Permalink to curiously, l135p1 has a reference field that is on...">
-                    curiously, l135p1 has a reference field that is on...</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-11-09T03:59:00"> 2008/11/09 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>curiously, l135p1 has a reference field that is only present in the
-w3ohbolocam directory. Probably need to remake the infiles for all of
-W3/4/5</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/i-think-l086-needs-to-be-re-treated-specially-it.html" rel="bookmark" title="Permalink to I think l086 needs to be re-treated specially; it ...">
-                    I think l086 needs to be re-treated specially; it ...</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-11-09T03:55:00"> 2008/11/09 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I think l086 needs to be re-treated specially; it had way too many large
-offsets. Probably the error that resulted was from an overlap region
-smaller than itself....</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/scratchslicedl354070724_o10_raw_ds5nc-was-the.html" rel="bookmark" title="Permalink to /scratch/sliced/l354/070724_o10_raw_ds5.nc was the...">
-                    /scratch/sliced/l354/070724_o10_raw_ds5.nc was the...</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-11-09T03:49:00"> 2008/11/09 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>/scratch/sliced/l354/070724_o10_raw_ds5.nc was the reference file for
-l354 but somehow was excluded from the l354_infile. Warrants another
-check post-mapping</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

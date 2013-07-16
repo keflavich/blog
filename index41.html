@@ -67,29 +67,29 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
                           <li class="post">
-                  2013/06/09
+                  2013/07/15
                   <br>
-                  <a href="http://keflavich.github.io/blog/gps-data-analysis.html">GPS Data Analysis</a>
+                  <a href="http://keflavich.github.io/blog/the-milky-way-as-a-star-formation-engine.html">THE MILKY WAY AS A STAR FORMATION ENGINE</a>
               </li>
                           <li class="post">
-                  2013/06/04
+                  2013/07/15
                   <br>
-                  <a href="http://keflavich.github.io/blog/hopkins-pdf-generalization.html">Hopkins PDF Generalization</a>
+                  <a href="http://keflavich.github.io/blog/the-link-between-magnetic-fields-and-cloudstar-formation.html">THE LINK BETWEEN MAGNETIC FIELDS AND CLOUD/STAR FORMATION</a>
               </li>
                           <li class="post">
-                  2013/05/20
+                  2013/07/15
                   <br>
-                  <a href="http://keflavich.github.io/blog/bgps-point-source-recovery-experiment-23-results.html">BGPS Point Source Recovery - Experiment 23 results</a>
+                  <a href="http://keflavich.github.io/blog/the-star-formation-rate-of-molecular-clouds.html">THE STAR FORMATION RATE OF MOLECULAR CLOUDS</a>
               </li>
                           <li class="post">
-                  2013/05/16
+                  2013/07/15
                   <br>
-                  <a href="http://keflavich.github.io/blog/bgps-point-source-recovery.html">BGPS Point Source Recovery</a>
+                  <a href="http://keflavich.github.io/blog/the-origin-and-universality-of-the-initial-mass-function.html">THE ORIGIN AND UNIVERSALITY OF THE INITIAL MASS FUNCTION</a>
               </li>
                           <li class="post">
-                  2013/05/13
+                  2013/07/15
                   <br>
-                  <a href="http://keflavich.github.io/blog/recovering-from-startup-drive-out-of-memory.html">Recovering from "Startup drive out of memory"</a>
+                  <a href="http://keflavich.github.io/blog/from-filamentary-networks-to-dense-cores-in-molecular-clouds-toward-a-new-paradigm-for-star-formation.html">FROM FILAMENTARY NETWORKS TO DENSE CORES IN MOLECULAR CLOUDS: TOWARD A NEW PARADIGM FOR STAR FORMATION</a>
               </li>
                     </ul>
       </li>
@@ -101,6 +101,146 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/direct-comparison-with-merediths-pointing-calculations.html" rel="bookmark" title="Permalink to Direct comparison with Meredith's pointing calculations">
+                    Direct comparison with Meredith's pointing calculations</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-14T04:11:00"> 2008/08/14 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've gotten to the point that I'm directly comparing my pointing
+calculations to Merediths. So far, it looks like:
+1. I can very nearly reproduce Meredith's results on her maps, though
+there are a few differences in centroids and I missed the source a few
+times where she didn't.
+2. There is still a spread between my map centroids and hers.
+The code I've written to enable this comparison:
+publish/debug_testing/compare_me_meredith.pro
+I'm still a bit stumped, but I think I have a path to the answer mapped
+out.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/centroiding-and-merediths-files.html" rel="bookmark" title="Permalink to Centroiding and Meredith's files">
+                    Centroiding and Meredith's files</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-13T03:54:00"> 2008/08/13 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I tried the pointing offset calculations on Meredith's maps and I still
+get an RMS of ~9&quot; in both RA and DEC. Check out the files:
+/scratch/adam_work/plots/models_meredith*
+So... what?</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/searching-for-more-offsets.html" rel="bookmark" title="Permalink to Searching for more offsets">
+                    Searching for more offsets</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-12T21:35:00"> 2008/08/12 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The defining feature of my pointing calculations - and their
+inconsistency - is that the spread for individual sources is bad, which
+means that there's still something wrong in the way the bulk ra/dec are
+being calculated.</p>
+<p>I checked apply_distortion_map_radec to see if it might have inserted
+some bulk offset, but it only changes the average position by &lt;2&quot;. That
+might be an issue, but the boresight isn't necessarily aligned with the
+mean location of the bolometers. It should be shifted by at least .3&quot;
+according to a simple average of sin/cos of the bolo_params angles.
+Comparing my pointing code to map_ncdf_reading directly:</p>
+<p>readstruct=map_ncdf_reading(filename,/nopixoff)
+offsets are small (e.g. -0.050665803 -0.0029540043 arcseconds ra/dec) if
+I don't subtract fazo/fzao
+offsets in ra/dec are remarkably close to fazo/fzao if I subtract them:</p>
+<pre class="literal-block">
+92.830656 -126.12773
+95.000000 -120.00000
+</pre>
+<p>which is because ra/dec are pretty closely aligned to az/el.
+So, any difference comes from at least one of the keyword parameters.
+Therefore I AM missing something, and that something is one of the
+keywords to map_ncdf_reading</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/ffts-and-unlucky-primes.html" rel="bookmark" title="Permalink to FFTs and unlucky primes">
+                    FFTs and unlucky primes</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-12T17:04:00"> 2008/08/12 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've encountered a lot (!) of unlucky prime numbers that I'm trying to
+FFT in too many places, and it basically stops the code.
+211151 was impossibly bad, 5827 is pretty bad too.
+I solved the first by splitting into by-scan delining, which is better
+anyway. But the second is a map, in which I KNOW zero padding is OK.
+So... are there any functions that find the nearest reasonably efficient
+map size?</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/more-cleaning-modifications.html" rel="bookmark" title="Permalink to More cleaning modifications">
+                    More cleaning modifications</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-12T17:01:00"> 2008/08/12 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I had removed sigmadeglitch from deline, now it's permanently gone. I
+think it might be worth exploring re-inserting sigmadeglitch somewhere.
+My higher-order polynomial fit is creating deeper bowls around sources,
+so that's a big problem, but if I use a lower order I get the bad
+streaks. What's the best way to deal with this? I'm thinking perhaps
+only doing the polysub on the second iteration (i.e. after a source
+model has been subtracted).
+Delining runs into some issues now, though, because not all frequencies
+are sampled (?).</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/wow-fft-failure.html" rel="bookmark" title="Permalink to Wow - FFT failure">
+                    Wow - FFT failure</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-12T15:11:00"> 2008/08/12 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>On my huge Cygnus run, the fft keeps failing in the deline code. It's
+actually pretty impressive, but there are 844604 points in the
+timestream. The prime factorization of 844604 is 2^2 * 211151. This is
+just damned bad luck, because I think an FFT is extremely inefficient
+when it can't factorize. What's the best workaround? ....
+9 AM update: I've rewritten the deliner to work on a scan-by-scan basis.
+It's possible that the delining failed in the past because it was
+essentially removing a constant amplitude at the line frequencies across
+the observation (or combined observations!) which is not likely to be
+true.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -214,135 +354,6 @@ this). I'm also remapping the individual observations with PSD flagging
 enabled to see how that works.
 For notes on the P Cyg observations, see the file
 /scratch/adam_work/texts/cygnus_for_pat.in</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/images-with-artifacts.html" rel="bookmark" title="Permalink to Images with artifacts">
-                    Images with artifacts</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-07T23:42:00"> 2008/08/07 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Here's the list from 0507:
-Streaky offsets:
-/scratch/adam_work/g34.3/rawcsoptg050706_o47_raw_ds1.nc_indiv3pca_map00.fits
-.. image:: <a class="reference external" href="http://3.bp.blogspot.com/_lsgW26mWZnU/SJtP9wKu4_I/AAAAAAAADNo/gmMEFkzCX-A/s320/050706_o47.png">http://3.bp.blogspot.com/_lsgW26mWZnU/SJtP9wKu4_I/AAAAAAAADNo/gmMEFkzCX-A/s320/050706_o47.png</a>
-Totally messed up (two sets of images many degrees apart):
-/scratch/adam_work/g34.3/rawcsoptg050713_o40_raw_ds1.nc_indiv3pca_map00.fits
-070709_ob7 :
-.. image:: <a class="reference external" href="http://4.bp.blogspot.com/_lsgW26mWZnU/SJuIDL161GI/AAAAAAAADN4/D4mxFyx1Fr0/s320/070709_ob7_1730m130_peanut.png">http://4.bp.blogspot.com/_lsgW26mWZnU/SJuIDL161GI/AAAAAAAADN4/D4mxFyx1Fr0/s320/070709_ob7_1730m130_peanut.png</a>
-070703_o48 :
-.. image:: <a class="reference external" href="http://4.bp.blogspot.com/_lsgW26mWZnU/SJuICzavE_I/AAAAAAAADNw/70Hl5930eU8/s320/070703_o48_3c454.3.png">http://4.bp.blogspot.com/_lsgW26mWZnU/SJuICzavE_I/AAAAAAAADNw/70Hl5930eU8/s320/070703_o48_3c454.3.png</a></p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/looking-back-at-the-old-pipeline.html" rel="bookmark" title="Permalink to Looking back at the old pipeline">
-                    Looking back at the old pipeline</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-07T16:33:00"> 2008/08/07 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I've obviously missed something. So to try to figure out what it is, I'm
-going back to the old pipeline... again...
-in map_ncdf_reading, lines 441-448, there is something curious that
-goes back to a definition-of-variables problem: ddec and dra are ADDED
-to ra and dec to get the new &quot;ra_all&quot; and &quot;dec_all&quot; variables. ddec
-and dra are calculated from eaz and eel: ERROR OFFSETS in Az and El.
-Why? What?!
-I added a new piece of code, correct_eaz_eel.pro. It is extremely
-short, but extremely necessary.</p>
-<pre class="literal-block">
-pro correct_eaz_eel,ra,dec,el,az,eel,eaz,pa    dra=-eaz*cos(!dtor*pa)*cos(!dtor*el)+eel*sin(!dtor*pa)    ddec=eaz*sin(!dtor*pa)*cos(!dtor*el)+eel*cos(!dtor*pa)    dec += ddec/3600.    ra  += dra/3600. / cos(!dtor*dec) / 15.end
-</pre>
-<p>This comes back to the fact that I don't know what ANY of the variables
-in the NCDF header are supposed to be. Why are &quot;error&quot; variables
-actually OFFSET variables, and why didn't anyone know about them?</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/something-is-wrong-in-0507.html" rel="bookmark" title="Permalink to something is wrong in 0507....">
-                    something is wrong in 0507....</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-07T00:01:00"> 2008/08/07 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <img alt="http://picasaweb.google.com/keflavich/Bolocam/photo?authkey=OyC8l5sv3gI#5231555630189235762" src="http://picasaweb.google.com/keflavich/Bolocam/photo?authkey=OyC8l5sv3gI#5231555630189235762" />
-<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/SJousnsJDjI/AAAAAAAADMY/-hhiIoQ171A/s320/g34.3_zoo.jpg" src="http://4.bp.blogspot.com/_lsgW26mWZnU/SJousnsJDjI/AAAAAAAADMY/-hhiIoQ171A/s320/g34.3_zoo.jpg" />
-<p>Look at that zoomed in. Note that the first 20ish are from 0507. I don't
-know what's causing the double source. Maybe a 90 degree rotation would
-do it, I don't know. I do know that I'm applying an array angle of 76.2
-degrees for those July observations and 113.6 degrees for the June 05
-observations. Maybe that got swapped or something....
-It looks like Meredith ran into the same problems when mapping 0506, but
-not 0507.</p>
-<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/SJo7MpPYjDI/AAAAAAAADNg/6_pSjjeKjLM/s320/g34_0507_compare.jpg" src="http://3.bp.blogspot.com/_lsgW26mWZnU/SJo7MpPYjDI/AAAAAAAADNg/6_pSjjeKjLM/s320/g34_0507_compare.jpg" />
-<p>comparing mine to hers (I even used the same downsampled/cleand file),
-it is obvious that something went wrong with the mapping. I tested a
-number of different fiducial array angles and none of them generated
-real maps, so the mapping is correct except for offsets in the scan
-direction, as usual. What the heck.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/distortion-not-distortion-maps.html" rel="bookmark" title="Permalink to Distortion (not distortion maps)">
-                    Distortion (not distortion maps)</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-06T20:40:00"> 2008/08/06 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I still see distortion in a lot of maps, but not all. I think there is a
-correlation with altitude ~70+/-2 degrees. So far it's most obvious in
-the 0606 pointing sources.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/occasional-bad-centroid.html" rel="bookmark" title="Permalink to Occasional bad centroid">
-                    Occasional bad centroid</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-06T20:04:00"> 2008/08/06 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/SJoDqKsjWsI/AAAAAAAADMQ/89W6FBUZmvQ/s320/badcentroid.jpg" src="http://4.bp.blogspot.com/_lsgW26mWZnU/SJoDqKsjWsI/AAAAAAAADMQ/89W6FBUZmvQ/s320/badcentroid.jpg" />
-<p>I've gotten some bad centroids for 3c273 that don't make sense.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/0507-mapping.html" rel="bookmark" title="Permalink to 0507 mapping">
-                    0507 mapping</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-06T17:56:00"> 2008/08/06 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Most of the 0507 pointing source maps seem to have failed. Some of them
-look like rotator and position angle problems, others have multiple
-copies of sources mapped to different locations. I don't know what's up,
-but my first bet would be to change the fiducial array angle. After
-that, I'd check on rotang and then, if desperate, see what the PA is
-doing.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
