@@ -1,6 +1,6 @@
 PPVI Talk 11: Matthew Bate
 ==========================
-:date: 2013-07-15 14:30
+:date: 2013-07-16 14:30
 :tags: ppvi
 
 STAR CLUSTER FORMATION AND FEEDBACK

@@ -1,4 +1,4 @@
-PPVI Talk 7: Zhi-Yun Li
+PPVI Talk 8: Zhi-Yun Li
 =======================
 :date: 2013-07-16 09:15
 :tags: ppvi
