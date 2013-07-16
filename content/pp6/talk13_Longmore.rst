@@ -67,6 +67,8 @@ Theory: How do they form?
  * density essential - determines whether bound or not
  * need to understand initial conditions: mass as a function of size scale early
 
+.. image:: |filename|/images/StevePlot.jpg
+
 Observations
 ------------
 What do we expect to see?
@@ -153,6 +155,8 @@ ALMA data
  * Banana!
  * HNCO movie
  * SiO movie
+
+.. image:: |filename|/images/Banana.jpg
 
 Questions
 ---------
