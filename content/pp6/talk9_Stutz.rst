@@ -94,3 +94,37 @@ The role of environment
 
 Questions
 ---------
+ * Q: Mark Krumholz: Can you use the environmental dependence to distinguish
+   *disk* physics from *environmental* = core accretion physics?
+ * A: disk physics not environmentally dependent, but feeding through envelopes...
+ * Krumholz: not external feeding that drives burstiness.  Burstiness shouldn't 
+   know about environment
+
+ * Q: Multiplicity?
+ * A: Tom & student working on constraining with HST data.
+ * Q: How do you check?
+ * A: I dunno.
+ * A: Neal - ???
+ * Q: Structure in HH46.  May be formed by... something else?????
+ * A: Hard to make link between outflows and accretion.  This is one nice
+   example of some evidence but is not conclusive on its own.
+ * Q: Lifetime of class I's.  Maybe lifetimes have 2-order-of-magnitude
+   variation; can't reference to Class II.
+ * A: I agree.
+ * Q: Inclination.  SED models for diskey stars.  Any method that can
+   disentangle geometry from other effects?
+ * A: avoid the issue by looking at direct detection of cold emission in
+   envelope
+ * Ewine: Centrally concentrated HCO+ emission can separate inclined Class I
+   from Class 0.  Best is large samples with ALMA though.
+ * Q: IRS spectra from protostars.  Amount of silicate lines as signature of
+   episodic accretion.
+ * A: Don't have a good answer.  Don't necessarily look at those features.
+   Only CO2 ice is clear-cut irreversible process.
+   [missed one question]
+ * Q: Ewine - what is the key observational distinction between VeLLOs and true
+   first hydrostatic cores.
+ * A: Catch young outflows.  ALMA.
+ * Q Mike Dunham: First cores - lifetimes.  10^4 years is the strict, absolute
+   upper limit for first hydrostatic cores. 0.06-6 first cores in Perseus. 
+   No large-scale surveys for first cores.
