@@ -1,15 +1,22 @@
-FORMATION OF MOLECULAR CLOUDS AND GLOBAL CONDITIONS FOR STAR FORMATION 
-======================================================================
+PPVI Talk 1: Mark Krumholz
+==========================
+:date: 2013-07-15 10:15
+:tags: ppvi
 
- * C. Dobbs (Exeter University, United Kingdom),
- * M. Krumholz (University of California, Santa Cruz, United States),
- * J. Ballesteros-Paredes (CRyA-UNAM, Mexico),
- * A. Bolatto (University of Maryland, United States),
- * Y. Fukui (Nagoya University, Japan),
- * M. Heyer (University of Massachusetts, United States),
- * M. Mac Low (American Museum of Natural History, United States),
- * E. Ostriker (Princeton University, United States),
- * E. Vazquez-Semadeni (UNAM, Morelia, Mexico) 
+FORMATION OF MOLECULAR CLOUDS AND GLOBAL CONDITIONS FOR STAR FORMATION 
+----------------------------------------------------------------------
+
+Authors:
+
+C. Dobbs (Exeter University, United Kingdom),
+M. Krumholz (University of California, Santa Cruz, United States),
+J. Ballesteros-Paredes (CRyA-UNAM, Mexico),
+A. Bolatto (University of Maryland, United States),
+Y. Fukui (Nagoya University, Japan),
+M. Heyer (University of Massachusetts, United States),
+M. Mac Low (American Museum of Natural History, United States),
+E. Ostriker (Princeton University, United States),
+E. Vazquez-Semadeni (UNAM, Morelia, Mexico) 
 
 Abstract
 --------

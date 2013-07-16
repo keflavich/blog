@@ -1,12 +1,19 @@
-FROM FILAMENTARY NETWORKS TO DENSE CORES IN MOLECULAR CLOUDS: TOWARD A NEW PARADIGM FOR STAR FORMATION
-======================================================================================================
+PPVI Talk 2: Philippe Andre
+---------------------------
+:date: 2013-07-15 11:00
+:tags: ppvi
 
- * P. Andre (CEA Saclay, Laboratoire AIM - Service d'Astrophysique, Gif-sur-Yvette, France),
- * J. Di Francesco (National Research Council Canada, Herzberg Institute of Astrophysics, Canada),
- * S.-I. Inutsuka (Nagoya University, Japan),
- * R. Pudritz (McMaster University, Origins Institute, Canada),
- * D. Ward-Thompson (University of Central Lancashire, Jeremiah Horrocks Institute, UK),
- * J. Pineda (University of Manchester, Jodrell Bank Centre for Astrophysics, United Kingdom) 
+FROM FILAMENTARY NETWORKS TO DENSE CORES IN MOLECULAR CLOUDS: TOWARD A NEW PARADIGM FOR STAR FORMATION
+------------------------------------------------------------------------------------------------------
+
+Authors:
+
+P. Andre (CEA Saclay, Laboratoire AIM - Service d'Astrophysique, Gif-sur-Yvette, France),
+J. Di Francesco (National Research Council Canada, Herzberg Institute of Astrophysics, Canada),
+S.-I. Inutsuka (Nagoya University, Japan),
+R. Pudritz (McMaster University, Origins Institute, Canada),
+D. Ward-Thompson (University of Central Lancashire, Jeremiah Horrocks Institute, UK),
+J. Pineda (University of Manchester, Jodrell Bank Centre for Astrophysics, United Kingdom) 
 
 Abstract
 --------
@@ -155,3 +162,4 @@ Perhaps massive stars come from filament convergence into hubs
 
  * Q: Tan - Universal widths.  Seem to be a factor of 2 from resolution for all widths.  How sure?
  * A: The physical width is constant to within a factor of 2.  Angular width varies.
+      Only the *average* width is constant
