@@ -70,6 +70,7 @@ Theory: How do they form?
  * need to understand initial conditions: mass as a function of size scale early
 
 .. image:: |filename|/images/StevePlot.jpg
+    :width: 800px
 
 Observations
 ------------
