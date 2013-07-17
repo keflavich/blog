@@ -1,5 +1,7 @@
 PPVI Talk 13: Steve Longmore
 ============================
+:date: 2013-07-16 18:00
+:tags: ppvi
 
 THE FORMATION AND EARLY EVOLUTION OF YOUNG MASSIVE CLUSTERS
 -----------------------------------------------------------
