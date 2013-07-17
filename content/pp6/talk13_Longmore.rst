@@ -160,6 +160,7 @@ ALMA data
  * SiO movie
 
 .. image:: |filename|/images/Banana.jpg
+    :width: 800px
 
 Questions
 ---------
