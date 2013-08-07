@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
                           <li class="post">
+                  2013/08/05
+                  <br>
+                  <a href="http://keflavich.github.io/blog/my-favorite-splatalogue-queries.html">My favorite Splatalogue queries</a>
+              </li>
+                          <li class="post">
                   2013/07/16
                   <br>
                   <a href="http://keflavich.github.io/blog/ppvi-talk-13-steve-longmore.html">PPVI Talk 13: Steve Longmore</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/ppvi-talk-10-jeffries.html">PPVI Talk 10: Jeffries</a>
               </li>
-                          <li class="post">
-                  2013/07/16
-                  <br>
-                  <a href="http://keflavich.github.io/blog/ppvi-talk-9-amelia-stutz.html">PPVI Talk 9: Amelia Stutz</a>
-              </li>
                     </ul>
       </li>
         
@@ -101,6 +101,41 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/searching-for-more-offsets.html" rel="bookmark" title="Permalink to Searching for more offsets">
+                    Searching for more offsets</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-12T21:35:00"> 2008/08/12 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The defining feature of my pointing calculations - and their
+inconsistency - is that the spread for individual sources is bad, which
+means that there's still something wrong in the way the bulk ra/dec are
+being calculated.</p>
+<p>I checked apply_distortion_map_radec to see if it might have inserted
+some bulk offset, but it only changes the average position by &lt;2&quot;. That
+might be an issue, but the boresight isn't necessarily aligned with the
+mean location of the bolometers. It should be shifted by at least .3&quot;
+according to a simple average of sin/cos of the bolo_params angles.
+Comparing my pointing code to map_ncdf_reading directly:</p>
+<p>readstruct=map_ncdf_reading(filename,/nopixoff)
+offsets are small (e.g. -0.050665803 -0.0029540043 arcseconds ra/dec) if
+I don't subtract fazo/fzao
+offsets in ra/dec are remarkably close to fazo/fzao if I subtract them:</p>
+<pre class="literal-block">
+92.830656 -126.12773
+95.000000 -120.00000
+</pre>
+<p>which is because ra/dec are pretty closely aligned to az/el.
+So, any difference comes from at least one of the keyword parameters.
+Therefore I AM missing something, and that something is one of the
+keywords to map_ncdf_reading</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -330,34 +365,6 @@ pro correct_eaz_eel,ra,dec,el,az,eel,eaz,pa    dra=-eaz*cos(!dtor*pa)*cos(!dtor*
 <p>This comes back to the fact that I don't know what ANY of the variables
 in the NCDF header are supposed to be. Why are &quot;error&quot; variables
 actually OFFSET variables, and why didn't anyone know about them?</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/something-is-wrong-in-0507.html" rel="bookmark" title="Permalink to something is wrong in 0507....">
-                    something is wrong in 0507....</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-07T00:01:00"> 2008/08/07 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <img alt="http://picasaweb.google.com/keflavich/Bolocam/photo?authkey=OyC8l5sv3gI#5231555630189235762" src="http://picasaweb.google.com/keflavich/Bolocam/photo?authkey=OyC8l5sv3gI#5231555630189235762" />
-<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/SJousnsJDjI/AAAAAAAADMY/-hhiIoQ171A/s320/g34.3_zoo.jpg" src="http://4.bp.blogspot.com/_lsgW26mWZnU/SJousnsJDjI/AAAAAAAADMY/-hhiIoQ171A/s320/g34.3_zoo.jpg" />
-<p>Look at that zoomed in. Note that the first 20ish are from 0507. I don't
-know what's causing the double source. Maybe a 90 degree rotation would
-do it, I don't know. I do know that I'm applying an array angle of 76.2
-degrees for those July observations and 113.6 degrees for the June 05
-observations. Maybe that got swapped or something....
-It looks like Meredith ran into the same problems when mapping 0506, but
-not 0507.</p>
-<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/SJo7MpPYjDI/AAAAAAAADNg/6_pSjjeKjLM/s320/g34_0507_compare.jpg" src="http://3.bp.blogspot.com/_lsgW26mWZnU/SJo7MpPYjDI/AAAAAAAADNg/6_pSjjeKjLM/s320/g34_0507_compare.jpg" />
-<p>comparing mine to hers (I even used the same downsampled/cleand file),
-it is obvious that something went wrong with the mapping. I tested a
-number of different fiducial array angles and none of them generated
-real maps, so the mapping is correct except for offsets in the scan
-direction, as usual. What the heck.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
