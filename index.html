@@ -113,6 +113,9 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
             <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I tend to be most interested in low-energy molecular lines: CO, NH<sub>3</sub>, and
 H<sub>2</sub>CO being the main candidates.</p>
+<p>Note: Splatalogue has made some recent changes to their returned tables, partly
+per my recommendations.  The code below has been update to reflect these
+changes.</p>
 <div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">astroquery.splatalogue</span> <span class="kn">import</span> <span class="n">Splatalogue</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">S</span> <span class="o">=</span> <span class="n">Splatalogue</span><span class="p">(</span><span class="n">energy_max</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
@@ -120,13 +123,13 @@ H<sub>2</sub>CO being the main candidates.</p>
 <span class="o">...</span>    <span class="n">line_strengths</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;ls4&#39;</span><span class="p">],</span>
 <span class="o">...</span>    <span class="n">only_NRAO_recommended</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">noHFS</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">trimmed_query</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="o">...</span>     <span class="n">columns</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;Species&#39;</span><span class="p">,</span><span class="s">&#39;Chemical Name&#39;</span><span class="p">,</span><span class="s">&#39;Resolved&lt;br&gt;QNs&#39;</span><span class="p">,</span><span class="s">&#39;Freq-GHz&#39;</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">columns</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;Species&#39;</span><span class="p">,</span><span class="s">&#39;Chemical Name&#39;</span><span class="p">,</span><span class="s">&#39;Resolved QNs&#39;</span><span class="p">,</span><span class="s">&#39;Freq-GHz&#39;</span><span class="p">,</span>
 <span class="o">...</span>                <span class="s">&#39;Meas Freq-GHz&#39;</span><span class="p">,</span><span class="s">&#39;Log&lt;sub&gt;10&lt;/sub&gt; (A&lt;sub&gt;ij&lt;/sub&gt;)&#39;</span><span class="p">,</span>
-<span class="o">...</span>                <span class="s">&#39;E&lt;sub&gt;U&lt;/sub&gt; (K)&#39;</span><span class="p">)</span>
+<span class="o">...</span>                <span class="s">&#39;E_U (K)&#39;</span><span class="p">)</span>
 <span class="o">...</span>     <span class="n">table</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">query_lines</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)[</span><span class="n">columns</span><span class="p">]</span>
 <span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s">&#39;Log&lt;sub&gt;10&lt;/sub&gt; (A&lt;sub&gt;ij&lt;/sub&gt;)&#39;</span><span class="p">,</span><span class="s">&#39;log10(Aij)&#39;</span><span class="p">)</span>
-<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s">&#39;E&lt;sub&gt;U&lt;/sub&gt; (K)&#39;</span><span class="p">,</span><span class="s">&#39;EU_K&#39;</span><span class="p">)</span>
-<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s">&#39;Resolved&lt;br&gt;QNs&#39;</span><span class="p">,</span><span class="s">&#39;QNs&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s">&#39;E_U (K)&#39;</span><span class="p">,</span><span class="s">&#39;EU_K&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s">&#39;Resolved QNs&#39;</span><span class="p">,</span><span class="s">&#39;QNs&#39;</span><span class="p">)</span>
 <span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">&#39;EU_K&#39;</span><span class="p">)</span>
 <span class="o">...</span>     <span class="k">return</span> <span class="n">table</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span><span class="mi">30</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span>
@@ -809,10 +812,10 @@ Q. Zhang (Harvard-Smithsonian Center for Astrophysics, United States)</p>
 <li>less important than outflows for clusters with M&lt;10^4 msun</li>
 </ul>
 </dd>
-<dt>Feedback significant if <span class="math">\(\dot{p} * t_{ff} \gtrsim M v_{virial}\)</span>
+<dt>Feedback significant if <span class="formula"><i>ṗ</i>*<i>t</i><sub><i>ff</i></sub>≳<i>M</i><i>v</i><sub><i>virial</i></sub></span>
 .</dt>
 <dd><ul class="first last simple">
-<li><span class="math">\(\dot{p} = f_{trap} L/c\)</span>
+<li><span class="formula"><i>ṗ</i> = <i>f</i><sub><i>trap</i></sub><i>L</i> ⁄ <i>c</i></span>
 .</li>
 <li>what is f_trap?</li>
 <li>Murray says f &gt; 1, others say 1</li>
@@ -1474,7 +1477,7 @@ formation in its early stages and we will review these major connections.</p>
 </ul>
 </blockquote>
 <p>Dimensionless number:
-<span class="math">\(\lambda = \frac{(M/\phi)}{1/(2\pi G^{1/2})}\)</span>
+<span class="formula"><i>λ</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator">(<i>M</i> ⁄ <i>φ</i>)</span><span class="ignored">)/(</span><span class="denominator">1 ⁄ (2<i>π</i><i>G</i><sup>1 ⁄ 2</sup>)</span><span class="ignored">)</span></span></span>
 </p>
 <p>Crutcher: B-fields below critical value</p>
 <p>B-field energy &gt; rotational energy</p>
