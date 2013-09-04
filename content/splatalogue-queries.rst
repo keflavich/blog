@@ -6,6 +6,10 @@ My favorite Splatalogue queries
 I tend to be most interested in low-energy molecular lines: CO, |NH3|, and
 |H2CO| being the main candidates.
 
+Note: Splatalogue has made some recent changes to their returned tables, partly
+per my recommendations.  The code below has been update to reflect these
+changes.
+
 .. code-block:: python
 
     >>> from astropy import units as u
@@ -15,13 +19,13 @@ I tend to be most interested in low-energy molecular lines: CO, |NH3|, and
     ...    line_strengths=['ls4'],
     ...    only_NRAO_recommended=True,noHFS=True)
     >>> def trimmed_query(*args,**kwargs):
-    ...     columns = ('Species','Chemical Name','Resolved<br>QNs','Freq-GHz',
+    ...     columns = ('Species','Chemical Name','Resolved QNs','Freq-GHz',
     ...                'Meas Freq-GHz','Log<sub>10</sub> (A<sub>ij</sub>)',
-    ...                'E<sub>U</sub> (K)')
+    ...                'E_U (K)')
     ...     table = S.query_lines(*args, **kwargs)[columns]
     ...     table.rename_column('Log<sub>10</sub> (A<sub>ij</sub>)','log10(Aij)')
-    ...     table.rename_column('E<sub>U</sub> (K)','EU_K')
-    ...     table.rename_column('Resolved<br>QNs','QNs')
+    ...     table.rename_column('E_U (K)','EU_K')
+    ...     table.rename_column('Resolved QNs','QNs')
     ...     table.sort('EU_K')
     ...     return table
     >>> trimmed_query(1*u.GHz,30*u.GHz, 
