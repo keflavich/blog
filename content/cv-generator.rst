@@ -4,6 +4,9 @@ Generating a CV using the ADS Labs API
 :author: Adam (keflavich@gmail.com)
 :tags: python
 
+[ `Source code related to this post <https://github.com/keflavich/generate_cv>`_ ] 
+[ `Notebook form 
+<http://nbviewer.ipython.org/urls/raw.github.com/keflavich/generate_cv/master/examples/GenerateCVExample.ipynb>`_ ]
 
 At `.astronomy <http://dotastronomy.com/>`__ this past week, the keynote
 speaker was `Alberto
@@ -18,9 +21,6 @@ Casey's <https://twitter.com/astrowizicist>`__
 point; he introduces a useful convention of storing your `ADS API
 Key <https://github.com/adsabs/adsabs-dev-api#signup--access>`__:
 
-The source code for this post is `here <https://github.com/keflavich/generate_cv>`_
-and the notebook form can be seen `here
-<http://nbviewer.ipython.org/urls/raw.github.com/keflavich/generate_cv/master/examples/GenerateCVExample.ipynb>`_.
 
 
 .. code-block:: python
