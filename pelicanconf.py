@@ -60,5 +60,7 @@ MENUITEMS = [('Homepage','http://www.adamgginsburg.com',),
 
 USE_FOLDER_AS_CATEGORY = True
 
+GOOGLE_ANALYTICS = 'UA-37306139-1'
+
 # links just don't work in pelican, do they?
 #RELATIVE_URLS = False
