@@ -10,60 +10,50 @@ Casey's&lt;/a&gt;
 &lt;a class="reference external" href="https://github.com/andycasey/ads-python"&gt;ADS-python&lt;/a&gt; as a starting
 point: he introduces a useful convention of storing your &lt;a class="reference external" href="https://github.com/adsabs/adsabs-dev-api#signup--access"&gt;ADS API
 Key&lt;/a&gt;:&lt;/p&gt;
-&lt;p&gt;In[1]:&lt;/p&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="keyword namespace"&gt;import&lt;/span&gt; &lt;span class="name namespace"&gt;os&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 
-&lt;span class="keyword"&gt;def&lt;/span&gt; &lt;span class="name function"&gt;get_dev_key&lt;/span&gt;&lt;span class="punctuation"&gt;():&lt;/span&gt;
-    &lt;span class="literal string doc"&gt;&amp;quot;&amp;quot;&amp;quot; A convenience function for accessing a system-wide ADS Developer's Key &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_dev_key&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot; A convenience function for accessing a system-wide ADS Developer&amp;#39;s Key &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 
-    &lt;span class="name"&gt;ads_dev_key_filename&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="name"&gt;os&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;path&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;abspath&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;os&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;path&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;expanduser&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="literal string"&gt;'~/.ads/dev_key'&lt;/span&gt;&lt;span class="punctuation"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;ads_dev_key_filename&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abspath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;expanduser&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;~/.ads/dev_key&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 
-    &lt;span class="keyword"&gt;if&lt;/span&gt; &lt;span class="name"&gt;os&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;path&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;exists&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;ads_dev_key_filename&lt;/span&gt;&lt;span class="punctuation"&gt;):&lt;/span&gt;
-        &lt;span class="keyword"&gt;with&lt;/span&gt; &lt;span class="name builtin"&gt;open&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;ads_dev_key_filename&lt;/span&gt;&lt;span class="punctuation"&gt;,&lt;/span&gt; &lt;span class="literal string"&gt;'r'&lt;/span&gt;&lt;span class="punctuation"&gt;)&lt;/span&gt; &lt;span class="keyword"&gt;as&lt;/span&gt; &lt;span class="name"&gt;fp&lt;/span&gt;&lt;span class="punctuation"&gt;:&lt;/span&gt;
-            &lt;span class="name"&gt;dev_key&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="name"&gt;fp&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;readline&lt;/span&gt;&lt;span class="punctuation"&gt;()&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;rstrip&lt;/span&gt;&lt;span class="punctuation"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exists&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ads_dev_key_filename&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ads_dev_key_filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;fp&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;dev_key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readline&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rstrip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
-        &lt;span class="keyword"&gt;return&lt;/span&gt; &lt;span class="name"&gt;dev_key&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;dev_key&lt;/span&gt;
 
-    &lt;span class="keyword"&gt;if&lt;/span&gt; &lt;span class="literal string"&gt;'ADS_DEV_KEY'&lt;/span&gt; &lt;span class="operator word"&gt;in&lt;/span&gt; &lt;span class="name"&gt;os&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;environ&lt;/span&gt;&lt;span class="punctuation"&gt;:&lt;/span&gt;
-        &lt;span class="keyword"&gt;return&lt;/span&gt; &lt;span class="name"&gt;os&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;environ&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'ADS_DEV_KEY'&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;ADS_DEV_KEY&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;ADS_DEV_KEY&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 
-    &lt;span class="keyword"&gt;raise&lt;/span&gt; &lt;span class="name exception"&gt;IOError&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="literal string"&gt;&amp;quot;no ADS API key found in ~/.ads/dev_key&amp;quot;&lt;/span&gt;&lt;span class="punctuation"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
+    &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;IOError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;no ADS API key found in ~/.ads/dev_key&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;We'll use &lt;tt class="docutils literal"&gt;requests&lt;/tt&gt; to send the request to ADS, then &lt;tt class="docutils literal"&gt;json&lt;/tt&gt; to
 parse the data.&lt;/p&gt;
-&lt;p&gt;In[2]:&lt;/p&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="keyword namespace"&gt;import&lt;/span&gt; &lt;span class="name namespace"&gt;requests&lt;/span&gt;
-&lt;span class="keyword namespace"&gt;import&lt;/span&gt; &lt;span class="name namespace"&gt;json&lt;/span&gt;
-&lt;/pre&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;json&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;We then query the database using a keyword query (parameter &lt;tt class="docutils literal"&gt;q&lt;/tt&gt;)
 specifying the author. Other required parameters are the API key
 (&lt;tt class="docutils literal"&gt;dev_key&lt;/tt&gt;) and a filter to select only astronomy articles. The
 maximum number of rows returned in the API is 200 right now, which I
 have set (the default is 10 or 20).&lt;/p&gt;
-&lt;p&gt;In[3]:&lt;/p&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="name"&gt;response&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="name"&gt;requests&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;post&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="literal string"&gt;'http://adslabs.org/adsabs/api/search/'&lt;/span&gt;&lt;span class="punctuation"&gt;,&lt;/span&gt;
-                         &lt;span class="name"&gt;params&lt;/span&gt;&lt;span class="operator"&gt;=&lt;/span&gt;&lt;span class="punctuation"&gt;{&lt;/span&gt;&lt;span class="literal string"&gt;'q'&lt;/span&gt;&lt;span class="punctuation"&gt;:&lt;/span&gt;&lt;span class="literal string"&gt;'author:ginsburg, a'&lt;/span&gt;&lt;span class="punctuation"&gt;,&lt;/span&gt;
-                                 &lt;span class="literal string"&gt;'dev_key'&lt;/span&gt;&lt;span class="punctuation"&gt;:&lt;/span&gt;&lt;span class="name"&gt;get_dev_key&lt;/span&gt;&lt;span class="punctuation"&gt;(),&lt;/span&gt;
-                                 &lt;span class="literal string"&gt;'rows'&lt;/span&gt;&lt;span class="punctuation"&gt;:&lt;/span&gt;&lt;span class="literal number integer"&gt;200&lt;/span&gt;&lt;span class="punctuation"&gt;,&lt;/span&gt;
-                                 &lt;span class="literal string"&gt;'filter'&lt;/span&gt;&lt;span class="punctuation"&gt;:&lt;/span&gt;&lt;span class="literal string"&gt;'database:astronomy'&lt;/span&gt;&lt;span class="punctuation"&gt;})&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;In[4]:&lt;/p&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="name"&gt;J&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="name"&gt;response&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;json&lt;/span&gt;&lt;span class="punctuation"&gt;()&lt;/span&gt;
-&lt;span class="name"&gt;J&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;keys&lt;/span&gt;&lt;span class="punctuation"&gt;()&lt;/span&gt;
-&lt;/pre&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://adslabs.org/adsabs/api/search/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                         &lt;span class="n"&gt;params&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;q&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;author:ginsburg, a&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                 &lt;span class="s"&gt;&amp;#39;dev_key&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;get_dev_key&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
+                                 &lt;span class="s"&gt;&amp;#39;rows&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                 &lt;span class="s"&gt;&amp;#39;filter&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;database:astronomy&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;J&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;J&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;pre class="literal-block"&gt;
 [u'meta', u'results']
 &lt;/pre&gt;
 &lt;p&gt;The JSON 'meta' key is just metadata about the query, include the number
 of matches and execution time.&lt;/p&gt;
-&lt;p&gt;In[5]:&lt;/p&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="name"&gt;J&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'meta'&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt;
-&lt;/pre&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;J&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;meta&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;pre class="literal-block"&gt;
 {u'api-version': u'0.1',
  u'count': 54,
@@ -73,26 +63,20 @@ of matches and execution time.&lt;/p&gt;
 &lt;/pre&gt;
 &lt;p&gt;The 'results' key includes what we're actually interested in, under
 another key 'docs'.&lt;/p&gt;
-&lt;p&gt;In[6]:&lt;/p&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="name"&gt;J&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'results'&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;keys&lt;/span&gt;&lt;span class="punctuation"&gt;()&lt;/span&gt;
-&lt;/pre&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;J&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;results&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;pre class="literal-block"&gt;
 [u'docs']
 &lt;/pre&gt;
-&lt;p&gt;In[7]:&lt;/p&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="name"&gt;datalist&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="name"&gt;J&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'results'&lt;/span&gt;&lt;span class="punctuation"&gt;][&lt;/span&gt;&lt;span class="literal string"&gt;'docs'&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt;
-&lt;span class="name builtin"&gt;type&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;datalist&lt;/span&gt;&lt;span class="punctuation"&gt;),&lt;/span&gt; &lt;span class="name builtin"&gt;len&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;datalist&lt;/span&gt;&lt;span class="punctuation"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;datalist&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;J&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;results&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;docs&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datalist&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datalist&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;pre class="literal-block"&gt;
 (list, 54)
 &lt;/pre&gt;
 &lt;p&gt;&lt;tt class="docutils literal"&gt;datalist&lt;/tt&gt; is a list of the retrieved bibliographic entries.&lt;/p&gt;
-&lt;p&gt;In[8]:&lt;/p&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="name"&gt;datalist&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal number integer"&gt;0&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;keys&lt;/span&gt;&lt;span class="punctuation"&gt;()&lt;/span&gt;
-&lt;/pre&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;datalist&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;pre class="literal-block"&gt;
 [u'bibcode',
  u'keyword',
@@ -122,60 +106,48 @@ author names and uses a reasonably standard bibliographic format:&lt;/p&gt;
 Authors Month, Year, Journal
 Title
 &lt;/pre&gt;
-&lt;p&gt;In[9]:&lt;/p&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="name"&gt;fmt&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="literal string"&gt;u'''                &amp;lt;li&amp;gt;&amp;lt;a class=&amp;quot;norm&amp;quot; href=&amp;quot;http://adsabs.harvard.edu/abs/{adsbibid}&amp;quot;&amp;gt;{creator}&amp;lt;/a&amp;gt; {month}, &amp;lt;b&amp;gt;{year}&amp;lt;/b&amp;gt; {journal}
-                &amp;lt;br&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;{titlestring}'''&lt;/span&gt;
-&lt;/pre&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;fmt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;u&amp;#39;&amp;#39;&amp;#39;                &amp;lt;li&amp;gt;&amp;lt;a class=&amp;quot;norm&amp;quot; href=&amp;quot;http://adsabs.harvard.edu/abs/{adsbibid}&amp;quot;&amp;gt;{creator}&amp;lt;/a&amp;gt; {month}, &amp;lt;b&amp;gt;{year}&amp;lt;/b&amp;gt; {journal}&lt;/span&gt;
+&lt;span class="s"&gt;                &amp;lt;br&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;{titlestring}&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;We need to do a little data wrangling to get the individual JSON entries
 into the appropriate format:&lt;/p&gt;
-&lt;p&gt;In[10]:&lt;/p&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="keyword"&gt;def&lt;/span&gt; &lt;span class="name function"&gt;wrangle&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;data&lt;/span&gt;&lt;span class="punctuation"&gt;,&lt;/span&gt; &lt;span class="name"&gt;authorname&lt;/span&gt;&lt;span class="operator"&gt;=&lt;/span&gt;&lt;span class="literal string"&gt;'Ginsburg'&lt;/span&gt;&lt;span class="punctuation"&gt;):&lt;/span&gt;
-    &lt;span class="literal string doc"&gt;&amp;quot;&amp;quot;&amp;quot; Create new fields from the input data to insert into the format string &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="name"&gt;data&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'month'&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="name"&gt;data&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'pubdate'&lt;/span&gt;&lt;span class="punctuation"&gt;][&lt;/span&gt;&lt;span class="literal number integer"&gt;5&lt;/span&gt;&lt;span class="punctuation"&gt;:&lt;/span&gt;&lt;span class="literal number integer"&gt;7&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt;
-    &lt;span class="comment"&gt;# Generally, the last identifier is the published version,&lt;/span&gt;
-    &lt;span class="comment"&gt;# while the first is an arXiv identifier&lt;/span&gt;
-    &lt;span class="comment"&gt;# (data['identifier'] is a list)&lt;/span&gt;
-    &lt;span class="name"&gt;data&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'adsbibid'&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="name"&gt;data&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'identifier'&lt;/span&gt;&lt;span class="punctuation"&gt;][&lt;/span&gt;&lt;span class="operator"&gt;-&lt;/span&gt;&lt;span class="literal number integer"&gt;1&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt;
-    &lt;span class="comment"&gt;# data['title'] &amp;amp; ['pub'] are also lists&lt;/span&gt;
-    &lt;span class="name"&gt;data&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'titlestring'&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="name"&gt;data&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'title'&lt;/span&gt;&lt;span class="punctuation"&gt;][&lt;/span&gt;&lt;span class="literal number integer"&gt;0&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt;
-    &lt;span class="name"&gt;data&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'journal'&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="name"&gt;data&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'pub'&lt;/span&gt;&lt;span class="punctuation"&gt;][&lt;/span&gt;&lt;span class="literal number integer"&gt;0&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt;
-    &lt;span class="comment"&gt;# This trick bolds my name in the list of authors&lt;/span&gt;
-    &lt;span class="name"&gt;data&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'authors'&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'&amp;lt;b&amp;gt;{}&amp;lt;/b&amp;gt;'&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;format&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;x&lt;/span&gt;&lt;span class="punctuation"&gt;)&lt;/span&gt; &lt;span class="keyword"&gt;if&lt;/span&gt; &lt;span class="name"&gt;authorname&lt;/span&gt; &lt;span class="operator word"&gt;in&lt;/span&gt; &lt;span class="name"&gt;x&lt;/span&gt; &lt;span class="keyword"&gt;else&lt;/span&gt; &lt;span class="name"&gt;x&lt;/span&gt; &lt;span class="keyword"&gt;for&lt;/span&gt; &lt;span class="name"&gt;x&lt;/span&gt; &lt;span class="operator word"&gt;in&lt;/span&gt; &lt;span class="name"&gt;data&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'author'&lt;/span&gt;&lt;span class="punctuation"&gt;]]&lt;/span&gt;
-    &lt;span class="comment"&gt;# Separate names by semicolons&lt;/span&gt;
-    &lt;span class="name"&gt;data&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'creator'&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="literal string"&gt;u&amp;quot;; &amp;quot;&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;join&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;data&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'authors'&lt;/span&gt;&lt;span class="punctuation"&gt;])&lt;/span&gt;
-    &lt;span class="keyword"&gt;return&lt;/span&gt; &lt;span class="name"&gt;data&lt;/span&gt;
-&lt;/pre&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;wrangle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;authorname&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Ginsburg&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot; Create new fields from the input data to insert into the format string &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;month&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;pubdate&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="c"&gt;# Generally, the last identifier is the published version,&lt;/span&gt;
+    &lt;span class="c"&gt;# while the first is an arXiv identifier&lt;/span&gt;
+    &lt;span class="c"&gt;# (data[&amp;#39;identifier&amp;#39;] is a list)&lt;/span&gt;
+    &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;adsbibid&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;identifier&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="c"&gt;# data[&amp;#39;title&amp;#39;] &amp;amp; [&amp;#39;pub&amp;#39;] are also lists&lt;/span&gt;
+    &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;titlestring&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;journal&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;pub&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="c"&gt;# This trick bolds my name in the list of authors&lt;/span&gt;
+    &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;authors&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;b&amp;gt;{}&amp;lt;/b&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;authorname&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;author&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+    &lt;span class="c"&gt;# Separate names by semicolons&lt;/span&gt;
+    &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;creator&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;u&amp;quot;; &amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;authors&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The return from &lt;tt class="docutils literal"&gt;wrangle&lt;/tt&gt; is a dict with new keys that match the
 keywords in the format string. The python &lt;tt class="docutils literal"&gt;string.format&lt;/tt&gt; method will
 nicely ignore any extra keywords that we're uninterested in.&lt;/p&gt;
-&lt;p&gt;In[11]:&lt;/p&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="name"&gt;fmt&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;format&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="operator"&gt;**&lt;/span&gt;&lt;span class="name"&gt;wrangle&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;datalist&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal number integer"&gt;0&lt;/span&gt;&lt;span class="punctuation"&gt;]))&lt;/span&gt;
-&lt;/pre&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;fmt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;wrangle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datalist&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;pre class="literal-block"&gt;
 u'                &amp;lt;li&amp;gt;&amp;lt;a class=&amp;quot;norm&amp;quot; href=&amp;quot;&lt;a class="reference external" href="http://adsabs.harvard.edu/abs/2013ApJ...773..102F"&gt;http://adsabs.harvard.edu/abs/2013ApJ...773..102F&lt;/a&gt;&amp;quot;&amp;gt;Fallscheer, C.; Reid, M. A.; Di Francesco, J.; Martin, P. G.; Hill, T.; Hennemann, M.; Nguyen-Luong, Q.; Motte, F.; Men'shchikov, A.; Andrxe9, Ph.; Ward-Thompson, D.; Griffin, M.; Kirk, J.; Konyves, V.; Rygl, K. L. J.; Sadavoy, S.; Sauvage, M.; Schneider, N.; Anderson, L. D.; Benedettini, M.; Bernard, J. -P.; Bontemps, S.; &amp;lt;b&amp;gt;Ginsburg, A.&amp;lt;/b&amp;gt;; Molinari, S.; Polychroni, D.; Rivera-Ingraham, A.; Roussel, H.; Testi, L.; White, G.; Williams, J. P.; Wilson, C. D.; Wong, M.; Zavagno, A.&amp;lt;/a&amp;gt; 08, &amp;lt;b&amp;gt;2013&amp;lt;/b&amp;gt; Tn                &amp;lt;br&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;Herschel Reveals Massive Cold Clumps in NGCxa07538'
 &lt;/pre&gt;
 &lt;p&gt;Now to show it in the notebook...&lt;/p&gt;
-&lt;p&gt;In[12]:&lt;/p&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="keyword namespace"&gt;import&lt;/span&gt; &lt;span class="name namespace"&gt;IPython.display&lt;/span&gt;
-&lt;span class="name"&gt;IPython&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;display&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;HTML&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;fmt&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;format&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="operator"&gt;**&lt;/span&gt;&lt;span class="name"&gt;wrangle&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;datalist&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal number integer"&gt;0&lt;/span&gt;&lt;span class="punctuation"&gt;])))&lt;/span&gt;
-&lt;/pre&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;IPython.display&lt;/span&gt;
+&lt;span class="n"&gt;IPython&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;display&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;HTML&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fmt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;wrangle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datalist&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;You can make a complete bibliography by looping over a few entries. The
 ordered list (&lt;tt class="docutils literal"&gt;&amp;lt;ol&amp;gt;&lt;/tt&gt;) tag makes a numbered list.&lt;/p&gt;
-&lt;p&gt;In[13]:&lt;/p&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="name"&gt;html&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="literal string"&gt;&amp;quot;&amp;lt;ol&amp;gt;&amp;quot;&lt;/span&gt; &lt;span class="operator"&gt;+&lt;/span&gt; &lt;span class="literal string"&gt;&amp;quot;&lt;/span&gt;&lt;span class="literal string escape"&gt;\n&lt;/span&gt;&lt;span class="literal string"&gt;&amp;quot;&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;join&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;fmt&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;format&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="operator"&gt;**&lt;/span&gt;&lt;span class="name"&gt;wrangle&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;datalist&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="name"&gt;ii&lt;/span&gt;&lt;span class="punctuation"&gt;]))&lt;/span&gt; &lt;span class="keyword"&gt;for&lt;/span&gt; &lt;span class="name"&gt;ii&lt;/span&gt; &lt;span class="operator word"&gt;in&lt;/span&gt; &lt;span class="name builtin"&gt;xrange&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="literal number integer"&gt;3&lt;/span&gt;&lt;span class="punctuation"&gt;))&lt;/span&gt; &lt;span class="operator"&gt;+&lt;/span&gt; &lt;span class="literal string"&gt;&amp;quot;&amp;lt;/ol&amp;gt;&amp;quot;&lt;/span&gt;
-&lt;span class="name"&gt;IPython&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;display&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;HTML&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;html&lt;/span&gt;&lt;span class="punctuation"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;html&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;lt;ol&amp;gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fmt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;wrangle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datalist&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;ii&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;ii&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;lt;/ol&amp;gt;&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;IPython&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;display&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;HTML&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If you want to make sure you only include refereed articles, use the
 'property' tag.&lt;/p&gt;
-&lt;p&gt;In[14]:&lt;/p&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="keyword"&gt;print&lt;/span&gt; &lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'REFEREED'&lt;/span&gt; &lt;span class="operator word"&gt;in&lt;/span&gt; &lt;span class="name"&gt;d&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'property'&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt; &lt;span class="keyword"&gt;for&lt;/span&gt; &lt;span class="name"&gt;d&lt;/span&gt; &lt;span class="operator word"&gt;in&lt;/span&gt; &lt;span class="name"&gt;datalist&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt;
-&lt;/pre&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;REFEREED&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;property&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;datalist&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;pre class="literal-block"&gt;
 [True, False, True, False, False, False, True, True, False, False, False, False, True, True, True, False, False, True, True, False, False, True, True, True, False, False, False, False, True, False, False, True, True, True, True, True, True, False, False, False, False, False, False, True, True, False, False, False, False, True, False, False, False, True]
 &lt;/pre&gt;
@@ -193,12 +165,10 @@ because of point #1.&lt;/li&gt;
 &lt;p&gt;However, the ADS folks will certainly change this soon. You can find out
 if they have by querying their API settings. If the query below returns
 &amp;quot;True&amp;quot;, then you can access the bibstem.&lt;/p&gt;
-&lt;p&gt;In[15]:&lt;/p&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="name"&gt;permissions_response&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="name"&gt;requests&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;post&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="literal string"&gt;'http://adslabs.org/adsabs/api/settings/'&lt;/span&gt;&lt;span class="punctuation"&gt;,&lt;/span&gt;&lt;span class="name"&gt;params&lt;/span&gt;&lt;span class="operator"&gt;=&lt;/span&gt;&lt;span class="punctuation"&gt;{&lt;/span&gt;&lt;span class="literal string"&gt;'dev_key'&lt;/span&gt;&lt;span class="punctuation"&gt;:&lt;/span&gt;&lt;span class="name"&gt;get_dev_key&lt;/span&gt;&lt;span class="punctuation"&gt;()})&lt;/span&gt;
-&lt;span class="name"&gt;permissions&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="name"&gt;permissions_response&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;json&lt;/span&gt;&lt;span class="punctuation"&gt;()&lt;/span&gt;
-&lt;span class="literal string"&gt;'bibstem'&lt;/span&gt; &lt;span class="operator word"&gt;in&lt;/span&gt; &lt;span class="name"&gt;permissions&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'allowed_fields'&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt;
-&lt;/pre&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;permissions_response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://adslabs.org/adsabs/api/settings/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;params&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;dev_key&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;get_dev_key&lt;/span&gt;&lt;span class="p"&gt;()})&lt;/span&gt;
+&lt;span class="n"&gt;permissions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;permissions_response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="s"&gt;&amp;#39;bibstem&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;permissions&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;allowed_fields&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;pre class="literal-block"&gt;
 False
 &lt;/pre&gt;
@@ -208,56 +178,46 @@ False
 that might be useful.&lt;/p&gt;
 &lt;p&gt;The approach we'll use is also a good way to reject unwanted articles in
 the HTML bibliography above.&lt;/p&gt;
-&lt;p&gt;In[16]:&lt;/p&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="name"&gt;bibfmt&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="literal string"&gt;u&amp;quot;&amp;quot;&amp;quot;&amp;#64;article{{{tagname},
-abstract={{{abstract}}},
-author={{{bibtexauthors}}},
-month={{{month}}},
-pages={{{page}}},
-title={{{titlestring}}},
-year={{{year}}},
-volume={{{volume}}}
-}}&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;bibfmt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;u&amp;quot;&amp;quot;&amp;quot;@article{{{tagname},&lt;/span&gt;
+&lt;span class="s"&gt;abstract={{{abstract}}},&lt;/span&gt;
+&lt;span class="s"&gt;author={{{bibtexauthors}}},&lt;/span&gt;
+&lt;span class="s"&gt;month={{{month}}},&lt;/span&gt;
+&lt;span class="s"&gt;pages={{{page}}},&lt;/span&gt;
+&lt;span class="s"&gt;title={{{titlestring}}},&lt;/span&gt;
+&lt;span class="s"&gt;year={{{year}}},&lt;/span&gt;
+&lt;span class="s"&gt;volume={{{volume}}}&lt;/span&gt;
+&lt;span class="s"&gt;}}&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Of course, it's necessary to wrangle the data again for the appropriate
 author list formatting for bibtex:&lt;/p&gt;
-&lt;p&gt;In[17]:&lt;/p&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="keyword"&gt;def&lt;/span&gt; &lt;span class="name function"&gt;wrangleauthors&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;authorlist&lt;/span&gt;&lt;span class="punctuation"&gt;):&lt;/span&gt;
-    &lt;span class="literal string doc"&gt;&amp;quot;&amp;quot;&amp;quot; Fit the author list into a bibtex-friendly format.
-    Not the cleanest hack, since we need to allow for single-name
-    authors (e.g., astropy collaboration, Planck collaboration, etc.)
-    The triple braces are needed because TeX uses them&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="name"&gt;splita&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="punctuation"&gt;[[&lt;/span&gt;&lt;span class="name"&gt;b&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;strip&lt;/span&gt;&lt;span class="punctuation"&gt;()&lt;/span&gt; &lt;span class="keyword"&gt;for&lt;/span&gt; &lt;span class="name"&gt;b&lt;/span&gt; &lt;span class="operator word"&gt;in&lt;/span&gt; &lt;span class="name"&gt;a&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;split&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="literal string"&gt;&amp;quot;,&amp;quot;&lt;/span&gt;&lt;span class="punctuation"&gt;)]&lt;/span&gt; &lt;span class="keyword"&gt;for&lt;/span&gt; &lt;span class="name"&gt;a&lt;/span&gt; &lt;span class="operator word"&gt;in&lt;/span&gt; &lt;span class="name"&gt;authorlist&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt;
-    &lt;span class="name"&gt;bracketed&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;u'{{{}}}, {}'&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;format&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;a&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal number integer"&gt;0&lt;/span&gt;&lt;span class="punctuation"&gt;],&lt;/span&gt; &lt;span class="name"&gt;a&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal number integer"&gt;1&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;replace&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="literal string"&gt;&amp;quot; &amp;quot;&lt;/span&gt;&lt;span class="punctuation"&gt;,&lt;/span&gt;&lt;span class="literal string"&gt;&amp;quot;~&amp;quot;&lt;/span&gt;&lt;span class="punctuation"&gt;))&lt;/span&gt;
-                 &lt;span class="keyword"&gt;if&lt;/span&gt; &lt;span class="name builtin"&gt;len&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;a&lt;/span&gt;&lt;span class="punctuation"&gt;)&lt;/span&gt; &lt;span class="operator"&gt;&amp;gt;&lt;/span&gt; &lt;span class="literal number integer"&gt;1&lt;/span&gt;
-                 &lt;span class="keyword"&gt;else&lt;/span&gt; &lt;span class="literal string"&gt;u'{{{}}}'&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;format&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;a&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal number integer"&gt;0&lt;/span&gt;&lt;span class="punctuation"&gt;])&lt;/span&gt;
-                 &lt;span class="keyword"&gt;for&lt;/span&gt; &lt;span class="name"&gt;a&lt;/span&gt; &lt;span class="operator word"&gt;in&lt;/span&gt; &lt;span class="name"&gt;splita&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt;
-    &lt;span class="keyword"&gt;return&lt;/span&gt; &lt;span class="literal string"&gt;u&amp;quot; and &amp;quot;&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;join&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;bracketed&lt;/span&gt;&lt;span class="punctuation"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;In[18]:&lt;/p&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="name"&gt;wrangleauthors&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;datalist&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal number integer"&gt;0&lt;/span&gt;&lt;span class="punctuation"&gt;][&lt;/span&gt;&lt;span class="literal string"&gt;'author'&lt;/span&gt;&lt;span class="punctuation"&gt;])&lt;/span&gt;
-&lt;/pre&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;wrangleauthors&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;authorlist&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot; Fit the author list into a bibtex-friendly format.&lt;/span&gt;
+&lt;span class="sd"&gt;    Not the cleanest hack, since we need to allow for single-name&lt;/span&gt;
+&lt;span class="sd"&gt;    authors (e.g., astropy collaboration, Planck collaboration, etc.)&lt;/span&gt;
+&lt;span class="sd"&gt;    The triple braces are needed because TeX uses them&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;splita&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;,&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;authorlist&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;bracketed&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;u&amp;#39;{{{}}}, {}&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot; &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;~&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+                 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+                 &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="s"&gt;u&amp;#39;{{{}}}&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+                 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;splita&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;u&amp;quot; and &amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;bracketed&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;wrangleauthors&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datalist&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;author&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;pre class="literal-block"&gt;
 u&amp;quot;{Fallscheer}, C. and {Reid}, M.~A. and {Di Francesco}, J. and {Martin}, P.~G. and {Hill}, T. and {Hennemann}, M. and {Nguyen-Luong}, Q. and {Motte}, F. and {Men'shchikov}, A. and {Andrxe9}, Ph. and {Ward-Thompson}, D. and {Griffin}, M. and {Kirk}, J. and {Konyves}, V. and {Rygl}, K.~L.~J. and {Sadavoy}, S. and {Sauvage}, M. and {Schneider}, N. and {Anderson}, L.~D. and {Benedettini}, M. and {Bernard}, J.~-P. and {Bontemps}, S. and {Ginsburg}, A. and {Molinari}, S. and {Polychroni}, D. and {Rivera-Ingraham}, A. and {Roussel}, H. and {Testi}, L. and {White}, G. and {Williams}, J.~P. and {Wilson}, C.~D. and {Wong}, M. and {Zavagno}, A.&amp;quot;
 &lt;/pre&gt;
 &lt;p&gt;Now we can start looping through, performing checks for article status,
 and making bibentries:&lt;/p&gt;
-&lt;p&gt;In[19]:&lt;/p&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="keyword"&gt;for&lt;/span&gt; &lt;span class="name"&gt;d&lt;/span&gt; &lt;span class="operator word"&gt;in&lt;/span&gt; &lt;span class="name"&gt;datalist&lt;/span&gt;&lt;span class="punctuation"&gt;:&lt;/span&gt;
-    &lt;span class="name"&gt;d&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'bibtexauthors'&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="name"&gt;wrangleauthors&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="name"&gt;d&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'author'&lt;/span&gt;&lt;span class="punctuation"&gt;])&lt;/span&gt;
-    &lt;span class="name"&gt;d&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'tagname'&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="name"&gt;d&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'author'&lt;/span&gt;&lt;span class="punctuation"&gt;][&lt;/span&gt;&lt;span class="literal number integer"&gt;0&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;split&lt;/span&gt;&lt;span class="punctuation"&gt;()[&lt;/span&gt;&lt;span class="literal number integer"&gt;0&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;strip&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="literal string"&gt;&amp;quot;,&amp;quot;&lt;/span&gt;&lt;span class="punctuation"&gt;)&lt;/span&gt; &lt;span class="operator"&gt;+&lt;/span&gt; &lt;span class="name"&gt;d&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'year'&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;In[20]:&lt;/p&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="name"&gt;bibdata&lt;/span&gt; &lt;span class="operator"&gt;=&lt;/span&gt; &lt;span class="literal string"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="keyword"&gt;for&lt;/span&gt; &lt;span class="name"&gt;d&lt;/span&gt; &lt;span class="operator word"&gt;in&lt;/span&gt; &lt;span class="name"&gt;datalist&lt;/span&gt;&lt;span class="punctuation"&gt;:&lt;/span&gt;
-    &lt;span class="keyword"&gt;if&lt;/span&gt; &lt;span class="literal string"&gt;'ARTICLE'&lt;/span&gt; &lt;span class="operator word"&gt;in&lt;/span&gt; &lt;span class="name"&gt;d&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'property'&lt;/span&gt;&lt;span class="punctuation"&gt;]&lt;/span&gt; &lt;span class="operator word"&gt;or&lt;/span&gt; &lt;span class="literal string"&gt;'EPRINT'&lt;/span&gt; &lt;span class="operator word"&gt;in&lt;/span&gt; &lt;span class="name"&gt;d&lt;/span&gt;&lt;span class="punctuation"&gt;[&lt;/span&gt;&lt;span class="literal string"&gt;'property'&lt;/span&gt;&lt;span class="punctuation"&gt;]:&lt;/span&gt;
-        &lt;span class="name"&gt;bibdata&lt;/span&gt; &lt;span class="operator"&gt;+=&lt;/span&gt; &lt;span class="name"&gt;bibfmt&lt;/span&gt;&lt;span class="operator"&gt;.&lt;/span&gt;&lt;span class="name"&gt;format&lt;/span&gt;&lt;span class="punctuation"&gt;(&lt;/span&gt;&lt;span class="operator"&gt;**&lt;/span&gt;&lt;span class="name"&gt;d&lt;/span&gt;&lt;span class="punctuation"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;datalist&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;bibtexauthors&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;wrangleauthors&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;author&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;tagname&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;author&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;()[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;,&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;year&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;bibdata&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;datalist&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;ARTICLE&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;property&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;EPRINT&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;property&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+        &lt;span class="n"&gt;bibdata&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;bibfmt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;pre class="literal-block"&gt;
 ---------------------------------------------------------------------------
 KeyError                                  Traceback (most recent call last)
