@@ -51,7 +51,6 @@ than extend.
 
 .. code-block:: python
 
-
     from IPython.nbconvert.exporters import RSTExporter
     
     def export(nbname, outfilename=None):

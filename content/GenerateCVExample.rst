@@ -7,10 +7,12 @@ Generating a CV using the ADS Labs API
 :author: Adam (keflavich@gmail.com)
 :tags: python
 
-[ `Source code related to this
-post <https://github.com/keflavich/generate_cv>`__ ][ [Notebook
-form](http://nbviewer.ipython.org/urls/raw.github.com/keflavich/generate\_cv/master/examples/GenerateCVExample.ipynb)
-]
+-  [ `Source code related to this
+   post <https://github.com/keflavich/generate_cv>`__ ]
+-  [ `Notebook
+   form <http://nbviewer.ipython.org/urls/raw.github.com/keflavich/generate_cv/master/examples/GenerateCVExample.ipynb>`__
+   ]
+
 
 At `.astronomy <http://dotastronomy.com/>`__ this past week, the keynote
 speaker was `Alberto
@@ -27,7 +29,6 @@ Key <https://github.com/adsabs/adsabs-dev-api#signup--access>`__:
 
 
 .. code-block:: python
-
 
     import os
     
@@ -53,7 +54,6 @@ parse the data.
 
 .. code-block:: python
 
-
     import requests
     import json
 
@@ -66,7 +66,6 @@ have set (the default is 10 or 20).
 
 .. code-block:: python
 
-
     response = requests.post('http://adslabs.org/adsabs/api/search/',
                              params={'q':'author:ginsburg, a',
                                      'dev_key':get_dev_key(),
@@ -75,7 +74,6 @@ have set (the default is 10 or 20).
 
 
 .. code-block:: python
-
 
     J = response.json()
     J.keys()
@@ -95,7 +93,6 @@ of matches and execution time.
 
 .. code-block:: python
 
-
     J['meta']
 
 
@@ -106,7 +103,7 @@ of matches and execution time.
     {u'api-version': u'0.1',
      u'count': 54,
      u'hits': 54,
-     u'qtime': 5,
+     u'qtime': 40,
      u'query': u'author:ginsburg, a'}
 
 
@@ -116,7 +113,6 @@ another key 'docs'.
 
 
 .. code-block:: python
-
 
     J['results'].keys()
 
@@ -131,7 +127,6 @@ another key 'docs'.
 
 
 .. code-block:: python
-
 
     datalist = J['results']['docs']
     type(datalist), len(datalist)
@@ -149,7 +144,6 @@ another key 'docs'.
 
 
 .. code-block:: python
-
 
     datalist[0].keys()
 
@@ -195,7 +189,6 @@ author names and uses a reasonably standard bibliographic format:
 
 .. code-block:: python
 
-
     fmt = (u'                '
     u'<li><a class="norm" href="http://adsabs.harvard.edu/abs/{adsbibid}">{creator}</a>'
     u' {month}, <b>{year}</b> {journal}\n'
@@ -206,7 +199,6 @@ into the appropriate format:
 
 
 .. code-block:: python
-
 
     def wrangle(data, authorname='Ginsburg'):
         """ Create new fields from the input data to insert into the format string """
@@ -232,7 +224,6 @@ nicely ignore any extra keywords that we're uninterested in.
 
 .. code-block:: python
 
-
     fmt.format(**wrangle(datalist[0]))
 
 
@@ -249,7 +240,6 @@ Now to show it in the notebook...
 
 .. code-block:: python
 
-
     import IPython.display
     IPython.display.HTML(fmt.format(**wrangle(datalist[0])))
 
@@ -264,7 +254,6 @@ ordered list (``<ol>``) tag makes a numbered list.
 
 
 .. code-block:: python
-
 
     html = "<ol>" + "\n".join(fmt.format(**wrangle(datalist[ii])) for ii in xrange(3)) + "</ol>"
     IPython.display.HTML(html)
@@ -281,7 +270,6 @@ If you want to make sure you only include refereed articles, use the
 
 .. code-block:: python
 
-
     print ['REFEREED' in d['property'] for d in datalist]
 
 
@@ -295,7 +283,6 @@ And don't forget that you can also include the citation count:
 
 
 .. code-block:: python
-
 
     print "\n".join(["{} {}: {}".format(d['author'][0],d['year'],d['citation_count']) 
                     for d in datalist 
@@ -349,7 +336,6 @@ if they have by querying their API settings. If the query below returns
 
 .. code-block:: python
 
-
     permissions_response = requests.post('http://adslabs.org/adsabs/api/settings/',params={'dev_key':get_dev_key()})
     permissions = permissions_response.json()
     'bibstem' in permissions['allowed_fields']
@@ -374,7 +360,6 @@ the HTML bibliography above.
 
 .. code-block:: python
 
-
     bibfmt = u"""@article{{{tagname},
     abstract={{{abstract}}},
     author={{{bibtexauthors}}},
@@ -391,7 +376,6 @@ author list formatting for bibtex:
 
 .. code-block:: python
 
-
     def wrangleauthors(authorlist):
         """ Fit the author list into a bibtex-friendly format.  
         Not the cleanest hack, since we need to allow for single-name
@@ -406,7 +390,6 @@ author list formatting for bibtex:
 
 
 .. code-block:: python
-
 
     wrangleauthors(datalist[0]['author'])
 
@@ -425,14 +408,12 @@ and making bibentries:
 
 .. code-block:: python
 
-
     for d in datalist:
         d['bibtexauthors'] = wrangleauthors(d['author'])
         d['tagname'] = d['author'][0].split()[0].strip(",") + d['year']
 
 
 .. code-block:: python
-
 
     bibdata = ""
     for d in datalist:

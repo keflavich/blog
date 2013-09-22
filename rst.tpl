@@ -4,7 +4,6 @@
 {% block in_prompt %}
 
 .. code-block:: python
-
 {% endblock in_prompt %}
 
 {% block output_prompt %}
