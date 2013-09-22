@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
                           <li class="post">
+                  2013/09/21
+                  <br>
+                  <a href="http://keflavich.github.io/blog/generating-a-pretty-cv-using-the-ads-labs-api.html">Generating a Pretty CV using the ADS Labs API</a>
+              </li>
+                          <li class="post">
                   2013/08/05
                   <br>
                   <a href="http://keflavich.github.io/blog/my-favorite-splatalogue-queries.html">My favorite Splatalogue queries</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/ppvi-talk-11-matthew-bate.html">PPVI Talk 11: Matthew Bate</a>
               </li>
-                          <li class="post">
-                  2013/07/16
-                  <br>
-                  <a href="http://keflavich.github.io/blog/ppvi-talk-10-jeffries.html">PPVI Talk 10: Jeffries</a>
-              </li>
                     </ul>
       </li>
         
@@ -101,6 +101,293 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/generating-a-pretty-cv-using-the-ads-labs-api.html" rel="bookmark" title="Permalink to Generating a Pretty CV using the ADS Labs API">
+                    Generating a Pretty CV using the ADS Labs API</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-09-21T00:00:00"> 2013/09/21 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>At <a class="reference external" href="http://dotastronomy.com/">.astronomy</a> this past week, the keynote
+speaker was <a class="reference external" href="https://www.cfa.harvard.edu/~alberto/">Alberto
+Accomazzi</a>, introducing ADS
+Labs and <a class="reference external" href="http://labs.adsabs.harvard.edu/adsabs/">ADS 2.0</a>, which are
+really quite impressive.</p>
+<p>I was inspired to use ADS Labs to help me auto-generate a nicely
+formatted CV for myself. I used <a class="reference external" href="https://twitter.com/astrowizicist">Andy
+Casey's</a>
+<a class="reference external" href="https://github.com/andycasey/ads-python">ADS-python</a> as a starting
+point: he introduces a useful convention of storing your <a class="reference external" href="https://github.com/adsabs/adsabs-dev-api#signup--access">ADS API
+Key</a>:</p>
+<p>In[1]:</p>
+<pre class="code python literal-block">
+<span class="keyword namespace">import</span> <span class="name namespace">os</span>
+
+<span class="keyword">def</span> <span class="name function">get_dev_key</span><span class="punctuation">():</span>
+    <span class="literal string doc">&quot;&quot;&quot; A convenience function for accessing a system-wide ADS Developer's Key &quot;&quot;&quot;</span>
+
+    <span class="name">ads_dev_key_filename</span> <span class="operator">=</span> <span class="name">os</span><span class="operator">.</span><span class="name">path</span><span class="operator">.</span><span class="name">abspath</span><span class="punctuation">(</span><span class="name">os</span><span class="operator">.</span><span class="name">path</span><span class="operator">.</span><span class="name">expanduser</span><span class="punctuation">(</span><span class="literal string">'~/.ads/dev_key'</span><span class="punctuation">))</span>
+
+    <span class="keyword">if</span> <span class="name">os</span><span class="operator">.</span><span class="name">path</span><span class="operator">.</span><span class="name">exists</span><span class="punctuation">(</span><span class="name">ads_dev_key_filename</span><span class="punctuation">):</span>
+        <span class="keyword">with</span> <span class="name builtin">open</span><span class="punctuation">(</span><span class="name">ads_dev_key_filename</span><span class="punctuation">,</span> <span class="literal string">'r'</span><span class="punctuation">)</span> <span class="keyword">as</span> <span class="name">fp</span><span class="punctuation">:</span>
+            <span class="name">dev_key</span> <span class="operator">=</span> <span class="name">fp</span><span class="operator">.</span><span class="name">readline</span><span class="punctuation">()</span><span class="operator">.</span><span class="name">rstrip</span><span class="punctuation">()</span>
+
+        <span class="keyword">return</span> <span class="name">dev_key</span>
+
+    <span class="keyword">if</span> <span class="literal string">'ADS_DEV_KEY'</span> <span class="operator word">in</span> <span class="name">os</span><span class="operator">.</span><span class="name">environ</span><span class="punctuation">:</span>
+        <span class="keyword">return</span> <span class="name">os</span><span class="operator">.</span><span class="name">environ</span><span class="punctuation">[</span><span class="literal string">'ADS_DEV_KEY'</span><span class="punctuation">]</span>
+
+    <span class="keyword">raise</span> <span class="name exception">IOError</span><span class="punctuation">(</span><span class="literal string">&quot;no ADS API key found in ~/.ads/dev_key&quot;</span><span class="punctuation">)</span>
+</pre>
+<p>We'll use <tt class="docutils literal">requests</tt> to send the request to ADS, then <tt class="docutils literal">json</tt> to
+parse the data.</p>
+<p>In[2]:</p>
+<pre class="code python literal-block">
+<span class="keyword namespace">import</span> <span class="name namespace">requests</span>
+<span class="keyword namespace">import</span> <span class="name namespace">json</span>
+</pre>
+<p>We then query the database using a keyword query (parameter <tt class="docutils literal">q</tt>)
+specifying the author. Other required parameters are the API key
+(<tt class="docutils literal">dev_key</tt>) and a filter to select only astronomy articles. The
+maximum number of rows returned in the API is 200 right now, which I
+have set (the default is 10 or 20).</p>
+<p>In[3]:</p>
+<pre class="code python literal-block">
+<span class="name">response</span> <span class="operator">=</span> <span class="name">requests</span><span class="operator">.</span><span class="name">post</span><span class="punctuation">(</span><span class="literal string">'http://adslabs.org/adsabs/api/search/'</span><span class="punctuation">,</span>
+                         <span class="name">params</span><span class="operator">=</span><span class="punctuation">{</span><span class="literal string">'q'</span><span class="punctuation">:</span><span class="literal string">'author:ginsburg, a'</span><span class="punctuation">,</span>
+                                 <span class="literal string">'dev_key'</span><span class="punctuation">:</span><span class="name">get_dev_key</span><span class="punctuation">(),</span>
+                                 <span class="literal string">'rows'</span><span class="punctuation">:</span><span class="literal number integer">200</span><span class="punctuation">,</span>
+                                 <span class="literal string">'filter'</span><span class="punctuation">:</span><span class="literal string">'database:astronomy'</span><span class="punctuation">})</span>
+</pre>
+<p>In[4]:</p>
+<pre class="code python literal-block">
+<span class="name">J</span> <span class="operator">=</span> <span class="name">response</span><span class="operator">.</span><span class="name">json</span><span class="punctuation">()</span>
+<span class="name">J</span><span class="operator">.</span><span class="name">keys</span><span class="punctuation">()</span>
+</pre>
+<pre class="literal-block">
+[u'meta', u'results']
+</pre>
+<p>The JSON 'meta' key is just metadata about the query, include the number
+of matches and execution time.</p>
+<p>In[5]:</p>
+<pre class="code python literal-block">
+<span class="name">J</span><span class="punctuation">[</span><span class="literal string">'meta'</span><span class="punctuation">]</span>
+</pre>
+<pre class="literal-block">
+{u'api-version': u'0.1',
+ u'count': 54,
+ u'hits': 54,
+ u'qtime': 3,
+ u'query': u'author:ginsburg, a'}
+</pre>
+<p>The 'results' key includes what we're actually interested in, under
+another key 'docs'.</p>
+<p>In[6]:</p>
+<pre class="code python literal-block">
+<span class="name">J</span><span class="punctuation">[</span><span class="literal string">'results'</span><span class="punctuation">]</span><span class="operator">.</span><span class="name">keys</span><span class="punctuation">()</span>
+</pre>
+<pre class="literal-block">
+[u'docs']
+</pre>
+<p>In[7]:</p>
+<pre class="code python literal-block">
+<span class="name">datalist</span> <span class="operator">=</span> <span class="name">J</span><span class="punctuation">[</span><span class="literal string">'results'</span><span class="punctuation">][</span><span class="literal string">'docs'</span><span class="punctuation">]</span>
+<span class="name builtin">type</span><span class="punctuation">(</span><span class="name">datalist</span><span class="punctuation">),</span> <span class="name builtin">len</span><span class="punctuation">(</span><span class="name">datalist</span><span class="punctuation">)</span>
+</pre>
+<pre class="literal-block">
+(list, 54)
+</pre>
+<p><tt class="docutils literal">datalist</tt> is a list of the retrieved bibliographic entries.</p>
+<p>In[8]:</p>
+<pre class="code python literal-block">
+<span class="name">datalist</span><span class="punctuation">[</span><span class="literal number integer">0</span><span class="punctuation">]</span><span class="operator">.</span><span class="name">keys</span><span class="punctuation">()</span>
+</pre>
+<pre class="literal-block">
+[u'bibcode',
+ u'keyword',
+ u'pubdate',
+ u'title',
+ u'property',
+ u'aff',
+ u'author',
+ u'citation_count',
+ u'pub',
+ u'page',
+ u'volume',
+ u'database',
+ u'doi',
+ u'year',
+ u'abstract',
+ u'identifier',
+ u'issue',
+ u'id']
+</pre>
+<p>At this point, most of the remaining work is building up a nicely
+formatted output. We'll start with a web-specific example, using HTML
+unordered lists.</p>
+<p>In this example, we'll make a list item that creates a hyperlink for the
+author names and uses a reasonably standard bibliographic format:</p>
+<pre class="literal-block">
+Authors Month, Year, Journal
+Title
+</pre>
+<p>In[9]:</p>
+<pre class="code python literal-block">
+<span class="name">fmt</span> <span class="operator">=</span> <span class="literal string">u'''                &lt;li&gt;&lt;a class=&quot;norm&quot; href=&quot;http://adsabs.harvard.edu/abs/{adsbibid}&quot;&gt;{creator}&lt;/a&gt; {month}, &lt;b&gt;{year}&lt;/b&gt; {journal}
+                &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;{titlestring}'''</span>
+</pre>
+<p>We need to do a little data wrangling to get the individual JSON entries
+into the appropriate format:</p>
+<p>In[10]:</p>
+<pre class="code python literal-block">
+<span class="keyword">def</span> <span class="name function">wrangle</span><span class="punctuation">(</span><span class="name">data</span><span class="punctuation">,</span> <span class="name">authorname</span><span class="operator">=</span><span class="literal string">'Ginsburg'</span><span class="punctuation">):</span>
+    <span class="literal string doc">&quot;&quot;&quot; Create new fields from the input data to insert into the format string &quot;&quot;&quot;</span>
+    <span class="name">data</span><span class="punctuation">[</span><span class="literal string">'month'</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name">data</span><span class="punctuation">[</span><span class="literal string">'pubdate'</span><span class="punctuation">][</span><span class="literal number integer">5</span><span class="punctuation">:</span><span class="literal number integer">7</span><span class="punctuation">]</span>
+    <span class="comment"># Generally, the last identifier is the published version,</span>
+    <span class="comment"># while the first is an arXiv identifier</span>
+    <span class="comment"># (data['identifier'] is a list)</span>
+    <span class="name">data</span><span class="punctuation">[</span><span class="literal string">'adsbibid'</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name">data</span><span class="punctuation">[</span><span class="literal string">'identifier'</span><span class="punctuation">][</span><span class="operator">-</span><span class="literal number integer">1</span><span class="punctuation">]</span>
+    <span class="comment"># data['title'] &amp; ['pub'] are also lists</span>
+    <span class="name">data</span><span class="punctuation">[</span><span class="literal string">'titlestring'</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name">data</span><span class="punctuation">[</span><span class="literal string">'title'</span><span class="punctuation">][</span><span class="literal number integer">0</span><span class="punctuation">]</span>
+    <span class="name">data</span><span class="punctuation">[</span><span class="literal string">'journal'</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name">data</span><span class="punctuation">[</span><span class="literal string">'pub'</span><span class="punctuation">][</span><span class="literal number integer">0</span><span class="punctuation">]</span>
+    <span class="comment"># This trick bolds my name in the list of authors</span>
+    <span class="name">data</span><span class="punctuation">[</span><span class="literal string">'authors'</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="punctuation">[</span><span class="literal string">'&lt;b&gt;{}&lt;/b&gt;'</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">x</span><span class="punctuation">)</span> <span class="keyword">if</span> <span class="name">authorname</span> <span class="operator word">in</span> <span class="name">x</span> <span class="keyword">else</span> <span class="name">x</span> <span class="keyword">for</span> <span class="name">x</span> <span class="operator word">in</span> <span class="name">data</span><span class="punctuation">[</span><span class="literal string">'author'</span><span class="punctuation">]]</span>
+    <span class="comment"># Separate names by semicolons</span>
+    <span class="name">data</span><span class="punctuation">[</span><span class="literal string">'creator'</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="literal string">u&quot;; &quot;</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">(</span><span class="name">data</span><span class="punctuation">[</span><span class="literal string">'authors'</span><span class="punctuation">])</span>
+    <span class="keyword">return</span> <span class="name">data</span>
+</pre>
+<p>The return from <tt class="docutils literal">wrangle</tt> is a dict with new keys that match the
+keywords in the format string. The python <tt class="docutils literal">string.format</tt> method will
+nicely ignore any extra keywords that we're uninterested in.</p>
+<p>In[11]:</p>
+<pre class="code python literal-block">
+<span class="name">fmt</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="operator">**</span><span class="name">wrangle</span><span class="punctuation">(</span><span class="name">datalist</span><span class="punctuation">[</span><span class="literal number integer">0</span><span class="punctuation">]))</span>
+</pre>
+<pre class="literal-block">
+u'                &lt;li&gt;&lt;a class=&quot;norm&quot; href=&quot;<a class="reference external" href="http://adsabs.harvard.edu/abs/2013ApJ...773..102F">http://adsabs.harvard.edu/abs/2013ApJ...773..102F</a>&quot;&gt;Fallscheer, C.; Reid, M. A.; Di Francesco, J.; Martin, P. G.; Hill, T.; Hennemann, M.; Nguyen-Luong, Q.; Motte, F.; Men'shchikov, A.; Andrxe9, Ph.; Ward-Thompson, D.; Griffin, M.; Kirk, J.; Konyves, V.; Rygl, K. L. J.; Sadavoy, S.; Sauvage, M.; Schneider, N.; Anderson, L. D.; Benedettini, M.; Bernard, J. -P.; Bontemps, S.; &lt;b&gt;Ginsburg, A.&lt;/b&gt;; Molinari, S.; Polychroni, D.; Rivera-Ingraham, A.; Roussel, H.; Testi, L.; White, G.; Williams, J. P.; Wilson, C. D.; Wong, M.; Zavagno, A.&lt;/a&gt; 08, &lt;b&gt;2013&lt;/b&gt; Tn                &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Herschel Reveals Massive Cold Clumps in NGCxa07538'
+</pre>
+<p>Now to show it in the notebook...</p>
+<p>In[12]:</p>
+<pre class="code python literal-block">
+<span class="keyword namespace">import</span> <span class="name namespace">IPython.display</span>
+<span class="name">IPython</span><span class="operator">.</span><span class="name">display</span><span class="operator">.</span><span class="name">HTML</span><span class="punctuation">(</span><span class="name">fmt</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="operator">**</span><span class="name">wrangle</span><span class="punctuation">(</span><span class="name">datalist</span><span class="punctuation">[</span><span class="literal number integer">0</span><span class="punctuation">])))</span>
+</pre>
+<p>You can make a complete bibliography by looping over a few entries. The
+ordered list (<tt class="docutils literal">&lt;ol&gt;</tt>) tag makes a numbered list.</p>
+<p>In[13]:</p>
+<pre class="code python literal-block">
+<span class="name">html</span> <span class="operator">=</span> <span class="literal string">&quot;&lt;ol&gt;&quot;</span> <span class="operator">+</span> <span class="literal string">&quot;</span><span class="literal string escape">\n</span><span class="literal string">&quot;</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">(</span><span class="name">fmt</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="operator">**</span><span class="name">wrangle</span><span class="punctuation">(</span><span class="name">datalist</span><span class="punctuation">[</span><span class="name">ii</span><span class="punctuation">]))</span> <span class="keyword">for</span> <span class="name">ii</span> <span class="operator word">in</span> <span class="name builtin">xrange</span><span class="punctuation">(</span><span class="literal number integer">3</span><span class="punctuation">))</span> <span class="operator">+</span> <span class="literal string">&quot;&lt;/ol&gt;&quot;</span>
+<span class="name">IPython</span><span class="operator">.</span><span class="name">display</span><span class="operator">.</span><span class="name">HTML</span><span class="punctuation">(</span><span class="name">html</span><span class="punctuation">)</span>
+</pre>
+<p>If you want to make sure you only include refereed articles, use the
+'property' tag.</p>
+<p>In[14]:</p>
+<pre class="code python literal-block">
+<span class="keyword">print</span> <span class="punctuation">[</span><span class="literal string">'REFEREED'</span> <span class="operator word">in</span> <span class="name">d</span><span class="punctuation">[</span><span class="literal string">'property'</span><span class="punctuation">]</span> <span class="keyword">for</span> <span class="name">d</span> <span class="operator word">in</span> <span class="name">datalist</span><span class="punctuation">]</span>
+</pre>
+<pre class="literal-block">
+[True, False, True, False, False, False, True, True, False, False, False, False, True, True, True, False, False, True, True, False, False, True, True, True, False, False, False, False, True, False, False, True, True, True, True, True, True, False, False, False, False, False, False, True, True, False, False, False, False, True, False, False, False, True]
+</pre>
+<div class="section" id="wishlist">
+<h2>Wishlist</h2>
+<p>There are a few other features that would be nice to add to the CV, but
+some are not yet well-supported.</p>
+<ol class="arabic simple">
+<li>You can get the full name, but right now not the short name
+('bibstem'), of the journal</li>
+<li>The bibtex entry is important for generating tex versions of CVs.
+Currently, it is not possible to completely reproduce one, largely
+because of point #1.</li>
+</ol>
+<p>However, the ADS folks will certainly change this soon. You can find out
+if they have by querying their API settings. If the query below returns
+&quot;True&quot;, then you can access the bibstem.</p>
+<p>In[15]:</p>
+<pre class="code python literal-block">
+<span class="name">permissions_response</span> <span class="operator">=</span> <span class="name">requests</span><span class="operator">.</span><span class="name">post</span><span class="punctuation">(</span><span class="literal string">'http://adslabs.org/adsabs/api/settings/'</span><span class="punctuation">,</span><span class="name">params</span><span class="operator">=</span><span class="punctuation">{</span><span class="literal string">'dev_key'</span><span class="punctuation">:</span><span class="name">get_dev_key</span><span class="punctuation">()})</span>
+<span class="name">permissions</span> <span class="operator">=</span> <span class="name">permissions_response</span><span class="operator">.</span><span class="name">json</span><span class="punctuation">()</span>
+<span class="literal string">'bibstem'</span> <span class="operator word">in</span> <span class="name">permissions</span><span class="punctuation">[</span><span class="literal string">'allowed_fields'</span><span class="punctuation">]</span>
+</pre>
+<pre class="literal-block">
+False
+</pre>
+<p>In the meantime, you can get most of the way there. We'll create
+&quot;Article&quot; entries for any articles or eprints and ignore abstracts
+(e.g., conference abstracts). I don't have any books, but for others
+that might be useful.</p>
+<p>The approach we'll use is also a good way to reject unwanted articles in
+the HTML bibliography above.</p>
+<p>In[16]:</p>
+<pre class="code python literal-block">
+<span class="name">bibfmt</span> <span class="operator">=</span> <span class="literal string">u&quot;&quot;&quot;&#64;article{{{tagname},
+abstract={{{abstract}}},
+author={{{bibtexauthors}}},
+month={{{month}}},
+pages={{{page}}},
+title={{{titlestring}}},
+year={{{year}}},
+volume={{{volume}}}
+}}&quot;&quot;&quot;</span>
+</pre>
+<p>Of course, it's necessary to wrangle the data again for the appropriate
+author list formatting for bibtex:</p>
+<p>In[17]:</p>
+<pre class="code python literal-block">
+<span class="keyword">def</span> <span class="name function">wrangleauthors</span><span class="punctuation">(</span><span class="name">authorlist</span><span class="punctuation">):</span>
+    <span class="literal string doc">&quot;&quot;&quot; Fit the author list into a bibtex-friendly format.
+    Not the cleanest hack, since we need to allow for single-name
+    authors (e.g., astropy collaboration, Planck collaboration, etc.)
+    The triple braces are needed because TeX uses them&quot;&quot;&quot;</span>
+    <span class="name">splita</span> <span class="operator">=</span> <span class="punctuation">[[</span><span class="name">b</span><span class="operator">.</span><span class="name">strip</span><span class="punctuation">()</span> <span class="keyword">for</span> <span class="name">b</span> <span class="operator word">in</span> <span class="name">a</span><span class="operator">.</span><span class="name">split</span><span class="punctuation">(</span><span class="literal string">&quot;,&quot;</span><span class="punctuation">)]</span> <span class="keyword">for</span> <span class="name">a</span> <span class="operator word">in</span> <span class="name">authorlist</span><span class="punctuation">]</span>
+    <span class="name">bracketed</span> <span class="operator">=</span> <span class="punctuation">[</span><span class="literal string">u'{{{}}}, {}'</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">a</span><span class="punctuation">[</span><span class="literal number integer">0</span><span class="punctuation">],</span> <span class="name">a</span><span class="punctuation">[</span><span class="literal number integer">1</span><span class="punctuation">]</span><span class="operator">.</span><span class="name">replace</span><span class="punctuation">(</span><span class="literal string">&quot; &quot;</span><span class="punctuation">,</span><span class="literal string">&quot;~&quot;</span><span class="punctuation">))</span>
+                 <span class="keyword">if</span> <span class="name builtin">len</span><span class="punctuation">(</span><span class="name">a</span><span class="punctuation">)</span> <span class="operator">&gt;</span> <span class="literal number integer">1</span>
+                 <span class="keyword">else</span> <span class="literal string">u'{{{}}}'</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="name">a</span><span class="punctuation">[</span><span class="literal number integer">0</span><span class="punctuation">])</span>
+                 <span class="keyword">for</span> <span class="name">a</span> <span class="operator word">in</span> <span class="name">splita</span><span class="punctuation">]</span>
+    <span class="keyword">return</span> <span class="literal string">u&quot; and &quot;</span><span class="operator">.</span><span class="name">join</span><span class="punctuation">(</span><span class="name">bracketed</span><span class="punctuation">)</span>
+</pre>
+<p>In[18]:</p>
+<pre class="code python literal-block">
+<span class="name">wrangleauthors</span><span class="punctuation">(</span><span class="name">datalist</span><span class="punctuation">[</span><span class="literal number integer">0</span><span class="punctuation">][</span><span class="literal string">'author'</span><span class="punctuation">])</span>
+</pre>
+<pre class="literal-block">
+u&quot;{Fallscheer}, C. and {Reid}, M.~A. and {Di Francesco}, J. and {Martin}, P.~G. and {Hill}, T. and {Hennemann}, M. and {Nguyen-Luong}, Q. and {Motte}, F. and {Men'shchikov}, A. and {Andrxe9}, Ph. and {Ward-Thompson}, D. and {Griffin}, M. and {Kirk}, J. and {Konyves}, V. and {Rygl}, K.~L.~J. and {Sadavoy}, S. and {Sauvage}, M. and {Schneider}, N. and {Anderson}, L.~D. and {Benedettini}, M. and {Bernard}, J.~-P. and {Bontemps}, S. and {Ginsburg}, A. and {Molinari}, S. and {Polychroni}, D. and {Rivera-Ingraham}, A. and {Roussel}, H. and {Testi}, L. and {White}, G. and {Williams}, J.~P. and {Wilson}, C.~D. and {Wong}, M. and {Zavagno}, A.&quot;
+</pre>
+<p>Now we can start looping through, performing checks for article status,
+and making bibentries:</p>
+<p>In[19]:</p>
+<pre class="code python literal-block">
+<span class="keyword">for</span> <span class="name">d</span> <span class="operator word">in</span> <span class="name">datalist</span><span class="punctuation">:</span>
+    <span class="name">d</span><span class="punctuation">[</span><span class="literal string">'bibtexauthors'</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name">wrangleauthors</span><span class="punctuation">(</span><span class="name">d</span><span class="punctuation">[</span><span class="literal string">'author'</span><span class="punctuation">])</span>
+    <span class="name">d</span><span class="punctuation">[</span><span class="literal string">'tagname'</span><span class="punctuation">]</span> <span class="operator">=</span> <span class="name">d</span><span class="punctuation">[</span><span class="literal string">'author'</span><span class="punctuation">][</span><span class="literal number integer">0</span><span class="punctuation">]</span><span class="operator">.</span><span class="name">split</span><span class="punctuation">()[</span><span class="literal number integer">0</span><span class="punctuation">]</span><span class="operator">.</span><span class="name">strip</span><span class="punctuation">(</span><span class="literal string">&quot;,&quot;</span><span class="punctuation">)</span> <span class="operator">+</span> <span class="name">d</span><span class="punctuation">[</span><span class="literal string">'year'</span><span class="punctuation">]</span>
+</pre>
+<p>In[20]:</p>
+<pre class="code python literal-block">
+<span class="name">bibdata</span> <span class="operator">=</span> <span class="literal string">&quot;&quot;</span>
+<span class="keyword">for</span> <span class="name">d</span> <span class="operator word">in</span> <span class="name">datalist</span><span class="punctuation">:</span>
+    <span class="keyword">if</span> <span class="literal string">'ARTICLE'</span> <span class="operator word">in</span> <span class="name">d</span><span class="punctuation">[</span><span class="literal string">'property'</span><span class="punctuation">]</span> <span class="operator word">or</span> <span class="literal string">'EPRINT'</span> <span class="operator word">in</span> <span class="name">d</span><span class="punctuation">[</span><span class="literal string">'property'</span><span class="punctuation">]:</span>
+        <span class="name">bibdata</span> <span class="operator">+=</span> <span class="name">bibfmt</span><span class="operator">.</span><span class="name">format</span><span class="punctuation">(</span><span class="operator">**</span><span class="name">d</span><span class="punctuation">)</span>
+</pre>
+<pre class="literal-block">
+---------------------------------------------------------------------------
+KeyError                                  Traceback (most recent call last)
+
+&lt;ipython-input-20-9c55bfea9ea0&gt; in &lt;module&gt;()
+      2 for d in datalist:
+      3     if 'ARTICLE' in d['property'] or 'EPRINT' in d['property']:
+----&gt; 4         bibdata += bibfmt.format(**d)
+
+
+KeyError: u'volume'
+</pre>
+<p>Actually, this doesn't work. We'll need to try something else... the ADS
+folks will probably provide.</p>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -812,10 +1099,10 @@ Q. Zhang (Harvard-Smithsonian Center for Astrophysics, United States)</p>
 <li>less important than outflows for clusters with M&lt;10^4 msun</li>
 </ul>
 </dd>
-<dt>Feedback significant if <span class="formula"><i>ṗ</i>*<i>t</i><sub><i>ff</i></sub>≳<i>M</i><i>v</i><sub><i>virial</i></sub></span>
+<dt>Feedback significant if <span class="math">\(\dot{p} * t_{ff} \gtrsim M v_{virial}\)</span>
 .</dt>
 <dd><ul class="first last simple">
-<li><span class="formula"><i>ṗ</i> = <i>f</i><sub><i>trap</i></sub><i>L</i> ⁄ <i>c</i></span>
+<li><span class="math">\(\dot{p} = f_{trap} L/c\)</span>
 .</li>
 <li>what is f_trap?</li>
 <li>Murray says f &gt; 1, others say 1</li>
@@ -1477,7 +1764,7 @@ formation in its early stages and we will review these major connections.</p>
 </ul>
 </blockquote>
 <p>Dimensionless number:
-<span class="formula"><i>λ</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator">(<i>M</i> ⁄ <i>φ</i>)</span><span class="ignored">)/(</span><span class="denominator">1 ⁄ (2<i>π</i><i>G</i><sup>1 ⁄ 2</sup>)</span><span class="ignored">)</span></span></span>
+<span class="math">\(\lambda = \frac{(M/\phi)}{1/(2\pi G^{1/2})}\)</span>
 </p>
 <p>Crutcher: B-fields below critical value</p>
 <p>B-field energy &gt; rotational energy</p>
@@ -1943,136 +2230,6 @@ about triggering now than before?</li>
 <li>A: Triggering is a great model, but observationally indistinguishable.  Only
 way to know is precision kinematics.  Need GAIA.
 It happens, but can't be proved.</li>
-</ul>
-</blockquote>
-</div>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/ppvi-talk-5-hb-li.html" rel="bookmark" title="Permalink to PPVI Talk 5: H.B. Li">
-                    PPVI Talk 5: H.B. Li</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-07-15T15:15:00"> 2013/07/15 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <div class="section" id="the-link-between-magnetic-fields-and-cloud-star-formation">
-<h2>THE LINK BETWEEN MAGNETIC FIELDS AND CLOUD/STAR FORMATION</h2>
-<p>Authors:</p>
-<p>H.-B. Li (MPIA, Heidelberg, Germany),
-A. Goodman (Harvard-Smithsonian Center for Astrophysics, United States),
-M. Houde (University of Western Ontario, Canada),
-Z.-Y. Li (University of Virginia, United States),
-G. Novak (Northwestern University, United States),
-T. Sridharan (Harvard-Smithsonian Center for Astrophysics, United States)</p>
-<p>The question of whether magnetic fields play an important role in the processes
-of molecular cloud and star formation has been debated for decades. Recent
-observations reveal a simple picture that may help illuminate these questions:
-magnetic fields have a tendency to preserve their orientation at all scales
-that have been probed - from 100-pc scale inter-cloud media down to sub-pc
-scale cloud cores. This ordered morphology has implications for the way in
-which self-gravity and turbulence should interact with magnetic fields: both
-gravitational contraction and turbulent velocities should be anisotropic, due
-to the influence of dynamically important fields. Such anisotropy is largely
-observed. Here we review these recent observations and discuss how they can
-improve our understanding of cloud/star formation.</p>
-</div>
-<div class="section" id="content">
-<h2>Content</h2>
-<p>Visualize field morphology: Turbulent or directed?</p>
-<p>Can't determine importantce of B-fields just by looking at the map</p>
-<p>If kinetic dominates B-field, B-fields will simply trace cloud morphology.
-Else, they will define it...</p>
-<p>Alfvenic Mach number important...</p>
-<p>B-field orientation and strength remains controversial on all scales.</p>
-<blockquote>
-<ol class="arabic simple" start="0">
-<li>Observational tools</li>
-</ol>
-<blockquote>
-<ul class="simple">
-<li>Dust grain alignment</li>
-<li>polarization of thermal emission A_V &gt; 100mag</li>
-<li>polarization of reflected starlight A_V &lt; 5 mag</li>
-<li>Zeeman effect <em>circular</em> poln: line-of-sight component</li>
-<li>linear line polarization</li>
-</ul>
-</blockquote>
-</blockquote>
-<p>M33 SMA observations</p>
-<blockquote>
-<ul class="simple">
-<li>synchrotron show low-density medium</li>
-<li>6 most massive clouds (for stronger signal)</li>
-<li>offset between CO polarization and spiral arms is double-peaked at 0,90 deg</li>
-</ul>
-</blockquote>
-<p>Crutcher Zeeman observations</p>
-<p>Turbulence lognormal column PDF.</p>
-<blockquote>
-<ul class="simple">
-<li>Higher column deviations from B-fields?  &quot;turning point&quot; is the gravitational critical density</li>
-</ul>
-</blockquote>
-<p>Orion:</p>
-<blockquote>
-<ul class="simple">
-<li>B-fields perpendicular to elongation of &quot;cores&quot; (perpendicular to filaments?)</li>
-<li>Mean core B-fields are approximately parallel across Orion</li>
-</ul>
-</blockquote>
-<p>For local clouds, B-field of the &quot;ICM&quot; (inter-core medium?) either antiparallel
-or parallel</p>
-<p>Clouds flatten: collapse only <em>along</em> b-fields.  Nice top illustration</p>
-<img alt="|filename|/images/talk5_top.jpg" src="http://keflavich.github.io/blog/static/images/talk5_top.jpg" style="width: 800px;" />
-<p>Disk formation:</p>
-<blockquote>
-<ul class="simple">
-<li>B-braking requires coupling between disk and B-fields</li>
-<li>Neutral and Ion turbulent dispersion is different because of B-induction</li>
-<li>(HCO+ systematically wider than HCN)</li>
-<li>Estimate decoupling scale ~100's au</li>
-</ul>
-</blockquote>
-<p>Recent:</p>
-<blockquote>
-<ul class="simple">
-<li>Chapman 2013: CSO B-fields perpendicular to disk</li>
-<li>Hull 2013: CARMA B-fields uncorrelated with disk angles</li>
-<li>Tomisaka 2011: Large-scales, perpendicular to disk.  Small scales, randomized.<ul>
-<li>transition from poloidal to toroidal B-field</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-</div>
-<div class="section" id="conclusions">
-<h2>Conclusions</h2>
-<p>Orion has ordered B-fields from large to small scales</p>
-<p>In general, large-scale fields lead to squishing along B-fields, small-scale</p>
-<img alt="|filename|/images/talk5_conclusion.jpg" src="http://keflavich.github.io/blog/static/images/talk5_conclusion.jpg" style="width: 800px;" />
-</div>
-<div class="section" id="questions">
-<h2>Questions</h2>
-<blockquote>
-<ul class="simple">
-<li>Q: Benetti - Are you only picking out the large-scale components when there
-may be stronger small-scale fields?  How can you be sure you're seeing the
-dominant component?</li>
-<li>A:</li>
-<li>Q: Strong reduction of degree of poln in core.  Are you sampling field in core?</li>
-<li>A: Poln correlates with line widths?</li>
-<li>Q Tan:  Nice results.  Are clouds are sub- or super-critical?  If you
-account for extra turbulence, they are just about critical?</li>
-<li>Q Tan: What about sampling IMF from field strengths that produce massive cores?</li>
-<li>A: No idea</li>
-<li>Q Chris McKee: Padoan's group - let weak B-field amplify in simulations.
-Only by assuming input strong-B-field do we get correlation between large
-and small scales.</li>
-<li>A:</li>
 </ul>
 </blockquote>
 </div>
