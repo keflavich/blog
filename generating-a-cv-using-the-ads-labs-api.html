@@ -68,6 +68,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
                           <li class="post">
+                  2013/09/22
+                  <br>
+                  <a href="http://keflavich.github.io/blog/blogging-from-ipython.html">Blogging from IPython</a>
+              </li>
+                          <li class="post">
                   2013/09/21
                   <br>
                   <a href="http://keflavich.github.io/blog/generating-a-cv-using-the-ads-labs-api.html">Generating a CV using the ADS Labs API</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   2013/07/16
                   <br>
                   <a href="http://keflavich.github.io/blog/ppvi-talk-12-clarke.html">PPVI Talk 12: Clarke</a>
-              </li>
-                          <li class="post">
-                  2013/07/16
-                  <br>
-                  <a href="http://keflavich.github.io/blog/ppvi-talk-11-matthew-bate.html">PPVI Talk 11: Matthew Bate</a>
               </li>
                     </ul>
       </li>
@@ -115,8 +115,13 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     </address>
       </footer><!-- /.post-info -->
   <div class="entry-content">
-    <p>[ <a class="reference external" href="https://github.com/keflavich/generate_cv">Source code related to this post</a> ]
-[ <a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/keflavich/generate_cv/master/examples/GenerateCVExample.ipynb">Notebook form</a> ]</p>
+    <ul class="simple">
+<li>[ <a class="reference external" href="https://github.com/keflavich/generate_cv">Source code related to this
+post</a> ]</li>
+<li>[ <a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/keflavich/generate_cv/master/examples/GenerateCVExample.ipynb">Notebook
+form</a>
+]</li>
+</ul>
 <p>At <a class="reference external" href="http://dotastronomy.com/">.astronomy</a> this past week, the keynote
 speaker was <a class="reference external" href="https://www.cfa.harvard.edu/~alberto/">Alberto
 Accomazzi</a>, introducing ADS
@@ -126,7 +131,7 @@ really quite impressive.</p>
 formatted CV for myself. I used <a class="reference external" href="https://twitter.com/astrowizicist">Andy
 Casey's</a>
 <a class="reference external" href="https://github.com/andycasey/ads-python">ADS-python</a> as a starting
-point; he introduces a useful convention of storing your <a class="reference external" href="https://github.com/adsabs/adsabs-dev-api#signup--access">ADS API
+point: he introduces a useful convention of storing your <a class="reference external" href="https://github.com/adsabs/adsabs-dev-api#signup--access">ADS API
 Key</a>:</p>
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
 
@@ -176,7 +181,7 @@ of matches and execution time.</p>
 {u'api-version': u'0.1',
  u'count': 54,
  u'hits': 54,
- u'qtime': 3,
+ u'qtime': 40,
  u'query': u'author:ginsburg, a'}
 </pre>
 <p>The 'results' key includes what we're actually interested in, under
@@ -224,8 +229,10 @@ author names and uses a reasonably standard bibliographic format:</p>
 Authors Month, Year, Journal
 Title
 </pre>
-<div class="highlight"><pre><span class="n">fmt</span> <span class="o">=</span> <span class="s">u&#39;&#39;&#39;                &lt;li&gt;&lt;a class=&quot;norm&quot; href=&quot;http://adsabs.harvard.edu/abs/{adsbibid}&quot;&gt;{creator}&lt;/a&gt; {month}, &lt;b&gt;{year}&lt;/b&gt; {journal}</span>
-<span class="s">                &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;{titlestring}&#39;&#39;&#39;</span>
+<div class="highlight"><pre><span class="n">fmt</span> <span class="o">=</span> <span class="p">(</span><span class="s">u&#39;                &#39;</span>
+<span class="s">u&#39;&lt;li&gt;&lt;a class=&quot;norm&quot; href=&quot;http://adsabs.harvard.edu/abs/{adsbibid}&quot;&gt;{creator}&lt;/a&gt;&#39;</span>
+<span class="s">u&#39; {month}, &lt;b&gt;{year}&lt;/b&gt; {journal}</span><span class="se">\n</span><span class="s">&#39;</span>
+<span class="s">u&#39;                &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;{titlestring}&#39;</span><span class="p">)</span>
 </pre></div>
 <p>We need to do a little data wrangling to get the individual JSON entries
 into the appropriate format:</p>
@@ -267,7 +274,37 @@ ordered list (<tt class="docutils literal">&lt;ol&gt;</tt>) tag makes a numbered
 <div class="highlight"><pre><span class="k">print</span> <span class="p">[</span><span class="s">&#39;REFEREED&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;property&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span><span class="p">]</span>
 </pre></div>
 <pre class="literal-block">
-[True, False, True, False, False, False, True, True, False, False, False, False, True, True, True, False, False, True, True, False, False, True, True, True, False, False, False, False, True, False, False, True, True, True, True, True, True, False, False, False, False, False, False, True, True, False, False, False, False, True, False, False, False, True]
+[True, False, True, False, False, False, True, True, False, False, False, False, True, True, True, False, False, True, True, False, False, True, True, True, False, False, False, False, True, False, False, True, True, True, True, True, True, False, False, False, False, False, False, True, True, False, False, False, False, False, True, False, False, True]
+</pre>
+<p>And don't forget that you can also include the citation count:</p>
+<div class="highlight"><pre><span class="k">print</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&quot;{} {}: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s">&#39;author&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="s">&#39;year&#39;</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="s">&#39;citation_count&#39;</span><span class="p">])</span>
+                <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span>
+                <span class="k">if</span> <span class="s">&#39;citation_count&#39;</span> <span class="ow">in</span> <span class="n">d</span> <span class="ow">and</span> <span class="s">&#39;REFEREED&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;property&#39;</span><span class="p">]])</span>
+</pre></div>
+<pre class="literal-block">
+Fallscheer, C. 2013: 0
+Ellsworth-Bowers, Timothy P. 2013: 0
+Smith, Nathan 2013: 0
+Harvey, Paul M. 2013: 2
+Bressert, E. 2012: 6
+Ginsburg, A. 2012: 4
+Bally, John 2012: 0
+Ginsburg, Adam 2011: 5
+Battersby, C. 2011: 13
+Ginsburg, Adam 2011: 3
+Schlingman, Wayne M. 2011: 10
+van Aarle, E. 2011: 6
+Aguirre, James E. 2011: 62
+Yan, Chi-Hung 2010: 5
+Bally, John 2010: 27
+Battersby, Cara 2010: 24
+Bally, J. 2010: 16
+Dunham, Miranda K. 2010: 24
+Rosolowsky, Erik 2010: 69
+Ginsburg, Adam G. 2009: 9
+Rubin, D. 2009: 20
+van de Steene, G. C. 2008: 4
+Golitsyn, G. S. 1985: 4
 </pre>
 <div class="section" id="wishlist">
 <h2>Wishlist</h2>
@@ -340,7 +377,7 @@ and making bibentries:</p>
 ---------------------------------------------------------------------------
 KeyError                                  Traceback (most recent call last)
 
-&lt;ipython-input-20-9c55bfea9ea0&gt; in &lt;module&gt;()
+&lt;ipython-input-21-9c55bfea9ea0&gt; in &lt;module&gt;()
       2 for d in datalist:
       3     if 'ARTICLE' in d['property'] or 'EPRINT' in d['property']:
 ----&gt; 4         bibdata += bibfmt.format(**d)

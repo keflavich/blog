@@ -1,6 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2013-09-21T00:00:00-06:00</updated><entry><title>Generating a CV using the ADS Labs API</title><link href="http://keflavich.github.io/blog/generating-a-cv-using-the-ads-labs-api.html" rel="alternate"></link><updated>2013-09-21T00:00:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2013-09-21:generating-a-cv-using-the-ads-labs-api.html</id><summary type="html">&lt;p&gt;[ &lt;a class="reference external" href="https://github.com/keflavich/generate_cv"&gt;Source code related to this post&lt;/a&gt; ]
-[ &lt;a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/keflavich/generate_cv/master/examples/GenerateCVExample.ipynb"&gt;Notebook form&lt;/a&gt; ]&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2013-09-22T00:00:00-06:00</updated><entry><title>Blogging from IPython</title><link href="http://keflavich.github.io/blog/blogging-from-ipython.html" rel="alternate"></link><updated>2013-09-22T00:00:00-06:00</updated><author><name>Adam &lt;keflavich@gmail.com&gt;</name></author><id>tag:keflavich.github.io/blog,2013-09-22:blogging-from-ipython.html</id><summary type="html">&lt;p&gt;There have been
+&lt;a class="reference external" href="http://jmcarp.github.io/blog/2013/07/07/hello-world/"&gt;many&lt;/a&gt;
+&lt;a class="reference external" href="http://danielfrg.github.io/blog/2013/02/16/blogging-pelican-ipython-notebook/"&gt;other&lt;/a&gt;
+&lt;a class="reference external" href="http://danielfrg.github.io/blog/2013/03/08/pelican-ipython-notebook-plugin/"&gt;posts&lt;/a&gt;
+about blogging in ipython, but they all included more overhead than I
+really wanted to deal with.&lt;/p&gt;
+&lt;p&gt;Instead, I've gone directly to &lt;a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/Carreau/posts/master/06-NBconvert-Doc-Draft.ipynb"&gt;the
+source&lt;/a&gt;
+and used nbconvert in ipython 2.0 to convert my notebooks to rst, then
+put them through pelican.&lt;/p&gt;
+&lt;p&gt;This post outlines my workflow.&lt;/p&gt;
+&lt;p&gt;First, and most inconvenient, it is necessary to head any blog post with
+metadata. I don't have any convenient workflow to deal with that, I just
+write it in by hand in a raw text box (ctrl-m, t) as you can see above.
+&lt;a class="reference external" href="http://danielfrg.github.io/"&gt;Daniel Rodriguez&lt;/a&gt; took a &lt;a class="reference external" href="http://danielfrg.github.io/blog/2013/03/08/pelican-ipython-notebook-plugin/"&gt;different
+approach&lt;/a&gt;
+using the ipython metadata directly and an ipython plugin, but I didn't
+want to have to worry about installing plugins and I am definitely
+worried about breaking notebooks by messing with the
+&lt;a class="reference external" href="https://github.com/ipython/ipython/wiki/IPEP-20%3A-Informal-structure-of-cell-metadata"&gt;metadata&lt;/a&gt;
+as the ipy devs give some fairly &lt;a class="reference external" href="https://gist.github.com/Carreau/4437348"&gt;strict
+warnings&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Next, the ipynb -&amp;gt; rst step is fairly straightforward. I modified the
+rst template because I don't want to see the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;In[#]:&lt;/span&gt;&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;Out[#]:&lt;/span&gt;&lt;/tt&gt;
+prefixes around my code. I also use &lt;tt class="docutils literal"&gt;.. &lt;span class="pre"&gt;code-block::&lt;/span&gt;&lt;/tt&gt; rather than
+&lt;tt class="docutils literal"&gt;.. code::&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;This very simple function below makes sure that my local &lt;tt class="docutils literal"&gt;rst.tbl&lt;/tt&gt;
+file is seen before ipython's. Their templates are in
+&lt;tt class="docutils literal"&gt;IPython/nbconvert/templates&lt;/tt&gt;. Note that you could normally use Jinja2
+templating and &amp;quot;Extend&amp;quot; their template, but I wanted to remove rather
+than extend.&lt;/p&gt;
+&lt;p&gt;[
+&lt;a class="reference external" href="https://github.com/keflavich/blog/blob/master/nbconverter.py"&gt;Source&lt;/a&gt;
+]&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;IPython.nbconvert.exporters&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;RSTExporter&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;export&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nbname&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;outfilename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;exportRST&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RSTExporter&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="c"&gt;# exclude default paths&lt;/span&gt;
+    &lt;span class="n"&gt;exportRST&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;template_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;/Users/adam/repos/blog&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;resources&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;exportRST&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nbname&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;outfilename&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;outfilename&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nbname&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;ipynb&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;rst&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;outfilename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;resources&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I then run the script from the command line:
+&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;~/virtual-ipydev/bin/ipython&lt;/span&gt; ./nbconverter.py content/GenerateCVExample.ipynb&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;I'm using a virtual environment with ipython 2 installed because I'm not
+yet ready to make the jump to the dev version of ipython (though these
+days, with Travis and Jenkins around, it's probably safe to assume the
+dev version won't break anything).&lt;/p&gt;
+&lt;p&gt;With this rst file generated, the only remaining step is pelican, which
+is simply a &lt;tt class="docutils literal"&gt;make github&lt;/tt&gt; command in the blog directory.&lt;/p&gt;
+&lt;p&gt;However, I've made my own &lt;a class="reference external" href="https://github.com/keflavich/pelican-themes/tree/master/mine"&gt;custom pelican
+theme&lt;/a&gt;,
+so I generally need to update the theme before building:&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;pelican-themes&lt;/span&gt; &lt;span class="pre"&gt;--upgrade&lt;/span&gt; &lt;span class="pre"&gt;/Users/adam/repos/pelican-themes/mine&lt;/span&gt; &amp;amp;&amp;amp; make github&lt;/tt&gt;&lt;/p&gt;
+</summary><category term="python"></category><category term="blogging"></category><category term="meta"></category></entry><entry><title>Generating a CV using the ADS Labs API</title><link href="http://keflavich.github.io/blog/generating-a-cv-using-the-ads-labs-api.html" rel="alternate"></link><updated>2013-09-21T00:00:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2013-09-21:generating-a-cv-using-the-ads-labs-api.html</id><summary type="html">&lt;ul class="simple"&gt;
+&lt;li&gt;[ &lt;a class="reference external" href="https://github.com/keflavich/generate_cv"&gt;Source code related to this
+post&lt;/a&gt; ]&lt;/li&gt;
+&lt;li&gt;[ &lt;a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/keflavich/generate_cv/master/examples/GenerateCVExample.ipynb"&gt;Notebook
+form&lt;/a&gt;
+]&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;At &lt;a class="reference external" href="http://dotastronomy.com/"&gt;.astronomy&lt;/a&gt; this past week, the keynote
 speaker was &lt;a class="reference external" href="https://www.cfa.harvard.edu/~alberto/"&gt;Alberto
 Accomazzi&lt;/a&gt;, introducing ADS
@@ -10,7 +78,7 @@ really quite impressive.&lt;/p&gt;
 formatted CV for myself. I used &lt;a class="reference external" href="https://twitter.com/astrowizicist"&gt;Andy
 Casey's&lt;/a&gt;
 &lt;a class="reference external" href="https://github.com/andycasey/ads-python"&gt;ADS-python&lt;/a&gt; as a starting
-point; he introduces a useful convention of storing your &lt;a class="reference external" href="https://github.com/adsabs/adsabs-dev-api#signup--access"&gt;ADS API
+point: he introduces a useful convention of storing your &lt;a class="reference external" href="https://github.com/adsabs/adsabs-dev-api#signup--access"&gt;ADS API
 Key&lt;/a&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 
@@ -60,7 +128,7 @@ of matches and execution time.&lt;/p&gt;
 {u'api-version': u'0.1',
  u'count': 54,
  u'hits': 54,
- u'qtime': 3,
+ u'qtime': 40,
  u'query': u'author:ginsburg, a'}
 &lt;/pre&gt;
 &lt;p&gt;The 'results' key includes what we're actually interested in, under
@@ -108,8 +176,10 @@ author names and uses a reasonably standard bibliographic format:&lt;/p&gt;
 Authors Month, Year, Journal
 Title
 &lt;/pre&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;fmt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;u&amp;#39;&amp;#39;&amp;#39;                &amp;lt;li&amp;gt;&amp;lt;a class=&amp;quot;norm&amp;quot; href=&amp;quot;http://adsabs.harvard.edu/abs/{adsbibid}&amp;quot;&amp;gt;{creator}&amp;lt;/a&amp;gt; {month}, &amp;lt;b&amp;gt;{year}&amp;lt;/b&amp;gt; {journal}&lt;/span&gt;
-&lt;span class="s"&gt;                &amp;lt;br&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;{titlestring}&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;fmt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;u&amp;#39;                &amp;#39;&lt;/span&gt;
+&lt;span class="s"&gt;u&amp;#39;&amp;lt;li&amp;gt;&amp;lt;a class=&amp;quot;norm&amp;quot; href=&amp;quot;http://adsabs.harvard.edu/abs/{adsbibid}&amp;quot;&amp;gt;{creator}&amp;lt;/a&amp;gt;&amp;#39;&lt;/span&gt;
+&lt;span class="s"&gt;u&amp;#39; {month}, &amp;lt;b&amp;gt;{year}&amp;lt;/b&amp;gt; {journal}&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;
+&lt;span class="s"&gt;u&amp;#39;                &amp;lt;br&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;{titlestring}&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;We need to do a little data wrangling to get the individual JSON entries
 into the appropriate format:&lt;/p&gt;
@@ -151,7 +221,37 @@ ordered list (&lt;tt class="docutils literal"&gt;&amp;lt;ol&amp;gt;&lt;/tt&gt;) 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;REFEREED&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;property&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;datalist&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;pre class="literal-block"&gt;
-[True, False, True, False, False, False, True, True, False, False, False, False, True, True, True, False, False, True, True, False, False, True, True, True, False, False, False, False, True, False, False, True, True, True, True, True, True, False, False, False, False, False, False, True, True, False, False, False, False, True, False, False, False, True]
+[True, False, True, False, False, False, True, True, False, False, False, False, True, True, True, False, False, True, True, False, False, True, True, True, False, False, False, False, True, False, False, True, True, True, True, True, True, False, False, False, False, False, False, True, True, False, False, False, False, False, True, False, False, True]
+&lt;/pre&gt;
+&lt;p&gt;And don't forget that you can also include the citation count:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;{} {}: {}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;author&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;year&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;citation_count&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+                &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;datalist&lt;/span&gt;
+                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;citation_count&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;REFEREED&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;property&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;pre class="literal-block"&gt;
+Fallscheer, C. 2013: 0
+Ellsworth-Bowers, Timothy P. 2013: 0
+Smith, Nathan 2013: 0
+Harvey, Paul M. 2013: 2
+Bressert, E. 2012: 6
+Ginsburg, A. 2012: 4
+Bally, John 2012: 0
+Ginsburg, Adam 2011: 5
+Battersby, C. 2011: 13
+Ginsburg, Adam 2011: 3
+Schlingman, Wayne M. 2011: 10
+van Aarle, E. 2011: 6
+Aguirre, James E. 2011: 62
+Yan, Chi-Hung 2010: 5
+Bally, John 2010: 27
+Battersby, Cara 2010: 24
+Bally, J. 2010: 16
+Dunham, Miranda K. 2010: 24
+Rosolowsky, Erik 2010: 69
+Ginsburg, Adam G. 2009: 9
+Rubin, D. 2009: 20
+van de Steene, G. C. 2008: 4
+Golitsyn, G. S. 1985: 4
 &lt;/pre&gt;
 &lt;div class="section" id="wishlist"&gt;
 &lt;h2&gt;Wishlist&lt;/h2&gt;
@@ -224,7 +324,7 @@ and making bibentries:&lt;/p&gt;
 ---------------------------------------------------------------------------
 KeyError                                  Traceback (most recent call last)
 
-&amp;lt;ipython-input-20-9c55bfea9ea0&amp;gt; in &amp;lt;module&amp;gt;()
+&amp;lt;ipython-input-21-9c55bfea9ea0&amp;gt; in &amp;lt;module&amp;gt;()
       2 for d in datalist:
       3     if 'ARTICLE' in d['property'] or 'EPRINT' in d['property']:
 ----&amp;gt; 4         bibdata += bibfmt.format(**d)
