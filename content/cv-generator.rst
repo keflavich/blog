@@ -1,5 +1,5 @@
-Generating a Pretty CV using the ADS Labs API
-=============================================
+Generating a CV using the ADS Labs API
+======================================
 :date: 2013-09-21
 :author: Adam (keflavich@gmail.com)
 :tags: python
@@ -15,13 +15,15 @@ I was inspired to use ADS Labs to help me auto-generate a nicely
 formatted CV for myself. I used `Andy
 Casey's <https://twitter.com/astrowizicist>`__
 `ADS-python <https://github.com/andycasey/ads-python>`__ as a starting
-point: he introduces a useful convention of storing your `ADS API
+point; he introduces a useful convention of storing your `ADS API
 Key <https://github.com/adsabs/adsabs-dev-api#signup--access>`__:
 
+The source code for this post is `here <https://github.com/keflavich/generate_cv>`_
+and the notebook form can be seen `here
+<http://nbviewer.ipython.org/urls/raw.github.com/keflavich/generate_cv/master/examples/GenerateCVExample.ipynb>`_.
 
-In[1]:
 
-.. code:: python
+.. code-block:: python
 
 
     import os
@@ -46,9 +48,8 @@ We'll use ``requests`` to send the request to ADS, then ``json`` to
 parse the data.
 
 
-In[2]:
 
-.. code:: python
+.. code-block:: python
 
 
     import requests
@@ -61,9 +62,8 @@ maximum number of rows returned in the API is 200 right now, which I
 have set (the default is 10 or 20).
 
 
-In[3]:
 
-.. code:: python
+.. code-block:: python
 
 
     response = requests.post('http://adslabs.org/adsabs/api/search/',
@@ -73,9 +73,8 @@ In[3]:
                                      'filter':'database:astronomy'})
 
 
-In[4]:
 
-.. code:: python
+.. code-block:: python
 
 
     J = response.json()
@@ -94,9 +93,8 @@ The JSON 'meta' key is just metadata about the query, include the number
 of matches and execution time.
 
 
-In[5]:
 
-.. code:: python
+.. code-block:: python
 
 
     J['meta']
@@ -118,9 +116,8 @@ The 'results' key includes what we're actually interested in, under
 another key 'docs'.
 
 
-In[6]:
 
-.. code:: python
+.. code-block:: python
 
 
     J['results'].keys()
@@ -135,9 +132,8 @@ In[6]:
 
 
 
-In[7]:
 
-.. code:: python
+.. code-block:: python
 
 
     datalist = J['results']['docs']
@@ -155,9 +151,8 @@ In[7]:
 ``datalist`` is a list of the retrieved bibliographic entries.
 
 
-In[8]:
 
-.. code:: python
+.. code-block:: python
 
 
     datalist[0].keys()
@@ -202,9 +197,8 @@ author names and uses a reasonably standard bibliographic format:
 
 
 
-In[9]:
 
-.. code:: python
+.. code-block:: python
 
 
     fmt = u'''                <li><a class="norm" href="http://adsabs.harvard.edu/abs/{adsbibid}">{creator}</a> {month}, <b>{year}</b> {journal}
@@ -214,9 +208,8 @@ We need to do a little data wrangling to get the individual JSON entries
 into the appropriate format:
 
 
-In[10]:
 
-.. code:: python
+.. code-block:: python
 
 
     def wrangle(data, authorname='Ginsburg'):
@@ -241,9 +234,8 @@ keywords in the format string. The python ``string.format`` method will
 nicely ignore any extra keywords that we're uninterested in.
 
 
-In[11]:
 
-.. code:: python
+.. code-block:: python
 
 
     fmt.format(**wrangle(datalist[0]))
@@ -260,9 +252,8 @@ In[11]:
 Now to show it in the notebook...
 
 
-In[12]:
 
-.. code:: python
+.. code-block:: python
 
 
     import IPython.display
@@ -278,9 +269,8 @@ You can make a complete bibliography by looping over a few entries. The
 ordered list (``<ol>``) tag makes a numbered list.
 
 
-In[13]:
 
-.. code:: python
+.. code-block:: python
 
 
     html = "<ol>" + "\n".join(fmt.format(**wrangle(datalist[ii])) for ii in xrange(3)) + "</ol>"
@@ -296,9 +286,8 @@ If you want to make sure you only include refereed articles, use the
 'property' tag.
 
 
-In[14]:
 
-.. code:: python
+.. code-block:: python
 
 
     print ['REFEREED' in d['property'] for d in datalist]
@@ -327,9 +316,8 @@ if they have by querying their API settings. If the query below returns
 "True", then you can access the bibstem.
 
 
-In[15]:
 
-.. code:: python
+.. code-block:: python
 
 
     permissions_response = requests.post('http://adslabs.org/adsabs/api/settings/',params={'dev_key':get_dev_key()})
@@ -354,9 +342,8 @@ The approach we'll use is also a good way to reject unwanted articles in
 the HTML bibliography above.
 
 
-In[16]:
 
-.. code:: python
+.. code-block:: python
 
 
     bibfmt = u"""@article{{{tagname},
@@ -373,9 +360,8 @@ Of course, it's necessary to wrangle the data again for the appropriate
 author list formatting for bibtex:
 
 
-In[17]:
 
-.. code:: python
+.. code-block:: python
 
 
     def wrangleauthors(authorlist):
@@ -391,9 +377,8 @@ In[17]:
         return u" and ".join(bracketed)
 
 
-In[18]:
 
-.. code:: python
+.. code-block:: python
 
 
     wrangleauthors(datalist[0]['author'])
@@ -411,9 +396,8 @@ Now we can start looping through, performing checks for article status,
 and making bibentries:
 
 
-In[19]:
 
-.. code:: python
+.. code-block:: python
 
 
     for d in datalist:
@@ -421,9 +405,8 @@ In[19]:
         d['tagname'] = d['author'][0].split()[0].strip(",") + d['year']
 
 
-In[20]:
 
-.. code:: python
+.. code-block:: python
 
 
     bibdata = ""
