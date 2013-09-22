@@ -1,12 +1,16 @@
+
 Generating a CV using the ADS Labs API
 ======================================
+
+
 :date: 2013-09-21
 :author: Adam (keflavich@gmail.com)
 :tags: python
 
-[ `Source code related to this post <https://github.com/keflavich/generate_cv>`_ ] 
-[ `Notebook form 
-<http://nbviewer.ipython.org/urls/raw.github.com/keflavich/generate_cv/master/examples/GenerateCVExample.ipynb>`_ ]
+[ `Source code related to this
+post <https://github.com/keflavich/generate_cv>`__ ][ [Notebook
+form](http://nbviewer.ipython.org/urls/raw.github.com/keflavich/generate\_cv/master/examples/GenerateCVExample.ipynb)
+]
 
 At `.astronomy <http://dotastronomy.com/>`__ this past week, the keynote
 speaker was `Alberto
@@ -18,9 +22,8 @@ I was inspired to use ADS Labs to help me auto-generate a nicely
 formatted CV for myself. I used `Andy
 Casey's <https://twitter.com/astrowizicist>`__
 `ADS-python <https://github.com/andycasey/ads-python>`__ as a starting
-point; he introduces a useful convention of storing your `ADS API
+point: he introduces a useful convention of storing your `ADS API
 Key <https://github.com/adsabs/adsabs-dev-api#signup--access>`__:
-
 
 
 .. code-block:: python
@@ -48,7 +51,6 @@ We'll use ``requests`` to send the request to ADS, then ``json`` to
 parse the data.
 
 
-
 .. code-block:: python
 
 
@@ -62,7 +64,6 @@ maximum number of rows returned in the API is 200 right now, which I
 have set (the default is 10 or 20).
 
 
-
 .. code-block:: python
 
 
@@ -71,7 +72,6 @@ have set (the default is 10 or 20).
                                      'dev_key':get_dev_key(),
                                      'rows':200,
                                      'filter':'database:astronomy'})
-
 
 
 .. code-block:: python
@@ -93,7 +93,6 @@ The JSON 'meta' key is just metadata about the query, include the number
 of matches and execution time.
 
 
-
 .. code-block:: python
 
 
@@ -107,14 +106,13 @@ of matches and execution time.
     {u'api-version': u'0.1',
      u'count': 54,
      u'hits': 54,
-     u'qtime': 3,
+     u'qtime': 5,
      u'query': u'author:ginsburg, a'}
 
 
 
 The 'results' key includes what we're actually interested in, under
 another key 'docs'.
-
 
 
 .. code-block:: python
@@ -128,7 +126,6 @@ another key 'docs'.
 
 .. parsed-literal::
     [u'docs']
-
 
 
 
@@ -149,7 +146,6 @@ another key 'docs'.
 
 
 ``datalist`` is a list of the retrieved bibliographic entries.
-
 
 
 .. code-block:: python
@@ -197,16 +193,16 @@ author names and uses a reasonably standard bibliographic format:
 
 
 
-
 .. code-block:: python
 
 
-    fmt = u'''                <li><a class="norm" href="http://adsabs.harvard.edu/abs/{adsbibid}">{creator}</a> {month}, <b>{year}</b> {journal}
-                    <br>&nbsp;&nbsp;&nbsp;{titlestring}'''
+    fmt = (u'                '
+    u'<li><a class="norm" href="http://adsabs.harvard.edu/abs/{adsbibid}">{creator}</a>'
+    u' {month}, <b>{year}</b> {journal}\n'
+    u'                <br>&nbsp;&nbsp;&nbsp;{titlestring}')
 
 We need to do a little data wrangling to get the individual JSON entries
 into the appropriate format:
-
 
 
 .. code-block:: python
@@ -234,7 +230,6 @@ keywords in the format string. The python ``string.format`` method will
 nicely ignore any extra keywords that we're uninterested in.
 
 
-
 .. code-block:: python
 
 
@@ -250,7 +245,6 @@ nicely ignore any extra keywords that we're uninterested in.
 
 
 Now to show it in the notebook...
-
 
 
 .. code-block:: python
@@ -269,7 +263,6 @@ You can make a complete bibliography by looping over a few entries. The
 ordered list (``<ol>``) tag makes a numbered list.
 
 
-
 .. code-block:: python
 
 
@@ -286,7 +279,6 @@ If you want to make sure you only include refereed articles, use the
 'property' tag.
 
 
-
 .. code-block:: python
 
 
@@ -296,7 +288,46 @@ If you want to make sure you only include refereed articles, use the
 
 .. parsed-literal::
 
-    [True, False, True, False, False, False, True, True, False, False, False, False, True, True, True, False, False, True, True, False, False, True, True, True, False, False, False, False, True, False, False, True, True, True, True, True, True, False, False, False, False, False, False, True, True, False, False, False, False, True, False, False, False, True]
+    [True, False, True, False, False, False, True, True, False, False, False, False, True, True, True, False, False, True, True, False, False, True, True, True, False, False, False, False, True, False, False, True, True, True, True, True, True, False, False, False, False, False, False, True, True, False, False, False, False, False, True, False, False, True]
+
+
+And don't forget that you can also include the citation count:
+
+
+.. code-block:: python
+
+
+    print "\n".join(["{} {}: {}".format(d['author'][0],d['year'],d['citation_count']) 
+                    for d in datalist 
+                    if 'citation_count' in d and 'REFEREED' in d['property']])
+
+
+
+.. parsed-literal::
+
+    Fallscheer, C. 2013: 0
+    Ellsworth-Bowers, Timothy P. 2013: 0
+    Smith, Nathan 2013: 0
+    Harvey, Paul M. 2013: 2
+    Bressert, E. 2012: 6
+    Ginsburg, A. 2012: 4
+    Bally, John 2012: 0
+    Ginsburg, Adam 2011: 5
+    Battersby, C. 2011: 13
+    Ginsburg, Adam 2011: 3
+    Schlingman, Wayne M. 2011: 10
+    van Aarle, E. 2011: 6
+    Aguirre, James E. 2011: 62
+    Yan, Chi-Hung 2010: 5
+    Bally, John 2010: 27
+    Battersby, Cara 2010: 24
+    Bally, J. 2010: 16
+    Dunham, Miranda K. 2010: 24
+    Rosolowsky, Erik 2010: 69
+    Ginsburg, Adam G. 2009: 9
+    Rubin, D. 2009: 20
+    van de Steene, G. C. 2008: 4
+    Golitsyn, G. S. 1985: 4
 
 
 Wishlist
@@ -314,7 +345,6 @@ some are not yet well-supported.
 However, the ADS folks will certainly change this soon. You can find out
 if they have by querying their API settings. If the query below returns
 "True", then you can access the bibstem.
-
 
 
 .. code-block:: python
@@ -342,7 +372,6 @@ The approach we'll use is also a good way to reject unwanted articles in
 the HTML bibliography above.
 
 
-
 .. code-block:: python
 
 
@@ -360,7 +389,6 @@ Of course, it's necessary to wrangle the data again for the appropriate
 author list formatting for bibtex:
 
 
-
 .. code-block:: python
 
 
@@ -375,7 +403,6 @@ author list formatting for bibtex:
                      else u'{{{}}}'.format(a[0])
                      for a in splita]
         return u" and ".join(bracketed)
-
 
 
 .. code-block:: python
@@ -396,14 +423,12 @@ Now we can start looping through, performing checks for article status,
 and making bibentries:
 
 
-
 .. code-block:: python
 
 
     for d in datalist:
         d['bibtexauthors'] = wrangleauthors(d['author'])
         d['tagname'] = d['author'][0].split()[0].strip(",") + d['year']
-
 
 
 .. code-block:: python
@@ -421,7 +446,7 @@ and making bibentries:
     ---------------------------------------------------------------------------
     KeyError                                  Traceback (most recent call last)
 
-    <ipython-input-20-9c55bfea9ea0> in <module>()
+    <ipython-input-21-9c55bfea9ea0> in <module>()
           2 for d in datalist:
           3     if 'ARTICLE' in d['property'] or 'EPRINT' in d['property']:
     ----> 4         bibdata += bibfmt.format(**d)
