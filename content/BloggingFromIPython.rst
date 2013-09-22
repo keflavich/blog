@@ -7,6 +7,10 @@ Blogging from IPython
 :tags: python, blogging, meta
 :date: 2013-09-22
 
+[ `Notebook Form of this
+post <http://nbviewer.ipython.org/urls/raw.github.com/keflavich/blog/master/content/BloggingFromIPython.ipynb>`__
+]
+
 There have been
 `many <http://jmcarp.github.io/blog/2013/07/07/hello-world/>`__
 `other <http://danielfrg.github.io/blog/2013/02/16/blogging-pelican-ipython-notebook/>`__
