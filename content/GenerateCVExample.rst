@@ -12,6 +12,8 @@ Generating a CV using the ADS Labs API
 -  [ `Notebook
    form <http://nbviewer.ipython.org/urls/raw.github.com/keflavich/generate_cv/master/examples/GenerateCVExample.ipynb>`__
    ]
+-  [ `CV partly generated from this
+   post <http://www.adamgginsburg.com/cv.htm>`__ ]
 
 
 At `.astronomy <http://dotastronomy.com/>`__ this past week, the keynote

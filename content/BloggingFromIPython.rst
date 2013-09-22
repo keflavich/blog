@@ -80,10 +80,12 @@ yet ready to make the jump to the dev version of ipython (though these
 days, with Travis and Jenkins around, it's probably safe to assume the
 dev version won't break anything).
 
-With this rst file generated, the only remaining step is pelican, which
-is simply a ``make github`` command in the blog directory.
+With this rst file generated, the only remaining step is
+`pelican <http://blog.getpelican.com/>`__, which only requires a
+``make github`` command in the blog directory. Installing & setting up
+pelican is reasonably easy, but not the topic of this post.
 
-However, I've made my own `custom pelican
+I've made my own `custom pelican
 theme <https://github.com/keflavich/pelican-themes/tree/master/mine>`__,
 so I generally need to update the theme before building:
 
