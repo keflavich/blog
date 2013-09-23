@@ -20,5 +20,5 @@ DELETE_OUTPUT_DIRECTORY = True
 # because apparently nothing works in pelican...
 RELATIVE_URLS = False
 
-#DISQUS_SITENAME = ""
-#GOOGLE_ANALYTICS = ""
+DISQUS_SITENAME = "keflavich-pelican"
+GOOGLE_ANALYTICS = 'UA-37306139-1'

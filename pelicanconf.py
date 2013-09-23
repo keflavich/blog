@@ -36,7 +36,8 @@ STATIC_PATHS = ['images','bgps/images']
 
 INLINESTYLES = True
 
-DISQUS_SITENAME = "keflavich-pelican"
+#DISQUS_SITENAME = "keflavich-pelican"
+#DISQUS_SITENAME = "adamginsburgsblog"
 
 BGIMAGE='images/GC_4096sq_bolo.png'
 
@@ -60,6 +61,7 @@ MENUITEMS = [('Homepage','http://www.adamgginsburg.com',),
 
 USE_FOLDER_AS_CATEGORY = True
 
+DISQUS_SITENAME = "keflavich-pelican"
 GOOGLE_ANALYTICS = 'UA-37306139-1'
 
 # links just don't work in pelican, do they?

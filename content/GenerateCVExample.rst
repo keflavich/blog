@@ -105,7 +105,7 @@ of matches and execution time.
     {u'api-version': u'0.1',
      u'count': 54,
      u'hits': 54,
-     u'qtime': 40,
+     u'qtime': 7,
      u'query': u'author:ginsburg, a'}
 
 
@@ -157,7 +157,7 @@ another key 'docs'.
     [u'bibcode',
      u'keyword',
      u'pubdate',
-     u'title',
+     u'bibstem',
      u'property',
      u'aff',
      u'author',
@@ -169,6 +169,7 @@ another key 'docs'.
      u'doi',
      u'year',
      u'abstract',
+     u'title',
      u'identifier',
      u'issue',
      u'id']
@@ -211,7 +212,7 @@ into the appropriate format:
         data['adsbibid'] = data['identifier'][-1]
         # data['title'] & ['pub'] are also lists
         data['titlestring'] = data['title'][0]
-        data['journal'] = data['pub'][0]
+        data['journal'] = data['bibstem'][0]
         # This trick bolds my name in the list of authors
         data['authors'] = ['<b>{}</b>'.format(x) if authorname in x else x for x in data['author']]
         # Separate names by semicolons
@@ -233,7 +234,7 @@ nicely ignore any extra keywords that we're uninterested in.
 
 
 .. parsed-literal::
-    u'                <li><a class="norm" href="http://adsabs.harvard.edu/abs/2013ApJ...773..102F">Fallscheer, C.; Reid, M. A.; Di Francesco, J.; Martin, P. G.; Hill, T.; Hennemann, M.; Nguyen-Luong, Q.; Motte, F.; Men\'shchikov, A.; Andr\xe9, Ph.; Ward-Thompson, D.; Griffin, M.; Kirk, J.; Konyves, V.; Rygl, K. L. J.; Sadavoy, S.; Sauvage, M.; Schneider, N.; Anderson, L. D.; Benedettini, M.; Bernard, J. -P.; Bontemps, S.; <b>Ginsburg, A.</b>; Molinari, S.; Polychroni, D.; Rivera-Ingraham, A.; Roussel, H.; Testi, L.; White, G.; Williams, J. P.; Wilson, C. D.; Wong, M.; Zavagno, A.</a> 08, <b>2013</b> T\n                <br>&nbsp;&nbsp;&nbsp;Herschel Reveals Massive Cold Clumps in NGC\xa07538'
+    u'                <li><a class="norm" href="http://adsabs.harvard.edu/abs/2013ApJ...773..102F">Fallscheer, C.; Reid, M. A.; Di Francesco, J.; Martin, P. G.; Hill, T.; Hennemann, M.; Nguyen-Luong, Q.; Motte, F.; Men\'shchikov, A.; Andr\xe9, Ph.; Ward-Thompson, D.; Griffin, M.; Kirk, J.; Konyves, V.; Rygl, K. L. J.; Sadavoy, S.; Sauvage, M.; Schneider, N.; Anderson, L. D.; Benedettini, M.; Bernard, J. -P.; Bontemps, S.; <b>Ginsburg, A.</b>; Molinari, S.; Polychroni, D.; Rivera-Ingraham, A.; Roussel, H.; Testi, L.; White, G.; Williams, J. P.; Wilson, C. D.; Wong, M.; Zavagno, A.</a> 08, <b>2013</b> ApJ\n                <br>&nbsp;&nbsp;&nbsp;Herschel Reveals Massive Cold Clumps in NGC\xa07538'
 
 
 
@@ -295,26 +296,26 @@ And don't forget that you can also include the citation count:
 .. parsed-literal::
 
     Fallscheer, C. 2013: 0
-    Ellsworth-Bowers, Timothy P. 2013: 0
+    Ellsworth-Bowers, Timothy P. 2013: 2
     Smith, Nathan 2013: 0
     Harvey, Paul M. 2013: 2
-    Bressert, E. 2012: 6
-    Ginsburg, A. 2012: 4
+    Bressert, E. 2012: 10
+    Ginsburg, A. 2012: 11
     Bally, John 2012: 0
     Ginsburg, Adam 2011: 5
-    Battersby, C. 2011: 13
-    Ginsburg, Adam 2011: 3
-    Schlingman, Wayne M. 2011: 10
-    van Aarle, E. 2011: 6
-    Aguirre, James E. 2011: 62
+    Battersby, C. 2011: 22
+    Schlingman, Wayne M. 2011: 17
+    Ginsburg, Adam 2011: 6
+    van Aarle, E. 2011: 12
+    Aguirre, James E. 2011: 72
+    Bally, John 2010: 36
+    Battersby, Cara 2010: 30
     Yan, Chi-Hung 2010: 5
-    Bally, John 2010: 27
-    Battersby, Cara 2010: 24
-    Bally, J. 2010: 16
-    Dunham, Miranda K. 2010: 24
-    Rosolowsky, Erik 2010: 69
-    Ginsburg, Adam G. 2009: 9
-    Rubin, D. 2009: 20
+    Bally, J. 2010: 20
+    Dunham, Miranda K. 2010: 27
+    Rosolowsky, Erik 2010: 80
+    Ginsburg, Adam G. 2009: 10
+    Rubin, D. 2009: 23
     van de Steene, G. C. 2008: 4
     Golitsyn, G. S. 1985: 4
 
@@ -335,6 +336,9 @@ However, the ADS folks will certainly change this soon. You can find out
 if they have by querying their API settings. If the query below returns
 "True", then you can access the bibstem.
 
+UPDATE 9/23/2013: Jay Luker @ADS `added 'bibstem' to the allowed return
+entries <https://twitter.com/lbjay/status/382138570632204291>`__
+
 
 .. code-block:: python
 
@@ -347,7 +351,7 @@ if they have by querying their API settings. If the query below returns
 
 
 .. parsed-literal::
-    False
+    True
 
 
 
@@ -369,7 +373,8 @@ the HTML bibliography above.
     pages={{{page}}},
     title={{{titlestring}}},
     year={{{year}}},
-    volume={{{volume}}}
+    volume={{{volume}}},
+    journal={{\\{lowercasejournal}}}
     }}"""
 
 Of course, it's necessary to wrangle the data again for the appropriate
@@ -405,13 +410,35 @@ author list formatting for bibtex:
 
 
 Now we can start looping through, performing checks for article status,
-and making bibentries:
+and making bibentries. We'll use python's ``dateutils.parse`` to turn
+month numbers into names
+
+
+.. code-block:: python
+
+    import dateutil.parser
 
 
 .. code-block:: python
 
     for d in datalist:
         d['bibtexauthors'] = wrangleauthors(d['author'])
+        
+        # pubdates don't include days, and sometimes don't include months,
+        # so we have to be careful
+        d['month'] = (dateutil.parser.parse(d['pubdate'][:-3]).strftime("%B") 
+                      if d['pubdate'][5:7] != '00' 
+                      else "")
+        
+        # To make the standard macros, e.g. \apj, \aa
+        d['lowercasejournal'] = d['bibstem'][0].lower()
+        # list -> string
+        d['titlestring'] = d['title'][0]
+        
+        # need to make sure there is something to put in the volume field
+        d['volume'] = d['volume'] if 'volume' in d else '' 
+        
+        # tagname is [First author's last name][year]
         d['tagname'] = d['author'][0].split()[0].strip(",") + d['year']
 
 
@@ -420,23 +447,20 @@ and making bibentries:
     bibdata = ""
     for d in datalist:
         if 'ARTICLE' in d['property'] or 'EPRINT' in d['property']:
-            bibdata += bibfmt.format(**d)
+            bibdata += bibfmt.format(**d) + "\n\n"
+
+Now this data can be saved to a bibliography file and parsed by LaTeX.
 
 
+.. code-block:: python
 
-::
-
-    ---------------------------------------------------------------------------
-    KeyError                                  Traceback (most recent call last)
-
-    <ipython-input-21-9c55bfea9ea0> in <module>()
-          2 for d in datalist:
-          3     if 'ARTICLE' in d['property'] or 'EPRINT' in d['property']:
-    ----> 4         bibdata += bibfmt.format(**d)
+    import codecs # for writing unicode
     
+    with codecs.open('mypapers.bib','w',encoding='utf8') as f:
+        f.write(bibdata)
 
-    KeyError: u'volume'
+Future work:
 
+-  Verify the bibtex
+-  Generate the CV LaTeX and compile it
 
-Actually, this doesn't work. We'll need to try something else... the ADS
-folks will probably provide.
