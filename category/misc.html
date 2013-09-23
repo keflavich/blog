@@ -262,7 +262,7 @@ of matches and execution time.</p>
 {u'api-version': u'0.1',
  u'count': 54,
  u'hits': 54,
- u'qtime': 40,
+ u'qtime': 7,
  u'query': u'author:ginsburg, a'}
 </pre>
 <p>The 'results' key includes what we're actually interested in, under
@@ -285,7 +285,7 @@ another key 'docs'.</p>
 [u'bibcode',
  u'keyword',
  u'pubdate',
- u'title',
+ u'bibstem',
  u'property',
  u'aff',
  u'author',
@@ -297,6 +297,7 @@ another key 'docs'.</p>
  u'doi',
  u'year',
  u'abstract',
+ u'title',
  u'identifier',
  u'issue',
  u'id']
@@ -326,7 +327,7 @@ into the appropriate format:</p>
     <span class="n">data</span><span class="p">[</span><span class="s">&#39;adsbibid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;identifier&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="c"># data[&#39;title&#39;] &amp; [&#39;pub&#39;] are also lists</span>
     <span class="n">data</span><span class="p">[</span><span class="s">&#39;titlestring&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;title&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">data</span><span class="p">[</span><span class="s">&#39;journal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;pub&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s">&#39;journal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;bibstem&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
     <span class="c"># This trick bolds my name in the list of authors</span>
     <span class="n">data</span><span class="p">[</span><span class="s">&#39;authors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;&lt;b&gt;{}&lt;/b&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">authorname</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">else</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;author&#39;</span><span class="p">]]</span>
     <span class="c"># Separate names by semicolons</span>
@@ -339,7 +340,7 @@ nicely ignore any extra keywords that we're uninterested in.</p>
 <div class="highlight"><pre><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">wrangle</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
 <pre class="literal-block">
-u'                &lt;li&gt;&lt;a class=&quot;norm&quot; href=&quot;<a class="reference external" href="http://adsabs.harvard.edu/abs/2013ApJ...773..102F">http://adsabs.harvard.edu/abs/2013ApJ...773..102F</a>&quot;&gt;Fallscheer, C.; Reid, M. A.; Di Francesco, J.; Martin, P. G.; Hill, T.; Hennemann, M.; Nguyen-Luong, Q.; Motte, F.; Men'shchikov, A.; Andrxe9, Ph.; Ward-Thompson, D.; Griffin, M.; Kirk, J.; Konyves, V.; Rygl, K. L. J.; Sadavoy, S.; Sauvage, M.; Schneider, N.; Anderson, L. D.; Benedettini, M.; Bernard, J. -P.; Bontemps, S.; &lt;b&gt;Ginsburg, A.&lt;/b&gt;; Molinari, S.; Polychroni, D.; Rivera-Ingraham, A.; Roussel, H.; Testi, L.; White, G.; Williams, J. P.; Wilson, C. D.; Wong, M.; Zavagno, A.&lt;/a&gt; 08, &lt;b&gt;2013&lt;/b&gt; Tn                &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Herschel Reveals Massive Cold Clumps in NGCxa07538'
+u'                &lt;li&gt;&lt;a class=&quot;norm&quot; href=&quot;<a class="reference external" href="http://adsabs.harvard.edu/abs/2013ApJ...773..102F">http://adsabs.harvard.edu/abs/2013ApJ...773..102F</a>&quot;&gt;Fallscheer, C.; Reid, M. A.; Di Francesco, J.; Martin, P. G.; Hill, T.; Hennemann, M.; Nguyen-Luong, Q.; Motte, F.; Men'shchikov, A.; Andrxe9, Ph.; Ward-Thompson, D.; Griffin, M.; Kirk, J.; Konyves, V.; Rygl, K. L. J.; Sadavoy, S.; Sauvage, M.; Schneider, N.; Anderson, L. D.; Benedettini, M.; Bernard, J. -P.; Bontemps, S.; &lt;b&gt;Ginsburg, A.&lt;/b&gt;; Molinari, S.; Polychroni, D.; Rivera-Ingraham, A.; Roussel, H.; Testi, L.; White, G.; Williams, J. P.; Wilson, C. D.; Wong, M.; Zavagno, A.&lt;/a&gt; 08, &lt;b&gt;2013&lt;/b&gt; ApJn                &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Herschel Reveals Massive Cold Clumps in NGCxa07538'
 </pre>
 <p>Now to show it in the notebook...</p>
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">IPython.display</span>
@@ -364,26 +365,26 @@ ordered list (<tt class="docutils literal">&lt;ol&gt;</tt>) tag makes a numbered
 </pre></div>
 <pre class="literal-block">
 Fallscheer, C. 2013: 0
-Ellsworth-Bowers, Timothy P. 2013: 0
+Ellsworth-Bowers, Timothy P. 2013: 2
 Smith, Nathan 2013: 0
 Harvey, Paul M. 2013: 2
-Bressert, E. 2012: 6
-Ginsburg, A. 2012: 4
+Bressert, E. 2012: 10
+Ginsburg, A. 2012: 11
 Bally, John 2012: 0
 Ginsburg, Adam 2011: 5
-Battersby, C. 2011: 13
-Ginsburg, Adam 2011: 3
-Schlingman, Wayne M. 2011: 10
-van Aarle, E. 2011: 6
-Aguirre, James E. 2011: 62
+Battersby, C. 2011: 22
+Schlingman, Wayne M. 2011: 17
+Ginsburg, Adam 2011: 6
+van Aarle, E. 2011: 12
+Aguirre, James E. 2011: 72
+Bally, John 2010: 36
+Battersby, Cara 2010: 30
 Yan, Chi-Hung 2010: 5
-Bally, John 2010: 27
-Battersby, Cara 2010: 24
-Bally, J. 2010: 16
-Dunham, Miranda K. 2010: 24
-Rosolowsky, Erik 2010: 69
-Ginsburg, Adam G. 2009: 9
-Rubin, D. 2009: 20
+Bally, J. 2010: 20
+Dunham, Miranda K. 2010: 27
+Rosolowsky, Erik 2010: 80
+Ginsburg, Adam G. 2009: 10
+Rubin, D. 2009: 23
 van de Steene, G. C. 2008: 4
 Golitsyn, G. S. 1985: 4
 </pre>
@@ -401,12 +402,14 @@ because of point #1.</li>
 <p>However, the ADS folks will certainly change this soon. You can find out
 if they have by querying their API settings. If the query below returns
 &quot;True&quot;, then you can access the bibstem.</p>
+<p>UPDATE 9/23/2013: Jay Luker &#64;ADS <a class="reference external" href="https://twitter.com/lbjay/status/382138570632204291">added 'bibstem' to the allowed return
+entries</a></p>
 <div class="highlight"><pre><span class="n">permissions_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">&#39;http://adslabs.org/adsabs/api/settings/&#39;</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;dev_key&#39;</span><span class="p">:</span><span class="n">get_dev_key</span><span class="p">()})</span>
 <span class="n">permissions</span> <span class="o">=</span> <span class="n">permissions_response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 <span class="s">&#39;bibstem&#39;</span> <span class="ow">in</span> <span class="n">permissions</span><span class="p">[</span><span class="s">&#39;allowed_fields&#39;</span><span class="p">]</span>
 </pre></div>
 <pre class="literal-block">
-False
+True
 </pre>
 <p>In the meantime, you can get most of the way there. We'll create
 &quot;Article&quot; entries for any articles or eprints and ignore abstracts
@@ -421,7 +424,8 @@ the HTML bibliography above.</p>
 <span class="s">pages={{{page}}},</span>
 <span class="s">title={{{titlestring}}},</span>
 <span class="s">year={{{year}}},</span>
-<span class="s">volume={{{volume}}}</span>
+<span class="s">volume={{{volume}}},</span>
+<span class="s">journal={{</span><span class="se">\\</span><span class="s">{lowercasejournal}}}</span>
 <span class="s">}}&quot;&quot;&quot;</span>
 </pre></div>
 <p>Of course, it's necessary to wrangle the data again for the appropriate
@@ -444,30 +448,46 @@ author list formatting for bibtex:</p>
 u&quot;{Fallscheer}, C. and {Reid}, M.~A. and {Di Francesco}, J. and {Martin}, P.~G. and {Hill}, T. and {Hennemann}, M. and {Nguyen-Luong}, Q. and {Motte}, F. and {Men'shchikov}, A. and {Andrxe9}, Ph. and {Ward-Thompson}, D. and {Griffin}, M. and {Kirk}, J. and {Konyves}, V. and {Rygl}, K.~L.~J. and {Sadavoy}, S. and {Sauvage}, M. and {Schneider}, N. and {Anderson}, L.~D. and {Benedettini}, M. and {Bernard}, J.~-P. and {Bontemps}, S. and {Ginsburg}, A. and {Molinari}, S. and {Polychroni}, D. and {Rivera-Ingraham}, A. and {Roussel}, H. and {Testi}, L. and {White}, G. and {Williams}, J.~P. and {Wilson}, C.~D. and {Wong}, M. and {Zavagno}, A.&quot;
 </pre>
 <p>Now we can start looping through, performing checks for article status,
-and making bibentries:</p>
+and making bibentries. We'll use python's <tt class="docutils literal">dateutils.parse</tt> to turn
+month numbers into names</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">dateutil.parser</span>
+</pre></div>
 <div class="highlight"><pre><span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span><span class="p">:</span>
     <span class="n">d</span><span class="p">[</span><span class="s">&#39;bibtexauthors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wrangleauthors</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s">&#39;author&#39;</span><span class="p">])</span>
+
+    <span class="c"># pubdates don&#39;t include days, and sometimes don&#39;t include months,</span>
+    <span class="c"># so we have to be careful</span>
+    <span class="n">d</span><span class="p">[</span><span class="s">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dateutil</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s">&#39;pubdate&#39;</span><span class="p">][:</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%B&quot;</span><span class="p">)</span>
+                  <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;pubdate&#39;</span><span class="p">][</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#39;00&#39;</span>
+                  <span class="k">else</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="c"># To make the standard macros, e.g. \apj, \aa</span>
+    <span class="n">d</span><span class="p">[</span><span class="s">&#39;lowercasejournal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;bibstem&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="c"># list -&gt; string</span>
+    <span class="n">d</span><span class="p">[</span><span class="s">&#39;titlestring&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;title&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c"># need to make sure there is something to put in the volume field</span>
+    <span class="n">d</span><span class="p">[</span><span class="s">&#39;volume&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;volume&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s">&#39;volume&#39;</span> <span class="ow">in</span> <span class="n">d</span> <span class="k">else</span> <span class="s">&#39;&#39;</span>
+
+    <span class="c"># tagname is [First author&#39;s last name][year]</span>
     <span class="n">d</span><span class="p">[</span><span class="s">&#39;tagname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;author&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s">&quot;,&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;year&#39;</span><span class="p">]</span>
 </pre></div>
 <div class="highlight"><pre><span class="n">bibdata</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
 <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span><span class="p">:</span>
     <span class="k">if</span> <span class="s">&#39;ARTICLE&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;property&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="s">&#39;EPRINT&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;property&#39;</span><span class="p">]:</span>
-        <span class="n">bibdata</span> <span class="o">+=</span> <span class="n">bibfmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">d</span><span class="p">)</span>
+        <span class="n">bibdata</span> <span class="o">+=</span> <span class="n">bibfmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n\n</span><span class="s">&quot;</span>
 </pre></div>
-<pre class="literal-block">
----------------------------------------------------------------------------
-KeyError                                  Traceback (most recent call last)
+<p>Now this data can be saved to a bibliography file and parsed by LaTeX.</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">codecs</span> <span class="c"># for writing unicode</span>
 
-&lt;ipython-input-21-9c55bfea9ea0&gt; in &lt;module&gt;()
-      2 for d in datalist:
-      3     if 'ARTICLE' in d['property'] or 'EPRINT' in d['property']:
-----&gt; 4         bibdata += bibfmt.format(**d)
-
-
-KeyError: u'volume'
-</pre>
-<p>Actually, this doesn't work. We'll need to try something else... the ADS
-folks will probably provide.</p>
+<span class="k">with</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#39;mypapers.bib&#39;</span><span class="p">,</span><span class="s">&#39;w&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s">&#39;utf8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">bibdata</span><span class="p">)</span>
+</pre></div>
+<p>Future work:</p>
+<ul class="simple">
+<li>Verify the bibtex</li>
+<li>Generate the CV LaTeX and compile it</li>
+</ul>
 </div>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
