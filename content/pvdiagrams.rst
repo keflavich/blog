@@ -52,6 +52,22 @@ and extract them into position-velocity diagrams like this:
 .. image:: |filename|/images/pv_i05358.png
    :width: 800px
 
+Postscript: Figshare
+--------------------
+(note: postscript as in "P.S.", not ".ps")
+
+In order to create the example document (here_), I needed a small data cube
+that could easily be downloaded. Dataverse_ hosts the COMPLETE_ survey, but
+they make you jump through a javascript hoop to download their data, which
+means that it is not possible to write an easily reproducible script.  Too bad,
+since I would have used them except for this minor interface issue.
+
+Instead, I've found that figshare_ has fixed up their interface since I last
+used them.  It was easy enough that I decided to upload my `IRAS 05358+3543
+data cubes`_ and had no trouble at all.  I also posted an update to the arxiv_
+page for the article indictating that the data are freely shared.  I'll do my
+best to share the data for the rest of my papers too, though it will take some
+time and I'll hit data limits for W5 pretty quickly.
 
 .. _GAIA: http://star-www.dur.ac.uk/~pdraper/gaia/gaia.html
 .. _imrebin recipe: http://star-www.dur.ac.uk/~pdraper/gaia/gaia.html
@@ -59,3 +75,12 @@ and extract them into position-velocity diagrams like this:
 .. _pvextractor: https://github.com/keflavich/pvextractor
 .. _available on github: http://keflavich.github.io/pvextractor/
 .. _here: http://keflavich.github.io/pvextractor/examples/IRAS05358Slicing.html
+
+.. _Dataverse: theastrodata.org
+
+.. _COMPLETE: http://www.cfa.harvard.edu/COMPLETE/
+
+.. _figshare: http://figshare.com
+.. _IRAS 05358+3543 data cubes: http://figshare.com/articles/IRAS_05358_3543_Data_Cubes/806315
+
+.. _arxiv: http://arxiv.org/abs/0910.2990
