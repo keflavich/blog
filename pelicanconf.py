@@ -61,7 +61,7 @@ MENUITEMS = [('Homepage','http://www.adamgginsburg.com',),
 
 USE_FOLDER_AS_CATEGORY = True
 
-DISQUS_SITENAME = "keflavich-pelican"
+DISQUS_SITENAME = "adamginsburgsblog"
 GOOGLE_ANALYTICS = 'UA-37306139-1'
 
 # links just don't work in pelican, do they?
