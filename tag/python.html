@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
                           <li class="post">
+                  2013/09/24
+                  <br>
+                  <a href="http://keflavich.github.io/blog/position-velocity-diagrams.html">Position-Velocity Diagrams</a>
+              </li>
+                          <li class="post">
                   2013/09/22
                   <br>
                   <a href="http://keflavich.github.io/blog/blogging-from-ipython.html">Blogging from IPython</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/bash-discoveries-readline-questions.html">BASH discoveries, readline questions</a>
               </li>
-                          <li class="post">
-                  2012/09/20
-                  <br>
-                  <a href="http://keflavich.github.io/blog/command-line-escape-key.html">command line & escape key</a>
-              </li>
                     </ul>
       </li>
         
@@ -101,6 +101,52 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/position-velocity-diagrams.html" rel="bookmark" title="Permalink to Position-Velocity Diagrams">
+                    Position-Velocity Diagrams</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-09-24T00:00:00"> 2013/09/24 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <div class="section" id="current-state-of-affairs">
+<h2>Current state of affairs</h2>
+<p>Position-velocity diagrams with arbitrary position axes have been a common tool
+for studying spectra for a long time, probably because the &quot;native&quot; format of
+long-slit spectra on CCDs is effectively a position-velocity diagram.</p>
+<p>It's becoming more common now to have data cubes (PPV) than 1D or 2D spectra.
+But PV diagrams still have utility.  Unfortunately, there aren't very good
+tools to produce them.</p>
+<p>There are plenty of tools that can slice along any of the native axes of a data
+cube.  If you take your data cube in RA/Dec space, extracting along lines of
+constant RA or Dec is trivial (<a class="reference external" href="http://star-www.dur.ac.uk/~pdraper/gaia/gaia.html">GAIA</a> can do it natively, but it's easy to
+slice a cube in IDL or python).</p>
+<p>However, if you wanted to slice along lines of constant GLON or GLAT, you'd
+have to reproject the cube to use this approach.  There are nice tools that
+implement cube rotation: CASA has an <a class="reference external" href="http://star-www.dur.ac.uk/~pdraper/gaia/gaia.html">imrebin recipe</a> and STARLINK has a
+rotation tool (though I can't find it now...).</p>
+<p>However, this approach is terribly inefficient if you want slices at multiple
+different angles, and it's outright awful if you want to track a filament.</p>
+</div>
+<div class="section" id="an-alternative-approach">
+<h2>An alternative approach</h2>
+<p>The alternative is to interpolate between pixels along a specified axis.  This
+can be done very efficiently in python using scipy's <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.interpolation.map_coordinates.html">map_coordinates</a>, which
+by default does a cubic-spline interpolation at the specified points.</p>
+<p>I've started to build a tool to extract position-velocity diagrams on this
+basis.  It's fully functional, but doesn't do anything interactive just yet.
+<a class="reference external" href="https://github.com/keflavich/pvextractor">pvextractor</a> is <a class="reference external" href="http://keflavich.github.io/pvextractor/">available on github</a>.</p>
+<p>There is a complete example demonstrating its use <a class="reference external" href="http://keflavich.github.io/pvextractor/examples/IRAS05358Slicing.html">here</a>.</p>
+<p>In short, though, it allows you to describe paths like this:</p>
+<img alt="|filename|/images/paths_i05358.png" src="http://keflavich.github.io/blog/static/images/paths_i05358.png" style="width: 800px;" />
+<p>and extract them into position-velocity diagrams like this:</p>
+<img alt="|filename|/images/pv_i05358.png" src="http://keflavich.github.io/blog/static/images/pv_i05358.png" style="width: 800px;" />
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -625,31 +671,6 @@ def steppify(arr,isX=False,interval=0):    &quot;&quot;&quot;    Converts an arr
             <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
             <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>astrobetter started up an <a class="reference external" href="http://www.astrobetter.com/wiki/tiki-index.php?page=Python+Switchers+Guide">idl-to-python guide</a> on their wiki.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/installing-64-bit-tcltk-on-mac-os-x.html" rel="bookmark" title="Permalink to Installing 64 bit tcl/tk on Mac OS X">
-                    Installing 64 bit tcl/tk on Mac OS X</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Everything is described in this post:
-<a class="reference external" href="http://www.nabble.com/Error-compiling-tk-8.5.7-on-Mac-OS-X-10.5-td23790967.html">http://www.nabble.com/Error-compiling-tk-8.5.7-on-Mac-OS-X-10.5-td23790967.html</a></p>
-<p>But here's a script too:
-<tt class="docutils literal">curl <span class="pre">-O</span> <span class="pre">'http://osdn.dl.sourceforge.net/sourceforge/tcl/t{cl,k}8.5.7-src.tar.gz'for</span> f in <span class="pre">t*8.5.7*.gz;</span> do tar zxf $f; done cd <span class="pre">tcl8.5.7/unix/./configure</span> <span class="pre">--enable-framework</span> <span class="pre">--enable-64-bitcd</span> <span class="pre">tk8.5.7/unix/./configure</span> <span class="pre">--enable-framework</span> <span class="pre">--enable-64-bitmake</span> <span class="pre">-j</span> 4 <span class="pre">-C</span> tcl8.5.7/unix make <span class="pre">-j</span> 4 <span class="pre">-C</span> tk8.5.7/unixsudo make install <span class="pre">-C</span> tcl8.5.7/unix sudo make install <span class="pre">-C</span> tk8.5.7/unix</tt></p>
-<p>Concerns:</p>
-<blockquote>
-<ul class="simple">
-<li>might be necessary to do this in the macosx directory for some reason,
-though Aqua doesn't support 64 bits</li>
-<li>have to recompile python to get _tkinter to work (see <a class="reference external" href="http://buffalothedestroyer.blogspot.com/2009/07/success-64-bit-python-with-64-bit-tcltk.html">a later post</a>)</li>
-</ul>
-</blockquote>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
