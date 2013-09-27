@@ -4,7 +4,7 @@ Position-Velocity Diagrams
 :author: Adam Ginsburg (adam.g.ginsburg@gmail.com)
 :tags: python, spectra
 
-.. note:: tl;dr version: IPython notebook here_
+tl;dr version: IPython notebook here_, code `available on github`_
 
 Current state of affairs
 ------------------------
