@@ -25,3 +25,22 @@ Physics affecting the chemistry
    + shock chemical models
    + gas & dust phase shock chem
 
+Concl
+ * High CR rates favored (zeta = 10^-14/s)
+   + lower acceptable if UV included (zeta = 10^-15/s)
+
+Questions
+---------
+
+ * Q: Ionization provides external pressure on clumps.
+ * A: Would like to include in model...?
+
+ * Q: Gamma ray ionization could do something.  Considered?
+ * A: No, but cross-section is low.  Need lots of gamma rays.
+
+ * Q Farhad: Age of molecular ring based on chemical model?
+ * A: Assumed some age from CR turn-on, not age of CND
+
+ * Q: More extreme CR ionization rate near Arches cluster, etc.  What is the
+   best chemical approach for higher CR rate?
+ * A: If CR rate too high, can't form molecules / will destroy molecules

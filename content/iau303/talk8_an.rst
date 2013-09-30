@@ -14,9 +14,12 @@ Spitzer IRS survey of CMZ
  * 107 candidates
  * 35 YSOs discovered
  * half of observing time spent on background
-   * 428 total spectra on ISM lines of sight
+
+   + 428 total spectra on ISM lines of sight
+
  * NeII, SII, SiII maps
  * parameter maps: 
+
    + ionization state
    + electron density
    + rad field hardness

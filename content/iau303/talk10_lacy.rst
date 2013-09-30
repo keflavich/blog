@@ -32,9 +32,13 @@ Is there a physical explanation for a 1-arm spiral density wave?
    + orbits precess with power-law mass distribution
    + orbit crowding near apocenter -> spiral formation
    + 2e5 yrs to develop
+
      - persists for a long time: the precession timescale
+
    + fitting with Keplerian velocity is wrong
+
      - gas is seen at the apocenter of its elliptical orbit
+
  * inflow rate is small
 
 [Exercise: reproduce his simulation & movie]
