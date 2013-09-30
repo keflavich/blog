@@ -3,7 +3,7 @@ John Bally - Hi-Gal CMZ
 :date: 2013-09-30
 :tags: iau303
 
-.. image:: |filename|/iau303/bally.png
+.. image:: |filename|/iau303/images/bally.png
 
 Summary of Hi-Gal: 
   * 900hrs, 
@@ -63,3 +63,21 @@ The Brick
 Dust
  * Are dust grains different?
  * Temperature differs between gas and dust
+
+Questions:
+* COMMENT: NGC 1068 has 100 pc molecular ring, will mention later in discussion
+
+* Lang: Sources in arched filaments - are they aligned with filament?
+* A: Yes, 50-60 in filament.  SEDs look like protostars.
+
+* Jerry (?): Note - hard to avoid conical wind from Sgr A* dynamically.
+* Bally: Yes.  High-latitude CO gas off-plane: entrained.  Starburst likely, AGN
+unlikely to entrain it.
+
+* Jay Gallagher: M82 energy density ~100x higher than in MW, driving wind out of
+smaller potential.  Galaxy requires huge pressure change.
+* Bally: Yes, wimpy nucleus
+
+* Michael: Evidence for bar from cobe & spitzer.  Is it related to gas bar?
+* Bally: Related.  Gas bar 20 ±3 from line of sight, but infrared stellar bar
+more like 45 degrees.  Why offset? controversial.  Generically related.
