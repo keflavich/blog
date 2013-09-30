@@ -29,7 +29,8 @@ Result
  * thin filaments with narrow line widths
 
 Questions
-=========
+---------
+
  * Q Farhad: Any asymmetric velocity profiles towards positions, i.e. outflow signatures?
  * A: No asymmetry noted.
 
