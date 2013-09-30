@@ -1,0 +1,65 @@
+John Bally - Hi-Gal CMZ
+=======================
+:date: 2013-09-30
+:tags: iau303
+
+.. image:: |filename|/iau303/bally.png
+
+Summary of Hi-Gal: 
+  * 900hrs, 
+  * inner ±60 deg, then outer ±60 deg, then full 360 deg.  
+  * Release scheduled late in 2013.  
+  * 0.5 million band-merged sources
+
+The CMZ:
+
+  * we live in a mildly barred galaxy
+  * NGC 1097 as an analog
+  * our CMZ less symmetric
+
+Multiwave comparison:
+
+  * asymmetry: 24, 70 right; gas left
+  * snrs, evolved stars, nonthermal filaments, arched filaments...
+
+The Gas:
+  * :math:`10^7 M_{\odot}` of mass
+  * CMZ clouds more massive, more turbulent
+  * Cold gas to the left of Sgr B2, warmer to the right
+  * Column density somewhat flat from l=1.5 to l=0
+    * "Optically thick as a brick"
+  * Molinari "ring" - column density, some evidence from velocities
+    * vertical oscillation = 2x circular speed
+    * offset...
+    * predicts Sgr B2 at tangent of ring
+
+      * velocity of Sgr B2 too slow
+      * Sgr B2 has significant proper motion: 80 km/s
+
+    * Molinari ring falsified: must extend to larger long
+  * Few point sources in the Arched Filaments
+
+Sofue-Handa ('84) lobe:
+ * brightest super-bubble in galaxy
+ * powered by AGN or starburst?
+ * Warning: Lots of foreground towards CMZ.  
+   * Sco-Cen group
+   * radio emission associated with wall of scocen
+
+Sgr B2 spectroscopy:
+ * Two temperature components in Sgr B2
+ * PACS sees 300K CO
+
+Sgr C mention
+
+Bania's clump
+ * 200 km/s linewidth
+
+The Brick
+ * most extreme IRDC
+ * 24, 70 opaque
+ * HCO+ cubes
+
+Dust
+ * Are dust grains different?
+ * Temperature differs between gas and dust
