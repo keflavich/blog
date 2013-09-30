@@ -69,6 +69,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                           <li class="post">
                   2013/09/30
                   <br>
+                  <a href="http://keflavich.github.io/blog/thibault-paumard-regularized-osiris-3d-spectroscopy-at-the-circumnuclear-disk-ionization-front.html">Thibault Paumard: Regularized OSIRIS 3D spectroscopy at the Circumnuclear Disk ionization front</a>
+              </li>
+                          <li class="post">
+                  2013/09/30
+                  <br>
+                  <a href="http://keflavich.github.io/blog/miquel-requena-torres-opening-again-the-debate-the-transient-nature-of-the-circumnuclear-disk.html">Miquel Requena-Torres: Opening again the debate: the transient nature of the circumnuclear disk</a>
+              </li>
+                          <li class="post">
+                  2013/09/30
+                  <br>
                   <a href="http://keflavich.github.io/blog/nanase-harada-molecules-in-cnd-theory.html">Nanase Harada: Molecules in CND (Theory)</a>
               </li>
                           <li class="post">
@@ -81,16 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/jay-gallagher-lessons-from-comparisons-between-the-nuclear-region-of-the-milky-way-and-those-in-nearby-spirals.html">Jay Gallagher: Lessons from Comparisons between the Nuclear Region of the Milky Way and Those in Nearby Spirals</a>
               </li>
-                          <li class="post">
-                  2013/09/30
-                  <br>
-                  <a href="http://keflavich.github.io/blog/deokkeun-an-the-galactic-center-not-an-active-galactic-nucleus.html">Deokkeun An: The Galactic Center: Not an active galactic nucleus</a>
-              </li>
-                          <li class="post">
-                  2013/09/30
-                  <br>
-                  <a href="http://keflavich.github.io/blog/naomi-mcclure-griffiths-hi-outflows-from-the-galactic-center-20-5-minutes.html">Naomi McClure Griffiths: HI Outflows from the Galactic Center (20 + 5 minutes)</a>
-              </li>
                     </ul>
       </li>
         
@@ -101,6 +101,86 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/progress-but-still-ds1-ds5-issues.html" rel="bookmark" title="Permalink to Progress, but still ds1-ds5 issues">
+                    Progress, but still ds1-ds5 issues</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-03-30T02:47:00"> 2011/03/30 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>ds1 and ds5 agree pretty well with the recent upgrades to delining and
+deconvolution. However, there are still counterexamples, e.g.
+101208_o13, in which ds5 &lt; ds1:</p>
+<img alt="http://4.bp.blogspot.com/-fIJHF_x5mBI/TZI0cryJfbI/AAAAAAAAGDI/GsNfLRGNZAk/s200/101208_o13_raw_ds1.nc_indiv13pca.png" src="http://4.bp.blogspot.com/-fIJHF_x5mBI/TZI0cryJfbI/AAAAAAAAGDI/GsNfLRGNZAk/s200/101208_o13_raw_ds1.nc_indiv13pca.png" />
+<img alt="http://2.bp.blogspot.com/-QRhiz8W9RDc/TZI0dGUR4UI/AAAAAAAAGDQ/WC8eLQd6_Z0/s200/101208_o13_raw_ds5.nc_indiv13pca.png" src="http://2.bp.blogspot.com/-QRhiz8W9RDc/TZI0dGUR4UI/AAAAAAAAGDQ/WC8eLQd6_Z0/s200/101208_o13_raw_ds5.nc_indiv13pca.png" />
+<p>The 'fitted' values agree better than the 'measured' values now that
+NANs are treated properly.
+Spent a few hours today trying to figure out if weighting can explain
+the difference between ds1 and ds5; it appears to make up for most of it
+so I'm doing some more experiments. Why is there so much parameter
+space? Why can't weighting just work? It doesn't....
+also wasted a few hours trying to write a python drizzling algorithm,
+which unfortunately is impossible so I had to resort to an inefficient
+for loop.
+Finally got some minor results. It really looks like there is a trend
+pushing up the recovered flux (i.e. higher volts/Jy) for ds5 over ds1.
+There is a discrepancy between map types for ds1 but not for ds5, which
+is actually backwards from what I would have expected, since ds1 will
+get better-sampled maps.</p>
+<img alt="http://2.bp.blogspot.com/-ARaSL7ZdDmc/TZKRcE01DnI/AAAAAAAAGDY/YMZRpRo53Hw/s320/uranus_dcfluxes_dec2010_nomask_ds1_13pca_fits_map10.png" src="http://2.bp.blogspot.com/-ARaSL7ZdDmc/TZKRcE01DnI/AAAAAAAAGDY/YMZRpRo53Hw/s320/uranus_dcfluxes_dec2010_nomask_ds1_13pca_fits_map10.png" />
+<img alt="http://3.bp.blogspot.com/-pWtggp0vSP4/TZKRcwZ_SrI/AAAAAAAAGDg/IqVHQSprkL8/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png" src="http://3.bp.blogspot.com/-pWtggp0vSP4/TZKRcwZ_SrI/AAAAAAAAGDg/IqVHQSprkL8/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png" />
+<p>Luckily, the difference between peak fitting and &quot;measuring&quot; results in
+very small (insignificant) changes to the calibration curve (recall
+fitting is direct gaussian fitting; 'measuring' is using the
+gaussian-fit width and total flux in an ellipse to infer a peak assuming
+a point source):</p>
+<img alt="http://2.bp.blogspot.com/-E-FDTTj-4Ik/TZKVyUA8zBI/AAAAAAAAGDo/9NGubgLWBvo/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png" src="http://2.bp.blogspot.com/-E-FDTTj-4Ik/TZKVyUA8zBI/AAAAAAAAGDo/9NGubgLWBvo/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png" />
+<img alt="http://3.bp.blogspot.com/-GdyxFnmwQ7g/TZKVykSg57I/AAAAAAAAGDw/PPVXtfAxW0s/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_map10.png" src="http://3.bp.blogspot.com/-GdyxFnmwQ7g/TZKVykSg57I/AAAAAAAAGDw/PPVXtfAxW0s/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_map10.png" />
+<p>Since this work has all been done for the 'bootstrapping' observations
+that are supposed to tell us if different map sizes are compatible, I
+have included the map sizes in the diagrams now. However, to really
+understand the ds1/ds5 difference, there are much better data sets,
+which I'm now reprocessing using the new and improved methods.
+(the Whole BGPS is also processing with the new methods in the
+background, though since the methods are being updated live there may be
+more changes and it will have to be re-run.... initial looks at W5 are
+BAD but L030 is GOOD (bordering on amazing))</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/careful-comparison-of-ds1-and-ds5.html" rel="bookmark" title="Permalink to Careful comparison of ds1 and ds5">
+                    Careful comparison of ds1 and ds5</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-03-29T15:23:00"> 2011/03/29 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I looked very closely at the timestream and maps of 101208_o11 and had
+a pretty hard time figuring out why the data were different, but it
+looked like the data really did differ on a point-by-point basis
+(according to pyflagger). The only conclusion I was able to draw is that
+the scaling must be off. I realized that the scaling was being done
+before delining. I moved scaling from readall_pc to premap, and it
+brought at least this one source into agreement. Time to run ds1-ds5
+comparisons again!
+(this means that ds1 data MUST have deline run on it, but ds5 data
+doesn't really need it)
+Here are examples of ds1 and ds5 timestreams, with and without scaling,
+and ds1 with and without delining:</p>
+<img alt="http://4.bp.blogspot.com/-KR_NYG31_O0/TZECtBAgqFI/AAAAAAAAGCg/1jC9Ys2r9Iw/s200/101208_o11_ds5_uranus_indivtesttimestream011_plots_20_bolo02.png" src="http://4.bp.blogspot.com/-KR_NYG31_O0/TZECtBAgqFI/AAAAAAAAGCg/1jC9Ys2r9Iw/s200/101208_o11_ds5_uranus_indivtesttimestream011_plots_20_bolo02.png" />
+<img alt="http://3.bp.blogspot.com/-HbK-hAXjSDs/TZECtUNe8AI/AAAAAAAAGCo/i4fsH12Iw8Y/s200/101208_o11_ds1_uranus_indivtest_delinetimestream011_plots_20_bolo02.png" src="http://3.bp.blogspot.com/-HbK-hAXjSDs/TZECtUNe8AI/AAAAAAAAGCo/i4fsH12Iw8Y/s200/101208_o11_ds1_uranus_indivtest_delinetimestream011_plots_20_bolo02.png" />
+<img alt="http://3.bp.blogspot.com/-edXLnDrrt5o/TZECt0No8oI/AAAAAAAAGCw/QjHg1ScBHG0/s200/101208_o11_ds1_uranus_indivtesttimestream011_plots_20_bolo02.png" src="http://3.bp.blogspot.com/-edXLnDrrt5o/TZECt0No8oI/AAAAAAAAGCw/QjHg1ScBHG0/s200/101208_o11_ds1_uranus_indivtesttimestream011_plots_20_bolo02.png" />
+<img alt="http://1.bp.blogspot.com/-4NIxFxEQ1jU/TZECuDJ1fVI/AAAAAAAAGC4/tGE5tDH_168/s200/101208_o11_ds1_uranus_indivtest_deline_noscaleacbtimestream011_plots_20_bolo02.png" src="http://1.bp.blogspot.com/-4NIxFxEQ1jU/TZECuDJ1fVI/AAAAAAAAGC4/tGE5tDH_168/s200/101208_o11_ds1_uranus_indivtest_deline_noscaleacbtimestream011_plots_20_bolo02.png" />
+<img alt="http://2.bp.blogspot.com/-DfIepZXXCFc/TZECuhm8lwI/AAAAAAAAGDA/Awp60ZuPGps/s200/101208_o11_ds5_uranus_indivtest_noscaleacbtimestream011_plots_20_bolo02.png" src="http://2.bp.blogspot.com/-DfIepZXXCFc/TZECuhm8lwI/AAAAAAAAGDA/Awp60ZuPGps/s200/101208_o11_ds5_uranus_indivtest_noscaleacbtimestream011_plots_20_bolo02.png" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -488,115 +568,10 @@ there any way to separate out data in a struct in this manner?</li>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/delining-maps.html" rel="bookmark" title="Permalink to Delining - Maps">
-                    Delining - Maps</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-02-03T22:16:00"> 2011/02/03 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>First comment - delining has <strong>no effect</strong> on downsampled data. At least
-for the 0709 epoch, there were NO lines AT ALL in the data. From 0-5 Hz,
-it was just empty. So we don't have to worry about that... the problem
-only affects fully-sampled data.
-Then, onto map comparisons. Curiously, the noise levels don't drop after
-delining. They actually go up a bit. This may be because of the effects
-on PCA cleaning.
-However, flux levels in the sources go up by 0-10%. As usual, the change
-in flux changes from field to field without any obvious reason.
-Example 1: A pointing field. The source is ~2% brighter in the delined
-version, but otherwise the match between the two is nearly perfect.</p>
-<img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/TUskr5xAMSI/AAAAAAAAF_M/J65CutNg9hM/s320/101208_ob8_compare.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUskr5xAMSI/AAAAAAAAF_M/J65CutNg9hM/s320/101208_ob8_compare.png" />
-<img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/TUsksatOJSI/AAAAAAAAF_U/9X-rM6JQmCU/s320/101208_ob8_psd.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUsksatOJSI/AAAAAAAAF_U/9X-rM6JQmCU/s320/101208_ob8_psd.png" />
-<p>Example 2: A bigger map, where the flux recovery is much greater when
-delining, but the background levels are also higher.</p>
-<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/TUsoBrKcQyI/AAAAAAAAF_c/junIzma1zg4/s320/101208_o11_compare.png" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUsoBrKcQyI/AAAAAAAAF_c/junIzma1zg4/s320/101208_o11_compare.png" />
-<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/TUsoCFL1DiI/AAAAAAAAF_k/b1QrgajdlaE/s320/101208_o11_psd.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUsoCFL1DiI/AAAAAAAAF_k/b1QrgajdlaE/s320/101208_o11_psd.png" />
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/delining-and-the-cleaning-process.html" rel="bookmark" title="Permalink to Delining and the Cleaning process">
-                    Delining and the Cleaning process</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-02-03T19:49:00"> 2011/02/03 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>One item I forgot to mention last night was the effects of
-lines/delining on
-PCA subtraction. These should be the primary effects on the final map
-for all
-epochs except 2010, in which case the primary effect SHOULD be to reduce
-substantial noise.
-In the examples below, there are PSDs of whole timestreams (left) and
-example timestreams from single scans (right). The first thing to note
-is that
-the delined timestreams still have correlated components in the line
-region,
-but they are suppressed - their amplitudes, and therefore their sort
-order in
-the PCA removal scheme, are changed. Since PCA cleaning is by its nature
-adaptive
-(the number of components remains fixed, but the order changes), these
-effects
-can be significant and dangerous. If the line noise is more correlated,
-a PCA
-component will be dedicated to removing it instead of atmospheric
-signal.
-Below are examples from l089 (epoch 0709) first. These have less
-correlated
-line noise and are more typical of BGPS observations. The first PCA
-component,
-the average, does not change much with PCA cleaning. However it is clear
-that
-the second component changes substantially, from large-amplitude
-high-frequency
-noise to small-amplitude variations that are very likely to describe
-atmosphere.</p>
-<hr class="docutils" />
-<p>Example 1 - Zeroing out the lines:</p>
-<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/TUrs_QRBBHI/AAAAAAAAF9Y/BH4XEdrFdt0/s320/zero_pca_psds.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUrs_QRBBHI/AAAAAAAAF9Y/BH4XEdrFdt0/s320/zero_pca_psds.png" />
-<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/TUrs_nWI6YI/AAAAAAAAF9g/1Dcr0zyMBvM/s320/zero_pca_timestreams.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUrs_nWI6YI/AAAAAAAAF9g/1Dcr0zyMBvM/s320/zero_pca_timestreams.png" />
-<p>Example 2 - Fitting and removing the lines:</p>
-<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/TUrs-f7qfqI/AAAAAAAAF9I/Dt3Kk9roeW8/s320/fitline_pca_psds.png" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUrs-f7qfqI/AAAAAAAAF9I/Dt3Kk9roeW8/s320/fitline_pca_psds.png" />
-<img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/TUrs-_it9CI/AAAAAAAAF9Q/06KgQOS2vNA/s320/fitline_pca_timestreams.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUrs-_it9CI/AAAAAAAAF9Q/06KgQOS2vNA/s320/fitline_pca_timestreams.png" />
-<p>Example 3 - Suppressing the lines with a non-fitted Gaussian:</p>
-<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/TUr_QHkPADI/AAAAAAAAF9o/n5ylgDCLKPw/s320/wingsupp_pca_psds.png" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUr_QHkPADI/AAAAAAAAF9o/n5ylgDCLKPw/s320/wingsupp_pca_psds.png" />
-<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TUr_QnuPZfI/AAAAAAAAF9w/lt4rEB1Qlq0/s320/wingsupp_pca_timestreams.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUr_QnuPZfI/AAAAAAAAF9w/lt4rEB1Qlq0/s320/wingsupp_pca_timestreams.png" />
-<hr class="docutils" />
-<p>The next examples are from December 2010 observations of Uranus. In this
-case, the correlated noise component is clearly dominant.</p>
-<p>Zeroing lines:</p>
-<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCBUeD67I/AAAAAAAAF94/CCj9gbJOgk8/s320/zero_pca_psds.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCBUeD67I/AAAAAAAAF94/CCj9gbJOgk8/s320/zero_pca_psds.png" />
-<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCB4wFnSI/AAAAAAAAF-A/YgbjYlybcOc/s320/zero_pca_timestreams.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCB4wFnSI/AAAAAAAAF-A/YgbjYlybcOc/s320/zero_pca_timestreams.png" />
-<p>Fitted lines:</p>
-<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCCQNHurI/AAAAAAAAF-I/a5_FQ7bqUjI/s320/fitline_pca_psds.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCCQNHurI/AAAAAAAAF-I/a5_FQ7bqUjI/s320/fitline_pca_psds.png" />
-<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/TUsCCtO7DTI/AAAAAAAAF-Q/wKBz0UhDruE/s320/fitline_pca_timestreams.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUsCCtO7DTI/AAAAAAAAF-Q/wKBz0UhDruE/s320/fitline_pca_timestreams.png" />
-<p>Non-fitted gaussian suppression:</p>
-<img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/TUsCLgCRbmI/AAAAAAAAF-Y/WzHcr1E5q4s/s320/wingsupp_pca_psds.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUsCLgCRbmI/AAAAAAAAF-Y/WzHcr1E5q4s/s320/wingsupp_pca_psds.png" />
-<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCL5e9eGI/AAAAAAAAF-g/TgmNWbiJzbs/s320/wingsupp_pca_timestreams.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCL5e9eGI/AAAAAAAAF-g/TgmNWbiJzbs/s320/wingsupp_pca_timestreams.png" />
-<hr class="docutils" />
-<p>Finally, these two are demonstrations of what you might expect to see
-for a purely noiseless images of a planet (it was constructed from a
-PSF). PCA is first:</p>
-<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCyELAZ1I/AAAAAAAAF-o/65L-rwGFscM/s320/noiselesssim_pca_psds.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCyELAZ1I/AAAAAAAAF-o/65L-rwGFscM/s320/noiselesssim_pca_psds.png" />
-<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/TUsCyRaYY7I/AAAAAAAAF-w/ZaRL4CPWw2E/s320/noiselesssim_pca_timestreams.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUsCyRaYY7I/AAAAAAAAF-w/ZaRL4CPWw2E/s320/noiselesssim_pca_timestreams.png" />
-<p>A single bolometer's timestream and PSD:</p>
-<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/TUsDgR4xcEI/AAAAAAAAF-4/udxMkuH6kio/s320/noiselesssim_deline_wingsupp_10hz_noscan_nsig0_psds_000.png" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUsDgR4xcEI/AAAAAAAAF-4/udxMkuH6kio/s320/noiselesssim_deline_wingsupp_10hz_noscan_nsig0_psds_000.png" />
-<img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/TUsDgtnBPNI/AAAAAAAAF_A/weQNMCgtrtc/s320/noiselesssim_deline_wingsupp_10hz_noscan_nsig0_timestreams_000.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUsDgtnBPNI/AAAAAAAAF_A/weQNMCgtrtc/s320/noiselesssim_deline_wingsupp_10hz_noscan_nsig0_timestreams_000.png" />
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
                         <a href="http://keflavich.github.io/blog/index31.html">&laquo;</a>
-                Page 32 / 45
+                Page 32 / 46
             <a href="http://keflavich.github.io/blog/index33.html">&raquo;</a>
     </p>
 </section><!-- /#content -->

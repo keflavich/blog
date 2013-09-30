@@ -69,6 +69,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                           <li class="post">
                   2013/09/30
                   <br>
+                  <a href="http://keflavich.github.io/blog/thibault-paumard-regularized-osiris-3d-spectroscopy-at-the-circumnuclear-disk-ionization-front.html">Thibault Paumard: Regularized OSIRIS 3D spectroscopy at the Circumnuclear Disk ionization front</a>
+              </li>
+                          <li class="post">
+                  2013/09/30
+                  <br>
+                  <a href="http://keflavich.github.io/blog/miquel-requena-torres-opening-again-the-debate-the-transient-nature-of-the-circumnuclear-disk.html">Miquel Requena-Torres: Opening again the debate: the transient nature of the circumnuclear disk</a>
+              </li>
+                          <li class="post">
+                  2013/09/30
+                  <br>
                   <a href="http://keflavich.github.io/blog/nanase-harada-molecules-in-cnd-theory.html">Nanase Harada: Molecules in CND (Theory)</a>
               </li>
                           <li class="post">
@@ -81,16 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/jay-gallagher-lessons-from-comparisons-between-the-nuclear-region-of-the-milky-way-and-those-in-nearby-spirals.html">Jay Gallagher: Lessons from Comparisons between the Nuclear Region of the Milky Way and Those in Nearby Spirals</a>
               </li>
-                          <li class="post">
-                  2013/09/30
-                  <br>
-                  <a href="http://keflavich.github.io/blog/deokkeun-an-the-galactic-center-not-an-active-galactic-nucleus.html">Deokkeun An: The Galactic Center: Not an active galactic nucleus</a>
-              </li>
-                          <li class="post">
-                  2013/09/30
-                  <br>
-                  <a href="http://keflavich.github.io/blog/naomi-mcclure-griffiths-hi-outflows-from-the-galactic-center-20-5-minutes.html">Naomi McClure Griffiths: HI Outflows from the Galactic Center (20 + 5 minutes)</a>
-              </li>
                     </ul>
       </li>
         
@@ -101,6 +101,90 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/progress-on-alignment-ideas-for-the-next-few-steps.html" rel="bookmark" title="Permalink to Progress on alignment, ideas for the next few steps">
+                    Progress on alignment, ideas for the next few steps</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-09-15T02:19:00"> 2008/09/15 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Alignment: I did a more thorough test of the aligner, and found an error
+that was getting me the wrong results. I'm still getting distinctly
+different results than I got with imalign, but I'm not convinced they're
+wrong. One problem I have to deal with is the ambiguity between pointing
+model applied / no pointing model applied. In retrospect, I should have
+done ALL of the maps with no pointing model: it would be simpler to
+maintain a self-consistent set of alignment corrections.
+However, since that isn't what I did - and there isn't enough memory to
+host both data sets at the moment - I've dealt with the problem by
+adding all of the offsets to the header. Hopefully now it will be
+obvious if and what offsets have been applied, both pointing model and
+'manual', from header keywords. Sadly, it was a pain to get that to work
+- IDL's _extra does not work the same way as normal keyword passing,
+which is disappointing and frustrating because it made me rename a lot
+of variables that should not have been renamed.
+IF this alignment fails to produce perfect results (which I don't really
+expect to happen - it will just take time to debug), it is still a good
+first step, and all we'd really need to do is use bolocat to pull out
+sources from the reference image and then match those in the others,
+doing the same thing imalign does. It wouldn't be difficult but it would
+be time consuming to program.
+Had a bunch of ideas during my insomnia last night, but I'm afraid I
+forgot most of them...
+One idea was related to the use of MAD as opposed to STDDEV: it may
+allow for a more robust sigma-rejection for automated flagging. But
+that's difficult.
+Another thought was using the maps to auto-identify glitches. To do
+this, I'd make a combined map and an individual map, hastrom them, and
+subtract the combined from the individual. We could then probably pretty
+easily spot any glitches; they should be the only outliers left, in
+principle. I'll test that idea, but it actually looks less promising
+than I'd hoped. Things are not coming out right in preliminary tests -
+huge residuals.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/failed-fields.html" rel="bookmark" title="Permalink to Failed fields">
+                    Failed fields</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-09-13T21:00:00"> 2008/09/13 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <ul class="simple">
+<li>l030 - comments were in the form ;; instead of # in the infile</li>
+<li>l055 - no such folder</li>
+<li>l026 - no infile existed; made one</li>
+<li>l028 - /scratch/sliced_polychrome/l028/060605_o[**]_raw_ds5.nc
+are bad</li>
+<li>l031 - Downsampling seems to have failed for most of this directory.
+Need to downsample all files and create a new infile</li>
+<li>l035 - /scratch/sliced_polychrome/l035/060605_o[**]_raw_ds5.nc
+are bad - that's all 060605 observations of l035.</li>
+<li>l036 - /scratch/sliced_polychrome/l036/070702_o25_raw_ds5.nc,
+/scratch/sliced_polychrome/l036/070705_o21_raw_ds5.nc are bad</li>
+<li>l038 - /scratch/sliced_polychrome/l038/060627_ob3_raw_ds5.nc,
+/scratch/sliced_polychrome/l038/060627_ob[3567]_raw.nc are bad -
+had to re-preprocess</li>
+<li>l054 - /scratch/sliced_polychrome/l054/070724_o25_raw_ds5.nc is
+bad</li>
+<li>l057 - /scratch/sliced_polychrome/l057/070907_o16_raw_ds5.nc is
+bad</li>
+</ul>
+<p>Except for l057, there is no guarantee that the whole observation is
+bad, BUT the code failed on ncdf_open, so it possible the observation
+turned bad during downsampling/preprocessing.
+fixed: 30, 26, 55, 35, 28, 31, 38, 54, 57
+so far all observations on 060605 are bad.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -331,58 +415,10 @@ centers.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/confirmed-error-in-lb-mapping.html" rel="bookmark" title="Permalink to Confirmed error in L/B mapping">
-                    Confirmed error in L/B mapping</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-28T01:32:00"> 2008/08/28 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I've used my simulated data and confirmed that there is in fact an error
-in the l/b mapping, but I haven't tracked it down yet. Stay tuned.
-Update: Something is not self-consistent in prepare_map. I've tried a
-variety of different things without success yet.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/updates-today.html" rel="bookmark" title="Permalink to Updates today">
-                    Updates today</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-25T23:35:00"> 2008/08/25 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I updated the FITS header writing pieces of the software today, we
-should now have:
-N_PCA
-ITERNUM
-PPBEAM
-in all new maps.
-I'm mapping all of Cygnus degree-by-degree in RA/Dec and Galactic to try
-to measure offsets... possibly offsets as a function of l/b or ra/dec. I
-should really be doing this with PPSes, though.
-My priority list:</p>
-<ol class="arabic simple">
-<li>find out what's causing bulk offsets</li>
-<li>beat down noise in my pointing models by rejecting bad sources/points
-[has to be done from campus]</li>
-<li>test my personal special pointing models</li>
-<li>make maps!</li>
-<li>figure out the rest of pointing</li>
-</ol>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
                         <a href="http://keflavich.github.io/blog/index40.html">&laquo;</a>
-                Page 41 / 45
+                Page 41 / 46
             <a href="http://keflavich.github.io/blog/index42.html">&raquo;</a>
     </p>
 </section><!-- /#content -->
