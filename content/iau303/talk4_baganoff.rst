@@ -42,3 +42,10 @@ Questions
 
  * Q: Can you create images with 3Ms spectra?
  * A: Not much better; the grating reduces raw sensitivity.  
+
+ * Q: Dismissed possibility of periodicity.  Have you carefully looked?
+   Lomb-Scargle?
+ * A: Lots of times with no flaring obvious.  But, maybe a lot missed below the
+   noise of the DC signal.  Brightest peaks are not periodic.  Peaks put into
+   Lomb-Scargle, but not enough data for that.  Will look at power spectrum
+   though.
