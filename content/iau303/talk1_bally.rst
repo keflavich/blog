@@ -69,17 +69,21 @@ Dust
 Questions:
  * COMMENT: NGC 1068 has 100 pc molecular ring, will mention later in discussion
  
+
  * Lang: Sources in arched filaments - are they aligned with filament?
  * A: Yes, 50-60 in filament.  SEDs look like protostars.
  
+
  * Jerry (?): Note - hard to avoid conical wind from Sgr A* dynamically.
  * Bally: Yes.  High-latitude CO gas off-plane: entrained.  Starburst likely, AGN
    unlikely to entrain it.
+
  
  * Jay Gallagher: M82 energy density ~100x higher than in MW, driving wind out of
    smaller potential.  Galaxy requires huge pressure change.
  * Bally: Yes, wimpy nucleus
  
+
  * Michael: Evidence for bar from cobe & spitzer.  Is it related to gas bar?
  * Bally: Related.  Gas bar 20 ±3 from line of sight, but infrared stellar bar
    more like 45 degrees.  Why offset? controversial.  Generically related.

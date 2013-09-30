@@ -72,8 +72,10 @@ More results:
 
 Questions:
 
+
  * Inner NGC 1068 ring - what resolution can you get with ALMA?  Can you see kinematics?
  * A: Yes, can see kinematics.  0.1", can do ~10x better eventually.  400 km/s
+
 
  * Draw attention to MOPRA MALT-90: good comparison survey for galaxies
  * Thanks
