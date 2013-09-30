@@ -69,6 +69,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                           <li class="post">
                   2013/09/30
                   <br>
+                  <a href="http://keflavich.github.io/blog/jay-gallagher-lessons-from-comparisons-between-the-nuclear-region-of-the-milky-way-and-those-in-nearby-spirals.html">Jay Gallagher: Lessons from Comparisons between the Nuclear Region of the Milky Way and Those in Nearby Spirals</a>
+              </li>
+                          <li class="post">
+                  2013/09/30
+                  <br>
                   <a href="http://keflavich.github.io/blog/deokkeun-an-the-galactic-center-not-an-active-galactic-nucleus.html">Deokkeun An: The Galactic Center: Not an active galactic nucleus</a>
               </li>
                           <li class="post">
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/fred-baganoff-x-ray-visionary-project-sgra.html">Fred Baganoff: X-ray Visionary Project: SgrA*</a>
               </li>
-                          <li class="post">
-                  2013/09/30
-                  <br>
-                  <a href="http://keflavich.github.io/blog/woong-tae-kim-star-formation-in-nuclear-rings.html">Woong-Tae Kim: Star Formation in Nuclear Rings</a>
-              </li>
                     </ul>
       </li>
         
@@ -101,6 +101,34 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/recovering-from-startup-drive-out-of-memory.html" rel="bookmark" title="Permalink to Recovering from "Startup drive out of memory"">
+                    Recovering from &quot;Startup drive out of memory&quot;</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-05-13T09:26:00"> 2013/05/13 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>To continue frozen processes, you need to find all sleeping procs and restart them with <tt class="docutils literal">kill <span class="pre">-CONT</span></tt>.</p>
+<p>In principle, this command should do that:</p>
+<p><tt class="docutils literal">ps <span class="pre">-A</span> <span class="pre">-o</span> tpgid,uid,pid,state,flags | awk <span class="pre">'$1!=&quot;0&quot;</span> &amp;&amp; <span class="pre">$2==501</span> &amp;&amp; <span class="pre">$4==&quot;S&quot;</span> &amp;&amp; <span class="pre">$5!=&quot;4000410c&quot;</span> {print &quot;kill <span class="pre">-CONT</span> &quot; $3}' | bash</tt></p>
+<p>Without the flags exclusion, this failed for me on apple's VNC server:
+<tt class="docutils literal">ps <span class="pre">-A</span> <span class="pre">-o</span> tpgid,uid,pid,state,flags | awk <span class="pre">'$2==501</span> &amp;&amp; <span class="pre">$4==&quot;S&quot;</span> &amp;&amp; <span class="pre">$5!=&quot;4000410c&quot;</span> {print &quot;kill <span class="pre">-CONT</span> &quot; $3}' | bash</tt></p>
+<p>This is necessary for recovering mac processes:
+<tt class="docutils literal"><span class="pre">-A</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Display information about other users' processes, including those without controlling terminals.</tt></p>
+<p>The outputs from the <tt class="docutils literal">ps</tt> process are:</p>
+<blockquote>
+<ul class="simple">
+<li>tpgid      control terminal process group ID</li>
+<li>pid        process ID</li>
+<li>uid        effective user ID</li>
+</ul>
+</blockquote>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -1061,39 +1089,6 @@ Einstein A values between the relevant levels
 (from&nbsp;<a class="reference external" href="http://physics.nist.gov/cgi-bin/ASD/lines1.pl">http://physics.nist.gov/cgi-bin/ASD/lines1.pl</a>, generated
 with&nbsp;<a class="reference external" href="https://github.com/keflavich/energyleveldiagrams">https://github.com/keflavich/energyleveldiagrams</a>).</p>
 <img alt="http://1.bp.blogspot.com/-L1C1rEu7cSQ/UK1A2KuTwcI/AAAAAAAAHRo/49TKIW0TChQ/s640/EnergyLevelDiagram.png" src="http://1.bp.blogspot.com/-L1C1rEu7cSQ/UK1A2KuTwcI/AAAAAAAAHRo/49TKIW0TChQ/s640/EnergyLevelDiagram.png" />
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/galactic-h2co-densitometry-i-pilot-survey-of-ultracompact-hii-regions-and-methodology.html" rel="bookmark" title="Permalink to Galactic H2CO Densitometry I: Pilot survey of Ultracompact HII regions and methodology">
-                    Galactic H2CO Densitometry I: Pilot survey of Ultracompact HII regions and methodology</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-11-21T04:59:00"> 2012/11/21 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p><em>First Author</em> [ <a class="reference external" href="http://adsabs.harvard.edu/abs/2011ApJ...736..149G">ADS</a> ] [ <a class="reference external" href="http://eta.colorado.edu/papers/h2co_pilot_draft0607.pdf">Full Version</a> ]</p>
-<hr class="docutils" />
-<p>We examined 24 UCHII regions using the GBT to observe the 2-2 line of
-ortho-Formaldehyde. We measured the local gas density and compared to
-GMCs and other galaxies. We found densities in GMCs that are 1-2 orders
-of magnitude higher than the mean density in GMCs, implying that extreme
-overdensities are common even in &quot;quiescent&quot; (non-star-forming) GMCs.
-This work was almost entirely my own, but was seeded by <a class="reference external" href="http://casa.colorado.edu/~jdarling/">Jeremy
-Darling</a> Some highlight figures from the paper:</p>
-<img alt="http://1.bp.blogspot.com/-2FeB2dq7tXE/UGMxy17g_NI/AAAAAAAAHQQ/Ugswqn154-4/s400/G32.80%252B0.19_both.png" src="http://1.bp.blogspot.com/-2FeB2dq7tXE/UGMxy17g_NI/AAAAAAAAHQQ/Ugswqn154-4/s400/G32.80%252B0.19_both.png" />
-<p>A sample spectrum. On the top, black is Formaldehyde 1-1, red is
-Formaldehyde 2-2. On the bottom, blue is 13CO, red is H77α, black is
-H110α.</p>
-<img alt="http://3.bp.blogspot.com/-B9zbOPROYn4/UGMxzZSsz9I/AAAAAAAAHQc/tQ_NVJNiVTE/s400/DensityHistogram.png" src="http://3.bp.blogspot.com/-B9zbOPROYn4/UGMxzZSsz9I/AAAAAAAAHQc/tQ_NVJNiVTE/s400/DensityHistogram.png" />
-<p>Histograms of GMC mean densities and the densities measured directly
-from our survey. Note that even for &quot;serendipitious&quot; line of sight GMCs,
-the densities are MUCH higher than typical GMC densities.</p>
-<img alt="http://4.bp.blogspot.com/-jfspjzvR6Tc/UGMxz8-7dEI/AAAAAAAAHQo/chH7rwVuyhs/s400/Derived_DensityVsColumn_ExgalCompare_all_colored.png" src="http://4.bp.blogspot.com/-jfspjzvR6Tc/UGMxz8-7dEI/AAAAAAAAHQo/chH7rwVuyhs/s400/Derived_DensityVsColumn_ExgalCompare_all_colored.png" />
-<p>Comparison of the measured column densities of formaldehyde and inferred
-number densities of H<sub>2</sub>.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
