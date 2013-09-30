@@ -20,3 +20,18 @@ Method description
  * Smoothing "during fitting"
  * GOAL: maps of velocity, width, density
    + similar to deconvolution
+ * decomposed into linewidth, centroid, and amplitude
+   + High, narrow peaks
+
+Result
+ * HII / H2 decorrelated
+   + BrG traces low-H2 regions
+ * thin filaments with narrow line widths
+
+Questions
+=========
+ * Q Farhad: Any asymmetric velocity profiles towards positions, i.e. outflow signatures?
+ * A: No asymmetry noted.
+
+ * Q: How unique is the solution?
+ * A: If S/N good, fairly unique
