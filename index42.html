@@ -69,6 +69,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                           <li class="post">
                   2013/09/30
                   <br>
+                  <a href="http://keflavich.github.io/blog/deokkeun-an-the-galactic-center-not-an-active-galactic-nucleus.html">Deokkeun An: The Galactic Center: Not an active galactic nucleus</a>
+              </li>
+                          <li class="post">
+                  2013/09/30
+                  <br>
+                  <a href="http://keflavich.github.io/blog/naomi-mcclure-griffiths-hi-outflows-from-the-galactic-center-20-5-minutes.html">Naomi McClure Griffiths: HI Outflows from the Galactic Center (20 + 5 minutes)</a>
+              </li>
+                          <li class="post">
+                  2013/09/30
+                  <br>
                   <a href="http://keflavich.github.io/blog/mathieu-de-naurois-tev-observations-of-gc-and-starburst-systems.html">Mathieu de Naurois: TeV Observations of GC and Starburst Systems</a>
               </li>
                           <li class="post">
@@ -81,16 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/woong-tae-kim-star-formation-in-nuclear-rings.html">Woong-Tae Kim: Star Formation in Nuclear Rings</a>
               </li>
-                          <li class="post">
-                  2013/09/30
-                  <br>
-                  <a href="http://keflavich.github.io/blog/fiona-harrison-nustar-results-from-the-galactic-center-to-local-starbursts.html">Fiona Harrison: NuSTAR Results: From the Galactic Center to Local Starbursts</a>
-              </li>
-                          <li class="post">
-                  2013/09/30
-                  <br>
-                  <a href="http://keflavich.github.io/blog/susanne-aalto-physical-conditions-and-chemistry-of-molecular-gas-in-galactic-centers.html">Susanne Aalto: Physical Conditions and Chemistry of Molecular Gas in Galactic Centers</a>
-              </li>
                     </ul>
       </li>
         
@@ -101,6 +101,66 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/re-convergence-tests.html" rel="bookmark" title="Permalink to Re: Convergence Tests">
+                    Re: Convergence Tests</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-23T17:03:00"> 2008/08/23 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Made a little code to check out convergence, but frankly it's pretty
+easy to just build a mapcube and plot lines in the iteration axis. The
+code is in bgps_pipeline/postproc/compareiters.pro, and it is not a
+single program.
+Comparing deconvolution to no deconvolution, deconvolution is a lot
+better. Without it, there are much more substantial negative regions. In
+the GC, my test region, the noise-dominated areas were about the same,
+though the no-deconvolve map had a little bit more large scale
+structure. The signal-dominated regions were very nearly uniformly
+brighter. The deconvolved map was ~3 Jy brighter in SGR B2, or 4%.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/on-the-list-for-today.html" rel="bookmark" title="Permalink to On the list for today....">
+                    On the list for today....</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-23T13:42:00"> 2008/08/23 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Since my gigantic mapping run is still going, I'm going to work
+primarily on developing code for testing the maps, and determining
+important information about the mapper.
+The data paper will require an iteration-to-convergence figure, or at
+least an estimate of degree of convergence.</p>
+<ol class="arabic simple">
+<li>Need to develop code to show iteration-to-convergence<ol class="arabic">
+<li>need it for both NxNpca and ascending/descending</li>
+<li>have to use region files? make some sort of region reader?</li>
+<li>pick demonstration sources</li>
+</ol>
+</li>
+<li>Compare N<sub>pca</sub> results for bright, faint sources</li>
+<li>Compare iterating with/without deconvolution</li>
+<li>Compare median/average/baseline sky subtraction</li>
+<li>Analyze efficiency...</li>
+<li>Try to figure out what's causing huge offsets. Is it Galactic
+Coordinate mapping?</li>
+</ol>
+<pre class="literal-block">
+-bash-3.00$ less /scratch/adam_work/logs/log_082208_domemiter.log | grep WholeWhole observation took 5122.6795 sec.Whole observation took 4774.3424 sec.Whole observation took 2687.7761 sec.Whole observation took 2102.5577 sec.Whole observation took 3247.5344 sec.Whole observation took 5515.2907 sec.Whole observation took 2877.6389 sec.Whole observation took 2757.0235 sec.Whole observation took 1453.0918 sec.Whole observation took 1459.7892 sec.Whole observation took 1381.3762 sec.Whole observation took 1443.1440 sec.Whole observation took 614.39645 sec.Whole observation took 2001.6709 sec.Whole observation took 1817.1512 sec.Whole observation took 1879.1385 sec.
+</pre>
+<p>Note that the longest set there - 5515s = 1.53 hours - was 40
+iterations!</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -329,58 +389,6 @@ The code I've written to enable this comparison:
 publish/debug_testing/compare_me_meredith.pro
 I'm still a bit stumped, but I think I have a path to the answer mapped
 out.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/centroiding-and-merediths-files.html" rel="bookmark" title="Permalink to Centroiding and Meredith's files">
-                    Centroiding and Meredith's files</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-13T03:54:00"> 2008/08/13 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I tried the pointing offset calculations on Meredith's maps and I still
-get an RMS of ~9&quot; in both RA and DEC. Check out the files:
-/scratch/adam_work/plots/models_meredith*
-So... what?</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/searching-for-more-offsets.html" rel="bookmark" title="Permalink to Searching for more offsets">
-                    Searching for more offsets</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-12T21:35:00"> 2008/08/12 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>The defining feature of my pointing calculations - and their
-inconsistency - is that the spread for individual sources is bad, which
-means that there's still something wrong in the way the bulk ra/dec are
-being calculated.</p>
-<p>I checked apply_distortion_map_radec to see if it might have inserted
-some bulk offset, but it only changes the average position by &lt;2&quot;. That
-might be an issue, but the boresight isn't necessarily aligned with the
-mean location of the bolometers. It should be shifted by at least .3&quot;
-according to a simple average of sin/cos of the bolo_params angles.
-Comparing my pointing code to map_ncdf_reading directly:</p>
-<p>readstruct=map_ncdf_reading(filename,/nopixoff)
-offsets are small (e.g. -0.050665803 -0.0029540043 arcseconds ra/dec) if
-I don't subtract fazo/fzao
-offsets in ra/dec are remarkably close to fazo/fzao if I subtract them:</p>
-<pre class="literal-block">
-92.830656 -126.12773
-95.000000 -120.00000
-</pre>
-<p>which is because ra/dec are pretty closely aligned to az/el.
-So, any difference comes from at least one of the keyword parameters.
-Therefore I AM missing something, and that something is one of the
-keywords to map_ncdf_reading</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

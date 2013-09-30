@@ -69,6 +69,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                           <li class="post">
                   2013/09/30
                   <br>
+                  <a href="http://keflavich.github.io/blog/deokkeun-an-the-galactic-center-not-an-active-galactic-nucleus.html">Deokkeun An: The Galactic Center: Not an active galactic nucleus</a>
+              </li>
+                          <li class="post">
+                  2013/09/30
+                  <br>
+                  <a href="http://keflavich.github.io/blog/naomi-mcclure-griffiths-hi-outflows-from-the-galactic-center-20-5-minutes.html">Naomi McClure Griffiths: HI Outflows from the Galactic Center (20 + 5 minutes)</a>
+              </li>
+                          <li class="post">
+                  2013/09/30
+                  <br>
                   <a href="http://keflavich.github.io/blog/mathieu-de-naurois-tev-observations-of-gc-and-starburst-systems.html">Mathieu de Naurois: TeV Observations of GC and Starburst Systems</a>
               </li>
                           <li class="post">
@@ -81,16 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/woong-tae-kim-star-formation-in-nuclear-rings.html">Woong-Tae Kim: Star Formation in Nuclear Rings</a>
               </li>
-                          <li class="post">
-                  2013/09/30
-                  <br>
-                  <a href="http://keflavich.github.io/blog/fiona-harrison-nustar-results-from-the-galactic-center-to-local-starbursts.html">Fiona Harrison: NuSTAR Results: From the Galactic Center to Local Starbursts</a>
-              </li>
-                          <li class="post">
-                  2013/09/30
-                  <br>
-                  <a href="http://keflavich.github.io/blog/susanne-aalto-physical-conditions-and-chemistry-of-molecular-gas-in-galactic-centers.html">Susanne Aalto: Physical Conditions and Chemistry of Molecular Gas in Galactic Centers</a>
-              </li>
                     </ul>
       </li>
         
@@ -101,6 +101,58 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/centroiding-and-merediths-files.html" rel="bookmark" title="Permalink to Centroiding and Meredith's files">
+                    Centroiding and Meredith's files</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-13T03:54:00"> 2008/08/13 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I tried the pointing offset calculations on Meredith's maps and I still
+get an RMS of ~9&quot; in both RA and DEC. Check out the files:
+/scratch/adam_work/plots/models_meredith*
+So... what?</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/searching-for-more-offsets.html" rel="bookmark" title="Permalink to Searching for more offsets">
+                    Searching for more offsets</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-12T21:35:00"> 2008/08/12 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The defining feature of my pointing calculations - and their
+inconsistency - is that the spread for individual sources is bad, which
+means that there's still something wrong in the way the bulk ra/dec are
+being calculated.</p>
+<p>I checked apply_distortion_map_radec to see if it might have inserted
+some bulk offset, but it only changes the average position by &lt;2&quot;. That
+might be an issue, but the boresight isn't necessarily aligned with the
+mean location of the bolometers. It should be shifted by at least .3&quot;
+according to a simple average of sin/cos of the bolo_params angles.
+Comparing my pointing code to map_ncdf_reading directly:</p>
+<p>readstruct=map_ncdf_reading(filename,/nopixoff)
+offsets are small (e.g. -0.050665803 -0.0029540043 arcseconds ra/dec) if
+I don't subtract fazo/fzao
+offsets in ra/dec are remarkably close to fazo/fzao if I subtract them:</p>
+<pre class="literal-block">
+92.830656 -126.12773
+95.000000 -120.00000
+</pre>
+<p>which is because ra/dec are pretty closely aligned to az/el.
+So, any difference comes from at least one of the keyword parameters.
+Therefore I AM missing something, and that something is one of the
+keywords to map_ncdf_reading</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -302,62 +354,6 @@ Totally messed up (two sets of images many degrees apart):
 .. image:: <a class="reference external" href="http://4.bp.blogspot.com/_lsgW26mWZnU/SJuIDL161GI/AAAAAAAADN4/D4mxFyx1Fr0/s320/070709_ob7_1730m130_peanut.png">http://4.bp.blogspot.com/_lsgW26mWZnU/SJuIDL161GI/AAAAAAAADN4/D4mxFyx1Fr0/s320/070709_ob7_1730m130_peanut.png</a>
 070703_o48 :
 .. image:: <a class="reference external" href="http://4.bp.blogspot.com/_lsgW26mWZnU/SJuICzavE_I/AAAAAAAADNw/70Hl5930eU8/s320/070703_o48_3c454.3.png">http://4.bp.blogspot.com/_lsgW26mWZnU/SJuICzavE_I/AAAAAAAADNw/70Hl5930eU8/s320/070703_o48_3c454.3.png</a></p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/looking-back-at-the-old-pipeline.html" rel="bookmark" title="Permalink to Looking back at the old pipeline">
-                    Looking back at the old pipeline</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-07T16:33:00"> 2008/08/07 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I've obviously missed something. So to try to figure out what it is, I'm
-going back to the old pipeline... again...
-in map_ncdf_reading, lines 441-448, there is something curious that
-goes back to a definition-of-variables problem: ddec and dra are ADDED
-to ra and dec to get the new &quot;ra_all&quot; and &quot;dec_all&quot; variables. ddec
-and dra are calculated from eaz and eel: ERROR OFFSETS in Az and El.
-Why? What?!
-I added a new piece of code, correct_eaz_eel.pro. It is extremely
-short, but extremely necessary.</p>
-<pre class="literal-block">
-pro correct_eaz_eel,ra,dec,el,az,eel,eaz,pa    dra=-eaz*cos(!dtor*pa)*cos(!dtor*el)+eel*sin(!dtor*pa)    ddec=eaz*sin(!dtor*pa)*cos(!dtor*el)+eel*cos(!dtor*pa)    dec += ddec/3600.    ra  += dra/3600. / cos(!dtor*dec) / 15.end
-</pre>
-<p>This comes back to the fact that I don't know what ANY of the variables
-in the NCDF header are supposed to be. Why are &quot;error&quot; variables
-actually OFFSET variables, and why didn't anyone know about them?</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/something-is-wrong-in-0507.html" rel="bookmark" title="Permalink to something is wrong in 0507....">
-                    something is wrong in 0507....</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-07T00:01:00"> 2008/08/07 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <img alt="http://picasaweb.google.com/keflavich/Bolocam/photo?authkey=OyC8l5sv3gI#5231555630189235762" src="http://picasaweb.google.com/keflavich/Bolocam/photo?authkey=OyC8l5sv3gI#5231555630189235762" />
-<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/SJousnsJDjI/AAAAAAAADMY/-hhiIoQ171A/s320/g34.3_zoo.jpg" src="http://4.bp.blogspot.com/_lsgW26mWZnU/SJousnsJDjI/AAAAAAAADMY/-hhiIoQ171A/s320/g34.3_zoo.jpg" />
-<p>Look at that zoomed in. Note that the first 20ish are from 0507. I don't
-know what's causing the double source. Maybe a 90 degree rotation would
-do it, I don't know. I do know that I'm applying an array angle of 76.2
-degrees for those July observations and 113.6 degrees for the June 05
-observations. Maybe that got swapped or something....
-It looks like Meredith ran into the same problems when mapping 0506, but
-not 0507.</p>
-<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/SJo7MpPYjDI/AAAAAAAADNg/6_pSjjeKjLM/s320/g34_0507_compare.jpg" src="http://3.bp.blogspot.com/_lsgW26mWZnU/SJo7MpPYjDI/AAAAAAAADNg/6_pSjjeKjLM/s320/g34_0507_compare.jpg" />
-<p>comparing mine to hers (I even used the same downsampled/cleand file),
-it is obvious that something went wrong with the mapping. I tested a
-number of different fiducial array angles and none of them generated
-real maps, so the mapping is correct except for offsets in the scan
-direction, as usual. What the heck.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

@@ -69,6 +69,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                           <li class="post">
                   2013/09/30
                   <br>
+                  <a href="http://keflavich.github.io/blog/deokkeun-an-the-galactic-center-not-an-active-galactic-nucleus.html">Deokkeun An: The Galactic Center: Not an active galactic nucleus</a>
+              </li>
+                          <li class="post">
+                  2013/09/30
+                  <br>
+                  <a href="http://keflavich.github.io/blog/naomi-mcclure-griffiths-hi-outflows-from-the-galactic-center-20-5-minutes.html">Naomi McClure Griffiths: HI Outflows from the Galactic Center (20 + 5 minutes)</a>
+              </li>
+                          <li class="post">
+                  2013/09/30
+                  <br>
                   <a href="http://keflavich.github.io/blog/mathieu-de-naurois-tev-observations-of-gc-and-starburst-systems.html">Mathieu de Naurois: TeV Observations of GC and Starburst Systems</a>
               </li>
                           <li class="post">
@@ -81,16 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/woong-tae-kim-star-formation-in-nuclear-rings.html">Woong-Tae Kim: Star Formation in Nuclear Rings</a>
               </li>
-                          <li class="post">
-                  2013/09/30
-                  <br>
-                  <a href="http://keflavich.github.io/blog/fiona-harrison-nustar-results-from-the-galactic-center-to-local-starbursts.html">Fiona Harrison: NuSTAR Results: From the Galactic Center to Local Starbursts</a>
-              </li>
-                          <li class="post">
-                  2013/09/30
-                  <br>
-                  <a href="http://keflavich.github.io/blog/susanne-aalto-physical-conditions-and-chemistry-of-molecular-gas-in-galactic-centers.html">Susanne Aalto: Physical Conditions and Chemistry of Molecular Gas in Galactic Centers</a>
-              </li>
                     </ul>
       </li>
         
@@ -101,6 +101,45 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/awk-sexagesimal-to-decimal-conversion.html" rel="bookmark" title="Permalink to Awk sexagesimal to decimal conversion">
+                    Awk sexagesimal to decimal conversion</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In VIM I often need to convert columns of RA/Dec from Sexagesimal into
+Decimal format.
+<tt class="docutils literal">%!awk '{ra = <span class="pre">($2+$3/60+$4/3600)*15;</span> dec = <span class="pre">$6+$7/60+$8/3600;</span> print <span class="pre">$1,&quot;ra=&quot;,ra,&quot;,</span>&nbsp; dec=&nbsp; <span class="pre">&quot;,$5,dec}'</span></tt>
+The far more irritating inverse operation:
+`` %!awk '{h=($2/15); h=h-(h%1);  m=($2-h*15)/15*60; m=m-(m%1); s=($2-h*15-m*15/60)/15*3600; d=-($3-$3%1); am=(-$3-d)*60; am=am-(am%1); as=(-$3-d-am/60)*3600; printf &quot;%s  %02i:%02i:%02.2f,  -%02i:%02i:%02.2f   %s  %s  %sn&quot; , $1,h,m,s,d,am,as,$4,$5,$6}'   ``</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/back-to-site-editing.html" rel="bookmark" title="Permalink to Back to site editing">
+                    Back to site editing</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm editing class web pages, php, cgi, etc. again. I don't think I ever
+really understood how to do this, but I'd like to know how to use PHP to
+fold text. That would be sweet.
+I found it by googling this time.
+This is really the right way to do things:
+<a class="reference external" href="http://help.blogger.com/bin/answer.py?hl=en&amp;answer=42214">http://help.blogger.com/bin/answer.py?hl=en&amp;answer=42214</a>
+Of course, it's pretty disappointing that it doesn't work with the
+non-classic template for blogger.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -250,79 +289,6 @@ AddType text/html  .htmAddHandler application/x-httpd-php .php .htmAddHandler se
 twice, I can never again do history-search-backwards (i.e. when you type
 part of a command and type &quot;up&quot; and reverse-search through your command
 history). Any idea how to fix this?</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/command-of-the-day.html" rel="bookmark" title="Permalink to Command of the Day">
-                    Command of the Day</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>`` ls | wc ``
-and for when `` ls * `` fails
-`` find . -name &quot;*&quot; | xargs -I {} mv {} away/ ``</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/compiling-vim.html" rel="bookmark" title="Permalink to Compiling vim...">
-                    Compiling vim...</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Figured I had to post this...
-I've been trying to compile command-line vim 7.3 on Mac OS X 10.7. I
-have the latest `hg clone`d version of vim. I'm stuck on ncurses.
-If I `./configure` with no options, I get the following error:
-checking --with-tlib argument... empty: automatic terminal library
-selection
-checking for tgetent in -ltinfo... no
-checking for tgetent in -lncurses... no
-checking for tgetent in -ltermlib... no
-checking for tgetent in -ltermcap... no
-checking for tgetent in -lcurses... no
-no terminal library found
-checking for tgetent()... configure: error: NOT FOUND!
-You need to install a terminal library; for example ncurses.
-Or specify the name of the library with --with-tlib.
-If instead I try `./configure --with-tlib=ncurses`
-checking --with-tlib argument... ncurses
-checking for linking with ncurses library... configure: error: FAILED
-I have Xcode 4.1. As far as I can tell, ncurses is available:
-$ file /usr/lib/libncurses.*
-/usr/lib/libncurses.5.4.dylib: Mach-O universal binary with 2
-architectures
-/usr/lib/libncurses.5.4.dylib (for architecture x86_64): Mach-O 64-bit
-dynamically linked shared library x86_64
-/usr/lib/libncurses.5.4.dylib (for architecture i386): Mach-O
-dynamically linked shared library i386
-/usr/lib/libncurses.5.dylib: Mach-O dynamically linked shared library
-i386
-/usr/lib/libncurses.dylib: Mach-O universal binary with 2 architectures
-/usr/lib/libncurses.dylib (for architecture x86_64): Mach-O 64-bit
-dynamically linked shared library x86_64
-/usr/lib/libncurses.dylib (for architecture i386): Mach-O dynamically
-linked shared library i386
-Then I changed my PATH from /usr/local/bin... to /usr/bin.....
-The problem was trying to use my /usr/local/bin/gcc instead of the mac
-default /usr/bin/gcc. Something about my locally installed gcc (4.6.1)
-caused major problems.
-I also eventually had to do this command:
-LDFLAGS=-L/usr/lib CFLAGS='-arch i386 -arch x86_64' CCFLAGS='-arch i386
--arch x86_64' CXXFLAGS='-arch i386 -arch x86_64' ./configure
---enable-perlinterp --enable-pythoninterp --enable-cscope
---with-features=huge
-and then had to make sure my default python was NOT pointing to
-enthought!</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

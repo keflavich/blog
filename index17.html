@@ -69,6 +69,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                           <li class="post">
                   2013/09/30
                   <br>
+                  <a href="http://keflavich.github.io/blog/deokkeun-an-the-galactic-center-not-an-active-galactic-nucleus.html">Deokkeun An: The Galactic Center: Not an active galactic nucleus</a>
+              </li>
+                          <li class="post">
+                  2013/09/30
+                  <br>
+                  <a href="http://keflavich.github.io/blog/naomi-mcclure-griffiths-hi-outflows-from-the-galactic-center-20-5-minutes.html">Naomi McClure Griffiths: HI Outflows from the Galactic Center (20 + 5 minutes)</a>
+              </li>
+                          <li class="post">
+                  2013/09/30
+                  <br>
                   <a href="http://keflavich.github.io/blog/mathieu-de-naurois-tev-observations-of-gc-and-starburst-systems.html">Mathieu de Naurois: TeV Observations of GC and Starburst Systems</a>
               </li>
                           <li class="post">
@@ -81,16 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/woong-tae-kim-star-formation-in-nuclear-rings.html">Woong-Tae Kim: Star Formation in Nuclear Rings</a>
               </li>
-                          <li class="post">
-                  2013/09/30
-                  <br>
-                  <a href="http://keflavich.github.io/blog/fiona-harrison-nustar-results-from-the-galactic-center-to-local-starbursts.html">Fiona Harrison: NuSTAR Results: From the Galactic Center to Local Starbursts</a>
-              </li>
-                          <li class="post">
-                  2013/09/30
-                  <br>
-                  <a href="http://keflavich.github.io/blog/susanne-aalto-physical-conditions-and-chemistry-of-molecular-gas-in-galactic-centers.html">Susanne Aalto: Physical Conditions and Chemistry of Molecular Gas in Galactic Centers</a>
-              </li>
                     </ul>
       </li>
         
@@ -101,6 +101,59 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/movies.html" rel="bookmark" title="Permalink to MOVIES!">
+                    MOVIES!</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Making movies is surprisingly difficult. No matter what language you
+use, apparently true movie files can only be made by stringing together
+images, i.e. there is no native movie-producing feature. Gnuplot can do
+some simple animations but to do anything sophisticated you need to
+start delving into variables, and for that I switch to a real language.
+So, I returned to python. As usual, it took no more than a few hours of
+coding and learning to come up with something. But it bothers me that it
+took that long: I still think python is most deficient in its failure to
+create a default column-text reader like 'readcol' in IDL. I can't
+complain that much, though: I wrote <a class="reference external" href="http://casa.colorado.edu/~ginsbura/pyreadcol.htm">my own</a> in about 5 minutes.
+Anyway, the key is to use the <tt class="docutils literal">.set_xdata</tt> and <tt class="docutils literal">.set_ydata</tt>
+functions of a plot to update a canvas. I still don't have nearly as
+high a plotting speed as I'd like, but it works alright if I don't
+display to screen. Probably a different backend would be more effective
+but I don't like to mess with backends.
+I use `` savefig(filename,dpi=50) `` to reduce the image quality so that
+it's easier for the animator to handle.
+ImageMagick's convert can be used to stitch any kind of image into a
+movie given that you've installed an mpeg2 encoder (fink gave me
+<tt class="docutils literal">mpeg2vidcodec</tt>).</p>
+<p>The command is very simple:
+<tt class="docutils literal">convert <span class="pre">-size</span> 300x300 *.png movie.mpg</tt></p>
+<p>I had to use a smaller image size because a series of 1000x12kb files
+somehow chomped ~6-8 GB of RAM and swap space.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/my-genes.html" rel="bookmark" title="Permalink to my genes">
+                    my genes</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I have a few funky genes goin on:
+<a class="reference external" href="http://en.wikipedia.org/wiki/Photic_sneeze_reflex">Photonic Sneeze Reflex</a>
+<a class="reference external" href="http://en.wikipedia.org/wiki/Asparagus#Asparagus_and_urine">Smell asparagus pee</a></p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -271,39 +324,6 @@ data.
 At the same time, the <a class="reference external" href="http://starlink.jach.hawaii.edu/starlink/">STARLINK</a> folks do a much better job than I do,
 and I already spend about half of my time comparing different archival
 data sets... so I think his crystal ball is overall very accurate.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/no-coffee-day-make-me-useless.html" rel="bookmark" title="Permalink to no-coffee day make me useless">
-                    no-coffee day make me useless</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I had a few productive hours after my run, then things kinda went
-downhill.... in the morning, I wrote two <a class="reference external" href="http://casa.colorado.edu/~ginsbura/ds9_imalign.htm">guides</a> and then taught
-someone else to use that stuff and then I tried to write up my lecture
-for tomorrow and totally failed. I didn't accomplish anything after
-about 1 pm. Lesson to me: don't ride no-coffee days at work.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/not-a-webcomic.html" rel="bookmark" title="Permalink to Not a webcomic">
-                    Not a webcomic</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>but close enough:
-<a class="reference external" href="http://www.theonion.com/content/news/al_gore_places_infant_son_in">Gore-Al sends son into space</a></p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
