@@ -5,6 +5,7 @@ Fred Baganoff: X-ray Visionary Project: SgrA*
 
 .. image:: |filename|/iau303/images/baganoff.jpg
     :width: 800px
+    :rotate: 90
 
 High-res x-ray spectra of Sgr A* & surrounding emission
  * Radio pol obs: most accreting matter doesn't reach event horizon
