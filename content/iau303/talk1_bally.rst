@@ -1,9 +1,10 @@
 John Bally - Hi-Gal CMZ
 =======================
-:date: 2013-09-30
+:date: 2013-09-30 9:00
 :tags: iau303
 
 .. image:: |filename|/iau303/images/bally.png
+    :width: 800px
 
 Summary of Hi-Gal: 
   * 900hrs, 
@@ -23,28 +24,29 @@ Multiwave comparison:
   * snrs, evolved stars, nonthermal filaments, arched filaments...
 
 The Gas:
-  * :math:`10^7 M_{\odot}` of mass
+
+  * 10^7 Msun
   * CMZ clouds more massive, more turbulent
   * Cold gas to the left of Sgr B2, warmer to the right
   * Column density somewhat flat from l=1.5 to l=0
-    * "Optically thick as a brick"
+    + "Optically thick as a brick"
   * Molinari "ring" - column density, some evidence from velocities
-    * vertical oscillation = 2x circular speed
-    * offset...
-    * predicts Sgr B2 at tangent of ring
+    + vertical oscillation = 2x circular speed
+    + offset...
+    + predicts Sgr B2 at tangent of ring
 
-      * velocity of Sgr B2 too slow
-      * Sgr B2 has significant proper motion: 80 km/s
+      - velocity of Sgr B2 too slow
+      - Sgr B2 has significant proper motion: 80 km/s
 
-    * Molinari ring falsified: must extend to larger long
+    + Molinari ring falsified: must extend to larger long
   * Few point sources in the Arched Filaments
 
 Sofue-Handa ('84) lobe:
  * brightest super-bubble in galaxy
  * powered by AGN or starburst?
  * Warning: Lots of foreground towards CMZ.  
-   * Sco-Cen group
-   * radio emission associated with wall of scocen
+   + Sco-Cen group
+   + radio emission associated with wall of scocen
 
 Sgr B2 spectroscopy:
  * Two temperature components in Sgr B2
@@ -65,19 +67,19 @@ Dust
  * Temperature differs between gas and dust
 
 Questions:
-* COMMENT: NGC 1068 has 100 pc molecular ring, will mention later in discussion
-
-* Lang: Sources in arched filaments - are they aligned with filament?
-* A: Yes, 50-60 in filament.  SEDs look like protostars.
-
-* Jerry (?): Note - hard to avoid conical wind from Sgr A* dynamically.
-* Bally: Yes.  High-latitude CO gas off-plane: entrained.  Starburst likely, AGN
-unlikely to entrain it.
-
-* Jay Gallagher: M82 energy density ~100x higher than in MW, driving wind out of
-smaller potential.  Galaxy requires huge pressure change.
-* Bally: Yes, wimpy nucleus
-
-* Michael: Evidence for bar from cobe & spitzer.  Is it related to gas bar?
-* Bally: Related.  Gas bar 20 ±3 from line of sight, but infrared stellar bar
-more like 45 degrees.  Why offset? controversial.  Generically related.
+ * COMMENT: NGC 1068 has 100 pc molecular ring, will mention later in discussion
+ 
+ * Lang: Sources in arched filaments - are they aligned with filament?
+ * A: Yes, 50-60 in filament.  SEDs look like protostars.
+ 
+ * Jerry (?): Note - hard to avoid conical wind from Sgr A* dynamically.
+ * Bally: Yes.  High-latitude CO gas off-plane: entrained.  Starburst likely, AGN
+   unlikely to entrain it.
+ 
+ * Jay Gallagher: M82 energy density ~100x higher than in MW, driving wind out of
+   smaller potential.  Galaxy requires huge pressure change.
+ * Bally: Yes, wimpy nucleus
+ 
+ * Michael: Evidence for bar from cobe & spitzer.  Is it related to gas bar?
+ * Bally: Related.  Gas bar 20 ±3 from line of sight, but infrared stellar bar
+   more like 45 degrees.  Why offset? controversial.  Generically related.
