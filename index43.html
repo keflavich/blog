@@ -67,6 +67,21 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
                           <li class="post">
+                  2013/09/30
+                  <br>
+                  <a href="http://keflavich.github.io/blog/fiona-harrison-nustar-results-from-the-galactic-center-to-local-starbursts.html">Fiona Harrison: NuSTAR Results: From the Galactic Center to Local Starbursts</a>
+              </li>
+                          <li class="post">
+                  2013/09/30
+                  <br>
+                  <a href="http://keflavich.github.io/blog/susanne-aalto-physical-conditions-and-chemistry-of-molecular-gas-in-galactic-centers.html">Susanne Aalto: Physical Conditions and Chemistry of Molecular Gas in Galactic Centers</a>
+              </li>
+                          <li class="post">
+                  2013/09/30
+                  <br>
+                  <a href="http://keflavich.github.io/blog/john-bally-hi-gal-cmz.html">John Bally - Hi-Gal CMZ</a>
+              </li>
+                          <li class="post">
                   2013/09/24
                   <br>
                   <a href="http://keflavich.github.io/blog/position-velocity-diagrams.html">Position-Velocity Diagrams</a>
@@ -75,21 +90,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   2013/09/22
                   <br>
                   <a href="http://keflavich.github.io/blog/blogging-from-ipython.html">Blogging from IPython</a>
-              </li>
-                          <li class="post">
-                  2013/09/21
-                  <br>
-                  <a href="http://keflavich.github.io/blog/generating-a-cv-using-the-ads-labs-api.html">Generating a CV using the ADS Labs API</a>
-              </li>
-                          <li class="post">
-                  2013/08/05
-                  <br>
-                  <a href="http://keflavich.github.io/blog/my-favorite-splatalogue-queries.html">My favorite Splatalogue queries</a>
-              </li>
-                          <li class="post">
-                  2013/07/16
-                  <br>
-                  <a href="http://keflavich.github.io/blog/ppvi-talk-13-steve-longmore.html">PPVI Talk 13: Steve Longmore</a>
               </li>
                     </ul>
       </li>
@@ -101,6 +101,89 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/rms-fails-to-shrink.html" rel="bookmark" title="Permalink to RMS fails to shrink">
+                    RMS fails to shrink</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-12T13:51:00"> 2008/08/12 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Spent a while today working on these plots after rejecting every obvious
+bad point:
+/scratch/adam_work/plots/sourcecompare_0_rawcsoptg_0707.ps
+/scratch/adam_work/plots/sourcecompare_10_rawcsoptg_0707.ps
+/scratch/adam_work/plots/sourcecompare_1_rawcsoptg_0707.ps
+/scratch/adam_work/plots/sourcecompare_2_rawcsoptg_0707.ps
+/scratch/adam_work/plots/sourcecompare_3_rawcsoptg_0707.ps
+/scratch/adam_work/plots/sourcecompare_4_rawcsoptg_0707.ps
+/scratch/adam_work/plots/sourcecompare_5_rawcsoptg_0707.ps
+/scratch/adam_work/plots/sourcecompare_6_rawcsoptg_0707.ps
+/scratch/adam_work/plots/sourcecompare_7_rawcsoptg_0707.ps
+/scratch/adam_work/plots/sourcecompare_8_rawcsoptg_0707.ps
+/scratch/adam_work/plots/sourcecompare_9_rawcsoptg_0707.ps
+/scratch/adam_work/plots/models_rawcsoptg_0707.ps
+The net result is, I still don't have a nice small RMS offset
+Update 8/12/08: using RA/DEC mapping doesn't help.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/cleaning-ideas.html" rel="bookmark" title="Permalink to Cleaning ideas">
+                    Cleaning ideas</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-11T15:20:00"> 2008/08/11 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>It's proving very difficult to get rid of glitches, so here are some
+more ideas:</p>
+<p>Median filter the whole timestream (downsampled) at a resolution that
+will pull down the glitch peak. Subtract out the median-filtered
+timestream from the original, and look for outliers in that
+distribution: in principle, those should be glitches.</p>
+<p>Another option: subtract out the noise map AND the best-model map from
+the original timestream before trying to pull out additional astro model
+stuff. The map-to-timestream astro model can't include glitches because
+they're averaged over, but the sky-subtracted timestream DOES include
+glitches (no matter how many PCA components are removed) because
+glitches are NOT correlated across detectors. The weird thing is that
+this is effectively subtracting out exactly what was calculated from the
+sky subtraction - the question is whether subtracting it out BEFORE sky
+subtracting again gets you any benefit. If it was just noise,
+subtracting noise from noise is fine, but the &quot;noise&quot; does include some
+residual signal.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/glitches-and-errors.html" rel="bookmark" title="Permalink to Glitches and errors">
+                    Glitches and errors</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-11T04:24:00"> 2008/08/11 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>It's definitely important to get rid of the spikes and, more
+importantly, the exponential decay. The current function is pretty good,
+but possibly not good enough because there are some situations in which
+the turnaround decay is obviously not well-enough dealt with and results
+in high/low streaks.
+The glitches can be ~20 Jy. The problem is that they sometimes show up
+in the middle of sources (e.g. in 060609_o26). That will badly distort
+fluxes.
+My ideal is still to use a median instead of mean combination of data
+points into image points, but that seems to be impractical to implement.
+Other ideas...</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -263,63 +346,10 @@ doing.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/mapped-but-no-dice.html" rel="bookmark" title="Permalink to Mapped, but no dice">
-                    Mapped, but no dice</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-06T15:22:00"> 2008/08/06 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Finished mapping what I think are all of the pointing sources. However,
-the RMS of the centroids has not gone down. Now I need to go through
-each individual source and image and try to get rid of the baddies.
-There are presumably some sources with bulk offsets that can be removed
-to improve the fits. I just have to find them.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/nothing.html" rel="bookmark" title="Permalink to Nothing">
-                    Nothing</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-06T00:32:00"> 2008/08/06 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>No progress today. Spent the whole day re-mapping pointing sources and
-figuring out which observations ARE pointing sources. Mapping STILL not
-done - it takes a long time when there are hundreds of separate
-observations. Also, finding some corrupt files and noting them in
-/scratch/adam_work/texts/toolarge.txt . A lot more of that work to be
-done.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/observation-distribution.html" rel="bookmark" title="Permalink to Observation distribution">
-                    Observation distribution</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-04T21:57:00"> 2008/08/04 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <pre class="literal-block">
--bash-3.00$ wc texts/all_*_observations.txt                                                                                                     0      0      0 texts/all_0505_observations.txt    0      0      0 texts/all_0506_observations.txt  151    151   6039 texts/all_0507_observations.txt   33     33   1377 texts/all_0509_observations.txt   16     16    633 texts/all_0605_observations.txt  135    135   5309 texts/all_0606_observations.txt    0      0      0 texts/all_0607_observations.txt   94     94   3780 texts/all_0609_observations.txt   34     34   1386 texts/all_0705_observations.txt   26     26   1028 texts/all_0706_observations.txt  201    201   7989 texts/all_0707_observations.txt   73     73   2907 texts/all_0709_observations.txt    0      0      0 texts/all_polychrome_0505_observations.txt  222    222  11898 texts/all_polychrome_0506_observations.txt  471    471  24861 texts/all_polychrome_0507_observations.txt  196    196  10346 texts/all_polychrome_0509_observations.txt   43     43   2200 texts/all_polychrome_0605_observations.txt  730    730  38040 texts/all_polychrome_0606_observations.txt   22     22   1195 texts/all_polychrome_0607_observations.txt  471    471  24751 texts/all_polychrome_0609_observations.txt   66     66   3399 texts/all_polychrome_0705_observations.txt  145    145   7533 texts/all_polychrome_0706_observations.txt 1051   1051  54801 texts/all_polychrome_0707_observations.txt  511    511  27049 texts/all_polychrome_0709_observations.txt 4691   4691 236521 total
-</pre>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
                         <a href="http://keflavich.github.io/blog/index42.html">&laquo;</a>
-                Page 43 / 44
+                Page 43 / 45
             <a href="http://keflavich.github.io/blog/index44.html">&raquo;</a>
     </p>
 </section><!-- /#content -->
