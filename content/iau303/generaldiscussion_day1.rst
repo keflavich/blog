@@ -1,5 +1,5 @@
-General Discussion
-==================
+General Discussion (Day 1)
+==========================
 :date: 2013-09-30 17:05
 :tags: iau303
 
