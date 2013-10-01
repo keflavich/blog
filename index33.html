@@ -69,11 +69,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                           <li class="post">
                   2013/10/01
                   <br>
-                  <a href="http://keflavich.github.io/blog/tuesday-afternoon-talks.html">Tuesday Afternoon Talks</a>
-              </li>
-                          <li class="post">
-                  2013/10/01
-                  <br>
                   <a href="http://keflavich.github.io/blog/ann-marie-madigan-on-the-origin-of-young-stars-in-the-galactic-center.html">Ann-Marie Madigan: On the Origin of Young Stars in the Galactic Center</a>
               </li>
                           <li class="post">
@@ -91,6 +86,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/overview-talk-jessica-lu-young-stars-in-the-galactic-center.html">Overview Talk Jessica Lu: Young Stars in the Galactic Center</a>
               </li>
+                          <li class="post">
+                  2013/10/01
+                  <br>
+                  <a href="http://keflavich.github.io/blog/general-discussion-day-2.html">General Discussion (day 2)</a>
+              </li>
                     </ul>
       </li>
         
@@ -101,51 +101,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/examining-deconvolution-strategies.html" rel="bookmark" title="Permalink to Examining deconvolution strategies">
-                    Examining deconvolution strategies</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-04-07T22:05:00"> 2011/04/07 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>This is a direct continuation of what I did yesterday (but only posted
-today because I forgot to click post).
-No-deconvolution doesn't work, at least not reliably. It recovers
-structures that are too large to be believable. Perhaps a higher
-threshold should be required to include signal in the model? The noise
-actually looks too high anyway. Also, the flagging doesn't look great.
-Grr.
-The agreement between the three is somewhat better, down to a 50%
-increase of reconv over deconv:
-[deconv, nodeconv, reconv]:
-BMAJ: 0.00916667 BMIN: 0.00916667 PPBEAM: 23.8028 SUM/PPBEAM: 8.19765
-Sum: 195.127 Mean: 1.04346 Median: 0.751545 RMS: 0.78342 NPIX: 187
-BMAJ: 0.00916667 BMIN: 0.00916667 PPBEAM: 23.8028 SUM/PPBEAM: 10.1592
-Sum: 241.816 Mean: 1.29314 Median: 1.04031 RMS: 0.778854 NPIX: 187
-BMAJ: 0.00916667 BMIN: 0.00916667 PPBEAM: 23.8028 SUM/PPBEAM: 12.1694
-Sum: 289.664 Mean: 1.54901 Median: 1.31107 RMS: 0.808915 NPIX: 187
-But this time there is less indication of negative residuals than
-previously.
-I was very confused by negatives being included in the model for
-nodeconv, then realized it's because of the grow_mask option.
-sncut = 1 is now default for nodeconv. I think it makes sense.
-(sncut = 1 drops the flux by &lt;10%:
-BMAJ: 0.00916667 BMIN: 0.00916667 PPBEAM: 23.8028 SUM/PPBEAM: 9.31507
-Sum: 221.725 Mean: 1.18569 Median: 0.915137 RMS: 0.783316 NPIX: 187)
-While reconv has produced reasonable results in some cases, a close look
-at the maps shows that deconv ~ nodeconv &lt;&lt; reconv. There is something
-wrong with reconv. It spreads out and increases the flux artificially.
-So.... why did it work so damn well for point sources?
-The new weighting scheme seems to flag a dangerous number of bolos as
-'high weight'. It drops after iteration #1, but not all the way.
-Need to remember to reprocess all December 2009 data with more flagged
-bolos</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -545,6 +500,25 @@ the ds5 PSFs from all earlier epochs look terrible?
 For example, I use the observations 070727_o31 and _o32. These show
 clearly the blurring and flux-loss that happens when ds5 data are used
 for 'normal' point-sources:</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/from-a-comparison-of-3-different-epochs-using-abou.html" rel="bookmark" title="Permalink to From a comparison of 3 different epochs using abou...">
+                    From a comparison of 3 different epochs using abou...</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-02-12T01:30:00"> 2011/02/12 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>From a comparison of 3 different epochs using about a dozen different
+reduction techniques, but all with pairs of cross-scans, ds1 is
+uniformly higher than ds5.
+The only thing left to do is compare the individual scans, I suppose...
+if the cross-scans behave differently, that explains the difference
+between 2010 and other epochs</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
