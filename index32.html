@@ -69,27 +69,27 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                           <li class="post">
                   2013/10/01
                   <br>
-                  <a href="http://keflavich.github.io/blog/general-discussion-day-2.html">General Discussion (day 2)</a>
+                  <a href="http://keflavich.github.io/blog/tuesday-afternoon-talks.html">Tuesday Afternoon Talks</a>
               </li>
                           <li class="post">
                   2013/10/01
                   <br>
-                  <a href="http://keflavich.github.io/blog/rei-enokiya-large-scale-and-high-sensitivity-multi-line-co-surveys-toward-the-galactic-center.html">Rei Enokiya: Large scale and high sensitivity multi line CO surveys toward the Galactic Center</a>
+                  <a href="http://keflavich.github.io/blog/ann-marie-madigan-on-the-origin-of-young-stars-in-the-galactic-center.html">Ann-Marie Madigan: On the Origin of Young Stars in the Galactic Center</a>
               </li>
                           <li class="post">
                   2013/10/01
                   <br>
-                  <a href="http://keflavich.github.io/blog/denise-riquelme-vasquez-diskhalo-interactions-molecular-clouds-in-the-galactic-center.html">Denise Riquelme Vasquez: Disk/Halo Interactions: Molecular Clouds in the Galactic Center</a>
+                  <a href="http://keflavich.github.io/blog/hui-dong-usa-unveiling-the-massive-stars-beyond-the-three-young-massive-star-clusters.html">Hui Dong (USA): Unveiling the massive stars beyond the three young massive star clusters</a>
               </li>
                           <li class="post">
                   2013/10/01
                   <br>
-                  <a href="http://keflavich.github.io/blog/kazushi-sakamoto-the-kinematics-and-dynamics-of-molecular-gas-in-galactic-centers.html">Kazushi Sakamoto: The Kinematics and Dynamics of Molecular Gas in Galactic Centers</a>
+                  <a href="http://keflavich.github.io/blog/anja-feldmeier-the-milky-way-nuclear-star-cluster-beyond-1-pc.html">Anja Feldmeier: The Milky Way Nuclear Star Cluster Beyond 1 pc</a>
               </li>
                           <li class="post">
                   2013/10/01
                   <br>
-                  <a href="http://keflavich.github.io/blog/betsy-mills-hot-gas-masers-and-cloud-collisions-the-extreme-properties-of-molecular-gas-at-the-heart-of-the-milky-way-galaxy.html">Betsy Mills: Hot Gas, Masers, and Cloud Collisions: The extreme properties of molecular gas at the heart of the Milky Way Galaxy</a>
+                  <a href="http://keflavich.github.io/blog/overview-talk-jessica-lu-young-stars-in-the-galactic-center.html">Overview Talk Jessica Lu: Young Stars in the Galactic Center</a>
               </li>
                     </ul>
       </li>
@@ -101,6 +101,200 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/psf-modeling.html" rel="bookmark" title="Permalink to PSF modeling">
+                    PSF modeling</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-05-22T01:19:00"> 2011/05/22 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>There haven't been many posts recently because I've primarily been
+writing up old results into the v2 paper.
+The Airy and Gaussian simulations with and without atmosphere seem to
+have yielded their results. There is a ~5% loss when mapping Airy-disk
+point sources. This is fine as long as it's quantified; it just means
+that when calibrating we need to know whether extended sources are
+similarly truncated. If all sources lose 5% in the pipeline, there will
+be no net offset.
+However, the Airy is not necessarily representative of the CSO's PSF.
+In order to come up with a more reasonable representation of the PSF,
+I've attempted to fit the *measured* PSF (from James' paper) with an
+Airy disk. The first sidelobe has a lot more amplitude and is closer to
+the peak than in an Airy disk. It is also asymmetric, but I'm ignoring
+that for the moment.
+To better represent the first sidelobe, I've fitted a modified Airy
+function. The &quot;modification&quot; is to fit two Airy functions, one to the
+peak and one to the rest. This is accomplished by setting everything
+outside the first null to zero in the first function, and everything
+inside the first null to zero in the second. The centers are the same,
+but the amplitudes and widths are independent.</p>
+<img alt="http://3.bp.blogspot.com/-Vd8eey7FX4Q/TdhiEsk-FhI/AAAAAAAAGLA/ekzBJL8oNoE/s320/airy_modified_comparison.png" src="http://3.bp.blogspot.com/-Vd8eey7FX4Q/TdhiEsk-FhI/AAAAAAAAGLA/ekzBJL8oNoE/s320/airy_modified_comparison.png" />
+<p>The above image shows the best fit Airy and modified Airy, both in log
+scale on an identical grid. The modeled PSF was then put through the
+pipeline to see it recovers the pipeline-derived PSF. The radial profile
+results are below, but note that this is only one particular realization
+of the simulation + pipeline.</p>
+<img alt="http://2.bp.blogspot.com/-sxL-QjhRxUE/TdhidbXuAKI/AAAAAAAAGLI/NX9LdWqu4nM/s320/PSF_fit_plot_pipelinecompare.png" src="http://2.bp.blogspot.com/-sxL-QjhRxUE/TdhidbXuAKI/AAAAAAAAGLI/NX9LdWqu4nM/s320/PSF_fit_plot_pipelinecompare.png" />
+<p>Note that the model matches the first sidelobe in the &quot;observed&quot; PSF
+pretty well, but both before and after pipeline processing, overpredicts
+the second sidelobe.
+There are a few &quot;action items&quot; remaining for this task:</p>
+<ol class="arabic simple">
+<li>Re-derive the &quot;observed&quot; PSF using V2. Does it vary with epoch?
+Source?</li>
+<li>Find a model that better recovers the observed PSF</li>
+</ol>
+<p>Any thoughts on better models to use? Does this seem like a good idea at
+all?</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/azimuthal-averages.html" rel="bookmark" title="Permalink to Azimuthal Averages">
+                    Azimuthal Averages</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-04-27T19:45:00"> 2011/04/27 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>We noted in discussion yesterday that the aperture sum in the (nearly
+perfectly recovered) is lower than expected even for a gaussian fit of
+an airy. A Gaussian approximation to an Airy should recover 93.5% of the
+flux; 6.5% of the power is in the sidelobes of an Airy disk. We recover
+about 86-88% of the flux in the input point-source map, or about 5-7%
+short, despite matching the peak to within 2-3%. This discrepancy is
+partly - but not completely - explained by a slight negative bowl
+effect: the Gaussian fit has a higher total flux than the aperture sum.
+Using the gaussian fit value, the recovery is about 90%. A mere 3%
+missing flux is not too much of a problem - it could still be that the
+gaussian is uniformly reduced by bowl effects, or perhaps that some flux
+is not reincorporated into the map (at a very low level) because it is
+correlated enough to be PCA-cleaned.
+In the figure, the top panel is the radial profile of the ds1 data
+(black), the input data (red), and their gaussian fits (see legend). The
+circles on the labeled images show the FWHM of the fitted gaussian,
+indicating a good fit. The apertures used for summation are NOT
+displayed. The sum aperture has a radius of 90&quot; (6.25 pixels) and the
+&quot;Noise Aperture&quot; has the same area as the sum aperture.</p>
+<img alt="http://1.bp.blogspot.com/-nvXzUBHvsmE/TbhaQabluMI/AAAAAAAAGKc/Ks16AZ70fe0/s320/exp2_amp1.0E%252B01_map20_ds1inputcompare_point.png" src="http://1.bp.blogspot.com/-nvXzUBHvsmE/TbhaQabluMI/AAAAAAAAGKc/Ks16AZ70fe0/s320/exp2_amp1.0E%252B01_map20_ds1inputcompare_point.png" />
+<p>If we redo the analysis with a smaller aperture, the recovery is better:
+95% in the central 45&quot;. However, now the airy ring cannot account for
+any lost flux, so it still looks like there's a 5% loss intrinsic in the
+pipeline.</p>
+<img alt="http://2.bp.blogspot.com/-mqisozGUA2c/Tbhx5wk04WI/AAAAAAAAGKk/AIxGRnDMZBM/s320/exp2_amp1.0E%252B01_map20_ds1inputcompare_point.png" src="http://2.bp.blogspot.com/-mqisozGUA2c/Tbhx5wk04WI/AAAAAAAAGKk/AIxGRnDMZBM/s320/exp2_amp1.0E%252B01_map20_ds1inputcompare_point.png" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/ds1-ds5-comparisons.html" rel="bookmark" title="Permalink to ds1-ds5 comparisons">
+                    ds1-ds5 comparisons</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-04-26T21:54:00"> 2011/04/26 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm comparing simulated ds1-ds5 to real ds1-ds5 comparison tests.
+In the simulated tests, I compare the recovered map after 20 iterations
+with 13 pca components subtracted to the input map. There are figures
+showing this comparison for ds1 and ds5 images in addition to one
+showing the comparison between ds1 and ds5. The agreement is pretty much
+as good as you could ask for.
+These simulations are the most realistic run yet. They include a
+simulated atmosphere that is perfectly correlated between all bolometers
+excepting gaussian noise, but the relative sensitivity of the bolometers
+is varied.</p>
+<img alt="http://4.bp.blogspot.com/-xZqAo2n84iE/TbcsrsLkkaI/AAAAAAAAGIM/J_4xWIOGoCQ/s320/exp2_varyrelscale_amp1.0E-01_map20_ds1ds5compare.png" src="http://4.bp.blogspot.com/-xZqAo2n84iE/TbcsrsLkkaI/AAAAAAAAGIM/J_4xWIOGoCQ/s320/exp2_varyrelscale_amp1.0E-01_map20_ds1ds5compare.png" />
+<img alt="http://4.bp.blogspot.com/-G7ks6aygM8w/TbcssORKmqI/AAAAAAAAGIU/aFrSrgTEhc4/s320/airy_test_ds1_reconv_arrang45_atmotest_varyrelscale_amp1.0E-01_compare.png" src="http://4.bp.blogspot.com/-G7ks6aygM8w/TbcssORKmqI/AAAAAAAAGIU/aFrSrgTEhc4/s320/airy_test_ds1_reconv_arrang45_atmotest_varyrelscale_amp1.0E-01_compare.png" />
+<img alt="http://4.bp.blogspot.com/-MemhZbvFgYw/Tbcssv4s06I/AAAAAAAAGIc/8aSHBsnKHuU/s320/airy_test_ds5_reconv_arrang45_atmotest_amp1.0E-01_compare.png" src="http://4.bp.blogspot.com/-MemhZbvFgYw/Tbcssv4s06I/AAAAAAAAGIc/8aSHBsnKHuU/s320/airy_test_ds5_reconv_arrang45_atmotest_amp1.0E-01_compare.png" />
+<p>This is what a 'real' ds1-ds5 comparison looks like. The image shown is
+a &quot;cross-linked&quot; observation of Uranus with downsampling off and on.
+Note that downsampling clearly and blatantly smears the source flux.</p>
+<img alt="http://2.bp.blogspot.com/-UvoCV4PvBcM/TbcstPbA_5I/AAAAAAAAGIk/S1cPsnCGmvc/s320/091219_o15-6_ds5_uranus_indivtest_reconv_ds1ds5compare.png" src="http://2.bp.blogspot.com/-UvoCV4PvBcM/TbcstPbA_5I/AAAAAAAAGIk/S1cPsnCGmvc/s320/091219_o15-6_ds5_uranus_indivtest_reconv_ds1ds5compare.png" />
+<p>The same image with &quot;beam location correction&quot; looks no better.</p>
+<img alt="http://2.bp.blogspot.com/-ab27Av_tJB4/Tbcu3Jp0x6I/AAAAAAAAGIs/xUjzxFEVYXI/s320/091219_o15-6_ds5_uranus_indivtest_reconvBL_ds1ds5compare.png" src="http://2.bp.blogspot.com/-ab27Av_tJB4/Tbcu3Jp0x6I/AAAAAAAAGIs/xUjzxFEVYXI/s320/091219_o15-6_ds5_uranus_indivtest_reconvBL_ds1ds5compare.png" />
+<p>The problem is essentially the same with the individual scan directions:</p>
+<img alt="http://4.bp.blogspot.com/-WwNjh1U-xu0/TbcyTyab16I/AAAAAAAAGI0/oO1fOiY4Bow/s320/091219_o16_ds1_uranus_indivtest_reconv_ds1ds5compare.png" src="http://4.bp.blogspot.com/-WwNjh1U-xu0/TbcyTyab16I/AAAAAAAAGI0/oO1fOiY4Bow/s320/091219_o16_ds1_uranus_indivtest_reconv_ds1ds5compare.png" />
+<img alt="http://3.bp.blogspot.com/-k2U0rWMtcH8/TbcyUxfGrfI/AAAAAAAAGI8/ErLepYPyYJE/s320/091219_o15_ds1_uranus_indivtest_reconv_ds1ds5compare.png" src="http://3.bp.blogspot.com/-k2U0rWMtcH8/TbcyUxfGrfI/AAAAAAAAGI8/ErLepYPyYJE/s320/091219_o15_ds1_uranus_indivtest_reconv_ds1ds5compare.png" />
+<p>What is causing this difference?</p>
+<ul class="simple">
+<li>higher-order corrections to the atmosphere calculation?</li>
+<li>inadequate sampling of the model?</li>
+<li>&quot;pointing&quot; offsets between the model and the data (note that these
+are NOT pointing offsets, but they may be &quot;distortion map&quot; offsets)?</li>
+<li>Other?</li>
+</ul>
+<p>Examining the weights and scales for two individual (real) observations,
+ds1 followed by ds5, is not particularly telling; there is one
+additional outlier bolometer flagged out in the ds1 observation, but
+there is nothing obviously wrong with that bolometer (it may have much
+lower high-frequency noise than others).</p>
+<img alt="http://2.bp.blogspot.com/-FQGo3OPClLw/Tbc5gVqn-1I/AAAAAAAAGJE/RSmGgDcDSK0/s320/091219_o15-6_ds1_uranus_indivtest_reconv091219_o15_raw_ds1.nc_indiv13pca_weights_iter10.png" src="http://2.bp.blogspot.com/-FQGo3OPClLw/Tbc5gVqn-1I/AAAAAAAAGJE/RSmGgDcDSK0/s320/091219_o15-6_ds1_uranus_indivtest_reconv091219_o15_raw_ds1.nc_indiv13pca_weights_iter10.png" />
+<img alt="http://1.bp.blogspot.com/-M0u4dlKj5IM/Tbc5g7PQ5YI/AAAAAAAAGJM/njdiKaENlzI/s320/091219_o15-6_ds5_uranus_indivtest_reconv091219_o15_raw_ds5.nc_indiv13pca_weights_iter10.png" src="http://1.bp.blogspot.com/-M0u4dlKj5IM/Tbc5g7PQ5YI/AAAAAAAAGJM/njdiKaENlzI/s320/091219_o15-6_ds5_uranus_indivtest_reconv091219_o15_raw_ds5.nc_indiv13pca_weights_iter10.png" />
+<p>The simulations actually have more discrepant weights, but that doesn't
+seem to cause any problems:</p>
+<img alt="http://1.bp.blogspot.com/-pL-VkELw7g4/Tbc7OrD5d6I/AAAAAAAAGJU/zCB9wyF09_g/s320/airy_test_ds1_reconv_arrang45_atmotest_varyrelscale_amp1.0E-01_weights_iter20.png" src="http://1.bp.blogspot.com/-pL-VkELw7g4/Tbc7OrD5d6I/AAAAAAAAGJU/zCB9wyF09_g/s320/airy_test_ds1_reconv_arrang45_atmotest_varyrelscale_amp1.0E-01_weights_iter20.png" />
+<img alt="http://4.bp.blogspot.com/-D0GDZ-wq0ZY/Tbc7PIM2pQI/AAAAAAAAGJc/38Edm0ufAs4/s320/airy_test_ds5_reconv_arrang45_atmotest_varyrelscale_amp1.0E-01_weights_iter20.png" src="http://4.bp.blogspot.com/-D0GDZ-wq0ZY/Tbc7PIM2pQI/AAAAAAAAGJc/38Edm0ufAs4/s320/airy_test_ds5_reconv_arrang45_atmotest_varyrelscale_amp1.0E-01_weights_iter20.png" />
+<p>The timestreams both have similar artifacts:</p>
+<img alt="http://4.bp.blogspot.com/-S_3X_HkqzF4/Tbc7v7rrs4I/AAAAAAAAGJk/y0Wkwo3JYhg/s320/091219_o15-6_ds1_uranus_indivtest_reconv091219_o15_raw_ds1.nc_indiv13pcatimestream004_plots_10_bolo12.png" src="http://4.bp.blogspot.com/-S_3X_HkqzF4/Tbc7v7rrs4I/AAAAAAAAGJk/y0Wkwo3JYhg/s320/091219_o15-6_ds1_uranus_indivtest_reconv091219_o15_raw_ds1.nc_indiv13pcatimestream004_plots_10_bolo12.png" />
+<img alt="http://4.bp.blogspot.com/-lg_Z50_vocc/Tbc7wZXRUlI/AAAAAAAAGJs/fcuf9u241QE/s320/091219_o15-6_ds5_uranus_indivtest_reconv091219_o15_raw_ds5.nc_indiv13pcatimestream004_plots_10_bolo12.png" src="http://4.bp.blogspot.com/-lg_Z50_vocc/Tbc7wZXRUlI/AAAAAAAAGJs/fcuf9u241QE/s320/091219_o15-6_ds5_uranus_indivtest_reconv091219_o15_raw_ds5.nc_indiv13pcatimestream004_plots_10_bolo12.png" />
+<p>while the simulated versions really don't:</p>
+<img alt="http://1.bp.blogspot.com/-cG1uUEY_N9M/Tbc-ZJtPVzI/AAAAAAAAGJ0/VGcWV0JYtxQ/s320/airy_test_ds1_reconv_arrang45_atmotest_varyrelscale_amp1.0E-01timestream011_plots_20_bolo07.png" src="http://1.bp.blogspot.com/-cG1uUEY_N9M/Tbc-ZJtPVzI/AAAAAAAAGJ0/VGcWV0JYtxQ/s320/airy_test_ds1_reconv_arrang45_atmotest_varyrelscale_amp1.0E-01timestream011_plots_20_bolo07.png" />
+<img alt="http://3.bp.blogspot.com/-4KA5jSCQgsY/Tbc-ZhvL_lI/AAAAAAAAGJ8/brh-nGwSses/s320/airy_test_ds5_reconv_arrang45_atmotest_varyrelscale_amp1.0E-01timestream011_plots_20_bolo07.png" src="http://3.bp.blogspot.com/-4KA5jSCQgsY/Tbc-ZhvL_lI/AAAAAAAAGJ8/brh-nGwSses/s320/airy_test_ds5_reconv_arrang45_atmotest_varyrelscale_amp1.0E-01timestream011_plots_20_bolo07.png" />
+<p>This is true even when the relative strength of the atmosphere is
+higher:</p>
+<img alt="http://1.bp.blogspot.com/-2MZXbARZeWo/Tbc-xHG3bOI/AAAAAAAAGKE/yEiYQ8YqqkU/s320/airy_test_ds1_reconv_arrang45_atmotest_varyrelscale_amp1.0E%252B00timestream011_plots_20_bolo07.png" src="http://1.bp.blogspot.com/-2MZXbARZeWo/Tbc-xHG3bOI/AAAAAAAAGKE/yEiYQ8YqqkU/s320/airy_test_ds1_reconv_arrang45_atmotest_varyrelscale_amp1.0E%252B00timestream011_plots_20_bolo07.png" />
+<img alt="http://2.bp.blogspot.com/-Lr1QqlLNc20/Tbc-xhLCH3I/AAAAAAAAGKM/N1GKh-hZZ-Q/s320/airy_test_ds5_reconv_arrang45_atmotest_varyrelscale_amp1.0E%252B00timestream011_plots_20_bolo07.png" src="http://2.bp.blogspot.com/-Lr1QqlLNc20/Tbc-xhLCH3I/AAAAAAAAGKM/N1GKh-hZZ-Q/s320/airy_test_ds5_reconv_arrang45_atmotest_varyrelscale_amp1.0E%252B00timestream011_plots_20_bolo07.png" />
+<p>I think the most viable candidate is the 'pointing offset' idea, which
+will take a little work to simulate properly...</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/it-is-somewhat-clear-that-sampling-isnt-causi.html" rel="bookmark" title="Permalink to It is somewhat clear that sampling isn&#39;t causi...">
+                    It is somewhat clear that sampling isn&amp;#39;t causi...</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-04-22T02:43:00"> 2011/04/22 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>It is somewhat clear that sampling isn't causing huge issues in the
+sense I was imagining... the highest pixel ranges from 0.98 to 1.04
+depending on how the PSF is made anyway, so 5% errors are totally
+unavoidable.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/weighting-and-scaling.html" rel="bookmark" title="Permalink to Weighting and Scaling">
+                    Weighting and Scaling</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-04-19T23:08:00"> 2011/04/19 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The &quot;simple&quot; relative sensitivity calibration was causing serious
+problems.
+The assumed model for a &quot;gain&quot; $G$, timestream $S$, and reference
+timestream $R$ is:
+$S = G R$
+Naively, one would assume that something like
+$G = median(S/R)$
+would work. However, it doesn't. The distribution of $G$ values looks
+like:</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -245,203 +439,10 @@ noise maps.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/examining-deconvolution-strategies.html" rel="bookmark" title="Permalink to Examining deconvolution strategies">
-                    Examining deconvolution strategies</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-04-07T22:05:00"> 2011/04/07 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>This is a direct continuation of what I did yesterday (but only posted
-today because I forgot to click post).
-No-deconvolution doesn't work, at least not reliably. It recovers
-structures that are too large to be believable. Perhaps a higher
-threshold should be required to include signal in the model? The noise
-actually looks too high anyway. Also, the flagging doesn't look great.
-Grr.
-The agreement between the three is somewhat better, down to a 50%
-increase of reconv over deconv:
-[deconv, nodeconv, reconv]:
-BMAJ: 0.00916667 BMIN: 0.00916667 PPBEAM: 23.8028 SUM/PPBEAM: 8.19765
-Sum: 195.127 Mean: 1.04346 Median: 0.751545 RMS: 0.78342 NPIX: 187
-BMAJ: 0.00916667 BMIN: 0.00916667 PPBEAM: 23.8028 SUM/PPBEAM: 10.1592
-Sum: 241.816 Mean: 1.29314 Median: 1.04031 RMS: 0.778854 NPIX: 187
-BMAJ: 0.00916667 BMIN: 0.00916667 PPBEAM: 23.8028 SUM/PPBEAM: 12.1694
-Sum: 289.664 Mean: 1.54901 Median: 1.31107 RMS: 0.808915 NPIX: 187
-But this time there is less indication of negative residuals than
-previously.
-I was very confused by negatives being included in the model for
-nodeconv, then realized it's because of the grow_mask option.
-sncut = 1 is now default for nodeconv. I think it makes sense.
-(sncut = 1 drops the flux by &lt;10%:
-BMAJ: 0.00916667 BMIN: 0.00916667 PPBEAM: 23.8028 SUM/PPBEAM: 9.31507
-Sum: 221.725 Mean: 1.18569 Median: 0.915137 RMS: 0.783316 NPIX: 187)
-While reconv has produced reasonable results in some cases, a close look
-at the maps shows that deconv ~ nodeconv &lt;&lt; reconv. There is something
-wrong with reconv. It spreads out and increases the flux artificially.
-So.... why did it work so damn well for point sources?
-The new weighting scheme seems to flag a dangerous number of bolos as
-'high weight'. It drops after iteration #1, but not all the way.
-Need to remember to reprocess all December 2009 data with more flagged
-bolos</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/deconvolve-and-epochs.html" rel="bookmark" title="Permalink to Deconvolve and Epochs">
-                    Deconvolve and Epochs</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-04-05T18:12:00"> 2011/04/05 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I've spent a large portion of the last week working on the deconvolver.
-I found <a class="reference external" href="http://bolocam.blogspot.com/2011/03/workaround-for-individual-maps.html">previously</a> that a reconvolved map does a better job of
-restoring flux than the straight-up deconvolved map for point sources /
-pointing observations.
-However, the same update broke the regular mapping modes, leading to
-horrible instability in the mapping routines for large maps such as W5.
-Curiously, it seems that the aspect that breaks is the weighting;
-somehow the noise drops precipitously in certain bolometers, leading to
-extremely high weights. Perhaps they somehow dominate the PCA
-subtraction and therefore have all their noise removed?
-Either way, there are a few large-scale changes that need to be made:</p>
-<ol class="arabic simple">
-<li>Since Scaling and Weighting are now done on a whole-timestream basis,
-we should only map single epochs at once and coadd them after the
-fact. This approach will also help relieve RAM strain. Since it
-appears that individual observations are now reasonably convergent
-with the proper treatment of NANs in the deconvolution scheme, it
-should be possible to take any individual map and coadd it in a
-reasonable way.</li>
-<li>Bolometers with bad weights need to be thrown out. Alternatively, and
-more appropriately, I need to discover WHY their weights are going
-bad.</li>
-</ol>
-<p>We also need to explore different weighting schemes.</p>
-<ol class="arabic simple">
-<li>1/Variance over whole timestream (current default)</li>
-<li>1/Variance on a per-scan basis (previous default) [based on PSDs]</li>
-<li>Minimum Chi<sup>2</sup> with Astrophysical Model (??)</li>
-<li>Min Chi<sup>2</sup> on a per-scan basis?</li>
-</ol>
-<p>Because of the extensive testing this will require, it is really
-becoming essential that we develop an arbitrary map creation &amp; testing
-routine.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/weird-problem.html" rel="bookmark" title="Permalink to Weird problem">
-                    Weird problem</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-03-31T02:25:00"> 2011/03/31 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I'm remapping everything, and there's a really strange situation in
-ic1396... only one field has a source that doesn't have rotation
-problems, every other observation is clearly improperly rotated. The
-weird thing is that it's NOT the one you'd expect from the information
-below:
-<tt class="docutils literal"><span class="pre">readcol,'/Volumes/disk2/sliced/infiles/ic1396_infile.txt',filelist,format='A'for</span> i=0,6 do begin &amp; <span class="pre">ncdf_varget_scale,filelist[i],'array_params',ap</span> &amp; <span class="pre">print,filelist[i],ap</span> &amp; endfor/Volumes/disk2/sliced/ic1396/070911_o19_raw_ds5.nc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.70000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31.2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 70.7000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000/Volumes/disk2/sliced/ic1396/070912_o26_raw_ds5.nc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.70000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31.2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 84.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000/Volumes/disk2/sliced/ic1396_d/070913_o19_raw_ds5.nc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.70000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31.2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 84.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000/Volumes/disk2/sliced/ic1396_l/070913_o17_raw_ds5.nc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.70000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31.2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 84.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000/Volumes/disk2/sliced/ic1396_r/070913_o18_raw_ds5.nc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.70000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31.2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 84.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000/Volumes/disk2/sliced/ic1396_u/070913_o20_raw_ds5.nc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.70000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31.2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 84.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000</tt>
-One ofthese things is not like the others... but it's
-070913_o18_raw_ds5.nc, not
-/Volumes/disk2/sliced/ic1396/070911_o19_raw_ds5.nc</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/progress-but-still-ds1-ds5-issues.html" rel="bookmark" title="Permalink to Progress, but still ds1-ds5 issues">
-                    Progress, but still ds1-ds5 issues</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-03-30T02:47:00"> 2011/03/30 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>ds1 and ds5 agree pretty well with the recent upgrades to delining and
-deconvolution. However, there are still counterexamples, e.g.
-101208_o13, in which ds5 &lt; ds1:</p>
-<img alt="http://4.bp.blogspot.com/-fIJHF_x5mBI/TZI0cryJfbI/AAAAAAAAGDI/GsNfLRGNZAk/s200/101208_o13_raw_ds1.nc_indiv13pca.png" src="http://4.bp.blogspot.com/-fIJHF_x5mBI/TZI0cryJfbI/AAAAAAAAGDI/GsNfLRGNZAk/s200/101208_o13_raw_ds1.nc_indiv13pca.png" />
-<img alt="http://2.bp.blogspot.com/-QRhiz8W9RDc/TZI0dGUR4UI/AAAAAAAAGDQ/WC8eLQd6_Z0/s200/101208_o13_raw_ds5.nc_indiv13pca.png" src="http://2.bp.blogspot.com/-QRhiz8W9RDc/TZI0dGUR4UI/AAAAAAAAGDQ/WC8eLQd6_Z0/s200/101208_o13_raw_ds5.nc_indiv13pca.png" />
-<p>The 'fitted' values agree better than the 'measured' values now that
-NANs are treated properly.
-Spent a few hours today trying to figure out if weighting can explain
-the difference between ds1 and ds5; it appears to make up for most of it
-so I'm doing some more experiments. Why is there so much parameter
-space? Why can't weighting just work? It doesn't....
-also wasted a few hours trying to write a python drizzling algorithm,
-which unfortunately is impossible so I had to resort to an inefficient
-for loop.
-Finally got some minor results. It really looks like there is a trend
-pushing up the recovered flux (i.e. higher volts/Jy) for ds5 over ds1.
-There is a discrepancy between map types for ds1 but not for ds5, which
-is actually backwards from what I would have expected, since ds1 will
-get better-sampled maps.</p>
-<img alt="http://2.bp.blogspot.com/-ARaSL7ZdDmc/TZKRcE01DnI/AAAAAAAAGDY/YMZRpRo53Hw/s320/uranus_dcfluxes_dec2010_nomask_ds1_13pca_fits_map10.png" src="http://2.bp.blogspot.com/-ARaSL7ZdDmc/TZKRcE01DnI/AAAAAAAAGDY/YMZRpRo53Hw/s320/uranus_dcfluxes_dec2010_nomask_ds1_13pca_fits_map10.png" />
-<img alt="http://3.bp.blogspot.com/-pWtggp0vSP4/TZKRcwZ_SrI/AAAAAAAAGDg/IqVHQSprkL8/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png" src="http://3.bp.blogspot.com/-pWtggp0vSP4/TZKRcwZ_SrI/AAAAAAAAGDg/IqVHQSprkL8/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png" />
-<p>Luckily, the difference between peak fitting and &quot;measuring&quot; results in
-very small (insignificant) changes to the calibration curve (recall
-fitting is direct gaussian fitting; 'measuring' is using the
-gaussian-fit width and total flux in an ellipse to infer a peak assuming
-a point source):</p>
-<img alt="http://2.bp.blogspot.com/-E-FDTTj-4Ik/TZKVyUA8zBI/AAAAAAAAGDo/9NGubgLWBvo/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png" src="http://2.bp.blogspot.com/-E-FDTTj-4Ik/TZKVyUA8zBI/AAAAAAAAGDo/9NGubgLWBvo/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png" />
-<img alt="http://3.bp.blogspot.com/-GdyxFnmwQ7g/TZKVykSg57I/AAAAAAAAGDw/PPVXtfAxW0s/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_map10.png" src="http://3.bp.blogspot.com/-GdyxFnmwQ7g/TZKVykSg57I/AAAAAAAAGDw/PPVXtfAxW0s/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_map10.png" />
-<p>Since this work has all been done for the 'bootstrapping' observations
-that are supposed to tell us if different map sizes are compatible, I
-have included the map sizes in the diagrams now. However, to really
-understand the ds1/ds5 difference, there are much better data sets,
-which I'm now reprocessing using the new and improved methods.
-(the Whole BGPS is also processing with the new methods in the
-background, though since the methods are being updated live there may be
-more changes and it will have to be re-run.... initial looks at W5 are
-BAD but L030 is GOOD (bordering on amazing))</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/careful-comparison-of-ds1-and-ds5.html" rel="bookmark" title="Permalink to Careful comparison of ds1 and ds5">
-                    Careful comparison of ds1 and ds5</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-03-29T15:23:00"> 2011/03/29 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I looked very closely at the timestream and maps of 101208_o11 and had
-a pretty hard time figuring out why the data were different, but it
-looked like the data really did differ on a point-by-point basis
-(according to pyflagger). The only conclusion I was able to draw is that
-the scaling must be off. I realized that the scaling was being done
-before delining. I moved scaling from readall_pc to premap, and it
-brought at least this one source into agreement. Time to run ds1-ds5
-comparisons again!
-(this means that ds1 data MUST have deline run on it, but ds5 data
-doesn't really need it)
-Here are examples of ds1 and ds5 timestreams, with and without scaling,
-and ds1 with and without delining:</p>
-<img alt="http://4.bp.blogspot.com/-KR_NYG31_O0/TZECtBAgqFI/AAAAAAAAGCg/1jC9Ys2r9Iw/s200/101208_o11_ds5_uranus_indivtesttimestream011_plots_20_bolo02.png" src="http://4.bp.blogspot.com/-KR_NYG31_O0/TZECtBAgqFI/AAAAAAAAGCg/1jC9Ys2r9Iw/s200/101208_o11_ds5_uranus_indivtesttimestream011_plots_20_bolo02.png" />
-<img alt="http://3.bp.blogspot.com/-HbK-hAXjSDs/TZECtUNe8AI/AAAAAAAAGCo/i4fsH12Iw8Y/s200/101208_o11_ds1_uranus_indivtest_delinetimestream011_plots_20_bolo02.png" src="http://3.bp.blogspot.com/-HbK-hAXjSDs/TZECtUNe8AI/AAAAAAAAGCo/i4fsH12Iw8Y/s200/101208_o11_ds1_uranus_indivtest_delinetimestream011_plots_20_bolo02.png" />
-<img alt="http://3.bp.blogspot.com/-edXLnDrrt5o/TZECt0No8oI/AAAAAAAAGCw/QjHg1ScBHG0/s200/101208_o11_ds1_uranus_indivtesttimestream011_plots_20_bolo02.png" src="http://3.bp.blogspot.com/-edXLnDrrt5o/TZECt0No8oI/AAAAAAAAGCw/QjHg1ScBHG0/s200/101208_o11_ds1_uranus_indivtesttimestream011_plots_20_bolo02.png" />
-<img alt="http://1.bp.blogspot.com/-4NIxFxEQ1jU/TZECuDJ1fVI/AAAAAAAAGC4/tGE5tDH_168/s200/101208_o11_ds1_uranus_indivtest_deline_noscaleacbtimestream011_plots_20_bolo02.png" src="http://1.bp.blogspot.com/-4NIxFxEQ1jU/TZECuDJ1fVI/AAAAAAAAGC4/tGE5tDH_168/s200/101208_o11_ds1_uranus_indivtest_deline_noscaleacbtimestream011_plots_20_bolo02.png" />
-<img alt="http://2.bp.blogspot.com/-DfIepZXXCFc/TZECuhm8lwI/AAAAAAAAGDA/Awp60ZuPGps/s200/101208_o11_ds5_uranus_indivtest_noscaleacbtimestream011_plots_20_bolo02.png" src="http://2.bp.blogspot.com/-DfIepZXXCFc/TZECuhm8lwI/AAAAAAAAGDA/Awp60ZuPGps/s200/101208_o11_ds5_uranus_indivtest_noscaleacbtimestream011_plots_20_bolo02.png" />
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
                         <a href="http://keflavich.github.io/blog/index31.html">&laquo;</a>
-                Page 32 / 46
+                Page 32 / 47
             <a href="http://keflavich.github.io/blog/index33.html">&raquo;</a>
     </p>
 </section><!-- /#content -->
