@@ -69,27 +69,27 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                           <li class="post">
                   2013/10/01
                   <br>
+                  <a href="http://keflavich.github.io/blog/general-discussion-day-2.html">General Discussion (day 2)</a>
+              </li>
+                          <li class="post">
+                  2013/10/01
+                  <br>
+                  <a href="http://keflavich.github.io/blog/rei-enokiya-large-scale-and-high-sensitivity-multi-line-co-surveys-toward-the-galactic-center.html">Rei Enokiya: Large scale and high sensitivity multi line CO surveys toward the Galactic Center</a>
+              </li>
+                          <li class="post">
+                  2013/10/01
+                  <br>
+                  <a href="http://keflavich.github.io/blog/denise-riquelme-vasquez-diskhalo-interactions-molecular-clouds-in-the-galactic-center.html">Denise Riquelme Vasquez: Disk/Halo Interactions: Molecular Clouds in the Galactic Center</a>
+              </li>
+                          <li class="post">
+                  2013/10/01
+                  <br>
+                  <a href="http://keflavich.github.io/blog/kazushi-sakamoto-the-kinematics-and-dynamics-of-molecular-gas-in-galactic-centers.html">Kazushi Sakamoto: The Kinematics and Dynamics of Molecular Gas in Galactic Centers</a>
+              </li>
+                          <li class="post">
+                  2013/10/01
+                  <br>
                   <a href="http://keflavich.github.io/blog/betsy-mills-hot-gas-masers-and-cloud-collisions-the-extreme-properties-of-molecular-gas-at-the-heart-of-the-milky-way-galaxy.html">Betsy Mills: Hot Gas, Masers, and Cloud Collisions: The extreme properties of molecular gas at the heart of the Milky Way Galaxy</a>
-              </li>
-                          <li class="post">
-                  2013/10/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/jill-rathborne-almas-view-of-the-initial-conditions-within-a-massive-protocluster.html">Jill Rathborne: ALMA’s view of the initial conditions within a massive protocluster</a>
-              </li>
-                          <li class="post">
-                  2013/10/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/steve-longmore-conversion-of-gas-into-stars-in-the-galactic-center.html">Steve Longmore: Conversion of Gas into Stars in the Galactic Center</a>
-              </li>
-                          <li class="post">
-                  2013/09/30
-                  <br>
-                  <a href="http://keflavich.github.io/blog/general-discussion-day-1.html">General Discussion (Day 1)</a>
-              </li>
-                          <li class="post">
-                  2013/09/30
-                  <br>
-                  <a href="http://keflavich.github.io/blog/thibault-paumard-regularized-osiris-3d-spectroscopy-at-the-circumnuclear-disk-ionization-front.html">Thibault Paumard: Regularized OSIRIS 3D spectroscopy at the Circumnuclear Disk ionization front</a>
               </li>
                     </ul>
       </li>
@@ -101,6 +101,141 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/more-problem-maps.html" rel="bookmark" title="Permalink to More problem maps">
+                    More problem maps</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-01-16T02:29:00"> 2009/01/16 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>the l060-l062 range has some severe noise problems and rotator issues.
+They need to be fixed before release.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/uh.html" rel="bookmark" title="Permalink to Uh?">
+                    Uh?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-01-15T18:22:00"> 2009/01/15 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm not sure the error reported yesterday is reproducible.
+Tonight, I started a complete re-mapping of the entire survey. The new
+mapping will include beam-smoothed maps and more complete header
+parameters.
+I need to re-check the L111 mapping. It looks like the region with NGC
+7538 in it did alright, but the southeast region didn't do so well. The
+combined maps are probably better than in any previous iteration,
+though.
+Tomorrow's tests will include L024 presumably.
+It's time to get to work on this stuff. There is definitely a reasonably
+efficient way to go through all of this stuff; the most difficult part
+is post-facto error checking.
+Here are some awk commands I found useful (the \'s are because of VI):
+`` awk '{printf( $0); if ($2 != 0){ printf(&quot; %4i%4i&quot;,$4-443,$5-207) }; if($4!=0){printf(&quot; %4i,%4i&quot;,$2-272,$3-742)}; printf(&quot;n&quot;) }' align/l111_fitslist_shiftfind.txt``
+<tt class="docutils literal">awk '{print <span class="pre">$6,$7}'</span> align/l111_fitslist_shiftfind.txt &gt; align/shifts_all_lb.txt</tt>
+One important point: I had to add a parameter to the header file to say
+whether the current pointing model was used or not. It matters when
+applying the offsets. Note that since I'm using the pointing model to
+make all the individual maps, we actually have to stick with this
+current set of pointing models for all coaligned maps.
+The current models:</p>
+<pre class="literal-block">
+#   Definition of coefficientts:#   start/end mjd are the start/end modified Julian date of a given pointing model#   the 'a' coefficients are for the AZIMUTH OFFSET, the b coefficients are for the ZENITH ANGLE OFFSET#   a0/b0 are constants (e.g. the mean)#   [ab][12] are the 1st and 2nd coefficients of Azimuth.  They have been fiated to zero for most of#   the past year or three.#   [ab][34] are the 1st and 2nd coefficients of Zenith Angle.#   A 'pointing model' is therefore something like this:#   azoff = a0 + a3*alt + a4*alt^2#   altoff = b0 + b3*alt + b4*alt^2##   It is important that the start_mjd/end_mjd be in ascending order##   WARNING: LATER THAN JULY 2007 DEFAULTS TO JULY 2007 WHICH WILL PROBABLY RESULT IN ERRORS!#   I don't have a September 2007 model yet.##   start_mjd      end_mjd               a0              a1            a2              a3             a4                 b0             b1             b2             b3                b4       realdate      53522.5      53582.5       -9.2413685             0.0           0.0   -0.0066354359  -0.0015110883          7.0392221            0.0            0.0   -0.053635657    -0.00047042481       20050601      53614.5      53643.5        84.969583             0.0           0.0      -2.4339154    0.016300937          126.00164            0.0            0.0     -2.4424431       0.015455417       20050901      53887.5      53947.5        9.5305281             0.0           0.0    -0.053191181  -0.0029300592         0.13425019            0.0            0.0     0.48160040     -0.0092814256       20060601      53979.5      54008.5       -98.980381             0.0           0.0      0.65354164   -0.012414466          52.841380            0.0            0.0      1.6705743      -0.020893018       20060901      54101.5      54252.5       -99.078392             0.0           0.0        0.105270   -0.005943491          86.896333            0.0            0.0     0.54257415      -0.011919129       20070101      54252.5      54288         -103.03831             0.0           0.0      0.20972540  -0.0060336987          100.74491            0.0            0.0   0.0099012827     -0.0033331895       20070601#      54288        54313         -99.078392             0.0           0.0      0.10527000  -0.0059434911          86.896333            0.0            0.0     0.54257415      -0.011919129       20070707      54288        54313         -98.803883             0.0           0.0      0.11810246  -0.0051207995          91.720516            0.0            0.0     0.18953269      -0.0078189793       20070707      54313        54500         -99.078392             0.0           0.0      0.10527000  -0.0059434911          86.896333            0.0            0.0     0.54257415      -0.011919129       20070707mjd2date,53522.5 ,y,m,d &amp; print,y,m,dmjd2date,53614.5 ,y,m,d &amp; print,y,m,dmjd2date,53887.5 ,y,m,d &amp; print,y,m,dmjd2date,53979.5 ,y,m,d &amp; print,y,m,dmjd2date,54101.5 ,y,m,d &amp; print,y,m,dmjd2date,54252.5 ,y,m,d &amp; print,y,m,dmjd2date,54288   ,y,m,d &amp; print,y,m,d
+</pre>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/new-mapping-procedure.html" rel="bookmark" title="Permalink to New mapping procedure">
+                    New mapping procedure</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-01-15T18:21:00"> 2009/01/15 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I cut down the number of maps made by the pipeline from 80 to 30 by
+merging regions with severe overlap. I don't think this will result in
+any net change in efficiency of the mapping process because a few of the
+maps will go over to swap, but it will reduce the amount of overlap /
+noisy edges and make debugging simpler. It should also reduce hard drive
+usage once I decide that I'm satisfied with the results and remove the
+old (v0.6) redundant data.
+As part of this process, the reference fields for coalignment have been
+re-set to the v0.6.2 coadds + some (crappy) mosaics from v0.6.2 so that
+we no longer need to rely on 3x1's for the alignment.
+See /data/bgps/releases/v0.7/readme.txt for details (reproduced below)
+Created 01/14/09
+Version 0.7 does not exist yet. This is the 'release notes' indicating
+what will change
+-Overlapping redundant fields will be eliminated
+Mapping of field name to area covered, followed by number of
+observations
+included:
+gemob1: l189-l192 11 - 2 = 9
+w5: l135-l138 46 = 46
+l133: l133-l134 34 - 1 = 33
+l111: l110-l111 88 = 88
+l086: l085-l086 17 = 17
+l082: l080-l084 33 = 33
+l077: l075-l080 43 - 1 = 42
+l072: l070-l074 10 - 2 = 8
+l065: l059-l069 19 = 19
+l055: l053-l058 10 - 1 = 9
+l050: l048-l052 19 = 19
+l045: l043-l047 20 - 4 = 16
+l040: l038-l042 33 - 4 = 27
+l035: l034-l037 53 = 53
+l032: l031-l033 61 = 61
+l030: l030 61 - 3 = 58
+l029: l028-l029 53 - 4 = 49
+l024: l021-l027 29 = 29
+l018: l015-l021 29 - 3 = 26
+l012: l011-l014 7 = 7
+l009: l008-l010 11 = 11
+l006: l005-l007 15 - 1 = 14
+l003: l002-l004 25 - 1 = 24
+l001: l001 20 = 20
+l000: l000 23 - 1 = 23
+l359: l359 14 = 14
+l357: l356-l358 9 - 1 = 8
+l354: l353-l355 3 = 3
+l351: l350-l352 9 = 9</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/gem-ob1.html" rel="bookmark" title="Permalink to Gem OB1">
+                    Gem OB1</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-01-14T23:49:00"> 2009/01/14 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>With Miranda's help, I discovered some serious errors in Gem OB1 and
+fixed them.</p>
+<ol class="arabic simple">
+<li>L189 was using L134 data for no apparent reason</li>
+<li>many September 2007 observations have the WRONG rotation angle in
+place in array_params! Unfortunately it's not clear yet which ones
+suffer from this problem: I need a list of when rotangle was/was not
+used, and it looks like it'll be a pain to fix the problem.</li>
+<li>GemOB1link wasn't mapped, it will be now.</li>
+</ol>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -239,70 +374,6 @@ The pipeline ground to a halt for an unknown reason at an unknown point
 so I added a lot more timing outputs to try to figure out what's going
 on.
 Back to the grind...</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/flagger.html" rel="bookmark" title="Permalink to flagger">
-                    flagger</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-11-22T01:37:00"> 2008/11/22 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Discovered that the flagger causes some pretty serious problems if you
-try to run it on a non-coadd for obvious reasons: there's practically no
-coverage! Individual maps should NOT go through the flagger, so I have
-added a piece of code that turns off the flagger if only one observation
-is being used. That code is in map_iter where the flagger is called.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/v061-done.html" rel="bookmark" title="Permalink to v0.6.1 done">
-                    v0.6.1 done</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-11-21T02:42:00"> 2008/11/21 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content">  </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/version-06-begun.html" rel="bookmark" title="Permalink to Version 0.6 begun">
-                    Version 0.6 begun</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-11-19T04:52:00"> 2008/11/19 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I started on (what I hope will be) v0.6 tonight.
-New things:
--Sigma-rejection flagging in the spatial domain
--Inverse-variance weighting</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/mad-flagger.html" rel="bookmark" title="Permalink to MAD flagger">
-                    MAD flagger</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-11-19T04:50:00"> 2008/11/19 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <pre class="literal-block">
-; The Mad Flagger; Flag based on the median average deviation within a spatial pixelfunction mad_flagger,data,inds,flags,nsig=nsig    t = systime(/sec)    f0 = total(where(flags))    if n_e(nsig) eq 0 then nsig = 3            newflags = flags    mx=max(inds)    vec3=fltarr(mx+1)    h=histogram(inds,reverse_indices=ri,OMIN=om)    for j=0L,n_elements(h)-1 do begin        if ri[j+1] gt ri[j] then begin            v_inds = [ri[ri[j]:ri[j+1]-1]]            if n_e(v_inds) gt 2 then begin                vec = data[v_inds];                vecmad = mad(vec)  ; the MAD is WAY too small!  I ended up rejecting 8% of points!                vecmad = stddev(vec)                vecmed = median(vec,/even)                madreject = where( (vec gt vecmed + nsig*vecmad) or (vec lt vecmed - nsig*vecmad) )                if (n_e(madreject) gt 0 and total(madreject)) gt 0 then begin                    reject_inds = v_inds[madreject]                    newflags[reject_inds] = 1                endif             endif        endif    endfor    print,&quot;MAD flagger took &quot;,strc(systime(/sec)-t),&quot; seconds and flagged &quot;,$        strc(round(total(where(newflags)) - f0)),' points'    return,newflagsend
-</pre>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
