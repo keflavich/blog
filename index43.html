@@ -104,6 +104,30 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/new-code.html" rel="bookmark" title="Permalink to New code">
+                    New code</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-09-05T21:00:00"> 2008/09/05 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Done for the day after this (observing tonight)
+two new procedures:</p>
+<pre class="literal-block">
+alignment_offsets_to_ncdf.pro
+calcoeffs_to_ncdf.pro
+</pre>
+<p>they're really easy, very nearly one-liners. Once they've been used
+once, you can just use ncdf_varput_scale
+Modified keyword parameters in do_the_pointing: offsets will always be
+applied unless the keyword 'no_offsets' is passed into the code (or the
+top-level wrapper). Since offsets default to zero, this should be OK.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
                 <a href="http://keflavich.github.io/blog/non-greedy-vim.html" rel="bookmark" title="Permalink to Non-greedy vim">
                     Non-greedy vim</a>
             </h2> 
@@ -360,43 +384,6 @@ the GC, my test region, the noise-dominated areas were about the same,
 though the no-deconvolve map had a little bit more large scale
 structure. The signal-dominated regions were very nearly uniformly
 brighter. The deconvolved map was ~3 Jy brighter in SGR B2, or 4%.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/on-the-list-for-today.html" rel="bookmark" title="Permalink to On the list for today....">
-                    On the list for today....</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-23T13:42:00"> 2008/08/23 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Since my gigantic mapping run is still going, I'm going to work
-primarily on developing code for testing the maps, and determining
-important information about the mapper.
-The data paper will require an iteration-to-convergence figure, or at
-least an estimate of degree of convergence.</p>
-<ol class="arabic simple">
-<li>Need to develop code to show iteration-to-convergence<ol class="arabic">
-<li>need it for both NxNpca and ascending/descending</li>
-<li>have to use region files? make some sort of region reader?</li>
-<li>pick demonstration sources</li>
-</ol>
-</li>
-<li>Compare N<sub>pca</sub> results for bright, faint sources</li>
-<li>Compare iterating with/without deconvolution</li>
-<li>Compare median/average/baseline sky subtraction</li>
-<li>Analyze efficiency...</li>
-<li>Try to figure out what's causing huge offsets. Is it Galactic
-Coordinate mapping?</li>
-</ol>
-<pre class="literal-block">
--bash-3.00$ less /scratch/adam_work/logs/log_082208_domemiter.log | grep WholeWhole observation took 5122.6795 sec.Whole observation took 4774.3424 sec.Whole observation took 2687.7761 sec.Whole observation took 2102.5577 sec.Whole observation took 3247.5344 sec.Whole observation took 5515.2907 sec.Whole observation took 2877.6389 sec.Whole observation took 2757.0235 sec.Whole observation took 1453.0918 sec.Whole observation took 1459.7892 sec.Whole observation took 1381.3762 sec.Whole observation took 1443.1440 sec.Whole observation took 614.39645 sec.Whole observation took 2001.6709 sec.Whole observation took 1817.1512 sec.Whole observation took 1879.1385 sec.
-</pre>
-<p>Note that the longest set there - 5515s = 1.53 hours - was 40
-iterations!</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
