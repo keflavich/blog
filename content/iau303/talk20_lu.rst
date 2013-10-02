@@ -29,6 +29,7 @@ Nuclear cluster
    + claimed very top-heavy mass function
 
      - rejected by UCLA group
+
    + fit luminosity function with bayesian model approach
    + modeling required including multiplicity 
 

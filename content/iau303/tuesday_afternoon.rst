@@ -4,21 +4,24 @@ Tuesday Afternoon Talks
 :tags: iau303
 
 4:15-4:35 pm Tobias Fritz (Germany): Nuclear Cluster of the Milky Way (15 + 5 minutes)
---------------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Model fitting of nuclear cluster: Sersic, etc.
  * unusually bright nuclear cluster for its size
 
 Globular cluster origin of nuclear cluster
 
 Questions:
-~~~~~~~~~~
+""""""""""
+
 
  * Q: Round component consistent with inspiraling globular cluster.  What about
    spectral properties?
  * A: No.  Metallicity difficult.
 
 4:35-4:55 pm Tuan Do (Canada): Measuring the physical properties of the Milky Way Nuclear Star Cluster with 3D stellar kinematics (15 + 5 minutes)
---------------------------------------------------------------------------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 Dynamics of CMZ stars
  * Massive black hole affects dynamics of a cluster
@@ -43,7 +46,8 @@ Dynamics of CMZ stars
    + Answered: Can merge with PDF from stellar orbits
 
 Question
-~~~~~~~~
+""""""""
+
 
  * Q: Inconsistent with 7.7 kpc distance to CMZ?
  * A: no, consistent within 1-sigma
@@ -60,9 +64,9 @@ Question
    or radial?
  * A: Hard to know.  Very little anisotropy.  
 
-
 4:55-5:15 pm Mark Wardle (Australia): Star Formation within 0.5 pc of SgrA* (15 + 5 minutes)
---------------------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 "Highest I've ever been for a talk"
 
 High densities needed to overcome tidal shear
@@ -82,7 +86,8 @@ High densities needed to overcome tidal shear
  * accretion rate consistent with 10^6 Msun/Gyr -> build Sgr A*
 
 Questions
-~~~~~~~~~
+"""""""""
+
 
  * Q Mitch: Grav unstable region globally unstable?
  * A: Has to do with the disk height.  h/r very small, not an issue
@@ -105,7 +110,8 @@ Questions
  * A: Maybe kinematics
 
 5:15-5:35 pm Andrea Ghez (USA): Probing General Relativity with Short Period Stars at the Galactic Center (15 + 5 minutes)
---------------------------------------------------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 Why continue studies of GC stars?
  * Test GR
@@ -134,7 +140,8 @@ Why continue studies of GC stars?
  * TMT could do 2-yr orbits
 
 Questions
-~~~~~~~~~
+"""""""""
+
 
  * Q Ostriker: Could the SMBH be sloshing?  Can you allow for that?  What about acceleration?
  * A: Mark Reid did calculation.  Limit ~3 km/s for present BH velocity.
@@ -152,7 +159,9 @@ Questions
  * A: small effect on velocity.
 
 Discussion Section
-==================
+~~~~~~~~~~~~~~~~~~
+
+
 
  * Q: IMFs shallower than salpeter.
  * A Lu: Hard to decouple from dynamical history.  push on spectroscopy to
@@ -197,3 +206,11 @@ Discussion Section
 
  * Do simulations for S stars include interactions between stars?
  * Ghez: Not in most recent version, but in an earlier version
+
+ * How does this test of GR compare with other tests of GR around Sgr A*?
+ * Ghez: Event Horizon Telescope, GRAVITY.
+ * Different systematics.
+
+ * Are HST data consistent with BH at center?
+ * Tuan Do: Same reference frame.  BH defined to be at center.  Velocity can
+   drift, but not position
