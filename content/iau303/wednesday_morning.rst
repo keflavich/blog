@@ -225,19 +225,184 @@ NIR var Sgr A*
  * Power law distribution of brightness...
  * time behavior, structure function of spectral indices
  * Break in PSD
+   + 150, 500 minute break points
+ * simultaneous observations in L and H band
+   + time-resolved measurements of spectral index
+   + Very constant spectral index across all simultaneous measurements
 
+Questions
+~~~~~~~~~
+
+ * Q: Can you combine VLT and Keck data to extend a night?
+ * A: I've tried that....
+
+ * Q: Red curve below black, black below red on some plots.  What's happening
+   to the spectral index? 
+ * A: spectral index variations are significant.  Small compared to... other
+   publications
+
+ * C: Amazing how constant spectral index is
 
 
 11:25-11:45 pm Banafsheh Shahzamanian (Germany): NIR polarized observations of Sagittarius A* (15 + 5 minutes)
 --------------------------------------------------------------------------------------------------------------
+NACO polarization measurements
+ * Sgr A* highly polarized
+ * Polarized flux density has lognormal + power-law distr.
+ * polarization and total flux density (weakly) anticorrelated
+   + adding noise flattens correlation
+   + confirms real... >3-sigma detection
+ * theory: depolarization at high flux comes from relativistic boosting
+
+Questions
+~~~~~~~~~
+ * Q: How does anticorrelation fit with the explanation of high-flux -> high pol?
+ * A: Highly polarized flux is from bright flares at high total flux densities
+      [I didn't understand]
+
+ * Q Fred Lo: Any idea what radius flares are coming from?
+ * A: 6 Schwarzchild radii in the model
+ * Q: What constraints?
+ * A: (from audience) variability timescale
+
+ * Q: Is there a preferred vector position angle?
+ * A: ...?
+
+ * Q Sacha: Anticorrelation between "degree of correlation" and "flux"
+   translates between polarized flux and total emission.  We have interpreted
+   as different components of an outflow, bright and high degree of
+   polarization and faint with low degree of poln.  Is this consistent?
+ 
+ * Q: 40-50% of time, flux is noise-dominated.  Could there be noise-dominated
+   state bias?
+ * A: We have tested by adding noise
+
+ * Q: Would individual flares track up and down the anticorrelation?  Or is it
+   only for large # of flares?
+ * A: only for composite.
+
+ * Q Mitch: What kind of correlation do you see related to position angle?
+ * A: Not included in our analysis
 
 11:45-12:05 pm Kazunori Akiyama (Japan): Long-term monitoring of Sgr A* at 43GHz with VERA and KVN+VERA (15 + 5 minutes)
 ------------------------------------------------------------------------------------------------------------------------
+Sgr A* with VLBI
+ * larger at lower frequencies
+ * variability correlated with spectral index
+ * single component for 3 years
+   + size not correlated with radio flux 
+ * flares come from component emerging from optically thick region?
+ * Flares with G2?  
+   + maybe detected bowshock?
+ * VERA shows consistent major axis size
+ * KVN + VERA: comparable to VLBA
+
+Questions
+~~~~~~~~~
+
+ * Q: Variation of intrinsic size with flux... difficult measurement to make.
+   VLA+ALMA observations of radio flares requires relativistic...
+
+ * Q: HET hasn't passed 10% of material (??)
+
+ * Q: Size doesn't increase with flux.  But that's interstellar scattering
+   size.  Could intrinsic size have changed by 10-15% without being detected?
+ * A: ???
+
+ * Q Fred Lo: intrinsic size measured.  Any elongation/ellipticity?
+ * A: Just a 1-dimensional measurement
 
 12:05-12:25 pm Salomé Dibi (Netherlands): Exploring plasma behavior around Sgr A*
 ---------------------------------------------------------------------------------
+Sgr A* in context...
+ * only flaring AGN
+ * discussion of particle distrbution related to SED & state
+ * accretion flow injecting electrons into plasma
+ * nonthermal synchrotron with cooling break is best distribution
+
+Questions
+~~~~~~~~~
+ * Q Broderick: Should be able to produce both observed features of flares...
+ * A: Tried to reproduce spectral index.  Flaring in infrared could provide
+   strong constraints
+ * Q: Spectral index should evolve in your model, but we heard that it is not
+   changing
+
+ * C: Radio spectrum has gone even lower... falls on power law, useful for
+   modeling.  Makes deviation even more severe.
+
+ * C: spectral index measurements - flares measured with spectral indices don't
+   have X-ray counterparts.  Maybe X-ray bright flares may have non-constant
+   spectral indices.
+
+ * C: Fit within 2 R_G, so radio is not relevant (optically thick)
+
+ * Q Ostriker: 1-zone model.  What is the geometry?
+ * Event close to BH.
 
 12:25-12:45 pm Jim Moran (USA): History of High Resolution Imaging of SgrA* (15+5 min)
 --------------------------------------------------------------------------------------
+History
+ * 1951 Cygnus A: resolved double 
+ * looking for compact structure in HII regions with 35km Green Bank
+   interferometer
+ * simple observation -> 0.1" size, 10^7K T_B
+ * OVRO group found HII regions, but searching for BH, Balick & Brown searching
+   for HII and found SMBH
+   + Fred Lo 3.7cm found Sgr A*, T_B ~ 10^8K, <0.02"
+ * Jodrell Bank -> size ~ freq^-2
+ * Fish et al: early 1.3mm VLBI
+   + consistent with Gaussian or annulus
+ * annular radii not at all constrained by short baselines
 
+Questions
+~~~~~~~~~
 
+ * C Fred Lo: Explanation of series of events.  Obstacle for detecting
+   structure of Sgr A* is scattering.
+ * If you can characterize the Gaussian interstellar scattering, you could in
+   principle deconvolve
+
+ * C Farhad: Variability of Sgr A* is a problem.  230 GHz has high, hourly
+   variability
+ * Goal should be testing models on 10min timescales
+
+Discussion Section
+------------------
+ * We agree on some things:
+   + source is infalling
+   + L-band source
+   + Br-G detected
+ * Controversy:
+
+   + K-band detection is controversial.  Can we sort that out?  If it's there,
+     will it change interpretation a lot?
+ * K-band source would be compatible with hot dust.  H-band is the real
+   discriminator
+
+ * What is the source we detect?  There are K-band sources, but their natures
+   are unclear
+ * Extinction makes it extra hard
+
+ * Ghez: What is G2?  Very similar to S-star orbits.  Orbital characteristics
+   of binary exchange.  Perhaps just a close binary, soon to form an S-star?
+   Tidally disrupt atmosphere, but be a star underneath
+
+   + Problem: star not that big.  If it's a star, very cool star dominated by
+     dust, difficult to detect.
+ * Closest approach is no closer than S-stars
+   + orbit also matches disk
+ * Dusty, looks like an S-star
+   + No, it is a GAS source, not a dust source.  Gas is directly detected
+
+ * As it travels by Sgr A*, do I care if it has anything inside?
+ * Ghez: forces us to consider role of binaries at cmz
+
+ * Comment: wait and see what happens
+   + What if nothing happens?  Will that resolve the issue?
+ * Are we just seeing weather in Sgr A*?
+   + eh, maybe?
+ * Are we agreeing on emission mechanism?
+
+   + continuously variable source.   No quiescent vs flaring state in IR; more
+     prominent in X-ray
