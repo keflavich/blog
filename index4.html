@@ -104,6 +104,87 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/blogging-from-ipython.html" rel="bookmark" title="Permalink to Blogging from IPython">
+                    Blogging from IPython</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-09-22T00:00:00"> 2013/09/22 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>[ <a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/keflavich/blog/master/content/BloggingFromIPython.ipynb">Notebook Form of this
+post</a>
+]</p>
+<p>There have been
+<a class="reference external" href="http://jmcarp.github.io/blog/2013/07/07/hello-world/">many</a>
+<a class="reference external" href="http://danielfrg.github.io/blog/2013/02/16/blogging-pelican-ipython-notebook/">other</a>
+<a class="reference external" href="http://danielfrg.github.io/blog/2013/03/08/pelican-ipython-notebook-plugin/">posts</a>
+about blogging in ipython, but they all included more overhead than I
+really wanted to deal with.</p>
+<p>Instead, I've gone directly to <a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/Carreau/posts/master/06-NBconvert-Doc-Draft.ipynb">the
+source</a>
+and used nbconvert in ipython 2.0 to convert my notebooks to rst, then
+put them through pelican.</p>
+<p>This post outlines my workflow.</p>
+<p>First, and most inconvenient, it is necessary to head any blog post with
+metadata. I don't have any convenient workflow to deal with that, I just
+write it in by hand in a raw text box (ctrl-m, t) as you can see above.
+<a class="reference external" href="http://danielfrg.github.io/">Daniel Rodriguez</a> took a <a class="reference external" href="http://danielfrg.github.io/blog/2013/03/08/pelican-ipython-notebook-plugin/">different
+approach</a>
+using the ipython metadata directly and an ipython plugin, but I didn't
+want to have to worry about installing plugins and I am definitely
+worried about breaking notebooks by messing with the
+<a class="reference external" href="https://github.com/ipython/ipython/wiki/IPEP-20%3A-Informal-structure-of-cell-metadata">metadata</a>
+as the ipy devs give some fairly <a class="reference external" href="https://gist.github.com/Carreau/4437348">strict
+warnings</a>.</p>
+<p>Next, the ipynb -&gt; rst step is fairly straightforward. I modified the
+rst template because I don't want to see the <tt class="docutils literal"><span class="pre">In[#]:</span></tt> and <tt class="docutils literal"><span class="pre">Out[#]:</span></tt>
+prefixes around my code. I also use <tt class="docutils literal">.. <span class="pre">code-block::</span></tt> rather than
+<tt class="docutils literal">.. code::</tt>.</p>
+<p>This very simple function below makes sure that my local <tt class="docutils literal">rst.tbl</tt>
+file is seen before ipython's. Their templates are in
+<tt class="docutils literal">IPython/nbconvert/templates</tt>. Note that you could normally use Jinja2
+templating and &quot;Extend&quot; their template, but I wanted to remove rather
+than extend.</p>
+<p>[
+<a class="reference external" href="https://github.com/keflavich/blog/blob/master/nbconverter.py">Source</a>
+]</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">IPython.nbconvert.exporters</span> <span class="kn">import</span> <span class="n">RSTExporter</span>
+
+<span class="k">def</span> <span class="nf">export</span><span class="p">(</span><span class="n">nbname</span><span class="p">,</span> <span class="n">outfilename</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">exportRST</span> <span class="o">=</span> <span class="n">RSTExporter</span><span class="p">()</span>
+    <span class="c"># exclude default paths</span>
+    <span class="n">exportRST</span><span class="o">.</span><span class="n">template_path</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;.&#39;</span><span class="p">,</span><span class="s">&#39;/Users/adam/repos/blog&#39;</span><span class="p">]</span>
+
+    <span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="n">resources</span><span class="p">)</span> <span class="o">=</span> <span class="n">exportRST</span><span class="o">.</span><span class="n">from_filename</span><span class="p">(</span><span class="n">nbname</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">outfilename</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">outfilename</span> <span class="o">=</span> <span class="n">nbname</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;ipynb&quot;</span><span class="p">,</span><span class="s">&quot;rst&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfilename</span><span class="p">,</span><span class="s">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">body</span><span class="p">,</span><span class="n">resources</span>
+</pre></div>
+<p>I then run the script from the command line:
+<tt class="docutils literal"><span class="pre">~/virtual-ipydev/bin/ipython</span> ./nbconverter.py content/GenerateCVExample.ipynb</tt></p>
+<p>I'm using a virtual environment with ipython 2 installed because I'm not
+yet ready to make the jump to the dev version of ipython (though these
+days, with Travis and Jenkins around, it's probably safe to assume the
+dev version won't break anything).</p>
+<p>With this rst file generated, the only remaining step is
+<a class="reference external" href="http://blog.getpelican.com/">pelican</a>, which only requires a
+<tt class="docutils literal">make github</tt> command in the blog directory. Installing &amp; setting up
+pelican is reasonably easy, but not the topic of this post.</p>
+<p>I've made my own <a class="reference external" href="https://github.com/keflavich/pelican-themes/tree/master/mine">custom pelican
+theme</a>,
+so I generally need to update the theme before building:</p>
+<p><tt class="docutils literal"><span class="pre">pelican-themes</span> <span class="pre">--upgrade</span> <span class="pre">/Users/adam/repos/pelican-themes/mine</span> &amp;&amp; make github</tt></p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
                 <a href="http://keflavich.github.io/blog/generating-a-cv-using-the-ads-labs-api.html" rel="bookmark" title="Permalink to Generating a CV using the ADS Labs API">
                     Generating a CV using the ADS Labs API</a>
             </h2> 
@@ -2019,238 +2100,6 @@ disagrees with you</li>
 prior to massive stars affects the core processes?</li>
 <li>A: Universality of IMF only true averaged over spacetime.  Low-mass stars
 drive turbulence in massive star-forming region.</li>
-</ul>
-</blockquote>
-</div>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/ppvi-talk-6-john-bally.html" rel="bookmark" title="Permalink to PPVI Talk 6: John Bally">
-                    PPVI Talk 6: John Bally</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-07-15T17:45:00"> 2013/07/15 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <div class="section" id="the-milky-way-as-a-star-formation-engine">
-<h2>THE MILKY WAY AS A STAR FORMATION ENGINE</h2>
-<p>Authors:</p>
-<p>S. Molinari (INAF-IAPS, Rome, Italy),
-J. Bally (University of Colorado, Boulder, United States),
-J.-P. Bernard (IRAP, Toulouse, France),
-S. Glover (Heidelberg University, ITA, Germany),
-P. Martin (University of Toronto, Canada),
-T. Moore (Liverpool John Moores University, United Kingdom),
-A. Noriega-Crespo (IPAC-Caltech, Pasadena, United States),
-R. Plume (University of Calgary, Canada),
-L. Testi (ESO-HQ, Garching, Germany),
-E. Vazquez-Semadeni (UNAM, Morelia, Mexico),
-A. Zavagno (LAM, Marseille, France)</p>
-<p>We review and discuss the latest observational scenario globally emerging from
-the latest generation of continuum and spectroscopic global-scale surveys of
-the mid-plane of the Galaxy from infrared to radio wavelengths, in terms of
-cloud formation and evolution, star and clump formation rate and efficiency
-throughout the Galaxy, evidence for density thresholds for the formation of
-protocluster-forming clumps, as well as the role of large-scale filamentary
-structures in channeling diffuse ISM into gravitationally bound clumps. The new
-view of the Milky Way thus assembled will be discussed in the context of
-competing theoretical frameworks distinguishing between &quot;slow&quot; and &quot;fast&quot;
-formation, outlining some of the challenges that this body of evidence poses to
-a variety of theoretical scenarios for large-scale star formation. We will
-review the most recent methods and evolutionary indicators used to classify the
-star formation activity in molecular clumps, comparing the different possible
-derivations of the local SFR and discussing its variation as a function of
-Galactocentric radius. The order-of-magnitude increase in the number of sources
-(mostly clumps) that are revealed in state-of-the-art infrared and
-submillimeter Galaxy-wide surveys make such studies possible with an
-unprecedented statistical significance. We will also review the present status
-of our understanding of the Galaxy as a global star formation engine in the
-context of similar studies in extragalactic systems, evaluating how the data on
-our own Galaxy compare with the proposed global star formation laws that relate
-properties of the interstellar medium to the star formation rate.</p>
-</div>
-<div class="section" id="intro">
-<h2>Intro</h2>
-<p>Link the MW to high redshift.</p>
-<p>&quot;Galactic Ecology&quot;</p>
-<blockquote>
-<ul class="simple">
-<li>Efficiency &quot;&lt;15%&quot;</li>
-<li>Feedback -&gt; &quot;superbubbles&quot;</li>
-<li>&quot;oops&quot;</li>
-<li>solar circle Z-scale oscillation 80 Myr</li>
-<li>Epicyclic period 170 Myr [what is this orbital scale?)</li>
-<li>orbital timescale 220 Myr</li>
-</ul>
-</blockquote>
-<p>Large scale view:</p>
-<blockquote>
-<ul class="simple">
-<li>Sco-Cen HI supershell (1973 A&amp;AS)</li>
-<li>Rho Oph filament swept up by Sco-Cen bubble?</li>
-<li>Sco-Cen has HI, not H-alpha</li>
-<li>Alpha-Persei blew a bubble for Cosmologists</li>
-</ul>
-</blockquote>
-<p>Orion CO</p>
-<blockquote>
-<ul class="simple">
-<li>Integral shaped filament</li>
-<li>Velocity jump occurs at cluster</li>
-<li>Vazquez-Semadeni 2008 colliding cloud resembles ISF</li>
-</ul>
-</blockquote>
-<p>BGPS -&gt; ATLASGAL -&gt; Herschel</p>
-<p>And now let's start the talk...</p>
-</div>
-<div class="section" id="higal">
-<h2>HiGal</h2>
-<p>HiGal 360 in OT2</p>
-<p>W3/W4/W5</p>
-<blockquote>
-<ul class="simple">
-<li>W3 OB cluster</li>
-<li>W4 cometary cloud</li>
-<li>W5 (name drop)</li>
-</ul>
-</blockquote>
-<dl class="docutils">
-<dt>NGC 7538</dt>
-<dd><ul class="first last simple">
-<li>filament full of H2 outflows</li>
-</ul>
-</dd>
-<dt>W43</dt>
-<dd><ul class="first last simple">
-<li>50 Orions</li>
-<li>3 Myr old</li>
-<li>older subgroup to the south</li>
-</ul>
-</dd>
-<dt>Goodman's &quot;we're out of the plane&quot;</dt>
-<dd><ul class="first last simple">
-<li>Nearby spiral arms below the &quot;plane&quot;</li>
-</ul>
-</dd>
-<dt>W51 - Spitzer</dt>
-<dd><ul class="first last simple">
-<li>massive clusters</li>
-</ul>
-</dd>
-<dt>Back to M16, M17</dt>
-<dd><ul class="first last simple">
-<li>M17</li>
-<li>M17swex</li>
-<li>red square</li>
-</ul>
-</dd>
-<dt>Nessie (Jackson)</dt>
-<dd><ul class="first last simple">
-<li>extended Nessie from Alyssa Goodman</li>
-</ul>
-</dd>
-<dt>Carina Nebula</dt>
-<dd><ul class="first last simple">
-<li>eta car</li>
-<li>Trumpler 16</li>
-</ul>
-</dd>
-</dl>
-<p>NGC 3603</p>
-</div>
-<div class="section" id="filament-formation">
-<h2>Filament Formation</h2>
-<p>&quot;Zeldovich Pancakes&quot; - tend to collapse along minor axes first
-Converging flows
-&quot;shadowing&quot; HII regions -&gt; cometary filament = tail
-Vazquez-Semadeni colliding flows movie</p>
-<dl class="docutils">
-<dt>Filaments in HiGal</dt>
-<dd><ul class="first last simple">
-<li>Schisano 2013 - Herschel filaments is continuously distributed (no threshold effect)</li>
-<li>Mass per unit length increases with amt of star formation</li>
-</ul>
-</dd>
-</dl>
-</div>
-<div class="section" id="distances">
-<h2>Distances</h2>
-<blockquote>
-<ul class="simple">
-<li>Russeil &quot;Bootstrap Morphology&quot;</li>
-<li>BeSSeL parallax</li>
-<li>Distance PDF (Ellsworth-Bowers)
-* showed example DPDFs
-* Shirley &amp; Schlingman HCO+/N2H+ velocities
-* description of the algorithm</li>
-<li>Bessel points colored by arm</li>
-</ul>
-</blockquote>
-<dl class="docutils">
-<dt>Battersby 2011 &quot;Maybe I'll skip this&quot;</dt>
-<dd><ul class="first last simple">
-<li>How does dust vary with SF signature</li>
-</ul>
-</dd>
-<dt>Pestalozzi face-on view of the galaxy</dt>
-<dd><ul class="first last simple">
-<li>mass-luminosity plot</li>
-</ul>
-</dd>
-<dt>Finish with the CMZ</dt>
-<dd><ul class="first last simple">
-<li>80% of gas at n&gt;10^4 in CMZ</li>
-<li>Bania's clump - strange kinematics</li>
-<li>Orbits in a bar</li>
-<li>Inner Lindblad resonance?</li>
-<li>compare our CMZ to NGC 1097</li>
-<li>Dust at l &gt; 0, 24um sources at l &lt; 0</li>
-</ul>
-</dd>
-<dt>Molinari Ring</dt>
-<dd><ul class="first last simple">
-<li>Vertical oscillation timescale twice orbit timescale</li>
-<li>Sgr B2 has high proper motion in the plane</li>
-<li>Battersby temperature / column maps</li>
-<li>several 10^7 msun of non-star-forming gas</li>
-</ul>
-</dd>
-<dt>Back to CMZ:</dt>
-<dd><ul class="first last simple">
-<li>Free-free emission</li>
-<li>CND / circumnuclear ring</li>
-<li>Sgr A* has no influence on the Galaxy</li>
-<li>star formation starves Sgr A*</li>
-</ul>
-</dd>
-</dl>
-<p>Plug for CCAT, ALMA</p>
-<p>Storm the Castle!</p>
-</div>
-<div class="section" id="questions">
-<h2>Questions</h2>
-<blockquote>
-<ul class="simple">
-<li>Q: Mordecai - seen fragmentation starvation in massive star formation as well</li>
-<li>A: Yep.  Also, Phil knows disk around black hole is like a disk around a protostar</li>
-<li>Q: Philippe - Threshold issue.  No threshold in Hi-Gal data.</li>
-<li>A: missed it, someone walked in front of me</li>
-<li>A: Molinari - Different physics, different scales?</li>
-<li>Q: Sergei - Fermi bubble feature.  Attributed to star formation.  In other
-galaxies... we've seen one other analog?  More than enough energy in a Sgr
-A* outburst.</li>
-<li>A: Should ask how we distinguish AGN-driven vs. star-formation-driven flows.
-AGN should be low-mass, light, relativistic launch.  Star formation blows
-out big HI bubbles (high-mass).</li>
-<li>Same guy: Cosmologists say AGN can blow up whole galaxies</li>
-<li>Q Hans: Sequential star formation, triggered SF... are we more informed
-about triggering now than before?</li>
-<li>A: Triggering is a great model, but observationally indistinguishable.  Only
-way to know is precision kinematics.  Need GAIA.
-It happens, but can't be proved.</li>
 </ul>
 </blockquote>
 </div>

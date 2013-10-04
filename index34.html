@@ -104,6 +104,49 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/revisiting-calibration-yet-again.html" rel="bookmark" title="Permalink to Revisiting calibration yet again">
+                    Revisiting calibration yet again</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-03-23T00:22:00"> 2011/03/23 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The recent hiatus for paper revisions has, unfortunately, come to an
+end.
+Re-examining my work, I did quite a lot but encountered many dead-ends.
+First, we would very much like to use an *identical* reduction process
+on both the calibration data and the science data. That way, we could
+feel very confident that the reduction process isn't introducing any
+weird artifacts.
+Unfortunately, I discovered early on that using ds5 data, 13 pca
+components, and n&gt;1 iterations resulted in strange shape and flux
+conservation failures. These errors do NOT occur in co-added maps; they
+are unique to single-observation scans (though I don't recollect whether
+2 scans is enough or if you need more).
+I spent many hours banging my head against this problem and have never
+gotten a satisfactory solution. But perhaps it's time to approach it
+again. The map00 images look MUCH rounder and generally better than the
+map10 images.
+So, the problem I need to examine is the iterative process. Why does it
+fail for single images? Is it something about the noise properties?
+model00 looks fine... what gets put into the timestream? Examining
+timestreams is a terrible and horrendous process... but what else can I
+do?
+The next step will be to examine the timestreams of a particular
+observation. I think a good choice is 101208_ob7; the next observation,
+101208_ob8 was a large-area map and it looks fine (i.e., it improves
+with iteration). So I can start looking at the effects of polysub,
+iteration, etc. on this particular source.
+Of course, the stupid trick with the pipeline - every time - is that
+&quot;fixing&quot; a problem for one source has a nasty tendency to break it for
+all other sources. That's why there are so many flags that can be passed
+around. Still, this is the approach I have to take...</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
                 <a href="http://keflavich.github.io/blog/it-looks-like-for-afgl-4029-combined-images-ds1.html" rel="bookmark" title="Permalink to It looks like, for AFGL 4029 combined images, ds1 ...">
                     It looks like, for AFGL 4029 combined images, ds1 ...</a>
             </h2> 
@@ -479,58 +522,6 @@ What about the extra lines around 18 Hz?</p>
             <abbr class="published" title="2011-02-03T04:53:00"> 2011/02/03 </abbr>
             <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Next step: prove that this works in maps...</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/some-pretty-neat-things-about-delining.html" rel="bookmark" title="Permalink to Some pretty neat things about delining....">
-                    Some pretty neat things about delining....</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-02-03T04:50:00"> 2011/02/03 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Well, I did the work, so might as well come up with some plots...
-I created a gaussian-fitting based delining code that saves all of the
-fits in a text file! That's a lot of data to play with, and allows me to
-draw some conclusions:</p>
-<ol class="arabic simple">
-<li>For the narrow lines, the linewidth (gaussian sigma) is 0.03 Hz. For
-the wide lines, it is 0.05.</li>
-<li>The amplitudes from December 2010 are ENORMOUS compared to others!</li>
-<li>The width distributions of the two are similar, though the lines
-appear to be significantly wider in July 2009</li>
-</ol>
-<p>I've also gotten to the point that I'm satisfied with how delining with
-wing suppression works. Wing suppression is 0.4-2x quicker than fitting
-directly, depending on... not clear what exactly; it depends on epoch,
-but that could either be because there are more lines found or because
-of relative data size. Does delining have to be done on whole
-timestreams, or can it be done on a scan-by-scan basis? This is not
-entirely clear... the peaks are less suppressed when done on a
-scan-by-scan basis (presumably because the S/N is low and peaks are
-therefore not detected), but incorrect suppression (removing a line
-that's not there) is reduced. For short scans, the scan-by-scan approach
-is 10x faster; for longer scans it's ~20% faster. I think the
-scan-by-scan approach is going to be ideal.</p>
-<hr class="docutils" />
-<p>Examples from l089 (0709):
-Top row: non-fitted line suppression</p>
-<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/TUowz4zgpsI/AAAAAAAAF8E/iJd0tAbVj0U/s320/deline_10hz_wingsuppress_psds_003.png" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUowz4zgpsI/AAAAAAAAF8E/iJd0tAbVj0U/s320/deline_10hz_wingsuppress_psds_003.png" />
-<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/TUow1IQ_Y9I/AAAAAAAAF8c/1OkISODwwPM/s320/deline_fitline_10hz_noscan_nsig0_preservephase_timestreams_003.png" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUow1IQ_Y9I/AAAAAAAAF8c/1OkISODwwPM/s320/deline_fitline_10hz_noscan_nsig0_preservephase_timestreams_003.png" />
-<p>Bottom row: fitted line suppression</p>
-<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/TUow0sTBKsI/AAAAAAAAF8U/GtL0nyvlNBw/s320/deline_fitline_10hz_noscan_nsig0_preservephase_psds_003.png" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUow0sTBKsI/AAAAAAAAF8U/GtL0nyvlNBw/s320/deline_fitline_10hz_noscan_nsig0_preservephase_psds_003.png" />
-<img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/TUow0d-vEcI/AAAAAAAAF8M/or2gkvGxW4o/s320/deline_10hz_wingsuppress_timestreams_003.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUow0d-vEcI/AAAAAAAAF8M/or2gkvGxW4o/s320/deline_10hz_wingsuppress_timestreams_003.png" />
-<hr class="docutils" />
-<p>Examples from Uranus (1012, really really liney):</p>
-<p>Top row: non-fitted line suppression</p>
-<img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/TUoxEvWqRwI/AAAAAAAAF8k/J6ImhPN9ZS0/s320/deline_10hz_wingsuppress_psds_003.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUoxEvWqRwI/AAAAAAAAF8k/J6ImhPN9ZS0/s320/deline_10hz_wingsuppress_psds_003.png" />
-<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TUoxFMLdujI/AAAAAAAAF8s/DrzWxFCdBu0/s320/deline_10hz_wingsuppress_timestreams_003.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUoxFMLdujI/AAAAAAAAF8s/DrzWxFCdBu0/s320/deline_10hz_wingsuppress_timestreams_003.png" />
-<p>Bottom row: fitted line suppression</p>
-<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/TUoxFXYN_tI/AAAAAAAAF80/BQwv6ROSOJ4/s320/deline_fitline_10hz_noscan_nsig0_preservephase_psds_003.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUoxFXYN_tI/AAAAAAAAF80/BQwv6ROSOJ4/s320/deline_fitline_10hz_noscan_nsig0_preservephase_psds_003.png" />
-<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/TUoxF_c0URI/AAAAAAAAF88/JU9_F-8HC2k/s320/deline_fitline_10hz_noscan_nsig0_preservephase_timestreams_003.png" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUoxF_c0URI/AAAAAAAAF88/JU9_F-8HC2k/s320/deline_fitline_10hz_noscan_nsig0_preservephase_timestreams_003.png" />
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
