@@ -105,6 +105,105 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/my-favorite-splatalogue-queries.html" rel="bookmark" title="Permalink to My favorite Splatalogue queries">
+                    My favorite Splatalogue queries</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-08-05T10:37:59"> 2013/08/05 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I tend to be most interested in low-energy molecular lines: CO, NH<sub>3</sub>, and
+H<sub>2</sub>CO being the main candidates.</p>
+<p>Note: Splatalogue has made some recent changes to their returned tables, partly
+per my recommendations.  The code below has been update to reflect these
+changes.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">astroquery.splatalogue</span> <span class="kn">import</span> <span class="n">Splatalogue</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">S</span> <span class="o">=</span> <span class="n">Splatalogue</span><span class="p">(</span><span class="n">energy_max</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+<span class="o">...</span>    <span class="n">energy_type</span><span class="o">=</span><span class="s">&#39;eu_k&#39;</span><span class="p">,</span><span class="n">energy_levels</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;el4&#39;</span><span class="p">],</span>
+<span class="o">...</span>    <span class="n">line_strengths</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;ls4&#39;</span><span class="p">],</span>
+<span class="o">...</span>    <span class="n">only_NRAO_recommended</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">noHFS</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">trimmed_query</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="o">...</span>     <span class="n">columns</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;Species&#39;</span><span class="p">,</span><span class="s">&#39;Chemical Name&#39;</span><span class="p">,</span><span class="s">&#39;Resolved QNs&#39;</span><span class="p">,</span><span class="s">&#39;Freq-GHz&#39;</span><span class="p">,</span>
+<span class="o">...</span>                <span class="s">&#39;Meas Freq-GHz&#39;</span><span class="p">,</span><span class="s">&#39;Log&lt;sub&gt;10&lt;/sub&gt; (A&lt;sub&gt;ij&lt;/sub&gt;)&#39;</span><span class="p">,</span>
+<span class="o">...</span>                <span class="s">&#39;E_U (K)&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">table</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">query_lines</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)[</span><span class="n">columns</span><span class="p">]</span>
+<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s">&#39;Log&lt;sub&gt;10&lt;/sub&gt; (A&lt;sub&gt;ij&lt;/sub&gt;)&#39;</span><span class="p">,</span><span class="s">&#39;log10(Aij)&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s">&#39;E_U (K)&#39;</span><span class="p">,</span><span class="s">&#39;EU_K&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s">&#39;Resolved QNs&#39;</span><span class="p">,</span><span class="s">&#39;QNs&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">&#39;EU_K&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="k">return</span> <span class="n">table</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span><span class="mi">30</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">chemical_name</span><span class="o">=</span><span class="s">&#39;(H2.*Formaldehyde)|( HDCO )&#39;</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">energy_max</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
+<span class="n">Species</span> <span class="n">Chemical</span> <span class="n">Name</span>      <span class="n">QNs</span>      <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">Meas</span> <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">log10</span><span class="p">(</span><span class="n">Aij</span><span class="p">)</span>   <span class="n">EU_K</span>
+<span class="o">-------</span> <span class="o">-------------</span> <span class="o">-------------</span> <span class="o">--------</span> <span class="o">-------------</span> <span class="o">----------</span> <span class="o">--------</span>
+   <span class="n">HDCO</span>  <span class="n">Formaldehyde</span> <span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>       <span class="o">--</span>       <span class="mf">5.34614</span>   <span class="o">-</span><span class="mf">8.31616</span> <span class="mf">11.18287</span>
+ <span class="n">H2C18O</span>  <span class="n">Formaldehyde</span> <span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>   <span class="mf">4.3888</span>        <span class="mf">4.3888</span>   <span class="o">-</span><span class="mf">8.22052</span> <span class="mf">15.30187</span>
+ <span class="n">H213CO</span>  <span class="n">Formaldehyde</span> <span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>       <span class="o">--</span>       <span class="mf">4.59309</span>   <span class="o">-</span><span class="mf">8.51332</span> <span class="mf">15.34693</span>
+   <span class="n">H2CO</span>  <span class="n">Formaldehyde</span> <span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>  <span class="mf">4.82966</span>            <span class="o">--</span>   <span class="o">-</span><span class="mf">8.44801</span> <span class="mf">15.39497</span>
+   <span class="n">HDCO</span>  <span class="n">Formaldehyde</span> <span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>       <span class="o">--</span>      <span class="mf">16.03787</span>   <span class="o">-</span><span class="mf">7.36194</span> <span class="mf">17.62746</span>
+ <span class="n">H2C18O</span>  <span class="n">Formaldehyde</span> <span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="mf">13.16596</span>      <span class="mf">13.16596</span>   <span class="o">-</span><span class="mf">6.86839</span> <span class="mf">22.17455</span>
+ <span class="n">H213CO</span>  <span class="n">Formaldehyde</span> <span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>       <span class="o">--</span>       <span class="mf">13.7788</span>   <span class="o">-</span><span class="mf">7.55919</span> <span class="mf">22.38424</span>
+   <span class="n">H2CO</span>  <span class="n">Formaldehyde</span> <span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="mf">14.48848</span>            <span class="o">--</span>   <span class="o">-</span><span class="mf">7.49383</span> <span class="mf">22.61771</span>
+ <span class="n">H2C18O</span>  <span class="n">Formaldehyde</span> <span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="mf">26.33012</span>      <span class="mf">26.33014</span>   <span class="o">-</span><span class="mf">6.03008</span> <span class="mf">32.48204</span>
+ <span class="n">H213CO</span>  <span class="n">Formaldehyde</span> <span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>       <span class="o">--</span>      <span class="mf">27.55567</span>   <span class="o">-</span><span class="mf">6.95712</span>  <span class="mf">32.9381</span>
+   <span class="n">H2CO</span>  <span class="n">Formaldehyde</span> <span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>       <span class="o">--</span>       <span class="mf">28.9748</span>   <span class="o">-</span><span class="mf">6.89179</span> <span class="mf">33.44949</span>
+
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span><span class="mi">400</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">chemical_name</span><span class="o">=</span><span class="s">&#39;Carbon Monoxide&#39;</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">energy_max</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
+<span class="n">Species</span>  <span class="n">Chemical</span> <span class="n">Name</span>   <span class="n">QNs</span>   <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">Meas</span> <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">log10</span><span class="p">(</span><span class="n">Aij</span><span class="p">)</span>   <span class="n">EU_K</span>
+<span class="o">-------</span> <span class="o">---------------</span> <span class="o">-----</span> <span class="o">---------</span> <span class="o">-------------</span> <span class="o">----------</span> <span class="o">--------</span>
+   <span class="n">C18O</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">1</span><span class="o">-</span><span class="mi">0</span> <span class="mf">109.78218</span>     <span class="mf">109.78218</span>   <span class="o">-</span><span class="mf">7.20058</span>  <span class="mf">5.26868</span>
+<span class="mi">13</span><span class="n">COv</span><span class="o">=</span><span class="mi">0</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">1</span><span class="o">-</span><span class="mi">0</span> <span class="mf">110.20135</span>            <span class="o">--</span>   <span class="o">-</span><span class="mf">7.49946</span>   <span class="mf">5.2888</span>
+   <span class="n">C17O</span> <span class="n">Carbon</span> <span class="n">Monoxide</span> <span class="n">J</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="mi">0</span> <span class="mf">112.35928</span>     <span class="mf">112.35928</span>   <span class="o">-</span><span class="mf">7.17404</span>  <span class="mf">5.39236</span>
+  <span class="n">COv</span><span class="o">=</span><span class="mi">0</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">1</span><span class="o">-</span><span class="mi">0</span>  <span class="mf">115.2712</span>      <span class="mf">115.2712</span>   <span class="o">-</span><span class="mf">7.14236</span>  <span class="mf">5.53211</span>
+   <span class="n">C18O</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">2</span><span class="o">-</span><span class="mi">1</span> <span class="mf">219.56036</span>     <span class="mf">219.56036</span>   <span class="o">-</span><span class="mf">6.21833</span> <span class="mf">15.80595</span>
+<span class="mi">13</span><span class="n">COv</span><span class="o">=</span><span class="mi">0</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">2</span><span class="o">-</span><span class="mi">1</span> <span class="mf">220.39868</span>            <span class="o">--</span>   <span class="o">-</span><span class="mf">6.51752</span> <span class="mf">15.86618</span>
+   <span class="n">C17O</span> <span class="n">Carbon</span> <span class="n">Monoxide</span> <span class="n">J</span><span class="o">=</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span> <span class="mf">224.71437</span>     <span class="mf">224.71439</span>   <span class="o">-</span><span class="mf">6.19179</span> <span class="mf">16.17703</span>
+  <span class="n">COv</span><span class="o">=</span><span class="mi">0</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">2</span><span class="o">-</span><span class="mi">1</span>   <span class="mf">230.538</span>       <span class="mf">230.538</span>   <span class="o">-</span><span class="mf">6.16011</span> <span class="mf">16.59608</span>
+   <span class="n">C18O</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">3</span><span class="o">-</span><span class="mi">2</span> <span class="mf">329.33055</span>     <span class="mf">329.33055</span>   <span class="o">-</span><span class="mf">5.66014</span>  <span class="mf">31.6116</span>
+<span class="mi">13</span><span class="n">COv</span><span class="o">=</span><span class="mi">0</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">3</span><span class="o">-</span><span class="mi">2</span> <span class="mf">330.58797</span>            <span class="o">--</span>   <span class="o">-</span><span class="mf">5.95976</span> <span class="mf">31.73179</span>
+   <span class="n">C17O</span> <span class="n">Carbon</span> <span class="n">Monoxide</span> <span class="n">J</span><span class="o">=</span><span class="mi">3</span><span class="o">-</span><span class="mi">2</span>  <span class="mf">337.0611</span>     <span class="mf">337.06113</span>    <span class="o">-</span><span class="mf">5.6336</span>  <span class="mf">32.3538</span>
+  <span class="n">COv</span><span class="o">=</span><span class="mi">0</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">3</span><span class="o">-</span><span class="mi">2</span> <span class="mf">345.79599</span>     <span class="mf">345.79599</span>   <span class="o">-</span><span class="mf">5.60192</span> <span class="mf">33.19169</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">MHz</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">chemical_name</span><span class="o">=</span><span class="s">&#39; H2CO .*Formaldehyde&#39;</span><span class="p">,</span><span class="n">energy_max</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">energy_type</span><span class="o">=</span><span class="s">&#39;eu_k&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
+<span class="n">Species</span> <span class="n">Chemical</span> <span class="n">Name</span>      <span class="n">QNs</span>      <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">Meas</span> <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">log10</span><span class="p">(</span><span class="n">Aij</span><span class="p">)</span>   <span class="n">EU_K</span>
+<span class="o">-------</span> <span class="o">-------------</span> <span class="o">-------------</span> <span class="o">--------</span> <span class="o">-------------</span> <span class="o">----------</span> <span class="o">--------</span>
+   <span class="n">H2CO</span>  <span class="n">Formaldehyde</span> <span class="mi">2</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>       <span class="o">--</span>       <span class="mf">0.07114</span>  <span class="o">-</span><span class="mf">13.81846</span>   <span class="mf">57.612</span>
+   <span class="n">H2CO</span>  <span class="n">Formaldehyde</span> <span class="mi">3</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>       <span class="o">--</span>       <span class="mf">0.35557</span>  <span class="o">-</span><span class="mf">12.02319</span> <span class="mf">68.11082</span>
+
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">MHz</span><span class="p">,</span><span class="mi">25</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span><span class="n">chemical_name</span><span class="o">=</span><span class="s">&#39; NH3 &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
+<span class="n">Species</span> <span class="n">Chemical</span> <span class="n">Name</span>      <span class="n">QNs</span>       <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">Meas</span> <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">log10</span><span class="p">(</span><span class="n">Aij</span><span class="p">)</span>    <span class="n">EU_K</span>
+<span class="o">-------</span> <span class="o">-------------</span> <span class="o">--------------</span> <span class="o">--------</span> <span class="o">-------------</span> <span class="o">----------</span> <span class="o">---------</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">23.69447</span>       <span class="mf">23.6945</span>   <span class="o">-</span><span class="mf">6.43769</span>  <span class="mf">24.40492</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">2</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span>  <span class="mf">23.7226</span>      <span class="mf">23.72263</span>   <span class="o">-</span><span class="mf">6.31125</span>   <span class="mf">65.5867</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">23.09885</span>      <span class="mf">23.09881</span>   <span class="o">-</span><span class="mf">6.94808</span>   <span class="mf">81.5904</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span> <span class="mi">3</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">23.87008</span>      <span class="mf">23.87013</span>   <span class="o">-</span><span class="mf">6.25203</span> <span class="mf">124.68113</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">3</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">22.83422</span>      <span class="mf">22.83418</span>     <span class="o">-</span><span class="mf">6.662</span> <span class="mf">151.33353</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">22.23456</span>       <span class="mf">22.2345</span>   <span class="o">-</span><span class="mf">7.29889</span> <span class="mf">167.29666</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">4</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">24.13935</span>      <span class="mf">24.13942</span>   <span class="o">-</span><span class="mf">6.20938</span> <span class="mf">201.67106</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span> <span class="mi">4</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">22.68835</span>      <span class="mf">22.68831</span>   <span class="o">-</span><span class="mf">6.54002</span> <span class="mf">238.96192</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">4</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">21.70341</span>      <span class="mf">21.70336</span>   <span class="o">-</span><span class="mf">6.95001</span> <span class="mf">265.52612</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">4</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">21.13434</span>      <span class="mf">21.13431</span>   <span class="o">-</span><span class="mf">7.58659</span> <span class="mf">281.43749</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">5</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">5</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">24.53292</span>      <span class="mf">24.53299</span>    <span class="o">-</span><span class="mf">6.1706</span> <span class="mf">296.53357</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">5</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">5</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">22.65307</span>      <span class="mf">22.65302</span>   <span class="o">-</span><span class="mf">6.46829</span> <span class="mf">344.46226</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span> <span class="mi">5</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">5</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">21.28532</span>      <span class="mf">21.28528</span>   <span class="o">-</span><span class="mf">6.79928</span>  <span class="mf">381.6003</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">5</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">5</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">20.37145</span>      <span class="mf">20.37145</span>   <span class="o">-</span><span class="mf">7.20859</span> <span class="mf">408.05568</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">5</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">5</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">19.83833</span>      <span class="mf">19.83835</span>   <span class="o">-</span><span class="mf">7.84539</span> <span class="mf">423.90259</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">6</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">6</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">22.73249</span>      <span class="mf">22.73243</span>   <span class="o">-</span><span class="mf">6.41603</span> <span class="mf">467.80451</span>
+</pre></div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
                 <a href="http://keflavich.github.io/blog/nanase-harada-molecules-in-cnd-theory.html" rel="bookmark" title="Permalink to Nanase Harada: Molecules in CND (Theory)">
                     Nanase Harada: Molecules in CND (Theory)</a>
             </h2> 
@@ -2061,255 +2160,6 @@ overdensities</p>
 </dd>
 </dl>
 </li>
-</ul>
-</blockquote>
-</div>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/ppvi-talk-3-paul-clark.html" rel="bookmark" title="Permalink to PPVI Talk 3: Paul Clark">
-                    PPVI Talk 3: Paul Clark</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-07-15T11:45:00"> 2013/07/15 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <div class="section" id="the-origin-and-universality-of-the-initial-mass-function">
-<h2>THE ORIGIN AND UNIVERSALITY OF THE INITIAL MASS FUNCTION</h2>
-<p>Authors:</p>
-<p>S. Offner (Yale University, United States),
-P. Clark (Heidelberg University, ITA, Germany),
-P. Hennebelle (Observatoire de Paris, LERMA, Paris, France),
-N. Bastian (Liverpool John Moores University, United Kingdom),
-M. Bate (University of Exeter, United Kingdom),
-P. Hopkins (California Institute of Technology, Department of Astronomy, United States),
-E. Moraux (Institut de Planetologie et d'Astrophysique de Grenoble (IPAG), France),
-A. Whitworth (Cardiff University, Physics &amp; Astronomy, United Kingdom)</p>
-</div>
-<div class="section" id="abstract">
-<h2>Abstract</h2>
-<p>We review current theories for the origin of the Stellar Initial Mass Function
-(IMF) with particular focus on the extent to which the IMF can be considered
-universal across various environments. To place the issue in an observational
-context, we summarize the techniques used to determine the IMF for different
-stellar populations, the uncertainties affecting the results, and the evidence
-for systematic departures from universality under extreme circumstances. We
-next consider theories for the formation of prestellar cores by turbulent
-fragmentation and the possible impact of various thermal, hydrodynamic and
-magneto-hydrodynamic instabilities. We address the conversion of prestellar
-cores into stars, and evaluate the roles played by different processes:
-competitive accretion, dynamical fragmentation, ejection and starvation,
-filament fragmentation and filamentary accretion flows, disc formation and
-fragmentation, critical scales imposed by thermodynamics, and magnetic braking.
-We present explanations for the characteristic shapes of the Present-Day
-Prestellar Core Mass Function and the IMF and consider what significance can be
-attached to their apparent similarity. Substantial computational advances have
-occurred in recent years, and we review the numerical simulations that have
-been performed to predict the IMF directly and discuss the influence of
-dynamics, time-dependent phenomena, and initial conditions.</p>
-<p>Last time, IMF discussion was very heated.
-(technical difficulties)</p>
-</div>
-<div class="section" id="intro-to-imf">
-<h2>Intro to IMF</h2>
-<p>Salpeter, Kroupa, Chabrier, de Marchi (&quot;Tapered&quot; power law)
-(aside) Thies &amp; Kroupa: BDs not part of IMF</p>
-<p>SFR indicators only see &gt;10 Msun sources.  Must extrapolate downward.  This is
-why extragalactic people care.</p>
-<div class="section" id="are-there-variations-in-the-imf">
-<h3>Are there variations in the IMF?</h3>
-<p>Locally, no.</p>
-<p>More evolved clusters, yes on the low-mass end:</p>
-<blockquote>
-<ul class="simple">
-<li>Pleiades, NGC 2516, etc.</li>
-<li>Lose low-mass stars with age dynamically</li>
-<li>fraction of BDs remaining drops to zero over time</li>
-</ul>
-</blockquote>
-<p>Difficulties in measurement:</p>
-<blockquote>
-<ul class="simple">
-<li>Patchy extinction</li>
-<li>young clusters not done sampling IMF</li>
-<li>don't understand hayashi tracks that well</li>
-</ul>
-</blockquote>
-<p>Modal plot from van Dokkum</p>
-<blockquote>
-<ul class="simple">
-<li>Hints at change in IMF</li>
-</ul>
-</blockquote>
-<p>Extragalactic - big camps argue top, bottom heavy and universal</p>
-<blockquote>
-<ul class="simple">
-<li>rely on mass to light ratios</li>
-<li>M/L models depend on population synthesis models</li>
-</ul>
-</blockquote>
-</div>
-<div class="section" id="what-determines-the-imf">
-<h3>What determines the IMF?</h3>
-<p>Hoyle, Larson: the cloud fragmentation process.
-Clouds fragment into cores, cores make stars.</p>
-<p>Does supersonic turbulence regulate? (movie from Federrath)</p>
-<p>Padoan:</p>
-<blockquote>
-<ul class="simple">
-<li>CMF driven only by turbulence.</li>
-<li># of BDs controlled by Mach number.</li>
-<li>Cloud-in-cloud problem: small cores may be in big cores</li>
-</ul>
-</blockquote>
-<p>Press-Schechter &amp; Excursion Set formalism</p>
-<blockquote>
-<ul>
-<li><p class="first">Gravitational decoupling sets &quot;critical&quot; scale</p>
-</li>
-<li><p class="first">Hopkins: Density as a function of scale</p>
-<blockquote>
-<ul class="simple">
-<li>large scale: shear support</li>
-<li>intermediate: turbulence</li>
-<li>small scale: hrm...</li>
-<li>last-crossing =&gt; IMF</li>
-</ul>
-</blockquote>
-</li>
-<li><p class="first">Hennebelle &amp; Chabrier 2008 - account for non-thermal support</p>
-</li>
-<li><p class="first">GMCs are a separate population</p>
-</li>
-<li><p class="first">Useful: turbulence -&gt; more BDs, so extragalactic maybe more turbulent?</p>
-</li>
-</ul>
-</blockquote>
-</div>
-<div class="section" id="does-the-cmf-map-onto-the-imf">
-<h3>Does the CMF map onto the IMF?</h3>
-<p>Cores must:</p>
-<blockquote>
-<ul class="simple">
-<li>neither accrete nor merge (or you break the CMF my moving cores)</li>
-<li>fragment self-similarly: same number of fragments per core</li>
-<li>Same efficiency regardless of mass</li>
-<li>formation must happen on similar timescale (can't have high-mass first)</li>
-<li>Cores must be able to form stars, i.e. must be grav. bound</li>
-</ul>
-</blockquote>
-<p>Can cores form stars?</p>
-<blockquote>
-<ul class="simple">
-<li>Dust cores depend on column &amp; temperature &amp; line of sight effects</li>
-<li>number of Jeans masses goes as T^-3</li>
-<li>Velocity structure?  B-fields?</li>
-</ul>
-</blockquote>
-<p>Fragmentation within cores</p>
-<blockquote>
-<ul class="simple">
-<li>Used to think that everything fragmented...</li>
-<li>strong B-fields reduce fragmentation</li>
-<li>Still haven't studied parameter space well</li>
-</ul>
-</blockquote>
-<p>SFE within cores</p>
-<blockquote>
-<ul class="simple">
-<li>Binaries or triples form, requires 30%-50% efficiency</li>
-<li>can work with outflows</li>
-<li>but not clear... may depend on well-aligned B-field</li>
-</ul>
-</blockquote>
-<p>Problems with CMF:</p>
-<blockquote>
-<ul class="simple">
-<li>Pipe cores follow CMF shape, but are <em>pressure</em> bound</li>
-<li>CMF in Aquila is too low</li>
-<li>need CMF of Class 0 sources</li>
-</ul>
-</blockquote>
-</div>
-<div class="section" id="clusters">
-<h3>Clusters</h3>
-<p>What effects have cluster simulations had on IMF studies...</p>
-<blockquote>
-<ul class="simple">
-<li>Initial Conditions imprints thermal jeans mass in box, which imprints onto IMF</li>
-<li>thermodynamics matter</li>
-</ul>
-</blockquote>
-<p>Fraction of cloud doesn't matter</p>
-<blockquote>
-<ul class="simple">
-<li>IMF is same in small periodic box and isolated cloud</li>
-<li>colliding flows can build clouds, be more consistent</li>
-<li>How we drive turbulence doesn't seem to affect IMF (solenoidal, compressive same)</li>
-<li>power spectrum of turbulence doesn't affect IMF</li>
-</ul>
-</blockquote>
-<p>Metallicity?</p>
-<blockquote>
-<ul class="simple">
-<li>Myers 2011: 20x metallicity change -&gt; same IMF</li>
-<li>Multiplicity may change (Bate)</li>
-<li>even 10^-5 Z_sun -&gt; same IMF</li>
-</ul>
-</blockquote>
-<p>Things that DO affect IMF:</p>
-<blockquote>
-<ul class="simple">
-<li>radiative transfer: reduces fragmentation</li>
-<li>need wind feedback, otherwise radiation -&gt; flat IMF by preventing fragmentation but keeping gas</li>
-<li>B-fields reduce characteristic mass by creating more filaments with different jeans masses</li>
-</ul>
-</blockquote>
-<p>State of Simulations:</p>
-<blockquote>
-<ul class="simple">
-<li>Top of IMF about right</li>
-<li>bottom is wrong</li>
-</ul>
-</blockquote>
-</div>
-<div class="section" id="secondary-metrics">
-<h3>Secondary Metrics</h3>
-<p>Multiplicity</p>
-<blockquote>
-<ul class="simple">
-<li>Krumholz &amp; Bate both reproduce observations fairly well</li>
-<li>Require radiative transfer</li>
-</ul>
-</blockquote>
-</div>
-<div class="section" id="summary">
-<h3>Summary</h3>
-<blockquote>
-<ul class="simple">
-<li>IMF studies focused on low-mass end instead of high</li>
-<li>Cores better understood</li>
-</ul>
-</blockquote>
-<p>Future: Put simulations into observational plane</p>
-</div>
-</div>
-<div class="section" id="questions">
-<h2>Questions</h2>
-<blockquote>
-<ul class="simple">
-<li>Q: Properties of turbulence in simulations give same IMF...</li>
-<li>A: Outflows drive turbulence, but turbulence doesn't change IMF.  Outflows <em>remove</em> gas.</li>
-<li>Q Zinnecker: Binaries.</li>
-<li>A: Cathy will talk about this.  Fragmentation knobs are the issue
-Unclear that binary properties will stay constant (does field match cluster?)  N-body evolution matters</li>
-<li>Q (Galactic center star studier...): not done with discussion of high-mass issues.  Radiatitve transfer still matters.</li>
-<li>A: Many effects are actually from mass segregation</li>
-<li>Q: Alyssa Goodman:  Are the CMF and IMF both lognormals?</li>
-<li>A: Sometimes fitting distributions they expect.  Maybe different processes in low mass clouds.</li>
 </ul>
 </blockquote>
 </div>
