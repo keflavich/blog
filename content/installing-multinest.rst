@@ -140,3 +140,4 @@ The approach that worked::
     export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/usr/local/hpc/lib:/usr/local/openmpi/lib/
     export LD_LIBRARY_PATH=/Users/adam/repos/MultiNest/lib
 
+At this point, multinest imports but doesn't run the tests...
