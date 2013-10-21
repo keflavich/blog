@@ -363,3 +363,12 @@ Discussing diffuse medium
    + gigantic inverse P-cygni from M82
    + infalling HVC tracer?
  * also detected CH+ to another galaxy at high latitude
+ * Associated with HI (same line shape)
+ * highly non-equilibrium chemistry
+ * "TDR" = Turbulence Dissipation Region models
+
+Q: CH+ seen drastically enhanced in diffuse clouds.  Should we expect gigantic abundance variations in dense molecular clouds too?
+
+ * Q CH+ + B-fields?
+ * Q Frequency of events?
+ * A: 1% of gas
