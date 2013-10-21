@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
                           <li class="post">
+                  2013/10/09
+                  <br>
+                  <a href="http://keflavich.github.io/blog/summary-of-gbt-6cm-observations-of-the-brick-the-lima-bean.html">Summary of GBT 6cm observations of "The Brick" / "The Lima Bean"</a>
+              </li>
+                          <li class="post">
                   2013/10/07
                   <br>
                   <a href="http://keflavich.github.io/blog/late-night-ideas-oct-6-2013.html">Late Night Ideas, Oct 6 2013</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/ann-marie-madigan-on-the-origin-of-young-stars-in-the-galactic-center.html">Ann-Marie Madigan: On the Origin of Young Stars in the Galactic Center</a>
               </li>
-                          <li class="post">
-                  2013/10/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/hui-dong-usa-unveiling-the-massive-stars-beyond-the-three-young-massive-star-clusters.html">Hui Dong (USA): Unveiling the massive stars beyond the three young massive star clusters</a>
-              </li>
                     </ul>
       </li>
         
@@ -101,6 +101,44 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/failed-fields.html" rel="bookmark" title="Permalink to Failed fields">
+                    Failed fields</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-09-13T21:00:00"> 2008/09/13 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <ul class="simple">
+<li>l030 - comments were in the form ;; instead of # in the infile</li>
+<li>l055 - no such folder</li>
+<li>l026 - no infile existed; made one</li>
+<li>l028 - /scratch/sliced_polychrome/l028/060605_o[**]_raw_ds5.nc
+are bad</li>
+<li>l031 - Downsampling seems to have failed for most of this directory.
+Need to downsample all files and create a new infile</li>
+<li>l035 - /scratch/sliced_polychrome/l035/060605_o[**]_raw_ds5.nc
+are bad - that's all 060605 observations of l035.</li>
+<li>l036 - /scratch/sliced_polychrome/l036/070702_o25_raw_ds5.nc,
+/scratch/sliced_polychrome/l036/070705_o21_raw_ds5.nc are bad</li>
+<li>l038 - /scratch/sliced_polychrome/l038/060627_ob3_raw_ds5.nc,
+/scratch/sliced_polychrome/l038/060627_ob[3567]_raw.nc are bad -
+had to re-preprocess</li>
+<li>l054 - /scratch/sliced_polychrome/l054/070724_o25_raw_ds5.nc is
+bad</li>
+<li>l057 - /scratch/sliced_polychrome/l057/070907_o16_raw_ds5.nc is
+bad</li>
+</ul>
+<p>Except for l057, there is no guarantee that the whole observation is
+bad, BUT the code failed on ncdf_open, so it possible the observation
+turned bad during downsampling/preprocessing.
+fixed: 30, 26, 55, 35, 28, 31, 38, 54, 57
+so far all observations on 060605 are bad.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -348,41 +386,10 @@ variety of different things without success yet.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/updates-today.html" rel="bookmark" title="Permalink to Updates today">
-                    Updates today</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-25T23:35:00"> 2008/08/25 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I updated the FITS header writing pieces of the software today, we
-should now have:
-N_PCA
-ITERNUM
-PPBEAM
-in all new maps.
-I'm mapping all of Cygnus degree-by-degree in RA/Dec and Galactic to try
-to measure offsets... possibly offsets as a function of l/b or ra/dec. I
-should really be doing this with PPSes, though.
-My priority list:</p>
-<ol class="arabic simple">
-<li>find out what's causing bulk offsets</li>
-<li>beat down noise in my pointing models by rejecting bad sources/points
-[has to be done from campus]</li>
-<li>test my personal special pointing models</li>
-<li>make maps!</li>
-<li>figure out the rest of pointing</li>
-</ol>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
                         <a href="http://keflavich.github.io/blog/index42.html">&laquo;</a>
-                Page 43 / 47
+                Page 43 / 48
             <a href="http://keflavich.github.io/blog/index44.html">&raquo;</a>
     </p>
 </section><!-- /#content -->
