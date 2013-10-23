@@ -67,6 +67,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
                           <li class="post">
+                  2013/10/23
+                  <br>
+                  <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-3.html">Notes from the ISM-PP conference Day 3</a>
+              </li>
+                          <li class="post">
+                  2013/10/22
+                  <br>
+                  <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-2.html">Notes from the ISM-PP conference: Day 2</a>
+              </li>
+                          <li class="post">
                   2013/10/21
                   <br>
                   <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference.html">Notes from the ISM-PP conference</a>
@@ -81,16 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/late-night-ideas-oct-6-2013.html">Late Night Ideas, Oct 6 2013</a>
               </li>
-                          <li class="post">
-                  2013/10/06
-                  <br>
-                  <a href="http://keflavich.github.io/blog/installing-multinest-on-mac-os-x-107.html">Installing MultiNest on Mac OS X 10.7</a>
-              </li>
-                          <li class="post">
-                  2013/10/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/tuesday-afternoon-talks.html">Tuesday Afternoon Talks</a>
-              </li>
                     </ul>
       </li>
         
@@ -101,6 +101,58 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/task-list.html" rel="bookmark" title="Permalink to Task List">
+                    Task List</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-22T00:29:00"> 2008/08/22 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>For the moment, I'm going to leave the pointing alone. This leaves us
+(me) with a very long list of things to do before the data release:</p>
+<ol class="arabic simple">
+<li>Determine ideal iterative mapping strategy for low-flux fields</li>
+<li>Determine ideal iterative mapping strategy for fields with bright
+sources</li>
+<li>Optimize at least the following:<ol class="arabic">
+<li>scan flatting (polynomial subtraction)</li>
+<li>PCA subtraction</li>
+<li>Pre-PCA sky subtraction (necessary?)</li>
+<li>Deconvolution/No deconvolution</li>
+</ol>
+</li>
+<li>GENERATE MAPS [top priority, but it can't really happen til after the
+above]</li>
+<li>Assure consistency with catalogs - e.g. Motte, SCUBA, etc.</li>
+<li>Figure out what needs to go into fits header</li>
+<li>Survive semester before comps [lowest priority]</li>
+<li>sleep [oh, right, real lowest priority]</li>
+</ol>
+<p>Sarcasm helps me survive. Almost as much as beer.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/new-pointing-models.html" rel="bookmark" title="Permalink to New pointing models">
+                    New pointing models</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-21T20:45:00"> 2008/08/21 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I decided to try to fit the pointing model as a full alt/az or ra/dec
+dependent thing using mpfitfun and a 12 (or 16) parameter model. It
+didn't work very well.
+I could fit out the alt dependence, then independently fit out the az
+dependence, and see how that goes. I think it will work brilliantly.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -330,51 +382,6 @@ I solved the first by splitting into by-scan delining, which is better
 anyway. But the second is a map, in which I KNOW zero padding is OK.
 So... are there any functions that find the nearest reasonably efficient
 map size?</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/more-cleaning-modifications.html" rel="bookmark" title="Permalink to More cleaning modifications">
-                    More cleaning modifications</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-12T17:01:00"> 2008/08/12 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I had removed sigmadeglitch from deline, now it's permanently gone. I
-think it might be worth exploring re-inserting sigmadeglitch somewhere.
-My higher-order polynomial fit is creating deeper bowls around sources,
-so that's a big problem, but if I use a lower order I get the bad
-streaks. What's the best way to deal with this? I'm thinking perhaps
-only doing the polysub on the second iteration (i.e. after a source
-model has been subtracted).
-Delining runs into some issues now, though, because not all frequencies
-are sampled (?).</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/wow-fft-failure.html" rel="bookmark" title="Permalink to Wow - FFT failure">
-                    Wow - FFT failure</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-12T15:11:00"> 2008/08/12 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>On my huge Cygnus run, the fft keeps failing in the deline code. It's
-actually pretty impressive, but there are 844604 points in the
-timestream. The prime factorization of 844604 is 2^2 * 211151. This is
-just damned bad luck, because I think an FFT is extremely inefficient
-when it can't factorize. What's the best workaround? ....
-9 AM update: I've rewritten the deliner to work on a scan-by-scan basis.
-It's possible that the delining failed in the past because it was
-essentially removing a constant amplitude at the line frequencies across
-the observation (or combined observations!) which is not likely to be
-true.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

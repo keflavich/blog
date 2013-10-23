@@ -67,6 +67,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
                           <li class="post">
+                  2013/10/23
+                  <br>
+                  <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-3.html">Notes from the ISM-PP conference Day 3</a>
+              </li>
+                          <li class="post">
+                  2013/10/22
+                  <br>
+                  <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-2.html">Notes from the ISM-PP conference: Day 2</a>
+              </li>
+                          <li class="post">
                   2013/10/21
                   <br>
                   <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference.html">Notes from the ISM-PP conference</a>
@@ -81,16 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/late-night-ideas-oct-6-2013.html">Late Night Ideas, Oct 6 2013</a>
               </li>
-                          <li class="post">
-                  2013/10/06
-                  <br>
-                  <a href="http://keflavich.github.io/blog/installing-multinest-on-mac-os-x-107.html">Installing MultiNest on Mac OS X 10.7</a>
-              </li>
-                          <li class="post">
-                  2013/10/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/tuesday-afternoon-talks.html">Tuesday Afternoon Talks</a>
-              </li>
                     </ul>
       </li>
         
@@ -101,6 +101,71 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/defining-pointing-terminology.html" rel="bookmark" title="Permalink to Defining Pointing Terminology">
+                    Defining Pointing Terminology</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-07-30T21:50:00"> 2008/07/30 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>There has been a lot of confusion about pointing terminology.</p>
+<p>CSO pointing model: the telescope pointing model used and written as a
+black box</p>
+<ul class="simple">
+<li>has already been corrected for aberration/nutation</li>
+<li>is in current epoch coordinates (e.g. J2007.34)</li>
+</ul>
+<p>Instrument-specific correction to pointing model</p>
+<ul class="simple">
+<li>??? also referred to as 't terms'</li>
+<li>is offset between CSO pointing model and real locations</li>
+<li>should be a function of alt (and maybe az)</li>
+<li>is recorded in &quot;RPC&quot; files</li>
+<li>is in units of distance on the sky: delta-RA and delta-DEC, or
+delta-ALT and delta-AZ will be in the same units, while if they were
+in coordinate units delta-RA and delta-AZ would have to be scaled by
+1/cos(DEC) or 1/cos(ALT) respectively</li>
+</ul>
+<p>FAZO and FZAO: Fixed Azimuth Offset and Fixed Zenith Angle Offset</p>
+<ul class="simple">
+<li>these are ambiguously defined in the pipeline code</li>
+<li>???? FAZO/FZAO include both the functional instrument specific
+pointing offset and any manual changes made at the telescope [manual
+only relevant to 2007 observations]</li>
+<li>???? or are these JUST fixed offsets, and the instrument specific
+corrections are not included? Either way, how can I separate out
+manually-applied fixed offsets from fitted-model offsets?</li>
+</ul>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/new-pipeline-to-cvs.html" rel="bookmark" title="Permalink to New Pipeline to CVS">
+                    New Pipeline to CVS</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-07-30T21:36:00"> 2008/07/30 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Open topic - what needs to be done to put the new pipeline on the CVS?</p>
+<ol class="arabic simple">
+<li>Under the assumption that it will be used by others, the
+documentation needs to be complete.</li>
+<li>Needs to be compatible with current pipeline (no name overlap)</li>
+<li>Have to fix / update some Goddard astrolib routines that have short
+integer for loops and need long integer for loops
+Which ones?</li>
+<li>Probably need to add instrument specific pointing model corrections
+for non-BGPS observations</li>
+</ol>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">

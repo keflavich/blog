@@ -67,6 +67,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
                           <li class="post">
+                  2013/10/23
+                  <br>
+                  <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-3.html">Notes from the ISM-PP conference Day 3</a>
+              </li>
+                          <li class="post">
+                  2013/10/22
+                  <br>
+                  <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-2.html">Notes from the ISM-PP conference: Day 2</a>
+              </li>
+                          <li class="post">
                   2013/10/21
                   <br>
                   <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference.html">Notes from the ISM-PP conference</a>
@@ -81,16 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/late-night-ideas-oct-6-2013.html">Late Night Ideas, Oct 6 2013</a>
               </li>
-                          <li class="post">
-                  2013/10/06
-                  <br>
-                  <a href="http://keflavich.github.io/blog/installing-multinest-on-mac-os-x-107.html">Installing MultiNest on Mac OS X 10.7</a>
-              </li>
-                          <li class="post">
-                  2013/10/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/tuesday-afternoon-talks.html">Tuesday Afternoon Talks</a>
-              </li>
                     </ul>
       </li>
         
@@ -101,6 +101,90 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/pointing-model-success.html" rel="bookmark" title="Permalink to Pointing model success">
+                    Pointing model success</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-09-02T15:11:00"> 2008/09/02 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>/scratch/adam_work/plots/models_myptgmdl_0707.ps
+Look at the left plots in #1 and #4, and ignore the red lines. The RMS
+is 4.87 in alt, 3.51 in az, using all pointing observations in 0707
+(i.e. not splitting it into part1/part2 or refining heavily). Total is
+6.003&quot;, not bad.
+I'm calling it quits on pointing refinement for the moment; I'm
+satisfied using Meredith's pointing models to get science maps
+co-aligned, then we'll use my model on the PPSes to get the pointing to
+maximum precision.
+Also, in the galactic center, the mapping works happily now. No more
+silly problems with that.
+It's time for a real Next Step. I think that means mapping nearly
+everything. Well, here goes!</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/prepare_map-issues.html" rel="bookmark" title="Permalink to prepare_map issues">
+                    prepare_map issues</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-09-01T16:31:00"> 2008/09/01 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The problem: There is a bulk offset that can range from small to ~22'
+(largest observed so far) in the combined maps that is not present in
+the individual maps.
+Observations: I THINK the offset between ra/dec and l/b is most
+pronounced when the map boundaries are most different.
+We have been putting CRPIX in the middle of the map (i.e. number of x/y
+elements divided by 2), which is not the same position as the median
+ra/dec or l/b. I figured this might be a problem, but there's not really
+a way around it - if you just set CRPIX to be 0,0, it doesn't change
+anything. xy2ad and ad2xy produce self-consistent results, but that
+doesn't mean anything either.
+I think the problem is that AD2XY is largely ignorant of CRPIX: it
+calculates x/y offsets from the CRVAL assuming that the CRVAL is at
+CRPIX.... but I don't know why that should be wrong. Ideas? More to come
+if I figure anything out.
+Update: from doing the individual maps in l/b vs ra/dec, I don't think
+the offset is between l/b and ra/dec.... something less fundamental.
+Update 2: still no clues after reading ad2xy and trying to plow through
+parts of wcssph2xy. gotta be rect_pix_tstream, but I think it's
+right....
+Update 3: I think I have figured out the problem, currently testing. My
+idea has to do with the fact that all x,y positions in
+rect_pix_tstream are positive, but ad2xy is not constrained to return
+positive values. In principle, the two-iteration ad2xy should take care
+of this, but in the case where the middle of the map in pixels is not
+the middle of the map in the WCS coordinate system, it is still possible
+to get negative pixel mappings out of the 2nd iteration. I'm still
+confused about whether this is really possible - makes my head fuzzy -
+but I tried implementing a solution where I simply shift the crpix
+rather than recalculating with AD2XY.
+Update 4: Based on L111, my test in update 3 fixed the problem. Scuba
+contours are correct, and reasonably consistent across the field - still
+need to do the more complete test, e.g. Cygnus
+Update 5: Cygnus tests still await completion, but a very close
+inspection of single L111 maps reveals a ~2 pixel difference that could
+go a long way to explaining my high-RMS pointing calculations. Still
+doesn't explain the sine curve, but anything helps...
+Update 6: My correction definitely fixed the problem, EXCEPT there's
+still an ambiguity at the .5 pixel level. Specifically, is AD2XY
+treating the pixel center as .5,.5 or 0,0? Ditto IDL. I believe (from my
+simulated data) that this ambiguity is still causing a problem.
+Update 7: New correction fixed problem to better than 1&quot; (checked by
+making a simulated map with 1&quot; pixels) - probably 'perfect' now. Read
+prepare_map.pro for details. The issue was a difference in pixel
+centers.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -315,58 +399,6 @@ WAY our pointing models could be off by that much! Even if I got the
 signs entirely wrong, that's just not possible.
 What's going on? First theory: Galactic coordinates fail. Any other
 suggestions?</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/task-list.html" rel="bookmark" title="Permalink to Task List">
-                    Task List</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-22T00:29:00"> 2008/08/22 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>For the moment, I'm going to leave the pointing alone. This leaves us
-(me) with a very long list of things to do before the data release:</p>
-<ol class="arabic simple">
-<li>Determine ideal iterative mapping strategy for low-flux fields</li>
-<li>Determine ideal iterative mapping strategy for fields with bright
-sources</li>
-<li>Optimize at least the following:<ol class="arabic">
-<li>scan flatting (polynomial subtraction)</li>
-<li>PCA subtraction</li>
-<li>Pre-PCA sky subtraction (necessary?)</li>
-<li>Deconvolution/No deconvolution</li>
-</ol>
-</li>
-<li>GENERATE MAPS [top priority, but it can't really happen til after the
-above]</li>
-<li>Assure consistency with catalogs - e.g. Motte, SCUBA, etc.</li>
-<li>Figure out what needs to go into fits header</li>
-<li>Survive semester before comps [lowest priority]</li>
-<li>sleep [oh, right, real lowest priority]</li>
-</ol>
-<p>Sarcasm helps me survive. Almost as much as beer.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/new-pointing-models.html" rel="bookmark" title="Permalink to New pointing models">
-                    New pointing models</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-21T20:45:00"> 2008/08/21 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I decided to try to fit the pointing model as a full alt/az or ra/dec
-dependent thing using mpfitfun and a 12 (or 16) parameter model. It
-didn't work very well.
-I could fit out the alt dependence, then independently fit out the az
-dependence, and see how that goes. I think it will work brilliantly.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
