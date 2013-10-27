@@ -82,12 +82,16 @@ Extinction Mapping (in Orion)
  * Corona Australis cloud (Avles et al submitted)
    + PDF very lognormal with a tiny power-law excess
    + Kainulainen did the PDF work...
+
      - sometimes loglog gives insight...
+
    + mentioned my poster as rejecting lognormal (oops - that result changed since I wrote the abstract...)
  * NICEST future?
    + GNICER
    + do it to other galaxies?
+
      - nice extinction mapping in CNR of M83
+
  * Bally CMZ...
    + M83 analogy?
  * Q Herschel maps: larger dynamic range
@@ -221,8 +225,7 @@ Turbulent mixing -> serious resolution issues?
 How is turbulence driven? (how does it arise?)
  * Hydrodynamic eqns -> dispersive and curly components
    1. Gradients in the velocity field (shear)
-   2. Angular momentum conservation term: vorticity increases when gas
-      compressed.  Make something smaller -> spin up
+   2. Angular momentum conservation term: vorticity increases when gas compressed.  Make something smaller -> spin up
    3. Pressure / density misaligned -> turbulence.  Thermal instability.
  * "Turbulence in the ISM is a *consequence*"
 Turbulence decays

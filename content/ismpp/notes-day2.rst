@@ -163,6 +163,7 @@ Chemical processes in the ISM: Gas and molecules 30': Simon Glover (ZAH/ITA Univ
 -----------------------------------------------------------------------------------------------------
 Noble gas molecule in ISM: ArH+ in SNR
 Why are molecular clouds cool?
+
  * Molecular clouds are cool because of dust shielding, NOT CO cooling
    + C+, CI are just as efficient as CO
    + CO allows you to cool from 20 to 10K at n~10^2-10^3
