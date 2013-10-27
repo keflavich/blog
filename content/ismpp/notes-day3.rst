@@ -57,6 +57,7 @@ The evolution of molecular clouds under the influence of ionizing radiation 15':
 ------------------------------------------------------------------------------------------------------
 Pipe Nebula affected by feedback
 O vs B star
+
  * B-star does not generate structure
    + heats shell
    + stays very smooth
