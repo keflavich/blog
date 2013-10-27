@@ -1,5 +1,5 @@
-Notes from the ISM-PP conference
-================================
+Notes from the ISM-PP conference Day 4
+======================================
 :date: 2013-10-24
 :author: Adam Ginsburg
 :tags: conference, ismpp
@@ -8,8 +8,10 @@ Alberto Bolatto
 ---------------
 GMC lifetime: 100 Myr (Scoville 79, Koda)
 Size-linewidth relation: 
+
  * Heyer 2001: small, flat dispersion clouds
  * outer galaxy clouds contained by external pressure
+
 Dust in IGM hints at molecular Galactic outflows
 
 Jin Koda: Molecular to Total gas ratio
@@ -78,14 +80,18 @@ Steve Longmore: ISM in Galactic Centers
 ---------------------------------------
 dolphin riding?
 Where is MW in hubble tuning fork?
+
  * dense gas with no star formation driven inwards by bar
  * Meidt M51 PAWS
+
 Molinari Ring: closed orbit...
 M83 is a twin
 Jay Gallagher's talk: SFR much, much higher in NGC 253 than MW
 Discrepancy between Farhad, Steve, and Sandstrom
+
  * TOTAL gas: CMZ agrees
  * Geometry: Farhad assumed pancake, Steve assumed ring
+
 Kruijssen & Longmore similarity to z=2-3...
  * CMZ clouds "indistinguishable" in a few parameters from high-Z
 Turbulent pressure provides the support in the CMZ
