@@ -68,6 +68,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
                           <li class="post">
+                  2013/12/13
+                  <br>
+                  <a href="http://keflavich.github.io/blog/there-is-a-gap-in-the-dust-around-sgr-b2.html">There is a "gap" in the dust around Sgr B2</a>
+              </li>
+                          <li class="post">
                   2013/10/09
                   <br>
                   <a href="http://keflavich.github.io/blog/summary-of-gbt-6cm-observations-of-the-brick-the-lima-bean.html">Summary of GBT 6cm observations of "The Brick" / "The Lima Bean"</a>
@@ -87,11 +92,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/position-velocity-diagrams.html">Position-Velocity Diagrams</a>
               </li>
-                          <li class="post">
-                  2013/09/22
-                  <br>
-                  <a href="http://keflavich.github.io/blog/blogging-from-ipython.html">Blogging from IPython</a>
-              </li>
                     </ul>
       </li>
         
@@ -103,6 +103,25 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles in the misc category</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/dying-dock.html" rel="bookmark" title="Permalink to Dying Dock">
+                    Dying Dock</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>My dock keeps dying. Repeatedly. Over and over.
+Only solution so far:
+<tt class="docutils literal">ps <span class="pre">-vax</span> | grep <span class="pre">-E</span> &quot;Dock|PID&quot;kill <span class="pre">-HUP</span> PIDkill <span class="pre">-s</span> SIGCHLD PID</tt>
+And similarly for problems with Chrome + /usr/sbin/mDNSResponder. They
+tend to go bad together.... no clues yet from the system logs.
+Ironically, the crash reporter seems to fail the most often...</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -429,25 +448,6 @@ commands. Workaround:</p>
 def steppify(arr,isX=False,interval=0):    &quot;&quot;&quot;    Converts an array to double-length for step plotting    &quot;&quot;&quot;    if isX and interval==0:        interval = abs(arr[1]-arr[0]) / 2.0        newarr = array(zip(arr-interval,arr+interval)).ravel()        return newarrplot(xx,yy,linestyle='steps-mid',color='b',linewidth=1.5)fill_between(steppify(xx[x1:x2],isX=True),    steppify(yy[x1:x2])*0,    steppify(yy[x1:x2]),    facecolor='b',alpha=0.2)
 </pre>
 </p> </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/finally-got-matplotlib-to-install.html" rel="bookmark" title="Permalink to finally got matplotlib to install...">
-                    finally got matplotlib to install...</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>the key is reading the readme, not just the make.osx file.</p>
-<p>These commands Just Work:
-<tt class="docutils literal">make <span class="pre">-f</span> make.osx PYVERSION=2.6 <span class="pre">PREFIX=/Users/adam/repos/mpl_dependencies/</span> fetch deps mpl_install_stdmake <span class="pre">-f</span> make.osx PYVERSION=2.7 <span class="pre">PREFIX=/Users/adam/repos/mpl_dependencies/</span> fetch deps mpl_install_std</tt></p>
-<p>while, e.g., this one:
-<tt class="docutils literal">make <span class="pre">-f</span> make.osx PYVERSION=2.6 <span class="pre">PREFIX=/Users/adam/repos/mpl_dependencies/</span> fetch deps mpl_install</tt>
-didn't. I guess because that one doesn't actually install anything.</p>
- </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
 </ul><!-- /#posts-list -->
