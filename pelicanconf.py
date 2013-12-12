@@ -32,7 +32,7 @@ DEFAULT_PAGINATION = 10
 #THEME='simple_editable' 
 THEME='mine'
  
-STATIC_PATHS = ['images','bgps/images','iau303/images']
+STATIC_PATHS = ['images','bgps/images','iau303/images','images/sgrb2']
 
 INLINESTYLES = True
 
