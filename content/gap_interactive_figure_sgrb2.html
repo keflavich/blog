@@ -1,0 +1,93 @@
+<html>
+<div class="output_html rendered_html">
+
+    <script type="text/javascript">
+
+      var image_dir='static/images/sgrb2/'
+
+      var images=new Array(
+                   "TheGap_GLM_00000+0000_mosaic_I2.png",
+                   "TheGap_GLM_00000+0000_mosaic_I4.png",
+                   "TheGap_gcmosaic_24um.png",
+                   "TheGap_igls_l000_blue_cnr_hh.png",
+                   "TheGap_igls_l000_red_cnr_hh.png",
+                   "TheGap_igls_l000_psw_deglitch_hh.png",
+                   "TheGap_igls_l000_pmw_deglitch_hh.png",
+                   "TheGap_SgrB2_350um_gal.png",
+                   "TheGap_gc450_gal.png",
+                   "TheGap_igls_l000_plw_deglitch_hh.png",
+                   "TheGap_gc850_gal.png",
+                   "TheGap_ATLASGAL.1.5_reprojectoverlap9.png",
+                   "TheGap_v2.0_ds2_l001_13pca_map20.png",
+                   //"TheGap_sgrb2_nh311_sum.png",
+                   "TheGap_sgrb2_20cm_12as_gal.png",
+                   "TheGap_20cm_0.png"
+                   )
+      var titles=new Array(
+                   "4.5um",
+                   "8um",
+                   "24um",
+                   "70um",
+                   "160um",
+                   "250um",
+                   "350um Herschel",
+                   "350um SHARC",
+                   "450um",
+                   "500um",
+                   "850um SCUBA",
+                   "870um ATLASGAL",
+                   "1100um",
+                   //"1.3cm NH3",
+                   "20cm",
+                   "20cm (poor resolution)"
+                   )
+
+      function interactUpdate(div){
+         var outputs = div.getElementsByTagName("img");
+         var divoutputs = div.getElementsByTagName("div");
+         var controls = div.getElementsByTagName("input");
+
+         var value = "";
+         for(i=0; i<controls.length; i++){
+           if((controls[i].type == "range") || controls[i].checked){
+             //value = value + controls[i].getAttribute("name") + controls[i].value;
+             value = controls[i].value;
+           }
+         }
+
+         for(i=0; i<outputs.length; i++){
+           var name = outputs[i].getAttribute("name");
+           if(name=="figure"){
+                 outputs[i].src = image_dir+images[value]
+           }
+         }
+
+         for(i=0; i<divoutputs.length; i++){
+           var name = divoutputs[i].getAttribute("name");
+           if(name=="caption"){
+                 divoutputs[i].innerHTML = titles[value];
+           }
+         }
+
+         //for(i=0; i<images.length; i++){
+         //  var name = outputs[i].getAttribute("name");
+         //  if(name == value){
+         //     outputs[i].style.display = 'block';
+         //  } else if(name != "controls"){
+         //     outputs[i].style.display = 'none';
+         //  }
+         //}
+      }
+    </script>
+    
+    <div>
+      
+    <div name="figure" style="display:block">
+        <div name="caption">
+            20cm
+        </div>
+        <img name="figure" src="images/sgrb2/TheGap_20cm_0.png" height=600px>
+    </div>
+
+<input type="range" name="figure" min="0" max="14" step="1" value="0" style="width:350px" onchange="interactUpdate(this.parentNode);">
+</html>
