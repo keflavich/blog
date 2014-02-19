@@ -4,10 +4,10 @@
 <link rel="icon" type="image/gif" href="http://keflavich.github.io/blog/theme/favicon8.ico">
 <head>
     <base href="http://keflavich.github.io/blog">
-                <title>Adam Ginsburg's blog</title>
+        <title>Adam Ginsburg's blog</title>
         <meta charset="utf-8" />
-                <link href="http://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
-                                                                        <!-- Using MathJax, with the delimiters $ -->
+        <link href="http://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
 <!-- Conflict with pygments for the .mo and .mi -->
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -51,56 +51,199 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
             <h1 style="color: #C4C4C4;"><a class="header" href="http://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
 
             <nav id="menu"><ul id="menulist">
-                            <li><a href="http://www.adamgginsburg.com">Homepage</a></li>
-                            <li><a href="/blog//index.html">Blog Index</a></li>
-                            <li><a href="/blog//category/bgps.html">BGPS Blog</a></li>
-                            <li><a href="/blog//category/publications.html">Publications</a></li>
-                            <li><a href="/blog//archives.html">Archives</a></li>
-                            <li><a href="/blog//tags.html">Tags</a></li>
-                                                              </ul></nav><!-- /#menu -->
+                <li><a href="http://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/blog//index.html">Blog Index</a></li>
+                <li><a href="/blog//category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/blog//category/publications.html">Publications</a></li>
+                <li><a href="/blog//archives.html">Archives</a></li>
+                <li><a href="/blog//tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
         </div>
     </header><!-- /#banner -->
 
-   <div id="sidebar">
+  <div id="sidebar">
     <ul>
-  	  	        	  	          <li>
+      <li>
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
-                          <li class="post">
+              <li class="post">
+                  2014/02/19
+                  <br>
+                  <a href="http://keflavich.github.io/blog/python-stack-on-mavericks.html">Python stack on Mavericks</a>
+              </li>
+              <li class="post">
+                  2014/01/16
+                  <br>
+                  <a href="http://keflavich.github.io/blog/w51-mapping-flagging-bad-data.html">W51 Mapping: Flagging bad data</a>
+              </li>
+              <li class="post">
                   2013/12/13
                   <br>
                   <a href="http://keflavich.github.io/blog/there-is-a-gap-in-the-dust-around-sgr-b2.html">There is a "gap" in the dust around Sgr B2</a>
               </li>
-                          <li class="post">
+              <li class="post">
                   2013/10/25
                   <br>
                   <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-5.html">Notes from the ISM-PP conference: Day 5</a>
               </li>
-                          <li class="post">
+              <li class="post">
                   2013/10/24
                   <br>
                   <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-4.html">Notes from the ISM-PP conference Day 4</a>
               </li>
-                          <li class="post">
-                  2013/10/23
-                  <br>
-                  <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-3.html">Notes from the ISM-PP conference Day 3</a>
-              </li>
-                          <li class="post">
-                  2013/10/22
-                  <br>
-                  <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-2.html">Notes from the ISM-PP conference: Day 2</a>
-              </li>
-                    </ul>
+        </ul>
       </li>
-        
+    
     </ul>
   </div><!-- end #sidebar -->
- 
+
   <div id="content">
-        <section id="content">
+<section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/position-velocity-diagrams.html" rel="bookmark" title="Permalink to Position-Velocity Diagrams">
+                    Position-Velocity Diagrams</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-09-24T00:00:00"> 2013/09/24 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>tl;dr version: IPython notebook <a class="reference external" href="http://keflavich.github.io/pvextractor/examples/IRAS05358Slicing.html">here</a>, code <a class="reference external" href="http://keflavich.github.io/pvextractor/">available on github</a></p>
+<div class="section" id="current-state-of-affairs">
+<h2>Current state of affairs</h2>
+<p>Position-velocity diagrams with arbitrary position axes have been a common tool
+for studying spectra for a long time, probably because the &quot;native&quot; format of
+long-slit spectra on CCDs is effectively a position-velocity diagram.</p>
+<p>It's becoming more common now to have data cubes (PPV) than 1D or 2D spectra.
+But PV diagrams still have utility.  Unfortunately, there aren't very good
+tools to produce them.</p>
+<p>There are plenty of tools that can slice along any of the native axes of a data
+cube.  If you take your data cube in RA/Dec space, extracting along lines of
+constant RA or Dec is trivial (<a class="reference external" href="http://star-www.dur.ac.uk/~pdraper/gaia/gaia.html">GAIA</a> can do it natively, but it's easy to
+slice a cube in IDL or python).</p>
+<p>However, if you wanted to slice along lines of constant GLON or GLAT, you'd
+have to reproject the cube to use this approach.  There are nice tools that
+implement cube rotation: CASA has an <a class="reference external" href="http://star-www.dur.ac.uk/~pdraper/gaia/gaia.html">imrebin recipe</a> and STARLINK has a
+rotation tool (though I can't find it now...).</p>
+<p>However, this approach is terribly inefficient if you want slices at multiple
+different angles, and it's outright awful if you want to track a filament.</p>
+</div>
+<div class="section" id="an-alternative-approach">
+<h2>An alternative approach</h2>
+<p>The alternative is to interpolate between pixels along a specified axis.  This
+can be done very efficiently in python using scipy's <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.interpolation.map_coordinates.html">map_coordinates</a>, which
+by default does a cubic-spline interpolation at the specified points.</p>
+<p>I've started to build a tool to extract position-velocity diagrams on this
+basis.  It's fully functional, but doesn't do anything interactive just yet.
+<a class="reference external" href="https://github.com/keflavich/pvextractor">pvextractor</a> is <a class="reference external" href="http://keflavich.github.io/pvextractor/">available on github</a>.</p>
+<p>There is a complete example demonstrating its use <a class="reference external" href="http://keflavich.github.io/pvextractor/examples/IRAS05358Slicing.html">here</a>.</p>
+<p>In short, though, it allows you to describe paths like this:</p>
+<img alt="" src="http://keflavich.github.io/blog/images/paths_i05358.png" style="width: 800px;" />
+<p>and extract them into position-velocity diagrams like this:</p>
+<img alt="" src="http://keflavich.github.io/blog/images/pv_i05358.png" style="width: 800px;" />
+</div>
+<div class="section" id="postscript-figshare">
+<h2>Postscript: Figshare</h2>
+<p>(note: postscript as in &quot;P.S.&quot;, not &quot;.ps&quot;)</p>
+<p>In order to create the example document (<a class="reference external" href="http://keflavich.github.io/pvextractor/examples/IRAS05358Slicing.html">here</a>), I needed a small data cube
+that could easily be downloaded. <a class="reference external" href="theastrodata.org">Dataverse</a> hosts the <a class="reference external" href="http://www.cfa.harvard.edu/COMPLETE/">COMPLETE</a> survey, but
+they make you jump through a javascript hoop to download their data, which
+means that it is not possible to write an easily reproducible script.  Too bad,
+since I would have used them except for this minor interface issue.</p>
+<p>Instead, I've found that <a class="reference external" href="http://figshare.com">figshare</a> has fixed up their interface since I last
+used them.  It was easy enough that I decided to upload my <a class="reference external" href="http://figshare.com/articles/IRAS_05358_3543_Data_Cubes/806315">IRAS 05358+3543
+data cubes</a> and had no trouble at all.  I also posted an update to the <a class="reference external" href="http://arxiv.org/abs/0910.2990">arxiv</a>
+page for the article indictating that the data are freely shared.  I'll do my
+best to share the data for the rest of my papers too, though it will take some
+time and I'll hit data limits for W5 pretty quickly.</p>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/blogging-from-ipython.html" rel="bookmark" title="Permalink to Blogging from IPython">
+                    Blogging from IPython</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-09-22T00:00:00"> 2013/09/22 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>[ <a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/keflavich/blog/master/content/BloggingFromIPython.ipynb">Notebook Form of this
+post</a>
+]</p>
+<p>There have been
+<a class="reference external" href="http://jmcarp.github.io/blog/2013/07/07/hello-world/">many</a>
+<a class="reference external" href="http://danielfrg.github.io/blog/2013/02/16/blogging-pelican-ipython-notebook/">other</a>
+<a class="reference external" href="http://danielfrg.github.io/blog/2013/03/08/pelican-ipython-notebook-plugin/">posts</a>
+about blogging in ipython, but they all included more overhead than I
+really wanted to deal with.</p>
+<p>Instead, I've gone directly to <a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/Carreau/posts/master/06-NBconvert-Doc-Draft.ipynb">the
+source</a>
+and used nbconvert in ipython 2.0 to convert my notebooks to rst, then
+put them through pelican.</p>
+<p>This post outlines my workflow.</p>
+<p>First, and most inconvenient, it is necessary to head any blog post with
+metadata. I don't have any convenient workflow to deal with that, I just
+write it in by hand in a raw text box (ctrl-m, t) as you can see above.
+<a class="reference external" href="http://danielfrg.github.io/">Daniel Rodriguez</a> took a <a class="reference external" href="http://danielfrg.github.io/blog/2013/03/08/pelican-ipython-notebook-plugin/">different
+approach</a>
+using the ipython metadata directly and an ipython plugin, but I didn't
+want to have to worry about installing plugins and I am definitely
+worried about breaking notebooks by messing with the
+<a class="reference external" href="https://github.com/ipython/ipython/wiki/IPEP-20%3A-Informal-structure-of-cell-metadata">metadata</a>
+as the ipy devs give some fairly <a class="reference external" href="https://gist.github.com/Carreau/4437348">strict
+warnings</a>.</p>
+<p>Next, the ipynb -&gt; rst step is fairly straightforward. I modified the
+rst template because I don't want to see the <tt class="docutils literal"><span class="pre">In[#]:</span></tt> and <tt class="docutils literal"><span class="pre">Out[#]:</span></tt>
+prefixes around my code. I also use <tt class="docutils literal">.. <span class="pre">code-block::</span></tt> rather than
+<tt class="docutils literal">.. code::</tt>.</p>
+<p>This very simple function below makes sure that my local <tt class="docutils literal">rst.tbl</tt>
+file is seen before ipython's. Their templates are in
+<tt class="docutils literal">IPython/nbconvert/templates</tt>. Note that you could normally use Jinja2
+templating and &quot;Extend&quot; their template, but I wanted to remove rather
+than extend.</p>
+<p>[
+<a class="reference external" href="https://github.com/keflavich/blog/blob/master/nbconverter.py">Source</a>
+]</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">IPython.nbconvert.exporters</span> <span class="kn">import</span> <span class="n">RSTExporter</span>
+
+<span class="k">def</span> <span class="nf">export</span><span class="p">(</span><span class="n">nbname</span><span class="p">,</span> <span class="n">outfilename</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">exportRST</span> <span class="o">=</span> <span class="n">RSTExporter</span><span class="p">()</span>
+    <span class="c"># exclude default paths</span>
+    <span class="n">exportRST</span><span class="o">.</span><span class="n">template_path</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;.&#39;</span><span class="p">,</span><span class="s">&#39;/Users/adam/repos/blog&#39;</span><span class="p">]</span>
+
+    <span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="n">resources</span><span class="p">)</span> <span class="o">=</span> <span class="n">exportRST</span><span class="o">.</span><span class="n">from_filename</span><span class="p">(</span><span class="n">nbname</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">outfilename</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">outfilename</span> <span class="o">=</span> <span class="n">nbname</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;ipynb&quot;</span><span class="p">,</span><span class="s">&quot;rst&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfilename</span><span class="p">,</span><span class="s">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">body</span><span class="p">,</span><span class="n">resources</span>
+</pre></div>
+<p>I then run the script from the command line:
+<tt class="docutils literal"><span class="pre">~/virtual-ipydev/bin/ipython</span> ./nbconverter.py content/GenerateCVExample.ipynb</tt></p>
+<p>I'm using a virtual environment with ipython 2 installed because I'm not
+yet ready to make the jump to the dev version of ipython (though these
+days, with Travis and Jenkins around, it's probably safe to assume the
+dev version won't break anything).</p>
+<p>With this rst file generated, the only remaining step is
+<a class="reference external" href="http://blog.getpelican.com/">pelican</a>, which only requires a
+<tt class="docutils literal">make github</tt> command in the blog directory. Installing &amp; setting up
+pelican is reasonably easy, but not the topic of this post.</p>
+<p>I've made my own <a class="reference external" href="https://github.com/keflavich/pelican-themes/tree/master/mine">custom pelican
+theme</a>,
+so I generally need to update the theme before building:</p>
+<p><tt class="docutils literal"><span class="pre">pelican-themes</span> <span class="pre">--upgrade</span> <span class="pre">/Users/adam/repos/pelican-themes/mine</span> &amp;&amp; make github</tt></p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -110,7 +253,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         </header>
         <footer class="post-info">
             <abbr class="published" title="2013-09-21T00:00:00"> 2013/09/21 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <ul class="simple">
 <li>[ <a class="reference external" href="https://github.com/keflavich/generate_cv">Source code related to this
 post</a> ]</li>
@@ -418,7 +561,7 @@ month numbers into names</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2013-08-05T10:37:59"> 2013/08/05 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I tend to be most interested in low-energy molecular lines: CO, NH<sub>3</sub>, and
 H<sub>2</sub>CO being the main candidates.</p>
 <p>Note: Splatalogue has made some recent changes to their returned tables, partly
@@ -517,7 +660,7 @@ changes.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2013-07-16T18:00:00"> 2013/07/16 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <div class="section" id="the-formation-and-early-evolution-of-young-massive-clusters">
 <h2>THE FORMATION AND EARLY EVOLUTION OF YOUNG MASSIVE CLUSTERS</h2>
 <p>S. Longmore (Astrophysics Research Institute, Liverpool John Moores University, United Kingdom),
@@ -596,7 +739,7 @@ earliest epochs of the universe.</p>
 <li>need to understand initial conditions: mass as a function of size scale early</li>
 </ul>
 </blockquote>
-<img alt="|filename|/images/StevePlot.jpg" src="http://keflavich.github.io/blog/static/images/StevePlot.jpg" style="width: 800px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/StevePlot.jpg" style="width: 800px;" />
 </div>
 <div class="section" id="observations">
 <h2>Observations</h2>
@@ -724,7 +867,7 @@ earliest epochs of the universe.</p>
 <li>SiO movie</li>
 </ul>
 </blockquote>
-<img alt="|filename|/images/Banana.jpg" src="http://keflavich.github.io/blog/static/images/Banana.jpg" style="width: 800px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/Banana.jpg" style="width: 800px;" />
 </div>
 <div class="section" id="questions">
 <h2>Questions</h2>
@@ -782,7 +925,7 @@ only thing that can do it</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2013-07-16T15:15:00"> 2013/07/16 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <div class="section" id="multiplicity-in-early-stellar-evolution">
 <h2>MULTIPLICITY IN EARLY STELLAR EVOLUTION</h2>
 <p>B. Reipurth (University of Hawaii, Institute for Astronomy, Hilo, United States),
@@ -818,7 +961,7 @@ and we provide a detailed overview of the multiplicity statistics of the field,
 which form a boundary condition for all models of binary evolution. Finally we
 discuss various formation mechanisms for massive binaries, and the origin of
 massive trapezia and their role in the dynamical evolution of clusters.</p>
-<img alt="|filename|/images/ClarkeTalk.jpg" src="http://keflavich.github.io/blog/static/images/ClarkeTalk.jpg" style="width: 800px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/ClarkeTalk.jpg" style="width: 800px;" />
 </div>
 <div class="section" id="intro">
 <h2>Intro</h2>
@@ -1049,7 +1192,7 @@ If purely dynamic, don't want both.</li>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2013-07-16T14:30:00"> 2013/07/16 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <div class="section" id="star-cluster-formation-and-feedback">
 <h2>STAR CLUSTER FORMATION AND FEEDBACK</h2>
 <p>M. Krumholz (University of California, Santa Cruz, Astronomy, Santa Cruz, United States),
@@ -1120,10 +1263,10 @@ Q. Zhang (Harvard-Smithsonian Center for Astrophysics, United States)</p>
 <li>less important than outflows for clusters with M&lt;10^4 msun</li>
 </ul>
 </dd>
-<dt>Feedback significant if <span class="math">\(\dot{p} * t_{ff} \gtrsim M v_{virial}\)</span>
+<dt>Feedback significant if <span class="formula"><i>ṗ</i>*<i>t</i><sub><i>ff</i></sub>≳<i>M</i><i>v</i><sub><i>virial</i></sub></span>
 .</dt>
 <dd><ul class="first last simple">
-<li><span class="math">\(\dot{p} = f_{trap} L/c\)</span>
+<li><span class="formula"><i>ṗ</i> = <i>f</i><sub><i>trap</i></sub><i>L</i> ⁄ <i>c</i></span>
 .</li>
 <li>what is f_trap?</li>
 <li>Murray says f &gt; 1, others say 1</li>
@@ -1302,7 +1445,7 @@ mode.  Maybe positive triggering in starbursts</li>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2013-07-16T11:45:00"> 2013/07/16 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <div class="section" id="ages-of-young-stars">
 <h2>AGES OF YOUNG STARS</h2>
 <p>D. Soderblom (Space Telescope Science Institute, Baltimore, United States),
@@ -1579,7 +1722,7 @@ crossing time, not instantaneously.</li>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2013-07-16T11:00:00"> 2013/07/16 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <div class="section" id="the-evolution-of-protostars-insights-from-ten-years-of-infrared-surveys-with-spitzer-and-herschel">
 <h2>THE EVOLUTION OF PROTOSTARS: INSIGHTS FROM TEN YEARS OF INFRARED SURVEYS WITH SPITZER AND HERSCHEL</h2>
 <p>M. Dunham (Yale University, New Haven, CT, United States),
@@ -1738,7 +1881,7 @@ No large-scale surveys for first cores.</li>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2013-07-16T09:15:00"> 2013/07/16 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <div class="section" id="the-earliest-stages-of-star-and-planet-formation-core-collapse-and-the-formation-of-disks-and-outflows">
 <h2>THE EARLIEST STAGES OF STAR AND PLANET FORMATION: CORE COLLAPSE, AND THE FORMATION OF DISKS AND OUTFLOWS</h2>
 <p>Z.-Y. Li (University of Virginia, Astronomy, Charlottesville, United States),
@@ -1785,7 +1928,7 @@ formation in its early stages and we will review these major connections.</p>
 </ul>
 </blockquote>
 <p>Dimensionless number:
-<span class="math">\(\lambda = \frac{(M/\phi)}{1/(2\pi G^{1/2})}\)</span>
+<span class="formula"><i>λ</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator">(<i>M</i> ⁄ <i>φ</i>)</span><span class="ignored">)/(</span><span class="denominator">1 ⁄ (2<i>π</i><i>G</i><sup>1 ⁄ 2</sup>)</span><span class="ignored">)</span></span></span>
 </p>
 <p>Crutcher: B-fields below critical value</p>
 <p>B-field energy &gt; rotational energy</p>
@@ -1814,455 +1957,12 @@ distribution?   How does it depend on envelope.</li>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/ppvi-talk-7-chris-mckee.html" rel="bookmark" title="Permalink to PPVI Talk 7: Chris McKee">
-                    PPVI Talk 7: Chris McKee</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-07-16T08:30:00"> 2013/07/16 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <div class="section" id="massive-star-formation">
-<h2>MASSIVE STAR FORMATION</h2>
-<p>J. Tan (University of Florida, Astronomy, Gainesville, United States),
-M. Beltran (INAF-Osservatorio Astrofisico di Arcetri, Italy),
-P. Caselli (University of Leeds, School of Physics &amp; Astronomy, United Kingdom),
-F. Fontani (INAF-Osservatorio Astrofisico di Arcetri, Italy),
-A. Fuente (Observatorio Astronomico Nacional, Spain),
-M. Krumholz (UC Santa Cruz, Astronomy, United States),
-C. McKee (UC Berkeley, Depts. of Physics &amp; Astronomy, United States),
-A. Stolte (University of Bonn, Dept. of Astronomy, Germany)</p>
-<p>The enormous radiative and mechanical luminosities of massive stars impact a vast range of scales and processes, from the reionization of the universe, to the evolution of galaxies, to the regulation of the interstellar medium, to the formation of star clusters, and even to the formation of planets around stars in such clusters. Furthermore, the synthesis and dispersal of heavy elements by massive stars plays a key role in the chemical evolution of the cosmos. Achieving a rigorous theoretical understanding of massive star formation is thus an important goal of contemporary astrophysics. This effort can also be viewed as a major component of the development of a general theory of star formation that seeks to explain the birth of stars of all masses and from all the variety of star-forming environments. Two main classes of theories for massive star formation are under active study, &quot;Core Accretion&quot; and &quot;Competitive Accretion&quot;. In Core Accretion, the initial conditions of star formation are self-gravitating, centrally concentrated cores that condense from the surrounding, fragmenting clump environment with a range of masses. They then undergo relatively ordered collapse via a central disk to form a single star or a small-N multiple. In this case, the pre-stellar core mass function has a similar form to the stellar initial mass function. In Competitive Accretion, the material that forms a massive star is drawn more chaotically from a wider region of the clump without passing through a phase of being in a massive, coherent core. In this case, massive star formation must proceed hand in hand with star cluster formation. If stellar densities become very high near the cluster center, then collisions between stars could also be involved in forming the most massive stars. We review recent theoretical and observational progress towards understanding massive star formation, considering a range of observed galactic star-forming environments, physical and chemical processes, comparisons with low and intermediate-mass stars, and connections to star cluster formation.</p>
-</div>
-<div class="section" id="outline">
-<h2>Outline</h2>
-<blockquote>
-<ul class="simple">
-<li>Observations</li>
-<li>Theory</li>
-</ul>
-</blockquote>
-</div>
-<div class="section" id="state-of-observations">
-<h2>State of Observations</h2>
-<p>Plot 1: the Tan plot</p>
-<blockquote>
-<ul class="simple">
-<li>Focusing in &lt;10^4 solar mass region</li>
-<li>IRDCs</li>
-<li>Falgarone size-linewidth relation</li>
-<li>Virial parameter, virial relation.</li>
-<li>Non-equilibrium high-latitude clouds</li>
-<li>GMCs borderline bound</li>
-</ul>
-</blockquote>
-<p>PPV: Clumps form clusters, cores form stars</p>
-<blockquote>
-<ul class="simple">
-<li>Ginsburg 2012: no &gt;10^4 Msun <em>starless</em> clusters</li>
-<li>Butler &amp; Tan 2012: clump vs core surface density</li>
-</ul>
-</blockquote>
-<p>How identify starless cores?</p>
-<blockquote>
-<ul class="simple">
-<li>Chemistry: N2D+ vs N2H+ (Fontani 2011)</li>
-<li>starless cores have higher deuteration (but not always)</li>
-<li>Tan 2013: ALMA observations of starless cores<ul>
-<li>use extinction techniques</li>
-<li>approximate virial equilibrium in cores</li>
-<li>assumptions: ions line width, pressure equilibrium, etc.</li>
-</ul>
-</li>
-<li>H13CO+ cores in Cyg X (Csengeri 2012)</li>
-<li>Many suggestions of virial equilibrium</li>
-<li>Li, Kauffman etc. show many clouds have alpha_vir &lt;&lt; 1.  Explanations:<ul>
-<li>Maybe strong B-fields?</li>
-<li>Assumed a fixed CO abundance</li>
-<li>Short time immediately before free-fall collapse</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<div class="section" id="accretion-onto-cores-and-clumps">
-<h3>Accretion onto Cores and Clumps</h3>
-<blockquote>
-<ul class="simple">
-<li>Beltran 2006: NH3 emission and absorption in front of UCHII region
-* Also CH3CN.
-* 4e-3 - 1e-2 msun/yr</li>
-<li>Lopez-Sepulchre 5e-3 msun/yr
-* outflows indicate 1e-5 msun/yr</li>
-<li>Wyrowski 2012 clump accretion at a a fraction of free-fall velocity</li>
-<li>Peretto 2013: 0.027 pc, 2e8 cm^-3 massive core</li>
-</ul>
-</blockquote>
-</div>
-<div class="section" id="disks-around-massive-stars">
-<h3>Disks around Massive stars</h3>
-<blockquote>
-<ul class="simple">
-<li>unambiguous evidence: VLTI observations (Kraus 2010)</li>
-<li>Ilee 2013: CO bandhead emission
-* Consistent with keplerian disk
-* 25% have disks</li>
-<li>Protostellar jet from 10 msun star (Carrasco-Gonzalez 2010)
-* suggests hydromagnetic outflows (collimated) from massive stars
-* there is synchrotron</li>
-<li>Strong B-field in clump (Girart 2009)</li>
-</ul>
-</blockquote>
-</div>
-</div>
-<div class="section" id="theory">
-<h2>Theory</h2>
-<blockquote>
-<ul class="simple">
-<li>protostars contain many jeans masses</li>
-<li>Turbulence important within core?</li>
-<li>B-fields maybe less important</li>
-<li>Radiative feedback important (Kahn 1974, Starrfield 1971)
-* force of photons can exceed gravity</li>
-</ul>
-</blockquote>
-<p><em>Is high-mass accretion a scaled-up version of low-mass star formation?</em></p>
-<dl class="docutils">
-<dt>Yes: (Turbulent Core)</dt>
-<dd><ul class="first last simple">
-<li>mass of star related to mass of core</li>
-<li>But: Why not fragment further?</li>
-<li>Where are protostellar accretion disks?</li>
-</ul>
-</dd>
-<dt>No: (Competitive Accretion)</dt>
-<dd><ul class="first last simple">
-<li>tidally modified bondi-hoyle accretion</li>
-<li>Doesn't work in virialized turbulent medium</li>
-<li>B-fields reduce accretion</li>
-</ul>
-</dd>
-</dl>
-<p>Radiation pressure still a problem?</p>
-<dl class="docutils">
-<dt>Direct collisions?</dt>
-<dd><ul class="first last simple">
-<li>While forming, or after forming</li>
-<li>Sana 2012: expect high-mass binaries to merge</li>
-<li>Moeckel &amp; Bonnell: merger theory</li>
-<li>but they don't affect observed clusters (Moeckel 2011)</li>
-</ul>
-</dd>
-<dt>Radiation suppresses fragmentation</dt>
-<dd><ul class="first last simple">
-<li>column threshold for massive star formation</li>
-<li>B-fields plus radiation effective at suppressing fragmentation (Commercon 2011)</li>
-</ul>
-</dd>
-</dl>
-<p>G35.2N Gemini / SOFIA observations: Zhang 2013</p>
-<p>Rowan Smith 2013: predicted ALMA observations</p>
-<p>Peters 2010: fragmentation induced starvation
-Keto 2007: bondi-hoyle accretion</p>
-<p>Radiation escape: beaming, cavities</p>
-<dl class="docutils">
-<dt>Observational questions:</dt>
-<dd><ul class="first last simple">
-<li>Does the IMF mirror the core mass function?</li>
-<li>Are disks present in high-massprotostars?</li>
-<li>Protostellar luminosity function for massive stars?</li>
-<li>Is IMF at high end universal?</li>
-<li>How do you make very massive &gt;150 msun stars?</li>
-<li>Can massive stars form in isolation?</li>
-</ul>
-</dd>
-<dt>Why is there a difference?</dt>
-<dd><ul class="first last simple">
-<li>initial conditions</li>
-<li>missing physics</li>
-</ul>
-</dd>
-</dl>
-</div>
-<div class="section" id="questions">
-<h2>Questions</h2>
-<blockquote>
-<ul class="simple">
-<li>Q: Doug (Johnstone?) - Core mass function: thermal -&gt; 1 star, turbulent -&gt;
-??? stars.  Observationally, is the column the important quantity?</li>
-<li>A: Yes, theoretically.  Cores won't necessarily make single star (or
-system).  Massive cores are likely to form high and low-mass stars.  Under
-what conditions will most of the mass go in to one or two stars?</li>
-<li>Q: Radiation feedback during formation.  How does this gel with massive
-stars forming in close binaries?</li>
-<li>A: All simulations have terrible resolution.   Radiative + magnetic
-suppresses fragmentation</li>
-<li>Q Ewine: Radiation feedback... 1 g/cm^2.  What scale?</li>
-<li>A: Up to 1000 AU, on larger scale B-field must be more effective.</li>
-<li>Q Klessen?: [mic problems]  Caution about using virial theorem.  Complex
-density-velocity structure.  Surface terms should not be neglected.</li>
-<li>A: If you look at any object and compare to virial, you need time-dependent
-and surface terms.  Still a good way to assess gravity.</li>
-<li>Surface term can explain virial parameters...</li>
-<li>No it can't...</li>
-<li>Q: Hiro? (Taiwan) - Observations.  Not signatures of direct accretion onto
-stars?</li>
-<li>A: Most accretion was on to star-disk system.  How do you get it onto the
-star?  Yes, that's one of the open difficult questions.  Observations within
-10 AU of star.</li>
-<li>Q: Rolf Kuiper - Radiative tail instability.  Our simulations were confirmed
-last year by two groups.... [not a question]</li>
-<li>A: I agree that flux limited diffusion underestimates force.  Zheng also
-disagrees with you</li>
-<li>Q: Mike Kuhn (sp?): How does the presence of active formation of low-mass stars
-prior to massive stars affects the core processes?</li>
-<li>A: Universality of IMF only true averaged over spacetime.  Low-mass stars
-drive turbulence in massive star-forming region.</li>
-</ul>
-</blockquote>
-</div>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/ppvi-talk-6-john-bally.html" rel="bookmark" title="Permalink to PPVI Talk 6: John Bally">
-                    PPVI Talk 6: John Bally</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-07-15T17:45:00"> 2013/07/15 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <div class="section" id="the-milky-way-as-a-star-formation-engine">
-<h2>THE MILKY WAY AS A STAR FORMATION ENGINE</h2>
-<p>Authors:</p>
-<p>S. Molinari (INAF-IAPS, Rome, Italy),
-J. Bally (University of Colorado, Boulder, United States),
-J.-P. Bernard (IRAP, Toulouse, France),
-S. Glover (Heidelberg University, ITA, Germany),
-P. Martin (University of Toronto, Canada),
-T. Moore (Liverpool John Moores University, United Kingdom),
-A. Noriega-Crespo (IPAC-Caltech, Pasadena, United States),
-R. Plume (University of Calgary, Canada),
-L. Testi (ESO-HQ, Garching, Germany),
-E. Vazquez-Semadeni (UNAM, Morelia, Mexico),
-A. Zavagno (LAM, Marseille, France)</p>
-<p>We review and discuss the latest observational scenario globally emerging from
-the latest generation of continuum and spectroscopic global-scale surveys of
-the mid-plane of the Galaxy from infrared to radio wavelengths, in terms of
-cloud formation and evolution, star and clump formation rate and efficiency
-throughout the Galaxy, evidence for density thresholds for the formation of
-protocluster-forming clumps, as well as the role of large-scale filamentary
-structures in channeling diffuse ISM into gravitationally bound clumps. The new
-view of the Milky Way thus assembled will be discussed in the context of
-competing theoretical frameworks distinguishing between &quot;slow&quot; and &quot;fast&quot;
-formation, outlining some of the challenges that this body of evidence poses to
-a variety of theoretical scenarios for large-scale star formation. We will
-review the most recent methods and evolutionary indicators used to classify the
-star formation activity in molecular clumps, comparing the different possible
-derivations of the local SFR and discussing its variation as a function of
-Galactocentric radius. The order-of-magnitude increase in the number of sources
-(mostly clumps) that are revealed in state-of-the-art infrared and
-submillimeter Galaxy-wide surveys make such studies possible with an
-unprecedented statistical significance. We will also review the present status
-of our understanding of the Galaxy as a global star formation engine in the
-context of similar studies in extragalactic systems, evaluating how the data on
-our own Galaxy compare with the proposed global star formation laws that relate
-properties of the interstellar medium to the star formation rate.</p>
-</div>
-<div class="section" id="intro">
-<h2>Intro</h2>
-<p>Link the MW to high redshift.</p>
-<p>&quot;Galactic Ecology&quot;</p>
-<blockquote>
-<ul class="simple">
-<li>Efficiency &quot;&lt;15%&quot;</li>
-<li>Feedback -&gt; &quot;superbubbles&quot;</li>
-<li>&quot;oops&quot;</li>
-<li>solar circle Z-scale oscillation 80 Myr</li>
-<li>Epicyclic period 170 Myr [what is this orbital scale?)</li>
-<li>orbital timescale 220 Myr</li>
-</ul>
-</blockquote>
-<p>Large scale view:</p>
-<blockquote>
-<ul class="simple">
-<li>Sco-Cen HI supershell (1973 A&amp;AS)</li>
-<li>Rho Oph filament swept up by Sco-Cen bubble?</li>
-<li>Sco-Cen has HI, not H-alpha</li>
-<li>Alpha-Persei blew a bubble for Cosmologists</li>
-</ul>
-</blockquote>
-<p>Orion CO</p>
-<blockquote>
-<ul class="simple">
-<li>Integral shaped filament</li>
-<li>Velocity jump occurs at cluster</li>
-<li>Vazquez-Semadeni 2008 colliding cloud resembles ISF</li>
-</ul>
-</blockquote>
-<p>BGPS -&gt; ATLASGAL -&gt; Herschel</p>
-<p>And now let's start the talk...</p>
-</div>
-<div class="section" id="higal">
-<h2>HiGal</h2>
-<p>HiGal 360 in OT2</p>
-<p>W3/W4/W5</p>
-<blockquote>
-<ul class="simple">
-<li>W3 OB cluster</li>
-<li>W4 cometary cloud</li>
-<li>W5 (name drop)</li>
-</ul>
-</blockquote>
-<dl class="docutils">
-<dt>NGC 7538</dt>
-<dd><ul class="first last simple">
-<li>filament full of H2 outflows</li>
-</ul>
-</dd>
-<dt>W43</dt>
-<dd><ul class="first last simple">
-<li>50 Orions</li>
-<li>3 Myr old</li>
-<li>older subgroup to the south</li>
-</ul>
-</dd>
-<dt>Goodman's &quot;we're out of the plane&quot;</dt>
-<dd><ul class="first last simple">
-<li>Nearby spiral arms below the &quot;plane&quot;</li>
-</ul>
-</dd>
-<dt>W51 - Spitzer</dt>
-<dd><ul class="first last simple">
-<li>massive clusters</li>
-</ul>
-</dd>
-<dt>Back to M16, M17</dt>
-<dd><ul class="first last simple">
-<li>M17</li>
-<li>M17swex</li>
-<li>red square</li>
-</ul>
-</dd>
-<dt>Nessie (Jackson)</dt>
-<dd><ul class="first last simple">
-<li>extended Nessie from Alyssa Goodman</li>
-</ul>
-</dd>
-<dt>Carina Nebula</dt>
-<dd><ul class="first last simple">
-<li>eta car</li>
-<li>Trumpler 16</li>
-</ul>
-</dd>
-</dl>
-<p>NGC 3603</p>
-</div>
-<div class="section" id="filament-formation">
-<h2>Filament Formation</h2>
-<p>&quot;Zeldovich Pancakes&quot; - tend to collapse along minor axes first
-Converging flows
-&quot;shadowing&quot; HII regions -&gt; cometary filament = tail
-Vazquez-Semadeni colliding flows movie</p>
-<dl class="docutils">
-<dt>Filaments in HiGal</dt>
-<dd><ul class="first last simple">
-<li>Schisano 2013 - Herschel filaments is continuously distributed (no threshold effect)</li>
-<li>Mass per unit length increases with amt of star formation</li>
-</ul>
-</dd>
-</dl>
-</div>
-<div class="section" id="distances">
-<h2>Distances</h2>
-<blockquote>
-<ul class="simple">
-<li>Russeil &quot;Bootstrap Morphology&quot;</li>
-<li>BeSSeL parallax</li>
-<li>Distance PDF (Ellsworth-Bowers)
-* showed example DPDFs
-* Shirley &amp; Schlingman HCO+/N2H+ velocities
-* description of the algorithm</li>
-<li>Bessel points colored by arm</li>
-</ul>
-</blockquote>
-<dl class="docutils">
-<dt>Battersby 2011 &quot;Maybe I'll skip this&quot;</dt>
-<dd><ul class="first last simple">
-<li>How does dust vary with SF signature</li>
-</ul>
-</dd>
-<dt>Pestalozzi face-on view of the galaxy</dt>
-<dd><ul class="first last simple">
-<li>mass-luminosity plot</li>
-</ul>
-</dd>
-<dt>Finish with the CMZ</dt>
-<dd><ul class="first last simple">
-<li>80% of gas at n&gt;10^4 in CMZ</li>
-<li>Bania's clump - strange kinematics</li>
-<li>Orbits in a bar</li>
-<li>Inner Lindblad resonance?</li>
-<li>compare our CMZ to NGC 1097</li>
-<li>Dust at l &gt; 0, 24um sources at l &lt; 0</li>
-</ul>
-</dd>
-<dt>Molinari Ring</dt>
-<dd><ul class="first last simple">
-<li>Vertical oscillation timescale twice orbit timescale</li>
-<li>Sgr B2 has high proper motion in the plane</li>
-<li>Battersby temperature / column maps</li>
-<li>several 10^7 msun of non-star-forming gas</li>
-</ul>
-</dd>
-<dt>Back to CMZ:</dt>
-<dd><ul class="first last simple">
-<li>Free-free emission</li>
-<li>CND / circumnuclear ring</li>
-<li>Sgr A* has no influence on the Galaxy</li>
-<li>star formation starves Sgr A*</li>
-</ul>
-</dd>
-</dl>
-<p>Plug for CCAT, ALMA</p>
-<p>Storm the Castle!</p>
-</div>
-<div class="section" id="questions">
-<h2>Questions</h2>
-<blockquote>
-<ul class="simple">
-<li>Q: Mordecai - seen fragmentation starvation in massive star formation as well</li>
-<li>A: Yep.  Also, Phil knows disk around black hole is like a disk around a protostar</li>
-<li>Q: Philippe - Threshold issue.  No threshold in Hi-Gal data.</li>
-<li>A: missed it, someone walked in front of me</li>
-<li>A: Molinari - Different physics, different scales?</li>
-<li>Q: Sergei - Fermi bubble feature.  Attributed to star formation.  In other
-galaxies... we've seen one other analog?  More than enough energy in a Sgr
-A* outburst.</li>
-<li>A: Should ask how we distinguish AGN-driven vs. star-formation-driven flows.
-AGN should be low-mass, light, relativistic launch.  Star formation blows
-out big HI bubbles (high-mass).</li>
-<li>Same guy: Cosmologists say AGN can blow up whole galaxies</li>
-<li>Q Hans: Sequential star formation, triggered SF... are we more informed
-about triggering now than before?</li>
-<li>A: Triggering is a great model, but observationally indistinguishable.  Only
-way to know is precision kinematics.  Need GAIA.
-It happens, but can't be proved.</li>
-</ul>
-</blockquote>
-</div>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
-                        <a href="http://keflavich.github.io/blog/index4.html">&laquo;</a>
-                Page 5 / 48
-            <a href="http://keflavich.github.io/blog/index6.html">&raquo;</a>
-    </p>
+            <a href="http://keflavich.github.io/blog/index4.html">&laquo;</a>
+    Page 5 / 48
+        <a href="http://keflavich.github.io/blog/index6.html">&raquo;</a>
+</p>
 </section><!-- /#content -->
   </div>
 
@@ -2303,7 +2003,7 @@ alt="hit counter"></a></div></noscript>-->
 <!-- End of StatCounter Code for Default Guide -->
 <script type="text/javascript">
   var disqus_shortname = 'adamginsburgsblog';
-    (function() {
+  (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);

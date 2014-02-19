@@ -4,10 +4,10 @@
 <link rel="icon" type="image/gif" href="http://keflavich.github.io/blog/theme/favicon8.ico">
 <head>
     <base href="http://keflavich.github.io/blog">
-                <title>Adam Ginsburg's blog</title>
+        <title>Adam Ginsburg's blog</title>
         <meta charset="utf-8" />
-                <link href="http://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
-                                                                        <!-- Using MathJax, with the delimiters $ -->
+        <link href="http://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
 <!-- Conflict with pygments for the .mo and .mi -->
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -51,56 +51,114 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
             <h1 style="color: #C4C4C4;"><a class="header" href="http://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
 
             <nav id="menu"><ul id="menulist">
-                            <li><a href="http://www.adamgginsburg.com">Homepage</a></li>
-                            <li><a href="/blog//index.html">Blog Index</a></li>
-                            <li><a href="/blog//category/bgps.html">BGPS Blog</a></li>
-                            <li><a href="/blog//category/publications.html">Publications</a></li>
-                            <li><a href="/blog//archives.html">Archives</a></li>
-                            <li><a href="/blog//tags.html">Tags</a></li>
-                                                              </ul></nav><!-- /#menu -->
+                <li><a href="http://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/blog//index.html">Blog Index</a></li>
+                <li><a href="/blog//category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/blog//category/publications.html">Publications</a></li>
+                <li><a href="/blog//archives.html">Archives</a></li>
+                <li><a href="/blog//tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
         </div>
     </header><!-- /#banner -->
 
-   <div id="sidebar">
+  <div id="sidebar">
     <ul>
-  	  	        	  	          <li>
+      <li>
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
-                          <li class="post">
+              <li class="post">
+                  2014/02/19
+                  <br>
+                  <a href="http://keflavich.github.io/blog/python-stack-on-mavericks.html">Python stack on Mavericks</a>
+              </li>
+              <li class="post">
+                  2014/01/16
+                  <br>
+                  <a href="http://keflavich.github.io/blog/w51-mapping-flagging-bad-data.html">W51 Mapping: Flagging bad data</a>
+              </li>
+              <li class="post">
                   2013/12/13
                   <br>
                   <a href="http://keflavich.github.io/blog/there-is-a-gap-in-the-dust-around-sgr-b2.html">There is a "gap" in the dust around Sgr B2</a>
               </li>
-                          <li class="post">
+              <li class="post">
                   2013/10/25
                   <br>
                   <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-5.html">Notes from the ISM-PP conference: Day 5</a>
               </li>
-                          <li class="post">
+              <li class="post">
                   2013/10/24
                   <br>
                   <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-4.html">Notes from the ISM-PP conference Day 4</a>
               </li>
-                          <li class="post">
-                  2013/10/23
-                  <br>
-                  <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-3.html">Notes from the ISM-PP conference Day 3</a>
-              </li>
-                          <li class="post">
-                  2013/10/22
-                  <br>
-                  <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-2.html">Notes from the ISM-PP conference: Day 2</a>
-              </li>
-                    </ul>
+        </ul>
       </li>
-        
+    
     </ul>
   </div><!-- end #sidebar -->
- 
+
   <div id="content">
-        <section id="content">
+<section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/sampling-causes-problems.html" rel="bookmark" title="Permalink to Sampling causes problems">
+                    Sampling causes problems</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-04-18T23:39:00"> 2011/04/18 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>One of the simplest experiments that can be run is a point-source
+observed in point-scan mode, i.e. with smaller step-sizes. I've done
+this for an Airy disk with noise added in the image plan but not
+atmosphere (some noise is necessary to avoid bizarre artifacts with
+weighting when you have truly zero signal and zero noise). At a S/N of
+500, the noise is pretty minimal, though.
+It turns out for the 'noiseless' images, the PCA cleaning is the
+issue... curiously, it varies significantly with iteration. Is it worth
+trying to debug the PCA cleaning for noiseless timestreams? I mean...
+they really shouldn't have any correlated information anyway.
+There is still an outstanding issue where one bolometer gets scaled to
+be higher than the rest without any apparent reason for doing so.
+It is also clear that we do not nyquist-sample the pixels with the
+timestream. However, that doesn't explain a deficiency observed in the
+ds1 images. Also note that the sidelobes are not picked up at this S/N,
+but that's not too surprising.
+And here is the explanation: The peak is missed by about 10% because of
+finite sampling? Somehow the sampled gaussian nearly uniformly
+underestimates the gaussian... I think this violates theory a bit.....</p>
+<img alt="" src="http://3.bp.blogspot.com/-L2CMkehyV2g/TazJvpj2jjI/AAAAAAAAGGg/_BM0_GgC_x4/s320/airy_test_ds1_reconv_arrang45_atmotest_amp1.0E-01timestream011_plots_20_bolo07.png" />
+<p>Here's the problem shown again:</p>
+<img alt="" src="http://2.bp.blogspot.com/-vvY-1uleKmk/TazKE4Osm_I/AAAAAAAAGGo/n6Nadxi8UM4/s320/airy_test_ds1_reconv_arrang45_atmotest_amp1.0E-01_compare.png" />
+<p>This is a comparison between the input image and a ds1-sampled image
+with perfectly correlated atmospheric noise. So there is something in
+the pipeline that is preventing the peaks from achieving the necessary
+heights.... I wonder if resampling the deconvolved image onto a
+higher-resolution grid, then downsampling afterwards, would fix this?
+Also note that the flux loss increases from 7% to 20% from ds1 to ds5:</p>
+<img alt="" src="http://4.bp.blogspot.com/-hHQBTMME8Ow/TazKuf0gkuI/AAAAAAAAGGw/uQdJw4kc2U8/s320/airy_test_ds5_reconv_arrang45_atmotest_amp1.0E-01_compare.png" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/recovery-for-an-airy.html" rel="bookmark" title="Permalink to Recovery for an Airy">
+                    Recovery for an Airy</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-04-12T01:38:00"> 2011/04/12 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://3.bp.blogspot.com/-Qj43vct-3Hw/TaOsoVQAeTI/AAAAAAAAGGY/Ju9HpmnrvCc/s320/airy_sn100.png" />
+<p>The recovery for an Airy function is not particularly good, since the
+pipeline assumes a purely positive response....</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -110,7 +168,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-04-11T19:09:00"> 2011/04/11 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>It is now possible to make artificial timestreams!
 First round of tests:
 For pointing maps with ~21 scans in 15&quot; steps, array angle is
@@ -130,7 +188,7 @@ S/N ~300. The residuals are only at the 1% level out to S/N ~1000.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-04-08T17:48:00"> 2011/04/08 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <ul class="simple">
 <li>Re-doing December 2010 calibration (remember to check &amp; compare AFGL
 4029)</li>
@@ -161,7 +219,7 @@ noise maps.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-04-07T22:05:00"> 2011/04/07 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>This is a direct continuation of what I did yesterday (but only posted
 today because I forgot to click post).
 No-deconvolution doesn't work, at least not reliably. It recovers
@@ -206,7 +264,7 @@ bolos</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-04-05T18:12:00"> 2011/04/05 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I've spent a large portion of the last week working on the deconvolver.
 I found <a class="reference external" href="http://bolocam.blogspot.com/2011/03/workaround-for-individual-maps.html">previously</a> that a reconvolved map does a better job of
 restoring flux than the straight-up deconvolved map for point sources /
@@ -252,7 +310,7 @@ routine.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-03-31T02:25:00"> 2011/03/31 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I'm remapping everything, and there's a really strange situation in
 ic1396... only one field has a source that doesn't have rotation
 problems, every other observation is clearly improperly rotated. The
@@ -274,12 +332,12 @@ One ofthese things is not like the others... but it's
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-03-30T02:47:00"> 2011/03/30 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>ds1 and ds5 agree pretty well with the recent upgrades to delining and
 deconvolution. However, there are still counterexamples, e.g.
 101208_o13, in which ds5 &lt; ds1:</p>
-<img alt="http://4.bp.blogspot.com/-fIJHF_x5mBI/TZI0cryJfbI/AAAAAAAAGDI/GsNfLRGNZAk/s200/101208_o13_raw_ds1.nc_indiv13pca.png" src="http://4.bp.blogspot.com/-fIJHF_x5mBI/TZI0cryJfbI/AAAAAAAAGDI/GsNfLRGNZAk/s200/101208_o13_raw_ds1.nc_indiv13pca.png" />
-<img alt="http://2.bp.blogspot.com/-QRhiz8W9RDc/TZI0dGUR4UI/AAAAAAAAGDQ/WC8eLQd6_Z0/s200/101208_o13_raw_ds5.nc_indiv13pca.png" src="http://2.bp.blogspot.com/-QRhiz8W9RDc/TZI0dGUR4UI/AAAAAAAAGDQ/WC8eLQd6_Z0/s200/101208_o13_raw_ds5.nc_indiv13pca.png" />
+<img alt="" src="http://4.bp.blogspot.com/-fIJHF_x5mBI/TZI0cryJfbI/AAAAAAAAGDI/GsNfLRGNZAk/s200/101208_o13_raw_ds1.nc_indiv13pca.png" />
+<img alt="" src="http://2.bp.blogspot.com/-QRhiz8W9RDc/TZI0dGUR4UI/AAAAAAAAGDQ/WC8eLQd6_Z0/s200/101208_o13_raw_ds5.nc_indiv13pca.png" />
 <p>The 'fitted' values agree better than the 'measured' values now that
 NANs are treated properly.
 Spent a few hours today trying to figure out if weighting can explain
@@ -294,15 +352,15 @@ pushing up the recovered flux (i.e. higher volts/Jy) for ds5 over ds1.
 There is a discrepancy between map types for ds1 but not for ds5, which
 is actually backwards from what I would have expected, since ds1 will
 get better-sampled maps.</p>
-<img alt="http://2.bp.blogspot.com/-ARaSL7ZdDmc/TZKRcE01DnI/AAAAAAAAGDY/YMZRpRo53Hw/s320/uranus_dcfluxes_dec2010_nomask_ds1_13pca_fits_map10.png" src="http://2.bp.blogspot.com/-ARaSL7ZdDmc/TZKRcE01DnI/AAAAAAAAGDY/YMZRpRo53Hw/s320/uranus_dcfluxes_dec2010_nomask_ds1_13pca_fits_map10.png" />
-<img alt="http://3.bp.blogspot.com/-pWtggp0vSP4/TZKRcwZ_SrI/AAAAAAAAGDg/IqVHQSprkL8/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png" src="http://3.bp.blogspot.com/-pWtggp0vSP4/TZKRcwZ_SrI/AAAAAAAAGDg/IqVHQSprkL8/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png" />
+<img alt="" src="http://2.bp.blogspot.com/-ARaSL7ZdDmc/TZKRcE01DnI/AAAAAAAAGDY/YMZRpRo53Hw/s320/uranus_dcfluxes_dec2010_nomask_ds1_13pca_fits_map10.png" />
+<img alt="" src="http://3.bp.blogspot.com/-pWtggp0vSP4/TZKRcwZ_SrI/AAAAAAAAGDg/IqVHQSprkL8/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png" />
 <p>Luckily, the difference between peak fitting and &quot;measuring&quot; results in
 very small (insignificant) changes to the calibration curve (recall
 fitting is direct gaussian fitting; 'measuring' is using the
 gaussian-fit width and total flux in an ellipse to infer a peak assuming
 a point source):</p>
-<img alt="http://2.bp.blogspot.com/-E-FDTTj-4Ik/TZKVyUA8zBI/AAAAAAAAGDo/9NGubgLWBvo/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png" src="http://2.bp.blogspot.com/-E-FDTTj-4Ik/TZKVyUA8zBI/AAAAAAAAGDo/9NGubgLWBvo/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png" />
-<img alt="http://3.bp.blogspot.com/-GdyxFnmwQ7g/TZKVykSg57I/AAAAAAAAGDw/PPVXtfAxW0s/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_map10.png" src="http://3.bp.blogspot.com/-GdyxFnmwQ7g/TZKVykSg57I/AAAAAAAAGDw/PPVXtfAxW0s/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_map10.png" />
+<img alt="" src="http://2.bp.blogspot.com/-E-FDTTj-4Ik/TZKVyUA8zBI/AAAAAAAAGDo/9NGubgLWBvo/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png" />
+<img alt="" src="http://3.bp.blogspot.com/-GdyxFnmwQ7g/TZKVykSg57I/AAAAAAAAGDw/PPVXtfAxW0s/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_map10.png" />
 <p>Since this work has all been done for the 'bootstrapping' observations
 that are supposed to tell us if different map sizes are compatible, I
 have included the map sizes in the diagrams now. However, to really
@@ -324,7 +382,7 @@ BAD but L030 is GOOD (bordering on amazing))</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-03-29T15:23:00"> 2011/03/29 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I looked very closely at the timestream and maps of 101208_o11 and had
 a pretty hard time figuring out why the data were different, but it
 looked like the data really did differ on a point-by-point basis
@@ -337,11 +395,11 @@ comparisons again!
 doesn't really need it)
 Here are examples of ds1 and ds5 timestreams, with and without scaling,
 and ds1 with and without delining:</p>
-<img alt="http://4.bp.blogspot.com/-KR_NYG31_O0/TZECtBAgqFI/AAAAAAAAGCg/1jC9Ys2r9Iw/s200/101208_o11_ds5_uranus_indivtesttimestream011_plots_20_bolo02.png" src="http://4.bp.blogspot.com/-KR_NYG31_O0/TZECtBAgqFI/AAAAAAAAGCg/1jC9Ys2r9Iw/s200/101208_o11_ds5_uranus_indivtesttimestream011_plots_20_bolo02.png" />
-<img alt="http://3.bp.blogspot.com/-HbK-hAXjSDs/TZECtUNe8AI/AAAAAAAAGCo/i4fsH12Iw8Y/s200/101208_o11_ds1_uranus_indivtest_delinetimestream011_plots_20_bolo02.png" src="http://3.bp.blogspot.com/-HbK-hAXjSDs/TZECtUNe8AI/AAAAAAAAGCo/i4fsH12Iw8Y/s200/101208_o11_ds1_uranus_indivtest_delinetimestream011_plots_20_bolo02.png" />
-<img alt="http://3.bp.blogspot.com/-edXLnDrrt5o/TZECt0No8oI/AAAAAAAAGCw/QjHg1ScBHG0/s200/101208_o11_ds1_uranus_indivtesttimestream011_plots_20_bolo02.png" src="http://3.bp.blogspot.com/-edXLnDrrt5o/TZECt0No8oI/AAAAAAAAGCw/QjHg1ScBHG0/s200/101208_o11_ds1_uranus_indivtesttimestream011_plots_20_bolo02.png" />
-<img alt="http://1.bp.blogspot.com/-4NIxFxEQ1jU/TZECuDJ1fVI/AAAAAAAAGC4/tGE5tDH_168/s200/101208_o11_ds1_uranus_indivtest_deline_noscaleacbtimestream011_plots_20_bolo02.png" src="http://1.bp.blogspot.com/-4NIxFxEQ1jU/TZECuDJ1fVI/AAAAAAAAGC4/tGE5tDH_168/s200/101208_o11_ds1_uranus_indivtest_deline_noscaleacbtimestream011_plots_20_bolo02.png" />
-<img alt="http://2.bp.blogspot.com/-DfIepZXXCFc/TZECuhm8lwI/AAAAAAAAGDA/Awp60ZuPGps/s200/101208_o11_ds5_uranus_indivtest_noscaleacbtimestream011_plots_20_bolo02.png" src="http://2.bp.blogspot.com/-DfIepZXXCFc/TZECuhm8lwI/AAAAAAAAGDA/Awp60ZuPGps/s200/101208_o11_ds5_uranus_indivtest_noscaleacbtimestream011_plots_20_bolo02.png" />
+<img alt="" src="http://4.bp.blogspot.com/-KR_NYG31_O0/TZECtBAgqFI/AAAAAAAAGCg/1jC9Ys2r9Iw/s200/101208_o11_ds5_uranus_indivtesttimestream011_plots_20_bolo02.png" />
+<img alt="" src="http://3.bp.blogspot.com/-HbK-hAXjSDs/TZECtUNe8AI/AAAAAAAAGCo/i4fsH12Iw8Y/s200/101208_o11_ds1_uranus_indivtest_delinetimestream011_plots_20_bolo02.png" />
+<img alt="" src="http://3.bp.blogspot.com/-edXLnDrrt5o/TZECt0No8oI/AAAAAAAAGCw/QjHg1ScBHG0/s200/101208_o11_ds1_uranus_indivtesttimestream011_plots_20_bolo02.png" />
+<img alt="" src="http://1.bp.blogspot.com/-4NIxFxEQ1jU/TZECuDJ1fVI/AAAAAAAAGC4/tGE5tDH_168/s200/101208_o11_ds1_uranus_indivtest_deline_noscaleacbtimestream011_plots_20_bolo02.png" />
+<img alt="" src="http://2.bp.blogspot.com/-DfIepZXXCFc/TZECuhm8lwI/AAAAAAAAGDA/Awp60ZuPGps/s200/101208_o11_ds5_uranus_indivtest_noscaleacbtimestream011_plots_20_bolo02.png" />
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
@@ -354,7 +412,7 @@ and ds1 with and without delining:</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-03-28T02:01:00"> 2011/03/28 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I've concluded, based on previous posts
 <a class="reference external" href="http://bolocam.blogspot.com/2011/02/downsampling-why-is-dec-2010-different.html">http://bolocam.blogspot.com/2011/02/downsampling-why-is-dec-2010-different.html</a>,
 <a class="reference external" href="http://bolocam.blogspot.com/2011/03/revisiting-calibration-yet-again.html">http://bolocam.blogspot.com/2011/03/revisiting-calibration-yet-again.html</a>,
@@ -416,151 +474,18 @@ incorporated into the model but DOES get incorporated into the map)
 appears to be the same in both. Similarly, there is little to no flux in
 the PCA atmosphere, so it's not simply being cleaned out. Where is the
 flux going or coming from?</p>
-<img alt="http://3.bp.blogspot.com/-6lqGwWn650Q/TY_rgZKA9QI/AAAAAAAAGCI/Iq9O5mnmhl8/s320/101208_o11_ds1_uranus_indivtest_delinetimestream011_plots_20_bolo02.png" src="http://3.bp.blogspot.com/-6lqGwWn650Q/TY_rgZKA9QI/AAAAAAAAGCI/Iq9O5mnmhl8/s320/101208_o11_ds1_uranus_indivtest_delinetimestream011_plots_20_bolo02.png" />
-<img alt="http://1.bp.blogspot.com/-7uBbEU1tAqM/TY_rgg6Jq9I/AAAAAAAAGCQ/iaGhOSb6gtQ/s320/101208_o11_ds5_uranus_indivtesttimestream011_plots_20_bolo02.png" src="http://1.bp.blogspot.com/-7uBbEU1tAqM/TY_rgg6Jq9I/AAAAAAAAGCQ/iaGhOSb6gtQ/s320/101208_o11_ds5_uranus_indivtesttimestream011_plots_20_bolo02.png" />
-<img alt="http://1.bp.blogspot.com/-YKdZcNOjm7Q/TY_rg6tcvhI/AAAAAAAAGCY/fr4l8j-v4xI/s320/101208_o11_ds1_uranus_indivtesttimestream011_plots_20_bolo02.png" src="http://1.bp.blogspot.com/-YKdZcNOjm7Q/TY_rg6tcvhI/AAAAAAAAGCY/fr4l8j-v4xI/s320/101208_o11_ds1_uranus_indivtesttimestream011_plots_20_bolo02.png" />
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/a-workaround-for-individual-maps.html" rel="bookmark" title="Permalink to A workaround for individual maps?">
-                    A workaround for individual maps?</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-03-24T00:33:00"> 2011/03/24 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I closely examined the timestreams of 101208_ob7 as I said I would
-yesterday. Unfortunately, all I can do is describe the symptoms: the
-first deconvolution model looks good, though it isn't quite as wide as
-the true source (this should be OK; it is an iterative method, after
-all). In the second iteration, though, the deconvolution model is even
-smaller and lower amplitude... and it goes on like that.</p>
-<p>Not deconvolving results in a healthy-looking clean map - pretty much
-what you expect and want to see.</p>
-<p>This implies that somehow removing an incomplete deconvolved model leads
-to more of the source being included in the 'atmosphere' than would have
-been included with no model subtraction at all. I'm not sure how this is
-possible. In fact... I'm really quite sure that it is not.
-The workaround is to only add positive changes to the model. This should
-'definitely work' but may be non-convergent and assumes that the model
-never has anything wrong with it at any iteration. I have demonstrated
-that this works nicely for the two Uranus observations I tested on, but
-now I have to run the gamut of tests.... the first (very obvious)
-problem is that the background is now positive, which is dead wrong.
-This workaround is not viable.
-Alright, so what next? I've described the symptoms and that I think they
-can't occur...
-A closer look shows that new_astro is not being incorporated into
-astro_model at the second iteration. Why?
-AHA! Pyflagger + find_all_points reveals the problem!</p>
-<pre class="literal-block">
-Map value: 16.939728   Weighted average: 17.476323   Unweighted Average: 524.573136
-scan,bolo,time:       mapped       astro       flags      weight       scale
-3,  22,  12:     8.380408   13.561113    0.000000    0.025132    1.000000
-4, 124,  23:   822.005327   13.561113    0.000000    0.000038    1.118012
-4,  21,  38:   719.408983   13.561113    0.000000    0.000037    0.946721
-5,  20,   7:     4.470616   13.561113    0.000000    0.013303    1.400000
-5, 119,  23:   882.508303   13.561113    0.000000    0.000033    0.926887
-5, 100,  35:   327.007750   13.561113    0.000000    0.000074    1.184397
-5, 106,  38:   162.562098   13.561113    0.000000    0.000704    0.970000
-6, 116,  27:   779.075640   13.561113    0.000000    0.000033    0.891768
-8, 112,   3:   235.557390   13.561113    0.000000    0.000147    0.947130
-9,   3,  14:   966.721773   13.561113    0.000000    0.000032    1.166292
-9, 109,  41:   139.753656   13.561113    0.000000    0.000753    1.075269
-10, 104,   8:   641.121935   13.561113    0.000000    0.000050    0.927827
-10, 105,  24:     4.323228   13.561113    0.000000    0.032759    0.019022
-10,  32,  36:   847.646990   13.561113    0.000000    0.000034    1.099406
-11,  36,   9:   834.757586   13.561113    0.000000    0.000038    1.184751
-11,  76,  37:   566.851891   13.561113    0.000000    0.000040    1.111000
-12,  77,  13:   834.603090   13.561113    0.000000    0.000034    1.128464
-12,  44,  44:   335.465654   13.561113    0.000000    0.000195    2.165775
-13,  26,  17:    50.423143   13.561113    0.000000    0.004826    0.829932
-13,  75,  29:   724.884676   13.561113    0.000000    0.000042    0.923077
-14,  49,  21:   797.618990   13.561113    0.000000    0.000038    1.091918
-14,  29,  33:   743.856012   13.561113    0.000000    0.000035    1.050360
-15,  33,  13:   660.670099   13.561113    0.000000    0.000031    0.832180
-15,  53,  25:   604.174286   13.561113    0.000000    0.000047    0.889922
-15,  88,  40:     4.626476   13.561113    0.000000    0.008241    0.191489
-17,  64,  20:   778.950533   13.561113    0.000000    0.000037    1.233108
-18,  68,  30:   686.048136   13.561113    0.000000    0.000040    1.387283
-</pre>
-<p>Note that the lowest points have the highest weights. They DEFINITELY
-shouldn't. What's wrong with them?
-Apparently they have NO sensitivity to the sky! What?! There were a
-bunch of bad bolos in Dec2010 that weren't flagged out... I wonder if
-that problem persists to other epochs. Still, why does it only affect
-pointing observations? Looking at the power spectra... the
-large-timescale stuff becomes less dominant when scans are longer, but
-the noisy spectra are still clearly noise-only. How odd.
-Dropped to 112 good bolos from 134. That is much more believable. Have
-to go back and fix Dec09 data too...
-Even after fixing the bad bolos, the model drops with iteration number.
-Why why why?
-Well, looking at deconv_map, I've always returned the truly deconvolved
-version, not the reconvolved... maybe the reconvolved really is better?
-Again, this will have to be extensively tested, but it certainly gets
-rid of the obvious/dominant error that the model kept dropping off.
-However, FINALLY, based on how ridiculously good the reconv-deconvolved
-map looks, I think I'm ready to do the extensive pipeline tests. So,
-10dec_caltest has been started up with all of the new bolo_params
-applied and the changes in place to deconv_map... let's see what
-happens.</p>
-<p>After that runs, I'll have to re-run the fit_and_plot routines</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/revisiting-calibration-yet-again.html" rel="bookmark" title="Permalink to Revisiting calibration yet again">
-                    Revisiting calibration yet again</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-03-23T00:22:00"> 2011/03/23 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>The recent hiatus for paper revisions has, unfortunately, come to an
-end.
-Re-examining my work, I did quite a lot but encountered many dead-ends.
-First, we would very much like to use an *identical* reduction process
-on both the calibration data and the science data. That way, we could
-feel very confident that the reduction process isn't introducing any
-weird artifacts.
-Unfortunately, I discovered early on that using ds5 data, 13 pca
-components, and n&gt;1 iterations resulted in strange shape and flux
-conservation failures. These errors do NOT occur in co-added maps; they
-are unique to single-observation scans (though I don't recollect whether
-2 scans is enough or if you need more).
-I spent many hours banging my head against this problem and have never
-gotten a satisfactory solution. But perhaps it's time to approach it
-again. The map00 images look MUCH rounder and generally better than the
-map10 images.
-So, the problem I need to examine is the iterative process. Why does it
-fail for single images? Is it something about the noise properties?
-model00 looks fine... what gets put into the timestream? Examining
-timestreams is a terrible and horrendous process... but what else can I
-do?
-The next step will be to examine the timestreams of a particular
-observation. I think a good choice is 101208_ob7; the next observation,
-101208_ob8 was a large-area map and it looks fine (i.e., it improves
-with iteration). So I can start looking at the effects of polysub,
-iteration, etc. on this particular source.
-Of course, the stupid trick with the pipeline - every time - is that
-&quot;fixing&quot; a problem for one source has a nasty tendency to break it for
-all other sources. That's why there are so many flags that can be passed
-around. Still, this is the approach I have to take...</p>
+<img alt="" src="http://3.bp.blogspot.com/-6lqGwWn650Q/TY_rgZKA9QI/AAAAAAAAGCI/Iq9O5mnmhl8/s320/101208_o11_ds1_uranus_indivtest_delinetimestream011_plots_20_bolo02.png" />
+<img alt="" src="http://1.bp.blogspot.com/-7uBbEU1tAqM/TY_rgg6Jq9I/AAAAAAAAGCQ/iaGhOSb6gtQ/s320/101208_o11_ds5_uranus_indivtesttimestream011_plots_20_bolo02.png" />
+<img alt="" src="http://1.bp.blogspot.com/-YKdZcNOjm7Q/TY_rg6tcvhI/AAAAAAAAGCY/fr4l8j-v4xI/s320/101208_o11_ds1_uranus_indivtesttimestream011_plots_20_bolo02.png" />
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
-                        <a href="http://keflavich.github.io/blog/index33.html">&laquo;</a>
-                Page 34 / 48
-            <a href="http://keflavich.github.io/blog/index35.html">&raquo;</a>
-    </p>
+            <a href="http://keflavich.github.io/blog/index33.html">&laquo;</a>
+    Page 34 / 48
+        <a href="http://keflavich.github.io/blog/index35.html">&raquo;</a>
+</p>
 </section><!-- /#content -->
   </div>
 
@@ -601,7 +526,7 @@ alt="hit counter"></a></div></noscript>-->
 <!-- End of StatCounter Code for Default Guide -->
 <script type="text/javascript">
   var disqus_shortname = 'adamginsburgsblog';
-    (function() {
+  (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);

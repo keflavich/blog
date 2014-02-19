@@ -4,10 +4,10 @@
 <link rel="icon" type="image/gif" href="http://keflavich.github.io/blog/theme/favicon8.ico">
 <head>
     <base href="http://keflavich.github.io/blog">
-                <title>Adam Ginsburg's blog</title>
+        <title>Adam Ginsburg's blog</title>
         <meta charset="utf-8" />
-                <link href="http://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
-                                                                        <!-- Using MathJax, with the delimiters $ -->
+        <link href="http://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
 <!-- Conflict with pygments for the .mo and .mi -->
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -51,56 +51,189 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
             <h1 style="color: #C4C4C4;"><a class="header" href="http://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
 
             <nav id="menu"><ul id="menulist">
-                            <li><a href="http://www.adamgginsburg.com">Homepage</a></li>
-                            <li><a href="/blog//index.html">Blog Index</a></li>
-                            <li><a href="/blog//category/bgps.html">BGPS Blog</a></li>
-                            <li><a href="/blog//category/publications.html">Publications</a></li>
-                            <li><a href="/blog//archives.html">Archives</a></li>
-                            <li><a href="/blog//tags.html">Tags</a></li>
-                                                              </ul></nav><!-- /#menu -->
+                <li><a href="http://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/blog//index.html">Blog Index</a></li>
+                <li><a href="/blog//category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/blog//category/publications.html">Publications</a></li>
+                <li><a href="/blog//archives.html">Archives</a></li>
+                <li><a href="/blog//tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
         </div>
     </header><!-- /#banner -->
 
-   <div id="sidebar">
+  <div id="sidebar">
     <ul>
-  	  	        	  	          <li>
+      <li>
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
-                          <li class="post">
+              <li class="post">
+                  2014/02/19
+                  <br>
+                  <a href="http://keflavich.github.io/blog/python-stack-on-mavericks.html">Python stack on Mavericks</a>
+              </li>
+              <li class="post">
+                  2014/01/16
+                  <br>
+                  <a href="http://keflavich.github.io/blog/w51-mapping-flagging-bad-data.html">W51 Mapping: Flagging bad data</a>
+              </li>
+              <li class="post">
                   2013/12/13
                   <br>
                   <a href="http://keflavich.github.io/blog/there-is-a-gap-in-the-dust-around-sgr-b2.html">There is a "gap" in the dust around Sgr B2</a>
               </li>
-                          <li class="post">
+              <li class="post">
                   2013/10/25
                   <br>
                   <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-5.html">Notes from the ISM-PP conference: Day 5</a>
               </li>
-                          <li class="post">
+              <li class="post">
                   2013/10/24
                   <br>
                   <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-4.html">Notes from the ISM-PP conference Day 4</a>
               </li>
-                          <li class="post">
-                  2013/10/23
-                  <br>
-                  <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-3.html">Notes from the ISM-PP conference Day 3</a>
-              </li>
-                          <li class="post">
-                  2013/10/22
-                  <br>
-                  <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-2.html">Notes from the ISM-PP conference: Day 2</a>
-              </li>
-                    </ul>
+        </ul>
       </li>
-        
+    
     </ul>
   </div><!-- end #sidebar -->
- 
+
   <div id="content">
-        <section id="content">
+<section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/a-workaround-for-individual-maps.html" rel="bookmark" title="Permalink to A workaround for individual maps?">
+                    A workaround for individual maps?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-03-24T00:33:00"> 2011/03/24 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I closely examined the timestreams of 101208_ob7 as I said I would
+yesterday. Unfortunately, all I can do is describe the symptoms: the
+first deconvolution model looks good, though it isn't quite as wide as
+the true source (this should be OK; it is an iterative method, after
+all). In the second iteration, though, the deconvolution model is even
+smaller and lower amplitude... and it goes on like that.</p>
+<p>Not deconvolving results in a healthy-looking clean map - pretty much
+what you expect and want to see.</p>
+<p>This implies that somehow removing an incomplete deconvolved model leads
+to more of the source being included in the 'atmosphere' than would have
+been included with no model subtraction at all. I'm not sure how this is
+possible. In fact... I'm really quite sure that it is not.
+The workaround is to only add positive changes to the model. This should
+'definitely work' but may be non-convergent and assumes that the model
+never has anything wrong with it at any iteration. I have demonstrated
+that this works nicely for the two Uranus observations I tested on, but
+now I have to run the gamut of tests.... the first (very obvious)
+problem is that the background is now positive, which is dead wrong.
+This workaround is not viable.
+Alright, so what next? I've described the symptoms and that I think they
+can't occur...
+A closer look shows that new_astro is not being incorporated into
+astro_model at the second iteration. Why?
+AHA! Pyflagger + find_all_points reveals the problem!</p>
+<pre class="literal-block">
+Map value: 16.939728   Weighted average: 17.476323   Unweighted Average: 524.573136
+scan,bolo,time:       mapped       astro       flags      weight       scale
+3,  22,  12:     8.380408   13.561113    0.000000    0.025132    1.000000
+4, 124,  23:   822.005327   13.561113    0.000000    0.000038    1.118012
+4,  21,  38:   719.408983   13.561113    0.000000    0.000037    0.946721
+5,  20,   7:     4.470616   13.561113    0.000000    0.013303    1.400000
+5, 119,  23:   882.508303   13.561113    0.000000    0.000033    0.926887
+5, 100,  35:   327.007750   13.561113    0.000000    0.000074    1.184397
+5, 106,  38:   162.562098   13.561113    0.000000    0.000704    0.970000
+6, 116,  27:   779.075640   13.561113    0.000000    0.000033    0.891768
+8, 112,   3:   235.557390   13.561113    0.000000    0.000147    0.947130
+9,   3,  14:   966.721773   13.561113    0.000000    0.000032    1.166292
+9, 109,  41:   139.753656   13.561113    0.000000    0.000753    1.075269
+10, 104,   8:   641.121935   13.561113    0.000000    0.000050    0.927827
+10, 105,  24:     4.323228   13.561113    0.000000    0.032759    0.019022
+10,  32,  36:   847.646990   13.561113    0.000000    0.000034    1.099406
+11,  36,   9:   834.757586   13.561113    0.000000    0.000038    1.184751
+11,  76,  37:   566.851891   13.561113    0.000000    0.000040    1.111000
+12,  77,  13:   834.603090   13.561113    0.000000    0.000034    1.128464
+12,  44,  44:   335.465654   13.561113    0.000000    0.000195    2.165775
+13,  26,  17:    50.423143   13.561113    0.000000    0.004826    0.829932
+13,  75,  29:   724.884676   13.561113    0.000000    0.000042    0.923077
+14,  49,  21:   797.618990   13.561113    0.000000    0.000038    1.091918
+14,  29,  33:   743.856012   13.561113    0.000000    0.000035    1.050360
+15,  33,  13:   660.670099   13.561113    0.000000    0.000031    0.832180
+15,  53,  25:   604.174286   13.561113    0.000000    0.000047    0.889922
+15,  88,  40:     4.626476   13.561113    0.000000    0.008241    0.191489
+17,  64,  20:   778.950533   13.561113    0.000000    0.000037    1.233108
+18,  68,  30:   686.048136   13.561113    0.000000    0.000040    1.387283
+</pre>
+<p>Note that the lowest points have the highest weights. They DEFINITELY
+shouldn't. What's wrong with them?
+Apparently they have NO sensitivity to the sky! What?! There were a
+bunch of bad bolos in Dec2010 that weren't flagged out... I wonder if
+that problem persists to other epochs. Still, why does it only affect
+pointing observations? Looking at the power spectra... the
+large-timescale stuff becomes less dominant when scans are longer, but
+the noisy spectra are still clearly noise-only. How odd.
+Dropped to 112 good bolos from 134. That is much more believable. Have
+to go back and fix Dec09 data too...
+Even after fixing the bad bolos, the model drops with iteration number.
+Why why why?
+Well, looking at deconv_map, I've always returned the truly deconvolved
+version, not the reconvolved... maybe the reconvolved really is better?
+Again, this will have to be extensively tested, but it certainly gets
+rid of the obvious/dominant error that the model kept dropping off.
+However, FINALLY, based on how ridiculously good the reconv-deconvolved
+map looks, I think I'm ready to do the extensive pipeline tests. So,
+10dec_caltest has been started up with all of the new bolo_params
+applied and the changes in place to deconv_map... let's see what
+happens.</p>
+<p>After that runs, I'll have to re-run the fit_and_plot routines</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/revisiting-calibration-yet-again.html" rel="bookmark" title="Permalink to Revisiting calibration yet again">
+                    Revisiting calibration yet again</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-03-23T00:22:00"> 2011/03/23 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The recent hiatus for paper revisions has, unfortunately, come to an
+end.
+Re-examining my work, I did quite a lot but encountered many dead-ends.
+First, we would very much like to use an *identical* reduction process
+on both the calibration data and the science data. That way, we could
+feel very confident that the reduction process isn't introducing any
+weird artifacts.
+Unfortunately, I discovered early on that using ds5 data, 13 pca
+components, and n&gt;1 iterations resulted in strange shape and flux
+conservation failures. These errors do NOT occur in co-added maps; they
+are unique to single-observation scans (though I don't recollect whether
+2 scans is enough or if you need more).
+I spent many hours banging my head against this problem and have never
+gotten a satisfactory solution. But perhaps it's time to approach it
+again. The map00 images look MUCH rounder and generally better than the
+map10 images.
+So, the problem I need to examine is the iterative process. Why does it
+fail for single images? Is it something about the noise properties?
+model00 looks fine... what gets put into the timestream? Examining
+timestreams is a terrible and horrendous process... but what else can I
+do?
+The next step will be to examine the timestreams of a particular
+observation. I think a good choice is 101208_ob7; the next observation,
+101208_ob8 was a large-area map and it looks fine (i.e., it improves
+with iteration). So I can start looking at the effects of polysub,
+iteration, etc. on this particular source.
+Of course, the stupid trick with the pipeline - every time - is that
+&quot;fixing&quot; a problem for one source has a nasty tendency to break it for
+all other sources. That's why there are so many flags that can be passed
+around. Still, this is the approach I have to take...</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -110,7 +243,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-02-14T22:55:00"> 2011/02/14 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>It looks like, for AFGL 4029 combined images, ds1 and ds5 agree to
 within 5% in the Dec2010 data. This implies that the offset is a result
 of the individual scans instead of coadds, though for the individual
@@ -127,7 +260,7 @@ observations ds1&gt;ds5 pretty uniformly.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-02-13T19:08:00"> 2011/02/13 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>As you'll recall from <a class="reference external" href="http://bolocam.blogspot.com/2011/02/downsampling-what-is-going-on.html">my previous post</a> (and references therein...),
 the 2005 Orion data shows a discrepancy between ds1 and ds5 data in
 which the ds1 data is significantly (~10%) higher than the ds5 data.
@@ -154,7 +287,7 @@ for 'normal' point-sources:</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-02-12T01:30:00"> 2011/02/12 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>From a comparison of 3 different epochs using about a dozen different
 reduction techniques, but all with pairs of cross-scans, ds1 is
 uniformly higher than ds5.
@@ -173,7 +306,7 @@ between 2010 and other epochs</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-02-11T04:19:00"> 2011/02/11 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>The downsampling failure I <a class="reference external" href="http://bolocam.blogspot.com/2011/01/downsampling-has-serious-negative.html">noted</a> <a class="reference external" href="http://bolocam.blogspot.com/2011/01/more-evidence-that-downsampling-causes.html">previously</a> appears to be
 illusory. It may be that the offset noted only holds for single-frame
 images, in which there may be many blank pixels. It is possible - though
@@ -200,20 +333,20 @@ compare_images code (for Uranus) and cropping using montage and a
 wcs-based box for Orion.</p>
 <p>The results... are ambiguous. Wow. In some sub-fields - within the same
 co-added map - the agreement is near-perfect.</p>
-<img alt="http://1.bp.blogspot.com/-i20j3FEx758/TVR-PbQl7lI/AAAAAAAAGAY/imgMqceS9n8/s1600/v2.0_dl_omc_b_OMC4_ds1ds5_compare.png" src="http://1.bp.blogspot.com/-i20j3FEx758/TVR-PbQl7lI/AAAAAAAAGAY/imgMqceS9n8/s1600/v2.0_dl_omc_b_OMC4_ds1ds5_compare.png" />
+<img alt="" src="http://1.bp.blogspot.com/-i20j3FEx758/TVR-PbQl7lI/AAAAAAAAGAY/imgMqceS9n8/s1600/v2.0_dl_omc_b_OMC4_ds1ds5_compare.png" />
 <p>In others, ds1 is clearly &gt; ds5.</p>
-<img alt="http://4.bp.blogspot.com/-JsRH_ZQilWM/TVR-Os6vBSI/AAAAAAAAGAQ/JRR6Trm-weo/s1600/v2.0_dl_omc_b_OMC2_ds1ds5_compare.png" src="http://4.bp.blogspot.com/-JsRH_ZQilWM/TVR-Os6vBSI/AAAAAAAAGAQ/JRR6Trm-weo/s1600/v2.0_dl_omc_b_OMC2_ds1ds5_compare.png" />
+<img alt="" src="http://4.bp.blogspot.com/-JsRH_ZQilWM/TVR-Os6vBSI/AAAAAAAAGAQ/JRR6Trm-weo/s1600/v2.0_dl_omc_b_OMC2_ds1ds5_compare.png" />
 <p>What's going on? ds1 does look uniformly more smooth.
 Note that the <em>disagreement</em> is nearly scale-free:</p>
 <p>OK, so given the conclusion in Orion that ds1&gt;=ds5, what's the deal with
 Uranus?</p>
-<img alt="http://3.bp.blogspot.com/-AosJ1vzcYSs/TVSZjIZ81fI/AAAAAAAAGAk/qVGeaJtkbPA/s320/101208_o10_ds1ds5_compare.png" src="http://3.bp.blogspot.com/-AosJ1vzcYSs/TVSZjIZ81fI/AAAAAAAAGAk/qVGeaJtkbPA/s320/101208_o10_ds1ds5_compare.png" />
+<img alt="" src="http://3.bp.blogspot.com/-AosJ1vzcYSs/TVSZjIZ81fI/AAAAAAAAGAk/qVGeaJtkbPA/s320/101208_o10_ds1ds5_compare.png" />
 <p>The first two comparisons are for 1x1° observations; in both cases ds1 &lt;
 ds5, but by 6% and 24% respectively! The image of Uranus looks much
 better (because of lack of parallel lines) in the second, more extreme
 case. In both cases, the ds5 excess is nearly scale-free (not shown).</p>
-<img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/TVSZki9k9OI/AAAAAAAAGA0/t9LOGHOAL7Q/s320/101208_o10_ds1ds5_compare.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TVSZki9k9OI/AAAAAAAAGA0/t9LOGHOAL7Q/s320/101208_o10_ds1ds5_compare.png" />
-<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TVSZj1pglLI/AAAAAAAAGAs/-4153NoAQQ0/s320/101208_o11_ds1ds5_compare.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TVSZj1pglLI/AAAAAAAAGAs/-4153NoAQQ0/s320/101208_o11_ds1ds5_compare.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TVSZki9k9OI/AAAAAAAAGA0/t9LOGHOAL7Q/s320/101208_o10_ds1ds5_compare.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TVSZj1pglLI/AAAAAAAAGAs/-4153NoAQQ0/s320/101208_o11_ds1ds5_compare.png" />
 <p>The 3x1s are also highly discrepant. #12 shows nearly perfect agreement,
 albeit with high dispersion (low correlation) because of pixel-to-pixel
 variations around the peak. #13 is the only observation with a huge DS1
@@ -222,16 +355,16 @@ telescope got bumped for the ds5 data (which is not actually possible;
 recall they're the same data set). What happened here? Maybe a glitch
 that went unflagged (mad_flagger is off by default for individual
 scans)?</p>
-<img alt="http://3.bp.blogspot.com/-9gwzGfDBCEk/TVSZllWeBxI/AAAAAAAAGA8/x3mg5RbMScs/s320/101208_o12_ds1ds5_compare.png" src="http://3.bp.blogspot.com/-9gwzGfDBCEk/TVSZllWeBxI/AAAAAAAAGA8/x3mg5RbMScs/s320/101208_o12_ds1ds5_compare.png" />
-<img alt="http://3.bp.blogspot.com/-9gwzGfDBCEk/TVSZllWeBxI/AAAAAAAAGA8/x3mg5RbMScs/s320/101208_o13_ds1ds5_compare.png" src="http://3.bp.blogspot.com/-9gwzGfDBCEk/TVSZllWeBxI/AAAAAAAAGA8/x3mg5RbMScs/s320/101208_o13_ds1ds5_compare.png" />
+<img alt="" src="http://3.bp.blogspot.com/-9gwzGfDBCEk/TVSZllWeBxI/AAAAAAAAGA8/x3mg5RbMScs/s320/101208_o12_ds1ds5_compare.png" />
+<img alt="" src="http://3.bp.blogspot.com/-9gwzGfDBCEk/TVSZllWeBxI/AAAAAAAAGA8/x3mg5RbMScs/s320/101208_o13_ds1ds5_compare.png" />
 <p>In observations 4 and 5, we're looking at a 40-50% excess in ds5! What
 the heck? There really is no clear explanation for this.</p>
-<img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/TVSaYfZx0WI/AAAAAAAAGBE/cWbbBQCJOvk/s320/101208_ob4_ds1ds5_compare.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TVSaYfZx0WI/AAAAAAAAGBE/cWbbBQCJOvk/s320/101208_ob4_ds1ds5_compare.png" />
-<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TVSaZM27sqI/AAAAAAAAGBM/XR-6pttUcBo/s320/101208_ob5_ds1ds5_compare.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TVSaZM27sqI/AAAAAAAAGBM/XR-6pttUcBo/s320/101208_ob5_ds1ds5_compare.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TVSaYfZx0WI/AAAAAAAAGBE/cWbbBQCJOvk/s320/101208_ob4_ds1ds5_compare.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TVSaZM27sqI/AAAAAAAAGBM/XR-6pttUcBo/s320/101208_ob5_ds1ds5_compare.png" />
 <p>But... what? Magically, they come into perfect agreement when the scan
 axis nearly lines up with the coordinate axis! Or, is this just an
 effect of the worse weather on night 2?</p>
-<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/TVSaaP6ISNI/AAAAAAAAGBU/PvN5aFOxBAQ/s320/101209_ob5_ds1ds5_compare.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TVSaaP6ISNI/AAAAAAAAGBU/PvN5aFOxBAQ/s320/101209_ob5_ds1ds5_compare.png" />
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TVSaaP6ISNI/AAAAAAAAGBU/PvN5aFOxBAQ/s320/101209_ob5_ds1ds5_compare.png" />
 <p>Next thing to try: masked source map comparison. Unfortunately, masking
 royally screwed up the long scans - probably because the initial polysub
 didn't work. And masking in the individual point source maps did
@@ -254,7 +387,7 @@ with pyflagger...</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-02-07T04:39:00"> 2011/02/07 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>The fundamental problem at this point is making the pipeline run faster.
 At current speeds, with undownsampled data, it may take ~days to process
 a single map. Ideas for faster processing:</p>
@@ -287,7 +420,7 @@ there any way to separate out data in a struct in this manner?</li>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-02-03T22:16:00"> 2011/02/03 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>First comment - delining has <strong>no effect</strong> on downsampled data. At least
 for the 0709 epoch, there were NO lines AT ALL in the data. From 0-5 Hz,
 it was just empty. So we don't have to worry about that... the problem
@@ -299,12 +432,12 @@ However, flux levels in the sources go up by 0-10%. As usual, the change
 in flux changes from field to field without any obvious reason.
 Example 1: A pointing field. The source is ~2% brighter in the delined
 version, but otherwise the match between the two is nearly perfect.</p>
-<img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/TUskr5xAMSI/AAAAAAAAF_M/J65CutNg9hM/s320/101208_ob8_compare.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUskr5xAMSI/AAAAAAAAF_M/J65CutNg9hM/s320/101208_ob8_compare.png" />
-<img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/TUsksatOJSI/AAAAAAAAF_U/9X-rM6JQmCU/s320/101208_ob8_psd.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUsksatOJSI/AAAAAAAAF_U/9X-rM6JQmCU/s320/101208_ob8_psd.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUskr5xAMSI/AAAAAAAAF_M/J65CutNg9hM/s320/101208_ob8_compare.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUsksatOJSI/AAAAAAAAF_U/9X-rM6JQmCU/s320/101208_ob8_psd.png" />
 <p>Example 2: A bigger map, where the flux recovery is much greater when
 delining, but the background levels are also higher.</p>
-<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/TUsoBrKcQyI/AAAAAAAAF_c/junIzma1zg4/s320/101208_o11_compare.png" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUsoBrKcQyI/AAAAAAAAF_c/junIzma1zg4/s320/101208_o11_compare.png" />
-<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/TUsoCFL1DiI/AAAAAAAAF_k/b1QrgajdlaE/s320/101208_o11_psd.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUsoCFL1DiI/AAAAAAAAF_k/b1QrgajdlaE/s320/101208_o11_psd.png" />
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUsoBrKcQyI/AAAAAAAAF_c/junIzma1zg4/s320/101208_o11_compare.png" />
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUsoCFL1DiI/AAAAAAAAF_k/b1QrgajdlaE/s320/101208_o11_psd.png" />
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
@@ -317,7 +450,7 @@ delining, but the background levels are also higher.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-02-03T19:49:00"> 2011/02/03 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>One item I forgot to mention last night was the effects of
 lines/delining on
 PCA subtraction. These should be the primary effects on the final map
@@ -351,35 +484,35 @@ noise to small-amplitude variations that are very likely to describe
 atmosphere.</p>
 <hr class="docutils" />
 <p>Example 1 - Zeroing out the lines:</p>
-<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/TUrs_QRBBHI/AAAAAAAAF9Y/BH4XEdrFdt0/s320/zero_pca_psds.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUrs_QRBBHI/AAAAAAAAF9Y/BH4XEdrFdt0/s320/zero_pca_psds.png" />
-<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/TUrs_nWI6YI/AAAAAAAAF9g/1Dcr0zyMBvM/s320/zero_pca_timestreams.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUrs_nWI6YI/AAAAAAAAF9g/1Dcr0zyMBvM/s320/zero_pca_timestreams.png" />
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUrs_QRBBHI/AAAAAAAAF9Y/BH4XEdrFdt0/s320/zero_pca_psds.png" />
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUrs_nWI6YI/AAAAAAAAF9g/1Dcr0zyMBvM/s320/zero_pca_timestreams.png" />
 <p>Example 2 - Fitting and removing the lines:</p>
-<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/TUrs-f7qfqI/AAAAAAAAF9I/Dt3Kk9roeW8/s320/fitline_pca_psds.png" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUrs-f7qfqI/AAAAAAAAF9I/Dt3Kk9roeW8/s320/fitline_pca_psds.png" />
-<img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/TUrs-_it9CI/AAAAAAAAF9Q/06KgQOS2vNA/s320/fitline_pca_timestreams.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUrs-_it9CI/AAAAAAAAF9Q/06KgQOS2vNA/s320/fitline_pca_timestreams.png" />
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUrs-f7qfqI/AAAAAAAAF9I/Dt3Kk9roeW8/s320/fitline_pca_psds.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUrs-_it9CI/AAAAAAAAF9Q/06KgQOS2vNA/s320/fitline_pca_timestreams.png" />
 <p>Example 3 - Suppressing the lines with a non-fitted Gaussian:</p>
-<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/TUr_QHkPADI/AAAAAAAAF9o/n5ylgDCLKPw/s320/wingsupp_pca_psds.png" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUr_QHkPADI/AAAAAAAAF9o/n5ylgDCLKPw/s320/wingsupp_pca_psds.png" />
-<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TUr_QnuPZfI/AAAAAAAAF9w/lt4rEB1Qlq0/s320/wingsupp_pca_timestreams.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUr_QnuPZfI/AAAAAAAAF9w/lt4rEB1Qlq0/s320/wingsupp_pca_timestreams.png" />
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUr_QHkPADI/AAAAAAAAF9o/n5ylgDCLKPw/s320/wingsupp_pca_psds.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUr_QnuPZfI/AAAAAAAAF9w/lt4rEB1Qlq0/s320/wingsupp_pca_timestreams.png" />
 <hr class="docutils" />
 <p>The next examples are from December 2010 observations of Uranus. In this
 case, the correlated noise component is clearly dominant.</p>
 <p>Zeroing lines:</p>
-<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCBUeD67I/AAAAAAAAF94/CCj9gbJOgk8/s320/zero_pca_psds.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCBUeD67I/AAAAAAAAF94/CCj9gbJOgk8/s320/zero_pca_psds.png" />
-<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCB4wFnSI/AAAAAAAAF-A/YgbjYlybcOc/s320/zero_pca_timestreams.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCB4wFnSI/AAAAAAAAF-A/YgbjYlybcOc/s320/zero_pca_timestreams.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCBUeD67I/AAAAAAAAF94/CCj9gbJOgk8/s320/zero_pca_psds.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCB4wFnSI/AAAAAAAAF-A/YgbjYlybcOc/s320/zero_pca_timestreams.png" />
 <p>Fitted lines:</p>
-<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCCQNHurI/AAAAAAAAF-I/a5_FQ7bqUjI/s320/fitline_pca_psds.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCCQNHurI/AAAAAAAAF-I/a5_FQ7bqUjI/s320/fitline_pca_psds.png" />
-<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/TUsCCtO7DTI/AAAAAAAAF-Q/wKBz0UhDruE/s320/fitline_pca_timestreams.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUsCCtO7DTI/AAAAAAAAF-Q/wKBz0UhDruE/s320/fitline_pca_timestreams.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCCQNHurI/AAAAAAAAF-I/a5_FQ7bqUjI/s320/fitline_pca_psds.png" />
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUsCCtO7DTI/AAAAAAAAF-Q/wKBz0UhDruE/s320/fitline_pca_timestreams.png" />
 <p>Non-fitted gaussian suppression:</p>
-<img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/TUsCLgCRbmI/AAAAAAAAF-Y/WzHcr1E5q4s/s320/wingsupp_pca_psds.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUsCLgCRbmI/AAAAAAAAF-Y/WzHcr1E5q4s/s320/wingsupp_pca_psds.png" />
-<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCL5e9eGI/AAAAAAAAF-g/TgmNWbiJzbs/s320/wingsupp_pca_timestreams.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCL5e9eGI/AAAAAAAAF-g/TgmNWbiJzbs/s320/wingsupp_pca_timestreams.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUsCLgCRbmI/AAAAAAAAF-Y/WzHcr1E5q4s/s320/wingsupp_pca_psds.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCL5e9eGI/AAAAAAAAF-g/TgmNWbiJzbs/s320/wingsupp_pca_timestreams.png" />
 <hr class="docutils" />
 <p>Finally, these two are demonstrations of what you might expect to see
 for a purely noiseless images of a planet (it was constructed from a
 PSF). PCA is first:</p>
-<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCyELAZ1I/AAAAAAAAF-o/65L-rwGFscM/s320/noiselesssim_pca_psds.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCyELAZ1I/AAAAAAAAF-o/65L-rwGFscM/s320/noiselesssim_pca_psds.png" />
-<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/TUsCyRaYY7I/AAAAAAAAF-w/ZaRL4CPWw2E/s320/noiselesssim_pca_timestreams.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUsCyRaYY7I/AAAAAAAAF-w/ZaRL4CPWw2E/s320/noiselesssim_pca_timestreams.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCyELAZ1I/AAAAAAAAF-o/65L-rwGFscM/s320/noiselesssim_pca_psds.png" />
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUsCyRaYY7I/AAAAAAAAF-w/ZaRL4CPWw2E/s320/noiselesssim_pca_timestreams.png" />
 <p>A single bolometer's timestream and PSD:</p>
-<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/TUsDgR4xcEI/AAAAAAAAF-4/udxMkuH6kio/s320/noiselesssim_deline_wingsupp_10hz_noscan_nsig0_psds_000.png" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUsDgR4xcEI/AAAAAAAAF-4/udxMkuH6kio/s320/noiselesssim_deline_wingsupp_10hz_noscan_nsig0_psds_000.png" />
-<img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/TUsDgtnBPNI/AAAAAAAAF_A/weQNMCgtrtc/s320/noiselesssim_deline_wingsupp_10hz_noscan_nsig0_timestreams_000.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUsDgtnBPNI/AAAAAAAAF_A/weQNMCgtrtc/s320/noiselesssim_deline_wingsupp_10hz_noscan_nsig0_timestreams_000.png" />
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUsDgR4xcEI/AAAAAAAAF-4/udxMkuH6kio/s320/noiselesssim_deline_wingsupp_10hz_noscan_nsig0_psds_000.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUsDgtnBPNI/AAAAAAAAF_A/weQNMCgtrtc/s320/noiselesssim_deline_wingsupp_10hz_noscan_nsig0_timestreams_000.png" />
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
@@ -392,7 +525,7 @@ PSF). PCA is first:</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-02-03T04:54:00"> 2011/02/03 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Delining refers to the process of removing electronic noise that is
 aliased to
 particular frequencies by the discrete sampling of the data. Typical
@@ -419,8 +552,8 @@ neighboring region</li>
 </ol>
 <hr class="docutils" />
 <p>Now, some examples:</p>
-<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/TUisqDHJ08I/AAAAAAAAF58/BpgnudfdAAw/s400/deline_timestreams_003.png" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUisqDHJ08I/AAAAAAAAF58/BpgnudfdAAw/s400/deline_timestreams_003.png" />
-<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TUisqWN6ueI/AAAAAAAAF6E/yAka7dlomjo/s400/deline_psds_003.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUisqWN6ueI/AAAAAAAAF6E/yAka7dlomjo/s400/deline_psds_003.png" />
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUisqDHJ08I/AAAAAAAAF58/BpgnudfdAAw/s400/deline_timestreams_003.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUisqWN6ueI/AAAAAAAAF6E/yAka7dlomjo/s400/deline_psds_003.png" />
 <p>The timestream (left) and PSD (right) of a &quot;pretty good&quot; bolometer.
 There is a lot of noise in lines, but note that the peak power is 2-3
 orders of magnitude below the PSD peak. In this case the &quot;Power&quot; is in
@@ -438,108 +571,42 @@ seen that the RMS drops substantially when the lines are filtered out
 (note that the timestream is strongly dominated by large-scale
 structure, so 'substantial' is really based on the RMS of the lines
 removed).</p>
-<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/TUisq6D55wI/AAAAAAAAF6M/PZ4hyu5FkZM/s400/deline_10hz_timestreams_003.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUisq6D55wI/AAAAAAAAF6M/PZ4hyu5FkZM/s400/deline_10hz_timestreams_003.png" />
-<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/TUisrWpL7yI/AAAAAAAAF6U/tSsL5Jc4n-A/s400/deline_10hz_psds_003.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUisrWpL7yI/AAAAAAAAF6U/tSsL5Jc4n-A/s400/deline_10hz_psds_003.png" />
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUisq6D55wI/AAAAAAAAF6M/PZ4hyu5FkZM/s400/deline_10hz_timestreams_003.png" />
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUisrWpL7yI/AAAAAAAAF6U/tSsL5Jc4n-A/s400/deline_10hz_psds_003.png" />
 <p>The next two plots look identical to the previous ones. In principle,
 they include the wide-band delining. However, in this case, the
 satellite lines to either side of the 10 Hz line are too strong and
 prevent identification of the 10 Hz line. This is unfortunate, again,
 but no obvious solution presents itself.</p>
-<img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixLZbVHPI/AAAAAAAAF6c/xCWLpb9CKX4/s400/deline_timestreams_004.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixLZbVHPI/AAAAAAAAF6c/xCWLpb9CKX4/s400/deline_timestreams_004.png" />
-<img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixL8APCQI/AAAAAAAAF6k/j8FyKbgOdDo/s400/deline_psds_004.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixL8APCQI/AAAAAAAAF6k/j8FyKbgOdDo/s400/deline_psds_004.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixLZbVHPI/AAAAAAAAF6c/xCWLpb9CKX4/s400/deline_timestreams_004.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixL8APCQI/AAAAAAAAF6k/j8FyKbgOdDo/s400/deline_psds_004.png" />
 <p>Now we come to a truly problematic bolometer. The lines completely
 dominate the power spectrum. Narrow line removal fails.</p>
-<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TUixMjNxbkI/AAAAAAAAF6s/Hr8ouprcMpY/s400/deline_10hz_timestreams_004.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUixMjNxbkI/AAAAAAAAF6s/Hr8ouprcMpY/s400/deline_10hz_timestreams_004.png" />
-<img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixNMO2NsI/AAAAAAAAF60/ZAsirbb25QY/s400/deline_10hz_psds_004.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixNMO2NsI/AAAAAAAAF60/ZAsirbb25QY/s400/deline_10hz_psds_004.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUixMjNxbkI/AAAAAAAAF6s/Hr8ouprcMpY/s400/deline_10hz_timestreams_004.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixNMO2NsI/AAAAAAAAF60/ZAsirbb25QY/s400/deline_10hz_psds_004.png" />
 <p>Wide line removal does a much, much better job, dropping the RMS by an
 order of magnitude.... but the bolometer probably still needs to be
 removed, since the astrophysical signal is 2-3 orders of magnitude below
 that.</p>
-<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TUizkq9x4TI/AAAAAAAAF68/2xYY86d6aTQ/s400/deline_timestreams_001.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUizkq9x4TI/AAAAAAAAF68/2xYY86d6aTQ/s400/deline_timestreams_001.png" />
-<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TUizlH0XvMI/AAAAAAAAF7E/ptDb5I3os6A/s400/deline_psds_001.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUizlH0XvMI/AAAAAAAAF7E/ptDb5I3os6A/s400/deline_psds_001.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUizkq9x4TI/AAAAAAAAF68/2xYY86d6aTQ/s400/deline_timestreams_001.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUizlH0XvMI/AAAAAAAAF7E/ptDb5I3os6A/s400/deline_psds_001.png" />
 <p>The 2010 data had much worse line noise and had to be delined. JS
 accomplished this by throwing out all data above a certain frequency,
 but I prefer the delining approach. It is clearly effective, but again
 leaves much to be desired. Should the flagged bandwidth be increased?
 What about the extra lines around 18 Hz?</p>
-<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/TUizln1mSCI/AAAAAAAAF7M/hTkZRUU3-ck/s400/deline_10hz_timestreams_001.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUizln1mSCI/AAAAAAAAF7M/hTkZRUU3-ck/s400/deline_10hz_timestreams_001.png" />
-<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/TUizmdrMkgI/AAAAAAAAF7U/-dlB4u30hBo/s400/deline_10hz_psds_001.png" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUizmdrMkgI/AAAAAAAAF7U/-dlB4u30hBo/s400/deline_10hz_psds_001.png" />
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUizln1mSCI/AAAAAAAAF7M/hTkZRUU3-ck/s400/deline_10hz_timestreams_001.png" />
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUizmdrMkgI/AAAAAAAAF7U/-dlB4u30hBo/s400/deline_10hz_psds_001.png" />
 <p>Again, the wide line flagging fails because of the satellite lines.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/next-step-prove-that-this-works-in-maps.html" rel="bookmark" title="Permalink to Next step: prove that this works in maps...">
-                    Next step: prove that this works in maps...</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-02-03T04:53:00"> 2011/02/03 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Next step: prove that this works in maps...</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/some-pretty-neat-things-about-delining.html" rel="bookmark" title="Permalink to Some pretty neat things about delining....">
-                    Some pretty neat things about delining....</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-02-03T04:50:00"> 2011/02/03 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Well, I did the work, so might as well come up with some plots...
-I created a gaussian-fitting based delining code that saves all of the
-fits in a text file! That's a lot of data to play with, and allows me to
-draw some conclusions:</p>
-<ol class="arabic simple">
-<li>For the narrow lines, the linewidth (gaussian sigma) is 0.03 Hz. For
-the wide lines, it is 0.05.</li>
-<li>The amplitudes from December 2010 are ENORMOUS compared to others!</li>
-<li>The width distributions of the two are similar, though the lines
-appear to be significantly wider in July 2009</li>
-</ol>
-<p>I've also gotten to the point that I'm satisfied with how delining with
-wing suppression works. Wing suppression is 0.4-2x quicker than fitting
-directly, depending on... not clear what exactly; it depends on epoch,
-but that could either be because there are more lines found or because
-of relative data size. Does delining have to be done on whole
-timestreams, or can it be done on a scan-by-scan basis? This is not
-entirely clear... the peaks are less suppressed when done on a
-scan-by-scan basis (presumably because the S/N is low and peaks are
-therefore not detected), but incorrect suppression (removing a line
-that's not there) is reduced. For short scans, the scan-by-scan approach
-is 10x faster; for longer scans it's ~20% faster. I think the
-scan-by-scan approach is going to be ideal.</p>
-<hr class="docutils" />
-<p>Examples from l089 (0709):
-Top row: non-fitted line suppression</p>
-<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/TUowz4zgpsI/AAAAAAAAF8E/iJd0tAbVj0U/s320/deline_10hz_wingsuppress_psds_003.png" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUowz4zgpsI/AAAAAAAAF8E/iJd0tAbVj0U/s320/deline_10hz_wingsuppress_psds_003.png" />
-<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/TUow1IQ_Y9I/AAAAAAAAF8c/1OkISODwwPM/s320/deline_fitline_10hz_noscan_nsig0_preservephase_timestreams_003.png" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUow1IQ_Y9I/AAAAAAAAF8c/1OkISODwwPM/s320/deline_fitline_10hz_noscan_nsig0_preservephase_timestreams_003.png" />
-<p>Bottom row: fitted line suppression</p>
-<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/TUow0sTBKsI/AAAAAAAAF8U/GtL0nyvlNBw/s320/deline_fitline_10hz_noscan_nsig0_preservephase_psds_003.png" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUow0sTBKsI/AAAAAAAAF8U/GtL0nyvlNBw/s320/deline_fitline_10hz_noscan_nsig0_preservephase_psds_003.png" />
-<img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/TUow0d-vEcI/AAAAAAAAF8M/or2gkvGxW4o/s320/deline_10hz_wingsuppress_timestreams_003.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUow0d-vEcI/AAAAAAAAF8M/or2gkvGxW4o/s320/deline_10hz_wingsuppress_timestreams_003.png" />
-<hr class="docutils" />
-<p>Examples from Uranus (1012, really really liney):</p>
-<p>Top row: non-fitted line suppression</p>
-<img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/TUoxEvWqRwI/AAAAAAAAF8k/J6ImhPN9ZS0/s320/deline_10hz_wingsuppress_psds_003.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUoxEvWqRwI/AAAAAAAAF8k/J6ImhPN9ZS0/s320/deline_10hz_wingsuppress_psds_003.png" />
-<img alt="http://2.bp.blogspot.com/_lsgW26mWZnU/TUoxFMLdujI/AAAAAAAAF8s/DrzWxFCdBu0/s320/deline_10hz_wingsuppress_timestreams_003.png" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUoxFMLdujI/AAAAAAAAF8s/DrzWxFCdBu0/s320/deline_10hz_wingsuppress_timestreams_003.png" />
-<p>Bottom row: fitted line suppression</p>
-<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/TUoxFXYN_tI/AAAAAAAAF80/BQwv6ROSOJ4/s320/deline_fitline_10hz_noscan_nsig0_preservephase_psds_003.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUoxFXYN_tI/AAAAAAAAF80/BQwv6ROSOJ4/s320/deline_fitline_10hz_noscan_nsig0_preservephase_psds_003.png" />
-<img alt="http://4.bp.blogspot.com/_lsgW26mWZnU/TUoxF_c0URI/AAAAAAAAF88/JU9_F-8HC2k/s320/deline_fitline_10hz_noscan_nsig0_preservephase_timestreams_003.png" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUoxF_c0URI/AAAAAAAAF88/JU9_F-8HC2k/s320/deline_fitline_10hz_noscan_nsig0_preservephase_timestreams_003.png" />
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
-                        <a href="http://keflavich.github.io/blog/index34.html">&laquo;</a>
-                Page 35 / 48
-            <a href="http://keflavich.github.io/blog/index36.html">&raquo;</a>
-    </p>
+            <a href="http://keflavich.github.io/blog/index34.html">&laquo;</a>
+    Page 35 / 48
+        <a href="http://keflavich.github.io/blog/index36.html">&raquo;</a>
+</p>
 </section><!-- /#content -->
   </div>
 
@@ -580,7 +647,7 @@ alt="hit counter"></a></div></noscript>-->
 <!-- End of StatCounter Code for Default Guide -->
 <script type="text/javascript">
   var disqus_shortname = 'adamginsburgsblog';
-    (function() {
+  (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);

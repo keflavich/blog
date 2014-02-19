@@ -4,10 +4,10 @@
 <link rel="icon" type="image/gif" href="http://keflavich.github.io/blog/theme/favicon8.ico">
 <head>
     <base href="http://keflavich.github.io/blog">
-                <title>Adam Ginsburg's blog - googlepost</title>
+        <title>Adam Ginsburg's blog - googlepost</title>
         <meta charset="utf-8" />
-                <link href="http://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
-                                                                        <!-- Using MathJax, with the delimiters $ -->
+        <link href="http://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
 <!-- Conflict with pygments for the .mo and .mi -->
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -51,54 +51,54 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
             <h1 style="color: #C4C4C4;"><a class="header" href="http://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
 
             <nav id="menu"><ul id="menulist">
-                            <li><a href="http://www.adamgginsburg.com">Homepage</a></li>
-                            <li><a href="/blog//index.html">Blog Index</a></li>
-                            <li><a href="/blog//category/bgps.html">BGPS Blog</a></li>
-                            <li><a href="/blog//category/publications.html">Publications</a></li>
-                            <li><a href="/blog//archives.html">Archives</a></li>
-                            <li><a href="/blog//tags.html">Tags</a></li>
-                                                              </ul></nav><!-- /#menu -->
+                <li><a href="http://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/blog//index.html">Blog Index</a></li>
+                <li><a href="/blog//category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/blog//category/publications.html">Publications</a></li>
+                <li><a href="/blog//archives.html">Archives</a></li>
+                <li><a href="/blog//tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
         </div>
     </header><!-- /#banner -->
 
-   <div id="sidebar">
+  <div id="sidebar">
     <ul>
-  	  	        	  	          <li>
+      <li>
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
-                          <li class="post">
+              <li class="post">
                   2012/12/26
                   <br>
                   <a href="http://keflavich.github.io/blog/catalog-vs-image-shift-a-possible-solution-to-the-atlasgal-issue.html">Catalog vs Image shift? A possible solution to the ATLASGAL issue</a>
               </li>
-                          <li class="post">
+              <li class="post">
                   2012/12/22
                   <br>
                   <a href="http://keflavich.github.io/blog/idea-multispectral-eigenimage-decomposition.html">Idea: Multispectral Eigenimage decomposition...</a>
               </li>
-                          <li class="post">
+              <li class="post">
                   2012/12/15
                   <br>
                   <a href="http://keflavich.github.io/blog/pointing-cross-correlation-yet-again.html">Pointing & Cross-Correlation yet again</a>
               </li>
-                          <li class="post">
+              <li class="post">
                   2012/11/21
                   <br>
                   <a href="http://keflavich.github.io/blog/the-peculiar-balmer-decrement-of-sn-2009ip-constraints-on-circumstellar-geometry.html">The Peculiar Balmer Decrement of SN 2009ip: Constraints on Circumstellar Geometry</a>
               </li>
-                          <li class="post">
+              <li class="post">
                   2012/11/21
                   <br>
                   <a href="http://keflavich.github.io/blog/galactic-h2co-densitometry-i-pilot-survey-of-ultracompact-hii-regions-and-methodology.html">Galactic H2CO Densitometry I: Pilot survey of Ultracompact HII regions and methodology</a>
               </li>
-                    </ul>
+        </ul>
       </li>
-        
+    
     </ul>
   </div><!-- end #sidebar -->
- 
+
   <div id="content">
-        <section id="content">
+<section id="content">
 
 <ul id="post-list">
     <li><article class="hentry">
@@ -110,7 +110,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-11-19T04:50:00"> 2008/11/19 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <pre class="literal-block">
 ; The Mad Flagger; Flag based on the median average deviation within a spatial pixelfunction mad_flagger,data,inds,flags,nsig=nsig    t = systime(/sec)    f0 = total(where(flags))    if n_e(nsig) eq 0 then nsig = 3            newflags = flags    mx=max(inds)    vec3=fltarr(mx+1)    h=histogram(inds,reverse_indices=ri,OMIN=om)    for j=0L,n_elements(h)-1 do begin        if ri[j+1] gt ri[j] then begin            v_inds = [ri[ri[j]:ri[j+1]-1]]            if n_e(v_inds) gt 2 then begin                vec = data[v_inds];                vecmad = mad(vec)  ; the MAD is WAY too small!  I ended up rejecting 8% of points!                vecmad = stddev(vec)                vecmed = median(vec,/even)                madreject = where( (vec gt vecmed + nsig*vecmad) or (vec lt vecmed - nsig*vecmad) )                if (n_e(madreject) gt 0 and total(madreject)) gt 0 then begin                    reject_inds = v_inds[madreject]                    newflags[reject_inds] = 1                endif             endif        endif    endfor    print,&quot;MAD flagger took &quot;,strc(systime(/sec)-t),&quot; seconds and flagged &quot;,$        strc(round(total(where(newflags)) - f0)),' points'    return,newflagsend
 </pre>
@@ -126,7 +126,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-11-18T16:11:00"> 2008/11/18 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p><a class="reference external" href="http://groups.google.com/group/comp.lang.idl-pvwave/browse_thread/thread/762770933591238d">http://groups.google.com/group/comp.lang.idl-pvwave/browse_thread/thread/762770933591238d</a>
 Someone going by the name 'wox' introduced me to a spectacularly simple
 drizzling algorithm for medianing. It will be a little less efficient
@@ -145,7 +145,7 @@ advantage.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-11-18T04:01:00"> 2008/11/18 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>A few major things today:</p>
 <blockquote>
 <p>#. I renamed 'ts_to_map' to 'drizzle' and made 'ts_to_map' a wrapper
@@ -194,7 +194,7 @@ average stacking</li>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-11-17T16:32:00"> 2008/11/17 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>060609_o17 is weird looking. It appears to be TWO 3x1s with an overlap,
 but it's only 1 observation. Any idea what happened?</p>
  </div><!-- /.entry-content   not article.summary--> 
@@ -209,7 +209,7 @@ but it's only 1 observation. Any idea what happened?</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-11-15T01:04:00"> 2008/11/15 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Idea: 'edge taper' for scans. The scan start/end usually has higher
 noise, so it would be good to downweight those regions slightly.
 Probably only the first/last 5% of each scan should be linearly
@@ -228,8 +228,8 @@ iterations, different pca components. They'll be done sometime tomorrow.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-11-15T00:41:00"> 2008/11/15 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <img alt="http://1.bp.blogspot.com/_lsgW26mWZnU/SR4DzVCz1WI/AAAAAAAADfk/cJ70OPeqEzg/s400/psds.png" src="http://1.bp.blogspot.com/_lsgW26mWZnU/SR4DzVCz1WI/AAAAAAAADfk/cJ70OPeqEzg/s400/psds.png" />
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/SR4DzVCz1WI/AAAAAAAADfk/cJ70OPeqEzg/s400/psds.png" />
 <p>Image of PSDs (with no normalization) of the raw (blue), delined and
 exponential and polynomial subtracted (white), the noise timestream
 (yellow), and the data (cyan).
@@ -242,7 +242,7 @@ preferentially subtracting certain scales but I don't know why, unless
 deconvolution is at fault.
 Edit/Update: The deconvolution is definitely at fault. Here's the same
 scan done without deconvolution:</p>
-<img alt="http://3.bp.blogspot.com/_lsgW26mWZnU/SR4ZM6FPfrI/AAAAAAAADf0/baHOQwedeqs/s400/psds2.png" src="http://3.bp.blogspot.com/_lsgW26mWZnU/SR4ZM6FPfrI/AAAAAAAADf0/baHOQwedeqs/s400/psds2.png" />
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/SR4ZM6FPfrI/AAAAAAAADf0/baHOQwedeqs/s400/psds2.png" />
 <p>It should have been obvious; the cyan in the first plot is the PSD of
 the deconvolution straight up, and that should have no high-frequency
 structure...</p>
@@ -258,7 +258,7 @@ structure...</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-11-15T00:25:00"> 2008/11/15 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>The raw data from Bolocam contains noise components from the atmosphere
 and instrument in addition to the astrophysical signal. To remove the
 atmospheric noise, an iterative approach was required.</p>
@@ -298,7 +298,7 @@ that was oversubtracted in the first iteration.</li>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-11-14T20:42:00"> 2008/11/14 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Not entirely, but I realized my code had become... clunky, at best.
 I'm rewriting the wrappers using structs. I HATE IDL structs, but
 they're necessary.... if only they would make them dynamically
@@ -316,7 +316,7 @@ Weighting worked to some degree, the mapping is pretty much done.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-11-09T04:56:00"> 2008/11/09 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Not as easy as it ought to be.
 I think I need to do a few things:
 1. check and make sure there are no more of those !&#64;#$!&#64;#$#&#64;% different
@@ -337,7 +337,7 @@ I hate making lists that end up being two items....</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-11-09T03:15:00"> 2008/11/09 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Wow. A lot of errors this time around.
 <tt class="docutils literal">bash: /scratch/adam_work/l020/l020_fitslist.txt: Permission deniedMRDFITS: Image array (1634,560)&nbsp; Type=Real*4% HEULER: FITS header is already in Galactic: nothing changed% READFITS:&nbsp; ERROR - Unable to locate file&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 060628_o32_raw_ds5.nc_indiv13pca_map01.fits% Variable is undefined: HDIMAGE.% Execution halted at: IMAGE_SHIFTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 44&nbsp; /home/milkyway/student/ginsbura/bgps_pipeline/alignment/image_shifts.pro%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; COALIGN_FIELD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31&nbsp; /home/milkyway/student/ginsbura/bgps_pipeline/wrappers/coalign_field.pro%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $MAIN$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Updated radec_offsets in /scratch/sliced_polychrome/l034/050708_o21_raw_ds5.ncWriting offsets to&nbsp;&nbsp; <span class="pre">-0.00192975</span> <span class="pre">-9.22609e-09</span> (ncfile was <span class="pre">-0.000337092)%</span> ALIGNMENT_OFFSETS_TO_NCDF: Could not find file % Execution halted at: ALIGNMENT_OFFSETS_TO_NCDF&nbsp;&nbsp;&nbsp; 4&nbsp; /home/milkyway/student/ginsbura/bgps_pipeline/preproc/alignment_offsets_to_&nbsp; ncdf.pro%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WRITE_IMSHIFTS&nbsp;&nbsp;&nbsp;&nbsp; 11&nbsp; /home/milkyway/student/ginsbura/bgps_pipeline/alignment/write_imshifts.pro%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; COALIGN_FIELD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 34&nbsp; /home/milkyway/student/ginsbura/bgps_pipeline/wrappers/coalign_field.pro%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IMAGE_SHIFTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 44&nbsp; /home/milkyway/student/ginsbura/bgps_pipeline/alignment/image_shifts.pro%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; COALIGN_FIELD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31&nbsp; /home/milkyway/student/ginsbura/bgps_pipeline/wrappers/coalign_field.pro%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $MAIN$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /scratch/adam_work/l354/070709_o16_raw_ds5.nc_indiv13pca took 110.42429 sec.MRDFITS: File access error% HEULER: ERROR - First parameter must be a FITS header or astrometry&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; structure% Execution halted at: HEULER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 78FIELD l351 COMPLETED at Sat Nov&nbsp; 8 05:34:01 2008.&nbsp; Took 1122.3564 seconds% Program caused arithmetic error: Floating underflow% Program caused arithmetic error: Floating illegal operandFIELD l052 BEGUN at Sat Nov&nbsp; 8 05:34:01 2008% FILE_LINES: Error opening file.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File: /scratch/sliced/l052/l052_infile.txt&nbsp; No such file or directory% Error occurred at: READCOL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 141FIELD l359 COMPLETED at Sat Nov&nbsp; 8 05:41:34 2008.&nbsp; Took 452.60051 seconds% Program caused arithmetic error: Floating underflow% Program caused arithmetic error: Floating illegal operandFIELD l066 BEGUN at Sat Nov&nbsp; 8 05:41:34 2008% FILE_LINES: Error opening file.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File: /scratch/sliced/l066/l066_infile.txt&nbsp; No such file or directory% Error occurred at: READCOL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 141FIELD l072 BEGUN at Sat Nov&nbsp; 8 05:41:34 2008% FILE_LINES: Error opening file.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File: /scratch/sliced/l072/l072_infile.txt&nbsp; No such file or directory% Error occurred at: READCOL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 141MRDFITS: Image array (628,561)&nbsp; Type=Real*4% HEULER: FITS header is already in Galactic: nothing changed% HEULER: FITS header is already in Galactic: nothing changed/scratch/adam_work/l086/060627_o23_raw_ds5.nc_indiv13pca_map01.fits shifts in pixels:&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-9.77712</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11.8034 shifts in arcsec l/b:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 70.395277&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 84.984804 <span class="pre">delta-ra</span> (as):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 19.007974 <span class="pre">delta-dec</span> (as):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-108.70337</span> x/y error in pixels:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.99631&nbsp;&nbsp;&nbsp; 0.0701244 ra/dec error:&nbsp;&nbsp;&nbsp; <span class="pre">-0.0079926204</span>&nbsp;&nbsp; 0.00014024887 gal l/b error:&nbsp;&nbsp;&nbsp; <span class="pre">-0.0079926204</span>&nbsp;&nbsp; 0.00014024887% HEULER: FITS header is already in Galactic: nothing changedWARNING!&nbsp; x,y offs were too large:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 203.757&nbsp;&nbsp;&nbsp; <span class="pre">-0.224758</span> so a different method is being attemptedWARNING!&nbsp; x,y offs were too large on the SECOND TRY too:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-74.7339</span>&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-159.448</span> so a third method is being attemptedThis third method is meant to deal with small overlap regions that may be confused by high noise, it restrictsto a maximum 15 pixel offset (really less than that in practice) and therefore should be checked <span class="pre">carefully./scratch/adam_work/l086/060627_o26_raw_ds5.nc_indiv13pca_map01.fits</span> shifts in pixels:&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-1.38579</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.39157 shifts in arcsec l/b:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9.9777001&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.019338 <span class="pre">delta-ra</span> (as):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.1521393 <span class="pre">delta-dec</span> (as):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-14.093081</span> x/y error in pixels:&nbsp;&nbsp;&nbsp;&nbsp; 0.0814682&nbsp;&nbsp;&nbsp; 0.0882818 ra/dec error:&nbsp;&nbsp; <span class="pre">-0.00016293635</span>&nbsp;&nbsp; 0.00017656364 gal l/b error:&nbsp;&nbsp; <span class="pre">-0.00016293635</span>&nbsp;&nbsp; 0.00017656364% HEULER: FITS header is already in Galactic: nothing changedWARNING!&nbsp; x,y offs were too large:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9.13210&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11.3905 so a different method is being attemptedWARNING!&nbsp; x,y offs were too large on the SECOND TRY too:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-79.0260</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20.0907 so a third method is being attemptedThis third method is meant to deal with small overlap regions that may be confused by high noise, it restrictsto a maximum 15 pixel offset (really less than that in practice) and therefore should be checked <span class="pre">carefully./scratch/adam_work/l086/070707_o49_raw_ds5.nc_indiv13pca_map01.fits</span> shifts in pixels:&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-9.13210</span>&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-11.3905</span> shifts in arcsec l/b:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 65.751123&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-82.011258</span> <span class="pre">delta-ra</span> (as):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-105.06683</span> <span class="pre">delta-dec</span> (as):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.1919479 x/y error in pixels:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.486307&nbsp;&nbsp;&nbsp;&nbsp; 0.950778 ra/dec error:&nbsp;&nbsp; <span class="pre">-0.00097261386</span>&nbsp;&nbsp;&nbsp; 0.0019015568 gal l/b error:&nbsp;&nbsp; <span class="pre">-0.00097261386</span>&nbsp;&nbsp;&nbsp; 0.0019015568% HEULER: FITS header is already in Galactic: nothing changedWARNING!&nbsp; x,y offs were too large:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.384630&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 13.1890 so a different method is being attemptedWARNING!&nbsp; x,y offs were too large on the SECOND TRY too:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 205.434&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-23.9600</span> so a third method is being attemptedThis third method is meant to deal with small overlap regions that may be confused by high noise, it restrictsto a maximum 15 pixel offset (really less than that in practice) and therefore should be checked <span class="pre">carefully./scratch/adam_work/l086/070708_o37_raw_ds5.nc_indiv13pca_map01.fits</span> shifts in pixels:&nbsp;&nbsp;&nbsp; <span class="pre">-0.384630</span>&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-13.1890</span> shifts in arcsec l/b:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.7693373&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-94.960636</span> <span class="pre">delta-ra</span> (as):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-74.063617</span> <span class="pre">delta-dec</span> (as):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 59.509407 x/y error in pixels:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.29135&nbsp;&nbsp;&nbsp;&nbsp; 0.933383 ra/dec error:&nbsp;&nbsp;&nbsp; <span class="pre">-0.0045826990</span>&nbsp;&nbsp;&nbsp; 0.0018667649 gal l/b error:&nbsp;&nbsp;&nbsp; <span class="pre">-0.0045826990</span>&nbsp;&nbsp;&nbsp; 0.0018667649% HEULER: FITS header is already in Galactic: nothing changedWARNING!&nbsp; x,y offs were too large:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-143.139</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.8130 so a different method is being attempted% Subscript range values of the form low:high must be &gt;= 0, &lt; size, with low&nbsp; &lt;= high: CORR.% Execution halted at: PIXSHIFT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 107ALL PREPROC ... output is /scratch/adam_work/l133/070911_o25_raw_ds5.nc_indiv13pca&nbsp; READING IN 1 FILES FROM /scratch/sliced/l133/070911_o25_raw_ds5.ncReading file /scratch/sliced/l133/070911_o25_raw_ds5.ncApplying pointing model with alt/az off&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-0.024687220</span>&nbsp;&nbsp;&nbsp; <span class="pre">-0.029154389NO</span> OFFSETS APPLIED3.6277909 sec.No values flagged as bad!AC_BOLOS has 0.0 NAN points, which is 0.0 of totalFlatfielding (polynomial subtraction) <span class="pre">...0.92621708</span> sec.No values flagged as bad!AC_BOLOS has 0.0 NAN points, which is 0.0 of totalPrepare Map ... 1.4727209 sec.% CHECK_FITS: NAXIS keywords in FITS header have been updatedDone preproc ... 11.113711 sec.ITERATION NUMBER 0 <span class="pre">...SKY</span> SUBTRACTION - MEDIAN0.15759706 sec.BEGINNING PCA SUBTRACTION OF COMPONENTS 0 TO 13 ... 0.68130398 sec.Flatfielding (polynomial subtraction) <span class="pre">...0.96450186</span> sec.% CHECK_FITS: NAXIS keywords in FITS header have been updated% CHECK_FITS: NAXIS keywords in FITS header have been updated% Program caused arithmetic error: Floating underflowDeconvolution iteration&nbsp; 0:&nbsp; 1.2357290 sec.Deconvolution iteration&nbsp; 1:&nbsp; 0.93198013 sec.Deconvolution iteration&nbsp; 2:&nbsp; 0.93152189 sec.Deconvolution iteration&nbsp; 3:&nbsp; 0.93164992 sec.Chi2 for iteration 0 is 1.22593e+07 with 2.07110e+06 degrees of freedomFINISHED ITERATION 0&nbsp;&nbsp; 13.803532 sec.ITERATION NUMBER 1 <span class="pre">...SKY</span> SUBTRACTION - MEDIAN0.15691710 sec.BEGINNING PCA SUBTRACTION OF COMPONENTS 0 TO 13 ... % TRIQL: Too many iterations in tqli.% Error occurred at: EIGENQL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 122&nbsp; /usr/local/itt/idl70/lib/eigenql.pro%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PCA_SUBTRACT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 19/scratch/adam_work/l135p1/060917_o12_raw_ds5.nc_indiv13pca took 30.478553 sec.MRDFITS: File access error% HEULER: ERROR - First parameter must be a FITS header or astrometry&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; structure% Execution halted at: HEULER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 78MRDFITS: Image array (1630,555)&nbsp; Type=Real*4% HEULER: FITS header is already in Galactic: nothing changed% HEULER: FITS header is already in Galactic: nothing changed/scratch/adam_work/l068/070910_ob3_raw_ds5.nc_indiv13pca_map01.fits shifts in pixels:&nbsp;&nbsp; <span class="pre">-0.0271645</span>&nbsp;&nbsp; <span class="pre">-0.0270424</span> shifts in arcsec l/b:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.19558409&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-0.19470519</span> <span class="pre">delta-ra</span> (as):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-0.26866187</span> <span class="pre">delta-dec</span> (as):&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-0.062403024</span> x/y error in pixels:&nbsp;&nbsp; 0.000193238&nbsp;&nbsp; 0.00126581 ra/dec error:&nbsp;&nbsp; <span class="pre">-3.8647498e-07</span>&nbsp;&nbsp; <span class="pre">2.5316247e-06</span> gal l/b error:&nbsp;&nbsp; <span class="pre">-3.8647498e-07</span>&nbsp;&nbsp; <span class="pre">2.5316247e-06%</span> HEULER: FITS header is already in Galactic: nothing changedWARNING!&nbsp; x,y offs were too large:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 34.8510&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-5.72119</span> so a different method is being attemptedWARNING!&nbsp; x,y offs were too large on the SECOND TRY too:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 142.704&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 76.4267 so a third method is being attemptedThis third method is meant to deal with small overlap regions that may be confused by high noise, it restrictsto a maximum 15 pixel offset (really less than that in practice) and therefore should be checked <span class="pre">carefully./scratch/adam_work/l068/070911_ob8_raw_ds5.nc_indiv13pca_map01.fits</span> shifts in pixels:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15.0101&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.42143 shifts in arcsec l/b:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-108.07276</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 24.634271 <span class="pre">delta-ra</span> (as):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 78.221561 <span class="pre">delta-dec</span> (as):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 78.545365 x/y error in pixels:&nbsp;&nbsp;&nbsp;&nbsp; 0.0114306&nbsp;&nbsp;&nbsp;&nbsp; 0.184410 ra/dec error:&nbsp;&nbsp; <span class="pre">-2.2861189e-05</span>&nbsp;&nbsp; 0.00036881918 gal l/b error:&nbsp;&nbsp; <span class="pre">-2.2861189e-05</span>&nbsp;&nbsp; 0.00036881918% HEULER: FITS header is already in Galactic: nothing changedWARNING!&nbsp; x,y offs were too large:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 56.2296&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 14.6994 so a different method is being attemptedWARNING!&nbsp; x,y offs were too large on the SECOND TRY too:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 728.753&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-184.087</span> so a third method is being attemptedThis third method is meant to deal with small overlap regions that may be confused by high noise, it restrictsto a maximum 15 pixel offset (really less than that in practice) and therefore should be checked <span class="pre">carefully./scratch/adam_work/l068/070911_ob9_raw_ds5.nc_indiv13pca_map01.fits</span> shifts in pixels:&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-56.2296</span>&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-14.6994</span> shifts in arcsec l/b:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 404.85292&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-105.83592</span> <span class="pre">delta-ra</span> (as):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-304.51436</span> <span class="pre">delta-dec</span> (as):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-286.88182</span> x/y error in pixels:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.32951&nbsp;&nbsp; 0.00354093 ra/dec error:&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-0.014659024</span>&nbsp;&nbsp; <span class="pre">7.0818565e-06</span> gal l/b error:&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-0.014659024</span>&nbsp;&nbsp; <span class="pre">7.0818565e-06%</span> HEULER: FITS header is already in Galactic: nothing changedWARNING!&nbsp; x,y offs were too large:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.31224&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">-13.8321</span> so a different method is being attempted% Subscript range values of the form low:high must be &gt;= 0, &lt; size, with low&nbsp; &lt;= high: CORR.% Execution halted at: PIXSHIFT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 107/scratch/adam_work/l111/060605_o48_raw_ds5.nc_indiv13pca took 10.098406 sec.MRDFITS: File access error% HEULER: ERROR - First parameter must be a FITS header or astrometry&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; structure% Execution halted at: HEULER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 78Writing offsets to /scratch/sliced/l027/060616_o10_raw_ds5.nc&nbsp;&nbsp; 0.00120866&nbsp; <span class="pre">-0.00287235</span> (ncfile was 060616_o10_raw_ds5.nc)Updated radec_offsets in /scratch/sliced/l027/060616_o10_raw_ds5.ncWriting offsets to&nbsp;&nbsp; <span class="pre">5.77312e-05</span> <span class="pre">-2.39760e-06</span> (ncfile was 0.000409983)% ALIGNMENT_OFFSETS_TO_NCDF: Could not find file % Execution halted at: ALIGNMENT_OFFSETS_TO_NCDF&nbsp;&nbsp;&nbsp; 4</tt></p>
  </div><!-- /.entry-content   not article.summary--> 
@@ -345,10 +345,10 @@ I hate making lists that end up being two items....</p>
     <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
-                        <a href="http://keflavich.github.io/blog/tag/googlepost32.html">&laquo;</a>
-                Page 33 / 39
-            <a href="http://keflavich.github.io/blog/tag/googlepost34.html">&raquo;</a>
-    </p>
+            <a href="http://keflavich.github.io/blog/tag/googlepost32.html">&laquo;</a>
+    Page 33 / 39
+        <a href="http://keflavich.github.io/blog/tag/googlepost34.html">&raquo;</a>
+</p>
 </section><!-- /#content -->
   </div>
 
@@ -389,7 +389,7 @@ alt="hit counter"></a></div></noscript>-->
 <!-- End of StatCounter Code for Default Guide -->
 <script type="text/javascript">
   var disqus_shortname = 'adamginsburgsblog';
-    (function() {
+  (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);

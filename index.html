@@ -4,10 +4,10 @@
 <link rel="icon" type="image/gif" href="http://keflavich.github.io/blog/theme/favicon8.ico">
 <head>
     <base href="http://keflavich.github.io/blog">
-                <title>Adam Ginsburg's blog</title>
+        <title>Adam Ginsburg's blog</title>
         <meta charset="utf-8" />
-                <link href="http://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
-                                                                        <!-- Using MathJax, with the delimiters $ -->
+        <link href="http://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
 <!-- Conflict with pygments for the .mo and .mi -->
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -51,56 +51,177 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
             <h1 style="color: #C4C4C4;"><a class="header" href="http://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
 
             <nav id="menu"><ul id="menulist">
-                            <li><a href="http://www.adamgginsburg.com">Homepage</a></li>
-                            <li><a href="/blog//index.html">Blog Index</a></li>
-                            <li><a href="/blog//category/bgps.html">BGPS Blog</a></li>
-                            <li><a href="/blog//category/publications.html">Publications</a></li>
-                            <li><a href="/blog//archives.html">Archives</a></li>
-                            <li><a href="/blog//tags.html">Tags</a></li>
-                                                              </ul></nav><!-- /#menu -->
+                <li><a href="http://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/blog//index.html">Blog Index</a></li>
+                <li><a href="/blog//category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/blog//category/publications.html">Publications</a></li>
+                <li><a href="/blog//archives.html">Archives</a></li>
+                <li><a href="/blog//tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
         </div>
     </header><!-- /#banner -->
 
-   <div id="sidebar">
+  <div id="sidebar">
     <ul>
-  	  	        	  	          <li>
+      <li>
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
-                          <li class="post">
+              <li class="post">
+                  2014/02/19
+                  <br>
+                  <a href="http://keflavich.github.io/blog/python-stack-on-mavericks.html">Python stack on Mavericks</a>
+              </li>
+              <li class="post">
+                  2014/01/16
+                  <br>
+                  <a href="http://keflavich.github.io/blog/w51-mapping-flagging-bad-data.html">W51 Mapping: Flagging bad data</a>
+              </li>
+              <li class="post">
                   2013/12/13
                   <br>
                   <a href="http://keflavich.github.io/blog/there-is-a-gap-in-the-dust-around-sgr-b2.html">There is a "gap" in the dust around Sgr B2</a>
               </li>
-                          <li class="post">
+              <li class="post">
                   2013/10/25
                   <br>
                   <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-5.html">Notes from the ISM-PP conference: Day 5</a>
               </li>
-                          <li class="post">
+              <li class="post">
                   2013/10/24
                   <br>
                   <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-4.html">Notes from the ISM-PP conference Day 4</a>
               </li>
-                          <li class="post">
-                  2013/10/23
-                  <br>
-                  <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-3.html">Notes from the ISM-PP conference Day 3</a>
-              </li>
-                          <li class="post">
-                  2013/10/22
-                  <br>
-                  <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-2.html">Notes from the ISM-PP conference: Day 2</a>
-              </li>
-                    </ul>
+        </ul>
       </li>
-        
+    
     </ul>
   </div><!-- end #sidebar -->
- 
+
   <div id="content">
-        <section id="content">
+<section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/python-stack-on-mavericks.html" rel="bookmark" title="Permalink to Python stack on Mavericks">
+                    Python stack on Mavericks</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2014-02-19T12:02:00"> 2014/02/19 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/napattack-adamgginsburggmailcom.html">napattack (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>As you might expect from numerous blog posts and the general difficulty people
+have always experienced upgrading mac OS versions, Mavericks caused some truly
+hideous issues.</p>
+<p>The only really &quot;new&quot; issues specifically for Mavericks relate to app nap.  The
+main solution is minrk's <a class="reference external" href="https://github.com/minrk/appnope">appnope</a>.  Otherwise, command line options like
+<cite>defaults write &lt;app domain name&gt; NSAppSleepDisabled -bool YES</cite> are required
+<a class="reference external" href="http://apple.stackexchange.com/questions/121386/missing-prevent-app-nap-button-on-app">if the button is missing</a> from Mac's Get Info pane.</p>
+<p>I tried installing the <a class="reference external" href="https://store.continuum.io/cshop/anaconda/">conda</a> stack to get python running quickly.  This
+worked to an extremely limited degree: the TkAgg shipped with anaconda links to
+<a class="reference external" href="xquartz.macosforge.org">XQuartz</a>, which is highly undesirable for a number of reasons.  This meant
+that matplotlib plots showed up as X11 plots.  With the Mac OS X backend, the
+windows failed to show up in the Dock and therefore were totally unusable (though
+they did look OK).</p>
+<p>I am still using <a class="reference external" href="https://store.continuum.io/cshop/anaconda/">conda</a> to maintain multiple parallel versions of python for
+testing.  However, I went back to my typical install-from-source approach.</p>
+<p>To get the matplotlib backends to interact nicely with apple, you need to install
+them using the <cite>/Library</cite> version of python</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/mavericks.rst</tt>, line 30)</p>
+<p>Error in &quot;code-block&quot; directive:
+1 argument(s) required, 0 supplied.</p>
+<pre class="literal-block">
+.. code-block::
+
+    # this had to happen sometime early:
+    xcode-select --install
+
+    wget https://pypi.python.org/pypi/pip#downloads
+    tar -xzvf ~/Downloads/pip-1.5.2.tar.gz
+    cd pip-1.5.2
+    /Library/Frameworks/Python.framework/Versions/2.7/bin/python setup.py install
+    /Library/Frameworks/Python.framework/Versions/2.7/bin/pip install virtualenv
+    cd
+    /Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenv virtual-python
+
+</pre>
+</div>
+<p>After this, I was surprisingly able to install everything in the python stack
+with no hitches.  Obviously, that could not possibly last.</p>
+<p>While matplotlib and numpy worked fine, scipy had problems.</p>
+<pre class="literal-block">
+ImportError: dlopen(/Users/adam/virtual-python/lib/python2.7/site-packages/scipy/integrate/_odepack.so, 2): Symbol not found: __gfortran_internal_free
+Referenced from: /Users/adam/virtual-python/lib/python2.7/site-packages/scipy/integrate/_odepack.so
+Expected in: flat namespace
+   in /Users/adam/virtual-python/lib/python2.7/site-packages/scipy/integrate/_odepack.so
+</pre>
+<p>This terrible error led me back to re-compiling scipy.  I tried installing with
+<a class="reference external" href="hpc.sourceforge.net">hpc</a> gfortran, but that didn't work at all, first apparently because of linking
+errors in numpy.  When I investigated numpy, I found that the compilers
+apparently don't work at all:</p>
+<pre class="literal-block">
+C compiler: /usr/local/bin/gcc -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -arch i386 -arch x86_64
+...
+RuntimeError: Broken toolchain: cannot link a simple C program
+</pre>
+<p>I had to give up on that, and then googling returned no results at all, which I thought was a bit weird.
+Scipy seems to want gcc and g++ 4.2, even though they're years old.  I had to find those and gfortran-4.2
+somehow, but the <a class="reference external" href="r.research.att.com/tools/">old site</a> that used to serve them seems to have lost the files!  They had an <a href="#id1"><span class="problematic" id="id2">`older version`_</span></a>,
+though, which may work...</p>
+<div class="system-messages section">
+<h2>Docutils System Messages</h2>
+<div class="system-message" id="id1">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/mavericks.rst</tt>, line 67); <em><a href="#id2">backlink</a></em></p>
+Unknown target name: &quot;older version&quot;.</div>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/w51-mapping-flagging-bad-data.html" rel="bookmark" title="Permalink to W51 Mapping: Flagging bad data">
+                    W51 Mapping: Flagging bad data</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2014-01-16T00:00:00"> 2014/01/16 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In the process of creating W51 data cubes from the GBT mapping data (project
+GBT 10B/019), I've had to deal with a lot of bad data.</p>
+<p>Some of the bad data comes from misbehaving electronics.  All I can say is that
+they were misbehaving, not how or why - the data from one polarizaiton simply
+disagrees with the other polarization and feeds spontaneously and for no
+apparent reason.</p>
+<p>I've implemented a waterfall diagnostic plot to help examine the data, it is in
+my <a class="reference external" href="https://github.com/keflavich/mpl_plot_templates">mpl_plot_templates</a> repository: <a href="#id1"><span class="problematic" id="id2">imdiagnotsics.py_</span></a>.</p>
+<p>A good waterfall looks something like this:</p>
+<img alt="" src="|filename|/w51/Session17_111to186_D37_F2_data_scrubbed_flagged.png" style="width: 800px;" />
+<p>The line plots show the average and standard deviation along each axis; the
+right side effectively shows timestream continuum data while the top plots show
+a time-averaged spectrum.  This plot is good in that there are clearly signals
+detected as the scan crosses continuum sources and there is a strong Helium
+Alpha line detected in the average (though there's no way to read that it's
+Helium fromt he data as presented).
+Notably, the noise correlates with the continuum brightness - this is expected;
+higher TSYS leads to higher noise.</p>
+<img alt="" src="|filename|/w51/Session22_10to41_D37_F2_data_scrubbed_flagged.png" style="width: 800px;" />
+<p>This is an example of a data set with some extremely irritating artifacts.
+There are apparent absorption lines throughout the spectrum: they are not real.
+This is a particularly irritating problem because I had resolved it once in the
+not-too-distant past, but I can't figure out how!!  Most likely, I just removed
+the data from the maps, but that SHOULD be in the code history (git) and is not.</p>
+<div class="system-messages section">
+<h2>Docutils System Messages</h2>
+<div class="system-message" id="id1">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/w51mapping_baddata.rst</tt>, line 16); <em><a href="#id2">backlink</a></em></p>
+Unknown target name: &quot;imdiagnotsics.py&quot;.</div>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -110,7 +231,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         </header>
         <footer class="post-info">
             <abbr class="published" title="2013-12-13T00:00:00"> 2013/12/13 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Sgr B2 is the most massive gas clump in our Galaxy.  It's about 100 pc away
 from Sgr A*, the black hole at the center of the Galaxy.  It is forming stars
 prodigiously, and has extreme properties in many regards.</p>
@@ -250,7 +371,7 @@ its surroundings?</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2013-10-25T00:00:00"> 2013/10/25 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <div class="section" id="linda-tacconi">
 <h2>Linda Tacconi</h2>
 <dl class="docutils">
@@ -302,7 +423,7 @@ threshold be lower because of thick disk?</li>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2013-10-24T00:00:00"> 2013/10/24 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <div class="section" id="alberto-bolatto">
 <h2>Alberto Bolatto</h2>
 <p>GMC lifetime: 100 Myr (Scoville 79, Koda)
@@ -475,7 +596,7 @@ shear.</li>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2013-10-23T00:00:00"> 2013/10/23 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <div class="section" id="mordecai-mac-low-stellar-feedback">
 <h2>Mordecai Mac-Low: Stellar Feedback</h2>
 <dl class="docutils">
@@ -649,7 +770,7 @@ Prediction for 3mm observability?</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2013-10-22T00:00:00"> 2013/10/22 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <div class="section" id="collapse-of-molecular-clouds-and-the-imf-40-matthew-bate-university-of-exeter">
 <h2>Collapse of molecular clouds and the IMF 40': Matthew Bate (University of Exeter)</h2>
 <dl class="docutils">
@@ -1008,7 +1129,7 @@ Scaling law depends on how you define objects</li>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2013-10-21T00:00:00"> 2013/10/21 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <div class="section" id="the-thickness-distribution-of-interstellar-filaments-evangelia-ntormousi">
 <h2>The thickness distribution of interstellar filaments: Evangelia Ntormousi</h2>
 <p>Filament decomposition</p>
@@ -1505,7 +1626,7 @@ accelerated less -&gt; powerlaw.</li>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2013-10-09T00:00:00"> 2013/10/09 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content">  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
@@ -1518,7 +1639,7 @@ accelerated less -&gt; powerlaw.</li>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2013-10-07T01:00:00"> 2013/10/07 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Coffee at 7 pm usually isn't a problem...</p>
 <blockquote>
 <ol class="arabic simple">
@@ -1547,400 +1668,11 @@ absorption.  Is it possible to measure CO absorption to red giants?</li>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/installing-multinest-on-mac-os-x-107.html" rel="bookmark" title="Permalink to Installing MultiNest on Mac OS X 10.7">
-                    Installing MultiNest on Mac OS X 10.7</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-10-06T15:25:00"> 2013/10/06 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Installing multinest &amp; pymultinest has proved non-trivial.</p>
-<p>First, you probably can't build using the default mac gcc; a gcc version &gt;4.5
-is probably needed.  The error I got installing MultiNest only turned up one
-useful result on google... it was a <a class="reference external" href="https://github.com/hyperion-rt/hyperion/issues/23">question I had asked</a> on the <a class="reference external" href="https://github.com/hyperion-rt">hyperion github
-page</a>.</p>
-<p>To get around that, I installed the <a class="reference external" href="http://hpc.sourceforge.net/">hpc compilers</a> (4.7 since I'm on OS X 10.7) into
-<cite>/usr/local/hpc/</cite> to keep them distinct from the system gcc, which is needed
-for many other things.</p>
-<p>I then installed the <a class="reference external" href="http://www.open-mpi.org/">openMPI compilers</a> to <cite>/usr/local/openmpi</cite>:</p>
-<pre class="literal-block">
-./configure --prefix=/usr/local/openmpi
-make
-sudo make install
-</pre>
-<p>Then I tried installing pymultinest</p>
-<pre class="literal-block">
-dor ~/repos/MultiNest cmake/master$ mkdir build
-dor ~/repos/MultiNest cmake/master$ cd build/
-dor ~/repos/MultiNest/build cmake/master$ which mpif90
-/usr/local/openmpi/bin/mpif90
-dor ~/repos/MultiNest/build cmake/master$ which gfortran
-/usr/local/hpc/bin//gfortran
-dor ~/repos/MultiNest/build cmake/master$ which gcc
-/usr/local/hpc/bin//gcc
-dor ~/repos/MultiNest/build cmake/master$ cmake -DCMAKE_{C,CXX}_FLAGS=&quot;-arch x86_64&quot; -DCMAKE_Fortran_FLAGS=&quot;-m64&quot; ..
--- The Fortran compiler identification is GNU
--- The C compiler identification is GNU 4.7.1
--- The CXX compiler identification is GNU 4.7.1
--- Check for working Fortran compiler: /usr/local/hpc/bin/gfortran
--- Check for working Fortran compiler: /usr/local/hpc/bin/gfortran  -- works
--- Detecting Fortran compiler ABI info
--- Detecting Fortran compiler ABI info - done
--- Checking whether /usr/local/hpc/bin/gfortran supports Fortran 90
--- Checking whether /usr/local/hpc/bin/gfortran supports Fortran 90 -- yes
--- Checking whether C compiler has -isysroot
--- Checking whether C compiler has -isysroot - yes
--- Checking whether C compiler supports OSX deployment target flag
--- Checking whether C compiler supports OSX deployment target flag - yes
--- Check for working C compiler: /usr/local/hpc/bin/gcc
--- Check for working C compiler: /usr/local/hpc/bin/gcc -- works
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Checking whether CXX compiler has -isysroot
--- Checking whether CXX compiler has -isysroot - yes
--- Checking whether CXX compiler supports OSX deployment target flag
--- Checking whether CXX compiler supports OSX deployment target flag - yes
--- Check for working CXX compiler: /usr/local/hpc/bin/g++
--- Check for working CXX compiler: /usr/local/hpc/bin/g++ -- works
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Looking for Fortran dgemm
--- Looking for Fortran dgemm - found
--- Looking for include file pthread.h
--- Looking for include file pthread.h - found
--- Looking for pthread_create
--- Looking for pthread_create - found
--- Found Threads: TRUE
--- A library with BLAS API found.
--- Looking for Fortran cheev
--- Looking for Fortran cheev - found
--- A library with LAPACK API found.
--- Detected gfortran, adding -ffree-line-length-none compiler option.
--- Found MPI_C: /usr/local/openmpi/lib/libmpi.dylib;/usr/lib/libm.dylib
--- Found MPI_CXX: /usr/local/openmpi/lib/libmpi_cxx.dylib;/usr/local/openmpi/lib/libmpi.dylib;/usr/lib/libm.dylib
--- Found MPI_Fortran: /usr/local/openmpi/lib/libmpi_f90.a;/usr/local/openmpi/lib/libmpi_f77.dylib;/usr/local/openmpi/lib/libmpi.dylib;/usr/lib/libm.dylib
--- Configuring done
--- Generating done
--- Build files have been written to: /Users/adam/repos/MultiNest/build
-dor ~/repos/MultiNest/build cmake/master$ make
-Scanning dependencies of target multinest_mpi_shared
-[  1%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/utils.f90.o
-[  3%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/utils1.f90.o
-[  5%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/kmeans_clstr.f90.o
-[  6%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/xmeans_clstr.f90.o
-[  8%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/posterior.F90.o
-[ 10%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/priors.f90.o
-[ 12%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/nested.F90.o
-[ 13%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/cwrapper.f90.o
-Linking Fortran shared library ../../lib/libmultinest_mpi.dylib
-[ 13%] Built target multinest_mpi_shared
-Scanning dependencies of target multinest_mpi_static
-[ 15%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/utils.f90.o
-[ 17%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/utils1.f90.o
-[ 18%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/kmeans_clstr.f90.o
-[ 20%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/xmeans_clstr.f90.o
-[ 22%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/posterior.F90.o
-[ 24%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/priors.f90.o
-[ 25%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/nested.F90.o
-[ 27%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/cwrapper.f90.o
-Linking Fortran static library ../../lib/libmultinest_mpi.a
-[ 27%] Built target multinest_mpi_static
-Scanning dependencies of target multinest_shared
-[ 29%] Building Fortran object src/CMakeFiles/multinest_shared.dir/utils.f90.o
-[ 31%] Building Fortran object src/CMakeFiles/multinest_shared.dir/utils1.f90.o
-[ 32%] Building Fortran object src/CMakeFiles/multinest_shared.dir/kmeans_clstr.f90.o
-[ 34%] Building Fortran object src/CMakeFiles/multinest_shared.dir/xmeans_clstr.f90.o
-[ 36%] Building Fortran object src/CMakeFiles/multinest_shared.dir/posterior.F90.o
-[ 37%] Building Fortran object src/CMakeFiles/multinest_shared.dir/priors.f90.o
-[ 39%] Building Fortran object src/CMakeFiles/multinest_shared.dir/nested.F90.o
-[ 41%] Building Fortran object src/CMakeFiles/multinest_shared.dir/cwrapper.f90.o
-Linking Fortran shared library ../../lib/libmultinest.dylib
-[ 41%] Built target multinest_shared
-Scanning dependencies of target multinest_static
-[ 43%] Building Fortran object src/CMakeFiles/multinest_static.dir/utils.f90.o
-[ 44%] Building Fortran object src/CMakeFiles/multinest_static.dir/utils1.f90.o
-[ 46%] Building Fortran object src/CMakeFiles/multinest_static.dir/kmeans_clstr.f90.o
-[ 48%] Building Fortran object src/CMakeFiles/multinest_static.dir/xmeans_clstr.f90.o
-[ 50%] Building Fortran object src/CMakeFiles/multinest_static.dir/posterior.F90.o
-[ 51%] Building Fortran object src/CMakeFiles/multinest_static.dir/priors.f90.o
-[ 53%] Building Fortran object src/CMakeFiles/multinest_static.dir/nested.F90.o
-[ 55%] Building Fortran object src/CMakeFiles/multinest_static.dir/cwrapper.f90.o
-Linking Fortran static library ../../lib/libmultinest.a
-Error copying file &quot;/Users/adam/repos/MultiNest/build/src/kmeans_clstr.mod&quot; to &quot;/Users/adam/repos/MultiNest/modules/&quot;.
-make[2]: *** [../lib/libmultinest.a] Error 1
-make[1]: *** [src/CMakeFiles/multinest_static.dir/all] Error 2
-make: *** [all] Error 2
-</pre>
-<p>The approach that worked:</p>
-<pre class="literal-block">
-mkdir -p build lib modules bin/chains
-cd build
-cmake -DCMAKE_{C,CXX}_FLAGS=&quot;-arch x86_64&quot; -DCMAKE_Fortran_FLAGS=&quot;-m64&quot; ..
-make
-sudo make install
-cd ../lib
-ln -s libmultinest.dylib libmultinest.so
-export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/usr/local/hpc/lib:/usr/local/openmpi/lib/
-export LD_LIBRARY_PATH=/Users/adam/repos/MultiNest/lib
-</pre>
-<p>At this point, multinest imports but doesn't run the tests...</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/tuesday-afternoon-talks.html" rel="bookmark" title="Permalink to Tuesday Afternoon Talks">
-                    Tuesday Afternoon Talks</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-10-01T16:15:00"> 2013/10/01 </abbr>
-            <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <div class="section" id="pm-tobias-fritz-germany-nuclear-cluster-of-the-milky-way-15-5-minutes">
-<h2>4:15-4:35 pm Tobias Fritz (Germany): Nuclear Cluster of the Milky Way (15 + 5 minutes)</h2>
-<img alt="|filename|/iau303/images/fritz.jpg" src="http://keflavich.github.io/blog/static/iau303/images/fritz.jpg" style="width: 800px;" />
-<dl class="docutils">
-<dt>Model fitting of nuclear cluster: Sersic, etc.</dt>
-<dd><ul class="first last simple">
-<li>unusually bright nuclear cluster for its size</li>
-</ul>
-</dd>
-</dl>
-<p>Globular cluster origin of nuclear cluster</p>
-<div class="section" id="questions">
-<h3>Questions:</h3>
-<blockquote>
-<ul class="simple">
-<li>Q: Round component consistent with inspiraling globular cluster.  What about
-spectral properties?</li>
-<li>A: No.  Metallicity difficult.</li>
-</ul>
-</blockquote>
-</div>
-</div>
-<div class="section" id="pm-tuan-do-canada-measuring-the-physical-properties-of-the-milky-way-nuclear-star-cluster-with-3d-stellar-kinematics-15-5-minutes">
-<h2>4:35-4:55 pm Tuan Do (Canada): Measuring the physical properties of the Milky Way Nuclear Star Cluster with 3D stellar kinematics (15 + 5 minutes)</h2>
-<img alt="|filename|/iau303/images/do.jpg" src="http://keflavich.github.io/blog/static/iau303/images/do.jpg" style="width: 800px;" />
-<dl class="docutils">
-<dt>Dynamics of CMZ stars</dt>
-<dd><ul class="first last simple">
-<li>Massive black hole affects dynamics of a cluster</li>
-<li>testing presence of cusps
-+ old stars have no cusp
-+ young stars have a cusp, but not dynamically relaxed</li>
-<li>what is the true stellar density profile?
-+ can't determine by counting
-+ kinematics can help
-+ old stars randomly distributed
-+ young stars concentrated</li>
-<li>did the stats right
-+ no binning
-+ individual likelihoods
-+ unfortunately, this is new</li>
-<li>flat slope, no anisotropy</li>
-<li>correlation between parameters, particularly the slope and BH mass</li>
-<li>edge of core poorly constrained</li>
-<li>infalling IMBH or SMBH destroys stellar cusp
-+ observational constraints on IMBHs poor</li>
-<li>QUESTION: Do the fits improve at all if you impose a GC distance?
-+ Answered: Can merge with PDF from stellar orbits</li>
-</ul>
-</dd>
-</dl>
-<div class="section" id="question">
-<h3>Question</h3>
-<blockquote>
-<ul class="simple">
-<li>Q: Inconsistent with 7.7 kpc distance to CMZ?</li>
-<li>A: no, consistent within 1-sigma</li>
-<li>Q: How do you contrain R_0 with this approach?</li>
-<li>A: radial velocities give absolute scale.  Proper motions must also have
-some scale.  Match the scales to get R_0</li>
-<li>Q: Don't use any information outside 0.5 parsecs.  Shouldn't you include it?
-I get the right mass if I do</li>
-<li>A: Will help, but velocity dispersion dominated by nearest stars</li>
-<li>Q: Anisotropy in cluster.  Get rid of red supergiants somehow?  Tangential
-or radial?</li>
-<li>A: Hard to know.  Very little anisotropy.</li>
-</ul>
-</blockquote>
-</div>
-</div>
-<div class="section" id="pm-mark-wardle-australia-star-formation-within-0-5-pc-of-sgra-15-5-minutes">
-<h2>4:55-5:15 pm Mark Wardle (Australia): Star Formation within 0.5 pc of SgrA* (15 + 5 minutes)</h2>
-<img alt="|filename|/iau303/images/wardle.jpg" src="http://keflavich.github.io/blog/static/iau303/images/wardle.jpg" style="width: 800px;" />
-<p>&quot;Highest I've ever been for a talk&quot;</p>
-<dl class="docutils">
-<dt>High densities needed to overcome tidal shear</dt>
-<dd><ul class="first last simple">
-<li>big cloud -&gt; Hoyle-Littleton accretion
-+ self-intersecting orbit on the backside of the cloud</li>
-<li>central hole because accreted?</li>
-<li>high magnetic pressure in disk: 10x greater than gas</li>
-<li>B-fields suppress fragmentation</li>
-<li>Black hole takes bite out of cloud</li>
-<li>optically thick disk: sigma T_eff^4 cooling
-+ heating due to starlight, accretion</li>
-<li>twisting knobs to figure out where accretion disk turns into fragmenting disk
-+ inside, magnetically active / supported
-+ outside (0.04 pc) fragmenting
-+ further out: grav stable</li>
-<li>maybe high accretion rate drove fermi bubble</li>
-<li>accretion rate consistent with 10^6 Msun/Gyr -&gt; build Sgr A*</li>
-</ul>
-</dd>
-</dl>
-<div class="section" id="id1">
-<h3>Questions</h3>
-<blockquote>
-<ul class="simple">
-<li>Q Mitch: Grav unstable region globally unstable?</li>
-<li>A: Has to do with the disk height.  h/r very small, not an issue</li>
-<li>Q Fred Lo: We don't see any of this observationally.  All history?</li>
-<li>A: Yes, this all happened a few Myr ago.</li>
-<li>Q: Eddington accretion: what happens to rest of star formation and the disk?</li>
-<li>A: I think it's OK - star formation 10^4-10^5 years, but dump time 10^5-10^6 yrs</li>
-<li>Q: Bonnel &amp; Rice did simulations.  Why need more?</li>
-<li>A: B-fields?  Eqn of state?  Radiative cooling?  Crazy enough initial conditions?</li>
-<li>A Farhad: didn't include radial distribution of stars</li>
-<li>Q: How do you start with 0-angular-momentum cloud?</li>
-<li>A: Lots of junk around, maybe collisions do it.  I don't have a good answer.
-Depends on how big a fluffy cloud you use.</li>
-<li>Q Fred Lo: What observational signature remains?</li>
-<li>A: Maybe kinematics</li>
-</ul>
-</blockquote>
-</div>
-</div>
-<div class="section" id="pm-andrea-ghez-usa-probing-general-relativity-with-short-period-stars-at-the-galactic-center-15-5-minutes">
-<h2>5:15-5:35 pm Andrea Ghez (USA): Probing General Relativity with Short Period Stars at the Galactic Center (15 + 5 minutes)</h2>
-<!-- .. image:: |filename|/iau303/images/ghez.jpg -->
-<!-- :width: 800px -->
-<dl class="docutils">
-<dt>Why continue studies of GC stars?</dt>
-<dd><ul class="first last">
-<li><p class="first">Test GR</p>
-</li>
-<li><p class="first">Role of BH in galaxies</p>
-</li>
-<li><p class="first">Depth of potential 100x greater, on mass scale 10^6 larger than other tests</p>
-</li>
-<li><p class="first">simplest tests
-+ Relativistic redshift (easy)
-+ Precession of periapse</p>
-</li>
-<li><p class="first">SO-2 &quot;star of the show&quot;
-+ next close approach in 2018.5
-+ relativistic signal ~200 km/s
-+ need very accurate keplerian orbit first
-+ radial velocity from BrG</p>
-</li>
-<li><p class="first">absolute reference frame is tough
-+ masers give the reference frame, but require larger field</p>
-</li>
-<li><p class="first">full orbital coverage with astrometry
-+ 13-parameter model</p>
-</li>
-<li><p class="first">Systematic drift in reference frame
-+ There is a major source of systematic error
-+ Spatial variation in PSF (AO issue) is the worst systematic
-+ drift term prevents bias
-+ 5 km/s uncertainty projected by 2018</p>
-<blockquote>
-<ul class="simple">
-<li>5-sigma GR detection</li>
-</ul>
-</blockquote>
-</li>
-<li><p class="first">GEMS to make reference frame</p>
-</li>
-<li><p class="first">TMT could do 2-yr orbits</p>
-</li>
-</ul>
-</dd>
-</dl>
-<div class="section" id="id2">
-<h3>Questions</h3>
-<blockquote>
-<ul class="simple">
-<li>Q Ostriker: Could the SMBH be sloshing?  Can you allow for that?  What about acceleration?</li>
-<li>A: Mark Reid did calculation.  Limit ~3 km/s for present BH velocity.
-Problem: assume linear velocities, but that is not always a safe assumption.
-If BH accelerating, would create &quot;nonphysical&quot; accelerations.</li>
-<li>Q: Many things spiral into center, will lead to oscillations in BH motion</li>
-<li>Q Stocke: How big an effect is blending with unseen stars?</li>
-<li>A: We simulate it. But, trying to simulate something we don't understand.  &lt;0.1 mas</li>
-<li>Q: Contributions from resonant relaxation, encounters with other stars.</li>
-<li>A: Skipped the slide that shows this.  For GR, insignificant, but for
-precession of periapse, have to worry.</li>
-<li>Q: What about the velocity component?</li>
-<li>A: small effect on velocity.</li>
-</ul>
-</blockquote>
-</div>
-</div>
-<div class="section" id="discussion-section">
-<h2>Discussion Section</h2>
-<blockquote>
-<ul class="simple">
-<li>Q: IMFs shallower than salpeter.</li>
-<li>A Lu: Hard to decouple from dynamical history.  push on spectroscopy to
-lower masses.  Decouple young and old populations</li>
-<li>A Fritz: instrument sensitivity limit... VLT can detect CO bandheads...?</li>
-<li>How well do we know it's 2 populations, or maybe it's just 1 population?
-Assumptions disagree, not measurements</li>
-<li>Stocke: Background is changing in center.  Can you use fluctuation analysis
-to determine brightness of lower mass stars?</li>
-<li>Lu: Very challenging for young stars because they're a small fraction of the
-total luminosity.   Foal(?) et al did good work on older star populations</li>
-<li>Arches cluster: Hui Dong found 4 runaways of same mass as the 12 stars in
-the Arches cluster.  Maybe as many runaways as cluster stars?  Half of
-cluster stars kicked out.  Do dynamical models predict this?</li>
-<li>[silence]</li>
-<li>Find massive stars in &quot;other 3/4&quot; (I'm lost...). Need spectroscopy</li>
-<li>Ghez: Role of binary stars in ejections.</li>
-<li>Missing half of cluster mass?</li>
-<li>Ghez: Role of interaction with black hole?  Clusters not evolving in isolation</li>
-<li>Arches 2.5 Myr old.  Largest stars could just start... evolving?</li>
-<li>Most difficult objects to explain are LBVs.  LBVs outside of cores of
-clusters.  How do you get very massive binaries out of cores?
-All LBVs found are outside cores.</li>
-<li>Role of binaries.  New evolutionary models.  LBVs that must be &lt;2 Myr, WCs
-must be &gt;4 Myr.  Contradiction?</li>
-<li>New evolutionary models say many stars come from rejuvenation.  Massive blue
-stragglers.</li>
-<li>In situ formation?  What fraction should be expected to be formed in situ?</li>
-<li>How confident are we about mass-luminosity relation for stars?</li>
-<li>Lu: On main sequence, confident, but post-main-sequence is uncertain.  We
-drop them in our analysis.  Pre-main sequence is a problem in Arches.
-Arches fitted with only main-sequence stars</li>
-<li>very difficult with rotation included</li>
-<li>Distance to the Galactic center &quot;decreasing at an alarming rate&quot;.  Does determination
-conflict with any other indicators?  What does that mean?</li>
-<li>Ghez: Mark Reid likes lower R_0.  All consistent within uncertainties</li>
-<li>Do simulations for S stars include interactions between stars?</li>
-<li>Ghez: Not in most recent version, but in an earlier version</li>
-<li>How does this test of GR compare with other tests of GR around Sgr A*?</li>
-<li>Ghez: Event Horizon Telescope, GRAVITY.</li>
-<li>Different systematics.</li>
-<li>Are HST data consistent with BH at center?</li>
-<li>Tuan Do: Same reference frame.  BH defined to be at center.  Velocity can
-drift, but not position</li>
-</ul>
-</blockquote>
-</div>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
-        Page 1 / 48
-            <a href="http://keflavich.github.io/blog/index2.html">&raquo;</a>
-    </p>
+    Page 1 / 48
+        <a href="http://keflavich.github.io/blog/index2.html">&raquo;</a>
+</p>
 </section><!-- /#content -->
   </div>
 
@@ -1981,7 +1713,7 @@ alt="hit counter"></a></div></noscript>-->
 <!-- End of StatCounter Code for Default Guide -->
 <script type="text/javascript">
   var disqus_shortname = 'adamginsburgsblog';
-    (function() {
+  (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
