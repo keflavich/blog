@@ -128,28 +128,14 @@ tool in <a class="reference external" href="https://github.com/keflavich/casa_to
 <span class="o">&gt;&gt;&gt;</span> <span class="n">header</span> <span class="o">=</span> <span class="n">header_to_template</span><span class="p">(</span><span class="n">fits_header</span><span class="p">)</span>
 </pre></div>
 <p>In order to regrid the file, you then need to pass in the image name and template to imregrid.</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/regrid_CASA.rst</tt>, line 32)</p>
-<p>Content block expected for the &quot;code-block&quot; directive; none found.</p>
-<pre class="literal-block">
-.. code-block:: python
-    &gt;&gt;&gt; imregrid(imagename='file.image',template=header,output='file_regrid.image')
-
-</pre>
-</div>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">imregrid</span><span class="p">(</span><span class="n">imagename</span><span class="o">=</span><span class="s">&#39;file.image&#39;</span><span class="p">,</span><span class="n">template</span><span class="o">=</span><span class="n">header</span><span class="p">,</span><span class="n">output</span><span class="o">=</span><span class="s">&#39;file_regrid.image&#39;</span><span class="p">)</span>
+</pre></div>
 <p>If your input image's header did not include a 'telescope' keyword, CASA will complain:</p>
 <blockquote>
 2013-12-18 16:46:33 SEVERE  imregrid::ImageRegrid::regrid (file /opt/casa/release-4_1_0-release-1/darwin64/include/casacore/images/Images/ImageRegrid.tcc, line 118)        Cannot find the observatory name UNKNOWN in the CASA</blockquote>
 <p>You can add the keyword to the header yourself:</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/regrid_CASA.rst</tt>, line 41)</p>
-<p>Content block expected for the &quot;code-block&quot; directive; none found.</p>
-<pre class="literal-block">
-.. code-block:: python
-    &gt;&gt;&gt; imhead('file.image',mode='put',hdkey='telescope',hdvalue='Arecibo')
-
-</pre>
-</div>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">imhead</span><span class="p">(</span><span class="s">&#39;file.image&#39;</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s">&#39;put&#39;</span><span class="p">,</span><span class="n">hdkey</span><span class="o">=</span><span class="s">&#39;telescope&#39;</span><span class="p">,</span><span class="n">hdvalue</span><span class="o">=</span><span class="s">&#39;Arecibo&#39;</span><span class="p">)</span>
+</pre></div>
 <div class="section" id="references">
 <h2>References</h2>
 <blockquote>

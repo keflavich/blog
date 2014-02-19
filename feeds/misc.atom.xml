@@ -45,10 +45,11 @@ C compiler: /usr/local/bin/gcc -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes
 ...
 RuntimeError: Broken toolchain: cannot link a simple C program
 &lt;/pre&gt;
-&lt;p&gt;I had to give up on that, and then googling returned no results at all, which I thought was a bit weird.
-Scipy seems to want gcc and g++ 4.2, even though they're years old.  I had to find those and gfortran-4.2
-somehow, but the &lt;a class="reference external" href="r.research.att.com/tools/"&gt;old site&lt;/a&gt; that used to serve them seems to have lost the files!  They had an &lt;a class="reference external" href="http://r.research.att.com/tools/gcc-42-5666.3-darwin11.pkg"&gt;older version&lt;/a&gt;,
-though, which may work...&lt;/p&gt;
+&lt;p&gt;I had to give up on that, and then googling returned no results at all, which I
+thought was a bit weird.  Scipy seems to want gcc and g++ 4.2, even though
+they're years old.  I had to find those and gfortran-4.2 somehow, but the &lt;a class="reference external" href="r.research.att.com/tools/"&gt;old
+site&lt;/a&gt; that used to serve them seems to have lost the files!  They had an
+&lt;a class="reference external" href="http://r.research.att.com/tools/gcc-42-5666.3-darwin11.pkg"&gt;older version&lt;/a&gt;, though, which appears to work.  Scipy is a scary install.&lt;/p&gt;
 </summary><category term="mac"></category><category term="install"></category><category term="python"></category><category term="scipy"></category><category term="fortran"></category></entry><entry><title>W51 Mapping: Flagging bad data</title><link href="http://keflavich.github.io/blog/w51-mapping-flagging-bad-data.html" rel="alternate"></link><updated>2014-01-16T00:00:00-07:00</updated><author><name>Adam &lt;keflavich@gmail.com&gt;</name></author><id>tag:keflavich.github.io/blog,2014-01-16:w51-mapping-flagging-bad-data.html</id><summary type="html">&lt;p&gt;In the process of creating W51 data cubes from the GBT mapping data (project
 GBT 10B/019), I've had to deal with a lot of bad data.&lt;/p&gt;
 &lt;p&gt;Some of the bad data comes from misbehaving electronics.  All I can say is that
@@ -95,28 +96,14 @@ tool in &lt;a class="reference external" href="https://github.com/keflavich/casa
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;header&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;header_to_template&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fits_header&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;In order to regrid the file, you then need to pass in the image name and template to imregrid.&lt;/p&gt;
-&lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/regrid_CASA.rst&lt;/tt&gt;, line 32)&lt;/p&gt;
-&lt;p&gt;Content block expected for the &amp;quot;code-block&amp;quot; directive; none found.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-.. code-block:: python
-    &amp;gt;&amp;gt;&amp;gt; imregrid(imagename='file.image',template=header,output='file_regrid.image')
-
-&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;imregrid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;imagename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;file.image&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;template&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;header&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;file_regrid.image&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If your input image's header did not include a 'telescope' keyword, CASA will complain:&lt;/p&gt;
 &lt;blockquote&gt;
 2013-12-18 16:46:33 SEVERE  imregrid::ImageRegrid::regrid (file /opt/casa/release-4_1_0-release-1/darwin64/include/casacore/images/Images/ImageRegrid.tcc, line 118)        Cannot find the observatory name UNKNOWN in the CASA&lt;/blockquote&gt;
 &lt;p&gt;You can add the keyword to the header yourself:&lt;/p&gt;
-&lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/regrid_CASA.rst&lt;/tt&gt;, line 41)&lt;/p&gt;
-&lt;p&gt;Content block expected for the &amp;quot;code-block&amp;quot; directive; none found.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-.. code-block:: python
-    &amp;gt;&amp;gt;&amp;gt; imhead('file.image',mode='put',hdkey='telescope',hdvalue='Arecibo')
-
-&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;imhead&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;file.image&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;put&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;hdkey&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;telescope&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;hdvalue&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Arecibo&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="references"&gt;
 &lt;h2&gt;References&lt;/h2&gt;
 &lt;blockquote&gt;
