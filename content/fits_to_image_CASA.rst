@@ -1,5 +1,8 @@
 Converting a FITS cube to a CASA Image
 ======================================
+:author: Adam Ginsburg <adam.g.ginsburg@gmail.com>
+:tags: W51, GBT
+:date: 2013-12-18 15:15
 
 If you want to perform analysis on a FITS file in CASA, you first need to import it into `.image` format.
 
