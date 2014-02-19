@@ -77,19 +77,19 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <a href="http://keflavich.github.io/blog/w51-mapping-flagging-bad-data.html">W51 Mapping: Flagging bad data</a>
               </li>
               <li class="post">
+                  2013/12/18
+                  <br>
+                  <a href="http://keflavich.github.io/blog/regrid-an-image-or-cube-using-casa.html">Regrid an image (or cube) using CASA</a>
+              </li>
+              <li class="post">
+                  2013/12/18
+                  <br>
+                  <a href="http://keflavich.github.io/blog/converting-a-fits-cube-to-a-casa-image.html">Converting a FITS cube to a CASA Image</a>
+              </li>
+              <li class="post">
                   2013/12/13
                   <br>
                   <a href="http://keflavich.github.io/blog/there-is-a-gap-in-the-dust-around-sgr-b2.html">There is a "gap" in the dust around Sgr B2</a>
-              </li>
-              <li class="post">
-                  2013/10/25
-                  <br>
-                  <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-5.html">Notes from the ISM-PP conference: Day 5</a>
-              </li>
-              <li class="post">
-                  2013/10/24
-                  <br>
-                  <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-4.html">Notes from the ISM-PP conference Day 4</a>
               </li>
         </ul>
       </li>
@@ -101,6 +101,51 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/0709-rotators-fixed-latest-run.html" rel="bookmark" title="Permalink to 0709 rotators fixed, latest run">
+                    0709 rotators fixed, latest run</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-01-17T14:26:00"> 2009/01/17 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>0709 11-13 needed to be 83.88 degrees, they're all fixed now.
+I flagged the l060 070911 maps; I'm not convinced that was weather,
+there were some fluctuations up to 2400 Jy! Maybe a cloud would do that
+though.</p>
+<p>Problems in the latest run:</p>
+<pre class="literal-block">
+l359 - missing files?
+Reading files from /scratch/sliced/INFILES/l359\_infile.txt
+FIELD v0.7\_l359 BEGUN at Fri Jan 16 20:11:34 2009
+MRDFITS: File access error
+% HEULER: ERROR - First parameter must be a FITS header or astrometry
+ structure
+l012 - missing files?
+% READFITS: ERROR - Unable to locate file
+ /scratch/adam\_work/l012/060614\_o10\_raw\_ds5.nc\_indiv13pca\_map01.fi
+ ts
+</pre>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/more-problem-maps.html" rel="bookmark" title="Permalink to More problem maps">
+                    More problem maps</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-01-16T02:29:00"> 2009/01/16 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>the l060-l062 range has some severe noise problems and rotator issues.
+They need to be fixed before release.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -335,55 +380,10 @@ error in 'pixshift' with subscripting and will require real debugging.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/def_user_common-modified.html" rel="bookmark" title="Permalink to def_user_common modified">
-                    def_user_common modified</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-11-23T15:21:00"> 2008/11/23 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>The NP doesn't work without USER_COMMON defined because at a single
-point it makes use of the 'which' function.
-def_user_common is a disaster, though, because it calls
-get_screen_size(), which forces an X connection to be launched, which
-means that if you start a remote session and close X IDL crashes. This
-has been a constant nagging problem and has cost me ~a few days of work.
-So I commented out the offending (and offensive) line. The worst of it
-is, I'm not even convinced there's anything that uses any of that
-information. The common block is only needed to get paths, so which
-could have been written better.
-The pipeline ground to a halt for an unknown reason at an unknown point
-so I added a lot more timing outputs to try to figure out what's going
-on.
-Back to the grind...</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/flagger.html" rel="bookmark" title="Permalink to flagger">
-                    flagger</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-11-22T01:37:00"> 2008/11/22 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Discovered that the flagger causes some pretty serious problems if you
-try to run it on a non-coadd for obvious reasons: there's practically no
-coverage! Individual maps should NOT go through the flagger, so I have
-added a piece of code that turns off the flagger if only one observation
-is being used. That code is in map_iter where the flagger is called.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
             <a href="http://keflavich.github.io/blog/index39.html">&laquo;</a>
-    Page 40 / 48
+    Page 40 / 49
         <a href="http://keflavich.github.io/blog/index41.html">&raquo;</a>
 </p>
 </section><!-- /#content -->

@@ -113,26 +113,17 @@ they did look OK).</p>
 testing.  However, I went back to my typical install-from-source approach.</p>
 <p>To get the matplotlib backends to interact nicely with apple, you need to install
 them using the <cite>/Library</cite> version of python</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/mavericks.rst</tt>, line 30)</p>
-<p>Error in &quot;code-block&quot; directive:
-1 argument(s) required, 0 supplied.</p>
-<pre class="literal-block">
-.. code-block::
+<div class="highlight"><pre><span class="c"># this had to happen sometime early:</span>
+xcode-select --install
 
-    # this had to happen sometime early:
-    xcode-select --install
-
-    wget https://pypi.python.org/pypi/pip#downloads
-    tar -xzvf ~/Downloads/pip-1.5.2.tar.gz
-    cd pip-1.5.2
-    /Library/Frameworks/Python.framework/Versions/2.7/bin/python setup.py install
-    /Library/Frameworks/Python.framework/Versions/2.7/bin/pip install virtualenv
-    cd
-    /Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenv virtual-python
-
-</pre>
-</div>
+wget https://pypi.python.org/pypi/pip#downloads
+tar -xzvf ~/Downloads/pip-1.5.2.tar.gz
+<span class="nb">cd </span>pip-1.5.2
+/Library/Frameworks/Python.framework/Versions/2.7/bin/python setup.py install
+/Library/Frameworks/Python.framework/Versions/2.7/bin/pip install virtualenv
+<span class="nb">cd</span>
+/Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenv virtual-python
+</pre></div>
 <p>After this, I was surprisingly able to install everything in the python stack
 with no hitches.  Obviously, that could not possibly last.</p>
 <p>While matplotlib and numpy worked fine, scipy had problems.</p>

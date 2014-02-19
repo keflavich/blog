@@ -77,19 +77,19 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <a href="http://keflavich.github.io/blog/w51-mapping-flagging-bad-data.html">W51 Mapping: Flagging bad data</a>
               </li>
               <li class="post">
+                  2013/12/18
+                  <br>
+                  <a href="http://keflavich.github.io/blog/regrid-an-image-or-cube-using-casa.html">Regrid an image (or cube) using CASA</a>
+              </li>
+              <li class="post">
+                  2013/12/18
+                  <br>
+                  <a href="http://keflavich.github.io/blog/converting-a-fits-cube-to-a-casa-image.html">Converting a FITS cube to a CASA Image</a>
+              </li>
+              <li class="post">
                   2013/12/13
                   <br>
                   <a href="http://keflavich.github.io/blog/there-is-a-gap-in-the-dust-around-sgr-b2.html">There is a "gap" in the dust around Sgr B2</a>
-              </li>
-              <li class="post">
-                  2013/10/25
-                  <br>
-                  <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-5.html">Notes from the ISM-PP conference: Day 5</a>
-              </li>
-              <li class="post">
-                  2013/10/24
-                  <br>
-                  <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-4.html">Notes from the ISM-PP conference Day 4</a>
               </li>
         </ul>
       </li>
@@ -101,6 +101,55 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/how-to-make-a-pretty-image.html" rel="bookmark" title="Permalink to How to make a pretty image">
+                    How to make a pretty image</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The most difficult requirement to satisfy is WCS matching. Each image
+has to be in exactly the same pixel space in order to overlay them
+successfully in an image program. The process is generally to use
+Montage's mProject to project the images into the same plane, then mAdd
+with a blank map of a given size so that the dimensions in pixels are
+identical.
+Once that's done, I load the images into GIMP. However, GIMP reads .fits
+files as 256 bit data - which is essentially useless because most
+(interesting) images have a dynamical range &gt;~1000. So I usually make
+images emphasizing the faint emission in log scale with the high and low
+ends cut off (I use DS9 to determine high/low). I make a second copy
+showing the details of the very bright regions, again in logscale but it
+ends up being a different log scale - essentially, my transfer function
+becomes a broken power law.
+The tricks in GIMP are numerous, but primarily two:
+1. Rotate the color table ~60 degrees
+2. Use images as &quot;Layer Masks&quot; (aka alpha layers) on a solid color
+background
+There's also the nice trick when using radio data of using optical or
+some other wavelength to provide the high-resolution details, while the
+radio emission provides the intensity.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/idl-array-indexing.html" rel="bookmark" title="Permalink to IDL array indexing">
+                    IDL array indexing</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><tt class="docutils literal">array_indices(array, location)</tt>
+instead of that x mod n_e(), y / n_e() crap</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -291,46 +340,10 @@ make install - no compiler opts as they killed the install</li>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/keynote-text-boxes.html" rel="bookmark" title="Permalink to keynote text boxes">
-                    keynote text boxes</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content">  </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/last-months-observations-in-l111.html" rel="bookmark" title="Permalink to Last month's observations in L111">
-                    Last month's observations in L111</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Mapped sources:
-SH 2-156 [no high resolution observations; covered by 1.2m CO 1-0
-survey]
-SH 2-157 <a class="reference external" href="http://simbad.u-strasbg.fr/cgi-bin/cdsbib4?2003ApJS..149..375S">Yancy CS 5-4</a>, <a class="reference external" href="http://simbad.u-strasbg.fr/cgi-bin/cdsbib4?2004AJ....128.1716A">CO, 13CO 1-0, CS 2-1</a>, HCN &amp; SCUBA too....
-IRAS 23151 (two pointings)
-Unmapped:
-BFS 18 = IRAS 23042+6000 = IRCO 859
-<a class="reference external" href="http://cdsads.u-strasbg.fr/cgi-bin/nph-bib_query?2005AJ....129..330W&amp;db_key=AST&amp;nosetcookie=1">Wu et al</a> mapped this in CO 2-1 and detected no outflows. They used
-the NRAO 12m with a heterodyne array with very high T<sub>sys</sub>
-~700-1100K.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
             <a href="http://keflavich.github.io/blog/index15.html">&laquo;</a>
-    Page 16 / 48
+    Page 16 / 49
         <a href="http://keflavich.github.io/blog/index17.html">&raquo;</a>
 </p>
 </section><!-- /#content -->
