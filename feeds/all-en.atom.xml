@@ -50,6 +50,14 @@ thought was a bit weird.  Scipy seems to want gcc and g++ 4.2, even though
 they're years old.  I had to find those and gfortran-4.2 somehow, but the &lt;a class="reference external" href="r.research.att.com/tools/"&gt;old
 site&lt;/a&gt; that used to serve them seems to have lost the files!  They had an
 &lt;a class="reference external" href="http://r.research.att.com/tools/gcc-42-5666.3-darwin11.pkg"&gt;older version&lt;/a&gt;, though, which appears to work.  Scipy is a scary install.&lt;/p&gt;
+&lt;div class="section" id="problems-with-xquartz"&gt;
+&lt;h2&gt;Problems with XQuartz&lt;/h2&gt;
+&lt;p&gt;XQuartz is not well-behaved on Mac OS X 10.9.  First, &lt;a class="reference external" href="https://xquartz.macosforge.org/trac/ticket/661"&gt;on retina machines, it
+does not display well&lt;/a&gt;.  Second, and much more important, it &lt;a class="reference external" href="http://xquartz.macosforge.org/trac/ticket/797"&gt;does not work on
+external monitors&lt;/a&gt;.  Apparently this can be worked around by turning off
+&amp;quot;Displays have different spaces&amp;quot;  in Mission Control, but so far that has had
+no effect for me.&lt;/p&gt;
+&lt;/div&gt;
 </summary><category term="mac"></category><category term="install"></category><category term="python"></category><category term="scipy"></category><category term="fortran"></category></entry><entry><title>W51 Mapping: Flagging bad data</title><link href="http://keflavich.github.io/blog/w51-mapping-flagging-bad-data.html" rel="alternate"></link><updated>2014-01-16T00:00:00-07:00</updated><author><name>Adam &lt;keflavich@gmail.com&gt;</name></author><id>tag:keflavich.github.io/blog,2014-01-16:w51-mapping-flagging-bad-data.html</id><summary type="html">&lt;p&gt;In the process of creating W51 data cubes from the GBT mapping data (project
 GBT 10B/019), I've had to deal with a lot of bad data.&lt;/p&gt;
 &lt;p&gt;Some of the bad data comes from misbehaving electronics.  All I can say is that
@@ -57,7 +65,7 @@ they were misbehaving, not how or why - the data from one polarizaiton simply
 disagrees with the other polarization and feeds spontaneously and for no
 apparent reason.&lt;/p&gt;
 &lt;p&gt;I've implemented a waterfall diagnostic plot to help examine the data, it is in
-my &lt;a class="reference external" href="https://github.com/keflavich/mpl_plot_templates"&gt;mpl_plot_templates&lt;/a&gt; repository: &lt;a href="#id1"&gt;&lt;span class="problematic" id="id2"&gt;imdiagnotsics.py_&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+my &lt;a class="reference external" href="https://github.com/keflavich/mpl_plot_templates"&gt;mpl_plot_templates&lt;/a&gt; repository: &lt;a class="reference external" href="https://github.com/keflavich/mpl_plot_templates/blob/master/mpl_plot_templates/imdiagnostics.py"&gt;imdiagnostics.py&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;A good waterfall looks something like this:&lt;/p&gt;
 &lt;img alt="" src="http://keflavich.github.io/blog/images/w51/Session17_111to186_D37_F2_data_scrubbed_flagged.png" style="width: 800px;" /&gt;
 &lt;p&gt;The line plots show the average and standard deviation along each axis; the
@@ -74,12 +82,6 @@ There are apparent absorption lines throughout the spectrum: they are not real.
 This is a particularly irritating problem because I had resolved it once in the
 not-too-distant past, but I can't figure out how!!  Most likely, I just removed
 the data from the maps, but that SHOULD be in the code history (git) and is not.&lt;/p&gt;
-&lt;div class="system-messages section"&gt;
-&lt;h2&gt;Docutils System Messages&lt;/h2&gt;
-&lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/w51mapping_baddata.rst&lt;/tt&gt;, line 16); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-Unknown target name: &amp;quot;imdiagnotsics.py&amp;quot;.&lt;/div&gt;
-&lt;/div&gt;
 </summary><category term="W51"></category><category term="GBT"></category></entry><entry><title>Regrid an image (or cube) using CASA</title><link href="http://keflavich.github.io/blog/regrid-an-image-or-cube-using-casa.html" rel="alternate"></link><updated>2013-12-18T17:52:00-07:00</updated><author><name>Adam Ginsburg &lt;adam.g.ginsburg@gmail.com&gt;</name></author><id>tag:keflavich.github.io/blog,2013-12-18:regrid-an-image-or-cube-using-casa.html</id><summary type="html">&lt;p&gt;In order to regrid an image, you need some target reprojection.  The simplest way to acquire such a reprojection
 is by extracting it from another image, e.g. a &lt;a class="reference external" href="casaguides.nrao.edu/index.php?title=FITStoImage"&gt;FITS image&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;(I use &lt;cite&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/cite&gt; to indicate the &lt;cite&gt;CASA &amp;lt;#&amp;gt;:&lt;/cite&gt; prompt here because it allows you to copy &amp;amp; paste the code into CASA)&lt;/p&gt;

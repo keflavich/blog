@@ -164,6 +164,14 @@ thought was a bit weird.  Scipy seems to want gcc and g++ 4.2, even though
 they're years old.  I had to find those and gfortran-4.2 somehow, but the <a class="reference external" href="r.research.att.com/tools/">old
 site</a> that used to serve them seems to have lost the files!  They had an
 <a class="reference external" href="http://r.research.att.com/tools/gcc-42-5666.3-darwin11.pkg">older version</a>, though, which appears to work.  Scipy is a scary install.</p>
+<div class="section" id="problems-with-xquartz">
+<h2>Problems with XQuartz</h2>
+<p>XQuartz is not well-behaved on Mac OS X 10.9.  First, <a class="reference external" href="https://xquartz.macosforge.org/trac/ticket/661">on retina machines, it
+does not display well</a>.  Second, and much more important, it <a class="reference external" href="http://xquartz.macosforge.org/trac/ticket/797">does not work on
+external monitors</a>.  Apparently this can be worked around by turning off
+&quot;Displays have different spaces&quot;  in Mission Control, but so far that has had
+no effect for me.</p>
+</div>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
@@ -184,7 +192,7 @@ they were misbehaving, not how or why - the data from one polarizaiton simply
 disagrees with the other polarization and feeds spontaneously and for no
 apparent reason.</p>
 <p>I've implemented a waterfall diagnostic plot to help examine the data, it is in
-my <a class="reference external" href="https://github.com/keflavich/mpl_plot_templates">mpl_plot_templates</a> repository: <a href="#id1"><span class="problematic" id="id2">imdiagnotsics.py_</span></a>.</p>
+my <a class="reference external" href="https://github.com/keflavich/mpl_plot_templates">mpl_plot_templates</a> repository: <a class="reference external" href="https://github.com/keflavich/mpl_plot_templates/blob/master/mpl_plot_templates/imdiagnostics.py">imdiagnostics.py</a>.</p>
 <p>A good waterfall looks something like this:</p>
 <img alt="" src="http://keflavich.github.io/blog/images/w51/Session17_111to186_D37_F2_data_scrubbed_flagged.png" style="width: 800px;" />
 <p>The line plots show the average and standard deviation along each axis; the
@@ -201,12 +209,6 @@ There are apparent absorption lines throughout the spectrum: they are not real.
 This is a particularly irritating problem because I had resolved it once in the
 not-too-distant past, but I can't figure out how!!  Most likely, I just removed
 the data from the maps, but that SHOULD be in the code history (git) and is not.</p>
-<div class="system-messages section">
-<h2>Docutils System Messages</h2>
-<div class="system-message" id="id1">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/w51mapping_baddata.rst</tt>, line 16); <em><a href="#id2">backlink</a></em></p>
-Unknown target name: &quot;imdiagnotsics.py&quot;.</div>
-</div>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
