@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2015/05/07
+                  <br>
+                  <a href="http://keflavich.github.io/blog/my-python-ipython-vim-debugging-workflow.html">My python + ipython + vim debugging workflow</a>
+              </li>
+              <li class="post">
                   2014/02/19
                   <br>
                   <a href="http://keflavich.github.io/blog/python-stack-on-mavericks.html">Python stack on Mavericks</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/converting-a-fits-cube-to-a-casa-image.html">Converting a FITS cube to a CASA Image</a>
               </li>
-              <li class="post">
-                  2013/12/13
-                  <br>
-                  <a href="http://keflavich.github.io/blog/there-is-a-gap-in-the-dust-around-sgr-b2.html">There is a "gap" in the dust around Sgr B2</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,36 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/weighting-and-high-frequency-noise.html" rel="bookmark" title="Permalink to Weighting and high-frequency noise">
+                    Weighting and high-frequency noise</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-15T00:41:00"> 2008/11/15 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/SR4DzVCz1WI/AAAAAAAADfk/cJ70OPeqEzg/s400/psds.png" />
+<p>Image of PSDs (with no normalization) of the raw (blue), delined and
+exponential and polynomial subtracted (white), the noise timestream
+(yellow), and the data (cyan).
+The good: It looks like all of the powerline noise got into the noise
+timestream and almost none in the data.
+The bad: weighting is based on the noise timestream so it's possible
+that the weights aren't quite right as a result
+The weird: the data PSD. What's up with that? Apparently I'm
+preferentially subtracting certain scales but I don't know why, unless
+deconvolution is at fault.
+Edit/Update: The deconvolution is definitely at fault. Here's the same
+scan done without deconvolution:</p>
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/SR4ZM6FPfrI/AAAAAAAADf0/baHOQwedeqs/s400/psds2.png" />
+<p>It should have been obvious; the cyan in the first plot is the PSD of
+the deconvolution straight up, and that should have no high-frequency
+structure...</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -347,21 +377,6 @@ smaller than itself....</p>
         <div class="entry-content"> <p>/scratch/sliced/l354/070724_o10_raw_ds5.nc was the reference file for
 l354 but somehow was excluded from the l354_infile. Warrants another
 check post-mapping</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/somehow-scratchsliced_polychromel034050708_o21.html" rel="bookmark" title="Permalink to somehow /scratch/sliced_polychrome/l034/050708_o21...">
-                    somehow /scratch/sliced_polychrome/l034/050708_o21...</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-11-09T03:25:00"> 2008/11/09 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>somehow /scratch/sliced_polychrome/l034/050708_o21_raw_mmd_ds5.nc
-got into the l033_infile and screwed things up</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
