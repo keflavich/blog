@@ -203,6 +203,7 @@ Chemical processes in the ISM: Dust 30' Speaker: Thomas Henning (MPIA Heidelberg
 ---------------------------------------------------------------------------------
 Small particles heat the gas
 Formation/destruction balance
+
  * AGB star dust formation not efficient enough to balance dust destruction
  * NIR extinction law: Fritz et al 2011 towards GC
    + dust towards GC is different

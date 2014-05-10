@@ -5,8 +5,8 @@ AUTHOR = u'Adam Ginsburg'
 SITENAME = u"Adam Ginsburg's blog"
 #SITESUBTITLE = u"about astronomy and coding, most likely"
 #SITEURL = 'file://localhost/Volumes/disk5/Users/adam/repos/blog/output'
-#SITEURL = ""
-SITEURL = 'http://keflavich.github.io/blog'
+SITEURL = ""
+#SITEURL = 'http://keflavich.github.io/blog'
 
 TIMEZONE = 'America/Denver'
 PATH = "content/"

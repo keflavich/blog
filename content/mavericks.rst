@@ -30,15 +30,15 @@ them using the `/Library` version of python
 .. code-block:: bash
 
     # this had to happen sometime early:
-    xcode-select --install
+    $ xcode-select --install
 
-    wget https://pypi.python.org/pypi/pip#downloads
-    tar -xzvf ~/Downloads/pip-1.5.2.tar.gz 
-    cd pip-1.5.2
-    /Library/Frameworks/Python.framework/Versions/2.7/bin/python setup.py install
-    /Library/Frameworks/Python.framework/Versions/2.7/bin/pip install virtualenv
-    cd 
-    /Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenv virtual-python
+    $ wget https://pypi.python.org/pypi/pip#downloads
+    $ tar -xzvf ~/Downloads/pip-1.5.2.tar.gz 
+    $ cd pip-1.5.2
+    $ /Library/Frameworks/Python.framework/Versions/2.7/bin/python setup.py install
+    $ /Library/Frameworks/Python.framework/Versions/2.7/bin/pip install virtualenv
+    $ cd 
+    $ /Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenv virtual-python
 
 After this, I was surprisingly able to install everything in the python stack
 with no hitches.  Obviously, that could not possibly last. 

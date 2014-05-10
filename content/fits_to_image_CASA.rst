@@ -4,19 +4,22 @@ Converting a FITS cube to a CASA Image
 :tags: W51, GBT
 :date: 2013-12-18 15:15
 
-If you want to perform analysis on a FITS file in CASA, you first need to import it into `.image` format.
+If you want to perform analysis on a FITS file in CASA, you first need to
+import it into `.image` format.
 
     importfits('file.fits','file.image')
 
-If this works, great!  You can move on.  CASA will treat NaN values in an image as 'masked'.
+If this works, great!  You can move on.  CASA will treat NaN values in an image
+as 'masked'.
 
 Dealing with Errors
 -------------------
 
-There may be issues with FITS headers.  CASA respects a large number of header keys (reference_).
+There may be issues with FITS headers.  CASA respects a large number of header
+keys (reference_).
 
-There are many ways to edit a FITS header.  One of the most straightforward to use is edhead_.  Otherwise, one 
-can use CASA's imhead_
+There are many ways to edit a FITS header.  One of the most straightforward to
+use is edhead_.  Otherwise, one can use CASA's imhead_
 
 ============ ============ ===========
 CASA Keyword FITS keyword Description
