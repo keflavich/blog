@@ -12,10 +12,12 @@ From Andrew Walsh, a script to install MIRIAD:
    bzcat miriad-linux64.tar.bz2  | tar xvf -
    cd miriad
    export MIR=$PWD
+   # define the MIR variable in your bashrc
+   echo "export MIR=$MIR" >> ~/.bashrc
    sed -e "s,@MIRROOT@,$MIR," scripts/MIRRC.in > MIRRC
    sed -e "s,@MIRROOT@,$MIR," scripts/MIRRC.sh.in > MIRRC.sh
    chmod 644 MIRRC*
 
    # Put these into .bashrc, or call them each time you want to run MIRIAD
-   . MIRRC.sh
+   . $MIR/MIRRC.sh
    export PATH=$PATH:$MIRBIN
