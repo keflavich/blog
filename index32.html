@@ -67,29 +67,29 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2015/09/14
+                  <br>
+                  <a href="http://keflavich.github.io/blog/.html"></a>
+              </li>
+              <li class="post">
                   2015/05/07
                   <br>
                   <a href="http://keflavich.github.io/blog/my-python-ipython-vim-debugging-workflow.html">My python + ipython + vim debugging workflow</a>
               </li>
               <li class="post">
+                  2014/11/26
+                  <br>
+                  <a href="http://keflavich.github.io/blog/installing-astrometrynet-in-november-2014.html">Installing astrometry.net in November 2014</a>
+              </li>
+              <li class="post">
+                  2014/06/13
+                  <br>
+                  <a href="http://keflavich.github.io/blog/azimuthal-mass-profiles.html">Azimuthal Mass Profiles</a>
+              </li>
+              <li class="post">
                   2014/02/19
                   <br>
                   <a href="http://keflavich.github.io/blog/python-stack-on-mavericks.html">Python stack on Mavericks</a>
-              </li>
-              <li class="post">
-                  2014/01/16
-                  <br>
-                  <a href="http://keflavich.github.io/blog/w51-mapping-flagging-bad-data.html">W51 Mapping: Flagging bad data</a>
-              </li>
-              <li class="post">
-                  2013/12/18
-                  <br>
-                  <a href="http://keflavich.github.io/blog/regrid-an-image-or-cube-using-casa.html">Regrid an image (or cube) using CASA</a>
-              </li>
-              <li class="post">
-                  2013/12/18
-                  <br>
-                  <a href="http://keflavich.github.io/blog/converting-a-fits-cube-to-a-casa-image.html">Converting a FITS cube to a CASA Image</a>
               </li>
         </ul>
       </li>
@@ -101,6 +101,82 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/spatial-transfer-functions.html" rel="bookmark" title="Permalink to Spatial Transfer Functions">
+                    Spatial Transfer Functions</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-13T18:54:00"> 2011/07/13 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The majority of the past week has been dedicated to debugging; it looks
+like cross-scanned simulations finally work.
+The plot below is a derivation of the spatial transfer function for a
+number of different intrinsic sky power-law power spectra.</p>
+<img alt="" src="http://2.bp.blogspot.com/-JyAPg0u9uQ8/Th3kuQh1fpI/AAAAAAAAGRs/pP7o3n9_wds/s320/Experiment10_AverageRecoveryFunction.png" />
+<p>Justifying the above plot is essential.
+First, the very steep power-laws [-3 in the example below] show a
+recovery fraction &gt;1. This is simply because their S/N was inadequate -
+the output power spectrum is nearly flat, but at a level higher than the
+sky.</p>
+<img alt="" src="http://4.bp.blogspot.com/-JPBjsLDfP5M/Th3lw5n1xTI/AAAAAAAAGR0/aDeOmMv5s8w/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky00_seed00_peak010.00_nosmooth_compare.png" />
+<img alt="" src="http://3.bp.blogspot.com/-LOCDmoLCcZs/Th3lxfnKVzI/AAAAAAAAGR8/9NCM3OroGoM/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky00_seed00_peak010.00_nosmooth_psds.png" />
+<p>Second, the most plausible power-laws [-1.5 in the example below] show
+pretty good recovery (90-95% over the relevant range):</p>
+<img alt="" src="http://1.bp.blogspot.com/-MTZ8WGl3ZRc/Th3mMkvv2II/AAAAAAAAGSE/0OO4Te39fPI/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky03_seed00_peak010.00_nosmooth_compare.png" />
+<img alt="" src="http://2.bp.blogspot.com/-5IeTZW-ZTAw/Th3mNHPC8gI/AAAAAAAAGSM/WhIWClGWqbo/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky03_seed00_peak010.00_nosmooth_psds.png" />
+<img alt="" src="http://4.bp.blogspot.com/-O6ofm7GaxUI/Th3mNgf29AI/AAAAAAAAGSU/VzQ7aL-yd_E/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky03_seed00_peak010.00_nosmooth_stf.png" />
+<p>There are some &quot;white&quot; power losses, particularly in the flatter
+power-spectra. My best guess is that this has something to do with the
+relative scales being offset from a mean of 1, but so far all tests to
+show that that is the cause have in fact shown no problems at all. What
+else could cause a scale-independent power loss?
+Also, the flat power spectrum (and inverted) aren't quite flat because I
+impose a &quot;galactic scale height&quot; on them. Should I stop doing that?</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/additional-problems.html" rel="bookmark" title="Permalink to additional problems">
+                    additional problems</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-12T19:08:00"> 2011/07/12 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>There are a few cases in the L=30 field that look awful. 050706_o31
+probably observed the inside of the dish. 070727_ob6 shows some
+streaking that I can't easily explain... though it appears that there
+are some bad bolos that need to get flagged out. I wonder if that's
+systematic over 070727 observations....</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/outflows-and-massive-stars-in-the-protocluster-iras-053583543.html" rel="bookmark" title="Permalink to Outflows and Massive Stars in the protocluster IRAS 05358+3543">
+                    Outflows and Massive Stars in the protocluster IRAS 05358+3543</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-11T16:47:00"> 2011/07/11 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><em>First Author</em> [ <a class="reference external" href="http://adsabs.harvard.edu/abs/2009ApJ...707..310G">ADS</a> ] [ <a class="reference external" href="http://arxiv.org/abs/0910.2990">arXiv</a> ]</p>
+<p>A mm and near-IR study of the IRAS 05358+3543 system. Recently (2011),
+it has become clear that &quot;protocluster&quot; is unlikely to be the right
+label for IRAS 05358+3543. &quot;proto-association&quot; might be more accurate.
+Perhaps the most interesting result of this paper is the discovery that
+the central source is likely to be a 400-AU binary with two massive (&gt;8
+msun) stars at different evolutionary stages. It is just barely in
+ALMA's range...</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -236,150 +312,6 @@ determine how well we recovered the &quot;true&quot; sky structure.</p>
 <a class="reference external" href="http://arxiv.org/abs/0812.2396">arXiv</a>
 My contribution to this paper was quite minor. I was briefly a member of
 the SAGE team and this is the only SAGE paper I'm included on.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/kinematics-and-h2-morphology-of-the-multipolar-post-agb-star-iras-16594-4656.html" rel="bookmark" title="Permalink to Kinematics and H2 morphology of the multipolar post-AGB star IRAS 16594-4656">
-                    Kinematics and H2 morphology of the multipolar post-AGB star IRAS 16594-4656</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-07-11T16:18:00"> 2011/07/11 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p><a class="reference external" href="http://adsabs.harvard.edu/abs/2008A%26A...480..775V">ADS</a>
-<a class="reference external" href="http://arxiv.org/abs/0801.0674">arXiv</a>
-An interesting examination of the morphology of the circumstellar
-material around IRAS 16594-4656. I did this work with Toshiya Ueta at
-the University of Denver. My contribution was azimuthally interpolating
-the 7 high-resolution long-slit spectra onto a 3-dimensional grid,
-creating a full 3D position-velocity cube. I used <a class="reference external" href="http://pdl.perl.org/">the Perl Data
-Language</a>, which I have since abandoned.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/minor-ongoing-problems.html" rel="bookmark" title="Permalink to [minor] Ongoing problems...">
-                    [minor] Ongoing problems...</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-07-10T19:41:00"> 2011/07/10 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Since I have many tasks running in parallel, I need to summarize them
-sometimes...</p>
-<ol class="arabic simple">
-<li>There are many &quot;bad&quot; observations that haven't been placed in &quot;bad&quot;
-directories. A list of the error messages generated is here: <a class="reference external" href="http://code.google.com/p/bgpspipeline/wiki/MakingInfiles">Making
-Infiles wiki</a></li>
-<li>There may be streaking in the BGPS ds2 images of l030 and l032. Still
-trying to re-run cleanly to find out</li>
-<li>There may be unflagged high-points in l030 and l032. Also under
-examination</li>
-<li>Simulations have been generating bulk-offset outputs; my suspicion
-was that the relative scales were being set incorrectly because astro
-dominated atmo, so I bumped up the atmo scale. The tests have run but
-I haven't examined the outputs</li>
-<li>V1 sims have shown streaking, possibly because of the previous
-bullet, but certainly (in part) because cross-scans haven't worked</li>
-</ol>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/direct-comparison-of-column-density-power-spectra.html" rel="bookmark" title="Permalink to Direct comparison of column-density power spectra">
-                    Direct comparison of column-density power spectra</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-06-29T04:43:00"> 2011/06/29 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I've multiplied the 13CO integrated data cube, the Herschel 500
-micron*, and the BGPS v1.0 and v2.0 by the appropriate conversion
-factor to get the maps into units of column density assuming T=20K and
-some opacity for the dust maps. BGPS v1 has been multiplied by the 1.5
-&quot;correction&quot; factor.</p>
-<blockquote>
-<ul class="simple">
-<li>The Herschel maps are arbitrarily scaled; I didn't derive an actual
-column conversion but just guess-and-checked once or twice until I got
-something pretty close.</li>
-</ul>
-</blockquote>
-<p>The power spectra look pretty outstanding:</p>
-<img alt="" src="http://4.bp.blogspot.com/--uPAgTvMjkk/TgqcjV9uvhI/AAAAAAAAGO4/cOe1iLuF-H0/s320/powerspectrum_comparison_512_0x1.png" />
-<img alt="" src="http://3.bp.blogspot.com/-1Lupi5MSVpk/TgqcjsPwKFI/AAAAAAAAGPA/D9oNXIHdRtE/s320/powerspectrum_comparison_512_1x1.png" />
-<img alt="" src="http://2.bp.blogspot.com/-P2pC9RDKUic/TgqckFwVQUI/AAAAAAAAGPI/FU8cUUZe7bc/s320/powerspectrum_comparison_512_2x1.png" />
-<p>The bumps and wiggles in the 50-200&quot; range are quite well-matched in
-Herschel and Bolocam. Some map edge effects are visible in the Herschel
-maps, resulting in multi-frequency bumps at small spatial scales. The
-Herschel noise floor is also quite evidently lower. Also noteworthy is
-that BGPS v1 (scaled up by 1.5) matches the others &quot;pretty well&quot; but is
-a worse match, in general, to the Herschel data than is the BGPS v2.
-Here are some zoomed-in plots on the inverse scale:</p>
-<img alt="" src="http://3.bp.blogspot.com/-ldoGiyzeb2w/TgqhYPqerHI/AAAAAAAAGPQ/E1BFNEhcadw/s320/powerspectrum_comparison_512_0x1.png" />
-<img alt="" src="http://3.bp.blogspot.com/-algBRWCXB9E/TgqhYgcwsPI/AAAAAAAAGPY/eSbDDcAYvCk/s320/powerspectrum_comparison_512_1x1.png" />
-<img alt="" src="http://4.bp.blogspot.com/-36H34cVnAPM/TgqhY7f4kAI/AAAAAAAAGPg/HUWvO9nZwuE/s320/powerspectrum_comparison_512_2x1.png" />
-<p>And finally, the 13CO data is totally unrepresentative of the dust data.
-There is very little agreement on any scale. This may imply that the
-13CO and/or dust temperature is too high, as a decreased T_D or T_ex
-will decrease 13CO column and increase dust column. However, it also
-raises a question - on what scales should dust and CO agree?
-This is getting into some real science, perhaps. The shapes of the CO
-and dust power spectra disagree: the CO is pretty well-fit by a power
-law, while the dust is not. What hypotheses can explain this?</p>
-<ol class="arabic">
-<li><p class="first">There is a systematic temperature difference / preference in which CO
-or dust is hotter on the largest scales.
--Dust is probably warmer on larger scales, however CO should be less
-abundant / more readily dissociated on these largest, most diffuse
-scales. CO shouldn't exist (or at least, should be underabundant) in
-regions with high temperature. Maybe? This probably needs to be
-quantified.</p>
-</li>
-<li><p class="first">There is a systematic dust opacity difference on large scales
-resulting in lower dust emission.</p>
-<blockquote>
-<ul class="simple">
-<li>This is almost certainly true: the dust population increases in
-opacity with age, following OH94. Dust on the largest spatial scales
-should not have coagulated / collected ice, leading to a lower
-opacity on the largest scales</li>
-<li>This may also be true even though CO is present: dust coagulation
-is less efficient than CO formation at n~10^3-10^4 (I think - again,
-off the cuff, but consistent with OH94)</li>
-</ul>
-</blockquote>
-</li>
-<li><p class="first">The CO overestimates all scales, either because of incorrect bulk
-abundance or temperature considerations.</p>
-<blockquote>
-<ul class="simple">
-<li>This is problematic..... if you drop the CO values at all scales, it
-becomes deficient in the 50-200 arcsecond range, where the dust
-measurements agree quite well</li>
-</ul>
-</blockquote>
-</li>
-<li><p class="first">There is a preferred distance in both images</p>
-<blockquote>
-<ul class="simple">
-<li>It is not clear that the observed effects would occur because of
-this</li>
-<li>It is also quite evident from other analyses that there IS a
-preferred velocity, at least, and it completely dominates all others
-and has the same shape as the integrated power spectrum. So a
-distance effect is most likely ruled out.</li>
-</ul>
-</blockquote>
-</li>
-</ol>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

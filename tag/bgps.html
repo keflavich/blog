@@ -174,21 +174,17 @@ Bolocat:</p>
 capability of recovering accurate flux density measurements from a realistic
 sky using bolocat.</p>
 <p>However, the above figures show a simulation only for one set of parameters,
-with <span class="formula"><i>α</i> = 1</span>
- in the power-law flux distribution, which unfortunately
+with <span class="formula"><i>α</i> = 1</span> in the power-law flux distribution, which unfortunately
 is not realistic according to &quot;Figure 8&quot;:</p>
 <img alt="" src="https://raw.github.com/keflavich/bgpsv2/master/figures/l030_higal_bgps_powerspec_compare.png?login=keflavich&amp;token=fa363ee3e28903c751c2a3c9f2b318a0" style="width: 800px;" />
 <p>So I've started up a new experiment, experiment #23, to examine this problem.</p>
 <p>The problem has a few layers:</p>
 <ol class="arabic simple">
-<li>The reason I used <span class="formula"><i>α</i> = 1</span>
- is that it looks much like a realistic
+<li>The reason I used <span class="formula"><i>α</i> = 1</span> is that it looks much like a realistic
 BGPS map after processing, in the sense that most of the field is empty
 but there are a few hundred sources in the map.  However, <span class="formula"><i>α</i> = 1</span>
-
 is not a realistic representation of the measured power spectra.</li>
-<li><span class="formula"><i>α</i> = 2</span>
- maps with the previous normalization had a peak value of
+<li><span class="formula"><i>α</i> = 2</span> maps with the previous normalization had a peak value of
 18 Jy, which resulted in heavily signal-dominated output maps that did not
 resemble BGPS maps.</li>
 <li>The normalization is tricky.  One of the key goals of the simulations was to
@@ -209,8 +205,7 @@ distributed map.</li>
 <li>The normalizations used in experiment #21, the angular transfer function
 measurement, were selected such that there would be high signal-to-noise at
 all angular scales.  This means that white noise would not be dominant on
-any angular scale, since white noise is equivalent to <span class="formula"><i>α</i> = 0</span>
-.  So
+any angular scale, since white noise is equivalent to <span class="formula"><i>α</i> = 0</span>.  So
 it wasn't crazy to use these ridiculously high-flux maps, but it is not
 feasible to use the same maps for analysis of point sources.  In maps for
 which we're interested in small-angular-scale features (&lt;100&quot;), we want the
@@ -284,9 +279,7 @@ Out[199]: [0.18015364, 0.18674377, -0.016305592, 0.2868295, 0.29759517, -0.00027
 <p>With background apertures:</p>
 <img alt="" src="http://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/annulus_exam_bgapers.png" style="width: 800px;" />
 <p>However, note that the background are computed using the <tt class="docutils literal">mmm.pro</tt>
-sky-background estimation procedure over a range <span class="formula">2<i>r</i></span>
- to <span class="formula">4<i>r</i></span>
-
+sky-background estimation procedure over a range <span class="formula">2<i>r</i></span> to <span class="formula">4<i>r</i></span>
 (i.e., 40-80&quot; and 120-240&quot; radius for the 40&quot; and 120&quot; diameter apertures).</p>
 <p>The numbers shown by ds9 disagree fairly severely with those from bolocat.
 In particular, it appears that the background estimate returned by <tt class="docutils literal">mmm.pro</tt>
@@ -323,15 +316,13 @@ must be an issue of the source brightness still not being calculated correctly):
 <p>I'll have to continue this analysis tomorrow once the full suite of simulations
 has completed, but I strongly suspect that we'll have to recommend strictly
 against using <tt class="docutils literal">FLUX_120</tt> if the background is expected to be <span class="formula"><i>α</i> = 2</span>
-
 distributed.</p>
 <div class="section" id="day-2">
 <h2>Day 2</h2>
 <p>The simulations have partly completed.  After correcting the error with
 convolved point sources vs.  delta functions, I reset the flux distributions to
 be 0.05 to 1.0 Jy for the &quot;faint&quot; distribution and 0.1 to 50.0 Jy for the
-&quot;bright&quot; distribution (both with power-law distributions <span class="formula"><i>α</i> = 2</span>
-).</p>
+&quot;bright&quot; distribution (both with power-law distributions <span class="formula"><i>α</i> = 2</span>).</p>
 <p>The results can be summarized:</p>
 <blockquote>
 <ol class="arabic simple">
@@ -341,7 +332,6 @@ aperture (40&quot;) is reliable (i.e., recovers a flux in the input and
 processed map).</li>
 <li>The recovered flux density has a very high dispersion in the presence of
 high-amplitude power-law flux.  &quot;Very high&quot; = <span class="formula"><i>σ</i>≳1</span>
-
 around a mean of 1.</li>
 <li>There is no evident dependence of the maps on the atmospheric properties.
 Therefore, there's no sense in varying the atmospheric properties in the
@@ -357,8 +347,7 @@ does not affect the recovery, but it does affect the signal-to-noise of the
 recovery <em>measurement</em>.  Please don't ask me to defend this statement; it would
 require another 10 hours of computer time + me time that I really don't want to
 allocate, but I'm confident that it is true.</p>
-<p>The essential conclusion is that, for <span class="formula"><i>α</i> = 2</span>
-, point source recovery
+<p>The essential conclusion is that, for <span class="formula"><i>α</i> = 2</span>, point source recovery
 is only possible if the point source is brighter than the background, which is
 a very intuitive result.  Background annulus subtraction isn't very effective
 at pulling out sources.</p>
@@ -388,8 +377,7 @@ on the right, with faint sources (0.1-1 Jy).</p>
 <img alt="" src="http://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/faint_vs_bright_background.png" style="width: 800px;" />
 <p>It's more helpful to look at that previous image with the source contours
 superposed.  These images really give a nice feel for what it means to have
-point sources subsumed in <span class="formula"><i>α</i> = 2</span>
- background.</p>
+point sources subsumed in <span class="formula"><i>α</i> = 2</span> background.</p>
 <img alt="" src="http://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp5.0E-05_sky-2.0_seed00_peak5.0E-03_smooth_withptsrc_label_compare.png" style="width: 800px;" />
 <img alt="" src="http://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp3.2E-05_sky-2.0_seed00_peak1.0E-03_smooth_withptsrc_label_compare.png" style="width: 800px;" />
 </div>
@@ -409,56 +397,43 @@ point sources subsumed in <span class="formula"><i>α</i> = 2</span>
         <div class="entry-content"> <p>Adopt an effective Bolocam center frequency,  f = 271.1 GHz</p>
 <p>Use Ossenkopf, V. &amp; Henning, Th. 1994, A&amp;A, 291, 943 Table 1. [<a class="reference external" href="http://adsabs.harvard.edu/abs/1994A%26A...291..943O">http://adsabs.harvard.edu/abs/1994A%26A...291..943O</a>]
 Interpolate last two entries (lambda = 1.0 mm and 1.3 mm to f)</p>
-<p>This gives <span class="formula"><i>κ</i> = 0.01166<i>cm</i><sup>2</sup><i>g</i><sup> − 1</sup></span>
- (or round to 0.0117)
+<p>This gives <span class="formula"><i>κ</i> = 0.01166<i>cm</i><sup>2</sup><i>g</i><sup> − 1</sup></span> (or round to 0.0117)
 for gas-to-dust = 100.
 But the slope between these 2 points is only 1.61!</p>
 <p>The points in OH94 table 1 jump around and locally give a variety of
 slopes around 1.8.  A fit to kappa longward of 100 microns
 gives a slope of 1.8.</p>
 <p>Interpolating kappa from 1.00 mm where OH5 gives <span class="formula"><i>κ</i>(1.00) = 0.0137</span>
-
 (for a gas-to-dust ratio = 100) to 271.1 GHz (= 1.1058 mm)
 using a slope of 1.8 gives:</p>
-<p><span class="formula"><i>κ</i> = 0.01143<i>cm</i><sup>2</sup><i>g</i><sup> − 1</sup></span>
-</p>
+<p><span class="formula"><i>κ</i> = 0.01143<i>cm</i><sup>2</sup><i>g</i><sup> − 1</sup></span></p>
 <p>This is the same as the value used by Enoch, so let's adopt it
 (round to 0.0114), but note that this was calculated for 271.1 GHz.</p>
 <p>For the v1.0 data, the BGPS has the following properties:</p>
 <p>effective beam FWHM = 33&quot;</p>
-<p>gaussian beam <span class="formula"><i>σ</i> = 14.01</span>
-&quot;    (= FWHM / <span class="formula"><span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root">(8*ln(2))</span><span class="ignored">)</span></span></span>
-)</p>
-<p>effective beam radius = 19.82&quot;    (= FWHM / <span class="formula"><span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root">(4*ln(2))</span><span class="ignored">)</span></span></span>
-)</p>
+<p>gaussian beam <span class="formula"><i>σ</i> = 14.01</span>&quot;    (= FWHM / <span class="formula"><span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root">(8*ln(2))</span><span class="ignored">)</span></span></span>)</p>
+<p>effective beam radius = 19.82&quot;    (= FWHM / <span class="formula"><span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root">(4*ln(2))</span><span class="ignored">)</span></span></span>)</p>
 <p>This is the radius of a circular top-hat function that has the
 same solid angle as a gaussian.  At a distance of
-D = 1 kpc, this radius corresponds to a length  = <span class="formula">2.97<i>x</i>10<sup>17</sup></span>
- cm.
-The effective beam solid angle is <span class="formula">Ω = 2.902<i>x</i>10<sup> − 8</sup></span>
- sr.</p>
-<p>Adopt a fiducial dust temperature for mass calculations, <span class="formula"><i>T</i><sub><i>d</i></sub> = 20<i>K</i></span>
-</p>
-<p>The total mass per Jy at <span class="formula"><i>D</i><sub><i>kpc</i></sub></span>
- = 1 kpc is given by</p>
+D = 1 kpc, this radius corresponds to a length  = <span class="formula">2.97<i>x</i>10<sup>17</sup></span> cm.
+The effective beam solid angle is <span class="formula">Ω = 2.902<i>x</i>10<sup> − 8</sup></span> sr.</p>
+<p>Adopt a fiducial dust temperature for mass calculations, <span class="formula"><i>T</i><sub><i>d</i></sub> = 20<i>K</i></span></p>
+<p>The total mass per Jy at <span class="formula"><i>D</i><sub><i>kpc</i></sub></span> = 1 kpc is given by</p>
 <div class="formula">
 <i>M</i> = 1.0<i>x</i>10<sup> − 23</sup>*<i>S</i>(<i>Jy</i>)*<i>D</i><sup>2</sup> ⁄ <i>κ</i>*<i>B</i><sub><i>ν</i></sub>(<i>T</i>)
 </div>
 <div class="formula">
  = 14.30*[<i>e</i><sup>13.01 ⁄ <i>T</i>(<i>K</i>) − 1</sup>]*<i>S</i>(<i>Jy</i>)*<i>D</i><span class="scripts"><sub class="script"><i>kpc</i></sub><sup class="script">2</sup></span><i>M</i><sub>⊙</sub>
 </div>
-<p>For <span class="formula"><i>T</i> = 20<i>K</i></span>
-:</p>
+<p>For <span class="formula"><i>T</i> = 20<i>K</i></span>:</p>
 <div class="formula">
 <i>M</i> = 13.07*<i>S</i>(<i>Jy</i>)*<i>D</i><span class="scripts"><sub class="script"><i>kpc</i></sub><sup class="script">2</sup></span><i>M</i><sub>⊙</sub>
 </div>
-<p>This corresponds to a beam-filling column density of <span class="formula"><i>H</i><sub>2</sub></span>
-,</p>
+<p>This corresponds to a beam-filling column density of <span class="formula"><i>H</i><sub>2</sub></span>,</p>
 <div class="formula">
 <i>N</i>(<i>H</i>2) = 2.19<i>e</i> + 22*[<i>e</i><sup>13.01 ⁄ <i>T</i>(<i>K</i>) − 1</sup>]*<i>S</i>(<i>Jy</i>)(<i>cm</i><sup> − 2</sup>)
 </div>
-<p>For <span class="formula"><i>T</i> = 20<i>K</i></span>
-:</p>
+<p>For <span class="formula"><i>T</i> = 20<i>K</i></span>:</p>
 <div class="formula">
 <i>N</i>(<i>H</i>2) = 2.01<i>x</i>10<sup>22</sup>*<i>S</i>(<i>Jy</i>)(<i>cm</i><sup> − 2</sup>)<i>A</i><sub><i>V</i></sub> = 21.1<span class="mathrm"> magnitudes</span><i>Jy</i><sup> − 1</sup>
 </div>

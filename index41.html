@@ -67,29 +67,29 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2015/09/14
+                  <br>
+                  <a href="http://keflavich.github.io/blog/.html"></a>
+              </li>
+              <li class="post">
                   2015/05/07
                   <br>
                   <a href="http://keflavich.github.io/blog/my-python-ipython-vim-debugging-workflow.html">My python + ipython + vim debugging workflow</a>
               </li>
               <li class="post">
+                  2014/11/26
+                  <br>
+                  <a href="http://keflavich.github.io/blog/installing-astrometrynet-in-november-2014.html">Installing astrometry.net in November 2014</a>
+              </li>
+              <li class="post">
+                  2014/06/13
+                  <br>
+                  <a href="http://keflavich.github.io/blog/azimuthal-mass-profiles.html">Azimuthal Mass Profiles</a>
+              </li>
+              <li class="post">
                   2014/02/19
                   <br>
                   <a href="http://keflavich.github.io/blog/python-stack-on-mavericks.html">Python stack on Mavericks</a>
-              </li>
-              <li class="post">
-                  2014/01/16
-                  <br>
-                  <a href="http://keflavich.github.io/blog/w51-mapping-flagging-bad-data.html">W51 Mapping: Flagging bad data</a>
-              </li>
-              <li class="post">
-                  2013/12/18
-                  <br>
-                  <a href="http://keflavich.github.io/blog/regrid-an-image-or-cube-using-casa.html">Regrid an image (or cube) using CASA</a>
-              </li>
-              <li class="post">
-                  2013/12/18
-                  <br>
-                  <a href="http://keflavich.github.io/blog/converting-a-fits-cube-to-a-casa-image.html">Converting a FITS cube to a CASA Image</a>
               </li>
         </ul>
       </li>
@@ -101,6 +101,86 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/l111-observation-notes.html" rel="bookmark" title="Permalink to L111 observation notes">
+                    L111 observation notes</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-12-09T11:40:00"> 2008/12/09 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/SJZ5AakkcMI/AAAAAAAADL4/BV6bqAe26oc/s320/l111_sep05_noptgmdl_fixedoffset.jpg" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/SJZ5ArDzBhI/AAAAAAAADMA/Qa6nxqshl7Y/s320/l111_sep05_rawcsoptg.jpg" />
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/SJZ5Avg041I/AAAAAAAADMI/flj9idr7F54/s320/l111_sep05_ptgapplied.jpg" />
+<p>In L111, the failures noted in the <a class="reference external" href="http://bolocam.blogspot.com/2008/08/pointing-model-failure.html">previous post</a> are specific to
+September 2005. By comparing the pointing model images to the &quot;raw cso
+pointing&quot; and &quot;no pointing model&quot; (the latter still have FAZO/FZAO
+applied, all that has been done to them is aberration/nutation and
+precession correction) it appears that the Sep 05 model is simply wrong.
+I haven't had time to check on W3/4/5 and L033, but presumably they have
+a similar issue. W3/4/5 includes late July 07 and September 06. L033
+includes July 05, June 06, and July 07. I will need to generate pointing
+plots for September 05 and 06, and probably regenerate June 06. I have
+the rest and I think Meredith's models are fine for those dates - they
+certainly don't create recognizable errors in the maps.
+It is possible that my pointing_model.pro has some pointing models (the
+problematic ones) entered incorrectly. It would be nice to get those
+double-checked.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/pointing-model-failure.html" rel="bookmark" title="Permalink to Pointing model failure">
+                    Pointing model failure</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-12-09T11:40:00"> 2008/12/09 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/SJXjh0a_cRI/AAAAAAAADBM/J3qzKAdvAE8/s320/l033_pointingmodel_failure.jpg" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/SJXjiJuyDoI/AAAAAAAADBU/mVcnF0BNdFM/s320/l111_pointingmodel_failure.jpeg" />
+<p>I attempted to map L111, L033, and W3/4/5 with the pointing model
+corrections applied. That was a failure. Two images are attached to
+illustrate the problem - relative pointing is clearly not correct
+(middle of L33, bottom left of L111).
+So.... possibilities:</p>
+<ol class="arabic simple">
+<li>Pointing models are incorrect</li>
+<li>Pointing model signs have been misinterpreted (don't think this one
+is possible based on other graphs)</li>
+<li>Uhh... ideas?</li>
+</ol>
+<p>Next step, I'll use the individual maps with no ptg mdl and find out
+what the offsets should be....</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/deconvolution-vs-not.html" rel="bookmark" title="Permalink to Deconvolution vs. Not">
+                    Deconvolution vs. Not</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-28T19:39:00"> 2008/11/28 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've done some by-eye comparisons of deconvolutions vs no deconvolution.
+The no-deconvolution clearly does better on the bright sources: probably
+the deconvolved beam size is a little bit different from (larger?
+smaller?) the actual source size. Deconvolution does better in putting
+noise from noisy regions into the noisemap and keeping it out of the
+astromap.
+Both might be useful - the deconvolved maps may end up being prettier,
+but the no-deconvolve maps will probably have more reliable fluxes.
+This all probably relies on testing / simulation.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -224,89 +304,6 @@ drizzling algorithm for medianing. It will be a little less efficient
 because it can't take advantage of some 'partial sum' tricks that the
 average can, but it will median over ALL data points, which is an
 advantage.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/massive-upgrades-new-strategy.html" rel="bookmark" title="Permalink to Massive upgrades, new strategy?">
-                    Massive upgrades, new strategy?</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-11-18T04:01:00"> 2008/11/18 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>A few major things today:</p>
-<blockquote>
-<p>#. I renamed 'ts_to_map' to 'drizzle' and made 'ts_to_map' a wrapper
-that will either median combine by scans (if passed the right keywords,
-i.e. tstomapmedian and scans_info). This will reject cosmic rays much
-more effectively than previously.
-#. My extensive test runs on the 'weird' fields completed. Conclusions:</p>
-<blockquote>
-<ul>
-<li><dl class="first docutils">
-<dt>Deconvolution is DEFINITELY responsibly for the weird fuzzy effects</dt>
-<dd><p class="first last">seen esp. in l=33, l=2.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Even a descending iterator is ineffective at alleviating this</dt>
-<dd><p class="first last">problem
-What I still don't understand is WHY the deconvolver is behaving badly
-for some regions. It is extracting peaks that are too high.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Not deconvolving works pretty well, so I'm not really concerned. I'm</dt>
-<dd><p class="first last">resetting the defaults to no deconvolution once my next test is done....</p>
-</dd>
-</dl>
-</li>
-</ul>
-</blockquote>
-<ol class="arabic simple">
-<li>Started up a new test run to compare median stacking with weighted
-average stacking</li>
-</ol>
-</blockquote>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/5x1.html" rel="bookmark" title="Permalink to 5x1?">
-                    5x1?</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-11-17T16:32:00"> 2008/11/17 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>060609_o17 is weird looking. It appears to be TWO 3x1s with an overlap,
-but it's only 1 observation. Any idea what happened?</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/weighting-next-steps.html" rel="bookmark" title="Permalink to Weighting - next steps">
-                    Weighting - next steps</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-11-15T01:04:00"> 2008/11/15 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Idea: 'edge taper' for scans. The scan start/end usually has higher
-noise, so it would be good to downweight those regions slightly.
-Probably only the first/last 5% of each scan should be linearly
-downweighted.
-I'm running a lot of tests on l001 with/without deconvolution, lots of
-iterations, different pca components. They'll be done sometime tomorrow.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

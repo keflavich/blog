@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2014/06/13
+                  <br>
+                  <a href="http://keflavich.github.io/blog/azimuthal-mass-profiles.html">Azimuthal Mass Profiles</a>
+              </li>
+              <li class="post">
                   2013/09/21
                   <br>
                   <a href="http://keflavich.github.io/blog/generating-a-cv-using-the-ads-labs-api.html">Generating a CV using the ADS Labs API</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/bgps-point-source-recovery-experiment-23-results.html">BGPS Point Source Recovery - Experiment 23 results</a>
               </li>
-              <li class="post">
-                  2013/05/16
-                  <br>
-                  <a href="http://keflavich.github.io/blog/bgps-point-source-recovery.html">BGPS Point Source Recovery</a>
-              </li>
         </ul>
       </li>
     
@@ -102,6 +102,23 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles by Adam (keflavich@gmail.com)</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/azimuthal-mass-profiles.html" rel="bookmark" title="Permalink to Azimuthal Mass Profiles">
+                    Azimuthal Mass Profiles</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2014-06-13T09:00:00"> 2014/06/13 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Can we characterize &quot;hub&quot; clumps vs &quot;filament&quot; clumps by examining their
+azimuthal column density profile?  Filaments would have two-peaked structures,
+hubs many-peaked, and spherically symmetric &quot;isolated&quot; clumps would be
+peakless.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -439,8 +456,7 @@ start &amp; end points to see how well I did on different runs.</p>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p><a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> presents a non-lognormal form of the probability distribution
 function of density in turbulence, depending primarily on a parameter
-<span class="formula"><i>T</i></span>
-.  I examine some of its properties here.  All of the equations shown
+<span class="formula"><i>T</i></span>.  I examine some of its properties here.  All of the equations shown
 on this page are implemented in <a class="reference external" href="https://github.com/keflavich/turbulence_pdfs">https://github.com/keflavich/turbulence_pdfs</a>,
 in particular the functions <tt class="docutils literal">moments_theoretical_hopkins</tt> and <tt class="docutils literal">moments</tt> in
 <a class="reference external" href="https://github.com/keflavich/turbulence_pdfs/blob/master/hopkins_pdf.py">hopkins_pdf.py</a>.</p>
@@ -451,10 +467,8 @@ in particular the functions <tt class="docutils literal">moments_theoretical_hop
 <div class="formula">
 <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span><i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i>)<i>d</i>ln<i>ρ</i> ≡ <i>ρ</i><sub>0</sub> = 1
 </div>
-<p><span class="formula"><i>ρ</i><sub>0</sub> = 1</span>
- is the definition used by <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a>.  Part of the goal
-of this document is to generalize to <span class="formula"><i>ρ</i><sub>0</sub> &lt;  &gt; 1</span>
-</p>
+<p><span class="formula"><i>ρ</i><sub>0</sub> = 1</span> is the definition used by <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a>.  Part of the goal
+of this document is to generalize to <span class="formula"><i>ρ</i><sub>0</sub> &lt;  &gt; 1</span></p>
 <p>The most important thing to do is determine the values of the moments of the
 distribution, including the integral corrections for the Dirac Delta function
 component of the PDF.</p>
@@ -475,16 +489,12 @@ component of the PDF.</p>
 <div class="formula">
 <i>λ</i> ≡ <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>S</i><sub>ln<i>ρ</i>, <i>V</i></sub></span><span class="ignored">)/(</span><span class="denominator">2<i>T</i><sup>2</sup></span><span class="ignored">)</span></span>
 </div>
-<p>The ratio <span class="formula"><i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span>
- is needed to ensure self-consistency: the mass
+<p>The ratio <span class="formula"><i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span> is needed to ensure self-consistency: the mass
 PDF must also conserve probability, which means it must be scaled by
-<span class="formula">1 ⁄ <i>ρ</i><sub>0</sub></span>
-.</p>
+<span class="formula">1 ⁄ <i>ρ</i><sub>0</sub></span>.</p>
 <p>These distributions are slightly different than those shown in <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a>.
-The <span class="formula"><i>m</i> = 0</span>
- term in the summation version of the PDF yields a Dirac
-<span class="formula"><i>δ</i></span>
- function in the integral form of the PDF.  To quote Phil:</p>
+The <span class="formula"><i>m</i> = 0</span> term in the summation version of the PDF yields a Dirac
+<span class="formula"><i>δ</i></span> function in the integral form of the PDF.  To quote Phil:</p>
 <pre class="literal-block">
 If you check, the summation expression is exact, and does exactly integrate
 to unity (and properly conserve mass) for any value of T or lambda (with
@@ -502,13 +512,10 @@ the term in u).
 <p>The important moments are the mean and variance of the volume and mass density
 probability distribution and the volume and mass <em>log</em>-density probability
 distribution.</p>
-<p>The definitions used here are <span class="formula"><i>E</i>[<i>ρ</i>] ≡  &lt; <i>ρ</i> &gt; <sub><i>V</i></sub></span>
-, etc.  The
-variance is computed as <span class="formula"><i>V</i>[<i>x</i>] = <i>E</i>[<i>x</i><sup>2</sup>] − <i>E</i>[<i>x</i>]<sup>2</sup></span>
-, which means we'll need to
+<p>The definitions used here are <span class="formula"><i>E</i>[<i>ρ</i>] ≡  &lt; <i>ρ</i> &gt; <sub><i>V</i></sub></span>, etc.  The
+variance is computed as <span class="formula"><i>V</i>[<i>x</i>] = <i>E</i>[<i>x</i><sup>2</sup>] − <i>E</i>[<i>x</i>]<sup>2</sup></span>, which means we'll need to
 compute the moments of various combinations of variables.</p>
-<p>Also, <span class="formula"><i>S</i><sub>ln<i>ρ</i>, <i>V</i></sub> ≡ <i>V</i>[ln<i>ρ</i><sub><i>V</i></sub>]</span>
-</p>
+<p>Also, <span class="formula"><i>S</i><sub>ln<i>ρ</i>, <i>V</i></sub> ≡ <i>V</i>[ln<i>ρ</i><sub><i>V</i></sub>]</span></p>
 <div class="formula">
  &lt; <i>ρ</i> &gt; <sub><i>V</i></sub> ≡ <i>ρ</i><sub>0</sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span><i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i>
 </div>
@@ -531,11 +538,8 @@ compute the moments of various combinations of variables.</p>
  &lt; ln<sup>2</sup><i>ρ</i> &gt; <sub><i>M</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span>(ln<i>ρ</i>)<sup>2</sup><i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i>
 </div>
 <p>In the moment equations, only the input to the PDF is scaled by a mean density
-<span class="formula"><i>ρ</i><sub>0</sub></span>
-; the &quot;weighting factors&quot; for the expectation value are not
-(i.e., we are measuring <span class="formula"><i>E</i>[<i>ρ</i>]</span>
-, not <span class="formula"><i>E</i>[<i>ρ</i> ⁄ <i>rho</i><sub>0</sub>]</span>
-).</p>
+<span class="formula"><i>ρ</i><sub>0</sub></span>; the &quot;weighting factors&quot; for the expectation value are not
+(i.e., we are measuring <span class="formula"><i>E</i>[<i>ρ</i>]</span>, not <span class="formula"><i>E</i>[<i>ρ</i> ⁄ <i>rho</i><sub>0</sub>]</span>).</p>
 </div>
 <div class="section" id="delta-terms">
 <h3>Delta terms</h3>
@@ -553,12 +557,8 @@ means; the variances are more complicated.</p>
 <div class="formula">
  &lt; ln<i>ρ</i> &gt; <sub><i>M</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span>ln<i>ρ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>))<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>d</i>ln<i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>
 </div>
-<p>Substitution: <span class="formula"><i>v</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span></span>
-,
-<span class="formula"><i>dv</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator">1</span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span><i>d</i>ln<i>ρ</i></span>
-, <span class="formula"><i>ρ</i> = <i>ρ</i><sub>0</sub><i>e</i><sup><i>v</i>*<i>T</i></sup></span>
-, <span class="formula">ln<i>ρ</i> = <i>v</i><i>T</i> + ln<i>ρ</i><sub>0</sub></span>
-</p>
+<p>Substitution: <span class="formula"><i>v</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span></span>,
+<span class="formula"><i>dv</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator">1</span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span><i>d</i>ln<i>ρ</i></span>, <span class="formula"><i>ρ</i> = <i>ρ</i><sub>0</sub><i>e</i><sup><i>v</i>*<i>T</i></sup></span>, <span class="formula">ln<i>ρ</i> = <i>v</i><i>T</i> + ln<i>ρ</i><sub>0</sub></span></p>
 <div class="formula">
  &lt; <i>ρ</i> &gt; <sub><i>V</i><i>δ</i></sub> ≡ <i>ρ</i><sub>0</sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span><i>ρ</i><sub>0</sub><i>e</i><sup><i>vT</i></sup><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>v</i>)<i>d</i><i>v</i>
 </div>
@@ -597,8 +597,7 @@ means; the variances are more complicated.</p>
 <div class="formula">
  &lt; ln<sup>2</sup><i>ρ</i> &gt; <sub><i>V</i><i>δ</i></sub> = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + ln<i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup><i>e</i><sup> − <i>λ</i></sup>
 </div>
-<p>Using <span class="formula"><i>ρ</i><sub>0</sub> = 1</span>
- as defined in <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> simplifies all of these a great deal.</p>
+<p>Using <span class="formula"><i>ρ</i><sub>0</sub> = 1</span> as defined in <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> simplifies all of these a great deal.</p>
 </div>
 <div class="section" id="pdf-integrals">
 <h3>PDF Integrals</h3>
@@ -613,12 +612,9 @@ means; the variances are more complicated.</p>
 <div class="formula">
 <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit">0</sub></span><i>x</i><sup>4</sup><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>L</i>)</sup><i>dx</i> = 16<i>L</i><sup>3</sup>(<i>L</i> + 2)*<i>e</i><sup><i>L</i></sup>
 </div>
-<p>We use <span class="formula"><i>L</i></span>
- instead of <span class="formula"><i>λ</i></span>
- in these equations because it is often substituted in later equations.</p>
+<p>We use <span class="formula"><i>L</i></span> instead of <span class="formula"><i>λ</i></span> in these equations because it is often substituted in later equations.</p>
 <div class="section" id="expectation-value-of-the-volume-weighted-density-e-rho">
-<h4>Expectation Value of the Volume-Weighted Density <span class="formula"><i>E</i>[<i>ρ</i>]</span>
-</h4>
+<h4>Expectation Value of the Volume-Weighted Density <span class="formula"><i>E</i>[<i>ρ</i>]</span></h4>
 <div class="formula">
 <i>E</i>[<i>ρ</i>] ≡ <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><i>ρ</i><i>P</i><sub><i>v</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i> = <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><i>ρ</i><span class="symbol">[</span><i>I</i><sub>1</sub>(2<span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><i>λ</i><i>u</i></span><span class="ignored">)</span></span>)<i>e</i><sup> − <i>λ</i> − <i>u</i></sup><span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator"><i>u</i></span><span class="ignored">)</span></span></span><span class="ignored">)</span></span> + <i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<span class="symbol">]</span><i>du</i>
 </div>
@@ -626,9 +622,7 @@ means; the variances are more complicated.</p>
 <div class="formula">
 <i>x</i> = 2<span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><i>λ</i><i>u</i></span><span class="ignored">)</span></span>
 </div>
-<p>which gives us <span class="formula"><i>ρ</i></span>
- in terms of <span class="formula"><i>x</i></span>
-:</p>
+<p>which gives us <span class="formula"><i>ρ</i></span> in terms of <span class="formula"><i>x</i></span>:</p>
 <div class="formula">
 <i>ρ</i> = <i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
 </div>
@@ -660,8 +654,7 @@ above.</p>
 <p>The same general approach can be followed for all expectation values, but we'll skip the detailed algebra.</p>
 </div>
 <div class="section" id="variance-of-the-volume-weighted-density-v-rho-s-ln-rho-v">
-<h4>Variance of the Volume-Weighted Density <span class="formula"><i>V</i>[<i>ρ</i>] = <i>S</i><sub>ln<i>ρ</i>, <i>V</i></sub></span>
-</h4>
+<h4>Variance of the Volume-Weighted Density <span class="formula"><i>V</i>[<i>ρ</i>] = <i>S</i><sub>ln<i>ρ</i>, <i>V</i></sub></span></h4>
 <div class="formula">
 <i>V</i>[<i>ρ</i>] = <i>E</i>[<i>ρ</i><sup>2</sup>] − <i>E</i>[<i>ρ</i>]<sup>2</sup> = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">1 + 3<i>T</i> + 2<i>T</i><sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> − 1<span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
 </div>
@@ -671,15 +664,12 @@ above.</p>
 </div>
 </div>
 <div class="section" id="expectation-value-of-the-mass-weighted-density-e-m-rho">
-<h4>Expectation Value of the Mass-Weighted Density <span class="formula"><i>E</i><sub><i>M</i></sub>[<i>ρ</i>]</span>
-</h4>
-<p>Start from halfway through <span class="formula"><i>E</i>[<i>ρ</i>]</span>
-, simply adding a factor of 2 in the exponent:</p>
+<h4>Expectation Value of the Mass-Weighted Density <span class="formula"><i>E</i><sub><i>M</i></sub>[<i>ρ</i>]</span></h4>
+<p>Start from halfway through <span class="formula"><i>E</i>[<i>ρ</i>]</span>, simply adding a factor of 2 in the exponent:</p>
 <div class="formula">
 <i>E</i><sub><i>M</i></sub>[<i>ρ</i>] = <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>2<i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>) − <i>λ</i></sup><span class="symbol">]</span><i>dx</i> + <i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i>(<i>T</i> − 1)</span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
 </div>
-<p>Follow the same math, with <span class="formula"><i>L</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + 2<i>T</i></span><span class="ignored">)</span></span></span>
-</p>
+<p>Follow the same math, with <span class="formula"><i>L</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + 2<i>T</i></span><span class="ignored">)</span></span></span></p>
 <div class="formula">
  = <i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <i>λ</i> + <span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>(<i>e</i><sup><i>L</i></sup> − 1) + exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i>(<i>T</i> − 1)</span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
 </div>
@@ -690,8 +680,7 @@ above.</p>
 <i>E</i><sub><i>M</i></sub>[<i>ρ</i>] = <i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">1 + 3<i>T</i> + 2<i>T</i><sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> − exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i> − 1</span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> + exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i> − 1</span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
 </div>
 <p>The right 2 terms cancel, yielding the value shown in Equation 7 of <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a>
-scaled by <span class="formula"><i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span></span>
-.  However, the right-most term is the
+scaled by <span class="formula"><i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span></span>.  However, the right-most term is the
 correction factor from the Dirac Delta term needed to correct any
 numerical computation of the mass-weighted density.</p>
 <div class="formula">
@@ -702,8 +691,7 @@ numerical computation of the mass-weighted density.</p>
 </div>
 </div>
 <div class="section" id="expectation-value-of-the-mass-weighted-density-squared-e-m-rho-2">
-<h4>Expectation Value of the Mass-Weighted Density Squared <span class="formula"><i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>]</span>
-</h4>
+<h4>Expectation Value of the Mass-Weighted Density Squared <span class="formula"><i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>]</span></h4>
 <div class="formula">
 <i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>] = <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><i>ρ</i><sup>2</sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> + <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><i>ρ</i><sup>2</sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<i>du</i>
 </div>
@@ -727,19 +715,15 @@ numerical computation of the mass-weighted density.</p>
 </div>
 </div>
 <div class="section" id="variance-of-the-mass-weighted-density-v-m-rho-e-m-rho-2-e-m-rho-2">
-<h4>Variance of the Mass-Weighted Density <span class="formula"><i>V</i><sub><i>M</i></sub>[<i>ρ</i>] = <i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>] − <i>E</i><sub><i>M</i></sub>[<i>ρ</i>]<sup>2</sup></span>
-</h4>
-<p>Since correction factors are given for <span class="formula"><i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>]</span>
- and
-<span class="formula"><i>E</i><sub><i>M</i></sub>[<i>ρ</i>]</span>
-, they are not included separately here:</p>
+<h4>Variance of the Mass-Weighted Density <span class="formula"><i>V</i><sub><i>M</i></sub>[<i>ρ</i>] = <i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>] − <i>E</i><sub><i>M</i></sub>[<i>ρ</i>]<sup>2</sup></span></h4>
+<p>Since correction factors are given for <span class="formula"><i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>]</span> and
+<span class="formula"><i>E</i><sub><i>M</i></sub>[<i>ρ</i>]</span>, they are not included separately here:</p>
 <div class="formula">
 <i>V</i><sub><i>M</i></sub>[<i>ρ</i>] = <i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>] − <i>E</i><sub><i>M</i></sub>[<i>ρ</i>]<sup>2</sup> = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">6<i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">3<i>T</i><sup>2</sup> + 4<i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span> − exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator">4<i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">1 + 3<i>T</i> + 2<i>T</i><sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
 </div>
 </div>
 <div class="section" id="expectation-value-of-the-volume-weighted-log-density-e-ln-rho">
-<h4>Expectation Value of the Volume-Weighted Log Density <span class="formula"><i>E</i>[ln<i>ρ</i>]</span>
-</h4>
+<h4>Expectation Value of the Volume-Weighted Log Density <span class="formula"><i>E</i>[ln<i>ρ</i>]</span></h4>
 <div class="formula">
 <i>E</i>[ln<i>ρ</i>] = <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span>ln<i>ρ</i><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> + <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span>ln<i>ρ</i><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<i>du</i>
 </div>
@@ -766,8 +750,7 @@ numerical computation of the mass-weighted density.</p>
 </div>
 </div>
 <div class="section" id="expectation-value-of-the-mass-weighted-log-density-e-m-ln-rho">
-<h4>Expectation Value of the Mass-Weighted Log Density <span class="formula"><i>E</i><sub><i>M</i></sub>[ln<i>ρ</i>]</span>
-</h4>
+<h4>Expectation Value of the Mass-Weighted Log Density <span class="formula"><i>E</i><sub><i>M</i></sub>[ln<i>ρ</i>]</span></h4>
 <div class="formula">
 <i>E</i><sub><i>M</i></sub>[ln<i>ρ</i>] = <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span>ln<i>ρ</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> + <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span>ln<i>ρ</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<i>du</i>
 </div>
@@ -801,8 +784,7 @@ numerical computation of the mass-weighted density.</p>
 </div>
 </div>
 <div class="section" id="expectation-value-of-the-mass-weighted-log-density-squared-e-m-ln-2-rho">
-<h4>Expectation Value of the Mass-Weighted Log Density Squared <span class="formula"><i>E</i><sub><i>M</i></sub>[ln<sup>2</sup><i>ρ</i>]</span>
-</h4>
+<h4>Expectation Value of the Mass-Weighted Log Density Squared <span class="formula"><i>E</i><sub><i>M</i></sub>[ln<sup>2</sup><i>ρ</i>]</span></h4>
 <div class="formula">
 <i>E</i><sub><i>M</i></sub>[ln<sup>2</sup><i>ρ</i>] = <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span>(ln<i>ρ</i>)<sup>2</sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> + <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span>(ln<i>ρ</i>)<sup>2</sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<i>du</i>
 </div>
@@ -828,8 +810,7 @@ numerical computation of the mass-weighted density.</p>
 <div class="formula">
 <i>E</i><sub><i>left</i></sub>[ln<sup>2</sup><i>ρ</i>] = <i>Q</i><sup>2</sup>(1 − <i>e</i><sup> − <i>λ</i> ⁄ (1 + <i>T</i>)</sup>) − 2<i>Q</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + 2<span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
 </div>
-<p>Add back the <span class="formula"><i>δ</i></span>
- termG</p>
+<p>Add back the <span class="formula"><i>δ</i></span> termG</p>
 <div class="formula">
 <i>E</i><sub><i>M</i></sub>[ln<sup>2</sup><i>ρ</i>] = <i>Q</i><sup>2</sup> − 2<i>Q</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + 2<span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
 </div>
@@ -859,8 +840,7 @@ numerical computation of the mass-weighted density.</p>
 <div class="formula">
  = <span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span>
 </div>
-<p><em>independent</em> of <span class="formula"><i>ρ</i><sub>0</sub></span>
-.</p>
+<p><em>independent</em> of <span class="formula"><i>ρ</i><sub>0</sub></span>.</p>
 <div class="section" id="properties-of-the-hopkins-pdf">
 <h5>Properties of the Hopkins PDF</h5>
 <p>I began this investigation in order to find out whether a different parameter,
@@ -870,42 +850,26 @@ and the volume-averaged density of some clouds.</p>
 <p>I naively expected that, in compressive turbulence, more of the mass will be
 concentrated at higher density, which should drive up the mass-weighted mean
 density.</p>
-<p><a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> showed that <span class="formula"><i>T</i> ~ ℳ<sub><i>C</i></sub></span>
-.  If this is taken on
-face value, without recognizing the relation between <span class="formula"><i>T</i></span>
- and
-<span class="formula"><i>σ</i></span>
-, it means that for <em>fixed</em> <span class="formula"><i>σ</i></span>
-,
-<span class="formula"> &lt; <i>ρ</i> &gt; <sub><i>M</i></sub> ∝ <i>e</i><sup> − <i>T</i><sup>2</sup></sup></span>
-.</p>
-<p>This figure shows the relation of the various moments and <span class="formula"><i>T</i></span>
-.  The plots
+<p><a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> showed that <span class="formula"><i>T</i> ~ ℳ<sub><i>C</i></sub></span>.  If this is taken on
+face value, without recognizing the relation between <span class="formula"><i>T</i></span> and
+<span class="formula"><i>σ</i></span>, it means that for <em>fixed</em> <span class="formula"><i>σ</i></span>,
+<span class="formula"> &lt; <i>ρ</i> &gt; <sub><i>M</i></sub> ∝ <i>e</i><sup> − <i>T</i><sup>2</sup></sup></span>.</p>
+<p>This figure shows the relation of the various moments and <span class="formula"><i>T</i></span>.  The plots
 show both the &quot;theoretical&quot; result (i.e., doing the integral by hand) and the
 numerical result with 50,000 data points plus a correction for the
-<span class="formula"><i>δ</i></span>
- terms; the agreement is essentially perfect excepting some
+<span class="formula"><i>δ</i></span> terms; the agreement is essentially perfect excepting some
 numerical noise (the only visible discrepancy is for a perfect lognormal at
-high <span class="formula"><i>σ</i><sub><i>V</i></sub></span>
-):</p>
+high <span class="formula"><i>σ</i><sub><i>V</i></sub></span>):</p>
 <img alt="" src="http://keflavich.github.io/blog/images/rho1_varyT_colorSigma.png" style="width: 800px;" />
 <p>However, <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> also found that simulations generally produced
-<span class="formula"><i>T</i> ~ 0.1<i>σ</i><span class="scripts"><sup class="script">2</sup><sub class="script"><i>s</i>, <i>M</i></sub></span></span>
- (though a relation of the form <span class="formula"><i>T</i> ~ 0.25ln(1 + 0.25<i>σ</i><span class="scripts"><sup class="script">4</sup><sub class="script"><i>s</i>, <i>M</i></sub></span>)</span>
- is also a good fit).</p>
+<span class="formula"><i>T</i> ~ 0.1<i>σ</i><span class="scripts"><sup class="script">2</sup><sub class="script"><i>s</i>, <i>M</i></sub></span></span> (though a relation of the form <span class="formula"><i>T</i> ~ 0.25ln(1 + 0.25<i>σ</i><span class="scripts"><sup class="script">4</sup><sub class="script"><i>s</i>, <i>M</i></sub></span>)</span> is also a good fit).</p>
 <p>If you use the simpler of these relations, the expected relationship (mean mass
 increasing with increasing &quot;compressiveness&quot;) is recovered.  However, it comes
-with an increasing <span class="formula"><i>σ</i><sub><i>s</i></sub></span>
-.  In these plots, half are labeled with
-<span class="formula"><i>σ</i></span>
- and the others are labeled with <span class="formula"><i>T</i></span>
-, though the two are
-equivalent.  The highest <span class="formula"><i>σ</i><sub><i>s</i></sub></span>
- observed in any of the simulations
-shown in <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> was about <span class="formula"><i>σ</i><sub><i>s</i></sub> = 4</span>
- (marked with a black
-square below), so the maximum <span class="formula"><i>ρ</i><sub><i>M</i></sub> ⁄ <i>ρ</i><sub><i>V</i></sub> ~ 10<sup>2</sup></span>
-.</p>
+with an increasing <span class="formula"><i>σ</i><sub><i>s</i></sub></span>.  In these plots, half are labeled with
+<span class="formula"><i>σ</i></span> and the others are labeled with <span class="formula"><i>T</i></span>, though the two are
+equivalent.  The highest <span class="formula"><i>σ</i><sub><i>s</i></sub></span> observed in any of the simulations
+shown in <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> was about <span class="formula"><i>σ</i><sub><i>s</i></sub> = 4</span> (marked with a black
+square below), so the maximum <span class="formula"><i>ρ</i><sub><i>M</i></sub> ⁄ <i>ρ</i><sub><i>V</i></sub> ~ 10<sup>2</sup></span>.</p>
 <img alt="" src="http://keflavich.github.io/blog/images/TSigma.png" style="width: 800px;" />
 </div>
 </div>
@@ -987,21 +951,17 @@ Bolocat:</p>
 capability of recovering accurate flux density measurements from a realistic
 sky using bolocat.</p>
 <p>However, the above figures show a simulation only for one set of parameters,
-with <span class="formula"><i>α</i> = 1</span>
- in the power-law flux distribution, which unfortunately
+with <span class="formula"><i>α</i> = 1</span> in the power-law flux distribution, which unfortunately
 is not realistic according to &quot;Figure 8&quot;:</p>
 <img alt="" src="https://raw.github.com/keflavich/bgpsv2/master/figures/l030_higal_bgps_powerspec_compare.png?login=keflavich&amp;token=fa363ee3e28903c751c2a3c9f2b318a0" style="width: 800px;" />
 <p>So I've started up a new experiment, experiment #23, to examine this problem.</p>
 <p>The problem has a few layers:</p>
 <ol class="arabic simple">
-<li>The reason I used <span class="formula"><i>α</i> = 1</span>
- is that it looks much like a realistic
+<li>The reason I used <span class="formula"><i>α</i> = 1</span> is that it looks much like a realistic
 BGPS map after processing, in the sense that most of the field is empty
 but there are a few hundred sources in the map.  However, <span class="formula"><i>α</i> = 1</span>
-
 is not a realistic representation of the measured power spectra.</li>
-<li><span class="formula"><i>α</i> = 2</span>
- maps with the previous normalization had a peak value of
+<li><span class="formula"><i>α</i> = 2</span> maps with the previous normalization had a peak value of
 18 Jy, which resulted in heavily signal-dominated output maps that did not
 resemble BGPS maps.</li>
 <li>The normalization is tricky.  One of the key goals of the simulations was to
@@ -1022,8 +982,7 @@ distributed map.</li>
 <li>The normalizations used in experiment #21, the angular transfer function
 measurement, were selected such that there would be high signal-to-noise at
 all angular scales.  This means that white noise would not be dominant on
-any angular scale, since white noise is equivalent to <span class="formula"><i>α</i> = 0</span>
-.  So
+any angular scale, since white noise is equivalent to <span class="formula"><i>α</i> = 0</span>.  So
 it wasn't crazy to use these ridiculously high-flux maps, but it is not
 feasible to use the same maps for analysis of point sources.  In maps for
 which we're interested in small-angular-scale features (&lt;100&quot;), we want the
@@ -1097,9 +1056,7 @@ Out[199]: [0.18015364, 0.18674377, -0.016305592, 0.2868295, 0.29759517, -0.00027
 <p>With background apertures:</p>
 <img alt="" src="http://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/annulus_exam_bgapers.png" style="width: 800px;" />
 <p>However, note that the background are computed using the <tt class="docutils literal">mmm.pro</tt>
-sky-background estimation procedure over a range <span class="formula">2<i>r</i></span>
- to <span class="formula">4<i>r</i></span>
-
+sky-background estimation procedure over a range <span class="formula">2<i>r</i></span> to <span class="formula">4<i>r</i></span>
 (i.e., 40-80&quot; and 120-240&quot; radius for the 40&quot; and 120&quot; diameter apertures).</p>
 <p>The numbers shown by ds9 disagree fairly severely with those from bolocat.
 In particular, it appears that the background estimate returned by <tt class="docutils literal">mmm.pro</tt>
@@ -1136,15 +1093,13 @@ must be an issue of the source brightness still not being calculated correctly):
 <p>I'll have to continue this analysis tomorrow once the full suite of simulations
 has completed, but I strongly suspect that we'll have to recommend strictly
 against using <tt class="docutils literal">FLUX_120</tt> if the background is expected to be <span class="formula"><i>α</i> = 2</span>
-
 distributed.</p>
 <div class="section" id="day-2">
 <h2>Day 2</h2>
 <p>The simulations have partly completed.  After correcting the error with
 convolved point sources vs.  delta functions, I reset the flux distributions to
 be 0.05 to 1.0 Jy for the &quot;faint&quot; distribution and 0.1 to 50.0 Jy for the
-&quot;bright&quot; distribution (both with power-law distributions <span class="formula"><i>α</i> = 2</span>
-).</p>
+&quot;bright&quot; distribution (both with power-law distributions <span class="formula"><i>α</i> = 2</span>).</p>
 <p>The results can be summarized:</p>
 <blockquote>
 <ol class="arabic simple">
@@ -1154,7 +1109,6 @@ aperture (40&quot;) is reliable (i.e., recovers a flux in the input and
 processed map).</li>
 <li>The recovered flux density has a very high dispersion in the presence of
 high-amplitude power-law flux.  &quot;Very high&quot; = <span class="formula"><i>σ</i>≳1</span>
-
 around a mean of 1.</li>
 <li>There is no evident dependence of the maps on the atmospheric properties.
 Therefore, there's no sense in varying the atmospheric properties in the
@@ -1170,8 +1124,7 @@ does not affect the recovery, but it does affect the signal-to-noise of the
 recovery <em>measurement</em>.  Please don't ask me to defend this statement; it would
 require another 10 hours of computer time + me time that I really don't want to
 allocate, but I'm confident that it is true.</p>
-<p>The essential conclusion is that, for <span class="formula"><i>α</i> = 2</span>
-, point source recovery
+<p>The essential conclusion is that, for <span class="formula"><i>α</i> = 2</span>, point source recovery
 is only possible if the point source is brighter than the background, which is
 a very intuitive result.  Background annulus subtraction isn't very effective
 at pulling out sources.</p>
@@ -1201,8 +1154,7 @@ on the right, with faint sources (0.1-1 Jy).</p>
 <img alt="" src="http://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/faint_vs_bright_background.png" style="width: 800px;" />
 <p>It's more helpful to look at that previous image with the source contours
 superposed.  These images really give a nice feel for what it means to have
-point sources subsumed in <span class="formula"><i>α</i> = 2</span>
- background.</p>
+point sources subsumed in <span class="formula"><i>α</i> = 2</span> background.</p>
 <img alt="" src="http://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp5.0E-05_sky-2.0_seed00_peak5.0E-03_smooth_withptsrc_label_compare.png" style="width: 800px;" />
 <img alt="" src="http://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp3.2E-05_sky-2.0_seed00_peak1.0E-03_smooth_withptsrc_label_compare.png" style="width: 800px;" />
 </div>
@@ -1250,56 +1202,43 @@ point sources subsumed in <span class="formula"><i>α</i> = 2</span>
         <div class="entry-content"> <p>Adopt an effective Bolocam center frequency,  f = 271.1 GHz</p>
 <p>Use Ossenkopf, V. &amp; Henning, Th. 1994, A&amp;A, 291, 943 Table 1. [<a class="reference external" href="http://adsabs.harvard.edu/abs/1994A%26A...291..943O">http://adsabs.harvard.edu/abs/1994A%26A...291..943O</a>]
 Interpolate last two entries (lambda = 1.0 mm and 1.3 mm to f)</p>
-<p>This gives <span class="formula"><i>κ</i> = 0.01166<i>cm</i><sup>2</sup><i>g</i><sup> − 1</sup></span>
- (or round to 0.0117)
+<p>This gives <span class="formula"><i>κ</i> = 0.01166<i>cm</i><sup>2</sup><i>g</i><sup> − 1</sup></span> (or round to 0.0117)
 for gas-to-dust = 100.
 But the slope between these 2 points is only 1.61!</p>
 <p>The points in OH94 table 1 jump around and locally give a variety of
 slopes around 1.8.  A fit to kappa longward of 100 microns
 gives a slope of 1.8.</p>
 <p>Interpolating kappa from 1.00 mm where OH5 gives <span class="formula"><i>κ</i>(1.00) = 0.0137</span>
-
 (for a gas-to-dust ratio = 100) to 271.1 GHz (= 1.1058 mm)
 using a slope of 1.8 gives:</p>
-<p><span class="formula"><i>κ</i> = 0.01143<i>cm</i><sup>2</sup><i>g</i><sup> − 1</sup></span>
-</p>
+<p><span class="formula"><i>κ</i> = 0.01143<i>cm</i><sup>2</sup><i>g</i><sup> − 1</sup></span></p>
 <p>This is the same as the value used by Enoch, so let's adopt it
 (round to 0.0114), but note that this was calculated for 271.1 GHz.</p>
 <p>For the v1.0 data, the BGPS has the following properties:</p>
 <p>effective beam FWHM = 33&quot;</p>
-<p>gaussian beam <span class="formula"><i>σ</i> = 14.01</span>
-&quot;    (= FWHM / <span class="formula"><span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root">(8*ln(2))</span><span class="ignored">)</span></span></span>
-)</p>
-<p>effective beam radius = 19.82&quot;    (= FWHM / <span class="formula"><span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root">(4*ln(2))</span><span class="ignored">)</span></span></span>
-)</p>
+<p>gaussian beam <span class="formula"><i>σ</i> = 14.01</span>&quot;    (= FWHM / <span class="formula"><span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root">(8*ln(2))</span><span class="ignored">)</span></span></span>)</p>
+<p>effective beam radius = 19.82&quot;    (= FWHM / <span class="formula"><span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root">(4*ln(2))</span><span class="ignored">)</span></span></span>)</p>
 <p>This is the radius of a circular top-hat function that has the
 same solid angle as a gaussian.  At a distance of
-D = 1 kpc, this radius corresponds to a length  = <span class="formula">2.97<i>x</i>10<sup>17</sup></span>
- cm.
-The effective beam solid angle is <span class="formula">Ω = 2.902<i>x</i>10<sup> − 8</sup></span>
- sr.</p>
-<p>Adopt a fiducial dust temperature for mass calculations, <span class="formula"><i>T</i><sub><i>d</i></sub> = 20<i>K</i></span>
-</p>
-<p>The total mass per Jy at <span class="formula"><i>D</i><sub><i>kpc</i></sub></span>
- = 1 kpc is given by</p>
+D = 1 kpc, this radius corresponds to a length  = <span class="formula">2.97<i>x</i>10<sup>17</sup></span> cm.
+The effective beam solid angle is <span class="formula">Ω = 2.902<i>x</i>10<sup> − 8</sup></span> sr.</p>
+<p>Adopt a fiducial dust temperature for mass calculations, <span class="formula"><i>T</i><sub><i>d</i></sub> = 20<i>K</i></span></p>
+<p>The total mass per Jy at <span class="formula"><i>D</i><sub><i>kpc</i></sub></span> = 1 kpc is given by</p>
 <div class="formula">
 <i>M</i> = 1.0<i>x</i>10<sup> − 23</sup>*<i>S</i>(<i>Jy</i>)*<i>D</i><sup>2</sup> ⁄ <i>κ</i>*<i>B</i><sub><i>ν</i></sub>(<i>T</i>)
 </div>
 <div class="formula">
  = 14.30*[<i>e</i><sup>13.01 ⁄ <i>T</i>(<i>K</i>) − 1</sup>]*<i>S</i>(<i>Jy</i>)*<i>D</i><span class="scripts"><sub class="script"><i>kpc</i></sub><sup class="script">2</sup></span><i>M</i><sub>⊙</sub>
 </div>
-<p>For <span class="formula"><i>T</i> = 20<i>K</i></span>
-:</p>
+<p>For <span class="formula"><i>T</i> = 20<i>K</i></span>:</p>
 <div class="formula">
 <i>M</i> = 13.07*<i>S</i>(<i>Jy</i>)*<i>D</i><span class="scripts"><sub class="script"><i>kpc</i></sub><sup class="script">2</sup></span><i>M</i><sub>⊙</sub>
 </div>
-<p>This corresponds to a beam-filling column density of <span class="formula"><i>H</i><sub>2</sub></span>
-,</p>
+<p>This corresponds to a beam-filling column density of <span class="formula"><i>H</i><sub>2</sub></span>,</p>
 <div class="formula">
 <i>N</i>(<i>H</i>2) = 2.19<i>e</i> + 22*[<i>e</i><sup>13.01 ⁄ <i>T</i>(<i>K</i>) − 1</sup>]*<i>S</i>(<i>Jy</i>)(<i>cm</i><sup> − 2</sup>)
 </div>
-<p>For <span class="formula"><i>T</i> = 20<i>K</i></span>
-:</p>
+<p>For <span class="formula"><i>T</i> = 20<i>K</i></span>:</p>
 <div class="formula">
 <i>N</i>(<i>H</i>2) = 2.01<i>x</i>10<sup>22</sup>*<i>S</i>(<i>Jy</i>)(<i>cm</i><sup> − 2</sup>)<i>A</i><sub><i>V</i></sub> = 21.1<span class="mathrm"> magnitudes</span><i>Jy</i><sup> − 1</sup>
 </div>
@@ -1359,13 +1298,11 @@ fitting works now. Here's an example:</p>
 <div class="formula">
 <i>c</i><sub><i>s</i></sub> = <span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root">2<i>k</i><i>T</i> ⁄ <i>m</i></span><span class="ignored">)</span></span>
 </div>
-<p>Setting <span class="formula"><i>v</i><sub><i>esc</i></sub> = <i>c</i><sub><i>s</i></sub></span>
- yields the mass scale:</p>
+<p>Setting <span class="formula"><i>v</i><sub><i>esc</i></sub> = <i>c</i><sub><i>s</i></sub></span> yields the mass scale:</p>
 <div class="formula">
 <i>M</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>R</i></span><span class="ignored">)/(</span><span class="denominator"><i>G</i></span><span class="ignored">)</span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>k</i><i>T</i></span><span class="ignored">)/(</span><span class="denominator"><i>m</i></span><span class="ignored">)</span></span> = <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>R</i><i>c</i><span class="scripts"><sup class="script">2</sup><sub class="script"><i>s</i></sub></span></span><span class="ignored">)/(</span><span class="denominator"><i>G</i></span><span class="ignored">)</span></span>
 </div>
-<p>Using <span class="formula"><i>ρ</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>M</i></span><span class="ignored">)/(</span><span class="denominator">4 ⁄ 3<i>π</i><i>R</i><sup>3</sup></span><span class="ignored">)</span></span></span>
-,</p>
+<p>Using <span class="formula"><i>ρ</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>M</i></span><span class="ignored">)/(</span><span class="denominator">4 ⁄ 3<i>π</i><i>R</i><sup>3</sup></span><span class="ignored">)</span></span></span>,</p>
 <div class="formula">
 <i>R</i> = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>M</i></span><span class="ignored">)/(</span><span class="denominator">4 ⁄ 3<i>π</i><i>ρ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>1 ⁄ 3</sup>
 </div>
@@ -1377,15 +1314,12 @@ fitting works now. Here's an example:</p>
 <div class="formula">
 <i>M</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>c</i><span class="scripts"><sup class="script">3</sup><sub class="script"><i>s</i></sub></span></span><span class="ignored">)/(</span><span class="denominator"><i>G</i><sup>3 ⁄ 2</sup><i>ρ</i><sup>1 ⁄ 2</sup></span><span class="ignored">)</span></span>
 </div>
-<p>where <span class="formula"><i>M</i></span>
- is now <span class="formula"><i>M</i><sub><i>J</i></sub></span>
-, the Jeans mass. In terms of
+<p>where <span class="formula"><i>M</i></span> is now <span class="formula"><i>M</i><sub><i>J</i></sub></span>, the Jeans mass. In terms of
 temperature, this is:</p>
 <div class="formula">
 <i>M</i><sub><i>J</i></sub> = <span class="fraction"><span class="ignored">(</span><span class="numerator">(2<i>k</i><i>T</i>)<sup>3 ⁄ 2</sup></span><span class="ignored">)/(</span><span class="denominator">(<i>m</i><i>G</i>)<sup>3 ⁄ 2</sup><i>ρ</i><sup>1 ⁄ 2</sup></span><span class="ignored">)</span></span>
 </div>
-<p>where <span class="formula"><i>m</i></span>
- is the particle mass, usually assumed to be 2.8 amu. (actually,
+<p>where <span class="formula"><i>m</i></span> is the particle mass, usually assumed to be 2.8 amu. (actually,
 2.8 is for mass per H$_2$ particle, it should really be 2.3 amu)</p>
 <p>In[1]:</p>
 <div class="highlight"><pre><span class="c"># astropy imports</span>
@@ -1416,430 +1350,6 @@ this is expected. [astropy]
 </div>
 <pre class="literal-block">
 &lt;Quantity 1.92902547696 solMass&gt;
-</pre>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/installing-sextractor-on-a-mac.html" rel="bookmark" title="Permalink to Installing sextractor on a mac?">
-                    Installing sextractor on a mac?</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-02-27T18:02:00"> 2013/02/27 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Attempting to install sextractor.</p>
-<p>First, tried following these instructions:</p>
-<p><a class="reference external" href="http://henrysmac.org/blog/2012/8/17/install-sextractor-on-os-x-lion.html">http://henrysmac.org/blog/2012/8/17/install-sextractor-on-os-x-lion.html</a></p>
-<p>Then found out that mac's tar doesn't work properly (see this note: <a class="reference external" href="http://math-atlas.sourceforge.net/atlas_install/node60.html">http://math-atlas.sourceforge.net/atlas_install/node60.html</a>)</p>
-<p>Fixed that with:</p>
-<div class="highlight"><pre>wget ftp://gnu.mirror.iweb.com/gnu/tar/tar-latest.tar.gz
-<span class="nb">cd</span> ~/repos/
-tar -xzvf ~/Downloads/tar-latest.tar.gz <span class="c"># ironically</span>
-<span class="nb">cd </span>tar-1.26/
-./configure
-make
-make install <span class="c"># fails</span>
-sudo make install
-<span class="nb">hash</span> -r
-</pre></div>
-<p>OK, try the instructions again:</p>
-<div class="highlight"><pre><span class="c"># first command may not work... visit that link if so</span>
-wget https://sourceforge.net/projects/math-atlas/files/latest/download?source<span class="o">=</span>files
-mkdir ~/repos/ATLAS3.10
-<span class="nb">cd</span> ~/repos/ATLAS3.10
-tar -xf ~/Downloads/atlas3.10.1.tar -C ./ --strip-components 1
-mkdir build/
-<span class="nb">cd </span>build/
-../configure -b 64 --shared --prefix<span class="o">=</span>/usr/local/lib/atlas --with-netlib-lapack-tarfile<span class="o">=</span>/Users/adam/Downloads/lapack-3.4.2.tar
-make build
-</pre></div>
-<p>Died with errors:</p>
-<pre class="literal-block">
-ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_dMBJBmm.o
-    ATL_dIBNBmm.o ATL_dIBJBmm.o ATL_dgemm.o ATL_dGetNB.o ATL_dGetNCNB.o
-    ATL_dgemmNN.o ATL_dgemmNT.o ATL_dgemmTN.o ATL_dgemmTT.o ATL_dNCmmIJK.o
-    ATL_dNCmmJIK.o ATL_dNCmmIJK_c.o ATL_dNCmmJIK_c.o ATL_daliased_gemm.o
-    ATL_dAgemmNN.o ATL_dAgemmNT.o ATL_dAgemmTN.o ATL_dAgemmTT.o ATL_dmmJIK.o
-    ATL_dmmIJK.o ATL_dmmJKI.o ATL_dmmK.o ATL_dmmBPP.o ATL_dmmJITcp.o
-    ATL_dcol2blk_aX.o ATL_drow2blkT_aX.o ATL_dcol2blk_a1.o ATL_drow2blkT_a1.o
-    ATL_dputblk_bX.o ATL_dputblk_b1.o ATL_dputblk_bn1.o ATL_dputblk_b0.o
-ar: fatal error in /usr/bin/ranlib
-make[4]: *** [dlib.grd] Error 1
-make[3]: *** [dlib] Error 2
-make[2]: *** [IBuildPtlibs] Error 2
-   DONE  STAGE 4-2-1 at 23:09
-
-
-   BEGIN STAGE 4-3-0: LAPACK TUNING at 23:09
-
-
-      BEGIN STAGE 4-3-1: dLAPACK TUNING at 23:09
-make -f Makefile IBuildPtlibs 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/LIBPTBUILD.LOG
-if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_dGetNB_geqrf.h&quot; ]; then \
-           echo &quot;Arch Defaults allow us to skip tuning&quot; ; \
-        else \
-        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_dGetNB_geqrf.h ; \
-        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_dGetNB_geqrf.h \
-               /Users/adam/repos/ATLAS3.10/build/include/atlas_dGetNB_geqrf.h ; \
-        fi
-Arch Defaults allow us to skip tuning
-if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_dtGetNB_geqrf.h&quot; ]; then \
-           echo &quot;Arch Defaults allow us to skip threaded tuning&quot; ; \
-        elif [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_pthreads.h&quot; ]; then \
-        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_dtGetNB_geqrf.h ; \
-        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_dtGetNB_geqrf.h \
-               /Users/adam/repos/ATLAS3.10/build/include/atlas_dtGetNB_geqrf.h ; \
-        fi
-Arch Defaults allow us to skip threaded tuning
-      DONE  STAGE 4-3-1 at 23:09
-
-
-      BEGIN STAGE 4-3-2: sLAPACK TUNING at 23:09
-make -f Makefile ILATune pre=d 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/dLATUNE.LOG
-if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_sGetNB_geqrf.h&quot; ]; then \
-           echo &quot;Arch Defaults allow us to skip tuning&quot; ; \
-        else \
-        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_sGetNB_geqrf.h ; \
-        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_sGetNB_geqrf.h \
-               /Users/adam/repos/ATLAS3.10/build/include/atlas_sGetNB_geqrf.h ; \
-        fi
-Arch Defaults allow us to skip tuning
-if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_stGetNB_geqrf.h&quot; ]; then \
-           echo &quot;Arch Defaults allow us to skip threaded tuning&quot; ; \
-        elif [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_pthreads.h&quot; ]; then \
-        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_stGetNB_geqrf.h ; \
-        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_stGetNB_geqrf.h \
-               /Users/adam/repos/ATLAS3.10/build/include/atlas_stGetNB_geqrf.h ; \
-        fi
-Arch Defaults allow us to skip threaded tuning
-      DONE  STAGE 4-3-2 at 23:09
-
-
-      BEGIN STAGE 4-3-3: zLAPACK TUNING at 23:09
-make -f Makefile ILATune pre=s 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/sLATUNE.LOG
-if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_zGetNB_geqrf.h&quot; ]; then \
-           echo &quot;Arch Defaults allow us to skip tuning&quot; ; \
-        else \
-        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_zGetNB_geqrf.h ; \
-        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_zGetNB_geqrf.h \
-               /Users/adam/repos/ATLAS3.10/build/include/atlas_zGetNB_geqrf.h ; \
-        fi
-Arch Defaults allow us to skip tuning
-if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_ztGetNB_geqrf.h&quot; ]; then \
-           echo &quot;Arch Defaults allow us to skip threaded tuning&quot; ; \
-        elif [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_pthreads.h&quot; ]; then \
-        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_ztGetNB_geqrf.h ; \
-        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_ztGetNB_geqrf.h \
-               /Users/adam/repos/ATLAS3.10/build/include/atlas_ztGetNB_geqrf.h ; \
-        fi
-Arch Defaults allow us to skip threaded tuning
-      DONE  STAGE 4-3-3 at 23:09
-
-
-      BEGIN STAGE 4-3-4: cLAPACK TUNING at 23:09
-make -f Makefile ILATune pre=z 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/zLATUNE.LOG
-if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_cGetNB_geqrf.h&quot; ]; then \
-           echo &quot;Arch Defaults allow us to skip tuning&quot; ; \
-        else \
-        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_cGetNB_geqrf.h ; \
-        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_cGetNB_geqrf.h \
-               /Users/adam/repos/ATLAS3.10/build/include/atlas_cGetNB_geqrf.h ; \
-        fi
-Arch Defaults allow us to skip tuning
-if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_ctGetNB_geqrf.h&quot; ]; then \
-           echo &quot;Arch Defaults allow us to skip threaded tuning&quot; ; \
-        elif [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_pthreads.h&quot; ]; then \
-        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_ctGetNB_geqrf.h ; \
-        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_ctGetNB_geqrf.h \
-               /Users/adam/repos/ATLAS3.10/build/include/atlas_ctGetNB_geqrf.h ; \
-        fi
-Arch Defaults allow us to skip threaded tuning
-      DONE  STAGE 4-3-4 at 23:09
-   DONE  STAGE 4-3-0 at 23:09
-DONE  STAGE 4-0-0 at 23:09
-
-
-BEGIN STAGE 5-0-0: FINAL LIBRARY UPDATE at 23:09
-
-
-   BEGIN STAGE 5-1-0: FINAL STATIC LIBRARY UPDATE at 23:09
-make -f Makefile IBuildLibs IBuildPtlibs0 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/LIBUPDATE.LOG
-cd /Users/adam/repos/ATLAS3.10/build/src/auxil ; make lib
-make[3]: Nothing to be done for `lib'.
-cd /Users/adam/repos/ATLAS3.10/build/src/blas/gemm ; make lib
-make auxillib dcleanuplib dusergemm
-cd /Users/adam/repos/ATLAS3.10/build/src/auxil ; make lib
-make[5]: Nothing to be done for `lib'.
-cd KERNEL ; make -f dMakefile dlib
-make[5]: Nothing to be done for `dlib'.
-make[4]: Nothing to be done for `dusergemm'.
-make -j 4 dlib.grd
-ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_dMBJBmm.o
-    ATL_dIBNBmm.o ATL_dIBJBmm.o ATL_dgemm.o ATL_dGetNB.o ATL_dGetNCNB.o
-    ATL_dgemmNN.o ATL_dgemmNT.o ATL_dgemmTN.o ATL_dgemmTT.o ATL_dNCmmIJK.o
-    ATL_dNCmmJIK.o ATL_dNCmmIJK_c.o ATL_dNCmmJIK_c.o ATL_daliased_gemm.o
-    ATL_dAgemmNN.o ATL_dAgemmNT.o ATL_dAgemmTN.o ATL_dAgemmTT.o ATL_dmmJIK.o
-    ATL_dmmIJK.o ATL_dmmJKI.o ATL_dmmK.o ATL_dmmBPP.o ATL_dmmJITcp.o
-    ATL_dcol2blk_aX.o ATL_drow2blkT_aX.o ATL_dcol2blk_a1.o ATL_drow2blkT_a1.o
-    ATL_dputblk_bX.o ATL_dputblk_b1.o ATL_dputblk_bn1.o ATL_dputblk_b0.o
-ar: fatal error in /usr/bin/ranlib
-make[4]: *** [dlib.grd] Error 1
-make[3]: *** [dlib] Error 2
-make[2]: *** [IBuildLibs] Error 2
-   DONE  STAGE 5-1-0 at 23:09
-
-
-   BEGIN STAGE 5-2-0: DYNAMIC/SHARED LIBRARY UPDATE at 23:09
-make -f Makefile IBuildDyLibs 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/LIBDYBUILD.LOG
-cd /Users/adam/repos/ATLAS3.10/build ; make dylibs
-cd lib ; make shared_all
-make dylib
-rm -rf RCW_tMp ; mkdir RCW_tMp
-cd RCW_tMp ; ar x ../liblapack.a
-ar: ../liblapack.a: No such file or directory
-make[5]: *** [dylib] Error 1
-make[4]: *** [shared_all] Error 2
-make[3]: *** [dylibs] Error 2
-make[2]: *** [IBuildDyLibs] Error 2
-   DONE  STAGE 5-2-0 at 23:09
-
-
-
-
-ATLAS install complete.  Examine
-ATLAS/bin/&lt;arch&gt;/INSTALL_LOG/SUMMARY.LOG for details.
-make clean
-rm -rf *.dSYM
-rm -f *.o x* config?.out *core*
-
-
-
-make check
-
-Died with errors:
-
-ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_sMBJBmm.o
-    ATL_sIBNBmm.o ATL_sIBJBmm.o ATL_sgemm.o ATL_sGetNB.o ATL_sGetNCNB.o
-    ATL_sgemmNN.o ATL_sgemmNT.o ATL_sgemmTN.o ATL_sgemmTT.o ATL_sNCmmIJK.o
-    ATL_sNCmmJIK.o ATL_sNCmmIJK_c.o ATL_sNCmmJIK_c.o ATL_saliased_gemm.o
-    ATL_sAgemmNN.o ATL_sAgemmNT.o ATL_sAgemmTN.o ATL_sAgemmTT.o ATL_smmJIK.o
-    ATL_smmIJK.o ATL_smmJKI.o ATL_smmK.o ATL_smmBPP.o ATL_smmJITcp.o
-    ATL_scol2blk_aX.o ATL_srow2blkT_aX.o ATL_scol2blk_a1.o ATL_srow2blkT_a1.o
-    ATL_sputblk_bX.o ATL_sputblk_b1.o ATL_sputblk_bn1.o ATL_sputblk_b0.o
-ranlib /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a
-touch slib.grd
-cd /Users/adam/repos/ATLAS3.10/build/src/blas/level3 ; make slib
-( cd kernel; make slib )
-make -j 4 slib.grd
-make[6]: `slib.grd' is up to date.
-make sl3ref
-cd /Users/adam/repos/ATLAS3.10/build/src/blas/reference/level3 ; make slib
-make[7]: Nothing to be done for `slib'.
-( cd rblas;  make slib )
-make[5]: Nothing to be done for `slib'.
-cd ../pklevel3 ; make slib
-cd gpmm ; make slib
-make -j 4 slib.grd
-make[7]: `slib.grd' is up to date.
-cd sprk ; make slib
-make -j 4 slib.grd
-make[7]: `slib.grd' is up to date.
-make -j 4 sblas3.grd
-ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_ssymm.o ATL_ssyr2k.o ATL_ssyrk.o ATL_strmm.o ATL_strsm.o
-ar: fatal error in /usr/bin/ranlib
-make[5]: *** [sblas3.grd] Error 1
-make[4]: *** [sblas3] Error 2
-make[3]: *** [sl3lib] Error 2
-make[2]: *** [sanity_test] Error 2
-make[1]: *** [sanity_test] Error 2
-make: *** [test] Error 2
-</pre>
-<p>Gave up after discovering this is an unsolved (and probably intrinsically unsolveable) problem:
-<a class="reference external" href="http://fink.9193.n7.nabble.com/Atlas-STAGE-2-3-2-CacheEdge-DETECTION-error-td26004.html">http://fink.9193.n7.nabble.com/Atlas-STAGE-2-3-2-CacheEdge-DETECTION-error-td26004.html</a></p>
-<p>maybe try this:
-<a class="reference external" href="http://okomestudio.net/biboroku/?p=824">http://okomestudio.net/biboroku/?p=824</a></p>
-<p>nope, same thing</p>
-<p>Tried switching from gcc-4.6 to gcc-4.2 (the latter should have been the default anyway).
-Even when I renamed gcc-4.6 to dontuse_gcc-4.6, specified CC=/usr/bin/gcc, still found gcc-4.6!</p>
-<p>So I moved /usr/local/bin/gcc-4.6 to /usr/local/bin/dontuse/.gcc-4.6
-Ridiculous.</p>
-<p>Then tried what the site actually said, and used the hpc binaries:</p>
-<pre class="literal-block">
-wget http://prdownloads.sourceforge.net/hpc/gfortran-lion.tar.gz?download
-wget http://prdownloads.sourceforge.net/hpc/gcc-lion.tar.gz?download
-mkdir ~/repos/hpc
-tar -xzf ~/Downloads/gcc-lion.tar.gz -C ~/repos/hpc/ --strip-components 2
-tar -xzf ~/Downloads/gfortran-lion.tar.gz -C ~/repos/hpc/ --strip-components 2
-
-CC=/Users/adam/repos/hpc/bin/gcc PATH=/Users/adam/repos/hpc/bin:$PATH
-    ../configure -b 64 --shared --prefix=/usr/local/lib/atlas
-    --with-netlib-lapack-tarfile=/Users/adam/Downloads/lapack-3.4.2.tar
-
-
-ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_dMBJBmm.o
-    ATL_dIBNBmm.o ATL_dIBJBmm.o ATL_dgemm.o ATL_dGetNB.o ATL_dGetNCNB.o
-    ATL_dgemmNN.o ATL_dgemmNT.o ATL_dgemmTN.o ATL_dgemmTT.o ATL_dNCmmIJK.o
-    ATL_dNCmmJIK.o ATL_dNCmmIJK_c.o ATL_dNCmmJIK_c.o ATL_daliased_gemm.o
-    ATL_dAgemmNN.o ATL_dAgemmNT.o ATL_dAgemmTN.o ATL_dAgemmTT.o ATL_dmmJIK.o
-    ATL_dmmIJK.o ATL_dmmJKI.o ATL_dmmK.o ATL_dmmBPP.o ATL_dmmJITcp.o
-    ATL_dcol2blk_aX.o ATL_drow2blkT_aX.o ATL_dcol2blk_a1.o ATL_drow2blkT_a1.o
-    ATL_dputblk_bX.o ATL_dputblk_b1.o ATL_dputblk_bn1.o ATL_dputblk_b0.o
-ar: fatal error in /usr/bin/ranlib
-make[4]: *** [dlib.grd] Error 1
-make[3]: *** [dlib] Error 2
-make[2]: *** [IBuildPtlibs] Error 2
-   DONE  STAGE 4-2-1 at 18:09
-
-
-   BEGIN STAGE 4-3-0: LAPACK TUNING at 18:09
-
-
-      BEGIN STAGE 4-3-1: dLAPACK TUNING at 18:09
-make -f Makefile IBuildPtlibs 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/LIBPTBUILD.LOG
-if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_dGetNB_geqrf.h&quot; ]; then \
-           echo &quot;Arch Defaults allow us to skip tuning&quot; ; \
-        else \
-        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_dGetNB_geqrf.h ; \
-        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_dGetNB_geqrf.h \
-               /Users/adam/repos/ATLAS3.10/build/include/atlas_dGetNB_geqrf.h ; \
-        fi
-Arch Defaults allow us to skip tuning
-if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_dtGetNB_geqrf.h&quot; ]; then \
-           echo &quot;Arch Defaults allow us to skip threaded tuning&quot; ; \
-        elif [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_pthreads.h&quot; ]; then \
-        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_dtGetNB_geqrf.h ; \
-        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_dtGetNB_geqrf.h \
-               /Users/adam/repos/ATLAS3.10/build/include/atlas_dtGetNB_geqrf.h ; \
-        fi
-Arch Defaults allow us to skip threaded tuning
-      DONE  STAGE 4-3-1 at 18:09
-
-
-      BEGIN STAGE 4-3-2: sLAPACK TUNING at 18:09
-make -f Makefile ILATune pre=d 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/dLATUNE.LOG
-if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_sGetNB_geqrf.h&quot; ]; then \
-           echo &quot;Arch Defaults allow us to skip tuning&quot; ; \
-        else \
-        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_sGetNB_geqrf.h ; \
-        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_sGetNB_geqrf.h \
-               /Users/adam/repos/ATLAS3.10/build/include/atlas_sGetNB_geqrf.h ; \
-        fi
-Arch Defaults allow us to skip tuning
-if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_stGetNB_geqrf.h&quot; ]; then \
-           echo &quot;Arch Defaults allow us to skip threaded tuning&quot; ; \
-        elif [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_pthreads.h&quot; ]; then \
-        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_stGetNB_geqrf.h ; \
-        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_stGetNB_geqrf.h \
-               /Users/adam/repos/ATLAS3.10/build/include/atlas_stGetNB_geqrf.h ; \
-        fi
-Arch Defaults allow us to skip threaded tuning
-      DONE  STAGE 4-3-2 at 18:09
-
-
-      BEGIN STAGE 4-3-3: zLAPACK TUNING at 18:09
-make -f Makefile ILATune pre=s 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/sLATUNE.LOG
-if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_zGetNB_geqrf.h&quot; ]; then \
-           echo &quot;Arch Defaults allow us to skip tuning&quot; ; \
-        else \
-        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_zGetNB_geqrf.h ; \
-        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_zGetNB_geqrf.h \
-               /Users/adam/repos/ATLAS3.10/build/include/atlas_zGetNB_geqrf.h ; \
-        fi
-Arch Defaults allow us to skip tuning
-if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_ztGetNB_geqrf.h&quot; ]; then \
-           echo &quot;Arch Defaults allow us to skip threaded tuning&quot; ; \
-        elif [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_pthreads.h&quot; ]; then \
-        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_ztGetNB_geqrf.h ; \
-        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_ztGetNB_geqrf.h \
-               /Users/adam/repos/ATLAS3.10/build/include/atlas_ztGetNB_geqrf.h ; \
-        fi
-Arch Defaults allow us to skip threaded tuning
-      DONE  STAGE 4-3-3 at 18:09
-
-
-      BEGIN STAGE 4-3-4: cLAPACK TUNING at 18:09
-make -f Makefile ILATune pre=z 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/zLATUNE.LOG
-if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_cGetNB_geqrf.h&quot; ]; then \
-           echo &quot;Arch Defaults allow us to skip tuning&quot; ; \
-        else \
-        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_cGetNB_geqrf.h ; \
-        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_cGetNB_geqrf.h \
-               /Users/adam/repos/ATLAS3.10/build/include/atlas_cGetNB_geqrf.h ; \
-        fi
-Arch Defaults allow us to skip tuning
-if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_ctGetNB_geqrf.h&quot; ]; then \
-           echo &quot;Arch Defaults allow us to skip threaded tuning&quot; ; \
-        elif [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_pthreads.h&quot; ]; then \
-        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_ctGetNB_geqrf.h ; \
-        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_ctGetNB_geqrf.h \
-               /Users/adam/repos/ATLAS3.10/build/include/atlas_ctGetNB_geqrf.h ; \
-        fi
-Arch Defaults allow us to skip threaded tuning
-      DONE  STAGE 4-3-4 at 18:09
-   DONE  STAGE 4-3-0 at 18:09
-DONE  STAGE 4-0-0 at 18:09
-
-
-BEGIN STAGE 5-0-0: FINAL LIBRARY UPDATE at 18:09
-
-
-   BEGIN STAGE 5-1-0: FINAL STATIC LIBRARY UPDATE at 18:09
-make -f Makefile IBuildLibs IBuildPtlibs0 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/LIBUPDATE.LOG
-cd /Users/adam/repos/ATLAS3.10/build/src/auxil ; make lib
-make[3]: Nothing to be done for `lib'.
-cd /Users/adam/repos/ATLAS3.10/build/src/blas/gemm ; make lib
-make auxillib dcleanuplib dusergemm
-cd /Users/adam/repos/ATLAS3.10/build/src/auxil ; make lib
-make[5]: Nothing to be done for `lib'.
-cd KERNEL ; make -f dMakefile dlib
-make[5]: Nothing to be done for `dlib'.
-make[4]: Nothing to be done for `dusergemm'.
-make -j 4 dlib.grd
-ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_dMBJBmm.o
-    ATL_dIBNBmm.o ATL_dIBJBmm.o ATL_dgemm.o ATL_dGetNB.o ATL_dGetNCNB.o
-    ATL_dgemmNN.o ATL_dgemmNT.o ATL_dgemmTN.o ATL_dgemmTT.o ATL_dNCmmIJK.o
-    ATL_dNCmmJIK.o ATL_dNCmmIJK_c.o ATL_dNCmmJIK_c.o ATL_daliased_gemm.o
-    ATL_dAgemmNN.o ATL_dAgemmNT.o ATL_dAgemmTN.o ATL_dAgemmTT.o ATL_dmmJIK.o
-    ATL_dmmIJK.o ATL_dmmJKI.o ATL_dmmK.o ATL_dmmBPP.o ATL_dmmJITcp.o
-    ATL_dcol2blk_aX.o ATL_drow2blkT_aX.o ATL_dcol2blk_a1.o ATL_drow2blkT_a1.o
-    ATL_dputblk_bX.o ATL_dputblk_b1.o ATL_dputblk_bn1.o ATL_dputblk_b0.o
-ar: fatal error in /usr/bin/ranlib
-make[4]: *** [dlib.grd] Error 1
-make[3]: *** [dlib] Error 2
-make[2]: *** [IBuildLibs] Error 2
-   DONE  STAGE 5-1-0 at 18:09
-
-
-   BEGIN STAGE 5-2-0: DYNAMIC/SHARED LIBRARY UPDATE at 18:09
-make -f Makefile IBuildDyLibs 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/LIBDYBUILD.LOG
-cd /Users/adam/repos/ATLAS3.10/build ; make dylibs
-cd lib ; make shared_all
-make dylib
-rm -rf RCW_tMp ; mkdir RCW_tMp
-cd RCW_tMp ; ar x ../liblapack.a
-ar: ../liblapack.a: No such file or directory
-make[5]: *** [dylib] Error 1
-make[4]: *** [shared_all] Error 2
-make[3]: *** [dylibs] Error 2
-make[2]: *** [IBuildDyLibs] Error 2
-   DONE  STAGE 5-2-0 at 18:09
-
-
-
-
-ATLAS install complete.  Examine
-ATLAS/bin/&lt;arch&gt;/INSTALL_LOG/SUMMARY.LOG for details.
-make clean
-rm -rf *.dSYM
-rm -f *.o x* config?.out *core*
-</pre>
-<p>This is the next step, if I ever get there:</p>
-<pre class="literal-block">
-wget http://www.astromatic.net/download/sextractor/sextractor-2.8.6.tar.gz
-tar -xzvf ~/Downloads/sextractor-2.8.6.tar.gz
 </pre>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>

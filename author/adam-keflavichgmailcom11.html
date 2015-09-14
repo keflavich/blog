@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2014/06/13
+                  <br>
+                  <a href="http://keflavich.github.io/blog/azimuthal-mass-profiles.html">Azimuthal Mass Profiles</a>
+              </li>
+              <li class="post">
                   2013/09/21
                   <br>
                   <a href="http://keflavich.github.io/blog/generating-a-cv-using-the-ads-labs-api.html">Generating a CV using the ADS Labs API</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/bgps-point-source-recovery-experiment-23-results.html">BGPS Point Source Recovery - Experiment 23 results</a>
               </li>
-              <li class="post">
-                  2013/05/16
-                  <br>
-                  <a href="http://keflavich.github.io/blog/bgps-point-source-recovery.html">BGPS Point Source Recovery</a>
-              </li>
         </ul>
       </li>
     
@@ -102,6 +102,30 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles by Adam (keflavich@gmail.com)</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/latex-producing-a-bibliography-and-paper-independently.html" rel="bookmark" title="Permalink to latex: producing a bibliography and paper independently">
+                    latex: producing a bibliography and paper independently</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a class="reference external" href="http://casa.colorado.edu/~ginsbura/index.htm">AG</a>
+If you want citations to work, but you don't want your bibliography to
+show up, try the following:
+<tt class="docutils literal">latex file.texbibtex file</tt>
+comment out \biblography{} line
+<tt class="docutils literal">latex file.tex</tt>
+If you latex again, it will screw up.
+To make an independent bibliography, remove all text and replace all
+citep/citet/cite commands with \nocite{} in a different document.
+Remember to usepackage{natbib} etc. You may have to copy over the .bbl
+file.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -303,64 +327,6 @@ should be impossible. I am ready to call it quits for the week....</p>
 <pre class="literal-block">
 Process:         MacVim [650]Path:            /Applications/Vim.app/Contents/MacOS/MacVimIdentifier:      org.vim.MacVimVersion:         7.2 (49)Code Type:       X86 (Native)Parent Process:  Vim [649]Date/Time:       2010-02-25 13:12:43.001 -0700OS Version:      Mac OS X 10.6.2 (10C540)Report Version:  6Interval Since Last Report:          871676 secCrashes Since Last Report:           26Per-App Interval Since Last Report:  938504 secPer-App Crashes Since Last Report:   1Anonymous UUID:                      03159B9E-2257-4E38-8C4A-4D4DAF5641A7Exception Type:  EXC_BAD_ACCESS (SIGSEGV)Exception Codes: 0x000000000000000d, 0x0000000000000000Crashed Thread:  0  Dispatch queue: com.apple.main-threadThread 0 Crashed:  Dispatch queue: com.apple.main-thread0   com.apple.CoreFoundation       0x99119480 __CFSetCallback + 01   com.apple.CoreFoundation       0x990c78bc ___CFBasicHashFindBucket1 + 4442   com.apple.CoreFoundation       0x990cfaac CFBasicHashFindBucket + 2523   com.apple.CoreFoundation       0x990e8293 CFSetGetValue + 1314   com.apple.AppKit               0x961bae7e -[NSWindow _discardTrackingRect:] + 595   com.apple.AppKit               0x961badca -[NSView(NSInternal) _uninstallTrackingArea:] + 1236   com.apple.AppKit               0x960d2c32 -[NSView(NSInternal) _uninstallRemovedTrackingAreas] + 2937   com.apple.AppKit               0x960dac40 -[NSView(NSInternal) _updateTrackingAreas] + 6468   com.apple.CoreFoundation       0x990ea4e0 CFArrayApplyFunction + 2249   com.apple.AppKit               0x960daefb -[NSView(NSInternal) _updateTrackingAreas] + 134510  com.apple.CoreFoundation       0x990ea4e0 CFArrayApplyFunction + 22411  com.apple.AppKit               0x960daefb -[NSView(NSInternal) _updateTrackingAreas] + 134512  com.apple.CoreFoundation       0x990ea4e0 CFArrayApplyFunction + 22413  com.apple.AppKit               0x960daefb -[NSView(NSInternal) _updateTrackingAreas] + 134514  com.apple.AppKit               0x960da8db _handleInvalidCursorRectsNote + 39215  com.apple.CoreFoundation       0x99135892 __CFRunLoopDoObservers + 118616  com.apple.CoreFoundation       0x990f218d __CFRunLoopRun + 55717  com.apple.CoreFoundation       0x990f1864 CFRunLoopRunSpecific + 45218  com.apple.CoreFoundation       0x990f1691 CFRunLoopRunInMode + 9719  com.apple.HIToolbox            0x936f6f0c RunCurrentEventLoopInMode + 39220  com.apple.HIToolbox            0x936f6bff ReceiveNextEventCommon + 15821  com.apple.HIToolbox            0x936f6b48 BlockUntilNextEventMatchingListInMode + 8122  com.apple.AppKit               0x960b0ac5 _DPSNextEvent + 84723  com.apple.AppKit               0x960b0306 -[NSApplication nextEventMatchingMask:untilDate:inMode:dequeue:] + 15624  com.apple.AppKit               0x9607249f -[NSApplication run] + 82125  com.apple.AppKit               0x9606a535 NSApplicationMain + 57426  org.vim.MacVim                 0x0000238b _start + 20927  org.vim.MacVim                 0x000022b9 start + 41Thread 1:  Dispatch queue: com.apple.libdispatch-manager0   libSystem.B.dylib              0x98d0c0ea kevent + 101   libSystem.B.dylib              0x98d0c804 _dispatch_mgr_invoke + 2152   libSystem.B.dylib              0x98d0bcc3 _dispatch_queue_invoke + 1633   libSystem.B.dylib              0x98d0ba68 _dispatch_worker_thread2 + 2344   libSystem.B.dylib              0x98d0b4f1 _pthread_wqthread + 3905   libSystem.B.dylib              0x98d0b336 start_wqthread + 30Thread 2:0   libSystem.B.dylib              0x98ce58da mach_msg_trap + 101   libSystem.B.dylib              0x98ce6047 mach_msg + 682   com.apple.CoreFoundation       0x990f277f __CFRunLoopRun + 20793   com.apple.CoreFoundation       0x990f1864 CFRunLoopRunSpecific + 4524   com.apple.CoreFoundation       0x990f1691 CFRunLoopRunInMode + 975   com.apple.Foundation           0x91b24430 +[NSURLConnection(NSURLConnectionReallyInternal) _resourceLoadLoop:] + 3296   com.apple.Foundation           0x91aeb8d8 -[NSThread main] + 457   com.apple.Foundation           0x91aeb888 __NSThread__main__ + 14998   libSystem.B.dylib              0x98d12fbd _pthread_start + 3459   libSystem.B.dylib              0x98d12e42 thread_start + 34Thread 3:0   libSystem.B.dylib              0x98d04856 select$DARWIN_EXTSN + 101   com.apple.CoreFoundation       0x99131ddd __CFSocketManager + 10852   libSystem.B.dylib              0x98d12fbd _pthread_start + 3453   libSystem.B.dylib              0x98d12e42 thread_start + 34Thread 4:0   libSystem.B.dylib              0x98d0b182 __workq_kernreturn + 101   libSystem.B.dylib              0x98d0b718 _pthread_wqthread + 9412   libSystem.B.dylib              0x98d0b336 start_wqthread + 30Thread 0 crashed with X86 Thread State (32-bit):  eax: 0x00515db0  ebx: 0x990c7711  ecx: 0x00516460  edx: 0xbfffcabc  edi: 0x00001041  esi: 0x00504270  ebp: 0xbfffca38  esp: 0xbfffc99c   ss: 0x0000001f  efl: 0x00010246  eip: 0x99119480   cs: 0x00000017   ds: 0x0000001f   es: 0x0000001f   fs: 0x00000000   gs: 0x00000037  cr2: 0x97a20000
 </pre>
-</p> </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/major-mac-problems.html" rel="bookmark" title="Permalink to Major mac problems">
-                    Major mac problems</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>The errors are, in short:</p>
-<ul class="simple">
-<li>Browser stops responding / starts returning &quot;page not found&quot;
-(indicating a failure of mDNSResponder)</li>
-<li>killing mDNSResponder sometimes brings browser back, but more often
-leads to a partial system freeze (some windows don't respond, can't
-switch between windows except by clicking)</li>
-<li>/var/log/system.log gets flooded with &quot;too many files open&quot; errors.</li>
-<li>somewhere in here the Dock fails</li>
-<li>killing Google Chrome and/or the Dock fails; the process never halts
-(even kill -9 + kill -s SIGCHLD)</li>
-<li>usually one or two crash reports pop up, at least one of which is for
-crash_reporter</li>
-<li>system.log stops getting flooded, but the browser and Dock never
-recover</li>
-</ul>
-<p>The only message in system.log that gives me any hint about what might
-be happening is occasionally a freeze was resolved at the same time as
-this message: Jun 22 19:02:09 eta Quicksilver[93771]: Multiple Scans
-Attempted but it doesn't seem to change the situation if quicksilver is
-open or not. Google has nothing on this issue, either, except for the
-quicksilver source code, so evidently it has not caused problems for
-other people system.log was also being flooded with this message:</p>
-<pre class="literal-block">
-Jun 23 08:57:19 eta postfix/master[99954]: fatal: open /dev/null: Bad file descriptorJun 23 08:57:20 eta com.apple.launchd[1] (org.postfix.master[99954]): Exited with exit code: 1Jun 23 08:57:20 eta com.apple.launchd[1] (org.postfix.master): Throttling respawn: Will start in 9 seconds
-</pre>
-<p>so I disabled my postman:</p>
-<pre class="literal-block">
-Jun 23 08:57:27 eta sudo[99955]: adam : TTY=ttys006 ; PWD=/Users/adam/proposals/alma ; USER=root ; COMMAND=/bin/launchctl unload -w /System/Library/LaunchDaemons/org.postfix.master.plist
-</pre>
-<p>These errors:</p>
-<pre class="literal-block">
-Jun 23 09:06:40 eta Dock[99877]: kCGErrorIllegalArgument: CGSSetWindowTransformAtPlacement: Singular matrix [nan 0.000 0.000 nan]Jun 23 09:06:40 eta com.apple.Dock.agent[99877]: Thu Jun 23 09:06:40 eta.colorado.edu Dock[99877] : kCGErrorIllegalArgument: CGSSetWindowTransformAtPlacement: Singular matrix [nan 0.000 0.000 nan]
-</pre>
-<p>are correlated with opening Chrome windows and/or Chrome's
-crash_inspector</p>
-<pre class="literal-block">
-Jun 23 09:06:09 eta [0x0-0x69e69e].com.google.Chrome[99995]: [99995:24579:485131152128125:ERROR:shared_memory_posix.cc(164)] Creating shared memory in /var/folders/ni/ni+DtdqFGMeSMH13AvkNkU+++TI/-Tmp-/.com.google.chrome.sHcu6r failed: Too many open files in system
-</pre>
-<p>This is the problem that really gets me... I think it's
-crash_inspector's fault.
-But there's definitely more going on here than just Chrome. Trying to
-change default browsers (by opening Safari and opening Preferences) led
-to a partial Dock crash (?!) in which I can alt-tab but can't see the
-Dock. Not clear at all what's going on.... argh.</p>
 </p> </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
