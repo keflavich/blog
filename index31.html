@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2015/10/02
+                  <br>
+                  <a href="http://keflavich.github.io/blog/alma-qa2-restoration.html">ALMA QA2 restoration</a>
+              </li>
+              <li class="post">
                   2015/09/15
                   <br>
                   <a href="http://keflavich.github.io/blog/export-to-fits-with-miriad.html">Export to FITS with MIRIAD</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/installing-astrometrynet-in-november-2014.html">Installing astrometry.net in November 2014</a>
               </li>
-              <li class="post">
-                  2014/06/13
-                  <br>
-                  <a href="http://keflavich.github.io/blog/azimuthal-mass-profiles.html">Azimuthal Mass Profiles</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,46 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/aperture-photometry.html" rel="bookmark" title="Permalink to Aperture Photometry">
+                    Aperture Photometry</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-08-13T02:50:00"> 2011/08/13 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/jared-adamgginsburggmailcom.html">Jared (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>So the code to add point sources to the maps and perform basic aperture
+photometry has started working to the point where I can share some
+results.</p>
+<p>For maps with no underlying sky structure, only point sources, recovery
+is very nearly perfect, with PearsonR coefficients essentially equal to
+1 until the peak amplitude of the point sources drops below 2.0 (and
+even then they only drop to ~0.997)</p>
+<p>Below is a sample of the difference residual of output-input flux vs
+input flux for 40&quot;, 80&quot; and 120&quot; apertures</p>
+<img alt="" src="http://2.bp.blogspot.com/-j5k--Oz92T0/TkXiYHLWjQI/AAAAAAAAABc/MnRtjz6hAMo/s320/exp13_ds2_astrosky_arrang45_srcpeakalpha002.00source_range_00.1_02.0ptsrc_brightness_diffresid.png" />
+<p>flux vs input flux will show just how correlated these are:</p>
+<img alt="" src="http://3.bp.blogspot.com/-zL6VyzobtkU/TkXix_KEExI/AAAAAAAAABk/6vYph5jtyM4/s320/exp13_ds2_astrosky_arrang45_srcpeakalpha002.00source_range_00.1_02.0ptsrc_brightness_lin.png" />
+<p>Note that for the blank maps, these are taken from simulations using a
+power law distribution of point sources from 0.1 to 2.0 Jy in magnitude
+(if we allow the range to extend above 2.0 Jy, the recoveries become
+even more closely correlated.</p>
+<p>As for simulations with background sky structure we see similar patterns
+for the most part, however a few interesting pieces appear:</p>
+<p>For the 4 different source ranges I ran, the 80&quot; aperture had the
+highest pearson r coefficient across all simulations. Generally sitting
+around 0.95 with the 40&quot; and 120&quot; apertures floating from 0.75-0.9. This
+may be a fluke, however, I need to run more simulations to see if this
+is reproducible with other seeds.</p>
+<p>Also, in the difference residuals we can clearly see an underrecovery of
+flux as input flux increases, which we should probably work to quantify,
+as seen by this example:</p>
+<img alt="" src="http://1.bp.blogspot.com/-X4lP1Pl4PLg/TkXka4eio7I/AAAAAAAAABs/RCKTuX14PD8/s320/exp13_ds2_astrosky_arrang45_atmotest_amp2.0E%252B01_sky00_seed00_peak001.00_smooth_srcpeakalpha002.00source_range_00.1_02.0_wptsrcptsrc_brightness_diffresid.png" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -370,51 +410,6 @@ space is much better:</p>
 <img alt="" src="http://1.bp.blogspot.com/-m0DeYyvE0Xg/TiCeM6b_LOI/AAAAAAAAGTk/MwwIbLjhY4Q/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_map20filterpsds.png" />
 <p>though map20 clearly reproduces some structures better (higher) but is
 overall less powerful than the filtered map.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/testing-out-analytic-filter-functions.html" rel="bookmark" title="Permalink to Testing out analytic filter functions">
-                    Testing out analytic filter functions</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-07-15T03:03:00"> 2011/07/15 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I've attempted to model the spatial filter function as a gaussian (or
-PSF) plus an inverse gaussian. i.e., the high-spatial-frequency
-components are smoothed with the PSF, and the low spatial frequency
-components are convolved with a (1-gaussian) high-pass filter.
-First, the mildly good news: With a 300&quot; FWHM large-scale cutoff, the
-filter PSD reasonably resembles the iterative map PSD:</p>
-<img alt="" src="http://3.bp.blogspot.com/-udANxY5rM98/Th-i7hx3qnI/AAAAAAAAGS0/kwoR30ZO5OI/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_map20filterpsds.png" />
-<p>Luckily, the double-filter goes a very long way in explaining the
-scale-free flux loss. In the following diagram, I show the effect of the
-filter compared to the input map.</p>
-<img alt="" src="http://3.bp.blogspot.com/-iZtSoQjlzJY/Th-jf6oatlI/AAAAAAAAGS8/p8ZcznsKGpI/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_filterpsds.png" />
-<p>The filter only recovers about 75% of the flux at ANY wavenumber. The
-map does slightly worse at high frequencies, which I can't explain yet.
-These show the recovery fraction of the iterative maps, a gaussian
-smoothing function with FWHM=33&quot;, and the mid-pass-filter. Map20 (no
-smooth) has a lot of additional &quot;noise power&quot; at high spatial
-frequencies; if it wasn't for the telescope filter function, we would
-apparently have pretty good high-frequency recovery. Hmph.
-Note that map20 is higher than the filter at some intermediate
-frequencies, but quite a bit lower at higher frequencies. Also note the
-moderately poor agreement between the 'smoothed' and 'smoothed (theory)'
-lines.</p>
-<img alt="" src="http://4.bp.blogspot.com/-zhxfyI_XDNY/Th-qZmsMZaI/AAAAAAAAGTE/550ocw2kFx8/s320/filterfunctions_smoothedx2.png" />
-<p>Finally, look at the comparison between map20 and fiiltered. The
-agreement is not bad for positive points; filtered is apparently
-slightly higher but that can be adjusted. The problem: the filter forces
-some structures that are negative or zero to be positive. For example,
-look at the feature at 210,300 that is negative in Map20 but positive in
-Filtered. In the real (input) map, this feature is lower than its
-surroundings - it is legitimately negative.</p>
-<img alt="" src="http://4.bp.blogspot.com/-zH98yuBL7lo/Th-tQIoKYCI/AAAAAAAAGTM/QNqslST6b2c/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_map20filtercompare.png" />
-<img alt="" src="http://2.bp.blogspot.com/-bvlju06_ySU/Th-ttpCOuhI/AAAAAAAAGTU/3zoCyl5gCIY/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_filtercompare.png" />
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

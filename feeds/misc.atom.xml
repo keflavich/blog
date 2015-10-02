@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/misc.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2015-09-15T15:30:00-06:00</updated><entry><title>Export to FITS with MIRIAD</title><link href="http://keflavich.github.io/blog/export-to-fits-with-miriad.html" rel="alternate"></link><updated>2015-09-15T15:30:00-06:00</updated><author><name>Adam Ginsburg (adam.g.ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2015-09-15:export-to-fits-with-miriad.html</id><summary type="html">&lt;p&gt;To convert from MIRIAD map files to FITS, use:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/misc.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2015-10-02T09:00:00-06:00</updated><entry><title>ALMA QA2 restoration</title><link href="http://keflavich.github.io/blog/alma-qa2-restoration.html" rel="alternate"></link><updated>2015-10-02T09:00:00-06:00</updated><author><name>Adam (keflavich@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2015-10-02:alma-qa2-restoration.html</id><summary type="html">&lt;p&gt;In case you ever encounter this error about a missing &lt;cite&gt;Source.xml&lt;/cite&gt; file:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+IOError: [Errno 2] No such file or directory: '/diskb/aginsbur/orion/2013.1.00546.S/science_goal.uid___A001_X122_X35c/group.uid___A001_X122_X35d/member.uid___A001_X122_X35e/calibrated/working/uid___A002_X960614_X39db.ms/Source.xml'
+WARNING: Failure executing file: &amp;lt;scriptForPI.py&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;the solution is this ticket: &lt;a class="reference external" href="https://help.almascience.org/index.php?/Knowledgebase/Article/View/266/5/what-should-i-do-if-scriptforpi-aborts-at-the-importasdm-step-with-error"&gt;https://help.almascience.org/index.php?/Knowledgebase/Article/View/266/5/what-should-i-do-if-scriptforpi-aborts-at-the-importasdm-step-with-error&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;So my solution:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+orion /diskb/aginsbur/atca master$ mv /diskb/aginsbur/casa/casapy-42.2.30986-pipe-1-64b/lib64/libxml2.so.2 /diskb/aginsbur/casa/casapy-42.2.30986-pipe-1-64b/lib64/origlibxml2.so.2
+orion /diskb/aginsbur/atca master$ locate libxml2.so.2
+/diskb/aginsbur/casa/casapy-42.2.30986-pipe-1-64b/lib64/libxml2.so.2
+/diskb/aginsbur/casa/casapy-42.2.30986-pipe-1-64b/lib64/libxml2.so.2.6.26
+/home/aginsbur/anaconda/lib/libxml2.so.2
+/home/aginsbur/anaconda/lib/libxml2.so.2.9.2
+/home/aginsbur/anaconda/pkgs/libxml2-2.9.2-0/lib/libxml2.so.2
+/home/aginsbur/anaconda/pkgs/libxml2-2.9.2-0/lib/libxml2.so.2.9.2
+/opt/anaconda/lib/libxml2.so.2
+/opt/anaconda/lib/libxml2.so.2.9.2
+/opt/anaconda/pkgs/libxml2-2.9.2-0/lib/libxml2.so.2
+/opt/anaconda/pkgs/libxml2-2.9.2-0/lib/libxml2.so.2.9.2
+/usr/lib64/libxml2.so.2
+/usr/lib64/libxml2.so.2.9.1
+orion /diskb/aginsbur/atca master$ ln -sf /usr/lib64/libxml2.so.2 /diskb/aginsbur/casa/casapy-42.2.30986-pipe-1-64b/lib64/libxml2.so.2
+&lt;/pre&gt;
+</summary><category term="alma"></category></entry><entry><title>Export to FITS with MIRIAD</title><link href="http://keflavich.github.io/blog/export-to-fits-with-miriad.html" rel="alternate"></link><updated>2015-09-15T15:30:00-06:00</updated><author><name>Adam Ginsburg (adam.g.ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2015-09-15:export-to-fits-with-miriad.html</id><summary type="html">&lt;p&gt;To convert from MIRIAD map files to FITS, use:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 miriad% fits in=h2comos1.clr out=h2comos1.fits op=xyout
 &lt;/pre&gt;
