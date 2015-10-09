@@ -29,4 +29,7 @@ This is relatively easy to do:
    pl.ylabel("Relative depth (Hz s)")
 
 .. image:: |filename|/images/TOS_vs_freq.png
+   :width: 800px
+
 .. image:: |filename|/images/depth_vs_freq.png
+   :width: 800px
