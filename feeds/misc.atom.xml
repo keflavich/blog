@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/misc.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2015-10-09T14:00:00-06:00</updated><entry><title>Sensitivity Plots using astroquery NRAO tool</title><link href="http://keflavich.github.io/blog/sensitivity-plots-using-astroquery-nrao-tool.html" rel="alternate"></link><updated>2015-10-09T14:00:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2015-10-09:sensitivity-plots-using-astroquery-nrao-tool.html</id><summary type="html">&lt;p&gt;I wanted to see what the approximate depth achieved by (repeated)
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/misc.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2015-10-14T14:30:00-06:00</updated><entry><title>Self-calibration of Sgr B2 Mosaic</title><link href="http://keflavich.github.io/blog/self-calibration-of-sgr-b2-mosaic.html" rel="alternate"></link><updated>2015-10-14T14:30:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2015-10-14:self-calibration-of-sgr-b2-mosaic.html</id><summary type="html">&lt;p&gt;The Sgr B2 ALMA data from project 2013.1.00269.S has imaging problems around
+the brightest sources, especially Sgr B2 M.
+Crystal Brogan &amp;amp; Todd Hunter gave some useful advice, essentially the following:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;the line forest is causing trouble, so line-containing regions of the spectrum
+must be excluded when mapping&lt;/li&gt;
+&lt;li&gt;there is some nasty curvature in the spectral baseline that needs to be removed
+probably by flagging out some of the data&lt;/li&gt;
+&lt;li&gt;Self-calibration is needed to exceed a dynamic range ~100&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Todd developed a &lt;cite&gt;fitcontinuum.py&lt;/cite&gt; script to address the first point, but I ended up
+doing this custom (&lt;a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m/test_split_spw1.py"&gt;script&lt;/a&gt;) because of the problem introduced by the second point.&lt;/p&gt;
+&lt;p&gt;To exclude the lines, I had to use &lt;em&gt;frequency-based&lt;/em&gt; selection, not channel based, because my
+spectral windows from different dates were offset by 10 MHz.  The approach to use in CASA is
+ugly: you flag the line-containing data, then split (and in splitting, average) the continuum
+into another MS.  From there, a phase-only selfcal is straigtforward (&lt;a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m/selfcal_spw1_center.py"&gt;script&lt;/a&gt;).&lt;/p&gt;
+&lt;img alt="" src="http://keflavich.github.io/blog/images/sgrb2/selfcal_compare.png" style="width: 800px;" /&gt;
+</summary><category term="CASA"></category><category term="ALMA"></category><category term="Sgr B2"></category></entry><entry><title>Sensitivity Plots using astroquery NRAO tool</title><link href="http://keflavich.github.io/blog/sensitivity-plots-using-astroquery-nrao-tool.html" rel="alternate"></link><updated>2015-10-09T14:00:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2015-10-09:sensitivity-plots-using-astroquery-nrao-tool.html</id><summary type="html">&lt;p&gt;I wanted to see what the approximate depth achieved by (repeated)
 VLA observations of a few sources was, at least theoretically.
 This is relatively easy to do:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;astropy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;units&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;

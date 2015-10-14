@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2015/10/14
+                  <br>
+                  <a href="http://keflavich.github.io/blog/self-calibration-of-sgr-b2-mosaic.html">Self-calibration of Sgr B2 Mosaic</a>
+              </li>
+              <li class="post">
                   2015/10/09
                   <br>
                   <a href="http://keflavich.github.io/blog/sensitivity-plots-using-astroquery-nrao-tool.html">Sensitivity Plots using astroquery NRAO tool</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/.html"></a>
               </li>
-              <li class="post">
-                  2015/05/07
-                  <br>
-                  <a href="http://keflavich.github.io/blog/my-python-ipython-vim-debugging-workflow.html">My python + ipython + vim debugging workflow</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,27 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/updates-for-612011-meeting.html" rel="bookmark" title="Permalink to Updates for 6/1/2011 meeting">
+                    Updates for 6/1/2011 meeting</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-06-01T21:40:00"> 2011/06/01 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>This is going to be a mishmash of various things....
+First, Jared has run the same simulations I e-mailed out through the
+V1.0 pipeline. Unfortunately, the results are not good - there is
+substantial streaking of a variety not seen in the real data in V1.
+Second, here are the simulated images from V2:
+<a class="reference external" href="http://eta.colorado.edu/bgps/simulations/Experiment7_Simulation_Images.pdf">http://eta.colorado.edu/bgps/simulations/Experiment7_Simulation_Images.pdf</a>
+Unfortunately I can't present a direct comparison because something got
+screwed up...</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -464,48 +485,6 @@ relative scales were allowed to vary.</p>
 <img alt="" src="http://3.bp.blogspot.com/-6PlqmOsDRFY/Ta3IA00cfBI/AAAAAAAAGHo/t5b2jddw5Lw/s320/airy_test_ds1_reconv_arrang45_atmotest_varyrelscale_amp1.0E-01timestream011_plots_20_bolo07.png" />
 <p>The first two each had one high-weight bolometer rejected, the last had
 12 high-weight bolos rejected. So that's problably the problem....</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/sampling-causes-problems.html" rel="bookmark" title="Permalink to Sampling causes problems">
-                    Sampling causes problems</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-04-18T23:39:00"> 2011/04/18 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>One of the simplest experiments that can be run is a point-source
-observed in point-scan mode, i.e. with smaller step-sizes. I've done
-this for an Airy disk with noise added in the image plan but not
-atmosphere (some noise is necessary to avoid bizarre artifacts with
-weighting when you have truly zero signal and zero noise). At a S/N of
-500, the noise is pretty minimal, though.
-It turns out for the 'noiseless' images, the PCA cleaning is the
-issue... curiously, it varies significantly with iteration. Is it worth
-trying to debug the PCA cleaning for noiseless timestreams? I mean...
-they really shouldn't have any correlated information anyway.
-There is still an outstanding issue where one bolometer gets scaled to
-be higher than the rest without any apparent reason for doing so.
-It is also clear that we do not nyquist-sample the pixels with the
-timestream. However, that doesn't explain a deficiency observed in the
-ds1 images. Also note that the sidelobes are not picked up at this S/N,
-but that's not too surprising.
-And here is the explanation: The peak is missed by about 10% because of
-finite sampling? Somehow the sampled gaussian nearly uniformly
-underestimates the gaussian... I think this violates theory a bit.....</p>
-<img alt="" src="http://3.bp.blogspot.com/-L2CMkehyV2g/TazJvpj2jjI/AAAAAAAAGGg/_BM0_GgC_x4/s320/airy_test_ds1_reconv_arrang45_atmotest_amp1.0E-01timestream011_plots_20_bolo07.png" />
-<p>Here's the problem shown again:</p>
-<img alt="" src="http://2.bp.blogspot.com/-vvY-1uleKmk/TazKE4Osm_I/AAAAAAAAGGo/n6Nadxi8UM4/s320/airy_test_ds1_reconv_arrang45_atmotest_amp1.0E-01_compare.png" />
-<p>This is a comparison between the input image and a ds1-sampled image
-with perfectly correlated atmospheric noise. So there is something in
-the pipeline that is preventing the peaks from achieving the necessary
-heights.... I wonder if resampling the deconvolved image onto a
-higher-resolution grid, then downsampling afterwards, would fix this?
-Also note that the flux loss increases from 7% to 20% from ds1 to ds5:</p>
-<img alt="" src="http://4.bp.blogspot.com/-hHQBTMME8Ow/TazKuf0gkuI/AAAAAAAAGGw/uQdJw4kc2U8/s320/airy_test_ds5_reconv_arrang45_atmotest_amp1.0E-01_compare.png" />
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2015/10/14
+                  <br>
+                  <a href="http://keflavich.github.io/blog/self-calibration-of-sgr-b2-mosaic.html">Self-calibration of Sgr B2 Mosaic</a>
+              </li>
+              <li class="post">
                   2015/10/09
                   <br>
                   <a href="http://keflavich.github.io/blog/sensitivity-plots-using-astroquery-nrao-tool.html">Sensitivity Plots using astroquery NRAO tool</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/.html"></a>
               </li>
-              <li class="post">
-                  2015/05/07
-                  <br>
-                  <a href="http://keflavich.github.io/blog/my-python-ipython-vim-debugging-workflow.html">My python + ipython + vim debugging workflow</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,38 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/self-calibration-of-sgr-b2-mosaic.html" rel="bookmark" title="Permalink to Self-calibration of Sgr B2 Mosaic">
+                    Self-calibration of Sgr B2 Mosaic</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-10-14T14:30:00"> 2015/10/14 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The Sgr B2 ALMA data from project 2013.1.00269.S has imaging problems around
+the brightest sources, especially Sgr B2 M.
+Crystal Brogan &amp; Todd Hunter gave some useful advice, essentially the following:</p>
+<blockquote>
+<ul class="simple">
+<li>the line forest is causing trouble, so line-containing regions of the spectrum
+must be excluded when mapping</li>
+<li>there is some nasty curvature in the spectral baseline that needs to be removed
+probably by flagging out some of the data</li>
+<li>Self-calibration is needed to exceed a dynamic range ~100</li>
+</ul>
+</blockquote>
+<p>Todd developed a <cite>fitcontinuum.py</cite> script to address the first point, but I ended up
+doing this custom (<a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m/test_split_spw1.py">script</a>) because of the problem introduced by the second point.</p>
+<p>To exclude the lines, I had to use <em>frequency-based</em> selection, not channel based, because my
+spectral windows from different dates were offset by 10 MHz.  The approach to use in CASA is
+ugly: you flag the line-containing data, then split (and in splitting, average) the continuum
+into another MS.  From there, a phase-only selfcal is straigtforward (<a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m/selfcal_spw1_center.py">script</a>).</p>
+<img alt="" src="http://keflavich.github.io/blog/images/sgrb2/selfcal_compare.png" style="width: 800px;" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -490,57 +522,6 @@ There are apparent absorption lines throughout the spectrum: they are not real.
 This is a particularly irritating problem because I had resolved it once in the
 not-too-distant past, but I can't figure out how!!  Most likely, I just removed
 the data from the maps, but that SHOULD be in the code history (git) and is not.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/regrid-an-image-or-cube-using-casa.html" rel="bookmark" title="Permalink to Regrid an image (or cube) using CASA">
-                    Regrid an image (or cube) using CASA</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-12-18T17:52:00"> 2013/12/18 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg <adam.g.ginsburg@gmail.com></a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>In order to regrid an image, you need some target reprojection.  The simplest way to acquire such a reprojection
-is by extracting it from another image, e.g. a <a class="reference external" href="casaguides.nrao.edu/index.php?title=FITStoImage">FITS image</a></p>
-<p>(I use <cite>&gt;&gt;&gt;</cite> to indicate the <cite>CASA &lt;#&gt;:</cite> prompt here because it allows you to copy &amp; paste the code into CASA)</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">header</span> <span class="o">=</span> <span class="n">imregrid</span><span class="p">(</span><span class="n">imagename</span><span class="o">=</span><span class="s">&#39;file.image&#39;</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s">&#39;get&#39;</span><span class="p">)</span>
-</pre></div>
-<p>This header will be a python dictionary with two keys, <cite>csys</cite>, which specifies
-the coordinate system, and <cite>shap</cite>, which gives the shape.</p>
-<p>If you want to write up your own FITS header and you don't have a FITS file
-with those exact coordinates, you can use the <a class="reference external" href="https://github.com/keflavich/casa_tools/blob/master/casa_tools/header_to_template.py#L11">header_to_template</a> convenience
-tool in <a class="reference external" href="https://github.com/keflavich/casa_tools">casa_tools</a>.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">casa_tools</span> <span class="kn">import</span> <span class="n">header_to_template</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">fits_header</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">Header</span><span class="o">.</span><span class="n">fromtextfile</span><span class="p">(</span><span class="s">&#39;my_header.hdr&#39;</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">header</span> <span class="o">=</span> <span class="n">header_to_template</span><span class="p">(</span><span class="n">fits_header</span><span class="p">)</span>
-</pre></div>
-<p>In order to regrid the file, you then need to pass in the image name and template to imregrid.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">imregrid</span><span class="p">(</span><span class="n">imagename</span><span class="o">=</span><span class="s">&#39;file.image&#39;</span><span class="p">,</span>
-<span class="o">...</span>          <span class="n">template</span><span class="o">=</span><span class="n">header</span><span class="p">,</span>
-<span class="o">...</span>          <span class="n">output</span><span class="o">=</span><span class="s">&#39;file_regrid.image&#39;</span><span class="p">)</span>
-</pre></div>
-<p>If your input image's header did not include a 'telescope' keyword, CASA will complain:</p>
-<blockquote>
-2013-12-18 16:46:33 SEVERE  imregrid::ImageRegrid::regrid (file /opt/casa/release-4_1_0-release-1/darwin64/include/casacore/images/Images/ImageRegrid.tcc, line 118)        Cannot find the observatory name UNKNOWN in the CASA</blockquote>
-<p>You can add the keyword to the header yourself:</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">imhead</span><span class="p">(</span><span class="s">&#39;file.image&#39;</span><span class="p">,</span>
-<span class="o">...</span>        <span class="n">mode</span><span class="o">=</span><span class="s">&#39;put&#39;</span><span class="p">,</span>
-<span class="o">...</span>        <span class="n">hdkey</span><span class="o">=</span><span class="s">&#39;telescope&#39;</span><span class="p">,</span>
-<span class="o">...</span>        <span class="n">hdvalue</span><span class="o">=</span><span class="s">&#39;Arecibo&#39;</span><span class="p">)</span>
-</pre></div>
-<div class="section" id="references">
-<h2>References</h2>
-<blockquote>
-<ul class="simple">
-<li><a class="reference external" href="http://www.eso.org/projects/alma/arc/tw/pub/External/EUARCCASATutorialJan2012/ImageAnalysis-CASA.pdf">Sebastian Muller's presentation</a> (page 16)</li>
-<li><a class="reference external" href="http://casa.nrao.edu/docs/casaref/image.regrid.html">imregrid docs</a></li>
-</ul>
-</blockquote>
-</div>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
