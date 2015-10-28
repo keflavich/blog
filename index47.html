@@ -67,6 +67,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2015/10/28
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-clean-errors-related-to-channels.html">CASA clean errors related to channels</a>
+              </li>
+              <li class="post">
+                  2015/10/28
+                  <br>
+                  <a href="http://keflavich.github.io/blog/pyspeckit-is-py3-compatible.html">pyspeckit is py3-compatible</a>
+              </li>
+              <li class="post">
                   2015/10/14
                   <br>
                   <a href="http://keflavich.github.io/blog/self-calibration-of-sgr-b2-mosaic.html">Self-calibration of Sgr B2 Mosaic</a>
@@ -81,16 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/alma-qa2-restoration.html">ALMA QA2 restoration</a>
               </li>
-              <li class="post">
-                  2015/09/15
-                  <br>
-                  <a href="http://keflavich.github.io/blog/export-to-fits-with-miriad.html">Export to FITS with MIRIAD</a>
-              </li>
-              <li class="post">
-                  2015/09/14
-                  <br>
-                  <a href="http://keflavich.github.io/blog/.html"></a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,74 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/notice-anything-different.html" rel="bookmark" title="Permalink to Notice anything different?">
+                    Notice anything different?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-21T01:08:00"> 2008/08/21 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>About milkyway? This post is a red herring, but:
+I decided to go ahead and run the mapper on Cygnus, L33, L111, and the
+Galactic Center again. The pointing has gotten to the stage where I'm
+certain I can't do anything more without a stroke of pure brilliance or
+a conversation with someone who hasn't touched a thing - e.g. Jason -
+that suddenly enlightens me.
+In order to fully reproduce Meredith's results, I'd probably have to go
+back through and follow her 'pipeline' process step by step as well, and
+I suspect that, if I had used her method on her RA/Dec maps, I would
+have come up with exactly the same problem I currently see. Therefore, I
+won't do anything about it.
+I think the most appropriate response at this point MAY be to just fit a
+damned polynomial/sine curve in az and include that as part of the
+pointing model, but I can't justify where that comes from. All I know is
+that it's present in Meredith's data as well as my own.
+What's that next step with the PPSes? We need to do that.
+More important, though, is getting some image optimization ready FAST. I
+need to be running this stuff before September! Tonight's run will be a
+test of numbers of PCA components. At the very least, the v0.5 should
+have a consistent set of images even if we cut out the high-flux ones.
+We'll deal with that later.
+For the high flux objects, e.g. g34.3, since we have so much overlapping
+data, a simple average/magical baseline subtraction might be just as if
+not more effective than PCA subtraction, so that's one way around it.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/modifications.html" rel="bookmark" title="Permalink to Modifications">
+                    Modifications</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-19T18:07:00"> 2008/08/19 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Things that have been changed in the past 24 hours that are very
+significant:</p>
+<ol class="arabic simple">
+<li>In apply_pointing_model, the signs of FAZO and FZAO have been
+swapped. I BELIEVE this is correct but somehow things aren't working
+out still.</li>
+<li>In do_the_pointing I have changed from &quot;eq2hor&quot; and &quot;hor2eq&quot; to
+&quot;my_eq2hor&quot; and &quot;my_hor2eq&quot;. These implement two major changes:<ol class="arabic">
+<li>The LST is passed as a parameter rather than calculated within the
+ASTROLIB code</li>
+<li>The conversion is calculated with BOTH hadec2altaz and getaltaz
+(and similar for the opposite transformation) and compared for
+error checking purposes. If they differ by more than one
+arcsecond, the code will spit out an error message and use
+getaltaz.</li>
+</ol>
+</li>
+</ol>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -324,64 +392,10 @@ Update 8/12/08: using RA/DEC mapping doesn't help.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/cleaning-ideas.html" rel="bookmark" title="Permalink to Cleaning ideas">
-                    Cleaning ideas</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-11T15:20:00"> 2008/08/11 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>It's proving very difficult to get rid of glitches, so here are some
-more ideas:</p>
-<p>Median filter the whole timestream (downsampled) at a resolution that
-will pull down the glitch peak. Subtract out the median-filtered
-timestream from the original, and look for outliers in that
-distribution: in principle, those should be glitches.</p>
-<p>Another option: subtract out the noise map AND the best-model map from
-the original timestream before trying to pull out additional astro model
-stuff. The map-to-timestream astro model can't include glitches because
-they're averaged over, but the sky-subtracted timestream DOES include
-glitches (no matter how many PCA components are removed) because
-glitches are NOT correlated across detectors. The weird thing is that
-this is effectively subtracting out exactly what was calculated from the
-sky subtraction - the question is whether subtracting it out BEFORE sky
-subtracting again gets you any benefit. If it was just noise,
-subtracting noise from noise is fine, but the &quot;noise&quot; does include some
-residual signal.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/glitches-and-errors.html" rel="bookmark" title="Permalink to Glitches and errors">
-                    Glitches and errors</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-11T04:24:00"> 2008/08/11 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>It's definitely important to get rid of the spikes and, more
-importantly, the exponential decay. The current function is pretty good,
-but possibly not good enough because there are some situations in which
-the turnaround decay is obviously not well-enough dealt with and results
-in high/low streaks.
-The glitches can be ~20 Jy. The problem is that they sometimes show up
-in the middle of sources (e.g. in 060609_o26). That will badly distort
-fluxes.
-My ideal is still to use a median instead of mean combination of data
-points into image points, but that seems to be impractical to implement.
-Other ideas...</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
             <a href="http://keflavich.github.io/blog/index46.html">&laquo;</a>
-    Page 47 / 49
+    Page 47 / 50
         <a href="http://keflavich.github.io/blog/index48.html">&raquo;</a>
 </p>
 </section><!-- /#content -->

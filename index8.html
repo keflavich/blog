@@ -67,6 +67,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2015/10/28
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-clean-errors-related-to-channels.html">CASA clean errors related to channels</a>
+              </li>
+              <li class="post">
+                  2015/10/28
+                  <br>
+                  <a href="http://keflavich.github.io/blog/pyspeckit-is-py3-compatible.html">pyspeckit is py3-compatible</a>
+              </li>
+              <li class="post">
                   2015/10/14
                   <br>
                   <a href="http://keflavich.github.io/blog/self-calibration-of-sgr-b2-mosaic.html">Self-calibration of Sgr B2 Mosaic</a>
@@ -81,16 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/alma-qa2-restoration.html">ALMA QA2 restoration</a>
               </li>
-              <li class="post">
-                  2015/09/15
-                  <br>
-                  <a href="http://keflavich.github.io/blog/export-to-fits-with-miriad.html">Export to FITS with MIRIAD</a>
-              </li>
-              <li class="post">
-                  2015/09/14
-                  <br>
-                  <a href="http://keflavich.github.io/blog/.html"></a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,494 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/hopkins-pdf-generalization.html" rel="bookmark" title="Permalink to Hopkins PDF Generalization">
+                    Hopkins PDF Generalization</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-06-04T15:00:00"> 2013/06/04 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> presents a non-lognormal form of the probability distribution
+function of density in turbulence, depending primarily on a parameter
+<span class="formula"><i>T</i></span>.  I examine some of its properties here.  All of the equations shown
+on this page are implemented in <a class="reference external" href="https://github.com/keflavich/turbulence_pdfs">https://github.com/keflavich/turbulence_pdfs</a>,
+in particular the functions <tt class="docutils literal">moments_theoretical_hopkins</tt> and <tt class="docutils literal">moments</tt> in
+<a class="reference external" href="https://github.com/keflavich/turbulence_pdfs/blob/master/hopkins_pdf.py">hopkins_pdf.py</a>.</p>
+<p>The conservation equations, conservation of probability and mass</p>
+<div class="formula">
+<span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i>)<i>d</i>ln<i>ρ</i> ≡ 1
+</div>
+<div class="formula">
+<span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span><i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i>)<i>d</i>ln<i>ρ</i> ≡ <i>ρ</i><sub>0</sub> = 1
+</div>
+<p><span class="formula"><i>ρ</i><sub>0</sub> = 1</span> is the definition used by <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a>.  Part of the goal
+of this document is to generalize to <span class="formula"><i>ρ</i><sub>0</sub> &lt;  &gt; 1</span></p>
+<p>The most important thing to do is determine the values of the moments of the
+distribution, including the integral corrections for the Dirac Delta function
+component of the PDF.</p>
+<div class="section" id="the-pdf">
+<h2>The PDF</h2>
+<p>The full form of the Hopkins PDF is</p>
+<div class="formula">
+<i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i> = <span class="symbol">[</span><i>I</i><sub>1</sub>(2<span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><i>λ</i><i>u</i></span><span class="ignored">)</span></span>)<i>e</i><sup> − <i>λ</i> − <i>u</i></sup><span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator"><i>u</i></span><span class="ignored">)</span></span></span><span class="ignored">)</span></span> + <i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<span class="symbol">]</span><i>du</i>
+</div>
+<p>The mass-weighted PDF is</p>
+<div class="formula">
+<i>P</i><sub><i>M</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(2<span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><i>λ</i><i>u</i></span><span class="ignored">)</span></span>)<i>e</i><sup> − <i>λ</i> − <i>u</i></sup><span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator"><i>u</i></span><span class="ignored">)</span></span></span><span class="ignored">)</span></span> + <i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<span class="symbol">]</span><i>du</i>
+</div>
+<p>With definitions:</p>
+<div class="formula">
+<i>u</i> ≡ <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>;(<i>u</i> ≥ 0)
+</div>
+<div class="formula">
+<i>λ</i> ≡ <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>S</i><sub>ln<i>ρ</i>, <i>V</i></sub></span><span class="ignored">)/(</span><span class="denominator">2<i>T</i><sup>2</sup></span><span class="ignored">)</span></span>
+</div>
+<p>The ratio <span class="formula"><i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span> is needed to ensure self-consistency: the mass
+PDF must also conserve probability, which means it must be scaled by
+<span class="formula">1 ⁄ <i>ρ</i><sub>0</sub></span>.</p>
+<p>These distributions are slightly different than those shown in <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a>.
+The <span class="formula"><i>m</i> = 0</span> term in the summation version of the PDF yields a Dirac
+<span class="formula"><i>δ</i></span> function in the integral form of the PDF.  To quote Phil:</p>
+<pre class="literal-block">
+If you check, the summation expression is exact, and does exactly integrate
+to unity (and properly conserve mass) for any value of T or lambda (with
+u&gt;0). But this is with the implicit understanding that the gamma-function
+distribution with exponent &quot;m&quot; should be taken to go to a delta-function
+about u=0 when m=0 (since otherwise it is ill defined; and physically this
+is the &quot;no event/multiplication&quot; case, so that's the only allowed case for
+the term in u).
+</pre>
+<!-- But note that both of these distributions can depend on :math:`\rho_0`, changing :math:`u` to be -->
+<!--  -->
+<!-- .. math:: u\equiv \frac{\lambda}{1+T} - \frac{\ln (\rho/\rho_0)}{T}  ;  (u \geq 0) -->
+<div class="section" id="moment-equations">
+<h3>Moment equations</h3>
+<p>The important moments are the mean and variance of the volume and mass density
+probability distribution and the volume and mass <em>log</em>-density probability
+distribution.</p>
+<p>The definitions used here are <span class="formula"><i>E</i>[<i>ρ</i>] ≡  &lt; <i>ρ</i> &gt; <sub><i>V</i></sub></span>, etc.  The
+variance is computed as <span class="formula"><i>V</i>[<i>x</i>] = <i>E</i>[<i>x</i><sup>2</sup>] − <i>E</i>[<i>x</i>]<sup>2</sup></span>, which means we'll need to
+compute the moments of various combinations of variables.</p>
+<p>Also, <span class="formula"><i>S</i><sub>ln<i>ρ</i>, <i>V</i></sub> ≡ <i>V</i>[ln<i>ρ</i><sub><i>V</i></sub>]</span></p>
+<div class="formula">
+ &lt; <i>ρ</i> &gt; <sub><i>V</i></sub> ≡ <i>ρ</i><sub>0</sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span><i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i>
+</div>
+<div class="formula">
+ &lt; ln<i>ρ</i> &gt; <sub><i>V</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span>ln<i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i>
+</div>
+<div class="formula">
+ &lt; <i>ρ</i> &gt; <sub><i>M</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span><i>ρ</i>(<i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>))<i>d</i>ln<i>ρ</i>
+</div>
+<div class="formula">
+ &lt; ln<i>ρ</i> &gt; <sub><i>M</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span>ln<i>ρ</i>(<i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>))<i>d</i>ln<i>ρ</i>
+</div>
+<div class="formula">
+ &lt; <i>ρ</i><sup>3</sup> &gt; <sub><i>V</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span><i>ρ</i><sup>3</sup><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i>
+</div>
+<div class="formula">
+ &lt; ln<sup>2</sup><i>ρ</i> &gt; <sub><i>V</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span>(ln<i>ρ</i>)<sup>2</sup><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i>
+</div>
+<div class="formula">
+ &lt; ln<sup>2</sup><i>ρ</i> &gt; <sub><i>M</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span>(ln<i>ρ</i>)<sup>2</sup><i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i>
+</div>
+<p>In the moment equations, only the input to the PDF is scaled by a mean density
+<span class="formula"><i>ρ</i><sub>0</sub></span>; the &quot;weighting factors&quot; for the expectation value are not
+(i.e., we are measuring <span class="formula"><i>E</i>[<i>ρ</i>]</span>, not <span class="formula"><i>E</i>[<i>ρ</i> ⁄ <i>rho</i><sub>0</sub>]</span>).</p>
+</div>
+<div class="section" id="delta-terms">
+<h3>Delta terms</h3>
+<p>These can be integrated analytically.  In this section, I am just computing the
+means; the variances are more complicated.</p>
+<div class="formula">
+ &lt; <i>ρ</i> &gt; <sub><i>V</i></sub> ≡ <i>ρ</i><sub>0</sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span><i>ρ</i><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>)<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>d</i>ln<i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>
+</div>
+<div class="formula">
+ &lt; ln<i>ρ</i> &gt; <sub><i>V</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span>ln<i>ρ</i><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>)<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>d</i>ln<i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>
+</div>
+<div class="formula">
+ &lt; <i>ρ</i> &gt; <sub><i>M</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span><i>ρ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>))<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>d</i>ln<i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>
+</div>
+<div class="formula">
+ &lt; ln<i>ρ</i> &gt; <sub><i>M</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span>ln<i>ρ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>))<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>d</i>ln<i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>
+</div>
+<p>Substitution: <span class="formula"><i>v</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span></span>,
+<span class="formula"><i>dv</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator">1</span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span><i>d</i>ln<i>ρ</i></span>, <span class="formula"><i>ρ</i> = <i>ρ</i><sub>0</sub><i>e</i><sup><i>v</i>*<i>T</i></sup></span>, <span class="formula">ln<i>ρ</i> = <i>v</i><i>T</i> + ln<i>ρ</i><sub>0</sub></span></p>
+<div class="formula">
+ &lt; <i>ρ</i> &gt; <sub><i>V</i><i>δ</i></sub> ≡ <i>ρ</i><sub>0</sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span><i>ρ</i><sub>0</sub><i>e</i><sup><i>vT</i></sup><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>v</i>)<i>d</i><i>v</i>
+</div>
+<div class="formula">
+ &lt; ln<i>ρ</i> &gt; <sub><i>V</i><i>δ</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span>(<i>vT</i> + ln<i>ρ</i><sub>0</sub>)<i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>v</i>)<i>d</i><i>v</i>
+</div>
+<div class="formula">
+ &lt; <i>ρ</i> &gt; <sub><i>M</i><i>δ</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span><i>ρ</i><sub>0</sub><i>e</i><sup>2<i>vT</i></sup>(<i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>v</i>))<i>d</i><i>v</i>
+</div>
+<div class="formula">
+ &lt; ln<i>ρ</i> &gt; <sub><i>M</i><i>δ</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span>(<i>vT</i> + ln<i>ρ</i><sub>0</sub>)<i>e</i><sup><i>vT</i></sup>(<i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>v</i>))<i>d</i><i>v</i>
+</div>
+<p>Solutions:</p>
+<div class="formula">
+ &lt; <i>ρ</i> &gt; <sub><i>V</i><i>δ</i></sub> = <i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>λ</i><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span> = <i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span> − <i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator">1</span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<div class="formula">
+ &lt; ln<i>ρ</i> &gt; <sub><i>V</i><i>δ</i></sub> = <i>e</i><sup> − <i>λ</i></sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + <i>e</i><sup> − <i>λ</i></sup>ln<i>ρ</i><sub>0</sub>
+</div>
+<div class="formula">
+ &lt; <i>ρ</i> &gt; <sub><i>M</i><i>δ</i></sub> = <i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>λ</i><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span> = <i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i> − 1</span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<div class="formula">
+ &lt; ln<i>ρ</i> &gt; <sub><i>M</i><i>δ</i></sub> = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + ln<i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>λ</i><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<div class="formula">
+ = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + ln<i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"> − <i>λ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<p>(for these next 3, I skipped intermediate steps)</p>
+<div class="formula">
+ &lt; <i>ρ</i><sup>3</sup> &gt; <sub><i>V</i><i>δ</i></sub> = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">3<i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>λ</i><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span> = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>T</i> − 1</span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<div class="formula">
+ &lt; ln<sup>2</sup><i>ρ</i> &gt; <sub><i>M</i><i>δ</i></sub> = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + ln<i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"> − <i>λ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<div class="formula">
+ &lt; ln<sup>2</sup><i>ρ</i> &gt; <sub><i>V</i><i>δ</i></sub> = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + ln<i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup><i>e</i><sup> − <i>λ</i></sup>
+</div>
+<p>Using <span class="formula"><i>ρ</i><sub>0</sub> = 1</span> as defined in <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> simplifies all of these a great deal.</p>
+</div>
+<div class="section" id="pdf-integrals">
+<h3>PDF Integrals</h3>
+<p>These cannot be integrated analytically.</p>
+<p>However, we can work from a few simple mathematica/sympy results:</p>
+<div class="formula">
+<span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit">0</sub></span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>L</i>)</sup><i>dx</i> = <i>e</i><sup><i>L</i></sup> − 1
+</div>
+<div class="formula">
+<span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit">0</sub></span><i>x</i><sup>2</sup><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>L</i>)</sup><i>dx</i> = 4<i>L</i><sup>2</sup>*<i>e</i><sup><i>L</i></sup>
+</div>
+<div class="formula">
+<span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit">0</sub></span><i>x</i><sup>4</sup><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>L</i>)</sup><i>dx</i> = 16<i>L</i><sup>3</sup>(<i>L</i> + 2)*<i>e</i><sup><i>L</i></sup>
+</div>
+<p>We use <span class="formula"><i>L</i></span> instead of <span class="formula"><i>λ</i></span> in these equations because it is often substituted in later equations.</p>
+<div class="section" id="expectation-value-of-the-volume-weighted-density-e-rho">
+<h4>Expectation Value of the Volume-Weighted Density <span class="formula"><i>E</i>[<i>ρ</i>]</span></h4>
+<div class="formula">
+<i>E</i>[<i>ρ</i>] ≡ <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><i>ρ</i><i>P</i><sub><i>v</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i> = <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><i>ρ</i><span class="symbol">[</span><i>I</i><sub>1</sub>(2<span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><i>λ</i><i>u</i></span><span class="ignored">)</span></span>)<i>e</i><sup> − <i>λ</i> − <i>u</i></sup><span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator"><i>u</i></span><span class="ignored">)</span></span></span><span class="ignored">)</span></span> + <i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<span class="symbol">]</span><i>du</i>
+</div>
+<p>To get to the form of the above equations, we use the substitution</p>
+<div class="formula">
+<i>x</i> = 2<span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><i>λ</i><i>u</i></span><span class="ignored">)</span></span>
+</div>
+<p>which gives us <span class="formula"><i>ρ</i></span> in terms of <span class="formula"><i>x</i></span>:</p>
+<div class="formula">
+<i>ρ</i> = <i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<p>and leads to the rearrangement:</p>
+<div class="formula">
+<i>E</i>[<i>ρ</i>] = <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>) − <i>λ</i></sup><span class="symbol">]</span><i>dx</i> + <i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+</div>
+<p>where the rightmost term is kept from the first moment above.  The integral
+term can straightforwardly be broken apart into equations of the form shown
+above.</p>
+<div class="formula">
+<i>L</i> → <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span>
+</div>
+<div class="formula">
+<i>E</i>[<i>ρ</i>] = <i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <i>λ</i> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>L</i>)</sup><span class="symbol">]</span><i>dx</i> + exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<div class="formula">
+ = <i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <i>λ</i> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>(<i>e</i><sup><i>L</i></sup> − 1) + exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<div class="formula">
+ = <i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <i>λ</i> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>(<i>e</i><sup><i>λ</i> ⁄ 1 + <i>T</i></sup> − 1) + exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<div class="formula">
+ = <i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><i>e</i><sup> − <i>λ</i> ⁄ (1 + <i>T</i>)</sup>(<i>e</i><sup><i>λ</i> ⁄ 1 + <i>T</i></sup> − 1) + exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<div class="formula">
+ = <i>ρ</i><sub>0</sub>
+</div>
+<p>The same general approach can be followed for all expectation values, but we'll skip the detailed algebra.</p>
+</div>
+<div class="section" id="variance-of-the-volume-weighted-density-v-rho-s-ln-rho-v">
+<h4>Variance of the Volume-Weighted Density <span class="formula"><i>V</i>[<i>ρ</i>] = <i>S</i><sub>ln<i>ρ</i>, <i>V</i></sub></span></h4>
+<div class="formula">
+<i>V</i>[<i>ρ</i>] = <i>E</i>[<i>ρ</i><sup>2</sup>] − <i>E</i>[<i>ρ</i>]<sup>2</sup> = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">1 + 3<i>T</i> + 2<i>T</i><sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> − 1<span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<p>However, the &quot;correction factor&quot; is still important:</p>
+<div class="formula">
+<i>V</i><sub><i>δ</i></sub>[<i>ρ</i>] = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i> − 1</span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> − exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − 2<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+</div>
+<div class="section" id="expectation-value-of-the-mass-weighted-density-e-m-rho">
+<h4>Expectation Value of the Mass-Weighted Density <span class="formula"><i>E</i><sub><i>M</i></sub>[<i>ρ</i>]</span></h4>
+<p>Start from halfway through <span class="formula"><i>E</i>[<i>ρ</i>]</span>, simply adding a factor of 2 in the exponent:</p>
+<div class="formula">
+<i>E</i><sub><i>M</i></sub>[<i>ρ</i>] = <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>2<i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>) − <i>λ</i></sup><span class="symbol">]</span><i>dx</i> + <i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i>(<i>T</i> − 1)</span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+</div>
+<p>Follow the same math, with <span class="formula"><i>L</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + 2<i>T</i></span><span class="ignored">)</span></span></span></p>
+<div class="formula">
+ = <i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <i>λ</i> + <span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>(<i>e</i><sup><i>L</i></sup> − 1) + exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i>(<i>T</i> − 1)</span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<div class="formula">
+ = <i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">(<i>T</i> − 1)<i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>(<i>e</i><sup><i>λ</i> ⁄ (1 + 2<i>T</i>)</sup> − 1) + exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<div class="formula">
+<i>E</i><sub><i>M</i></sub>[<i>ρ</i>] = <i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">1 + 3<i>T</i> + 2<i>T</i><sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> − exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i> − 1</span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> + exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i> − 1</span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<p>The right 2 terms cancel, yielding the value shown in Equation 7 of <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a>
+scaled by <span class="formula"><i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span></span>.  However, the right-most term is the
+correction factor from the Dirac Delta term needed to correct any
+numerical computation of the mass-weighted density.</p>
+<div class="formula">
+<i>E</i><sub><i>δ</i>, <i>M</i></sub>[<i>ρ</i>] = exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i> − 1</span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+</div>
+<div class="formula">
+<i>E</i><sub><i>M</i></sub>[<i>ρ</i>] = <i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">1 + 3<i>T</i> + 2<i>T</i><sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+</div>
+</div>
+<div class="section" id="expectation-value-of-the-mass-weighted-density-squared-e-m-rho-2">
+<h4>Expectation Value of the Mass-Weighted Density Squared <span class="formula"><i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>]</span></h4>
+<div class="formula">
+<i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>] = <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><i>ρ</i><sup>2</sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> + <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><i>ρ</i><sup>2</sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<i>du</i>
+</div>
+<div class="formula">
+<i>E</i><sub><i>δ</i>, <i>M</i></sub>[<i>ρ</i><sup>2</sup>] = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>T</i> − 1</span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<div class="formula">
+<i>E</i><sub><i>left</i></sub>[<i>ρ</i><sup>2</sup>] = <i>e</i><sup> − <i>λ</i></sup><span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>3<i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i>
+</div>
+<div class="formula">
+ = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">(2<i>T</i> − 1)<i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − (3<i>T</i> + 1)<i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><i>dx</i>
+</div>
+<div class="formula">
+ = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">(2<i>T</i> − 1)<i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">3<i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span> − 1<span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+</div>
+<div class="formula">
+ = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">6<i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">3<i>T</i><sup>2</sup> + 4<i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span> − exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">(2<i>T</i> − 1)<i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+</div>
+<div class="formula">
+<i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>] = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">6<i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">3<i>T</i><sup>2</sup> + 4<i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+</div>
+<div class="section" id="variance-of-the-mass-weighted-density-v-m-rho-e-m-rho-2-e-m-rho-2">
+<h4>Variance of the Mass-Weighted Density <span class="formula"><i>V</i><sub><i>M</i></sub>[<i>ρ</i>] = <i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>] − <i>E</i><sub><i>M</i></sub>[<i>ρ</i>]<sup>2</sup></span></h4>
+<p>Since correction factors are given for <span class="formula"><i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>]</span> and
+<span class="formula"><i>E</i><sub><i>M</i></sub>[<i>ρ</i>]</span>, they are not included separately here:</p>
+<div class="formula">
+<i>V</i><sub><i>M</i></sub>[<i>ρ</i>] = <i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>] − <i>E</i><sub><i>M</i></sub>[<i>ρ</i>]<sup>2</sup> = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">6<i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">3<i>T</i><sup>2</sup> + 4<i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span> − exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator">4<i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">1 + 3<i>T</i> + 2<i>T</i><sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+</div>
+</div>
+<div class="section" id="expectation-value-of-the-volume-weighted-log-density-e-ln-rho">
+<h4>Expectation Value of the Volume-Weighted Log Density <span class="formula"><i>E</i>[ln<i>ρ</i>]</span></h4>
+<div class="formula">
+<i>E</i>[ln<i>ρ</i>] = <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span>ln<i>ρ</i><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> + <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span>ln<i>ρ</i><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<i>du</i>
+</div>
+<div class="formula">
+<i>E</i><sub><i>δ</i></sub>[ln<i>ρ</i>] = <i>e</i><sup> − <i>λ</i></sup><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + ln<i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<div class="formula">
+<i>E</i><sub><i>left</i></sub>[ln<i>ρ</i>] = <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>ln<i>ρ</i><sub>0</sub> + <i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i>
+</div>
+<div class="formula">
+ = <i>e</i><sup> − <i>λ</i></sup><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> − <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+</div>
+<div class="formula">
+ = <i>e</i><sup> − <i>λ</i></sup><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>(<i>e</i><sup><i>λ</i></sup> − 1) − <span class="fraction"><span class="ignored">(</span><span class="numerator">4<i>T</i><i>λ</i><sup>2</sup><i>e</i><sup><i>λ</i></sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+</div>
+<div class="formula">
+ = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>(1 − <i>e</i><sup> − <i>λ</i></sup>) − <i>T</i><i>λ</i><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+</div>
+<div class="formula">
+<i>E</i>[ln<i>ρ</i>] = ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>T</i><i>λ</i>
+</div>
+<div class="formula">
+ = ln<i>ρ</i><sub>0</sub> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span>
+</div>
+</div>
+<div class="section" id="expectation-value-of-the-mass-weighted-log-density-e-m-ln-rho">
+<h4>Expectation Value of the Mass-Weighted Log Density <span class="formula"><i>E</i><sub><i>M</i></sub>[ln<i>ρ</i>]</span></h4>
+<div class="formula">
+<i>E</i><sub><i>M</i></sub>[ln<i>ρ</i>] = <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span>ln<i>ρ</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> + <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span>ln<i>ρ</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<i>du</i>
+</div>
+<div class="formula">
+<i>E</i><sub><i>δ</i></sub>[ln<i>ρ</i>] = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + ln<i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"> − <i>λ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<div class="formula">
+<i>E</i><sub><i>left</i></sub>[ln<i>ρ</i>] = <i>e</i><sup> − <i>λ</i></sup><span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i>
+</div>
+<p>Again, separate into integrable terms:</p>
+<div class="formula">
+ = exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>λ</i><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − (1 + <i>T</i>)<i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span> + <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>Tx</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − (1 + <i>T</i>)<i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<div class="formula">
+<i>L</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span>
+</div>
+<div class="formula">
+<i>E</i><sub><i>left</i></sub>[ln<i>ρ</i>] = exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>λ</i><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span> − 1<span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> + <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">4<i>λ</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<div class="formula">
+<i>E</i><sub><i>left</i></sub>[ln<i>ρ</i>] = exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"> − <i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span> − 1<span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> + <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">4<i>λ</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<div class="formula">
+<i>E</i><sub><i>left</i></sub>[ln<i>ρ</i>] = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>1 − exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"> − <i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> − <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+</div>
+<div class="formula">
+<i>E</i><sub><i>M</i></sub>[ln<i>ρ</i>] = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> − <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+</div>
+<div class="formula">
+ = ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span>
+</div>
+</div>
+<div class="section" id="expectation-value-of-the-mass-weighted-log-density-squared-e-m-ln-2-rho">
+<h4>Expectation Value of the Mass-Weighted Log Density Squared <span class="formula"><i>E</i><sub><i>M</i></sub>[ln<sup>2</sup><i>ρ</i>]</span></h4>
+<div class="formula">
+<i>E</i><sub><i>M</i></sub>[ln<sup>2</sup><i>ρ</i>] = <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span>(ln<i>ρ</i>)<sup>2</sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> + <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span>(ln<i>ρ</i>)<sup>2</sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<i>du</i>
+</div>
+<div class="formula">
+<i>E</i><sub><i>δ</i></sub>[ln<sup>2</sup><i>ρ</i>] = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + ln<i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"> − <i>λ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<div class="formula">
+<i>E</i><sub><i>left</i></sub>[ln<sup>2</sup><i>ρ</i>] = <i>e</i><sup> − <i>λ</i></sup><span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i>
+</div>
+<p>This time it's just too ugly.  Define a new variable:</p>
+<div class="formula">
+<i>Q</i> = ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span>
+</div>
+<div class="formula">
+<i>E</i><sub><i>left</i></sub>[ln<sup>2</sup><i>ρ</i>] = <i>e</i><sup> − <i>λ</i> ⁄ (1 + <i>T</i>)</sup><span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>Q</i> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>Tx</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i>
+</div>
+<div class="formula">
+<i>E</i><sub><i>left</i></sub>[ln<sup>2</sup><i>ρ</i>] = <i>e</i><sup> − <i>λ</i> ⁄ (1 + <i>T</i>)</sup><span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>Q</i><sup>2</sup> − 2<i>Q</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>x</i><sup>4</sup></span><span class="ignored">)/(</span><span class="denominator">16<i>λ</i><sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − (1 + <i>T</i>)<i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><i>dx</i>
+</div>
+<div class="formula">
+<i>E</i><sub><i>left</i></sub>[ln<sup>2</sup><i>ρ</i>] = <i>e</i><sup> − <i>λ</i> ⁄ (1 + <i>T</i>)</sup><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><i>Q</i><sup>2</sup>(<i>e</i><sup><i>λ</i> ⁄ (1 + <i>T</i>)</sup> − 1) − 2<i>Q</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">4<i>λ</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span><i>e</i><sup><i>λ</i> ⁄ (1 + <i>T</i>)</sup><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">16<i>λ</i><sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>16<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><sup>3</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + 2)<i>e</i><sup><i>λ</i> ⁄ (1 + <i>T</i>)</sup><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+</div>
+<div class="formula">
+<i>E</i><sub><i>left</i></sub>[ln<sup>2</sup><i>ρ</i>] = <i>Q</i><sup>2</sup>(1 − <i>e</i><sup> − <i>λ</i> ⁄ (1 + <i>T</i>)</sup>) − 2<i>Q</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + 2<span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+</div>
+<p>Add back the <span class="formula"><i>δ</i></span> termG</p>
+<div class="formula">
+<i>E</i><sub><i>M</i></sub>[ln<sup>2</sup><i>ρ</i>] = <i>Q</i><sup>2</sup> − 2<i>Q</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + 2<span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+</div>
+<p>Re-expand to see if it's simplifiable....</p>
+<div class="formula">
+<i>E</i><sub><i>M</i></sub>[ln<sup>2</sup><i>ρ</i>] = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup> − 2<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + 2<span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+</div>
+<div class="formula">
+<i>E</i><sub><i>M</i></sub>[ln<sup>2</sup><i>ρ</i>] = ln<sup>2</sup><i>ρ</i><sub>0</sub> + 2ln<i>ρ</i><sub>0</sub><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span> − 2ln<i>ρ</i><sub>0</sub><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span> − 2<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span> + 2<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span>
+</div>
+<div class="formula">
+<i>E</i><sub><i>M</i></sub>[ln<sup>2</sup><i>ρ</i>] = ln<sup>2</sup><i>ρ</i><sub>0</sub> + 2ln<i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i><sup>2</sup>(1 + <i>T</i>)</span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span> − 2<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span> + 2<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><sup>2</sup><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>4</sup></span><span class="ignored">)</span></span>
+</div>
+<div class="formula">
+<i>E</i><sub><i>M</i></sub>[ln<sup>2</sup><i>ρ</i>] = ln<sup>2</sup><i>ρ</i><sub>0</sub> + 2ln<i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i><sup>2</sup>(1 + <i>T</i>)</span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span> − 2<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span> + 2<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><sup>2</sup><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>4</sup></span><span class="ignored">)</span></span>
+</div>
+<div class="formula">
+ = ln<sup>2</sup><i>ρ</i><sub>0</sub> + 2ln<i>ρ</i><sub>0</sub><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span> + <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup> + <span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span>
+</div>
+<div class="formula">
+ = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup> + <span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span>
+</div>
+<p>As expected, we recover the correct relation from <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a>:</p>
+<div class="formula">
+<i>S</i><sub>ln<i>ρ</i>, <i>M</i></sub> = <i>E</i><sub><i>M</i></sub>[ln<i>ρ</i><sup>2</sup>] − <i>E</i><sub><i>M</i></sub>[ln<i>ρ</i>]<sup>2</sup> = ln<sup>2</sup><i>ρ</i><sub>0</sub> + 2ln<i>ρ</i><sub>0</sub><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span> + <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup> + <span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span> − <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup>
+</div>
+<div class="formula">
+ = <span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span>
+</div>
+<p><em>independent</em> of <span class="formula"><i>ρ</i><sub>0</sub></span>.</p>
+<div class="section" id="properties-of-the-hopkins-pdf">
+<h5>Properties of the Hopkins PDF</h5>
+<p>I began this investigation in order to find out whether a different parameter,
+i.e. something related to the compressiveness of the turbulent driving, could
+be responsible for the &quot;discrepancy&quot; between the Formaldehyde-derived density
+and the volume-averaged density of some clouds.</p>
+<p>I naively expected that, in compressive turbulence, more of the mass will be
+concentrated at higher density, which should drive up the mass-weighted mean
+density.</p>
+<p><a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> showed that <span class="formula"><i>T</i> ~ ℳ<sub><i>C</i></sub></span>.  If this is taken on
+face value, without recognizing the relation between <span class="formula"><i>T</i></span> and
+<span class="formula"><i>σ</i></span>, it means that for <em>fixed</em> <span class="formula"><i>σ</i></span>,
+<span class="formula"> &lt; <i>ρ</i> &gt; <sub><i>M</i></sub> ∝ <i>e</i><sup> − <i>T</i><sup>2</sup></sup></span>.</p>
+<p>This figure shows the relation of the various moments and <span class="formula"><i>T</i></span>.  The plots
+show both the &quot;theoretical&quot; result (i.e., doing the integral by hand) and the
+numerical result with 50,000 data points plus a correction for the
+<span class="formula"><i>δ</i></span> terms; the agreement is essentially perfect excepting some
+numerical noise (the only visible discrepancy is for a perfect lognormal at
+high <span class="formula"><i>σ</i><sub><i>V</i></sub></span>):</p>
+<img alt="" src="http://keflavich.github.io/blog/images/rho1_varyT_colorSigma.png" style="width: 800px;" />
+<p>However, <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> also found that simulations generally produced
+<span class="formula"><i>T</i> ~ 0.1<i>σ</i><span class="scripts"><sup class="script">2</sup><sub class="script"><i>s</i>, <i>M</i></sub></span></span> (though a relation of the form <span class="formula"><i>T</i> ~ 0.25ln(1 + 0.25<i>σ</i><span class="scripts"><sup class="script">4</sup><sub class="script"><i>s</i>, <i>M</i></sub></span>)</span> is also a good fit).</p>
+<p>If you use the simpler of these relations, the expected relationship (mean mass
+increasing with increasing &quot;compressiveness&quot;) is recovered.  However, it comes
+with an increasing <span class="formula"><i>σ</i><sub><i>s</i></sub></span>.  In these plots, half are labeled with
+<span class="formula"><i>σ</i></span> and the others are labeled with <span class="formula"><i>T</i></span>, though the two are
+equivalent.  The highest <span class="formula"><i>σ</i><sub><i>s</i></sub></span> observed in any of the simulations
+shown in <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> was about <span class="formula"><i>σ</i><sub><i>s</i></sub> = 4</span> (marked with a black
+square below), so the maximum <span class="formula"><i>ρ</i><sub><i>M</i></sub> ⁄ <i>ρ</i><sub><i>V</i></sub> ~ 10<sup>2</sup></span>.</p>
+<img alt="" src="http://keflavich.github.io/blog/images/TSigma.png" style="width: 800px;" />
+</div>
+</div>
+</div>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/bgps-point-source-recovery-experiment-23-results.html" rel="bookmark" title="Permalink to BGPS Point Source Recovery - Experiment 23 results">
+                    BGPS Point Source Recovery - Experiment 23 results</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-05-20T14:45:00"> 2013/05/20 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Experiment 23, run in mid-May 2013, created power-law synthetic astrophysical
+sky maps with added point sources in order to examine the pipeline + bolocat's
+ability to recover point source flux densities accurately.</p>
+<p>For the purpose of the BGPS v2 paper, this data is incorporated into Section
+5.3: the angular transfer function and comparison with other data sets.</p>
+<p>The parameter space explored includes 3 steps in power-spectrum background,
+$\alpha_{ps}=1,1.5,2$, which is the major parameter being explored.  A
+background with $\alpha_{ps}=2$ is approximately what we measure in both HiGal
+and the reproduced regions of the BGPS power-spectrum, so it's probably the
+most realistic, but it is also very bad for the pipeline: most of the power is
+on the largest angular scales.  $\alpha_{ps}=1$, on the other hand,
+beautifully creates point-source-like structures.</p>
+<p>These two images show the results of $\alpha_{ps}=2$ and $\alpha_{ps}=1$
+skies respectively with faint point sources on top.  The point sources are more
+pointy and stick out more in the $\alpha_{ps}=1$ situation, but the
+$\alpha_{ps}=1$ map also looks more generally point-like, so there is greater
+confusion.  If you believe that there are genuine point sources in the 1.1 mm
+maps, the $\alpha_{ps}=1$ would actually be very difficult to deal with since
+many extracted sources would actually be part of the background.</p>
+<img alt="" src="http://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp5.0E-05_sky-2.0_seed00_peak5.0E-03_smooth_withptsrc_label_compare.png" style="width: 800px;" />
+<img alt="" src="http://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp5.0E-05_sky-1.0_seed00_peak5.0E-03_smooth_withptsrc_label_compare.png" style="width: 800px;" />
+<p>We also explored two different sets of source brightnesses, 0.1-1 and 1-10
+Jy/beam, uniformly distributed.  We picked a high source density, 500 in a
+512x512 pixel map, to get decent source extraction statistics - the crowding is
+still fairly low and does not significantly affect the extracted source
+properties (only a few source overlap with others).  The bright sources are
+obviously better-recovered than the faint, with good recovery for all of the
+backgrounds explored.  The faint sources, on the other hand, were fairly
+sensitive to the background.</p>
+<p>The background levels used were $\sim1,2,10$ Jy/beam at the peak for the
+$\alpha=2$ maps (they were lower for the other power-laws, so those will be
+ignored from now on).  As described in the paper, the faint source recovery was
+good for the low peak backgrounds, but recovery was essentially nonexistent for
+the 10 Jy/beam background - point sources were not detected at all.</p>
+<p>Despite the relative simplicity of this experiment, the data took 51 GB of
+storage and took about half a day to run.</p>
+<p>In principle, one would like to examine a range of different source
+distributions (power-law flux distribution, upper/lower limits, sizes) on a
+range of different power-spectrum backgrounds - for the purpose of the v2
+paper, this approach would be thoroughly excessive.  However, I expect Tim will
+be taking this sort of approach for the next paper.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -1003,212 +1491,10 @@ don't feel confident about numbers below that range for ALL fields.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/idea-multispectral-eigenimage-decomposition.html" rel="bookmark" title="Permalink to Idea: Multispectral Eigenimage decomposition...">
-                    Idea: Multispectral Eigenimage decomposition...</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-12-22T02:53:00"> 2012/12/22 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Can use BGPS + HiGal to look for correlated (thermal) components and
-decorrelated (free-free) components. &nbsp;Obviously needs to be tried in GC
-first.
-Also, need to figure out a method to mitigate negative bowls in
-unsharp-masking for herschel-bolocam comparison</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/pointing-cross-correlation-yet-again.html" rel="bookmark" title="Permalink to Pointing & Cross-Correlation yet again">
-                    Pointing &amp; Cross-Correlation yet again</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-12-15T03:21:00"> 2012/12/15 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Prompted in part by a <a class="reference external" href="http://arxiv.org/abs/1211.0741">recent ATLASGAL paper</a>&nbsp;identifying pointing
-offsets of about 3&quot; in the BGPS, we revisit the BGPS pointing.
-The ATLASGAL team compared the source locations in their catalog to
-source locations in the Bolocam catalog by doing &quot;nearest-match&quot;
-searches within a 40&quot; radius (see their Figure 8, reproduced here)</p>
-<img alt="" src="http://1.bp.blogspot.com/-UJVCzHbaDCI/UMYpeAoulVI/AAAAAAAAHR4/cy5SIqL_HFQ/s320/ATLASGALvsBolocam.png" />
-<p>Their comparison was over the range -10 &lt; l &lt; 21, so it only covered a
-small fraction of the BGPS. &nbsp;It covered 13 fields with independent
-pointing solutions, so it's possible that they have actually discovered
-an offset only in some of our fields.</p>
-<p>The catalog comparison, while interesting, is potentially quite flawed.
-&nbsp;There's no guarantee that a source extraction algorithm will measure
-source centers accurately when a &quot;source&quot; is just a local overdensity on
-a complex background. &nbsp;Using source comparison will also lead to a bias
-towards the most source-rich fields, e.g. l000 and l001, so an offset in
-one of those fields would drastically affect the catalog offset.</p>
-<p>There is a better way to compare pointing between two images that are
-expected to be (nearly) identical. &nbsp;It is well-known that
-cross-correlation is an effective technique for determining the offsets
-between two identical images; I'll briefly summarize some of the
-literature here.</p>
-<p><a class="reference external" href="http://adsabs.harvard.edu/abs/2005A%26A...443..357G">Gratadour et al 2005</a>&nbsp;used a maximum likelihood estimator approach to
-determine the &quot;best-fit&quot; offset between two images. &nbsp;This approach is
-comparable to <a class="reference external" href="http://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=5&amp;cad=rja&amp;ved=0CF0QFjAE&amp;url=http%3A%2F%2Fwww.optics.rochester.edu%2Fworkgroups%2Ffienup%2FPUBLICATIONS%2FMGS_OL08_EffRegistration.pdf&amp;ei=rC3GUJC9CcSA2AX3wYCIAg&amp;usg=AFQjCNHdUm0v8qYzNbvrqFRqByR_3svlSA&amp;sig2=GQztgkfvoQzAzQ7kzCJU2w">Guizar et al (2008)</a>, who <a class="reference external" href="http://www.mathworks.com/matlabcentral/fileexchange/18401-efficient-subpixel-image-registration-by-cross-correlation">implemented</a> a fast solution
-for (highly) sub-pixel image registration in matlab. &nbsp;In order for the
-image registration to be fast, it must operate in fourier space, but to
-get sub-pixel registration in fourier space, you need to either pad
-(which is slow, and increases memory use drastically) or fit some
-functional form around the peak of the cross-correlation image. &nbsp;The
-alternative approach implemented by Guizar utilizes the <a class="reference external" href="http://en.wikipedia.org/wiki/Fourier_transform#Basic_properties">Fourier scaling
-theorem</a>&nbsp;to create a zoomed-in image of the peak pixel, which allows
-you to get much higher precision for a much lower computational cost.
-My innovation is to use the minimum $\chi^2$ estimator to determine the
-goodness of fit and therefore error bars on the best-fit offset.</p>
-<p>Because the $\chi^2$ value for each offset is simply determined by
-sums and multiplication ($\chi^2 = \sum
-\frac{x_i-\mu_x}{\sigma_{x_i}^2}$), we can compute each term that
-goes in to the $\chi^2$ value independently with fourier transforms,
-then create goodness-of-fit contours around the $\chi^2$ minimum. &nbsp;The
-statistical requirement for this approach to make sense is that the
-errors on the data are gaussian distributed, which is an assumption we
-inevitably make for astronomical images. &nbsp;I believe there is also a
-requirement that the errors are independent, which may be more difficult
-to satisfy, but in the Bolocam images it is satisfied, especially when
-multiple independent observations are combined.</p>
-<p>Strictly, this approach can only be used when the model data have the
-same multiplicative scale as the fitted data. &nbsp;The peak will never be
-wrong using this method, but the errors could be incorrect if the model
-and data are multiplicatively offset. &nbsp;In principle, this can be
-resolved in the future using a <a class="reference external" href="http://en.wikipedia.org/wiki/Mellin_transform">Mellin transform</a>&nbsp;[see <a class="reference external" href="http://ecocodespace.wordpress.com/category/matlab/image-matching/fourier-mellin-transform/">this site</a>&nbsp;or
-<a class="reference external" href="http://www.mathworks.com/matlabcentral/fileexchange/authors/7667">this</a> for
-a matlab approach and <a class="reference external" href="http://www.fresnel.fr/perso/derrode/publi/Cviu01.pdf">this</a> for an academic paper
-on it].</p>
-<p>This is the approach I have implemented
-at&nbsp; <a class="reference external" href="http://image-registration.rtfd.org/">image-registration.rtfd.org</a>. &nbsp;I used simulated test cases to
-demonstrate that it is, indeed, effective and accurate. &nbsp;I used this
-method to measure the offsets between the v2 data and the v1 data (which
-should, in principle, be the same as the offsets between ATLASGAL and
-v1) and the v2 vs Herschel Hi-Gal data (which should be zero).
-There are actually a few methods implemented in image-registration, and
-I compared those. &nbsp;There's a &quot;dft&quot; and a &quot;$\chi^2$&quot; approach, which are
-the same (except $\chi^2$ includes realistic errors), a method where a
-2D gaussian is fit to the peak of the cross-correlation image, and a
-method where a 2nd-order Taylor expansion is performed around the peak
-of the cross-correlation image. &nbsp;The latter two are <em>biased</em>. &nbsp;An
-example comparison plot looks like this:</p>
-<img alt="" src="http://1.bp.blogspot.com/-LtA6owJr_vc/UMZBLK394HI/AAAAAAAAHSI/tR4F0BnFSVs/s320/l000_catalog_image_compare_chi2contours.png" />
-<p>The grey dots are catalog centroid positions offsets measured between v1
-and v2. &nbsp;The green cross represents the mean and standard deviation of
-the grey points. &nbsp;The other data points, as labeled, show the offsets
-between the l000 images in v1 and v2 as measured by the method shown.
-They all have errorbars plotted, but the errorbars are generally smaller
-than the points. &nbsp;The dark spot seen behind the purple point shows the
-$\chi^2$ contours out to 8-$\sigma$: the error in the offset is tiny,
-sub-arcsecond. &nbsp;In this case, the offsets nearly agree:</p>
-<p>l000 catalog dx: &nbsp;-0.31 +/- 0.68 &nbsp; dy: 1.48 +/- 0.64</p>
-<p>l000 $\chi^2$ dx: &nbsp; 1.74 +/- 0.03 &nbsp;dy: 1.41 +/- 0.03</p>
-<p>This field agreed nicely between v1 and v2.</p>
-<p>The comparison to Hi-Gal is perhaps more important; HiGal's pointing is
-calibrated based on multi-wavelength observations, some of which include
-actual stars. &nbsp;It's a space-based mission, so its pointing is more
-stable. &nbsp;And finally, being a space mission, there's a large dedicated
-team instead of a single, part-time individual working on the data.
-Our offsets from Hi-Gal are pretty small in general, though not
-trivially small.</p>
-<img alt="" src="http://1.bp.blogspot.com/-JyMtqE536LY/UMaEqOYBRxI/AAAAAAAAHSY/85nEo6rEc9k/s320/Offsets_XYplot.png" />
-<p>And it turns out, the region that overlaps with ATLASGAL had more
-serious pointing errors than the rest of the survey:</p>
-<img alt="" src="http://2.bp.blogspot.com/-iXI7TUl1y9I/UMaHHXwN2oI/AAAAAAAAHSg/z3g51NHD0zk/s320/Offsets_XYplot_ATLASGALoverlap.png" />
-<p>(note: both of the above plots are missing L=359 because I forgot it.
-&nbsp;Fixing that now...)</p>
-<p>The clearest problem field is l=15, with a longitude offset of -6&quot;
-between v2 and HiGal.... that's not the question, though. &nbsp;Somehow I've
-lost the code that did the v1-HiGal offsets; I'll have to re-write that
-tomorrow and let it run...</p>
-<p>Update 12/13: &nbsp;I've spent the last couple days clearing up some issues
-with the offsets. &nbsp;The error bars should be MUCH smaller than in the
-above plots. &nbsp;The means are pretty similar, though.
-Short story: the offsets between v1 and Hi-Gal are greater in the
-ATLASGAL overlap regions than elsewhere, and in the right general
-direction, but not quite as serious as they claimed. &nbsp;In v2, the
-ATLASGAL overlap fields and the rest of the survey have the same mean
-offsets, and those offsets are small (-0.5&quot; in l, -1&quot; in b).
-The problem now is the table. &nbsp;If everything made sense,
-(v1-v2)+(v2-higal)+(higal-v1) = 0. &nbsp;But that clearly isn't the case,
-which implies an error in the method, which sucks since I'm claiming
-this method is superior to alternatives. &nbsp;It's possible that I'm
-actually underestimating the errors against Hi-Gal - that can be fixed
-relatively easily - but the magnitude of the error won't affect the
-centroid measurements. &nbsp;So I probably need to investigate one case very
-carefully. &nbsp;l050 is a big problem case, with vector sums &gt;1 pixel in
-both directions. &nbsp;That will be my next line of investigation.
-The approach will be:
--crop identical fields within l050 from v1, v2, herschel
--perform pointing comparison between them
--check that vector sum &lt; sum of errors
-I think - and hope - the trouble is just that I'm using inconsistent
-sub-fields to compare Herschel with the two different Bolocam versions,
-which is possible because of the way I selected these sub-fields. &nbsp;I'll
-do more careful cropping, and probably re-do this analysis
-degree-by-degree (with $512^2$ fields, in the hope that it speeds up the
-FTs).
-Update 12/14:
-I've now cropped identical sections in each of the survey, 1 square
-degree (512 pixels) each - which is great for speed. &nbsp;As a sidenote, a
-little line profiling revealed that the make_cross_plots
-&nbsp;code was the slow point in the process, and it is dominated by savefig
-calls, not ffts.
-I've run a careful examination of self consistency on the l=0 field,
-with positive results: the offsets agree to well within the errorbars
-(though there is some residual error at the 0.5&quot; level).</p>
-<img alt="" src="http://1.bp.blogspot.com/--3Q9h0Q1jA4/UMuUjQ33dCI/AAAAAAAAHS4/zSD3H26r5dA/s320/circular_selfconsistency.png" />
-<p>However, a similar inspection of l=50 resulted in a major failure:</p>
-<img alt="" src="http://2.bp.blogspot.com/-wlwvC26eTEk/UMuYZHU179I/AAAAAAAAHTI/Csf3mBSdbGI/s320/circular_selfconsistency.png" />
-<p>In this case, the problem is caused by W51 being exactly on the field
-edge, leading to huge cross-correlation power at dx=0, but spread over a
-large y range. &nbsp;My first thought is to try to downweight the edges,
-which can be achieved by &quot;zero-padding&quot; the noise image, but with high
-values instead of zero... or alternatively, by setting the edge region
-to zero smoothly.</p>
-<p>OK, first thought: Bad idea. &nbsp;Increasing the noise along the edges
-drastically increases the small-shift autocorrelation for the noise,
-which in turn ends up ruling out the small shifts as a fit possibility.
-&nbsp;I don't think this really makes sense mathematically, but each step
-does. &nbsp;Why would increasing the noise along the edges make the $\chi^2$
-fit worse?</p>
-<p>This revealed a serious bug in the code that, luckily, only affected
-non-uniform error maps. &nbsp;Basically, I had decomposed the $\chi^2$
-equation wrong (which is as bad as it sounds).</p>
-<p>That total mess has been resolved now. &nbsp;The image edges are downweighted
-with a gaussian of 12 pixels, error=100 outside and weight=0 outside
-(with weight^2 inside... best to just view the source if you really want
-to know the details). &nbsp;The new versions of the above diagrams:</p>
-<img alt="" src="http://4.bp.blogspot.com/-mjPyO7LkbGc/UMuxVgSxwZI/AAAAAAAAHTY/ilRnJRaAiOQ/s320/circular_selfconsistency.png" />
-<img alt="" src="http://3.bp.blogspot.com/-rMiHxucSQuo/UMuxZSH63fI/AAAAAAAAHTg/W_IzmhcFCzo/s320/circular_selfconsistency.png" />
-<p>Less than spectacular for l=50, but acceptable given the errors, which
-are indeed significantly larger, as you might expect given the lower
-total signal in l=50. Now I need to re-run the fits on every field.</p>
-<p>OK, cool, last thing accomplished today (...by 8pm): offset comparison
-by square degree for all fields. &nbsp;Again, I don't reproduce the magnitude
-of the ATLASGAL-measured offsets, but the ATLASGAL fields are, on
-average, more offset in longitude (to the negative) than the overall
-average.</p>
-<p>Curiously, for both v1 and v2, there appears to be a -1.5 deg shift in
-latitude from Hi-Gal.</p>
-<p>The vector sums are mostly sub-arcsecond, with most exceptions at l&gt;50.
-&nbsp;l=59,64, and 65 are particularly bad - but l=50 isn't so bad. &nbsp;So I
-should do the &quot;deep&quot; examination of one or two of those fields... who
-knows what new errors I'll turn up?</p>
-<p>Here's the new v1-ATLASGAL offset plot:</p>
-<img alt="" src="http://3.bp.blogspot.com/-iv_FsACT958/UMvsyr90haI/AAAAAAAAHTw/g56hcK6hMCw/s320/Offsets_XYplot_v1-Hi-Gal_ATLASGALoverlap.png" />
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
             <a href="http://keflavich.github.io/blog/index7.html">&laquo;</a>
-    Page 8 / 49
+    Page 8 / 50
         <a href="http://keflavich.github.io/blog/index9.html">&raquo;</a>
 </p>
 </section><!-- /#content -->

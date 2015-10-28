@@ -68,6 +68,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2015/10/28
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-clean-errors-related-to-channels.html">CASA clean errors related to channels</a>
+              </li>
+              <li class="post">
+                  2015/10/28
+                  <br>
+                  <a href="http://keflavich.github.io/blog/pyspeckit-is-py3-compatible.html">pyspeckit is py3-compatible</a>
+              </li>
+              <li class="post">
                   2015/10/14
                   <br>
                   <a href="http://keflavich.github.io/blog/self-calibration-of-sgr-b2-mosaic.html">Self-calibration of Sgr B2 Mosaic</a>
@@ -82,16 +92,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/alma-qa2-restoration.html">ALMA QA2 restoration</a>
               </li>
-              <li class="post">
-                  2015/09/15
-                  <br>
-                  <a href="http://keflavich.github.io/blog/export-to-fits-with-miriad.html">Export to FITS with MIRIAD</a>
-              </li>
-              <li class="post">
-                  2015/09/14
-                  <br>
-                  <a href="http://keflavich.github.io/blog/.html"></a>
-              </li>
         </ul>
       </li>
     
@@ -103,6 +103,413 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles in the misc category</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/generating-a-cv-using-the-ads-labs-api.html" rel="bookmark" title="Permalink to Generating a CV using the ADS Labs API">
+                    Generating a CV using the ADS Labs API</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-09-21T00:00:00"> 2013/09/21 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <ul class="simple">
+<li>[ <a class="reference external" href="https://github.com/keflavich/generate_cv">Source code related to this
+post</a> ]</li>
+<li>[ <a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/keflavich/generate_cv/master/examples/GenerateCVExample.ipynb">Notebook
+form</a>
+]</li>
+<li>[ <a class="reference external" href="http://www.adamgginsburg.com/cv.htm">CV partly generated from this
+post</a> ]</li>
+</ul>
+<p>At <a class="reference external" href="http://dotastronomy.com/">.astronomy</a> this past week, the keynote
+speaker was <a class="reference external" href="https://www.cfa.harvard.edu/~alberto/">Alberto
+Accomazzi</a>, introducing ADS
+Labs and <a class="reference external" href="http://labs.adsabs.harvard.edu/adsabs/">ADS 2.0</a>, which are
+really quite impressive.</p>
+<p>I was inspired to use ADS Labs to help me auto-generate a nicely
+formatted CV for myself. I used <a class="reference external" href="https://twitter.com/astrowizicist">Andy
+Casey's</a>
+<a class="reference external" href="https://github.com/andycasey/ads-python">ADS-python</a> as a starting
+point: he introduces a useful convention of storing your <a class="reference external" href="https://github.com/adsabs/adsabs-dev-api#signup--access">ADS API
+Key</a>:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">get_dev_key</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; A convenience function for accessing a system-wide ADS Developer&#39;s Key &quot;&quot;&quot;</span>
+
+    <span class="n">ads_dev_key_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s">&#39;~/.ads/dev_key&#39;</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ads_dev_key_filename</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ads_dev_key_filename</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+            <span class="n">dev_key</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">dev_key</span>
+
+    <span class="k">if</span> <span class="s">&#39;ADS_DEV_KEY&#39;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;ADS_DEV_KEY&#39;</span><span class="p">]</span>
+
+    <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s">&quot;no ADS API key found in ~/.ads/dev_key&quot;</span><span class="p">)</span>
+</pre></div>
+<p>We'll use <tt class="docutils literal">requests</tt> to send the request to ADS, then <tt class="docutils literal">json</tt> to
+parse the data.</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+</pre></div>
+<p>We then query the database using a keyword query (parameter <tt class="docutils literal">q</tt>)
+specifying the author. Other required parameters are the API key
+(<tt class="docutils literal">dev_key</tt>) and a filter to select only astronomy articles. The
+maximum number of rows returned in the API is 200 right now, which I
+have set (the default is 10 or 20).</p>
+<div class="highlight"><pre><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">&#39;http://adslabs.org/adsabs/api/search/&#39;</span><span class="p">,</span>
+                         <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;q&#39;</span><span class="p">:</span><span class="s">&#39;author:ginsburg, a&#39;</span><span class="p">,</span>
+                                 <span class="s">&#39;dev_key&#39;</span><span class="p">:</span><span class="n">get_dev_key</span><span class="p">(),</span>
+                                 <span class="s">&#39;rows&#39;</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span>
+                                 <span class="s">&#39;filter&#39;</span><span class="p">:</span><span class="s">&#39;database:astronomy&#39;</span><span class="p">})</span>
+</pre></div>
+<div class="highlight"><pre><span class="n">J</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="n">J</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+<pre class="literal-block">
+[u'meta', u'results']
+</pre>
+<p>The JSON 'meta' key is just metadata about the query, include the number
+of matches and execution time.</p>
+<div class="highlight"><pre><span class="n">J</span><span class="p">[</span><span class="s">&#39;meta&#39;</span><span class="p">]</span>
+</pre></div>
+<pre class="literal-block">
+{u'api-version': u'0.1',
+ u'count': 54,
+ u'hits': 54,
+ u'qtime': 7,
+ u'query': u'author:ginsburg, a'}
+</pre>
+<p>The 'results' key includes what we're actually interested in, under
+another key 'docs'.</p>
+<div class="highlight"><pre><span class="n">J</span><span class="p">[</span><span class="s">&#39;results&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+<pre class="literal-block">
+[u'docs']
+</pre>
+<div class="highlight"><pre><span class="n">datalist</span> <span class="o">=</span> <span class="n">J</span><span class="p">[</span><span class="s">&#39;results&#39;</span><span class="p">][</span><span class="s">&#39;docs&#39;</span><span class="p">]</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">datalist</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">datalist</span><span class="p">)</span>
+</pre></div>
+<pre class="literal-block">
+(list, 54)
+</pre>
+<p><tt class="docutils literal">datalist</tt> is a list of the retrieved bibliographic entries.</p>
+<div class="highlight"><pre><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+<pre class="literal-block">
+[u'bibcode',
+ u'keyword',
+ u'pubdate',
+ u'bibstem',
+ u'property',
+ u'aff',
+ u'author',
+ u'citation_count',
+ u'pub',
+ u'page',
+ u'volume',
+ u'database',
+ u'doi',
+ u'year',
+ u'abstract',
+ u'title',
+ u'identifier',
+ u'issue',
+ u'id']
+</pre>
+<p>At this point, most of the remaining work is building up a nicely
+formatted output. We'll start with a web-specific example, using HTML
+unordered lists.</p>
+<p>In this example, we'll make a list item that creates a hyperlink for the
+author names and uses a reasonably standard bibliographic format:</p>
+<pre class="literal-block">
+Authors Month, Year, Journal
+Title
+</pre>
+<div class="highlight"><pre><span class="n">fmt</span> <span class="o">=</span> <span class="p">(</span><span class="s">u&#39;                &#39;</span>
+<span class="s">u&#39;&lt;li&gt;&lt;a class=&quot;norm&quot; href=&quot;http://adsabs.harvard.edu/abs/{adsbibid}&quot;&gt;{creator}&lt;/a&gt;&#39;</span>
+<span class="s">u&#39; {month}, &lt;b&gt;{year}&lt;/b&gt; {journal}</span><span class="se">\n</span><span class="s">&#39;</span>
+<span class="s">u&#39;                &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;{titlestring}&#39;</span><span class="p">)</span>
+</pre></div>
+<p>We need to do a little data wrangling to get the individual JSON entries
+into the appropriate format:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">wrangle</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">authorname</span><span class="o">=</span><span class="s">&#39;Ginsburg&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Create new fields from the input data to insert into the format string &quot;&quot;&quot;</span>
+    <span class="n">data</span><span class="p">[</span><span class="s">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;pubdate&#39;</span><span class="p">][</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span>
+    <span class="c"># Generally, the last identifier is the published version,</span>
+    <span class="c"># while the first is an arXiv identifier</span>
+    <span class="c"># (data[&#39;identifier&#39;] is a list)</span>
+    <span class="n">data</span><span class="p">[</span><span class="s">&#39;adsbibid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;identifier&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c"># data[&#39;title&#39;] &amp; [&#39;pub&#39;] are also lists</span>
+    <span class="n">data</span><span class="p">[</span><span class="s">&#39;titlestring&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;title&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s">&#39;journal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;bibstem&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c"># This trick bolds my name in the list of authors</span>
+    <span class="n">data</span><span class="p">[</span><span class="s">&#39;authors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;&lt;b&gt;{}&lt;/b&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">authorname</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">else</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;author&#39;</span><span class="p">]]</span>
+    <span class="c"># Separate names by semicolons</span>
+    <span class="n">data</span><span class="p">[</span><span class="s">&#39;creator&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">u&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;authors&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+<p>The return from <tt class="docutils literal">wrangle</tt> is a dict with new keys that match the
+keywords in the format string. The python <tt class="docutils literal">string.format</tt> method will
+nicely ignore any extra keywords that we're uninterested in.</p>
+<div class="highlight"><pre><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">wrangle</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+<pre class="literal-block">
+u'                &lt;li&gt;&lt;a class=&quot;norm&quot; href=&quot;<a class="reference external" href="http://adsabs.harvard.edu/abs/2013ApJ...773..102F">http://adsabs.harvard.edu/abs/2013ApJ...773..102F</a>&quot;&gt;Fallscheer, C.; Reid, M. A.; Di Francesco, J.; Martin, P. G.; Hill, T.; Hennemann, M.; Nguyen-Luong, Q.; Motte, F.; Men'shchikov, A.; Andrxe9, Ph.; Ward-Thompson, D.; Griffin, M.; Kirk, J.; Konyves, V.; Rygl, K. L. J.; Sadavoy, S.; Sauvage, M.; Schneider, N.; Anderson, L. D.; Benedettini, M.; Bernard, J. -P.; Bontemps, S.; &lt;b&gt;Ginsburg, A.&lt;/b&gt;; Molinari, S.; Polychroni, D.; Rivera-Ingraham, A.; Roussel, H.; Testi, L.; White, G.; Williams, J. P.; Wilson, C. D.; Wong, M.; Zavagno, A.&lt;/a&gt; 08, &lt;b&gt;2013&lt;/b&gt; ApJn                &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Herschel Reveals Massive Cold Clumps in NGCxa07538'
+</pre>
+<p>Now to show it in the notebook...</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">IPython.display</span>
+<span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">wrangle</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+</pre></div>
+<p>You can make a complete bibliography by looping over a few entries. The
+ordered list (<tt class="docutils literal">&lt;ol&gt;</tt>) tag makes a numbered list.</p>
+<div class="highlight"><pre><span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&lt;ol&gt;&quot;</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">wrangle</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="n">ii</span><span class="p">]))</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s">&quot;&lt;/ol&gt;&quot;</span>
+<span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</pre></div>
+<p>If you want to make sure you only include refereed articles, use the
+'property' tag.</p>
+<div class="highlight"><pre><span class="k">print</span> <span class="p">[</span><span class="s">&#39;REFEREED&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;property&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span><span class="p">]</span>
+</pre></div>
+<pre class="literal-block">
+[True, False, True, False, False, False, True, True, False, False, False, False, True, True, True, False, False, True, True, False, False, True, True, True, False, False, False, False, True, False, False, True, True, True, True, True, True, False, False, False, False, False, False, True, True, False, False, False, False, False, True, False, False, True]
+</pre>
+<p>And don't forget that you can also include the citation count:</p>
+<div class="highlight"><pre><span class="k">print</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&quot;{} {}: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s">&#39;author&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="s">&#39;year&#39;</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="s">&#39;citation_count&#39;</span><span class="p">])</span>
+                <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span>
+                <span class="k">if</span> <span class="s">&#39;citation_count&#39;</span> <span class="ow">in</span> <span class="n">d</span> <span class="ow">and</span> <span class="s">&#39;REFEREED&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;property&#39;</span><span class="p">]])</span>
+</pre></div>
+<pre class="literal-block">
+Fallscheer, C. 2013: 0
+Ellsworth-Bowers, Timothy P. 2013: 2
+Smith, Nathan 2013: 0
+Harvey, Paul M. 2013: 2
+Bressert, E. 2012: 10
+Ginsburg, A. 2012: 11
+Bally, John 2012: 0
+Ginsburg, Adam 2011: 5
+Battersby, C. 2011: 22
+Schlingman, Wayne M. 2011: 17
+Ginsburg, Adam 2011: 6
+van Aarle, E. 2011: 12
+Aguirre, James E. 2011: 72
+Bally, John 2010: 36
+Battersby, Cara 2010: 30
+Yan, Chi-Hung 2010: 5
+Bally, J. 2010: 20
+Dunham, Miranda K. 2010: 27
+Rosolowsky, Erik 2010: 80
+Ginsburg, Adam G. 2009: 10
+Rubin, D. 2009: 23
+van de Steene, G. C. 2008: 4
+Golitsyn, G. S. 1985: 4
+</pre>
+<div class="section" id="wishlist">
+<h2>Wishlist</h2>
+<p>There are a few other features that would be nice to add to the CV, but
+some are not yet well-supported.</p>
+<ol class="arabic simple">
+<li>You can get the full name, but right now not the short name
+('bibstem'), of the journal</li>
+<li>The bibtex entry is important for generating tex versions of CVs.
+Currently, it is not possible to completely reproduce one, largely
+because of point #1.</li>
+</ol>
+<p>However, the ADS folks will certainly change this soon. You can find out
+if they have by querying their API settings. If the query below returns
+&quot;True&quot;, then you can access the bibstem.</p>
+<p>UPDATE 9/23/2013: Jay Luker &#64;ADS <a class="reference external" href="https://twitter.com/lbjay/status/382138570632204291">added 'bibstem' to the allowed return
+entries</a></p>
+<div class="highlight"><pre><span class="n">permissions_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">&#39;http://adslabs.org/adsabs/api/settings/&#39;</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;dev_key&#39;</span><span class="p">:</span><span class="n">get_dev_key</span><span class="p">()})</span>
+<span class="n">permissions</span> <span class="o">=</span> <span class="n">permissions_response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="s">&#39;bibstem&#39;</span> <span class="ow">in</span> <span class="n">permissions</span><span class="p">[</span><span class="s">&#39;allowed_fields&#39;</span><span class="p">]</span>
+</pre></div>
+<pre class="literal-block">
+True
+</pre>
+<p>In the meantime, you can get most of the way there. We'll create
+&quot;Article&quot; entries for any articles or eprints and ignore abstracts
+(e.g., conference abstracts). I don't have any books, but for others
+that might be useful.</p>
+<p>The approach we'll use is also a good way to reject unwanted articles in
+the HTML bibliography above.</p>
+<div class="highlight"><pre><span class="n">bibfmt</span> <span class="o">=</span> <span class="s">u&quot;&quot;&quot;@article{{{tagname},</span>
+<span class="s">abstract={{{abstract}}},</span>
+<span class="s">author={{{bibtexauthors}}},</span>
+<span class="s">month={{{month}}},</span>
+<span class="s">pages={{{page}}},</span>
+<span class="s">title={{{titlestring}}},</span>
+<span class="s">year={{{year}}},</span>
+<span class="s">volume={{{volume}}},</span>
+<span class="s">journal={{</span><span class="se">\\</span><span class="s">{lowercasejournal}}}</span>
+<span class="s">}}&quot;&quot;&quot;</span>
+</pre></div>
+<p>Of course, it's necessary to wrangle the data again for the appropriate
+author list formatting for bibtex:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">wrangleauthors</span><span class="p">(</span><span class="n">authorlist</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Fit the author list into a bibtex-friendly format.</span>
+<span class="sd">    Not the cleanest hack, since we need to allow for single-name</span>
+<span class="sd">    authors (e.g., astropy collaboration, Planck collaboration, etc.)</span>
+<span class="sd">    The triple braces are needed because TeX uses them&quot;&quot;&quot;</span>
+    <span class="n">splita</span> <span class="o">=</span> <span class="p">[[</span><span class="n">b</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;,&quot;</span><span class="p">)]</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">authorlist</span><span class="p">]</span>
+    <span class="n">bracketed</span> <span class="o">=</span> <span class="p">[</span><span class="s">u&#39;{{{}}}, {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">,</span><span class="s">&quot;~&quot;</span><span class="p">))</span>
+                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+                 <span class="k">else</span> <span class="s">u&#39;{{{}}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                 <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">splita</span><span class="p">]</span>
+    <span class="k">return</span> <span class="s">u&quot; and &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">bracketed</span><span class="p">)</span>
+</pre></div>
+<div class="highlight"><pre><span class="n">wrangleauthors</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">&#39;author&#39;</span><span class="p">])</span>
+</pre></div>
+<pre class="literal-block">
+u&quot;{Fallscheer}, C. and {Reid}, M.~A. and {Di Francesco}, J. and {Martin}, P.~G. and {Hill}, T. and {Hennemann}, M. and {Nguyen-Luong}, Q. and {Motte}, F. and {Men'shchikov}, A. and {Andrxe9}, Ph. and {Ward-Thompson}, D. and {Griffin}, M. and {Kirk}, J. and {Konyves}, V. and {Rygl}, K.~L.~J. and {Sadavoy}, S. and {Sauvage}, M. and {Schneider}, N. and {Anderson}, L.~D. and {Benedettini}, M. and {Bernard}, J.~-P. and {Bontemps}, S. and {Ginsburg}, A. and {Molinari}, S. and {Polychroni}, D. and {Rivera-Ingraham}, A. and {Roussel}, H. and {Testi}, L. and {White}, G. and {Williams}, J.~P. and {Wilson}, C.~D. and {Wong}, M. and {Zavagno}, A.&quot;
+</pre>
+<p>Now we can start looping through, performing checks for article status,
+and making bibentries. We'll use python's <tt class="docutils literal">dateutils.parse</tt> to turn
+month numbers into names</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">dateutil.parser</span>
+</pre></div>
+<div class="highlight"><pre><span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span><span class="p">:</span>
+    <span class="n">d</span><span class="p">[</span><span class="s">&#39;bibtexauthors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wrangleauthors</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s">&#39;author&#39;</span><span class="p">])</span>
+
+    <span class="c"># pubdates don&#39;t include days, and sometimes don&#39;t include months,</span>
+    <span class="c"># so we have to be careful</span>
+    <span class="n">d</span><span class="p">[</span><span class="s">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dateutil</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s">&#39;pubdate&#39;</span><span class="p">][:</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%B&quot;</span><span class="p">)</span>
+                  <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;pubdate&#39;</span><span class="p">][</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#39;00&#39;</span>
+                  <span class="k">else</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="c"># To make the standard macros, e.g. \apj, \aa</span>
+    <span class="n">d</span><span class="p">[</span><span class="s">&#39;lowercasejournal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;bibstem&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="c"># list -&gt; string</span>
+    <span class="n">d</span><span class="p">[</span><span class="s">&#39;titlestring&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;title&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c"># need to make sure there is something to put in the volume field</span>
+    <span class="n">d</span><span class="p">[</span><span class="s">&#39;volume&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;volume&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s">&#39;volume&#39;</span> <span class="ow">in</span> <span class="n">d</span> <span class="k">else</span> <span class="s">&#39;&#39;</span>
+
+    <span class="c"># tagname is [First author&#39;s last name][year]</span>
+    <span class="n">d</span><span class="p">[</span><span class="s">&#39;tagname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;author&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s">&quot;,&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;year&#39;</span><span class="p">]</span>
+</pre></div>
+<div class="highlight"><pre><span class="n">bibdata</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s">&#39;ARTICLE&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;property&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="s">&#39;EPRINT&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;property&#39;</span><span class="p">]:</span>
+        <span class="n">bibdata</span> <span class="o">+=</span> <span class="n">bibfmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n\n</span><span class="s">&quot;</span>
+</pre></div>
+<p>Now this data can be saved to a bibliography file and parsed by LaTeX.</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">codecs</span> <span class="c"># for writing unicode</span>
+
+<span class="k">with</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#39;mypapers.bib&#39;</span><span class="p">,</span><span class="s">&#39;w&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s">&#39;utf8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">bibdata</span><span class="p">)</span>
+</pre></div>
+<p>Future work:</p>
+<ul class="simple">
+<li>Verify the bibtex</li>
+<li>Generate the CV LaTeX and compile it</li>
+</ul>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/my-favorite-splatalogue-queries.html" rel="bookmark" title="Permalink to My favorite Splatalogue queries">
+                    My favorite Splatalogue queries</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-08-05T10:37:59"> 2013/08/05 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I tend to be most interested in low-energy molecular lines: CO, NH<sub>3</sub>, and
+H<sub>2</sub>CO being the main candidates.</p>
+<p>Note: Splatalogue has made some recent changes to their returned tables, partly
+per my recommendations.  The code below has been update to reflect these
+changes.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">astroquery.splatalogue</span> <span class="kn">import</span> <span class="n">Splatalogue</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">S</span> <span class="o">=</span> <span class="n">Splatalogue</span><span class="p">(</span><span class="n">energy_max</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+<span class="o">...</span>    <span class="n">energy_type</span><span class="o">=</span><span class="s">&#39;eu_k&#39;</span><span class="p">,</span><span class="n">energy_levels</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;el4&#39;</span><span class="p">],</span>
+<span class="o">...</span>    <span class="n">line_strengths</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;ls4&#39;</span><span class="p">],</span>
+<span class="o">...</span>    <span class="n">only_NRAO_recommended</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">noHFS</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">trimmed_query</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="o">...</span>     <span class="n">columns</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;Species&#39;</span><span class="p">,</span><span class="s">&#39;Chemical Name&#39;</span><span class="p">,</span><span class="s">&#39;Resolved QNs&#39;</span><span class="p">,</span><span class="s">&#39;Freq-GHz&#39;</span><span class="p">,</span>
+<span class="o">...</span>                <span class="s">&#39;Meas Freq-GHz&#39;</span><span class="p">,</span><span class="s">&#39;Log&lt;sub&gt;10&lt;/sub&gt; (A&lt;sub&gt;ij&lt;/sub&gt;)&#39;</span><span class="p">,</span>
+<span class="o">...</span>                <span class="s">&#39;E_U (K)&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">table</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">query_lines</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)[</span><span class="n">columns</span><span class="p">]</span>
+<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s">&#39;Log&lt;sub&gt;10&lt;/sub&gt; (A&lt;sub&gt;ij&lt;/sub&gt;)&#39;</span><span class="p">,</span><span class="s">&#39;log10(Aij)&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s">&#39;E_U (K)&#39;</span><span class="p">,</span><span class="s">&#39;EU_K&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s">&#39;Resolved QNs&#39;</span><span class="p">,</span><span class="s">&#39;QNs&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">&#39;EU_K&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="k">return</span> <span class="n">table</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span><span class="mi">30</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">chemical_name</span><span class="o">=</span><span class="s">&#39;(H2.*Formaldehyde)|( HDCO )&#39;</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">energy_max</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
+<span class="n">Species</span> <span class="n">Chemical</span> <span class="n">Name</span>      <span class="n">QNs</span>      <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">Meas</span> <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">log10</span><span class="p">(</span><span class="n">Aij</span><span class="p">)</span>   <span class="n">EU_K</span>
+<span class="o">-------</span> <span class="o">-------------</span> <span class="o">-------------</span> <span class="o">--------</span> <span class="o">-------------</span> <span class="o">----------</span> <span class="o">--------</span>
+   <span class="n">HDCO</span>  <span class="n">Formaldehyde</span> <span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>       <span class="o">--</span>       <span class="mf">5.34614</span>   <span class="o">-</span><span class="mf">8.31616</span> <span class="mf">11.18287</span>
+ <span class="n">H2C18O</span>  <span class="n">Formaldehyde</span> <span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>   <span class="mf">4.3888</span>        <span class="mf">4.3888</span>   <span class="o">-</span><span class="mf">8.22052</span> <span class="mf">15.30187</span>
+ <span class="n">H213CO</span>  <span class="n">Formaldehyde</span> <span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>       <span class="o">--</span>       <span class="mf">4.59309</span>   <span class="o">-</span><span class="mf">8.51332</span> <span class="mf">15.34693</span>
+   <span class="n">H2CO</span>  <span class="n">Formaldehyde</span> <span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>  <span class="mf">4.82966</span>            <span class="o">--</span>   <span class="o">-</span><span class="mf">8.44801</span> <span class="mf">15.39497</span>
+   <span class="n">HDCO</span>  <span class="n">Formaldehyde</span> <span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>       <span class="o">--</span>      <span class="mf">16.03787</span>   <span class="o">-</span><span class="mf">7.36194</span> <span class="mf">17.62746</span>
+ <span class="n">H2C18O</span>  <span class="n">Formaldehyde</span> <span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="mf">13.16596</span>      <span class="mf">13.16596</span>   <span class="o">-</span><span class="mf">6.86839</span> <span class="mf">22.17455</span>
+ <span class="n">H213CO</span>  <span class="n">Formaldehyde</span> <span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>       <span class="o">--</span>       <span class="mf">13.7788</span>   <span class="o">-</span><span class="mf">7.55919</span> <span class="mf">22.38424</span>
+   <span class="n">H2CO</span>  <span class="n">Formaldehyde</span> <span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="mf">14.48848</span>            <span class="o">--</span>   <span class="o">-</span><span class="mf">7.49383</span> <span class="mf">22.61771</span>
+ <span class="n">H2C18O</span>  <span class="n">Formaldehyde</span> <span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="mf">26.33012</span>      <span class="mf">26.33014</span>   <span class="o">-</span><span class="mf">6.03008</span> <span class="mf">32.48204</span>
+ <span class="n">H213CO</span>  <span class="n">Formaldehyde</span> <span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>       <span class="o">--</span>      <span class="mf">27.55567</span>   <span class="o">-</span><span class="mf">6.95712</span>  <span class="mf">32.9381</span>
+   <span class="n">H2CO</span>  <span class="n">Formaldehyde</span> <span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>       <span class="o">--</span>       <span class="mf">28.9748</span>   <span class="o">-</span><span class="mf">6.89179</span> <span class="mf">33.44949</span>
+
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span><span class="mi">400</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">chemical_name</span><span class="o">=</span><span class="s">&#39;Carbon Monoxide&#39;</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">energy_max</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
+<span class="n">Species</span>  <span class="n">Chemical</span> <span class="n">Name</span>   <span class="n">QNs</span>   <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">Meas</span> <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">log10</span><span class="p">(</span><span class="n">Aij</span><span class="p">)</span>   <span class="n">EU_K</span>
+<span class="o">-------</span> <span class="o">---------------</span> <span class="o">-----</span> <span class="o">---------</span> <span class="o">-------------</span> <span class="o">----------</span> <span class="o">--------</span>
+   <span class="n">C18O</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">1</span><span class="o">-</span><span class="mi">0</span> <span class="mf">109.78218</span>     <span class="mf">109.78218</span>   <span class="o">-</span><span class="mf">7.20058</span>  <span class="mf">5.26868</span>
+<span class="mi">13</span><span class="n">COv</span><span class="o">=</span><span class="mi">0</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">1</span><span class="o">-</span><span class="mi">0</span> <span class="mf">110.20135</span>            <span class="o">--</span>   <span class="o">-</span><span class="mf">7.49946</span>   <span class="mf">5.2888</span>
+   <span class="n">C17O</span> <span class="n">Carbon</span> <span class="n">Monoxide</span> <span class="n">J</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="mi">0</span> <span class="mf">112.35928</span>     <span class="mf">112.35928</span>   <span class="o">-</span><span class="mf">7.17404</span>  <span class="mf">5.39236</span>
+  <span class="n">COv</span><span class="o">=</span><span class="mi">0</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">1</span><span class="o">-</span><span class="mi">0</span>  <span class="mf">115.2712</span>      <span class="mf">115.2712</span>   <span class="o">-</span><span class="mf">7.14236</span>  <span class="mf">5.53211</span>
+   <span class="n">C18O</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">2</span><span class="o">-</span><span class="mi">1</span> <span class="mf">219.56036</span>     <span class="mf">219.56036</span>   <span class="o">-</span><span class="mf">6.21833</span> <span class="mf">15.80595</span>
+<span class="mi">13</span><span class="n">COv</span><span class="o">=</span><span class="mi">0</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">2</span><span class="o">-</span><span class="mi">1</span> <span class="mf">220.39868</span>            <span class="o">--</span>   <span class="o">-</span><span class="mf">6.51752</span> <span class="mf">15.86618</span>
+   <span class="n">C17O</span> <span class="n">Carbon</span> <span class="n">Monoxide</span> <span class="n">J</span><span class="o">=</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span> <span class="mf">224.71437</span>     <span class="mf">224.71439</span>   <span class="o">-</span><span class="mf">6.19179</span> <span class="mf">16.17703</span>
+  <span class="n">COv</span><span class="o">=</span><span class="mi">0</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">2</span><span class="o">-</span><span class="mi">1</span>   <span class="mf">230.538</span>       <span class="mf">230.538</span>   <span class="o">-</span><span class="mf">6.16011</span> <span class="mf">16.59608</span>
+   <span class="n">C18O</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">3</span><span class="o">-</span><span class="mi">2</span> <span class="mf">329.33055</span>     <span class="mf">329.33055</span>   <span class="o">-</span><span class="mf">5.66014</span>  <span class="mf">31.6116</span>
+<span class="mi">13</span><span class="n">COv</span><span class="o">=</span><span class="mi">0</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">3</span><span class="o">-</span><span class="mi">2</span> <span class="mf">330.58797</span>            <span class="o">--</span>   <span class="o">-</span><span class="mf">5.95976</span> <span class="mf">31.73179</span>
+   <span class="n">C17O</span> <span class="n">Carbon</span> <span class="n">Monoxide</span> <span class="n">J</span><span class="o">=</span><span class="mi">3</span><span class="o">-</span><span class="mi">2</span>  <span class="mf">337.0611</span>     <span class="mf">337.06113</span>    <span class="o">-</span><span class="mf">5.6336</span>  <span class="mf">32.3538</span>
+  <span class="n">COv</span><span class="o">=</span><span class="mi">0</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">3</span><span class="o">-</span><span class="mi">2</span> <span class="mf">345.79599</span>     <span class="mf">345.79599</span>   <span class="o">-</span><span class="mf">5.60192</span> <span class="mf">33.19169</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">MHz</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">chemical_name</span><span class="o">=</span><span class="s">&#39; H2CO .*Formaldehyde&#39;</span><span class="p">,</span><span class="n">energy_max</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">energy_type</span><span class="o">=</span><span class="s">&#39;eu_k&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
+<span class="n">Species</span> <span class="n">Chemical</span> <span class="n">Name</span>      <span class="n">QNs</span>      <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">Meas</span> <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">log10</span><span class="p">(</span><span class="n">Aij</span><span class="p">)</span>   <span class="n">EU_K</span>
+<span class="o">-------</span> <span class="o">-------------</span> <span class="o">-------------</span> <span class="o">--------</span> <span class="o">-------------</span> <span class="o">----------</span> <span class="o">--------</span>
+   <span class="n">H2CO</span>  <span class="n">Formaldehyde</span> <span class="mi">2</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>       <span class="o">--</span>       <span class="mf">0.07114</span>  <span class="o">-</span><span class="mf">13.81846</span>   <span class="mf">57.612</span>
+   <span class="n">H2CO</span>  <span class="n">Formaldehyde</span> <span class="mi">3</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>       <span class="o">--</span>       <span class="mf">0.35557</span>  <span class="o">-</span><span class="mf">12.02319</span> <span class="mf">68.11082</span>
+
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">MHz</span><span class="p">,</span><span class="mi">25</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span><span class="n">chemical_name</span><span class="o">=</span><span class="s">&#39; NH3 &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
+<span class="n">Species</span> <span class="n">Chemical</span> <span class="n">Name</span>      <span class="n">QNs</span>       <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">Meas</span> <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">log10</span><span class="p">(</span><span class="n">Aij</span><span class="p">)</span>    <span class="n">EU_K</span>
+<span class="o">-------</span> <span class="o">-------------</span> <span class="o">--------------</span> <span class="o">--------</span> <span class="o">-------------</span> <span class="o">----------</span> <span class="o">---------</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">23.69447</span>       <span class="mf">23.6945</span>   <span class="o">-</span><span class="mf">6.43769</span>  <span class="mf">24.40492</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">2</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span>  <span class="mf">23.7226</span>      <span class="mf">23.72263</span>   <span class="o">-</span><span class="mf">6.31125</span>   <span class="mf">65.5867</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">23.09885</span>      <span class="mf">23.09881</span>   <span class="o">-</span><span class="mf">6.94808</span>   <span class="mf">81.5904</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span> <span class="mi">3</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">23.87008</span>      <span class="mf">23.87013</span>   <span class="o">-</span><span class="mf">6.25203</span> <span class="mf">124.68113</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">3</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">22.83422</span>      <span class="mf">22.83418</span>     <span class="o">-</span><span class="mf">6.662</span> <span class="mf">151.33353</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">22.23456</span>       <span class="mf">22.2345</span>   <span class="o">-</span><span class="mf">7.29889</span> <span class="mf">167.29666</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">4</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">24.13935</span>      <span class="mf">24.13942</span>   <span class="o">-</span><span class="mf">6.20938</span> <span class="mf">201.67106</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span> <span class="mi">4</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">22.68835</span>      <span class="mf">22.68831</span>   <span class="o">-</span><span class="mf">6.54002</span> <span class="mf">238.96192</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">4</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">21.70341</span>      <span class="mf">21.70336</span>   <span class="o">-</span><span class="mf">6.95001</span> <span class="mf">265.52612</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">4</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">21.13434</span>      <span class="mf">21.13431</span>   <span class="o">-</span><span class="mf">7.58659</span> <span class="mf">281.43749</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">5</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">5</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">24.53292</span>      <span class="mf">24.53299</span>    <span class="o">-</span><span class="mf">6.1706</span> <span class="mf">296.53357</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">5</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">5</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">22.65307</span>      <span class="mf">22.65302</span>   <span class="o">-</span><span class="mf">6.46829</span> <span class="mf">344.46226</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span> <span class="mi">5</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">5</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">21.28532</span>      <span class="mf">21.28528</span>   <span class="o">-</span><span class="mf">6.79928</span>  <span class="mf">381.6003</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">5</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">5</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">20.37145</span>      <span class="mf">20.37145</span>   <span class="o">-</span><span class="mf">7.20859</span> <span class="mf">408.05568</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">5</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">5</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">19.83833</span>      <span class="mf">19.83835</span>   <span class="o">-</span><span class="mf">7.84539</span> <span class="mf">423.90259</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">6</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">6</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">22.73249</span>      <span class="mf">22.73243</span>   <span class="o">-</span><span class="mf">6.41603</span> <span class="mf">467.80451</span>
+</pre></div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -1225,54 +1632,6 @@ Here's the ipython notebook (gist &amp; nbviewer) for those interested:
 <a class="reference external" href="https://gist.github.com/4109329">https://gist.github.com/4109329</a>
 <a class="reference external" href="http://nbviewer.ipython.org/4109329/">http://nbviewer.ipython.org/4109329/</a></p>
 </div></p> </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/attempts-to-install-astrometrynet-comment-on-problems-with-index-files-generation.html" rel="bookmark" title="Permalink to Attempts to install astrometry.net (comment on problems-with-index-files-generation)">
-                    Attempts to install astrometry.net (comment on problems-with-index-files-generation)</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-11-04T17:26:00"> 2012/11/04 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam.html">Adam</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Some progress in this vein:
-1. installed astrometry.net (but without some graphical extras)
-2. figured out how to create indexes! Finders are ~5x5', so based on
-<a class="reference external" href="http://forum.astrometry.net/index.php?p=/discussion/2/problems-with-index-files-generation/p1">this post</a> I want to use ~2-3' healpixes.
-3. I also should be using denser catalogs than the all-sky USNO B1,
-especially for infrared targets.
-So, here's a sample build command (using a CDS-based FITS table, but
-modified by me using atpy):
-build-index -v -i OMC1_optical_phot_DaRio.fits -o
-OMC1_optical_phot_DaRio_astrometryindex -N 1758</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/planned-serendipity-h-alpha-maps-around-o-stars.html" rel="bookmark" title="Permalink to Planned Serendipity: H-alpha maps around O-stars">
-                    Planned Serendipity: H-alpha maps around O-stars</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-10-11T14:13:00"> 2012/10/11 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <div dir="ltr" style="text-align: left;"><p>Plenty of O-stars have been observed in H-alpha because they're in star
-forming regions. &nbsp;But there are plenty of others - runaways and the like
-- that haven't. &nbsp;A survey of these stars may turn up nearby ionized
-features. &nbsp;We may find externally illuminated AGB stars, allowing for
-determination of their ejecta composition with diagnostic lines that are
-usually unexcited and unavailable. &nbsp;We may find bipolar ejection nebulae
-or planetary nebulae with peculiar illumination patterns because they
-are not centrally lit.</p>
-<div></div><div><p>A good starting point &amp; justification for this survey would be to
-estimate the chance of a coincidence (within 5 pc? &nbsp;10 pc?) of an O star
-and an AGB star given purely random sampling. &nbsp;Based on the detection of
-SBW 2 in Carina, I think the odds must be pretty good.</p>
-</div></div></p> </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
 </ul><!-- /#posts-list -->

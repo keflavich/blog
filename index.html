@@ -67,6 +67,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2015/10/28
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-clean-errors-related-to-channels.html">CASA clean errors related to channels</a>
+              </li>
+              <li class="post">
+                  2015/10/28
+                  <br>
+                  <a href="http://keflavich.github.io/blog/pyspeckit-is-py3-compatible.html">pyspeckit is py3-compatible</a>
+              </li>
+              <li class="post">
                   2015/10/14
                   <br>
                   <a href="http://keflavich.github.io/blog/self-calibration-of-sgr-b2-mosaic.html">Self-calibration of Sgr B2 Mosaic</a>
@@ -81,16 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/alma-qa2-restoration.html">ALMA QA2 restoration</a>
               </li>
-              <li class="post">
-                  2015/09/15
-                  <br>
-                  <a href="http://keflavich.github.io/blog/export-to-fits-with-miriad.html">Export to FITS with MIRIAD</a>
-              </li>
-              <li class="post">
-                  2015/09/14
-                  <br>
-                  <a href="http://keflavich.github.io/blog/.html"></a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,61 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/casa-clean-errors-related-to-channels.html" rel="bookmark" title="Permalink to CASA clean errors related to channels">
+                    CASA clean errors related to channels</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-10-28T16:51:00"> 2015/10/28 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>When cleaning my ALMA data, especially when trying to <a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m/scriptForImaging.py#L120">image the full cube (all
+channels)</a>
+when there are multiple SBs
+with slightly different frequencies, I see this error frequently:</p>
+<blockquote>
+No valid data, skip CLEANing this channel</blockquote>
+<p>It seems that the channel really is being skipped in many cases.  In the Sgr B2
+cube, this wasn't a problem because I unintentionally cleaned only one of the
+observations.  For the W51 and Orion data, I tried to <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/script_12m/scriptForImaging_fullcube.py">include all of the data</a>,
+but that is causing problems.  Perhaps CASA does not work at all when 'channel'
+is specified and the channels aren't aligned?  Or maybe it only accepts channels
+when all channels exist?</p>
+<p>I've now redone the 'full cube' imaging to separately image the two SBs in W51.
+I'll see if that works...</p>
+<p>Nope, the resulting error is much worse:</p>
+<pre class="literal-block">
+Log:
+2015-10-28 15:49:01     INFO    imager::clean() Fitted beam used in restoration: 1.07809 by 0.913862 (arcsec) at pa -63.3899 (deg)
+2015-10-28 15:49:01     INFO    imager::iClean()        Restoring Image(s) with the clean-beam
+2015-10-28 15:49:02     SEVERE  clean::::       An error occurred running task clean.
+
+Terminal:
+*** Error ***  The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2015-10-28 15:49:02     SEVERE  clean::::       An error occurred running task clean.
+</pre>
+<p>This is an indication of a major underlying python bug.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/pyspeckit-is-py3-compatible.html" rel="bookmark" title="Permalink to pyspeckit is py3-compatible">
+                    pyspeckit is py3-compatible</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-10-28T10:28:00"> 2015/10/28 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>With PR <a class="reference external" href="https://github.com/pyspeckit/pyspeckit/pull/110">#110</a> and <a class="reference external" href="https://github.com/pyspeckit/pyspeckit/pull/111">#111</a>, pyspeckit is now (apparently)
+fully python3-compatible.  The test suite passes, but that's not a guarantee
+that I've caught all bugs in the translation.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -416,118 +471,9 @@ peakless.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/python-stack-on-mavericks.html" rel="bookmark" title="Permalink to Python stack on Mavericks">
-                    Python stack on Mavericks</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2014-02-19T12:02:00"> 2014/02/19 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/napattack-adamgginsburggmailcom.html">napattack (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>As you might expect from numerous blog posts and the general difficulty people
-have always experienced upgrading mac OS versions, Mavericks caused some truly
-hideous issues.</p>
-<p>The only really &quot;new&quot; issues specifically for Mavericks relate to app nap.  The
-main solution is minrk's <a class="reference external" href="https://github.com/minrk/appnope">appnope</a>.  Otherwise, command line options like
-<cite>defaults write &lt;app domain name&gt; NSAppSleepDisabled -bool YES</cite> are required
-<a class="reference external" href="http://apple.stackexchange.com/questions/121386/missing-prevent-app-nap-button-on-app">if the button is missing</a> from Mac's Get Info pane.</p>
-<p>I tried installing the <a class="reference external" href="https://store.continuum.io/cshop/anaconda/">conda</a> stack to get python running quickly.  This
-worked to an extremely limited degree: the TkAgg shipped with anaconda links to
-<a class="reference external" href="xquartz.macosforge.org">XQuartz</a>, which is highly undesirable for a number of reasons.  This meant
-that matplotlib plots showed up as X11 plots.  With the Mac OS X backend, the
-windows failed to show up in the Dock and therefore were totally unusable (though
-they did look OK).</p>
-<p>I am still using <a class="reference external" href="https://store.continuum.io/cshop/anaconda/">conda</a> to maintain multiple parallel versions of python for
-testing.  However, I went back to my typical install-from-source approach.</p>
-<p>To get the matplotlib backends to interact nicely with apple, you need to install
-them using the <cite>/Library</cite> version of python</p>
-<div class="highlight"><pre><span class="c"># this had to happen sometime early:</span>
-<span class="nv">$ </span>xcode-select --install
-
-<span class="nv">$ </span>wget https://pypi.python.org/pypi/pip#downloads
-<span class="nv">$ </span>tar -xzvf ~/Downloads/pip-1.5.2.tar.gz
-<span class="nv">$ </span><span class="nb">cd </span>pip-1.5.2
-<span class="nv">$ </span>/Library/Frameworks/Python.framework/Versions/2.7/bin/python setup.py install
-<span class="nv">$ </span>/Library/Frameworks/Python.framework/Versions/2.7/bin/pip install virtualenv
-<span class="nv">$ </span><span class="nb">cd</span>
-<span class="nv">$ </span>/Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenv virtual-python
-</pre></div>
-<p>After this, I was surprisingly able to install everything in the python stack
-with no hitches.  Obviously, that could not possibly last.</p>
-<p>While matplotlib and numpy worked fine, scipy had problems.</p>
-<pre class="literal-block">
-ImportError: dlopen(/Users/adam/virtual-python/lib/python2.7/site-packages/scipy/integrate/_odepack.so, 2): Symbol not found: __gfortran_internal_free
-Referenced from: /Users/adam/virtual-python/lib/python2.7/site-packages/scipy/integrate/_odepack.so
-Expected in: flat namespace
-   in /Users/adam/virtual-python/lib/python2.7/site-packages/scipy/integrate/_odepack.so
-</pre>
-<p>This terrible error led me back to re-compiling scipy.  I tried installing with
-<a class="reference external" href="hpc.sourceforge.net">hpc</a> gfortran, but that didn't work at all, first apparently because of linking
-errors in numpy.  When I investigated numpy, I found that the compilers
-apparently don't work at all:</p>
-<pre class="literal-block">
-C compiler: /usr/local/bin/gcc -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -arch i386 -arch x86_64
-...
-RuntimeError: Broken toolchain: cannot link a simple C program
-</pre>
-<p>I had to give up on that, and then googling returned no results at all, which I
-thought was a bit weird.  Scipy seems to want gcc and g++ 4.2, even though
-they're years old.  I had to find those and gfortran-4.2 somehow, but the <a class="reference external" href="r.research.att.com/tools/">old
-site</a> that used to serve them seems to have lost the files!  They had an
-<a class="reference external" href="http://r.research.att.com/tools/gcc-42-5666.3-darwin11.pkg">older version</a>, though, which appears to work.  Scipy is a scary install.</p>
-<div class="section" id="problems-with-xquartz">
-<h2>Problems with XQuartz</h2>
-<p>XQuartz is not well-behaved on Mac OS X 10.9.  First, <a class="reference external" href="https://xquartz.macosforge.org/trac/ticket/661">on retina machines, it
-does not display well</a>.  Second, and much more important, it <a class="reference external" href="http://xquartz.macosforge.org/trac/ticket/797">does not work on
-external monitors</a>.  Apparently this can be worked around by turning off
-&quot;Displays have different spaces&quot;  in Mission Control, but so far that has had
-no effect for me.</p>
-</div>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/w51-mapping-flagging-bad-data.html" rel="bookmark" title="Permalink to W51 Mapping: Flagging bad data">
-                    W51 Mapping: Flagging bad data</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2014-01-16T00:00:00"> 2014/01/16 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>In the process of creating W51 data cubes from the GBT mapping data (project
-GBT 10B/019), I've had to deal with a lot of bad data.</p>
-<p>Some of the bad data comes from misbehaving electronics.  All I can say is that
-they were misbehaving, not how or why - the data from one polarizaiton simply
-disagrees with the other polarization and feeds spontaneously and for no
-apparent reason.</p>
-<p>I've implemented a waterfall diagnostic plot to help examine the data, it is in
-my <a class="reference external" href="https://github.com/keflavich/mpl_plot_templates">mpl_plot_templates</a> repository: <a class="reference external" href="https://github.com/keflavich/mpl_plot_templates/blob/master/mpl_plot_templates/imdiagnostics.py">imdiagnostics.py</a>.</p>
-<p>A good waterfall looks something like this:</p>
-<img alt="" src="http://keflavich.github.io/blog/images/w51/Session17_111to186_D37_F2_data_scrubbed_flagged.png" style="width: 800px;" />
-<p>The line plots show the average and standard deviation along each axis; the
-right side effectively shows timestream continuum data while the top plots show
-a time-averaged spectrum.  This plot is good in that there are clearly signals
-detected as the scan crosses continuum sources and there is a strong Helium
-Alpha line detected in the average (though there's no way to read that it's
-Helium fromt he data as presented).
-Notably, the noise correlates with the continuum brightness - this is expected;
-higher TSYS leads to higher noise.</p>
-<img alt="" src="http://keflavich.github.io/blog/images/w51/Session22_10to41_D37_F2_data_scrubbed_flagged.png" style="width: 800px;" />
-<p>This is an example of a data set with some extremely irritating artifacts.
-There are apparent absorption lines throughout the spectrum: they are not real.
-This is a particularly irritating problem because I had resolved it once in the
-not-too-distant past, but I can't figure out how!!  Most likely, I just removed
-the data from the maps, but that SHOULD be in the code history (git) and is not.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
-    Page 1 / 49
+    Page 1 / 50
         <a href="http://keflavich.github.io/blog/index2.html">&raquo;</a>
 </p>
 </section><!-- /#content -->
