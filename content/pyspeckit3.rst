@@ -2,7 +2,7 @@ pyspeckit is py3-compatible
 ###########################
 :date: 2015-10-28 10:28
 :author: Adam Ginsburg (Adam.G.Ginsburg@gmail.com)
-:tags: pyspeckit, python3
+:tags: pyspeckit, python 3
 
 With PR `#110 <https://github.com/pyspeckit/pyspeckit/pull/110>`_ and `#111
 <https://github.com/pyspeckit/pyspeckit/pull/111>`_, pyspeckit is now (apparently)
