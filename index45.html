@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2015/11/02
+                  <br>
+                  <a href="http://keflavich.github.io/blog/cvel-errors.html">CVEL errors</a>
+              </li>
+              <li class="post">
                   2015/10/28
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-clean-errors-related-to-channels.html">CASA clean errors related to channels</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/sensitivity-plots-using-astroquery-nrao-tool.html">Sensitivity Plots using astroquery NRAO tool</a>
               </li>
-              <li class="post">
-                  2015/10/02
-                  <br>
-                  <a href="http://keflavich.github.io/blog/alma-qa2-restoration.html">ALMA QA2 restoration</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,52 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/progress-on-alignment-ideas-for-the-next-few-steps.html" rel="bookmark" title="Permalink to Progress on alignment, ideas for the next few steps">
+                    Progress on alignment, ideas for the next few steps</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-09-15T02:19:00"> 2008/09/15 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Alignment: I did a more thorough test of the aligner, and found an error
+that was getting me the wrong results. I'm still getting distinctly
+different results than I got with imalign, but I'm not convinced they're
+wrong. One problem I have to deal with is the ambiguity between pointing
+model applied / no pointing model applied. In retrospect, I should have
+done ALL of the maps with no pointing model: it would be simpler to
+maintain a self-consistent set of alignment corrections.
+However, since that isn't what I did - and there isn't enough memory to
+host both data sets at the moment - I've dealt with the problem by
+adding all of the offsets to the header. Hopefully now it will be
+obvious if and what offsets have been applied, both pointing model and
+'manual', from header keywords. Sadly, it was a pain to get that to work
+- IDL's _extra does not work the same way as normal keyword passing,
+which is disappointing and frustrating because it made me rename a lot
+of variables that should not have been renamed.
+IF this alignment fails to produce perfect results (which I don't really
+expect to happen - it will just take time to debug), it is still a good
+first step, and all we'd really need to do is use bolocat to pull out
+sources from the reference image and then match those in the others,
+doing the same thing imalign does. It wouldn't be difficult but it would
+be time consuming to program.
+Had a bunch of ideas during my insomnia last night, but I'm afraid I
+forgot most of them...
+One idea was related to the use of MAD as opposed to STDDEV: it may
+allow for a more robust sigma-rejection for automated flagging. But
+that's difficult.
+Another thought was using the maps to auto-identify glitches. To do
+this, I'd make a combined map and an individual map, hastrom them, and
+subtract the combined from the individual. We could then probably pretty
+easily spot any glitches; they should be the only outliers left, in
+principle. I'll test that idea, but it actually looks less promising
+than I'd hoped. Things are not coming out right in preliminary tests -
+huge residuals.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -366,23 +412,6 @@ Update 7: New correction fixed problem to better than 1&quot; (checked by
 making a simulated map with 1&quot; pixels) - probably 'perfect' now. Read
 prepare_map.pro for details. The issue was a difference in pixel
 centers.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/confirmed-error-in-lb-mapping.html" rel="bookmark" title="Permalink to Confirmed error in L/B mapping">
-                    Confirmed error in L/B mapping</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-28T01:32:00"> 2008/08/28 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I've used my simulated data and confirmed that there is in fact an error
-in the l/b mapping, but I haven't tracked it down yet. Stay tuned.
-Update: Something is not self-consistent in prepare_map. I've tried a
-variety of different things without success yet.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
