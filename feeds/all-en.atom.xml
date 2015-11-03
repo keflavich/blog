@@ -26,6 +26,30 @@ probably try sending another helpdesk ticket about this.&lt;/p&gt;
 &lt;li&gt;re-image the now-continuum-only cube using mfs&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;EDIT: Dirk replied to the helpdesk ticket, suggesting:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+Concerning cvel: try to process one SPW at a time. Otherwise cvel will
+_combine_ the SPWs and if they are not observed at the same time, this will
+lead to problems.
+&lt;/pre&gt;
+&lt;p&gt;So I've now &lt;a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/2d15ce46f9ecd75d70ab7ac4ee8f91b272139d9e/script_12m/split_for_localtests.py#L8"&gt;split the cvel into two commands&lt;/a&gt;.
+I also added &lt;cite&gt;outframe='bary'&lt;/cite&gt; because otherwise it's not obvious that the
+frequency command is doing anything
+sensible or useful.  That's actually probably why I was getting non-overlapping
+segments before - it tried converting to barycentric, but maybe too late in the
+process (i.e., it tried selecting in topo, then converting to bary for output).
+I also added a phasecenter, because it was automatically selecting pointing 24
+as the phasecenter for cvel before.&lt;/p&gt;
+&lt;p&gt;This led to a new error:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+2015-11-03 14:38:27     WARN    cvel::SubMS::convertGridPars     *** Requested new channel width is smaller than smallest original channel width
+2015-11-03 14:38:27     WARN    cvel::SubMS::convertGridPars+        which is 488319 Hz
+&lt;/pre&gt;
+&lt;p&gt;which I've fixed by setting the output width to be 0.5 MHz, just a simple round
+number greater than the input even accounting for shift.  Unfortunately, this
+seems to have produced a dramatically larger output MS, which cannot be
+correct.... ahhh, it turns out that was temporary, once regridding was complete,
+it turned small again.&lt;/p&gt;
 </summary><category term="casa"></category><category term="cvel"></category></entry><entry><title>CASA clean errors related to channels</title><link href="http://keflavich.github.io/blog/casa-clean-errors-related-to-channels.html" rel="alternate"></link><updated>2015-10-28T16:51:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2015-10-28:casa-clean-errors-related-to-channels.html</id><summary type="html">&lt;p&gt;When cleaning my ALMA data, especially when trying to &lt;a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m/scriptForImaging.py#L120"&gt;image the full cube (all
 channels)&lt;/a&gt;
 when there are multiple SBs
