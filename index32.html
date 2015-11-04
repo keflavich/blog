@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2015/11/04
+                  <br>
+                  <a href="http://keflavich.github.io/blog/separating-line-from-continuum-in-casa-data.html">Separating Line from Continuum in CASA data</a>
+              </li>
+              <li class="post">
                   2015/11/02
                   <br>
                   <a href="http://keflavich.github.io/blog/cvel-errors.html">CVEL errors</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/self-calibration-of-sgr-b2-mosaic.html">Self-calibration of Sgr B2 Mosaic</a>
               </li>
-              <li class="post">
-                  2015/10/09
-                  <br>
-                  <a href="http://keflavich.github.io/blog/sensitivity-plots-using-astroquery-nrao-tool.html">Sensitivity Plots using astroquery NRAO tool</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,62 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/examining-bolocat.html" rel="bookmark" title="Permalink to Examining bolocat">
+                    Examining bolocat</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-27T22:51:00"> 2011/07/27 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Just in case we were wondering, the V1 bolocat is completely
+inconsistent with a lognormal distribution, but is perfectly consistent
+(or... at least reasonably consistent...) with a power law distribution.</p>
+<img alt="" src="http://2.bp.blogspot.com/-kKaOXdf9hW4/TjBRmgiNmqI/AAAAAAAAGUI/4H0KJk70F_o/s320/bolocat_flux_cdf.png" />
+<img alt="" src="http://1.bp.blogspot.com/-3T9mrt5U39E/TjBRm5p7inI/AAAAAAAAGUQ/ARP6EKQDYo0/s320/bolocat_flux40_cdf.png" />
+<img alt="" src="http://4.bp.blogspot.com/-ytrgQo5XYEg/TjBRndOQqOI/AAAAAAAAGUY/9g--hpa5X0Y/s320/bolocat_flux80_cdf.png" />
+<img alt="" src="http://3.bp.blogspot.com/-TqVY1B1uGLw/TjBRnt6uLEI/AAAAAAAAGUg/FhXct0wpEio/s320/bolocat_flux120_cdf.png" />
+<p>These plots show power-law fits (red) and lognormal fits (blue) to the
+data (black). It's pretty obvious that the lognormal is a bad fit, but
+in case you're unconvinced, the ks test for the &quot;source flux&quot; has a
+probability 1.6e-7, and it is the highest likelihood by 17 orders of
+magnitude out of the 4 flux types.
+By contrast, the simulations are on average (though not uniformly) more
+consistent with lognormal than powerlaw distributions:</p>
+<img alt="" src="http://2.bp.blogspot.com/-lpOaHHV3e3Q/TjCTzm9RwFI/AAAAAAAAGWI/o57oH5SfdqE/s320/simulations_ksvalues_lognormvspowerlaw.png" />
+<p>Even in those examples where the KS test is slightly more favorable for
+the powerlaw distribution, the lognormal is a pretty good fit, and the
+failure points for the two distributions are in about the same place.
+The smoothness of the lognormal distribution is required to reproduce
+the observed distribution.</p>
+<img alt="" src="http://1.bp.blogspot.com/-8_WCGM_8AjM/TjB2tW_JZeI/AAAAAAAAGU4/SDR1guNcNq0/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky07_seed00_peak100.00_smooth_bolocat_cdf.png" />
+<p>Note that the first 4 plots are for the whole BGPS survey. What about an
+individual field? For obvious reasons, I choose l30 again.</p>
+<img alt="" src="http://1.bp.blogspot.com/-vHQoJtAe-vU/TjCIiVcRHsI/AAAAAAAAGVo/04fA4WSCnlA/s320/bolocat_flux40_L30_cdf.png" />
+<img alt="" src="http://1.bp.blogspot.com/-kIpe2v9_YpQ/TjCIimC8K2I/AAAAAAAAGVw/-o5GZ7DoLOw/s320/bolocat_flux80_L30_cdf.png" />
+<img alt="" src="http://2.bp.blogspot.com/-Shg66Vp6sUI/TjCIi2HEe4I/AAAAAAAAGV4/na0n21atNsI/s320/bolocat_flux120_L30_cdf.png" />
+<img alt="" src="http://1.bp.blogspot.com/-R2zq58aXXyI/TjCIjeTdjHI/AAAAAAAAGWA/D3xEDRAgY7M/s320/bolocat_flux_L30_cdf.png" />
+<p>This gets to be a little more interesting - apparently the &quot;source flux&quot;
+has a tendency to pick up the power-law distributed background
+structure, since it is consistent with a lognormal (but note that it is
+also consistent with a powerlaw! The ks test doesn't really say
+definitively which is better). Although the fits look bad at high flux,
+note that this is a log-log plot and therefore the difference in
+probability is rather small.
+What does this all indicate? It's not entirely clear whether individual
+fields are genuinely more lognormally-distributed or whether the number
+statistics are just worse. However, even the source flux is consistent
+with a power-law, while many realizations of the simulations are not.
+Therefore, we should perform the next logical test - add point sources
+drawn from a power-law distribution (and a log-normal distribution?) and
+see what bolocat retrieves. We can at least say now that the point
+source contribution cannot be ignored, since there is no power-law
+distribution that can reproduce the observed bolocat flux distribution.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -321,27 +377,6 @@ probably observed the inside of the dish. 070727_ob6 shows some
 streaking that I can't easily explain... though it appears that there
 are some bad bolos that need to get flagged out. I wonder if that's
 systematic over 070727 observations....</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/outflows-and-massive-stars-in-the-protocluster-iras-053583543.html" rel="bookmark" title="Permalink to Outflows and Massive Stars in the protocluster IRAS 05358+3543">
-                    Outflows and Massive Stars in the protocluster IRAS 05358+3543</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-07-11T16:47:00"> 2011/07/11 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p><em>First Author</em> [ <a class="reference external" href="http://adsabs.harvard.edu/abs/2009ApJ...707..310G">ADS</a> ] [ <a class="reference external" href="http://arxiv.org/abs/0910.2990">arXiv</a> ]</p>
-<p>A mm and near-IR study of the IRAS 05358+3543 system. Recently (2011),
-it has become clear that &quot;protocluster&quot; is unlikely to be the right
-label for IRAS 05358+3543. &quot;proto-association&quot; might be more accurate.
-Perhaps the most interesting result of this paper is the discovery that
-the central source is likely to be a 400-AU binary with two massive (&gt;8
-msun) stars at different evolutionary stages. It is just barely in
-ALMA's range...</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

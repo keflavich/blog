@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2015/11/04
+                  <br>
+                  <a href="http://keflavich.github.io/blog/separating-line-from-continuum-in-casa-data.html">Separating Line from Continuum in CASA data</a>
+              </li>
+              <li class="post">
                   2015/11/02
                   <br>
                   <a href="http://keflavich.github.io/blog/cvel-errors.html">CVEL errors</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/self-calibration-of-sgr-b2-mosaic.html">Self-calibration of Sgr B2 Mosaic</a>
               </li>
-              <li class="post">
-                  2015/10/09
-                  <br>
-                  <a href="http://keflavich.github.io/blog/sensitivity-plots-using-astroquery-nrao-tool.html">Sensitivity Plots using astroquery NRAO tool</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,28 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/weird-problem.html" rel="bookmark" title="Permalink to Weird problem">
+                    Weird problem</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-03-31T02:25:00"> 2011/03/31 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm remapping everything, and there's a really strange situation in
+ic1396... only one field has a source that doesn't have rotation
+problems, every other observation is clearly improperly rotated. The
+weird thing is that it's NOT the one you'd expect from the information
+below:
+<tt class="docutils literal"><span class="pre">readcol,'/Volumes/disk2/sliced/infiles/ic1396_infile.txt',filelist,format='A'for</span> i=0,6 do begin &amp; <span class="pre">ncdf_varget_scale,filelist[i],'array_params',ap</span> &amp; <span class="pre">print,filelist[i],ap</span> &amp; endfor/Volumes/disk2/sliced/ic1396/070911_o19_raw_ds5.nc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.70000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31.2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 70.7000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000/Volumes/disk2/sliced/ic1396/070912_o26_raw_ds5.nc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.70000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31.2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 84.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000/Volumes/disk2/sliced/ic1396_d/070913_o19_raw_ds5.nc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.70000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31.2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 84.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000/Volumes/disk2/sliced/ic1396_l/070913_o17_raw_ds5.nc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.70000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31.2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 84.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000/Volumes/disk2/sliced/ic1396_r/070913_o18_raw_ds5.nc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.70000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31.2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 84.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000/Volumes/disk2/sliced/ic1396_u/070913_o20_raw_ds5.nc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.70000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31.2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 84.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00000</tt>
+One ofthese things is not like the others... but it's
+070913_o18_raw_ds5.nc, not
+/Volumes/disk2/sliced/ic1396/070911_o19_raw_ds5.nc</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -532,39 +554,6 @@ give or take, so it's not the atmospheric subtraction. Could the
 downsampling result in an offset in the bolo-scaling? Where else in the
 process could things go wrong? Tomorrow, need to investigate .sav files
 with pyflagger...</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/making-maps-faster.html" rel="bookmark" title="Permalink to Making maps faster">
-                    Making maps faster</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-02-07T04:39:00"> 2011/02/07 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>The fundamental problem at this point is making the pipeline run faster.
-At current speeds, with undownsampled data, it may take ~days to process
-a single map. Ideas for faster processing:</p>
-<ol class="arabic simple">
-<li>Find out how long it takes to converge to 1%, 5%.... If it only
-requires 10 iterations, that's a factor of 2 savings over current
-strategies.</li>
-<li>Use downsampled data of some sort if possible. Does DS2 match DS1?
-How do we measure it? Flux-flux comparison and PSF point-source size
-measurements are the most important. Need to automate PSF
-comparison....</li>
-<li>Can we use median-combined individual images as a 0th order model? I
-bet the answer is 'yes' and will probably increase the speed of
-convergence by a large amount. Tests to run? This is probably needed
-if we are to split up the 'super-fields' into smaller sub-fields,
-otherwise overlapping data will be used less effectively.</li>
-<li>Find some way to keep bgps.raw, bgps.ra, bgps.dec, and other items
-that are only used once on the HD during the iterative process. Is
-there any way to separate out data in a struct in this manner?</li>
-</ol>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2015/11/04
+                  <br>
+                  <a href="http://keflavich.github.io/blog/separating-line-from-continuum-in-casa-data.html">Separating Line from Continuum in CASA data</a>
+              </li>
+              <li class="post">
                   2015/11/02
                   <br>
                   <a href="http://keflavich.github.io/blog/cvel-errors.html">CVEL errors</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/self-calibration-of-sgr-b2-mosaic.html">Self-calibration of Sgr B2 Mosaic</a>
               </li>
-              <li class="post">
-                  2015/10/09
-                  <br>
-                  <a href="http://keflavich.github.io/blog/sensitivity-plots-using-astroquery-nrao-tool.html">Sensitivity Plots using astroquery NRAO tool</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,42 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/cross-correlation-offsets-revisited.html" rel="bookmark" title="Permalink to Cross-Correlation Offsets Revisited">
+                    Cross-Correlation Offsets Revisited</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-08T08:06:00"> 2012/09/08 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Since last time (<a class="reference external" href="http://bolocam.blogspot.com/2009/03/43-relative-alignment-and-mosaicing.html">Taylor Expansion &amp; Cross
+Correlation</a><a class="reference external" href="http://bolocam.blogspot.com/2012/03/new-coalignment-code.html">,</a><a class="reference external" href="http://bolocam.blogspot.com/2012/03/new-coalignment-code.html">Coalignment Code</a>), I have attempted to re-do the
+cross-correlation with an added component: error estimates.
+It turns out, there is a better method than the Taylor-expansion around
+the cross-correlation peak. &nbsp;Fourier upsampling can be used to
+efficiently determine precise sub-pixel offsets (<a class="reference external" href="http://www.mathworks.com/matlabcentral/fileexchange/18401-efficient-subpixel-image-registration-by-cross-correlation/content/html/efficient_subpixel_registration.html">matlab version</a>,
+<a class="reference external" href="http://people.web.psi.ch/guizar_m/main/">Manuel Guizar, author</a>, <a class="reference external" href="http://www.opticsinfobase.org/view_article.cfm?gotourl=http%3A%2F%2Fwww%2Eopticsinfobase%2Eorg%2FDirectPDFAccess%2F6C566DF3-B5C5-B342-97F01180999C7632_148843%2Fol-33-2-156%2Epdf%3Fda%3D1%26id%3D148843%26seq%3D0%26mobile%3Dno&amp;org=University%20of%20Colorado%20at%20Boulder%20Library">refereed article</a>).
+However, in the published methods just cited, there is no way to
+determine the error - those algorithms are designed to measure offsets
+between identical images corrupted by noise but still strongly dominated
+by signal.
+We're more interested in the case where individual pixels may well be
+noise-dominated, but the overall signal in the map is still large.
+So, I've developed a python translation of the above codes and then
+some.
+<a class="reference external" href="https://github.com/keflavich/image_registration">Image Registration on github</a>
+The docstrings are pretty solid, but there is no overall documentation.
+However, there's a pretty good demo of the simulation AND fitting code
+here:
+<a class="reference external" href="https://github.com/keflavich/image_registration/blob/master/doc/CrossCorrelationSimulation.pdf?raw=true">Tests and Examples</a>
+The results for the Bolocam data are here (only applied to v2-Herschel
+offsets):</p>
+<img alt="" src="http://2.bp.blogspot.com/-PMJx-wX23w8/UErt7G3PqfI/AAAAAAAAHOQ/-5xD6ReBRGs/s320/Offsets_XYplot.png" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -331,44 +367,6 @@ there, I wouldn't have rewritten it....</p>
             <abbr class="published" title="2011-11-17T22:57:00"> 2011/11/17 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Check to make sure original fits were/were not forced through 0,0</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/calibration-offsets-revisited.html" rel="bookmark" title="Permalink to Calibration Offsets Revisited">
-                    Calibration Offsets Revisited</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-11-16T01:05:00"> 2011/11/16 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>The agreement with Motte et al 2007 is now perfect with a vertical
-ADDITIVE offset instead of the annoying multiplicative offset. An
-additive offset can trivially be accounted for by a spatial transfer
-function. As is evident in the difference images, the MAMBO data appears
-to sit on a plateau.</p>
-<img alt="" src="http://2.bp.blogspot.com/-dCeUkoHiAPs/TrwYlSZ2I6I/AAAAAAAAGj8/2FpasBudxPc/s320/newtestregl44_bgps_s1200_comp_linefits_point.png" />
-<img alt="" src="http://2.bp.blogspot.com/-XWWisYSwoiw/TrwYl-E4uQI/AAAAAAAAGkI/Gu5MxohyxZY/s320/newtestregl44_bgpsv2_s1200_comp_linefits_point.png" />
-<img alt="" src="http://3.bp.blogspot.com/-flBRCavDJKM/TrwYmZLzifI/AAAAAAAAGkU/D7K7-aG_ZZE/s320/testregl44_bgps_s1200_comp_origimages_scales1200peak_1.png" />
-<img alt="" src="http://3.bp.blogspot.com/-0i_9U9v37Wc/TrwYm3Ctx4I/AAAAAAAAGkg/xj1xWYI4eLo/s320/testregl44_bgpsv2_s1200_comp_origimages_scales1200peak_1.png" />
-<img alt="" src="http://4.bp.blogspot.com/-Wnys8tmpdnI/TsMFsi04CZI/AAAAAAAAGlc/sXKhoMMDRUM/s320/newirdc1_bgps_iram_comp_linefits_cross.png" />
-<img alt="" src="http://4.bp.blogspot.com/-XWRv2iQr_yM/TsMFtHzCWUI/AAAAAAAAGlo/MVvzvsJEv8s/s320/irdc1_bgps_iram_comp_origimages_scaleirampeak.png" />
-<img alt="" src="http://1.bp.blogspot.com/-2VT-44snbic/TsMFthQNCzI/AAAAAAAAGl0/XJmjYJWlT0A/s320/newirdc1_bgpsv2_iram_comp_linefits_cross.png" />
-<img alt="" src="http://4.bp.blogspot.com/-76VOl5ASlas/TsMFuS2tU7I/AAAAAAAAGmA/1GY0DwzsToo/s320/irdc1_bgpsv2_iram_comp_origimages_scaleirampeak.png" />
-<p>Cygnus X:
-BGPSV1:</p>
-<img alt="" src="http://3.bp.blogspot.com/-Ul21t0ucmOs/TsMGdaRI50I/AAAAAAAAGmM/UhJ_mCKRZ4A/s320/newmottecygx2_bgps_iram_comp_linefits_cross.png" />
-<img alt="" src="http://1.bp.blogspot.com/-d_XSGb63vtk/TsMGd7cMs1I/AAAAAAAAGmY/MTL7mFfH9_I/s320/newmottecygx2_bgps_iram_comp_linefits_cross_2.png" />
-<img alt="" src="http://1.bp.blogspot.com/-CKArUxnvfXc/TsMGeY4yP7I/AAAAAAAAGmk/iaRcDy28-8w/s320/newmottecygx2_bgps_iram_comp_linefits_cross_3.png" />
-<img alt="" src="http://4.bp.blogspot.com/-cNgOGbIFhzc/TsMGe3d7kZI/AAAAAAAAGmw/kn3Y0M18flM/s320/newmottecygx2_bgps_iram_comp_linefits_cross_dr21.png" />
-<p>BGPSV2:</p>
-<img alt="" src="http://4.bp.blogspot.com/-cIZHQxLW7t0/TsMGrpLUTcI/AAAAAAAAGm8/PJfhh_Z1Y44/s320/newmottecygx2_bgpsv2_iram_comp_linefits_cross.png" />
-<img alt="" src="http://4.bp.blogspot.com/-55051oTEK34/TsMGrzJL3eI/AAAAAAAAGnI/pd468xeLBxQ/s320/newmottecygx2_bgpsv2_iram_comp_linefits_cross_2.png" />
-<img alt="" src="http://4.bp.blogspot.com/-f2BTCfMG5Ao/TsMGsTy98yI/AAAAAAAAGnU/6m30n1cgwgQ/s320/newmottecygx2_bgpsv2_iram_comp_linefits_cross_3.png" />
-<img alt="" src="http://1.bp.blogspot.com/-ND8KA8OqHpc/TsMGs5pAo0I/AAAAAAAAGng/kkucv9xfINk/s320/newmottecygx2_bgpsv2_iram_comp_linefits_cross_dr21.png" />
-<img alt="" src="http://4.bp.blogspot.com/-8ovlXgU6EIU/TsMMT0wfZ-I/AAAAAAAAGns/dq5Es6kDmE0/s320/sections.png" />
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
