@@ -57,20 +57,20 @@ use `this example
 
 Onto some comparisons from `astropy issue 4374 <https://github.com/astropy/astropy/pull/4374>`_:
 
-.. image::
-   filename = |images|/time_vs_mem.png
+.. image:: |filename|/images/time_vs_mem.png
+   :width: 600px
 
-.. image::
-   filename = |images|/psfTfftT.png
+.. image:: |filename|/images/psfTfftT.png
+   :width: 600px
 
-.. image::
-   filename = |images|/psfTfftF.png
+.. image:: |filename|/images/psfTfftF.png
+   :width: 600px
 
-.. image::
-   filename = |images|/psfFfftT.png
+.. image:: |filename|/images/psfFfftT.png
+   :width: 600px
 
-.. image::
-   filename = |images|/psfFfftF.png
+.. image:: |filename|/images/psfFfftF.png
+   :width: 600px
 
 
 
