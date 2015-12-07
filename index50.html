@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2015/12/07
+                  <br>
+                  <a href="http://keflavich.github.io/blog/fft-comparisons-in-python.html">FFT comparisons in python</a>
+              </li>
+              <li class="post">
                   2015/11/04
                   <br>
                   <a href="http://keflavich.github.io/blog/separating-line-from-continuum-in-casa-data.html">Separating Line from Continuum in CASA data</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/pyspeckit-is-py3-compatible.html">pyspeckit is py3-compatible</a>
               </li>
-              <li class="post">
-                  2015/10/14
-                  <br>
-                  <a href="http://keflavich.github.io/blog/self-calibration-of-sgr-b2-mosaic.html">Self-calibration of Sgr B2 Mosaic</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,47 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/defining-pointing-terminology.html" rel="bookmark" title="Permalink to Defining Pointing Terminology">
+                    Defining Pointing Terminology</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-07-30T21:50:00"> 2008/07/30 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>There has been a lot of confusion about pointing terminology.</p>
+<p>CSO pointing model: the telescope pointing model used and written as a
+black box</p>
+<ul class="simple">
+<li>has already been corrected for aberration/nutation</li>
+<li>is in current epoch coordinates (e.g. J2007.34)</li>
+</ul>
+<p>Instrument-specific correction to pointing model</p>
+<ul class="simple">
+<li>??? also referred to as 't terms'</li>
+<li>is offset between CSO pointing model and real locations</li>
+<li>should be a function of alt (and maybe az)</li>
+<li>is recorded in &quot;RPC&quot; files</li>
+<li>is in units of distance on the sky: delta-RA and delta-DEC, or
+delta-ALT and delta-AZ will be in the same units, while if they were
+in coordinate units delta-RA and delta-AZ would have to be scaled by
+1/cos(DEC) or 1/cos(ALT) respectively</li>
+</ul>
+<p>FAZO and FZAO: Fixed Azimuth Offset and Fixed Zenith Angle Offset</p>
+<ul class="simple">
+<li>these are ambiguously defined in the pipeline code</li>
+<li>???? FAZO/FZAO include both the functional instrument specific
+pointing offset and any manual changes made at the telescope [manual
+only relevant to 2007 observations]</li>
+<li>???? or are these JUST fixed offsets, and the instrument specific
+corrections are not included? Either way, how can I separate out
+manually-applied fixed offsets from fitted-model offsets?</li>
+</ul>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">

@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2015/12/07
+                  <br>
+                  <a href="http://keflavich.github.io/blog/fft-comparisons-in-python.html">FFT comparisons in python</a>
+              </li>
+              <li class="post">
                   2015/11/04
                   <br>
                   <a href="http://keflavich.github.io/blog/separating-line-from-continuum-in-casa-data.html">Separating Line from Continuum in CASA data</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/pyspeckit-is-py3-compatible.html">pyspeckit is py3-compatible</a>
               </li>
-              <li class="post">
-                  2015/10/14
-                  <br>
-                  <a href="http://keflavich.github.io/blog/self-calibration-of-sgr-b2-mosaic.html">Self-calibration of Sgr B2 Mosaic</a>
-              </li>
         </ul>
       </li>
     
@@ -102,6 +102,66 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles by Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/fft-comparisons-in-python.html" rel="bookmark" title="Permalink to FFT comparisons in python">
+                    FFT comparisons in python</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-12-07T11:24:00"> 2015/12/07 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm trying to figure out which ffts are fastest, best, etc.</p>
+<p>First, it is difficult to get fftw3 + pyfftw installed into python.</p>
+<p>For pyfftw to install, you need to <a class="reference external" href="http://www.fftw.org/doc/Installation-on-Unix.html">enable floats and every specific type</a> when compiling <a class="reference external" href="http://www.fftw.org/">fftw3</a> (thanks to <a class="reference external" href="http://linuxtoolkit.blogspot.de/2010/04/cant-find-fftw3f-library-when.html">linux toolkits blog</a>).
+Apparently you can't have <tt class="docutils literal"><span class="pre">--enable-long-double</span></tt> and <tt class="docutils literal"><span class="pre">--enable-float</span></tt> simultaneously,
+but pyfftw requires both, so you have to install twice or thrice?  Nope, four
+times!!  Also, <a class="reference external" href="https://github.com/hgomersall/pyFFTW/issues/16#issuecomment-19422752">my own post</a>
+indicates that I should install to a different path to avoid weird conflicts
+with other libraries.</p>
+<pre class="literal-block">
+./configure --enable-threads --enable-openmp --enable-mpi --enable-shared \
+            --enable-fortran CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
+make -j 4
+sudo make install
+
+./configure --enable-float --enable-threads --enable-openmp --enable-mpi --enable-shared \
+            --enable-fortran CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
+make -j 4
+sudo make install
+
+# quad precision is not supported in mpi
+./configure --enable-quad-precision --enable-threads --enable-openmp --enable-shared \
+            --enable-fortran CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
+make -j 4
+sudo make install
+
+./configure --enable-long-double --enable-threads --enable-openmp --enable-mpi --enable-shared \
+            --enable-fortran CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
+make -j 4
+sudo make install
+</pre>
+<p>Onto speed test comparisons:</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="https://gist.github.com/mperrin/5763120">Marshal Perrin's</a></li>
+<li><a class="reference external" href="https://gist.github.com/keflavich/5797994">my fork</a></li>
+<li><a class="reference external" href="http://code.google.com/p/agpy/source/browse/trunk/tests/test_ffts.py">speed tests on agpy</a></li>
+<li><a class="reference external" href="https://github.com/astropy/astropy/pull/4374">profiling convolve_fft with different parameters</a></li>
+</ul>
+</blockquote>
+<p>If you want to use <tt class="docutils literal">fftw3</tt> with astropy's <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.convolution.convolve_fft.html#astropy.convolution.convolve_fft">convolve_fft</a>,
+use <a class="reference external" href="https://code.google.com/p/agpy/source/browse/trunk/AG_fft_tools/convolve_nd.py?r=479#8">this example</a>.</p>
+<p>Onto some comparisons from <a class="reference external" href="https://github.com/astropy/astropy/pull/4374">astropy issue 4374</a>:</p>
+<img alt="" src="http://keflavich.github.io/blog/images/time_vs_mem.png" style="width: 600px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/psfTfftT.png" style="width: 600px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/psfTfftF.png" style="width: 600px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/psfFfftT.png" style="width: 600px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/psfFfftF.png" style="width: 600px;" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">

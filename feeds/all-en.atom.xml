@@ -1,5 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all-en.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2015-11-04T15:57:00-07:00</updated><entry><title>Separating Line from Continuum in CASA data</title><link href="http://keflavich.github.io/blog/separating-line-from-continuum-in-casa-data.html" rel="alternate"></link><updated>2015-11-04T15:57:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2015-11-04:separating-line-from-continuum-in-casa-data.html</id><summary type="html">&lt;p&gt;I'm continuing to try to separate the line forest from the continuum data in my
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all-en.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2015-12-07T11:24:00-07:00</updated><entry><title>FFT comparisons in python</title><link href="http://keflavich.github.io/blog/fft-comparisons-in-python.html" rel="alternate"></link><updated>2015-12-07T11:24:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2015-12-07:fft-comparisons-in-python.html</id><summary type="html">&lt;p&gt;I'm trying to figure out which ffts are fastest, best, etc.&lt;/p&gt;
+&lt;p&gt;First, it is difficult to get fftw3 + pyfftw installed into python.&lt;/p&gt;
+&lt;p&gt;For pyfftw to install, you need to &lt;a class="reference external" href="http://www.fftw.org/doc/Installation-on-Unix.html"&gt;enable floats and every specific type&lt;/a&gt; when compiling &lt;a class="reference external" href="http://www.fftw.org/"&gt;fftw3&lt;/a&gt; (thanks to &lt;a class="reference external" href="http://linuxtoolkit.blogspot.de/2010/04/cant-find-fftw3f-library-when.html"&gt;linux toolkits blog&lt;/a&gt;).
+Apparently you can't have &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--enable-long-double&lt;/span&gt;&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--enable-float&lt;/span&gt;&lt;/tt&gt; simultaneously,
+but pyfftw requires both, so you have to install twice or thrice?  Nope, four
+times!!  Also, &lt;a class="reference external" href="https://github.com/hgomersall/pyFFTW/issues/16#issuecomment-19422752"&gt;my own post&lt;/a&gt;
+indicates that I should install to a different path to avoid weird conflicts
+with other libraries.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+./configure --enable-threads --enable-openmp --enable-mpi --enable-shared \
+            --enable-fortran CFLAGS=&amp;quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&amp;quot;
+make -j 4
+sudo make install
+
+./configure --enable-float --enable-threads --enable-openmp --enable-mpi --enable-shared \
+            --enable-fortran CFLAGS=&amp;quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&amp;quot;
+make -j 4
+sudo make install
+
+# quad precision is not supported in mpi
+./configure --enable-quad-precision --enable-threads --enable-openmp --enable-shared \
+            --enable-fortran CFLAGS=&amp;quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&amp;quot;
+make -j 4
+sudo make install
+
+./configure --enable-long-double --enable-threads --enable-openmp --enable-mpi --enable-shared \
+            --enable-fortran CFLAGS=&amp;quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&amp;quot;
+make -j 4
+sudo make install
+&lt;/pre&gt;
+&lt;p&gt;Onto speed test comparisons:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://gist.github.com/mperrin/5763120"&gt;Marshal Perrin's&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://gist.github.com/keflavich/5797994"&gt;my fork&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://code.google.com/p/agpy/source/browse/trunk/tests/test_ffts.py"&gt;speed tests on agpy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/astropy/astropy/pull/4374"&gt;profiling convolve_fft with different parameters&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If you want to use &lt;tt class="docutils literal"&gt;fftw3&lt;/tt&gt; with astropy's &lt;a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.convolution.convolve_fft.html#astropy.convolution.convolve_fft"&gt;convolve_fft&lt;/a&gt;,
+use &lt;a class="reference external" href="https://code.google.com/p/agpy/source/browse/trunk/AG_fft_tools/convolve_nd.py?r=479#8"&gt;this example&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Onto some comparisons from &lt;a class="reference external" href="https://github.com/astropy/astropy/pull/4374"&gt;astropy issue 4374&lt;/a&gt;:&lt;/p&gt;
+&lt;img alt="" src="http://keflavich.github.io/blog/images/time_vs_mem.png" style="width: 600px;" /&gt;
+&lt;img alt="" src="http://keflavich.github.io/blog/images/psfTfftT.png" style="width: 600px;" /&gt;
+&lt;img alt="" src="http://keflavich.github.io/blog/images/psfTfftF.png" style="width: 600px;" /&gt;
+&lt;img alt="" src="http://keflavich.github.io/blog/images/psfFfftT.png" style="width: 600px;" /&gt;
+&lt;img alt="" src="http://keflavich.github.io/blog/images/psfFfftF.png" style="width: 600px;" /&gt;
+</summary><category term="fft"></category><category term="convolution"></category></entry><entry><title>Separating Line from Continuum in CASA data</title><link href="http://keflavich.github.io/blog/separating-line-from-continuum-in-casa-data.html" rel="alternate"></link><updated>2015-11-04T15:57:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2015-11-04:separating-line-from-continuum-in-casa-data.html</id><summary type="html">&lt;p&gt;I'm continuing to try to separate the line forest from the continuum data in my
 W51 cube.  Some approaches 'kinda work', some don't.&lt;/p&gt;
 &lt;p&gt;The iterative approach suggested in the &lt;a class="reference external" href="http://keflavich.github.io/blog/cvel-errors.html"&gt;previous post&lt;/a&gt; &lt;a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/630c60e7e57ea7b57877d66b15860b26419a5552/script_12m/uvcontsub_test.py"&gt;works reasonably well&lt;/a&gt;,
 but results in oversubtraction of the continuum, even with
