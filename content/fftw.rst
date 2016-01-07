@@ -21,23 +21,27 @@ with other libraries.
 ::
 
     ./configure --enable-threads --enable-openmp --enable-mpi --enable-shared \
-                --enable-fortran CFLAGS="-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing"
+                --enable-fortran --enable-avx \
+                CFLAGS="-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing"
     make -j 4
     sudo make install
 
     ./configure --enable-float --enable-threads --enable-openmp --enable-mpi --enable-shared \
-                --enable-fortran CFLAGS="-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing"
+                --enable-fortran --enable-avx \
+                CFLAGS="-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing"
     make -j 4
     sudo make install
 
     # quad precision is not supported in mpi
     ./configure --enable-quad-precision --enable-threads --enable-openmp --enable-shared \
-                --enable-fortran CFLAGS="-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing"
+                --enable-fortran --enable-avx \
+                 CFLAGS="-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing"
     make -j 4
     sudo make install
 
     ./configure --enable-long-double --enable-threads --enable-openmp --enable-mpi --enable-shared \
-                --enable-fortran CFLAGS="-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing"
+                --enable-fortran --enable-avx \
+                 CFLAGS="-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing"
     make -j 4
     sudo make install
 
@@ -73,4 +77,4 @@ Onto some comparisons from `astropy issue 4374 <https://github.com/astropy/astro
    :width: 600px
 
 
-
+`Notebook containing comparisons between FFT and FFTW <https://gist.github.com/6a2d338830efdc02959a>`_
