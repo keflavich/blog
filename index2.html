@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/01/07
+                  <br>
+                  <a href="http://keflavich.github.io/blog/self-cal-with-evla-data.html">Self-cal with EVLA data</a>
+              </li>
+              <li class="post">
                   2015/12/07
                   <br>
                   <a href="http://keflavich.github.io/blog/fft-comparisons-in-python.html">FFT comparisons in python</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-clean-errors-related-to-channels.html">CASA clean errors related to channels</a>
               </li>
-              <li class="post">
-                  2015/10/28
-                  <br>
-                  <a href="http://keflavich.github.io/blog/pyspeckit-is-py3-compatible.html">pyspeckit is py3-compatible</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,36 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/.html" rel="bookmark" title="Permalink to ">
+                    </a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-09-14T00:00:00"> 2015/09/14 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>From Andrew Walsh, a script to install MIRIAD:</p>
+<div class="highlight"><pre>wget ftp://ftp.atnf.csiro.au/pub/software/miriad/miriad-common.tar.bz2
+wget ftp://ftp.atnf.csiro.au/pub/software/miriad/miriad-linux64.tar.bz2
+bzcat miriad-common.tar.bz2 <span class="p">|</span> tar xvf -
+bzcat miriad-linux64.tar.bz2  <span class="p">|</span> tar xvf -
+<span class="nb">cd </span>miriad
+<span class="nb">export </span><span class="nv">MIR</span><span class="o">=</span><span class="nv">$PWD</span>
+<span class="c"># define the MIR variable in your bashrc</span>
+<span class="nb">echo</span> <span class="s2">&quot;export MIR=</span><span class="nv">$MIR</span><span class="s2">&quot;</span> &gt;&gt; ~/.bashrc
+sed -e <span class="s2">&quot;s,@MIRROOT@,</span><span class="nv">$MIR</span><span class="s2">,&quot;</span> scripts/MIRRC.in &gt; MIRRC
+sed -e <span class="s2">&quot;s,@MIRROOT@,</span><span class="nv">$MIR</span><span class="s2">,&quot;</span> scripts/MIRRC.sh.in &gt; MIRRC.sh
+chmod <span class="m">644</span> MIRRC*
+
+<span class="c"># Put these into .bashrc, or call them each time you want to run MIRIAD</span>
+. <span class="nv">$MIR</span>/MIRRC.sh
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$MIRBIN</span>
+</pre></div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -779,179 +809,6 @@ its surroundings?</p>
 <li>Rahul: Toomre Q threshold only works for infinitely thin disk.  Shouldn't
 threshold be lower because of thick disk?</li>
 <li>Goldreich &amp; Linden-Bell: 30% effect.  Elmegreen addresses this.</li>
-</ul>
-</dd>
-</dl>
-</div>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-4.html" rel="bookmark" title="Permalink to Notes from the ISM-PP conference Day 4">
-                    Notes from the ISM-PP conference Day 4</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-10-24T00:00:00"> 2013/10/24 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <div class="section" id="alberto-bolatto">
-<h2>Alberto Bolatto</h2>
-<p>GMC lifetime: 100 Myr (Scoville 79, Koda)
-Size-linewidth relation:</p>
-<blockquote>
-<ul class="simple">
-<li>Heyer 2001: small, flat dispersion clouds</li>
-<li>outer galaxy clouds contained by external pressure</li>
-</ul>
-</blockquote>
-<p>Dust in IGM hints at molecular Galactic outflows</p>
-</div>
-<div class="section" id="jin-koda-molecular-to-total-gas-ratio">
-<h2>Jin Koda: Molecular to Total gas ratio</h2>
-<dl class="docutils">
-<dt>inner 1 kpc 100% molecular</dt>
-<dd><ul class="first last simple">
-<li>20-30% arm/interarm variations</li>
-<li>molecules within interam and in arms, but clumps only in arms
-+ Sawada 2012
-+ Power-Law tails in arms, but not in interarms</li>
-<li>GRS more clumpy in arms</li>
-<li>arm/interarm comparison in M51
-+ 2-3x increase in T or rho in spiral arms</li>
-<li>Q Diederich: interarm clouds short-lived?  Not self-gravitating?</li>
-<li>A: Molecular gas is surviving, small clumps are self-gravitating</li>
-<li>Why is BDI higher at tangent point?</li>
-<li>What about Bania's clump?</li>
-</ul>
-</dd>
-</dl>
-</div>
-<div class="section" id="superbubbles-as-a-physical-process-in-the-ism-15-martin-krause">
-<h2>Superbubbles as a physical process in the ISM 15': Martin Krause</h2>
-<dl class="docutils">
-<dt>Al26 is much faster than spiral arms</dt>
-<dd><ul class="first last simple">
-<li>Too fast orbital velocity...</li>
-</ul>
-</dd>
-<dt>My question: What is the scale height?  What directions is the Al26 going?</dt>
-<dd><ul class="first last simple">
-<li>expand 100 pc in all directions except back along the line of sight
-+ Are the velocities consistent with the stellar velocity distribution?</li>
-</ul>
-</dd>
-</dl>
-</div>
-<div class="section" id="star-formation-in-molecular-gas-outside-galaxies-ute-lisenfeld">
-<h2>Star Formation in molecular gas outside galaxies: Ute Lisenfeld</h2>
-<dl class="docutils">
-<dt>Galaxies star forming, extragalactic gas with high column &amp; high velocity dispersion not</dt>
-<dd><ul class="first last simple">
-<li>colliding galaxies: intergalactic region full of molecular gas</li>
-</ul>
-</dd>
-</dl>
-</div>
-<div class="section" id="andreas-schruba-carma-iram-andromeda-survey">
-<h2>Andreas Schruba: CARMA + IRAM Andromeda survey</h2>
-<blockquote>
-<ul class="simple">
-<li>All-galaxy survey with IRAM
-+ 175 hr, 335 mosaic for &quot;Brick 15&quot;</li>
-<li>most clouds unbound or pressure bound</li>
-<li>size-linewidth relation: still lots of scatter</li>
-<li>sigma^2/r vs surface brightness (same as Heyer 2009 plot)
-+ no correlation with any parameters...</li>
-<li>clouds in strongest star-forming regions have largest LOS velocity differences</li>
-</ul>
-</blockquote>
-</div>
-<div class="section" id="rahul-shetty-ks-fitting">
-<h2>Rahul Shetty: KS fitting</h2>
-<dl class="docutils">
-<dt>Linear relation indicates constant depletion timescale</dt>
-<dd><ul class="first last simple">
-<li>super-linear: efficiency increases with increasing density</li>
-<li>linear: constant efficiency with gas density
-+ GMCs all have similar/same properties
-+ t_dep = 2 Gyr</li>
-<li>CO traces individual clouds</li>
-<li>sublinear indicates non-star-forming CO</li>
-<li>no universal or representative depletion time
-+ depletion time increases with CO</li>
-<li>Adam Leroy: Surface density of H2 doesn't match surface density of molecular clouds</li>
-<li>Jin: Also found superlinear.  Systematic bias?</li>
-</ul>
-</dd>
-</dl>
-</div>
-<div class="section" id="javier-cardiel-two-regimes-of-sf">
-<h2>Javier Cardiel: Two regimes of SF</h2>
-<dl class="docutils">
-<dt>Looking for triggering</dt>
-<dd><ul class="first last simple">
-<li>density decreases with size increasing?</li>
-<li>HII regions and molecular clouds have same size-mass relations</li>
-</ul>
-</dd>
-</dl>
-</div>
-<div class="section" id="steve-longmore-ism-in-galactic-centers">
-<h2>Steve Longmore: ISM in Galactic Centers</h2>
-<p>dolphin riding?
-Where is MW in hubble tuning fork?</p>
-<blockquote>
-<ul class="simple">
-<li>dense gas with no star formation driven inwards by bar</li>
-<li>Meidt M51 PAWS</li>
-</ul>
-</blockquote>
-<p>Molinari Ring: closed orbit...
-M83 is a twin
-Jay Gallagher's talk: SFR much, much higher in NGC 253 than MW
-Discrepancy between Farhad, Steve, and Sandstrom</p>
-<blockquote>
-<ul class="simple">
-<li>TOTAL gas: CMZ agrees</li>
-<li>Geometry: Farhad assumed pancake, Steve assumed ring</li>
-</ul>
-</blockquote>
-<dl class="docutils">
-<dt>Kruijssen &amp; Longmore similarity to z=2-3...</dt>
-<dd><ul class="first last simple">
-<li>CMZ clouds &quot;indistinguishable&quot; in a few parameters from high-Z</li>
-</ul>
-</dd>
-<dt>Turbulent pressure provides the support in the CMZ</dt>
-<dd><ul class="first last simple">
-<li>environmentally dependent density threshold</li>
-<li>Q Rowan: Constant gradient in cloud properties along the ring?</li>
-<li>Q Semadeni: Turbulence can't provide support.</li>
-<li>Q Keto: Nothing can supply the turbulence</li>
-<li>Q Falgarone: HCO+ absorption, daughter of CO+.  Could trace sites of
-turbulence in the medium.  Low density.  Line width comes from intense
-shear.</li>
-</ul>
-</dd>
-</dl>
-</div>
-<div class="section" id="tim-davis-ism-in-early-type-galaxies">
-<h2>Tim Davis: ISM in early-type galaxies</h2>
-<dl class="docutils">
-<dt>ISM in CMZs different</dt>
-<dd><ul class="first last simple">
-<li>some are predominantely molecular (no HI)</li>
-<li>cluster members have different NII/CII ratios</li>
-<li>lower star forming efficiency</li>
-<li>shear increases depletion time</li>
-<li>Q Burkhart: Origin of gas.  Replenishment from stars?</li>
-<li>A: Based on gas vs star kinematics, at least 50% must be accreted.</li>
-<li>Q Kruijssen: Stripping would happen if disk extends to optical radius.  Does it?  Stars should be stripped too</li>
-<li>A: Don't extend to optical radius, but more truncated in clusters</li>
-<li>Q Leroy: Where does tff claim come from...?</li>
-<li>A: assume all mol clds have 85 msun/pc^2...</li>
 </ul>
 </dd>
 </dl>

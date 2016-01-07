@@ -101,23 +101,27 @@ indicates that I should install to a different path to avoid weird conflicts
 with other libraries.</p>
 <pre class="literal-block">
 ./configure --enable-threads --enable-openmp --enable-mpi --enable-shared \
-            --enable-fortran CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
+            --enable-fortran --enable-avx \
+            CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
 make -j 4
 sudo make install
 
 ./configure --enable-float --enable-threads --enable-openmp --enable-mpi --enable-shared \
-            --enable-fortran CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
+            --enable-fortran --enable-avx \
+            CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
 make -j 4
 sudo make install
 
 # quad precision is not supported in mpi
 ./configure --enable-quad-precision --enable-threads --enable-openmp --enable-shared \
-            --enable-fortran CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
+            --enable-fortran --enable-avx \
+             CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
 make -j 4
 sudo make install
 
 ./configure --enable-long-double --enable-threads --enable-openmp --enable-mpi --enable-shared \
-            --enable-fortran CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
+            --enable-fortran --enable-avx \
+             CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
 make -j 4
 sudo make install
 </pre>
@@ -138,6 +142,7 @@ use <a class="reference external" href="https://code.google.com/p/agpy/source/br
 <img alt="" src="http://keflavich.github.io/blog/images/psfTfftF.png" style="width: 600px;" />
 <img alt="" src="http://keflavich.github.io/blog/images/psfFfftT.png" style="width: 600px;" />
 <img alt="" src="http://keflavich.github.io/blog/images/psfFfftF.png" style="width: 600px;" />
+<p><a class="reference external" href="https://gist.github.com/6a2d338830efdc02959a">Notebook containing comparisons between FFT and FFTW</a></p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

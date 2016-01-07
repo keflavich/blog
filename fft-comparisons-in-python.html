@@ -68,6 +68,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/01/07
+                  <br>
+                  <a href="http://keflavich.github.io/blog/self-cal-with-evla-data.html">Self-cal with EVLA data</a>
+              </li>
+              <li class="post">
                   2015/12/07
                   <br>
                   <a href="http://keflavich.github.io/blog/fft-comparisons-in-python.html">FFT comparisons in python</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   2015/10/28
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-clean-errors-related-to-channels.html">CASA clean errors related to channels</a>
-              </li>
-              <li class="post">
-                  2015/10/28
-                  <br>
-                  <a href="http://keflavich.github.io/blog/pyspeckit-is-py3-compatible.html">pyspeckit is py3-compatible</a>
               </li>
         </ul>
       </li>
@@ -125,23 +125,27 @@ indicates that I should install to a different path to avoid weird conflicts
 with other libraries.</p>
 <pre class="literal-block">
 ./configure --enable-threads --enable-openmp --enable-mpi --enable-shared \
-            --enable-fortran CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
+            --enable-fortran --enable-avx \
+            CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
 make -j 4
 sudo make install
 
 ./configure --enable-float --enable-threads --enable-openmp --enable-mpi --enable-shared \
-            --enable-fortran CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
+            --enable-fortran --enable-avx \
+            CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
 make -j 4
 sudo make install
 
 # quad precision is not supported in mpi
 ./configure --enable-quad-precision --enable-threads --enable-openmp --enable-shared \
-            --enable-fortran CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
+            --enable-fortran --enable-avx \
+             CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
 make -j 4
 sudo make install
 
 ./configure --enable-long-double --enable-threads --enable-openmp --enable-mpi --enable-shared \
-            --enable-fortran CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
+            --enable-fortran --enable-avx \
+             CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
 make -j 4
 sudo make install
 </pre>
@@ -162,6 +166,7 @@ use <a class="reference external" href="https://code.google.com/p/agpy/source/br
 <img alt="" src="http://keflavich.github.io/blog/images/psfTfftF.png" style="width: 600px;" />
 <img alt="" src="http://keflavich.github.io/blog/images/psfFfftT.png" style="width: 600px;" />
 <img alt="" src="http://keflavich.github.io/blog/images/psfFfftF.png" style="width: 600px;" />
+<p><a class="reference external" href="https://gist.github.com/6a2d338830efdc02959a">Notebook containing comparisons between FFT and FFTW</a></p>
 
   </div><!-- /.entry-content -->
 </section>
