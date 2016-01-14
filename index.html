@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/01/14
+                  <br>
+                  <a href="http://keflavich.github.io/blog/comparing-tclean-parameters.html">Comparing tclean parameters</a>
+              </li>
+              <li class="post">
                   2016/01/07
                   <br>
                   <a href="http://keflavich.github.io/blog/self-cal-with-evla-data.html">Self-cal with EVLA data</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/cvel-errors.html">CVEL errors</a>
               </li>
-              <li class="post">
-                  2015/10/28
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-clean-errors-related-to-channels.html">CASA clean errors related to channels</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,35 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/comparing-tclean-parameters.html" rel="bookmark" title="Permalink to Comparing tclean parameters">
+                    Comparing tclean parameters</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-01-14T09:57:00"> 2016/01/14 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Comparing clean methods with identical data &amp; parameters (as far as possible):
+<a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/script_merge/clean_method_comparison.py">code</a>.</p>
+<p>An example using natural weighting:</p>
+<img alt="" src="http://keflavich.github.io/blog/images/casa/tclean_compare.png" style="width: 600px;" />
+<p>None of the methods are acceptable.  Multiscale is the worst, but hogbom is
+extremely bad: there are major ringing artifacts (stripes parallel to the main
+filament).</p>
+<p>Disturbingly, even though I have given multiple scales, there are clearly no
+non-pointlike scales in any of the model images, including mem, so I think
+there's a major problem with tclean:</p>
+<img alt="" src="http://keflavich.github.io/blog/images/casa/tclean_compare_models.png" style="width: 600px;" />
+<p>I'm re-doing it with uniform weighting, because that's the case I was actually
+interested in.</p>
+<img alt="" src="http://keflavich.github.io/blog/images/casa/tclean_compare_uniform.png" style="width: 600px;" />
+<p>The uniform tests come up with a clear and obvious answer: use clark clean, DO
+NOT use any other methods as they are all unstable.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -497,24 +526,6 @@ orion /diskb/aginsbur/atca master$ locate libxml2.so.2
 /usr/lib64/libxml2.so.2.9.1
 orion /diskb/aginsbur/atca master$ ln -sf /usr/lib64/libxml2.so.2 /diskb/aginsbur/casa/casapy-42.2.30986-pipe-1-64b/lib64/libxml2.so.2
 </pre>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/export-to-fits-with-miriad.html" rel="bookmark" title="Permalink to Export to FITS with MIRIAD">
-                    Export to FITS with MIRIAD</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2015-09-15T15:30:00"> 2015/09/15 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>To convert from MIRIAD map files to FITS, use:</p>
-<pre class="literal-block">
-miriad% fits in=h2comos1.clr out=h2comos1.fits op=xyout
-</pre>
-<p>(see <a class="reference external" href="converting-gildas-class-data-cubes-lmv-files-to-fits.rst">the CLASS conversion post</a>)</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
