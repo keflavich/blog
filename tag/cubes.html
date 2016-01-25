@@ -103,8 +103,11 @@ a &quot;bad&quot; chunk.</p>
 <img alt="" src="http://keflavich.github.io/blog/images/casa/w51_cube_chunk_compare_good.png" style="width: 600px;" />
 <img alt="" src="http://keflavich.github.io/blog/images/casa/w51_cube_chunk_compare_bad.png" style="width: 600px;" />
 <p>It is clear that the second image was restore using a too-large beam, and this is verified by examining the header:</p>
-<div class="highlight"><pre>In [9]: goodcube.beam
-Out[9]: Beam: BMAJ=0.408393889665 arcsec BMIN=0.229679107666 arcsec BPA=45.966835022 deg
+<div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">badcube</span><span class="o">.</span><span class="n">beam</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">Beam</span><span class="p">:</span> <span class="n">BMAJ</span><span class="o">=</span><span class="mf">1.15963029861</span> <span class="n">arcsec</span> <span class="n">BMIN</span><span class="o">=</span><span class="mf">0.96223282814</span> <span class="n">arcsec</span> <span class="n">BPA</span><span class="o">=-</span><span class="mf">71.0310058594</span> <span class="n">deg</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">goodcube</span><span class="o">.</span><span class="n">beam</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">Beam</span><span class="p">:</span> <span class="n">BMAJ</span><span class="o">=</span><span class="mf">0.408393889665</span> <span class="n">arcsec</span> <span class="n">BMIN</span><span class="o">=</span><span class="mf">0.229679107666</span> <span class="n">arcsec</span> <span class="n">BPA</span><span class="o">=</span><span class="mf">45.966835022</span> <span class="n">deg</span>
 </pre></div>
 <p>I don't yet know what is causing this error.  When I try re-doing the clean
 with <tt class="docutils literal">tclean</tt>, I get the following message, which is a hint:</p>
