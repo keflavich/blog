@@ -28,11 +28,13 @@ a "bad" chunk.
 It is clear that the second image was restore using a too-large beam, and this is verified by examining the header:
 
 .. code-block:: python
+
     In [8]: badcube.beam
     Out[8]: Beam: BMAJ=1.15963029861 arcsec BMIN=0.96223282814 arcsec BPA=-71.0310058594 deg
-
+    
     In [9]: goodcube.beam
     Out[9]: Beam: BMAJ=0.408393889665 arcsec BMIN=0.229679107666 arcsec BPA=45.966835022 deg
+
 
 
 I don't yet know what is causing this error.  When I try re-doing the clean
@@ -49,3 +51,10 @@ with ``tclean``, I get the following message, which is a hint:
     [C167:P0] [C168:P0] [C169:P0] [C170:P0] [C171:P0] [C172:P0] [C173:P0] [C174:P0]
     [C175:P0] [C176:P0] [C177:P0] [C178:P0] [C179:P0] [C180:P0] [C181:P0] [C182:P0]
     [C183:P0] [C184:P0] [C185:P0] [C186:P0]
+    
+
+Apparently tclean solves this problem!  Instead of using a single beam for all
+channels, it creates a CASAMBM table in the FITS output and uses different
+beams at each channel.  There must be genuinely bad data (probably an
+atmospheric absorption line) at the specified frequencies.  At least now, that
+will come up more naturally, rather than spiking the data.  
