@@ -68,6 +68,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/01/25
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-imaging-of-huge-cube.html">CASA imaging of huge cube</a>
+              </li>
+              <li class="post">
                   2016/01/14
                   <br>
                   <a href="http://keflavich.github.io/blog/comparing-tclean-parameters.html">Comparing tclean parameters</a>
@@ -87,11 +92,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/separating-line-from-continuum-in-casa-data.html">Separating Line from Continuum in CASA data</a>
               </li>
-              <li class="post">
-                  2015/11/02
-                  <br>
-                  <a href="http://keflavich.github.io/blog/cvel-errors.html">CVEL errors</a>
-              </li>
         </ul>
       </li>
     
@@ -103,6 +103,47 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles in the misc category</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/casa-imaging-of-huge-cube.html" rel="bookmark" title="Permalink to CASA imaging of huge cube">
+                    CASA imaging of huge cube</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-01-25T10:09:00"> 2016/01/25 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Imaging full cubes, i.e. every channel and every pixel, from ALMA data proved
+too much for the first few machines I tried it on, so I then tried splitting
+the cubes into chunks (<a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/script_12m/scriptForImaging_fullcube.py">source</a>).</p>
+<p>For the most part, this works well, but there are some serious problems:</p>
+<img alt="" src="http://keflavich.github.io/blog/images/casa/spectrum_with_badchunk.png" style="width: 600px;" />
+<p>Note the range from 233.8-234 GHz.  It has a continuum level way above the
+rest.  This is utter nonsense, and turns out to be due to some imaging error.
+The first image below shows a &quot;good&quot; chunk of the cube, the second image shows
+a &quot;bad&quot; chunk.</p>
+<img alt="" src="http://keflavich.github.io/blog/images/casa/w51_cube_chunk_compare_good.png" style="width: 600px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/casa/w51_cube_chunk_compare_bad.png" style="width: 600px;" />
+<p>It is clear that the second image was restore using a too-large beam, and this is verified by examining the header:</p>
+<div class="highlight"><pre>In [9]: goodcube.beam
+Out[9]: Beam: BMAJ=0.408393889665 arcsec BMIN=0.229679107666 arcsec BPA=45.966835022 deg
+</pre></div>
+<p>I don't yet know what is causing this error.  When I try re-doing the clean
+with <tt class="docutils literal">tclean</tt>, I get the following message, which is a hint:</p>
+<pre class="literal-block">
+2016-01-25 09:13:04     WARN    task_tclean::SIImageStore::getPSFGaussian (file
+/var/rpmbuild/BUILD/casa-prerelease/casa-prerelease-4.5.0/code/synthesis/ImagerObjects/SIImageStore.cc,
+line 1262)      PSF is blank for[C139:P0] [C140:P0] [C141:P0] [C142:P0]
+[C143:P0] [C144:P0] [C145:P0] [C146:P0] [C147:P0] [C148:P0] [C149:P0] [C150:P0]
+[C151:P0] [C152:P0] [C153:P0] [C154:P0] [C155:P0] [C156:P0] [C157:P0] [C158:P0]
+[C159:P0] [C160:P0] [C161:P0] [C162:P0] [C163:P0] [C164:P0] [C165:P0] [C166:P0]
+[C167:P0] [C168:P0] [C169:P0] [C170:P0] [C171:P0] [C172:P0] [C173:P0] [C174:P0]
+[C175:P0] [C176:P0] [C177:P0] [C178:P0] [C179:P0] [C180:P0] [C181:P0] [C182:P0]
+[C183:P0] [C184:P0] [C185:P0] [C186:P0]
+</pre>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -491,43 +532,6 @@ This is relatively easy to do:</p>
 </pre></div>
 <img alt="" src="http://keflavich.github.io/blog/images/TOS_vs_freq.png" style="width: 800px;" />
 <img alt="" src="http://keflavich.github.io/blog/images/depth_vs_freq.png" style="width: 800px;" />
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/alma-qa2-restoration.html" rel="bookmark" title="Permalink to ALMA QA2 restoration">
-                    ALMA QA2 restoration</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2015-10-02T09:00:00"> 2015/10/02 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>In case you ever encounter this error about a missing <cite>Source.xml</cite> file:</p>
-<pre class="literal-block">
-IOError: [Errno 2] No such file or directory: '/diskb/aginsbur/orion/2013.1.00546.S/science_goal.uid___A001_X122_X35c/group.uid___A001_X122_X35d/member.uid___A001_X122_X35e/calibrated/working/uid___A002_X960614_X39db.ms/Source.xml'
-WARNING: Failure executing file: &lt;scriptForPI.py&gt;
-</pre>
-<p>the solution is this ticket: <a class="reference external" href="https://help.almascience.org/index.php?/Knowledgebase/Article/View/266/5/what-should-i-do-if-scriptforpi-aborts-at-the-importasdm-step-with-error">https://help.almascience.org/index.php?/Knowledgebase/Article/View/266/5/what-should-i-do-if-scriptforpi-aborts-at-the-importasdm-step-with-error</a></p>
-<p>So my solution:</p>
-<pre class="literal-block">
-orion /diskb/aginsbur/atca master$ mv /diskb/aginsbur/casa/casapy-42.2.30986-pipe-1-64b/lib64/libxml2.so.2 /diskb/aginsbur/casa/casapy-42.2.30986-pipe-1-64b/lib64/origlibxml2.so.2
-orion /diskb/aginsbur/atca master$ locate libxml2.so.2
-/diskb/aginsbur/casa/casapy-42.2.30986-pipe-1-64b/lib64/libxml2.so.2
-/diskb/aginsbur/casa/casapy-42.2.30986-pipe-1-64b/lib64/libxml2.so.2.6.26
-/home/aginsbur/anaconda/lib/libxml2.so.2
-/home/aginsbur/anaconda/lib/libxml2.so.2.9.2
-/home/aginsbur/anaconda/pkgs/libxml2-2.9.2-0/lib/libxml2.so.2
-/home/aginsbur/anaconda/pkgs/libxml2-2.9.2-0/lib/libxml2.so.2.9.2
-/opt/anaconda/lib/libxml2.so.2
-/opt/anaconda/lib/libxml2.so.2.9.2
-/opt/anaconda/pkgs/libxml2-2.9.2-0/lib/libxml2.so.2
-/opt/anaconda/pkgs/libxml2-2.9.2-0/lib/libxml2.so.2.9.2
-/usr/lib64/libxml2.so.2
-/usr/lib64/libxml2.so.2.9.1
-orion /diskb/aginsbur/atca master$ ln -sf /usr/lib64/libxml2.so.2 /diskb/aginsbur/casa/casapy-42.2.30986-pipe-1-64b/lib64/libxml2.so.2
-</pre>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

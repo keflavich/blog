@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/01/25
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-imaging-of-huge-cube.html">CASA imaging of huge cube</a>
+              </li>
+              <li class="post">
                   2016/01/14
                   <br>
                   <a href="http://keflavich.github.io/blog/comparing-tclean-parameters.html">Comparing tclean parameters</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/separating-line-from-continuum-in-casa-data.html">Separating Line from Continuum in CASA data</a>
               </li>
-              <li class="post">
-                  2015/11/02
-                  <br>
-                  <a href="http://keflavich.github.io/blog/cvel-errors.html">CVEL errors</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,50 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/recovery-as-a-function-of-bolometer-noise.html" rel="bookmark" title="Permalink to Recovery as a function of bolometer noise">
+                    Recovery as a function of bolometer noise</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-05-26T18:47:00"> 2011/05/26 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>One clear simulation result comes from varying the amplitude of the
+gaussian noise added to each bolometer's timestream for a fixed
+atmosphere amplitude. The atmosphere amplitude sets the <em>mean</em> value of
+the atmosphere timestream.
+Increased bolometer noise results in decreased recovery of the outer
+rings of the PSF. This is demonstrated in that the peak amplitudes
+remain constant (as long as they are still recovered) while the aperture
+sums (in 100&quot; radius apertures) decrease.
+The simulations were run on a logarithmic spacing from 1e-3 to 1e0. The
+1e0 point is missing because the peak flux wasn't recovered by the
+gaussian fitter. The model maps don't recover the source at all for this
+run, which is worrisome, since it means there is no iterative process
+There is a minor concern that some simulations over-recover the peak at
+high noise, but the effect is at a &lt;1% level so not very worrisome.</p>
+<img alt="" src="http://1.bp.blogspot.com/-H0j13RdCays/Td6QrP78qWI/AAAAAAAAGMI/X-74WUEgYFE/s320/exp6_recovery_vs_bolonoiseRMS.png" />
+<p>From the same set of simulations, I derive the pixel RMS of the map (the
+noise level) derived from a give individual bolometer noise. The
+theoretical expectation would be
+Measured Noise = Input Noise / N(bolometers)
+<em>if</em> the pixel sampling and the timestream sampling were the same (i.e.
+there were exactly sqrt(nbolos) hits per pixel). This is not exactly the
+case, and there are potential additional sources of noise. Nonetheless,
+the naive theory appears to be good enough in this simulation:</p>
+<img alt="" src="http://3.bp.blogspot.com/-ar8f4tdXUkQ/Td6fecs1WoI/AAAAAAAAGMQ/f_PwoxFp4Fo/s320/exp6_measurednoise_vs_bolonoiseRMS.png" />
+<p>You can ignore the green/blue points in this plot; they just show that
+the std. dev. around the source is dominated by the source.
+Additionally, there is a noise floor, probably set by an inability to
+model the point source when the S/N gets to be ~500, preventing
+convergence of the iterator at a level better than 0.2%.
+In short, though, I'm going to use 1/sqrt(nbolos) to determine the
+appropriate input noise level in the astro simulations.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -431,26 +475,6 @@ Also note that the flux loss increases from 7% to 20% from ds1 to ds5:</p>
         <div class="entry-content"> <img alt="" src="http://3.bp.blogspot.com/-Qj43vct-3Hw/TaOsoVQAeTI/AAAAAAAAGGY/Ju9HpmnrvCc/s320/airy_sn100.png" />
 <p>The recovery for an Airy function is not particularly good, since the
 pipeline assumes a purely positive response....</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/definitive-testing.html" rel="bookmark" title="Permalink to Definitive Testing">
-                    Definitive Testing</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-04-11T19:09:00"> 2011/04/11 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>It is now possible to make artificial timestreams!
-First round of tests:
-For pointing maps with ~21 scans in 15&quot; steps, array angle is
-approximately negligible.
-deconv does NOT recover point sources, but reconv does (perfectly)
-The algorithm starts to decay and produce weird ringey residuals at a
-S/N ~300. The residuals are only at the 1% level out to S/N ~1000.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
