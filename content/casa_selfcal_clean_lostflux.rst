@@ -18,7 +18,7 @@ That image is actually from `self-calibrating the whole field
 <https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m_te/selfcal_continuum.py>`_,
 which also worked great.  Except, it deleted all the flux outside of the bright regions:
 
-.. image:: |filename|/images/casa/sgrb2_selfcal_verybad.png
+.. image:: |filename|/images/casa/sgrb2_selfcal_bad.png
    :width: 600px
 
 This is extremely, amazingly, terribly awful.  It is just deleting flux!  I had
