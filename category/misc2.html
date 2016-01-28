@@ -68,6 +68,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/01/28
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-selfcal-good-awful.html">CASA Selfcal: Good & Awful</a>
+              </li>
+              <li class="post">
                   2016/01/25
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-imaging-of-huge-cube.html">CASA imaging of huge cube</a>
@@ -87,11 +92,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/fft-comparisons-in-python.html">FFT comparisons in python</a>
               </li>
-              <li class="post">
-                  2015/11/04
-                  <br>
-                  <a href="http://keflavich.github.io/blog/separating-line-from-continuum-in-casa-data.html">Separating Line from Continuum in CASA data</a>
-              </li>
         </ul>
       </li>
     
@@ -103,6 +103,41 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles in the misc category</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/sensitivity-plots-using-astroquery-nrao-tool.html" rel="bookmark" title="Permalink to Sensitivity Plots using astroquery NRAO tool">
+                    Sensitivity Plots using astroquery NRAO tool</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-10-09T14:00:00"> 2015/10/09 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I wanted to see what the approximate depth achieved by (repeated)
+VLA observations of a few sources was, at least theoretically.
+This is relatively easy to do:</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<span class="kn">from</span> <span class="nn">astroquery.nrao</span> <span class="kn">import</span> <span class="n">Nrao</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">Nrao</span><span class="p">()</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">coordinates</span><span class="o">=</span><span class="n">coordinates</span><span class="o">.</span><span class="n">SkyCoord</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="s">&#39;Sgr B2(M)&#39;</span><span class="p">),</span>
+                      <span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcmin</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">pl</span>
+
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s">&#39;Observing Freq&#39;</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s">&#39;TOS&#39;</span><span class="p">],</span> <span class="s">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&quot;Observed Frequency (GHz)&quot;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&quot;Time-on-Source (s)&quot;</span><span class="p">)</span>
+
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s">&#39;Observing Freq&#39;</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s">&#39;TOS&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">result</span><span class="p">[</span><span class="s">&#39;Bandwidth&#39;</span><span class="p">],</span> <span class="s">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&quot;Observed Frequency (GHz)&quot;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&quot;Relative depth (Hz s)&quot;</span><span class="p">)</span>
+</pre></div>
+<img alt="" src="http://keflavich.github.io/blog/images/TOS_vs_freq.png" style="width: 800px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/depth_vs_freq.png" style="width: 800px;" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -507,176 +542,6 @@ tool in <a class="reference external" href="https://github.com/keflavich/casa_to
 <li><a class="reference external" href="http://casa.nrao.edu/docs/casaref/image.regrid.html">imregrid docs</a></li>
 </ul>
 </blockquote>
-</div>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/converting-a-fits-cube-to-a-casa-image.html" rel="bookmark" title="Permalink to Converting a FITS cube to a CASA Image">
-                    Converting a FITS cube to a CASA Image</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-12-18T15:15:00"> 2013/12/18 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg <adam.g.ginsburg@gmail.com></a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>If you want to perform analysis on a FITS file in CASA, you first need to
-import it into <cite>.image</cite> format.</p>
-<blockquote>
-importfits('file.fits','file.image')</blockquote>
-<p>If this works, great!  You can move on.  CASA will treat NaN values in an image
-as 'masked'.</p>
-<div class="section" id="dealing-with-errors">
-<h2>Dealing with Errors</h2>
-<p>There may be issues with FITS headers.  CASA respects a large number of header
-keys (<a class="reference external" href="http://www.eso.org/projects/alma/arc/tw/pub/External/EUARCCASATutorialJan2012/ImageAnalysis-CASA.pdf">reference</a>).</p>
-<p>There are many ways to edit a FITS header.  One of the most straightforward to
-use is <a class="reference external" href="http://tdc-www.harvard.edu/wcstools/edhead.html">edhead</a>.  Otherwise, one can use CASA's <a class="reference external" href="http://casaguides.nrao.edu/index.php?title=Imhead">imhead</a></p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="14%" />
-<col width="14%" />
-<col width="71%" />
-</colgroup>
-<tbody valign="top">
-<tr><td>CASA Keyword</td>
-<td>FITS keyword</td>
-<td>Description</td>
-</tr>
-<tr><td>beammaj</td>
-<td>BMAJ</td>
-<td>Major&nbsp;axis&nbsp;of&nbsp;the&nbsp;clean&nbsp;beam</td>
-</tr>
-<tr><td>beammin</td>
-<td>BMIN</td>
-<td>Minor&nbsp;axis&nbsp;of&nbsp;the&nbsp;clean&nbsp;beam</td>
-</tr>
-<tr><td>beampa</td>
-<td>BPA</td>
-<td>Position&nbsp;angle&nbsp;of&nbsp;the&nbsp;clean&nbsp;beam</td>
-</tr>
-<tr><td>bunit</td>
-<td>BUNIT</td>
-<td>Brightness&nbsp;unit&nbsp;(K,&nbsp;Jy/beam,&nbsp;etc)</td>
-</tr>
-<tr><td>cdeltn</td>
-<td>CDELTn</td>
-<td>Pixel&nbsp;size,&nbsp;nth&nbsp;axis&nbsp;&nbsp;(max&nbsp;n&nbsp;is&nbsp;4)</td>
-</tr>
-<tr><td>crpixn</td>
-<td>CRPIXn</td>
-<td>Pixel&nbsp;coordinate&nbsp;of&nbsp;reference&nbsp;point,&nbsp;nth&nbsp;axis</td>
-</tr>
-<tr><td>crvaln</td>
-<td>CRVALn</td>
-<td>Pixel&nbsp;location&nbsp;of&nbsp;reference&nbsp;point,&nbsp;nth&nbsp;axis</td>
-</tr>
-<tr><td>ctypen</td>
-<td>CTYPEn</td>
-<td>Axis&nbsp;name,&nbsp;nth&nbsp;axis.  For FITS, this includes the projection</td>
-</tr>
-<tr><td>cunitn</td>
-<td>CUNITn</td>
-<td>Pixel&nbsp;units,&nbsp;nth&nbsp;axis</td>
-</tr>
-<tr><td>datamax</td>
-<td>DATAMAX</td>
-<td>Maximum&nbsp;pixel&nbsp;value&nbsp;in&nbsp;image</td>
-</tr>
-<tr><td>datamin</td>
-<td>DATAMIN</td>
-<td>Minimum&nbsp;pixel&nbsp;value&nbsp;in&nbsp;image</td>
-</tr>
-<tr><td>date-obs</td>
-<td>DATE-OBS</td>
-<td>Date&nbsp;of&nbsp;the&nbsp;observation</td>
-</tr>
-<tr><td>equinox</td>
-<td>EQUINOX</td>
-<td>Reference&nbsp;frame&nbsp;for&nbsp;directional&nbsp;coordinates</td>
-</tr>
-<tr><td>imtype</td>
-<td><ul class="first last simple">
-<li></li>
-</ul>
-</td>
-<td>Image&nbsp;type:&nbsp;intensity,</td>
-</tr>
-<tr><td>minpos</td>
-<td><ul class="first last simple">
-<li></li>
-</ul>
-</td>
-<td>Position&nbsp;of&nbsp;the&nbsp;minimum&nbsp;value&nbsp;(world&nbsp;unit)</td>
-</tr>
-<tr><td>minpixpos</td>
-<td><ul class="first last simple">
-<li></li>
-</ul>
-</td>
-<td>Same&nbsp;in&nbsp;pixel&nbsp;(array)</td>
-</tr>
-<tr><td>maxpos</td>
-<td><ul class="first last simple">
-<li></li>
-</ul>
-</td>
-<td>Position&nbsp;of&nbsp;the&nbsp;maximum&nbsp;value&nbsp;(world&nbsp;unit)</td>
-</tr>
-<tr><td>maxpixpos</td>
-<td><ul class="first last simple">
-<li></li>
-</ul>
-</td>
-<td>Same&nbsp;in&nbsp;pixel&nbsp;(array)</td>
-</tr>
-<tr><td>object</td>
-<td>OBJECT</td>
-<td>Source&nbsp;name</td>
-</tr>
-<tr><td>observer</td>
-<td>OBSERVER</td>
-<td>Observer&nbsp;name</td>
-</tr>
-<tr><td>projection</td>
-<td>CTYPEn</td>
-<td>Image&nbsp;projection&nbsp;('SIN','TAN',&nbsp;or&nbsp;'ZEA')</td>
-</tr>
-<tr><td>reffreqtype</td>
-<td><ul class="first last simple">
-<li></li>
-</ul>
-</td>
-<td>Reference&nbsp;frame&nbsp;for&nbsp;the&nbsp;spectral&nbsp;coordinates</td>
-</tr>
-<tr><td>restfreq</td>
-<td>RESTFREQ</td>
-<td>Rest&nbsp;Frequency</td>
-</tr>
-<tr><td>shape</td>
-<td>NAXISn</td>
-<td>Number&nbsp;of&nbsp;pixels&nbsp;along&nbsp;each&nbsp;axis</td>
-</tr>
-<tr><td>telescope</td>
-<td>TELESCOP</td>
-<td>Telescope&nbsp;name</td>
-</tr>
-</tbody>
-</table>
-<p>What does it mean if you get this sort of error?</p>
-<blockquote>
-CASA &lt;1&gt;: importfits('file.fits','file.image')
-2013-12-18 13:06:18     WARN    importfits::FITSCoordinateUtil::fromFITSHeader  The wcs function failures are too severe to continue ...
-2013-12-18 13:06:18     WARN    importfits::ImageFITSConverterImpl::FITSToImage (file /var/rpmbuild/BUILD/casapy-stable/casapy-stable-42.0.26945/casacore/images/Images/ImageFITSConverter.tcc, line 71)       No proper coordinate system defined in FITS file. Using dummy linear system instead.</blockquote>
-<p>First, go to the <cite>casapy-yyyymmdd-hhmmss.log</cite> file and look at the errors.</p>
-<blockquote>
-2013-12-18 13:06:18     INFO    importfits::FITSCoordinateUtil::fromFITSHeader  celfix incurred the error Inconsistent or unrecognized coordinate axis types
-2013-12-18 13:06:18     INFO    importfits::FITSCoordinateUtil::fromFITSHeader  spcfix incurred the error Inconsistent or unrecognized coordinate axis types
-2013-12-18 13:06:18     INFO    importfits::FITSCoordinateUtil::fromFITSHeader  cylfix incurred the error Inconsistent or unrecognized coordinate axis types</blockquote>
-<p>In my case, the error turned out to be that <cite>CTYPE3</cite> was set to <cite>RADI-LSR</cite>,
-while it should be <cite>VELO-LSR</cite> to be recognized by the CASA system.  The
-velocity convention is, unfortunately, lost.</p>
 </div>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>

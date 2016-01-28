@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/01/28
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-selfcal-good-awful.html">CASA Selfcal: Good & Awful</a>
+              </li>
+              <li class="post">
                   2016/01/14
                   <br>
                   <a href="http://keflavich.github.io/blog/comparing-tclean-parameters.html">Comparing tclean parameters</a>
@@ -86,6 +91,34 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/casa-selfcal-good-awful.html" rel="bookmark" title="Permalink to CASA Selfcal: Good & Awful">
+                    CASA Selfcal: Good &amp; Awful</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-01-28T09:20:00"> 2016/01/28 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Self-calibration is necessary for some images to get a decent dynamic range or
+to see anything at all in the images.  So, I did some tests using self-cal on
+the central field of Sgr B2 (<a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m_te/selfcal_centralfield.py">source</a>)
+and it worked great:</p>
+<img alt="" src="http://keflavich.github.io/blog/images/casa/sgrb2_selfcal_good.png" style="width: 600px;" />
+<p>That image is actually from <a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m_te/selfcal_continuum.py">self-calibrating the whole field</a>,
+which also worked great.  Except, it deleted all the flux outside of the bright regions:</p>
+<img alt="" src="|filename|/images/casa/sgrb2_selfcal_verybad.png" style="width: 600px;" />
+<p>This is extremely, amazingly, terribly awful.  It is just deleting flux!  I had
+previously thought that the <tt class="docutils literal">applyonly</tt> option would only apply solutions
+that it actually found, but that appears not to bt true.  Instead, it seems
+that even phase solutions with <em>no</em> signal are being applied, which effectively
+removes everything from the image.  I could have understood if this was happening
+to amplitude self-calibration, but I can't understand how it is happening with
+phase self-cal.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">

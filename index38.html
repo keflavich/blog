@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/01/28
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-selfcal-good-awful.html">CASA Selfcal: Good & Awful</a>
+              </li>
+              <li class="post">
                   2016/01/25
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-imaging-of-huge-cube.html">CASA imaging of huge cube</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/fft-comparisons-in-python.html">FFT comparisons in python</a>
               </li>
-              <li class="post">
-                  2015/11/04
-                  <br>
-                  <a href="http://keflavich.github.io/blog/separating-line-from-continuum-in-casa-data.html">Separating Line from Continuum in CASA data</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,58 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/some-pretty-neat-things-about-delining.html" rel="bookmark" title="Permalink to Some pretty neat things about delining....">
+                    Some pretty neat things about delining....</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-02-03T04:50:00"> 2011/02/03 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Well, I did the work, so might as well come up with some plots...
+I created a gaussian-fitting based delining code that saves all of the
+fits in a text file! That's a lot of data to play with, and allows me to
+draw some conclusions:</p>
+<ol class="arabic simple">
+<li>For the narrow lines, the linewidth (gaussian sigma) is 0.03 Hz. For
+the wide lines, it is 0.05.</li>
+<li>The amplitudes from December 2010 are ENORMOUS compared to others!</li>
+<li>The width distributions of the two are similar, though the lines
+appear to be significantly wider in July 2009</li>
+</ol>
+<p>I've also gotten to the point that I'm satisfied with how delining with
+wing suppression works. Wing suppression is 0.4-2x quicker than fitting
+directly, depending on... not clear what exactly; it depends on epoch,
+but that could either be because there are more lines found or because
+of relative data size. Does delining have to be done on whole
+timestreams, or can it be done on a scan-by-scan basis? This is not
+entirely clear... the peaks are less suppressed when done on a
+scan-by-scan basis (presumably because the S/N is low and peaks are
+therefore not detected), but incorrect suppression (removing a line
+that's not there) is reduced. For short scans, the scan-by-scan approach
+is 10x faster; for longer scans it's ~20% faster. I think the
+scan-by-scan approach is going to be ideal.</p>
+<hr class="docutils" />
+<p>Examples from l089 (0709):
+Top row: non-fitted line suppression</p>
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUowz4zgpsI/AAAAAAAAF8E/iJd0tAbVj0U/s320/deline_10hz_wingsuppress_psds_003.png" />
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUow1IQ_Y9I/AAAAAAAAF8c/1OkISODwwPM/s320/deline_fitline_10hz_noscan_nsig0_preservephase_timestreams_003.png" />
+<p>Bottom row: fitted line suppression</p>
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUow0sTBKsI/AAAAAAAAF8U/GtL0nyvlNBw/s320/deline_fitline_10hz_noscan_nsig0_preservephase_psds_003.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUow0d-vEcI/AAAAAAAAF8M/or2gkvGxW4o/s320/deline_10hz_wingsuppress_timestreams_003.png" />
+<hr class="docutils" />
+<p>Examples from Uranus (1012, really really liney):</p>
+<p>Top row: non-fitted line suppression</p>
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUoxEvWqRwI/AAAAAAAAF8k/J6ImhPN9ZS0/s320/deline_10hz_wingsuppress_psds_003.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUoxFMLdujI/AAAAAAAAF8s/DrzWxFCdBu0/s320/deline_10hz_wingsuppress_timestreams_003.png" />
+<p>Bottom row: fitted line suppression</p>
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUoxFXYN_tI/AAAAAAAAF80/BQwv6ROSOJ4/s320/deline_fitline_10hz_noscan_nsig0_preservephase_psds_003.png" />
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUoxF_c0URI/AAAAAAAAF88/JU9_F-8HC2k/s320/deline_fitline_10hz_noscan_nsig0_preservephase_timestreams_003.png" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -335,44 +387,6 @@ subtract from the science fields).</p>
 <img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TB-rQId8G_I/AAAAAAAAFw0/NUJKQO_5zI4/s320/BGPS_correction_factor_histograms.png" />
 <p>Next step: direct comparison between v1.0 and v2.0.&nbsp; Pixel by pixel,
 aperture, and powerspectrum</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/pps-analysis.html" rel="bookmark" title="Permalink to PPS analysis">
-                    PPS analysis</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2010-06-16T18:06:00"> 2010/06/16 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I've started looking at PPS fields to see if I can glean any additional
-information about the &quot;flux discrepancy&quot; from them.&nbsp; However, the
-results are, as usual, unenlightening.
-There is no consistent increase in flux when 3 PCA components are used
-instead of 13 PCA components - very plausibly an indication that 13 PCA
-is not too much to subtract because it's only atmosphere.&nbsp; Similarly,
-there is no obvious benefit to using a quadratic sky estimator instead
-of a PCA estimator.
-I'm using aperture photometry (without background subtraction) on
-identical fields to perform these comparisons.&nbsp; I've selected
-(arbitrarily) the l357pps source as my comparison source.&nbsp; The next step
-(ongoing) is to compare to the co-added maps and crosshatched
-large-scale maps of the same field.
-(next step) PPS &lt; single cross-hatched large-scale observation pair &lt;
-13PCA full combined map &lt; 3PCA full combined map.
-Unfortunately, this result implies that the small maps under-recover
-flux, which suggests that the large maps are too bright, which is the
-opposite of what we expect.&nbsp; Additionally, lower noise -&gt; more flux
-recovered?
-When background subtraction is included, the 3PCA and 13PCA fluxes match
-nearly perfectly.
-Despite the failure of this test (PPS &lt; full field), I will do a
-systematic comparison of PPS sources with 0PCA + masking to the large
-fields in the hopes that doing so can provide a legitimate estimate of
-the &quot;scale factor&quot; from treating small and large fields differently.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
