@@ -21,10 +21,10 @@ which also worked great.  Except, it deleted all the flux outside of the bright 
 .. image:: |filename|/images/casa/sgrb2_selfcal_bad.png
    :width: 600px
 
-This is extremely, amazingly, terribly awful.  It is just deleting flux!  I had
-previously thought that the ``applyonly`` option would only apply solutions
-that it actually found, but that appears not to bt true.  Instead, it seems
-that even phase solutions with *no* signal are being applied, which effectively
-removes everything from the image.  I could have understood if this was happening
-to amplitude self-calibration, but I can't understand how it is happening with
-phase self-cal.
+This is awful.  It is just deleting flux!  I had previously thought that the
+``applyonly`` option would only apply solutions that it actually found, but
+that appears not to bt true.  Instead, it seems that even phase solutions with
+*no* signal are being applied, which effectively removes everything from the
+image.  I could have understood if this was happening to amplitude
+self-calibration, but I can't understand how it is happening with phase
+self-cal.
