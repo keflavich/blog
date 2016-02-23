@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-01-28T09:20:00-07:00</updated><entry><title>CASA Selfcal: Good &amp; Awful</title><link href="http://keflavich.github.io/blog/casa-selfcal-good-awful.html" rel="alternate"></link><updated>2016-01-28T09:20:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-01-28:casa-selfcal-good-awful.html</id><summary type="html">&lt;p&gt;Self-calibration is necessary for some images to get a decent dynamic range or
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-02-22T11:23:00-07:00</updated><entry><title>ALMA data combination workshop notes</title><link href="http://keflavich.github.io/blog/alma-data-combination-workshop-notes.html" rel="alternate"></link><updated>2016-02-22T11:23:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-02-22:alma-data-combination-workshop-notes.html</id><summary type="html">&lt;p&gt;Comparing tclean to clean with the following parameters:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+clean(vis=vis0, imagename=myimagebase, field=&amp;quot;&amp;quot;, spw='',
+      mode='mfs', outframe='LSRK', interpolation='linear',
+      imagermode='mosaic', multiscale=multiscale, interactive=False,
+      niter=1000, threshold='100mJy', imsize=imsize, minpb=0.5, cell=cell,
+      phasecenter=phasecenter, weighting='briggs', usescratch=True,
+      pbcor=True, robust=-2.0)
+
+tclean(vis=vis0, imagename=myimagebase, field=&amp;quot;&amp;quot;, spw='',
+       outframe='LSRK', interpolation='linear', gridder='mosaic',
+       scales=multiscale, interactive=False, niter=1000,
+       threshold='100mJy', imsize=imsize, mask='auto-pb', specmode='mfs',
+       cell=cell, phasecenter=phasecenter, weighting='briggs', robust=-2.0)
+&lt;/pre&gt;
+&lt;p&gt;Note the very bad cleaning instability creeping in in the clean image:&lt;/p&gt;
+&lt;img alt="" src="http://keflavich.github.io/blog/images/tclean_vs_clean_7m12m.png" style="width: 600px;" /&gt;
+</summary><category term="CASA"></category><category term="ALMA"></category></entry><entry><title>CASA Selfcal: Good &amp; Awful</title><link href="http://keflavich.github.io/blog/casa-selfcal-good-awful.html" rel="alternate"></link><updated>2016-01-28T09:20:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-01-28:casa-selfcal-good-awful.html</id><summary type="html">&lt;p&gt;Self-calibration is necessary for some images to get a decent dynamic range or
 to see anything at all in the images.  So, I did some tests using self-cal on
 the central field of Sgr B2 (&lt;a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m_te/selfcal_centralfield.py"&gt;source&lt;/a&gt;)
 and it worked great:&lt;/p&gt;

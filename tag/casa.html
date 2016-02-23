@@ -4,7 +4,7 @@
 <link rel="icon" type="image/gif" href="http://keflavich.github.io/blog/theme/favicon8.ico">
 <head>
     <base href="http://keflavich.github.io/blog">
-        <title>Adam Ginsburg's blog - casa</title>
+        <title>Adam Ginsburg's blog - CASA</title>
         <meta charset="utf-8" />
         <link href="http://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
 <!-- Using MathJax, with the delimiters $ -->
@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/02/22
+                  <br>
+                  <a href="http://keflavich.github.io/blog/alma-data-combination-workshop-notes.html">ALMA data combination workshop notes</a>
+              </li>
+              <li class="post">
                   2016/01/25
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-imaging-of-huge-cube.html">CASA imaging of huge cube</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/separating-line-from-continuum-in-casa-data.html">Separating Line from Continuum in CASA data</a>
               </li>
-              <li class="post">
-                  2015/11/02
-                  <br>
-                  <a href="http://keflavich.github.io/blog/cvel-errors.html">CVEL errors</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,36 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/alma-data-combination-workshop-notes.html" rel="bookmark" title="Permalink to ALMA data combination workshop notes">
+                    ALMA data combination workshop notes</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-02-22T11:23:00"> 2016/02/22 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Comparing tclean to clean with the following parameters:</p>
+<pre class="literal-block">
+clean(vis=vis0, imagename=myimagebase, field=&quot;&quot;, spw='',
+      mode='mfs', outframe='LSRK', interpolation='linear',
+      imagermode='mosaic', multiscale=multiscale, interactive=False,
+      niter=1000, threshold='100mJy', imsize=imsize, minpb=0.5, cell=cell,
+      phasecenter=phasecenter, weighting='briggs', usescratch=True,
+      pbcor=True, robust=-2.0)
+
+tclean(vis=vis0, imagename=myimagebase, field=&quot;&quot;, spw='',
+       outframe='LSRK', interpolation='linear', gridder='mosaic',
+       scales=multiscale, interactive=False, niter=1000,
+       threshold='100mJy', imsize=imsize, mask='auto-pb', specmode='mfs',
+       cell=cell, phasecenter=phasecenter, weighting='briggs', robust=-2.0)
+</pre>
+<p>Note the very bad cleaning instability creeping in in the clean image:</p>
+<img alt="" src="http://keflavich.github.io/blog/images/tclean_vs_clean_7m12m.png" style="width: 600px;" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">

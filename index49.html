@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/02/22
+                  <br>
+                  <a href="http://keflavich.github.io/blog/alma-data-combination-workshop-notes.html">ALMA data combination workshop notes</a>
+              </li>
+              <li class="post">
                   2016/01/28
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-selfcal-good-awful.html">CASA Selfcal: Good & Awful</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/self-cal-with-evla-data.html">Self-cal with EVLA data</a>
               </li>
-              <li class="post">
-                  2015/12/07
-                  <br>
-                  <a href="http://keflavich.github.io/blog/fft-comparisons-in-python.html">FFT comparisons in python</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,39 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/big-run-this-weekend.html" rel="bookmark" title="Permalink to Big run this weekend...">
+                    Big run this weekend...</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-09T17:22:00"> 2008/08/09 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In case anyone is wondering why Milkyway is going really slowly, I'm
+mapping a 69-observation set of Cygnus. It ought to prove to be an
+interesting test of Milkyway's swap capacity, but other than that I
+doubt it will be useful. While the pointing is reasonably good at this
+point (30&quot; still, but whatever), I haven't done ANY work on filtering
+out bad observations / flagging stuff in Cyg. Data massaging is going to
+be a long process, it would be great if I could do that instead of
+pointing stuff. Argh.
+One thing to note is that this file:
+/scratch/sliced/l078/070702_o33_raw_ds5.nc
+is a &quot;_ds5.nc&quot; but is NOT downsampled!
+Update:
+Mapped the individual files successfully, picked out noisy ones. The
+overall map failed - just not enough memory to do a field that large. I
+split it up in to two sets of 25 observations, plus I'll be mapping each
+L 70-L 90 field separately (I didn't get ride of noisy observations for
+this). I'm also remapping the individual observations with PSD flagging
+enabled to see how that works.
+For notes on the P Cyg observations, see the file
+/scratch/adam_work/texts/cygnus_for_pat.in</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -280,45 +313,6 @@ done.</p>
         <div class="entry-content"> <pre class="literal-block">
 -bash-3.00$ wc texts/all_*_observations.txt                                                                                                     0      0      0 texts/all_0505_observations.txt    0      0      0 texts/all_0506_observations.txt  151    151   6039 texts/all_0507_observations.txt   33     33   1377 texts/all_0509_observations.txt   16     16    633 texts/all_0605_observations.txt  135    135   5309 texts/all_0606_observations.txt    0      0      0 texts/all_0607_observations.txt   94     94   3780 texts/all_0609_observations.txt   34     34   1386 texts/all_0705_observations.txt   26     26   1028 texts/all_0706_observations.txt  201    201   7989 texts/all_0707_observations.txt   73     73   2907 texts/all_0709_observations.txt    0      0      0 texts/all_polychrome_0505_observations.txt  222    222  11898 texts/all_polychrome_0506_observations.txt  471    471  24861 texts/all_polychrome_0507_observations.txt  196    196  10346 texts/all_polychrome_0509_observations.txt   43     43   2200 texts/all_polychrome_0605_observations.txt  730    730  38040 texts/all_polychrome_0606_observations.txt   22     22   1195 texts/all_polychrome_0607_observations.txt  471    471  24751 texts/all_polychrome_0609_observations.txt   66     66   3399 texts/all_polychrome_0705_observations.txt  145    145   7533 texts/all_polychrome_0706_observations.txt 1051   1051  54801 texts/all_polychrome_0707_observations.txt  511    511  27049 texts/all_polychrome_0709_observations.txt 4691   4691 236521 total
 </pre>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/news-modifications.html" rel="bookmark" title="Permalink to News, modifications">
-                    News, modifications</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-03T07:19:00"> 2008/08/03 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>RA / Dec mapping did change centroid locations, but not really for the
-better. A deeper analysis is probably necessary, but nevertheless I'm
-not convinced mapping type is the problem. The list of possible answers
-to the question of why my pointing models don't match Meredith's:</p>
-<ol class="arabic simple">
-<li>The new mapping is shifting the centroid</li>
-<li>The centroiding method I'm using is different / incorrect</li>
-<li>There is still something in the pointing we haven't caught</li>
-</ol>
-<p>The lack of systematics suggests that the third option is not correct.
-The first seems the most likely, but also the most difficult to track
-down. I don't know where to go with #2.
-I've updated the code so that the pointing model correction offsets in
-RA/Dec are written to the FITS header. This will be the standard in all
-future runs for individual observations. The calculation of this offset
-post-mapping is straightforward but it's nice to have a redundant error
-check.
-The report for Monday will be kind of empty, sadly. However, I think I
-can say that I'll now move on to testing the previous problems we faced,
-in particular that we could not match the pointing across whole fields
-(L111). If THAT is fixed, then at least we know that whatever my
-pipeline is doing differently (e.g. PA at all times...) is useful if not
-100% correct.
-I'll need to be in the office to test the field mappings, though,
-because ds9 display doesn't work well over wireless. I'll do a remote
-run of the individual L111 and W5 maps to compare to previous ones.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
