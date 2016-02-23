@@ -1,5 +1,5 @@
-ALMA data combination workshop notes
-####################################
+A tclean vs clean comparison
+############################
 :date: 2016-02-22 11:23
 :author: Adam Ginsburg (Adam.G.Ginsburg@gmail.com)
 :tags: CASA, ALMA
