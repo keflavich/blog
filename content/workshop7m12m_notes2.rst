@@ -22,3 +22,11 @@ I learned a few important things at the 7m+12m workshop in Garching:
    to select channels, in ``ms.msselect`` it does not: instead you must use
    ``ms.selectchannel``.  See `this example
    <https://github.com/radio-astro-tools/sandbox/blob/master/casa_7m12m_tools/weight_density_uv_plot.py>`__.
+
+   Details about the selection are at this URL, but the documentation is
+   incomplete and, in places, incorrect:
+
+   http://www.aoc.nrao.edu/~sbhatnag/misc/msselection/FrequencySelection.html
+
+   (for example, ``chanspec`` is not valid in ``msselect``, or at least
+   it doesn't do anything)
