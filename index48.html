@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/02/24
+                  <br>
+                  <a href="http://keflavich.github.io/blog/retrieving-and-selecting-data-in-casa.html">Retrieving and Selecting Data in CASA</a>
+              </li>
+              <li class="post">
                   2016/02/22
                   <br>
                   <a href="http://keflavich.github.io/blog/a-tclean-vs-clean-comparison.html">A tclean vs clean comparison</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/comparing-tclean-parameters.html">Comparing tclean parameters</a>
               </li>
-              <li class="post">
-                  2016/01/07
-                  <br>
-                  <a href="http://keflavich.github.io/blog/self-cal-with-evla-data.html">Self-cal with EVLA data</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,37 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/modifications.html" rel="bookmark" title="Permalink to Modifications">
+                    Modifications</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-19T18:07:00"> 2008/08/19 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Things that have been changed in the past 24 hours that are very
+significant:</p>
+<ol class="arabic simple">
+<li>In apply_pointing_model, the signs of FAZO and FZAO have been
+swapped. I BELIEVE this is correct but somehow things aren't working
+out still.</li>
+<li>In do_the_pointing I have changed from &quot;eq2hor&quot; and &quot;hor2eq&quot; to
+&quot;my_eq2hor&quot; and &quot;my_hor2eq&quot;. These implement two major changes:<ol class="arabic">
+<li>The LST is passed as a parameter rather than calculated within the
+ASTROLIB code</li>
+<li>The conversion is calculated with BOTH hadec2altaz and getaltaz
+(and similar for the opposite transformation) and compared for
+error checking purposes. If they differ by more than one
+arcsecond, the code will spit out an error message and use
+getaltaz.</li>
+</ol>
+</li>
+</ol>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -351,30 +382,6 @@ sky subtraction - the question is whether subtracting it out BEFORE sky
 subtracting again gets you any benefit. If it was just noise,
 subtracting noise from noise is fine, but the &quot;noise&quot; does include some
 residual signal.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/glitches-and-errors.html" rel="bookmark" title="Permalink to Glitches and errors">
-                    Glitches and errors</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-11T04:24:00"> 2008/08/11 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>It's definitely important to get rid of the spikes and, more
-importantly, the exponential decay. The current function is pretty good,
-but possibly not good enough because there are some situations in which
-the turnaround decay is obviously not well-enough dealt with and results
-in high/low streaks.
-The glitches can be ~20 Jy. The problem is that they sometimes show up
-in the middle of sources (e.g. in 060609_o26). That will badly distort
-fluxes.
-My ideal is still to use a median instead of mean combination of data
-points into image points, but that seems to be impractical to implement.
-Other ideas...</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

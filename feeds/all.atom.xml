@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-02-22T11:23:00-07:00</updated><entry><title>A tclean vs clean comparison</title><link href="http://keflavich.github.io/blog/a-tclean-vs-clean-comparison.html" rel="alternate"></link><updated>2016-02-22T11:23:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-02-22:a-tclean-vs-clean-comparison.html</id><summary type="html">&lt;p&gt;Comparing tclean to clean with the following parameters:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-02-24T13:44:00-07:00</updated><entry><title>Retrieving and Selecting Data in CASA</title><link href="http://keflavich.github.io/blog/retrieving-and-selecting-data-in-casa.html" rel="alternate"></link><updated>2016-02-24T13:44:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-02-24:retrieving-and-selecting-data-in-casa.html</id><summary type="html">&lt;p&gt;I learned a few important things at the 7m+12m workshop in Garching:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;clean&lt;/tt&gt; treats input models in Jy/beam and Jy/pixel qualitatively (not
+just quantitatively) differently.  Jy/pixel images are taken to be model
+images exactly, where Jy/beam are... somehow interpreted differently, maybe
+as clean component assemblies.  I don't know the details, but this is a
+major caution.&lt;/li&gt;
+&lt;li&gt;The &lt;tt class="docutils literal"&gt;tbtool&lt;/tt&gt; is not very good for extracting data for plotting.  The flags
+are not guaranteed to be in a sane shape, which will lead to crashes if you
+try &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;tb.getcolumn('FLAG')&lt;/span&gt;&lt;/tt&gt;.  &lt;tt class="docutils literal"&gt;ms.msselect&lt;/tt&gt;, however, allows you access
+to most of the normal selection routines used in &lt;tt class="docutils literal"&gt;clean&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;split&lt;/tt&gt;, etc.
+It is tricky, though, because &lt;tt class="docutils literal"&gt;ms.select&lt;/tt&gt; does &lt;em&gt;not&lt;/em&gt; allow you access to
+the same selection.  Also, while &lt;tt class="docutils literal"&gt;spw&lt;/tt&gt;-based selection normally allows you
+to select channels, in &lt;tt class="docutils literal"&gt;ms.msselect&lt;/tt&gt; it does not: instead you must use
+&lt;tt class="docutils literal"&gt;ms.selectchannel&lt;/tt&gt;.  See &lt;a class="reference external" href="https://github.com/radio-astro-tools/sandbox/blob/master/casa_7m12m_tools/weight_density_uv_plot.py"&gt;this example&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+</summary><category term="CASA"></category><category term="ALMA"></category></entry><entry><title>A tclean vs clean comparison</title><link href="http://keflavich.github.io/blog/a-tclean-vs-clean-comparison.html" rel="alternate"></link><updated>2016-02-22T11:23:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-02-22:a-tclean-vs-clean-comparison.html</id><summary type="html">&lt;p&gt;Comparing tclean to clean with the following parameters:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 clean(vis=vis0, imagename=myimagebase, field=&amp;quot;&amp;quot;, spw='',
       mode='mfs', outframe='LSRK', interpolation='linear',

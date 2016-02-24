@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/02/24
+                  <br>
+                  <a href="http://keflavich.github.io/blog/retrieving-and-selecting-data-in-casa.html">Retrieving and Selecting Data in CASA</a>
+              </li>
+              <li class="post">
                   2016/02/22
                   <br>
                   <a href="http://keflavich.github.io/blog/a-tclean-vs-clean-comparison.html">A tclean vs clean comparison</a>
@@ -91,6 +96,35 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/retrieving-and-selecting-data-in-casa.html" rel="bookmark" title="Permalink to Retrieving and Selecting Data in CASA">
+                    Retrieving and Selecting Data in CASA</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-02-24T13:44:00"> 2016/02/24 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I learned a few important things at the 7m+12m workshop in Garching:</p>
+<ol class="arabic simple">
+<li><tt class="docutils literal">clean</tt> treats input models in Jy/beam and Jy/pixel qualitatively (not
+just quantitatively) differently.  Jy/pixel images are taken to be model
+images exactly, where Jy/beam are... somehow interpreted differently, maybe
+as clean component assemblies.  I don't know the details, but this is a
+major caution.</li>
+<li>The <tt class="docutils literal">tbtool</tt> is not very good for extracting data for plotting.  The flags
+are not guaranteed to be in a sane shape, which will lead to crashes if you
+try <tt class="docutils literal"><span class="pre">tb.getcolumn('FLAG')</span></tt>.  <tt class="docutils literal">ms.msselect</tt>, however, allows you access
+to most of the normal selection routines used in <tt class="docutils literal">clean</tt>, <tt class="docutils literal">split</tt>, etc.
+It is tricky, though, because <tt class="docutils literal">ms.select</tt> does <em>not</em> allow you access to
+the same selection.  Also, while <tt class="docutils literal">spw</tt>-based selection normally allows you
+to select channels, in <tt class="docutils literal">ms.msselect</tt> it does not: instead you must use
+<tt class="docutils literal">ms.selectchannel</tt>.  See <a class="reference external" href="https://github.com/radio-astro-tools/sandbox/blob/master/casa_7m12m_tools/weight_density_uv_plot.py">this example</a>.</li>
+</ol>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
