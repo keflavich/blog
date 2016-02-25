@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/02/25
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-simulation.html">CASA Simulation</a>
+              </li>
+              <li class="post">
                   2016/02/24
                   <br>
                   <a href="http://keflavich.github.io/blog/retrieving-and-selecting-data-in-casa.html">Retrieving and Selecting Data in CASA</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-imaging-of-huge-cube.html">CASA imaging of huge cube</a>
               </li>
-              <li class="post">
-                  2016/01/14
-                  <br>
-                  <a href="http://keflavich.github.io/blog/comparing-tclean-parameters.html">Comparing tclean parameters</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,35 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/rant-calc_beam_locations.html" rel="bookmark" title="Permalink to Rant: calc_beam_locations">
+                    Rant: calc_beam_locations</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-02-06T18:24:00"> 2009/02/06 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>It took me a few days to figure this out, but &quot;calc_beam_locations&quot; is
+about 800 lines of wasted space. It does nothing substantive until line
+335. Everything to that point is parameter parsing. But there doesn't
+need to be any of that crap, really, and it should have been outsourced
+to functions to begin with.
+NCDF files are read to get the rotation angle - JUST as an error check!
+There is no a priori reason to include it.
+All that the code does is read in a centroid file (a list of x,y
+offsets), rotate them, and output them as r,theta,error. Sure, there's a
+bunch of automated outlier rejection etc, but... seriously?! We don't
+have enough observations to hold up the statistics necessary for that to
+begin with! NO ONE would if each observation takes an hour. It's absurd.
+Odd as it is coming from me, manual rejection makes a lot more sense in
+this case.
+Now, I still have to understand WHY the beam locations are rotated by
+the fiducial array angle.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -283,40 +312,10 @@ points in the color waterfall above.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/0709-rotators-fixed-latest-run.html" rel="bookmark" title="Permalink to 0709 rotators fixed, latest run">
-                    0709 rotators fixed, latest run</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2009-01-17T14:26:00"> 2009/01/17 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>0709 11-13 needed to be 83.88 degrees, they're all fixed now.
-I flagged the l060 070911 maps; I'm not convinced that was weather,
-there were some fluctuations up to 2400 Jy! Maybe a cloud would do that
-though.</p>
-<p>Problems in the latest run:</p>
-<pre class="literal-block">
-l359 - missing files?
-Reading files from /scratch/sliced/INFILES/l359\_infile.txt
-FIELD v0.7\_l359 BEGUN at Fri Jan 16 20:11:34 2009
-MRDFITS: File access error
-% HEULER: ERROR - First parameter must be a FITS header or astrometry
- structure
-l012 - missing files?
-% READFITS: ERROR - Unable to locate file
- /scratch/adam\_work/l012/060614\_o10\_raw\_ds5.nc\_indiv13pca\_map01.fi
- ts
-</pre>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
             <a href="http://keflavich.github.io/blog/index40.html">&laquo;</a>
-    Page 41 / 50
+    Page 41 / 51
         <a href="http://keflavich.github.io/blog/index42.html">&raquo;</a>
 </p>
 </section><!-- /#content -->

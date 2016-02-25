@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/misc.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-02-24T13:44:00-07:00</updated><entry><title>Retrieving and Selecting Data in CASA</title><link href="http://keflavich.github.io/blog/retrieving-and-selecting-data-in-casa.html" rel="alternate"></link><updated>2016-02-24T13:44:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-02-24:retrieving-and-selecting-data-in-casa.html</id><summary type="html">&lt;p&gt;I learned a few important things at the 7m+12m workshop in Garching:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/misc.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-02-25T10:27:00-07:00</updated><entry><title>CASA Simulation</title><link href="http://keflavich.github.io/blog/casa-simulation.html" rel="alternate"></link><updated>2016-02-25T10:27:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-02-25:casa-simulation.html</id><summary type="html">&lt;p&gt;More frustration with CASA:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;If you try to load a FITS image into a CASA .image, beware that it is likely
+to have incorrect units.  Round-tripping between .image and .fits doesn't
+work well, because CASA always assumes that CDELT is in radians even when it
+is explicitly set to be degrees.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The simulator gives this error message if I try to load an image:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;sm.setvp()
+sm.predict(perseus_casa_image)&lt;/p&gt;
+&lt;p&gt;2016-02-25 09:26:34 SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Caught exception: TiledShape: #elements in shape and tileShape differ&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;My best guess is that CASA doesn't understand how to handle 2D images with 3D
+headers.  However, the sensible workaround of expanding the image to 3D does
+not work.&lt;/p&gt;
+&lt;p&gt;Re-importing after exporting gets yet another different image.  After
+re-importing an image that was exported to FITS, I get a new error:&lt;/p&gt;
+&lt;blockquote&gt;
+Failed AlwaysAssert spectralIndex&amp;gt;=0 2016-02-25 09:37:35&lt;/blockquote&gt;
+&lt;p&gt;which is rather strange since the spectral index is a physical quantity.&lt;/p&gt;
+&lt;p&gt;There is also the lovely message:&lt;/p&gt;
+&lt;blockquote&gt;
+2016-02-25 09:55:27 INFO importfits No usable restoring beam information found.&lt;/blockquote&gt;
+&lt;p&gt;for a header that contains these lines:&lt;/p&gt;
+&lt;blockquote&gt;
+BMAJ    =   1.293900184840E-04
+BMIN    =   1.293900184840E-04
+BPA     =   0.000000000000E+00&lt;/blockquote&gt;
+&lt;p&gt;The image might finally be right, but now I can't find any way to convert it to
+a model.  If I try to &lt;tt class="docutils literal"&gt;ft&lt;/tt&gt; the model, I get:&lt;/p&gt;
+&lt;blockquote&gt;
+2016-02-25 10:54:54 SEVERE  ft::imager::ft() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Imager.cc, line 4488) Exception: (/Users/rpmbuild/gradle/workdir/casasources/release-4_5/casacore/coordinates/Coordinates/CoordinateSystem.cc : 777) Failed AlwaysAssert which &amp;lt; nCoordinates() &amp;amp;&amp;amp; coordinates_p[which]-&amp;gt;type() == Coordinate::SPECTRAL&lt;/blockquote&gt;
+&lt;p&gt;which probably means that CASA doesn't know how to turn a single-band continuum
+image into a model for a multi-frequency .ms (which is all .ms's, including
+continuum, in the ALMA world).&lt;/p&gt;
+</summary><category term="CASA"></category><category term="ALMA"></category></entry><entry><title>Retrieving and Selecting Data in CASA</title><link href="http://keflavich.github.io/blog/retrieving-and-selecting-data-in-casa.html" rel="alternate"></link><updated>2016-02-24T13:44:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-02-24:retrieving-and-selecting-data-in-casa.html</id><summary type="html">&lt;p&gt;I learned a few important things at the 7m+12m workshop in Garching:&lt;/p&gt;
 &lt;ol class="arabic"&gt;
 &lt;li&gt;&lt;p class="first"&gt;&lt;tt class="docutils literal"&gt;clean&lt;/tt&gt; treats input models in Jy/beam and Jy/pixel qualitatively (not
 just quantitatively) differently.  Jy/pixel images are taken to be model
