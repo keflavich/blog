@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-02-25T10:27:00-07:00</updated><entry><title>CASA Simulation</title><link href="http://keflavich.github.io/blog/casa-simulation.html" rel="alternate"></link><updated>2016-02-25T10:27:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-02-25:casa-simulation.html</id><summary type="html">&lt;p&gt;More frustration with CASA:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;If you try to load a FITS image into a CASA .image, beware that it is likely
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;If you try to load a FITS image into a CASA .image, beware that it is likely
 to have incorrect units.  Round-tripping between .image and .fits doesn't
 work well, because CASA always assumes that CDELT is in radians even when it
-is explicitly set to be degrees.&lt;/li&gt;
+is explicitly set to be degrees.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;EDIT: OK, this isn't true in all cases, but if you use &lt;tt class="docutils literal"&gt;imhead&lt;/tt&gt; to &lt;tt class="docutils literal"&gt;put&lt;/tt&gt;
+a keyword value, it will assume radians by default.  That can be overcome by explicitly setting the units:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;imhead(perseus_casa_image, mode='put', hdkey='CDELT1', hdvalue={'value':hdr['CDELT1'], 'unit':'deg'})&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I was able to produce this awkward behavior &lt;em&gt;without&lt;/em&gt; imhead as well, though
+I cannot repeat that now.&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;The simulator gives this error message if I try to load an image:&lt;/p&gt;

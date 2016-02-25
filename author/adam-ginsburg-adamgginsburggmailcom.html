@@ -114,11 +114,20 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>More frustration with CASA:</p>
 <blockquote>
-<ul class="simple">
-<li>If you try to load a FITS image into a CASA .image, beware that it is likely
+<ul>
+<li><p class="first">If you try to load a FITS image into a CASA .image, beware that it is likely
 to have incorrect units.  Round-tripping between .image and .fits doesn't
 work well, because CASA always assumes that CDELT is in radians even when it
-is explicitly set to be degrees.</li>
+is explicitly set to be degrees.</p>
+</li>
+<li><p class="first">EDIT: OK, this isn't true in all cases, but if you use <tt class="docutils literal">imhead</tt> to <tt class="docutils literal">put</tt>
+a keyword value, it will assume radians by default.  That can be overcome by explicitly setting the units:</p>
+<blockquote>
+<p>imhead(perseus_casa_image, mode='put', hdkey='CDELT1', hdvalue={'value':hdr['CDELT1'], 'unit':'deg'})</p>
+</blockquote>
+<p>I was able to produce this awkward behavior <em>without</em> imhead as well, though
+I cannot repeat that now.</p>
+</li>
 </ul>
 </blockquote>
 <p>The simulator gives this error message if I try to load an image:</p>
