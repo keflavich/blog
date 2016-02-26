@@ -11,6 +11,14 @@ More frustration with CASA:
    work well, because CASA always assumes that CDELT is in radians even when it
    is explicitly set to be degrees.
 
+ * EDIT: OK, this isn't true in all cases, but if you use ``imhead`` to ``put``
+   a keyword value, it will assume radians by default.  That can be overcome by explicitly setting the units:
+
+       imhead(perseus_casa_image, mode='put', hdkey='CDELT1', hdvalue={'value':hdr['CDELT1'], 'unit':'deg'})
+
+   I was able to produce this awkward behavior *without* imhead as well, though
+   I cannot repeat that now.
+
 
 The simulator gives this error message if I try to load an image:
 
