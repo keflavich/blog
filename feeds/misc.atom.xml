@@ -1,5 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/misc.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-02-25T10:27:00-07:00</updated><entry><title>CASA Simulation</title><link href="http://keflavich.github.io/blog/casa-simulation.html" rel="alternate"></link><updated>2016-02-25T10:27:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-02-25:casa-simulation.html</id><summary type="html">&lt;p&gt;More frustration with CASA:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/misc.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-02-27T10:40:00-07:00</updated><entry><title>Simulated Observations of Perseus in W51</title><link href="http://keflavich.github.io/blog/simulated-observations-of-perseus-in-w51.html" rel="alternate"></link><updated>2016-02-27T10:40:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-02-27:simulated-observations-of-perseus-in-w51.html</id><summary type="html">&lt;p&gt;The W51 and Sgr B2 ALMA mosaics contain ~50 and ~150 pointlike sources,
+respectively.  However, they have pretty miserable high-noise regions
+such that determining completeness is a serious challenge.&lt;/p&gt;
+&lt;p&gt;To determine completeness in a means comparable to other observations,
+I have therefore been using the Gould's Belt Survey Perseus data
+as an input to do synthetic observations.&lt;/p&gt;
+&lt;p&gt;It turns out this is technically challenging because CASA does some
+&lt;a class="reference external" href="{filename}/casa_simulating.rst"&gt;strange things&lt;/a&gt; when importing files.&lt;/p&gt;
+&lt;p&gt;I finally got a &lt;a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/commit/b046ff5c82992ef44a1dbaac303fcc6497511142"&gt;version&lt;/a&gt;
+working.&lt;/p&gt;
+&lt;p&gt;Important details when reading in a FITS file:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;The header &lt;em&gt;must&lt;/em&gt; be fully populated with a 4-dimensional WCS.  If stokes or
+frequency are missing, CASA will choke with uninformative errors such as:&lt;/p&gt;
+&lt;p&gt;2016-02-26 11:25:24  SEVERE  Simulator::createSkyEquation() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2200)        Caught exception: (/Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc : 2266) Failed AlwaysAssert spectralIndex&amp;gt;=0
+2016-02-26 11:25:24  SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Failed to create SkyEquation&lt;/p&gt;
+&lt;p&gt;and&lt;/p&gt;
+&lt;p&gt;2016-02-26 11:27:36  SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Caught exception: (/Users/rpmbuild/gradle/workdir/casasources/release-4_5/casacore/coordinates/Coordinates/CoordinateSystem.cc : 793) Failed AlwaysAssert which &amp;lt; nCoordinates() &amp;amp;&amp;amp; coordinates_p[which]-&amp;gt;type() == Coordinate::STOKES&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Flux units should be in Jy/beam.  Other flux units &lt;em&gt;may&lt;/em&gt; be acceptable (e.g.,
+MJy/sr, Jy/pixel), but their behavior is not entirely predictable.  I did not
+get out the expected values when I used MJy/sr as input, but I did not pursue
+further why this happened.  Using Jy/beam, and ensuring that the units were correctly
+set to Jy/beam in the file (by scaling them in the FITS image before importing),
+I got the expected results.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;CASA apparently does not read beam information from headers.  You need to include the
+beam information when doing importfits, e.g.:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;beam=[&amp;quot;{0}deg&amp;quot;.format(hdr['BMAJ']),&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;&amp;quot;{0}deg&amp;quot;.format(hdr['BMIN']),
+&amp;quot;{0}deg&amp;quot;.format(hdr['BPA'])]&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;CASA will happily read a FITS file into a &lt;tt class="docutils literal"&gt;.image&lt;/tt&gt; that cannot be used by
+other casa routines.  You will not get an exception until you try a later
+step.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Once the FITS image is read into a CASA &lt;tt class="docutils literal"&gt;.image&lt;/tt&gt;, &lt;em&gt;if&lt;/em&gt; it has the CASA-expected
+units and dimensions, you can use &lt;tt class="docutils literal"&gt;sm.predict&lt;/tt&gt; to fourier transform the data
+and sample it onto the UV grid in your &lt;tt class="docutils literal"&gt;.ms&lt;/tt&gt; file:&lt;/p&gt;
+&lt;blockquote&gt;
+sm.openfromms(&amp;quot;file.ms&amp;quot;)
+sm.setvp() # &amp;quot;set voltage pattern&amp;quot;: not clear if this is needed
+success = sm.predict(&amp;quot;myfile.image&amp;quot;)
+sm.done()
+sm.close()&lt;/blockquote&gt;
+&lt;p&gt;This (seems to) populate the &lt;em&gt;data&lt;/em&gt; column, not the model column as I had
+originally expected.  Therefore, be warned!  DO NOT DO THIS TO YOUR ORIGINAL
+DATA!  It will probably overwrite it.&lt;/p&gt;
+&lt;p&gt;Once your &lt;tt class="docutils literal"&gt;.ms&lt;/tt&gt; file is populated, you can clean it as normal.  Some
+examples:&lt;/p&gt;
+&lt;img alt="" src="http://keflavich.github.io/blog/images/casa/perseus_in_w51_imaging.png" style="width: 600px;" /&gt;
+</summary><category term="CASA"></category><category term="ALMA"></category></entry><entry><title>CASA Simulation</title><link href="http://keflavich.github.io/blog/casa-simulation.html" rel="alternate"></link><updated>2016-02-25T10:27:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-02-25:casa-simulation.html</id><summary type="html">&lt;p&gt;More frustration with CASA:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p class="first"&gt;If you try to load a FITS image into a CASA .image, beware that it is likely

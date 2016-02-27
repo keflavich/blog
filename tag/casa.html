@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/02/27
+                  <br>
+                  <a href="http://keflavich.github.io/blog/simulated-observations-of-perseus-in-w51.html">Simulated Observations of Perseus in W51</a>
+              </li>
+              <li class="post">
                   2016/02/25
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-simulation.html">CASA Simulation</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-imaging-of-huge-cube.html">CASA imaging of huge cube</a>
               </li>
-              <li class="post">
-                  2016/01/14
-                  <br>
-                  <a href="http://keflavich.github.io/blog/comparing-tclean-parameters.html">Comparing tclean parameters</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,78 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/simulated-observations-of-perseus-in-w51.html" rel="bookmark" title="Permalink to Simulated Observations of Perseus in W51">
+                    Simulated Observations of Perseus in W51</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-02-27T10:40:00"> 2016/02/27 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The W51 and Sgr B2 ALMA mosaics contain ~50 and ~150 pointlike sources,
+respectively.  However, they have pretty miserable high-noise regions
+such that determining completeness is a serious challenge.</p>
+<p>To determine completeness in a means comparable to other observations,
+I have therefore been using the Gould's Belt Survey Perseus data
+as an input to do synthetic observations.</p>
+<p>It turns out this is technically challenging because CASA does some
+<a class="reference external" href="{filename}/casa_simulating.rst">strange things</a> when importing files.</p>
+<p>I finally got a <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/commit/b046ff5c82992ef44a1dbaac303fcc6497511142">version</a>
+working.</p>
+<p>Important details when reading in a FITS file:</p>
+<blockquote>
+<ul>
+<li><p class="first">The header <em>must</em> be fully populated with a 4-dimensional WCS.  If stokes or
+frequency are missing, CASA will choke with uninformative errors such as:</p>
+<p>2016-02-26 11:25:24  SEVERE  Simulator::createSkyEquation() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2200)        Caught exception: (/Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc : 2266) Failed AlwaysAssert spectralIndex&gt;=0
+2016-02-26 11:25:24  SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Failed to create SkyEquation</p>
+<p>and</p>
+<p>2016-02-26 11:27:36  SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Caught exception: (/Users/rpmbuild/gradle/workdir/casasources/release-4_5/casacore/coordinates/Coordinates/CoordinateSystem.cc : 793) Failed AlwaysAssert which &lt; nCoordinates() &amp;&amp; coordinates_p[which]-&gt;type() == Coordinate::STOKES</p>
+</li>
+<li><p class="first">Flux units should be in Jy/beam.  Other flux units <em>may</em> be acceptable (e.g.,
+MJy/sr, Jy/pixel), but their behavior is not entirely predictable.  I did not
+get out the expected values when I used MJy/sr as input, but I did not pursue
+further why this happened.  Using Jy/beam, and ensuring that the units were correctly
+set to Jy/beam in the file (by scaling them in the FITS image before importing),
+I got the expected results.</p>
+</li>
+<li><p class="first">CASA apparently does not read beam information from headers.  You need to include the
+beam information when doing importfits, e.g.:</p>
+<blockquote>
+<dl class="docutils">
+<dt>beam=[&quot;{0}deg&quot;.format(hdr['BMAJ']),</dt>
+<dd><p class="first last">&quot;{0}deg&quot;.format(hdr['BMIN']),
+&quot;{0}deg&quot;.format(hdr['BPA'])]</p>
+</dd>
+</dl>
+</blockquote>
+</li>
+<li><p class="first">CASA will happily read a FITS file into a <tt class="docutils literal">.image</tt> that cannot be used by
+other casa routines.  You will not get an exception until you try a later
+step.</p>
+</li>
+</ul>
+</blockquote>
+<p>Once the FITS image is read into a CASA <tt class="docutils literal">.image</tt>, <em>if</em> it has the CASA-expected
+units and dimensions, you can use <tt class="docutils literal">sm.predict</tt> to fourier transform the data
+and sample it onto the UV grid in your <tt class="docutils literal">.ms</tt> file:</p>
+<blockquote>
+sm.openfromms(&quot;file.ms&quot;)
+sm.setvp() # &quot;set voltage pattern&quot;: not clear if this is needed
+success = sm.predict(&quot;myfile.image&quot;)
+sm.done()
+sm.close()</blockquote>
+<p>This (seems to) populate the <em>data</em> column, not the model column as I had
+originally expected.  Therefore, be warned!  DO NOT DO THIS TO YOUR ORIGINAL
+DATA!  It will probably overwrite it.</p>
+<p>Once your <tt class="docutils literal">.ms</tt> file is populated, you can clean it as normal.  Some
+examples:</p>
+<img alt="" src="http://keflavich.github.io/blog/images/casa/perseus_in_w51_imaging.png" style="width: 600px;" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -519,41 +591,10 @@ Terminal:
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/self-calibration-of-sgr-b2-mosaic.html" rel="bookmark" title="Permalink to Self-calibration of Sgr B2 Mosaic">
-                    Self-calibration of Sgr B2 Mosaic</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2015-10-14T14:30:00"> 2015/10/14 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>The Sgr B2 ALMA data from project 2013.1.00269.S has imaging problems around
-the brightest sources, especially Sgr B2 M.
-Crystal Brogan &amp; Todd Hunter gave some useful advice, essentially the following:</p>
-<blockquote>
-<ul class="simple">
-<li>the line forest is causing trouble, so line-containing regions of the spectrum
-must be excluded when mapping</li>
-<li>there is some nasty curvature in the spectral baseline that needs to be removed
-probably by flagging out some of the data</li>
-<li>Self-calibration is needed to exceed a dynamic range ~100</li>
-</ul>
-</blockquote>
-<p>Todd developed a <cite>fitcontinuum.py</cite> script to address the first point, but I ended up
-doing this custom (<a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m/test_split_spw1.py">script</a>) because of the problem introduced by the second point.</p>
-<p>To exclude the lines, I had to use <em>frequency-based</em> selection, not channel based, because my
-spectral windows from different dates were offset by 10 MHz.  The approach to use in CASA is
-ugly: you flag the line-containing data, then split (and in splitting, average) the continuum
-into another MS.  From there, a phase-only selfcal is straigtforward (<a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m/selfcal_spw1_center.py">script</a>).</p>
-<img alt="" src="http://keflavich.github.io/blog/images/sgrb2/selfcal_compare.png" style="width: 800px;" />
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
-    Page 1 / 1
+    Page 1 / 2
+        <a href="http://keflavich.github.io/blog/tag/casa2.html">&raquo;</a>
 </p>
 </section><!-- /#content -->
   </div>
