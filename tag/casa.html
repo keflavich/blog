@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/03/10
+                  <br>
+                  <a href="http://keflavich.github.io/blog/clean-has-extreme-sensitivity-to-the-threshold.html">CLEAN has extreme sensitivity to the threshold</a>
+              </li>
+              <li class="post">
                   2016/02/27
                   <br>
                   <a href="http://keflavich.github.io/blog/simulated-observations-of-perseus-in-w51.html">Simulated Observations of Perseus in W51</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/a-tclean-vs-clean-comparison.html">A tclean vs clean comparison</a>
               </li>
-              <li class="post">
-                  2016/01/25
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-imaging-of-huge-cube.html">CASA imaging of huge cube</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,67 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/clean-has-extreme-sensitivity-to-the-threshold.html" rel="bookmark" title="Permalink to CLEAN has extreme sensitivity to the threshold">
+                    CLEAN has extreme sensitivity to the threshold</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-03-10T10:12:00"> 2016/03/10 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>CLEAN diverges sometimes.  The point at which divergence begins is very
+difficult to identify and unfortunately it looks like the images get mostly
+better as you slowly approach the toxic threshold:
+.. image:: <a href="#id1"><span class="problematic" id="id2">|filename|</span></a>/images/w51/tclean_threshold_sensitivity.png</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/clean_threshold_sensitivity.rst</tt>, line 12)</p>
+Unexpected indentation.</div>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">width:</th><td class="field-body">600px</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p>The precise clean command used, with only threshold changing, is:</p>
+<pre class="literal-block">
+2016-03-10 07:49:28     INFO    tclean::::      tclean(vis=&quot;w51_contvis_selfcal_4.ms&quot;,selectdata=True,field=&quot;&quot;,spw=&quot;&quot;,timerange=&quot;&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             uvrange=&quot;&quot;,antenna=&quot;&quot;,scan=&quot;&quot;,observation=&quot;&quot;,intent=&quot;&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             datacolumn=&quot;corrected&quot;,imagename=&quot;selfcal_allspw_selfcal_4ampphase_mfs_tclean_deeper_4mJy&quot;,imsize=[3072, 3072],cell=&quot;0.05arcsec&quot;,phasecenter=&quot;J2000 19:23:41.629000 +14.30.42.38000&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             stokes=&quot;I&quot;,projection=&quot;SIN&quot;,startmodel=&quot;&quot;,specmode=&quot;mfs&quot;,reffreq=&quot;&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             nchan=-1,start=&quot;&quot;,width=&quot;&quot;,outframe=&quot;LSRK&quot;,veltype=&quot;radio&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             restfreq=[],interpolation=&quot;linear&quot;,gridder=&quot;mosaic&quot;,facets=1,wprojplanes=1,
+2016-03-10 07:49:28     INFO    tclean::::+             aterm=True,psterm=False,wbawp=True,conjbeams=True,cfcache=&quot;&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             computepastep=360.0,rotatepastep=360.0,pblimit=0.4,normtype=&quot;flatnoise&quot;,deconvolver=&quot;clark&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             scales=[],nterms=2,restoringbeam=[],outlierfile=&quot;&quot;,weighting=&quot;briggs&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             robust=-2.0,npixels=0,uvtaper=[],niter=100000,gain=0.1,
+2016-03-10 07:49:28     INFO    tclean::::+             threshold=&quot;4mJy&quot;,cycleniter=-1,cyclefactor=1.0,minpsffraction=0.05,maxpsffraction=0.8,
+2016-03-10 07:49:28     INFO    tclean::::+             interactive=False,mask=&quot;&quot;,overwrite=True,savemodel=&quot;modelcolumn&quot;,calcres=True,
+2016-03-10 07:49:28     INFO    tclean::::+             calcpsf=True,parallel=False)
+</pre>
+<p>It looks like CLEAN needs a different type of threshold to finish on, perhaps
+something requiring each subsequent component to be some value less than the
+previous component.  If each component is forced to be less than the previous
+one, the clean can never diverage, though clean would stop unexpectedly if
+subtracting a component increased the amplitude of some other part of the map
+(i.e., if the next brightest source is sitting in a negative bowl).  Still,
+this might be a rarer occurrence than the divergence that I see all the time,
+which may be related to gridding (given the sharp grid pattern seen in panel 4
+of the linked image).</p>
+<div class="system-messages section">
+<h2>Docutils System Messages</h2>
+<div class="system-message" id="id1">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/clean_threshold_sensitivity.rst</tt>, line 8); <em><a href="#id2">backlink</a></em></p>
+Undefined substitution referenced: &quot;filename&quot;.</div>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -549,45 +610,6 @@ number greater than the input even accounting for shift.  Unfortunately, this
 seems to have produced a dramatically larger output MS, which cannot be
 correct.... ahhh, it turns out that was temporary, once regridding was complete,
 it turned small again.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/casa-clean-errors-related-to-channels.html" rel="bookmark" title="Permalink to CASA clean errors related to channels">
-                    CASA clean errors related to channels</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2015-10-28T16:51:00"> 2015/10/28 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>When cleaning my ALMA data, especially when trying to <a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m/scriptForImaging.py#L120">image the full cube (all
-channels)</a>
-when there are multiple SBs
-with slightly different frequencies, I see this error frequently:</p>
-<blockquote>
-No valid data, skip CLEANing this channel</blockquote>
-<p>It seems that the channel really is being skipped in many cases.  In the Sgr B2
-cube, this wasn't a problem because I unintentionally cleaned only one of the
-observations.  For the W51 and Orion data, I tried to <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/script_12m/scriptForImaging_fullcube.py">include all of the data</a>,
-but that is causing problems.  Perhaps CASA does not work at all when 'channel'
-is specified and the channels aren't aligned?  Or maybe it only accepts channels
-when all channels exist?</p>
-<p>I've now redone the 'full cube' imaging to separately image the two SBs in W51.
-I'll see if that works...</p>
-<p>Nope, the resulting error is much worse:</p>
-<pre class="literal-block">
-Log:
-2015-10-28 15:49:01     INFO    imager::clean() Fitted beam used in restoration: 1.07809 by 0.913862 (arcsec) at pa -63.3899 (deg)
-2015-10-28 15:49:01     INFO    imager::iClean()        Restoring Image(s) with the clean-beam
-2015-10-28 15:49:02     SEVERE  clean::::       An error occurred running task clean.
-
-Terminal:
-*** Error ***  The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
-2015-10-28 15:49:02     SEVERE  clean::::       An error occurred running task clean.
-</pre>
-<p>This is an indication of a major underlying python bug.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

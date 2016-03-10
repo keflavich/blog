@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/03/10
+                  <br>
+                  <a href="http://keflavich.github.io/blog/clean-has-extreme-sensitivity-to-the-threshold.html">CLEAN has extreme sensitivity to the threshold</a>
+              </li>
+              <li class="post">
                   2016/02/27
                   <br>
                   <a href="http://keflavich.github.io/blog/simulated-observations-of-perseus-in-w51.html">Simulated Observations of Perseus in W51</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/a-tclean-vs-clean-comparison.html">A tclean vs clean comparison</a>
               </li>
-              <li class="post">
-                  2016/01/28
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-selfcal-good-awful.html">CASA Selfcal: Good & Awful</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,25 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/filled-step-plots-in-matplotlib.html" rel="bookmark" title="Permalink to Filled step plots in matplotlib">
+                    Filled step plots in matplotlib</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><p>It's not possible to do a simple filled step plot in matplotlib using
+default
+commands. Workaround:</p>
+<pre class="literal-block">
+def steppify(arr,isX=False,interval=0):    &quot;&quot;&quot;    Converts an array to double-length for step plotting    &quot;&quot;&quot;    if isX and interval==0:        interval = abs(arr[1]-arr[0]) / 2.0        newarr = array(zip(arr-interval,arr+interval)).ravel()        return newarrplot(xx,yy,linestyle='steps-mid',color='b',linewidth=1.5)fill_between(steppify(xx[x1:x2],isX=True),    steppify(yy[x1:x2])*0,    steppify(yy[x1:x2]),    facecolor='b',alpha=0.2)
+</pre>
+</p> </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -284,26 +303,6 @@ $ latex --versionpdfTeX 3.1415926-1.40.10-2.2 (TeX Live 2009)kpathsea version 5.
 <p>No idea what the cause is but it's time to start documenting steps and
 looking for a workaround. Compiling on the lappy isn't a good option.</p>
 </p> </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/gildas-class.html" rel="bookmark" title="Permalink to Gildas CLASS">
-                    Gildas CLASS</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>It's absurdly difficult to find help on GILDAS Class, probably because
-you can't google &quot;class&quot; and most people probably don't label every
-piece of code with &quot;GILDAS class&quot;.
-Anyway, here are some scripts that I refer back to often:
-<tt class="docutils literal">file in August2009BGPS.datfile out August2009fits.dat multipleon error &quot;file out August2009fits.dat&quot;say &quot;READ IN FILES&quot;define character sourcelist*10[300]accept sourcelist /column observed_sources.txton error &quot;continue&quot;get 1001set window <span class="pre">-100</span> 160set mask <span class="pre">-400</span> <span class="pre">-100</span> 160 400set mode x <span class="pre">-400</span> 400set align velocityfor i 1 to 161&nbsp;&nbsp;&nbsp; say &quot;Working on SOURCE &quot;'i'&nbsp;&nbsp;&nbsp; find /source 'sourcelist[i]' /telescope &quot;CSO 4GHZ IF1&quot; /offset 0 0 /quality 5&nbsp;&nbsp;&nbsp; average&nbsp;&nbsp;&nbsp; on error &quot;&#64;avplot2 'sourcelist[i]' 'i'; next&quot;&nbsp;&nbsp;&nbsp; base 3&nbsp;&nbsp;&nbsp; line 0&nbsp;&nbsp;&nbsp; min&nbsp;&nbsp;&nbsp; plot&nbsp;&nbsp;&nbsp; vis&nbsp;&nbsp;&nbsp; write i!&nbsp;&nbsp;&nbsp; on error &quot;continue&quot;next</tt>
-and
-<tt class="docutils literal">file in <span class="pre">araya-2004.clsfinddefine</span> character filename*20for i 1 to 20&nbsp;&nbsp;&nbsp;&nbsp; say &quot;Working on source &quot;'i'&nbsp;&nbsp;&nbsp; get next&nbsp;&nbsp;&nbsp; let filename <span class="pre">&quot;araya-2004_&quot;'i'&quot;.fits&quot;</span>&nbsp;&nbsp;&nbsp;&nbsp; say &quot;fits write &quot;'filename'&quot; /mode spectrum&quot;&nbsp;&nbsp;&nbsp; fits write 'filename' /mode spectrumnext!file in <span class="pre">araya-2002.cls!find!define</span> character filename*20!for i 1 to 42 !&nbsp;&nbsp;&nbsp; say &quot;Working on source &quot;'i'!&nbsp;&nbsp;&nbsp; get i!&nbsp;&nbsp;&nbsp; let filename <span class="pre">&quot;araya-2002_&quot;'i'&quot;.fits&quot;</span> !&nbsp;&nbsp;&nbsp; say &quot;fits write &quot;'filename'&quot; /mode spectrum&quot;!&nbsp;&nbsp;&nbsp; fits write 'filename' /mode spectrum!next</tt></p>
- </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
 </ul><!-- /#posts-list -->

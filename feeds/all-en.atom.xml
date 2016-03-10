@@ -1,5 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all-en.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-02-27T10:40:00-07:00</updated><entry><title>Simulated Observations of Perseus in W51</title><link href="http://keflavich.github.io/blog/simulated-observations-of-perseus-in-w51.html" rel="alternate"></link><updated>2016-02-27T10:40:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-02-27:simulated-observations-of-perseus-in-w51.html</id><summary type="html">&lt;p&gt;The W51 and Sgr B2 ALMA mosaics contain ~50 and ~150 pointlike sources,
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all-en.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-03-10T10:12:00-07:00</updated><entry><title>CLEAN has extreme sensitivity to the threshold</title><link href="http://keflavich.github.io/blog/clean-has-extreme-sensitivity-to-the-threshold.html" rel="alternate"></link><updated>2016-03-10T10:12:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-03-10:clean-has-extreme-sensitivity-to-the-threshold.html</id><summary type="html">&lt;p&gt;CLEAN diverges sometimes.  The point at which divergence begins is very
+difficult to identify and unfortunately it looks like the images get mostly
+better as you slowly approach the toxic threshold:
+.. image:: &lt;a href="#id1"&gt;&lt;span class="problematic" id="id2"&gt;|filename|&lt;/span&gt;&lt;/a&gt;/images/w51/tclean_threshold_sensitivity.png&lt;/p&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/clean_threshold_sensitivity.rst&lt;/tt&gt;, line 12)&lt;/p&gt;
+Unexpected indentation.&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;table class="docutils field-list" frame="void" rules="none"&gt;
+&lt;col class="field-name" /&gt;
+&lt;col class="field-body" /&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr class="field"&gt;&lt;th class="field-name"&gt;width:&lt;/th&gt;&lt;td class="field-body"&gt;600px&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The precise clean command used, with only threshold changing, is:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+2016-03-10 07:49:28     INFO    tclean::::      tclean(vis=&amp;quot;w51_contvis_selfcal_4.ms&amp;quot;,selectdata=True,field=&amp;quot;&amp;quot;,spw=&amp;quot;&amp;quot;,timerange=&amp;quot;&amp;quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             uvrange=&amp;quot;&amp;quot;,antenna=&amp;quot;&amp;quot;,scan=&amp;quot;&amp;quot;,observation=&amp;quot;&amp;quot;,intent=&amp;quot;&amp;quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             datacolumn=&amp;quot;corrected&amp;quot;,imagename=&amp;quot;selfcal_allspw_selfcal_4ampphase_mfs_tclean_deeper_4mJy&amp;quot;,imsize=[3072, 3072],cell=&amp;quot;0.05arcsec&amp;quot;,phasecenter=&amp;quot;J2000 19:23:41.629000 +14.30.42.38000&amp;quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             stokes=&amp;quot;I&amp;quot;,projection=&amp;quot;SIN&amp;quot;,startmodel=&amp;quot;&amp;quot;,specmode=&amp;quot;mfs&amp;quot;,reffreq=&amp;quot;&amp;quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             nchan=-1,start=&amp;quot;&amp;quot;,width=&amp;quot;&amp;quot;,outframe=&amp;quot;LSRK&amp;quot;,veltype=&amp;quot;radio&amp;quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             restfreq=[],interpolation=&amp;quot;linear&amp;quot;,gridder=&amp;quot;mosaic&amp;quot;,facets=1,wprojplanes=1,
+2016-03-10 07:49:28     INFO    tclean::::+             aterm=True,psterm=False,wbawp=True,conjbeams=True,cfcache=&amp;quot;&amp;quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             computepastep=360.0,rotatepastep=360.0,pblimit=0.4,normtype=&amp;quot;flatnoise&amp;quot;,deconvolver=&amp;quot;clark&amp;quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             scales=[],nterms=2,restoringbeam=[],outlierfile=&amp;quot;&amp;quot;,weighting=&amp;quot;briggs&amp;quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             robust=-2.0,npixels=0,uvtaper=[],niter=100000,gain=0.1,
+2016-03-10 07:49:28     INFO    tclean::::+             threshold=&amp;quot;4mJy&amp;quot;,cycleniter=-1,cyclefactor=1.0,minpsffraction=0.05,maxpsffraction=0.8,
+2016-03-10 07:49:28     INFO    tclean::::+             interactive=False,mask=&amp;quot;&amp;quot;,overwrite=True,savemodel=&amp;quot;modelcolumn&amp;quot;,calcres=True,
+2016-03-10 07:49:28     INFO    tclean::::+             calcpsf=True,parallel=False)
+&lt;/pre&gt;
+&lt;p&gt;It looks like CLEAN needs a different type of threshold to finish on, perhaps
+something requiring each subsequent component to be some value less than the
+previous component.  If each component is forced to be less than the previous
+one, the clean can never diverage, though clean would stop unexpectedly if
+subtracting a component increased the amplitude of some other part of the map
+(i.e., if the next brightest source is sitting in a negative bowl).  Still,
+this might be a rarer occurrence than the divergence that I see all the time,
+which may be related to gridding (given the sharp grid pattern seen in panel 4
+of the linked image).&lt;/p&gt;
+&lt;div class="system-messages section"&gt;
+&lt;h2&gt;Docutils System Messages&lt;/h2&gt;
+&lt;div class="system-message" id="id1"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/clean_threshold_sensitivity.rst&lt;/tt&gt;, line 8); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Undefined substitution referenced: &amp;quot;filename&amp;quot;.&lt;/div&gt;
+&lt;/div&gt;
+</summary><category term="CASA"></category><category term="clean"></category></entry><entry><title>Simulated Observations of Perseus in W51</title><link href="http://keflavich.github.io/blog/simulated-observations-of-perseus-in-w51.html" rel="alternate"></link><updated>2016-02-27T10:40:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-02-27:simulated-observations-of-perseus-in-w51.html</id><summary type="html">&lt;p&gt;The W51 and Sgr B2 ALMA mosaics contain ~50 and ~150 pointlike sources,
 respectively.  However, they have pretty miserable high-noise regions
 such that determining completeness is a serious challenge.&lt;/p&gt;
 &lt;p&gt;To determine completeness in a means comparable to other observations,
