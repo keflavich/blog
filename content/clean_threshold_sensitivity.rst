@@ -8,6 +8,7 @@ CLEAN has extreme sensitivity to the threshold
 CLEAN diverges sometimes.  The point at which divergence begins is very
 difficult to identify and unfortunately it looks like the images get mostly
 better as you slowly approach the toxic threshold:
+
 .. image:: |filename|/images/w51/tclean_threshold_sensitivity.png
    :width: 600px
 
