@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-03-10T10:12:00-07:00</updated><entry><title>CLEAN has extreme sensitivity to the threshold</title><link href="http://keflavich.github.io/blog/clean-has-extreme-sensitivity-to-the-threshold.html" rel="alternate"></link><updated>2016-03-10T10:12:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-03-10:clean-has-extreme-sensitivity-to-the-threshold.html</id><summary type="html">&lt;p&gt;CLEAN diverges sometimes.  The point at which divergence begins is very
-difficult to identify and unfortunately it looks like the images get mostly
-better as you slowly approach the toxic threshold:
-.. image:: &lt;a href="#id1"&gt;&lt;span class="problematic" id="id2"&gt;|filename|&lt;/span&gt;&lt;/a&gt;/images/w51/tclean_threshold_sensitivity.png&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-03-12T10:25:00-07:00</updated><entry><title>Which one is real?</title><link href="http://keflavich.github.io/blog/which-one-is-real.html" rel="alternate"></link><updated>2016-03-12T10:25:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-03-12:which-one-is-real.html</id><summary type="html">&lt;p&gt;I've &amp;quot;successfully&amp;quot; combined 7m and 12m data, and I've also &amp;quot;successfully&amp;quot;
+processed 12m data.  In both cases, I've self-calibrated the long-baseline 12m
+data.&lt;/p&gt;
+&lt;p&gt;The question now is: why are these images so different?  There are features
+in the 12m-only data that are a factor of ~2 brighter than in the 12m+7m data.
+That should not happen.&lt;/p&gt;
+&lt;p&gt;This image shows the problem.  7m+12m left, 12m-only right:
+.. image:: &lt;a href="#id1"&gt;&lt;span class="problematic" id="id2"&gt;|filename|&lt;/span&gt;&lt;/a&gt;/images/w51/7m12m_vs_12m.png&lt;/p&gt;
 &lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/clean_threshold_sensitivity.rst&lt;/tt&gt;, line 12)&lt;/p&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/arraycombination_whichisreal.rst&lt;/tt&gt;, line 17)&lt;/p&gt;
 Unexpected indentation.&lt;/div&gt;
 &lt;blockquote&gt;
 &lt;table class="docutils field-list" frame="void" rules="none"&gt;
@@ -16,6 +20,19 @@ Unexpected indentation.&lt;/div&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;Note the sharp features on the left and the small tail (filament) toward the
+top right that appear in the 12m but not in the 7m+12m data.&lt;/p&gt;
+&lt;p&gt;Which features are real?  How do we decide?&lt;/p&gt;
+&lt;div class="system-messages section"&gt;
+&lt;h2&gt;Docutils System Messages&lt;/h2&gt;
+&lt;div class="system-message" id="id1"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/arraycombination_whichisreal.rst&lt;/tt&gt;, line 15); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Undefined substitution referenced: &amp;quot;filename&amp;quot;.&lt;/div&gt;
+&lt;/div&gt;
+</summary><category term="CASA"></category><category term="clean"></category></entry><entry><title>CLEAN has extreme sensitivity to the threshold</title><link href="http://keflavich.github.io/blog/clean-has-extreme-sensitivity-to-the-threshold.html" rel="alternate"></link><updated>2016-03-10T10:12:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-03-10:clean-has-extreme-sensitivity-to-the-threshold.html</id><summary type="html">&lt;p&gt;CLEAN diverges sometimes.  The point at which divergence begins is very
+difficult to identify and unfortunately it looks like the images get mostly
+better as you slowly approach the toxic threshold:&lt;/p&gt;
+&lt;img alt="" src="http://keflavich.github.io/blog/images/w51/tclean_threshold_sensitivity.png" style="width: 600px;" /&gt;
 &lt;p&gt;The precise clean command used, with only threshold changing, is:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 2016-03-10 07:49:28     INFO    tclean::::      tclean(vis=&amp;quot;w51_contvis_selfcal_4.ms&amp;quot;,selectdata=True,field=&amp;quot;&amp;quot;,spw=&amp;quot;&amp;quot;,timerange=&amp;quot;&amp;quot;,
@@ -41,12 +58,6 @@ subtracting a component increased the amplitude of some other part of the map
 this might be a rarer occurrence than the divergence that I see all the time,
 which may be related to gridding (given the sharp grid pattern seen in panel 4
 of the linked image).&lt;/p&gt;
-&lt;div class="system-messages section"&gt;
-&lt;h2&gt;Docutils System Messages&lt;/h2&gt;
-&lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/clean_threshold_sensitivity.rst&lt;/tt&gt;, line 8); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-Undefined substitution referenced: &amp;quot;filename&amp;quot;.&lt;/div&gt;
-&lt;/div&gt;
 </summary><category term="CASA"></category><category term="clean"></category></entry><entry><title>Simulated Observations of Perseus in W51</title><link href="http://keflavich.github.io/blog/simulated-observations-of-perseus-in-w51.html" rel="alternate"></link><updated>2016-02-27T10:40:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-02-27:simulated-observations-of-perseus-in-w51.html</id><summary type="html">&lt;p&gt;The W51 and Sgr B2 ALMA mosaics contain ~50 and ~150 pointlike sources,
 respectively.  However, they have pretty miserable high-noise regions
 such that determining completeness is a serious challenge.&lt;/p&gt;

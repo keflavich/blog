@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/03/12
+                  <br>
+                  <a href="http://keflavich.github.io/blog/which-one-is-real.html">Which one is real?</a>
+              </li>
+              <li class="post">
                   2016/03/10
                   <br>
                   <a href="http://keflavich.github.io/blog/clean-has-extreme-sensitivity-to-the-threshold.html">CLEAN has extreme sensitivity to the threshold</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/retrieving-and-selecting-data-in-casa.html">Retrieving and Selecting Data in CASA</a>
               </li>
-              <li class="post">
-                  2016/02/22
-                  <br>
-                  <a href="http://keflavich.github.io/blog/a-tclean-vs-clean-comparison.html">A tclean vs clean comparison</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,44 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/azimuthal-averages.html" rel="bookmark" title="Permalink to Azimuthal Averages">
+                    Azimuthal Averages</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-04-27T19:45:00"> 2011/04/27 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>We noted in discussion yesterday that the aperture sum in the (nearly
+perfectly recovered) is lower than expected even for a gaussian fit of
+an airy. A Gaussian approximation to an Airy should recover 93.5% of the
+flux; 6.5% of the power is in the sidelobes of an Airy disk. We recover
+about 86-88% of the flux in the input point-source map, or about 5-7%
+short, despite matching the peak to within 2-3%. This discrepancy is
+partly - but not completely - explained by a slight negative bowl
+effect: the Gaussian fit has a higher total flux than the aperture sum.
+Using the gaussian fit value, the recovery is about 90%. A mere 3%
+missing flux is not too much of a problem - it could still be that the
+gaussian is uniformly reduced by bowl effects, or perhaps that some flux
+is not reincorporated into the map (at a very low level) because it is
+correlated enough to be PCA-cleaned.
+In the figure, the top panel is the radial profile of the ds1 data
+(black), the input data (red), and their gaussian fits (see legend). The
+circles on the labeled images show the FWHM of the fitted gaussian,
+indicating a good fit. The apertures used for summation are NOT
+displayed. The sum aperture has a radius of 90&quot; (6.25 pixels) and the
+&quot;Noise Aperture&quot; has the same area as the sum aperture.</p>
+<img alt="" src="http://1.bp.blogspot.com/-nvXzUBHvsmE/TbhaQabluMI/AAAAAAAAGKc/Ks16AZ70fe0/s320/exp2_amp1.0E%252B01_map20_ds1inputcompare_point.png" />
+<p>If we redo the analysis with a smaller aperture, the recovery is better:
+95% in the central 45&quot;. However, now the airy ring cannot account for
+any lost flux, so it still looks like there's a 5% loss intrinsic in the
+pipeline.</p>
+<img alt="" src="http://2.bp.blogspot.com/-mqisozGUA2c/Tbhx5wk04WI/AAAAAAAAGKk/AIxGRnDMZBM/s320/exp2_amp1.0E%252B01_map20_ds1inputcompare_point.png" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -392,52 +430,6 @@ The new weighting scheme seems to flag a dangerous number of bolos as
 'high weight'. It drops after iteration #1, but not all the way.
 Need to remember to reprocess all December 2009 data with more flagged
 bolos</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/deconvolve-and-epochs.html" rel="bookmark" title="Permalink to Deconvolve and Epochs">
-                    Deconvolve and Epochs</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-04-05T18:12:00"> 2011/04/05 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I've spent a large portion of the last week working on the deconvolver.
-I found <a class="reference external" href="http://bolocam.blogspot.com/2011/03/workaround-for-individual-maps.html">previously</a> that a reconvolved map does a better job of
-restoring flux than the straight-up deconvolved map for point sources /
-pointing observations.
-However, the same update broke the regular mapping modes, leading to
-horrible instability in the mapping routines for large maps such as W5.
-Curiously, it seems that the aspect that breaks is the weighting;
-somehow the noise drops precipitously in certain bolometers, leading to
-extremely high weights. Perhaps they somehow dominate the PCA
-subtraction and therefore have all their noise removed?
-Either way, there are a few large-scale changes that need to be made:</p>
-<ol class="arabic simple">
-<li>Since Scaling and Weighting are now done on a whole-timestream basis,
-we should only map single epochs at once and coadd them after the
-fact. This approach will also help relieve RAM strain. Since it
-appears that individual observations are now reasonably convergent
-with the proper treatment of NANs in the deconvolution scheme, it
-should be possible to take any individual map and coadd it in a
-reasonable way.</li>
-<li>Bolometers with bad weights need to be thrown out. Alternatively, and
-more appropriately, I need to discover WHY their weights are going
-bad.</li>
-</ol>
-<p>We also need to explore different weighting schemes.</p>
-<ol class="arabic simple">
-<li>1/Variance over whole timestream (current default)</li>
-<li>1/Variance on a per-scan basis (previous default) [based on PSDs]</li>
-<li>Minimum Chi<sup>2</sup> with Astrophysical Model (??)</li>
-<li>Min Chi<sup>2</sup> on a per-scan basis?</li>
-</ol>
-<p>Because of the extensive testing this will require, it is really
-becoming essential that we develop an arbitrary map creation &amp; testing
-routine.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

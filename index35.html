@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/03/12
+                  <br>
+                  <a href="http://keflavich.github.io/blog/which-one-is-real.html">Which one is real?</a>
+              </li>
+              <li class="post">
                   2016/03/10
                   <br>
                   <a href="http://keflavich.github.io/blog/clean-has-extreme-sensitivity-to-the-threshold.html">CLEAN has extreme sensitivity to the threshold</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/retrieving-and-selecting-data-in-casa.html">Retrieving and Selecting Data in CASA</a>
               </li>
-              <li class="post">
-                  2016/02/22
-                  <br>
-                  <a href="http://keflavich.github.io/blog/a-tclean-vs-clean-comparison.html">A tclean vs clean comparison</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,36 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/minor-ongoing-problems.html" rel="bookmark" title="Permalink to [minor] Ongoing problems...">
+                    [minor] Ongoing problems...</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-10T19:41:00"> 2011/07/10 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Since I have many tasks running in parallel, I need to summarize them
+sometimes...</p>
+<ol class="arabic simple">
+<li>There are many &quot;bad&quot; observations that haven't been placed in &quot;bad&quot;
+directories. A list of the error messages generated is here: <a class="reference external" href="http://code.google.com/p/bgpspipeline/wiki/MakingInfiles">Making
+Infiles wiki</a></li>
+<li>There may be streaking in the BGPS ds2 images of l030 and l032. Still
+trying to re-run cleanly to find out</li>
+<li>There may be unflagged high-points in l030 and l032. Also under
+examination</li>
+<li>Simulations have been generating bulk-offset outputs; my suspicion
+was that the relative scales were being set incorrectly because astro
+dominated atmo, so I bumped up the atmo scale. The tests have run but
+I haven't examined the outputs</li>
+<li>V1 sims have shown streaking, possibly because of the previous
+bullet, but certainly (in part) because cross-scans haven't worked</li>
+</ol>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -509,44 +539,6 @@ Source?</li>
 </ol>
 <p>Any thoughts on better models to use? Does this seem like a good idea at
 all?</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/azimuthal-averages.html" rel="bookmark" title="Permalink to Azimuthal Averages">
-                    Azimuthal Averages</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-04-27T19:45:00"> 2011/04/27 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>We noted in discussion yesterday that the aperture sum in the (nearly
-perfectly recovered) is lower than expected even for a gaussian fit of
-an airy. A Gaussian approximation to an Airy should recover 93.5% of the
-flux; 6.5% of the power is in the sidelobes of an Airy disk. We recover
-about 86-88% of the flux in the input point-source map, or about 5-7%
-short, despite matching the peak to within 2-3%. This discrepancy is
-partly - but not completely - explained by a slight negative bowl
-effect: the Gaussian fit has a higher total flux than the aperture sum.
-Using the gaussian fit value, the recovery is about 90%. A mere 3%
-missing flux is not too much of a problem - it could still be that the
-gaussian is uniformly reduced by bowl effects, or perhaps that some flux
-is not reincorporated into the map (at a very low level) because it is
-correlated enough to be PCA-cleaned.
-In the figure, the top panel is the radial profile of the ds1 data
-(black), the input data (red), and their gaussian fits (see legend). The
-circles on the labeled images show the FWHM of the fitted gaussian,
-indicating a good fit. The apertures used for summation are NOT
-displayed. The sum aperture has a radius of 90&quot; (6.25 pixels) and the
-&quot;Noise Aperture&quot; has the same area as the sum aperture.</p>
-<img alt="" src="http://1.bp.blogspot.com/-nvXzUBHvsmE/TbhaQabluMI/AAAAAAAAGKc/Ks16AZ70fe0/s320/exp2_amp1.0E%252B01_map20_ds1inputcompare_point.png" />
-<p>If we redo the analysis with a smaller aperture, the recovery is better:
-95% in the central 45&quot;. However, now the airy ring cannot account for
-any lost flux, so it still looks like there's a 5% loss intrinsic in the
-pipeline.</p>
-<img alt="" src="http://2.bp.blogspot.com/-mqisozGUA2c/Tbhx5wk04WI/AAAAAAAAGKk/AIxGRnDMZBM/s320/exp2_amp1.0E%252B01_map20_ds1inputcompare_point.png" />
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

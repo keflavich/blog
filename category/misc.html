@@ -68,6 +68,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/03/12
+                  <br>
+                  <a href="http://keflavich.github.io/blog/which-one-is-real.html">Which one is real?</a>
+              </li>
+              <li class="post">
                   2016/03/10
                   <br>
                   <a href="http://keflavich.github.io/blog/clean-has-extreme-sensitivity-to-the-threshold.html">CLEAN has extreme sensitivity to the threshold</a>
@@ -87,11 +92,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/retrieving-and-selecting-data-in-casa.html">Retrieving and Selecting Data in CASA</a>
               </li>
-              <li class="post">
-                  2016/02/22
-                  <br>
-                  <a href="http://keflavich.github.io/blog/a-tclean-vs-clean-comparison.html">A tclean vs clean comparison</a>
-              </li>
         </ul>
       </li>
     
@@ -106,19 +106,23 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/clean-has-extreme-sensitivity-to-the-threshold.html" rel="bookmark" title="Permalink to CLEAN has extreme sensitivity to the threshold">
-                    CLEAN has extreme sensitivity to the threshold</a>
+                <a href="http://keflavich.github.io/blog/which-one-is-real.html" rel="bookmark" title="Permalink to Which one is real?">
+                    Which one is real?</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2016-03-10T10:12:00"> 2016/03/10 </abbr>
+            <abbr class="published" title="2016-03-12T10:25:00"> 2016/03/12 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>CLEAN diverges sometimes.  The point at which divergence begins is very
-difficult to identify and unfortunately it looks like the images get mostly
-better as you slowly approach the toxic threshold:
-.. image:: <a href="#id1"><span class="problematic" id="id2">|filename|</span></a>/images/w51/tclean_threshold_sensitivity.png</p>
+        <div class="entry-content"> <p>I've &quot;successfully&quot; combined 7m and 12m data, and I've also &quot;successfully&quot;
+processed 12m data.  In both cases, I've self-calibrated the long-baseline 12m
+data.</p>
+<p>The question now is: why are these images so different?  There are features
+in the 12m-only data that are a factor of ~2 brighter than in the 12m+7m data.
+That should not happen.</p>
+<p>This image shows the problem.  7m+12m left, 12m-only right:
+.. image:: <a href="#id1"><span class="problematic" id="id2">|filename|</span></a>/images/w51/7m12m_vs_12m.png</p>
 <div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/clean_threshold_sensitivity.rst</tt>, line 12)</p>
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/arraycombination_whichisreal.rst</tt>, line 17)</p>
 Unexpected indentation.</div>
 <blockquote>
 <table class="docutils field-list" frame="void" rules="none">
@@ -130,6 +134,32 @@ Unexpected indentation.</div>
 </tbody>
 </table>
 </blockquote>
+<p>Note the sharp features on the left and the small tail (filament) toward the
+top right that appear in the 12m but not in the 7m+12m data.</p>
+<p>Which features are real?  How do we decide?</p>
+<div class="system-messages section">
+<h2>Docutils System Messages</h2>
+<div class="system-message" id="id1">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/arraycombination_whichisreal.rst</tt>, line 15); <em><a href="#id2">backlink</a></em></p>
+Undefined substitution referenced: &quot;filename&quot;.</div>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/clean-has-extreme-sensitivity-to-the-threshold.html" rel="bookmark" title="Permalink to CLEAN has extreme sensitivity to the threshold">
+                    CLEAN has extreme sensitivity to the threshold</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-03-10T10:12:00"> 2016/03/10 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>CLEAN diverges sometimes.  The point at which divergence begins is very
+difficult to identify and unfortunately it looks like the images get mostly
+better as you slowly approach the toxic threshold:</p>
+<img alt="" src="http://keflavich.github.io/blog/images/w51/tclean_threshold_sensitivity.png" style="width: 600px;" />
 <p>The precise clean command used, with only threshold changing, is:</p>
 <pre class="literal-block">
 2016-03-10 07:49:28     INFO    tclean::::      tclean(vis=&quot;w51_contvis_selfcal_4.ms&quot;,selectdata=True,field=&quot;&quot;,spw=&quot;&quot;,timerange=&quot;&quot;,
@@ -155,12 +185,6 @@ subtracting a component increased the amplitude of some other part of the map
 this might be a rarer occurrence than the divergence that I see all the time,
 which may be related to gridding (given the sharp grid pattern seen in panel 4
 of the linked image).</p>
-<div class="system-messages section">
-<h2>Docutils System Messages</h2>
-<div class="system-message" id="id1">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/clean_threshold_sensitivity.rst</tt>, line 8); <em><a href="#id2">backlink</a></em></p>
-Undefined substitution referenced: &quot;filename&quot;.</div>
-</div>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
@@ -536,71 +560,6 @@ SPW4 Iteration 1: RMS=5.962e-05
 SPW4 Iteration 2: RMS=6.817e-05
 SPW4 Iteration 3: RMS=6.775e-05
 </pre>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/fft-comparisons-in-python.html" rel="bookmark" title="Permalink to FFT comparisons in python">
-                    FFT comparisons in python</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2015-12-07T11:24:00"> 2015/12/07 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I'm trying to figure out which ffts are fastest, best, etc.</p>
-<p>First, it is difficult to get fftw3 + pyfftw installed into python.</p>
-<p>For pyfftw to install, you need to <a class="reference external" href="http://www.fftw.org/doc/Installation-on-Unix.html">enable floats and every specific type</a> when compiling <a class="reference external" href="http://www.fftw.org/">fftw3</a> (thanks to <a class="reference external" href="http://linuxtoolkit.blogspot.de/2010/04/cant-find-fftw3f-library-when.html">linux toolkits blog</a>).
-Apparently you can't have <tt class="docutils literal"><span class="pre">--enable-long-double</span></tt> and <tt class="docutils literal"><span class="pre">--enable-float</span></tt> simultaneously,
-but pyfftw requires both, so you have to install twice or thrice?  Nope, four
-times!!  Also, <a class="reference external" href="https://github.com/hgomersall/pyFFTW/issues/16#issuecomment-19422752">my own post</a>
-indicates that I should install to a different path to avoid weird conflicts
-with other libraries.</p>
-<pre class="literal-block">
-./configure --enable-threads --enable-openmp --enable-mpi --enable-shared \
-            --enable-fortran --enable-avx \
-            CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
-make -j 4
-sudo make install
-
-./configure --enable-float --enable-threads --enable-openmp --enable-mpi --enable-shared \
-            --enable-fortran --enable-avx \
-            CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
-make -j 4
-sudo make install
-
-# quad precision is not supported in mpi
-./configure --enable-quad-precision --enable-threads --enable-openmp --enable-shared \
-            --enable-fortran --enable-avx \
-             CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
-make -j 4
-sudo make install
-
-./configure --enable-long-double --enable-threads --enable-openmp --enable-mpi --enable-shared \
-            --enable-fortran --enable-avx \
-             CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
-make -j 4
-sudo make install
-</pre>
-<p>Onto speed test comparisons:</p>
-<blockquote>
-<ul class="simple">
-<li><a class="reference external" href="https://gist.github.com/mperrin/5763120">Marshal Perrin's</a></li>
-<li><a class="reference external" href="https://gist.github.com/keflavich/5797994">my fork</a></li>
-<li><a class="reference external" href="http://code.google.com/p/agpy/source/browse/trunk/tests/test_ffts.py">speed tests on agpy</a></li>
-<li><a class="reference external" href="https://github.com/astropy/astropy/pull/4374">profiling convolve_fft with different parameters</a></li>
-</ul>
-</blockquote>
-<p>If you want to use <tt class="docutils literal">fftw3</tt> with astropy's <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.convolution.convolve_fft.html#astropy.convolution.convolve_fft">convolve_fft</a>,
-use <a class="reference external" href="https://code.google.com/p/agpy/source/browse/trunk/AG_fft_tools/convolve_nd.py?r=479#8">this example</a>.</p>
-<p>Onto some comparisons from <a class="reference external" href="https://github.com/astropy/astropy/pull/4374">astropy issue 4374</a>:</p>
-<img alt="" src="http://keflavich.github.io/blog/images/time_vs_mem.png" style="width: 600px;" />
-<img alt="" src="http://keflavich.github.io/blog/images/psfTfftT.png" style="width: 600px;" />
-<img alt="" src="http://keflavich.github.io/blog/images/psfTfftF.png" style="width: 600px;" />
-<img alt="" src="http://keflavich.github.io/blog/images/psfFfftT.png" style="width: 600px;" />
-<img alt="" src="http://keflavich.github.io/blog/images/psfFfftF.png" style="width: 600px;" />
-<p><a class="reference external" href="https://gist.github.com/6a2d338830efdc02959a">Notebook containing comparisons between FFT and FFTW</a></p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
