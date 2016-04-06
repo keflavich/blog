@@ -49,7 +49,7 @@ Important details when reading in a FITS file:
 
 Once the FITS image is read into a CASA ``.image``, *if* it has the CASA-expected
 units and dimensions, you can use ``sm.predict`` to fourier transform the data
-and sample it onto the UV grid in your ``.ms`` file:  
+and sample it onto the UV grid in your ``.ms`` file:: 
 
     sm.openfromms("file.ms")
     sm.setvp() # "set voltage pattern": not clear if this is needed
