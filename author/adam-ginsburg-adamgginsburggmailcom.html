@@ -233,12 +233,13 @@ step.</p>
 <p>Once the FITS image is read into a CASA <tt class="docutils literal">.image</tt>, <em>if</em> it has the CASA-expected
 units and dimensions, you can use <tt class="docutils literal">sm.predict</tt> to fourier transform the data
 and sample it onto the UV grid in your <tt class="docutils literal">.ms</tt> file:</p>
-<blockquote>
+<pre class="literal-block">
 sm.openfromms(&quot;file.ms&quot;)
 sm.setvp() # &quot;set voltage pattern&quot;: not clear if this is needed
 success = sm.predict(&quot;myfile.image&quot;)
 sm.done()
-sm.close()</blockquote>
+sm.close()
+</pre>
 <p>This (seems to) populate the <em>data</em> column, not the model column as I had
 originally expected.  Therefore, be warned!  DO NOT DO THIS TO YOUR ORIGINAL
 DATA!  It will probably overwrite it.</p>
