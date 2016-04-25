@@ -6,6 +6,9 @@ More CASA simulation & debugging
 
 (this post written from snowy-ish ALMA; `just cloudy at the OSF though <https://goo.gl/photos/z3fUkCT6VVRzt8EW6>`__)
 
+(tl; dr version: ``sm.setvp`` doesn't work if you have ``TELESCOP="ALMA"`` in
+your header)
+
 I'm tryin to repeat an experiment very similar to 
 `previous <|filename|/casa_simulating.rst>`__
 `simulation work <|filename|/simulated_imaging.rst>`__
