@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/04/24
+                  <br>
+                  <a href="http://keflavich.github.io/blog/more-casa-simulation-debugging.html">More CASA simulation & debugging</a>
+              </li>
+              <li class="post">
                   2011/08/10
                   <br>
                   <a href="http://keflavich.github.io/blog/spatial-transfer-function-vs-npca.html">Spatial Transfer Function vs. nPCA</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/examining-bolocat.html">Examining bolocat</a>
               </li>
-              <li class="post">
-                  2011/07/18
-                  <br>
-                  <a href="http://keflavich.github.io/blog/bolocat-examination-part-1.html">Bolocat examination part 1</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,157 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/more-casa-simulation-debugging.html" rel="bookmark" title="Permalink to More CASA simulation & debugging">
+                    More CASA simulation &amp; debugging</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-04-24T22:57:00"> 2016/04/24 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>(this post written from snowy-ish ALMA; <a class="reference external" href="https://goo.gl/photos/z3fUkCT6VVRzt8EW6">just cloudy at the OSF though</a>)</p>
+<p>(tl; dr version: <tt class="docutils literal">sm.setvp</tt> doesn't work if you have <tt class="docutils literal"><span class="pre">TELESCOP=&quot;ALMA&quot;</span></tt> in
+your header)</p>
+<p>I'm tryin to repeat an experiment very similar to
+<a class="reference external" href="http://keflavich.github.io/blog/casa-simulation.html">previous</a>
+<a class="reference external" href="http://keflavich.github.io/blog/simulated-observations-of-perseus-in-w51.html">simulation work</a>
+in order to quantify my completeness and largest angular scales
+by injecting synthetic signal into the real UV data.</p>
+<p>However, as you might expect, it doesn't work as it did last time, even
+when I (afaict) copy and paste the code directly.</p>
+<p>Here's the new error:</p>
+<pre class="literal-block">
+2016-04-25 02:57:21 SEVERE  Simulator::createSkyEquation() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2200)        Caught exception: Transformations to/from frame &quot;Undefined&quot; are not possible.
+2016-04-25 02:57:21 SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Failed to create SkyEquation
+Result of predict: False
+</pre>
+<p>It's strange because there is nothing obviously undefined.</p>
+<p>I'm comparing 2 FITS files that should behave identically.
+The good header lacks these keywords that the bad header has:</p>
+<pre class="literal-block">
+['PV2_1',
+ 'PV2_2',
+ 'OBSERVER',
+ 'DATE-OBS',
+ 'OBSRA',
+ 'OBSDEC',
+ 'OBSGEO-X',
+ 'OBSGEO-Y',
+ 'OBSGEO-Z']
+</pre>
+<p>while the good header has these and the bad lacks them:</p>
+<pre class="literal-block">
+['PC03_01',
+ 'PC04_01',
+ 'PC03_02',
+ 'PC04_02',
+ 'PC01_03',
+ 'PC02_03',
+ 'PC03_03',
+ 'PC04_03',
+ 'PC01_04',
+ 'PC02_04',
+ 'PC03_04',
+ 'PC04_04',
+ 'CREATOR',
+ 'INSTRUME',
+ 'BAND',
+ 'PROPOSAL',
+ 'PRTITLE',
+ 'OBSID001',
+ 'OBSID002',
+ 'HISTORY']
+</pre>
+<p>The only significant difference is the <tt class="docutils literal">PC</tt> values, unless CASA
+is doing something with the observatory location information.</p>
+<p>The only difference in common keywords is numerical, which seems
+very unlikely to cause this issue.</p>
+<p>I cannot discern any useful difference between these two CASA .image headers:</p>
+<pre class="literal-block">
+2016-04-25 03:08:55 INFO imhead     ##########################################
+2016-04-25 03:08:55 INFO imhead     ##### Begin Task: imhead             #####
+2016-04-25 03:08:55 INFO imhead     imhead(imagename=&quot;../perseus_synth/perseus_250_to_w51.image&quot;,mode=&quot;summary&quot;,hdkey=&quot;&quot;,hdvalue=&quot;&quot;,verbose=True)
+2016-04-25 03:08:55 INFO ImageAnalysis
+2016-04-25 03:08:55 INFO ImageAnalysis      Image name       : perseus_250_to_w51.image
+2016-04-25 03:08:55 INFO ImageAnalysis      Object name      : perseus 04
+2016-04-25 03:08:55 INFO ImageAnalysis      Image type       : PagedImage
+2016-04-25 03:08:55 INFO ImageAnalysis      Image quantity   : Intensity
+2016-04-25 03:08:55 INFO ImageAnalysis      Pixel mask(s)    : mask0
+2016-04-25 03:08:55 INFO ImageAnalysis      Region(s)        : None
+2016-04-25 03:08:55 INFO ImageAnalysis      Image units      : Jy/pixel
+2016-04-25 03:08:55 INFO ImageAnalysis      Restoring Beam   : 0.465804 arcsec, 0.465804 arcsec, 0 deg
+2016-04-25 03:08:55 INFO ImageAnalysis
+2016-04-25 03:08:55 INFO ImageAnalysis      Direction reference : J2000
+2016-04-25 03:08:55 INFO ImageAnalysis      Spectral  reference : Undefined
+2016-04-25 03:08:55 INFO ImageAnalysis      Velocity  type      : RADIO
+2016-04-25 03:08:55 INFO ImageAnalysis      Rest frequency      : 2.33947e+11 Hz
+2016-04-25 03:08:55 INFO ImageAnalysis      Telescope           : Herschel
+2016-04-25 03:08:55 INFO ImageAnalysis      Observer            : UNKNOWN
+2016-04-25 03:08:55 INFO ImageAnalysis      Date observation    : UNKNOWN
+2016-04-25 03:08:55 INFO ImageAnalysis
+2016-04-25 03:08:55 INFO ImageAnalysis      Axis Coord Type      Name             Proj Shape Tile   Coord value at pixel    Coord incr Units
+2016-04-25 03:08:55 INFO ImageAnalysis      ------------------------------------------------------------------------------------------------
+2016-04-25 03:08:55 INFO ImageAnalysis      0    0     Direction Right Ascension   TAN  2370  158  19:23:41.765  1099.00 -1.552680e-01 arcsec
+2016-04-25 03:08:55 INFO ImageAnalysis      1    0     Direction Declination       TAN  2500  250 +14.30.45.850  1552.00  1.552680e-01 arcsec
+2016-04-25 03:08:55 INFO ImageAnalysis      2    2     Spectral  Frequency                 1    1   2.33947e+11     0.00  1.000000e+09 Hz
+2016-04-25 03:08:55 INFO ImageAnalysis                           Velocity                                     0     0.00 -1.281456e+03 km/s
+2016-04-25 03:08:55 INFO ImageAnalysis      3    1     Stokes    Stokes                    1    1             I
+2016-04-25 03:08:55 INFO imhead     ##### End Task: imhead               #####
+2016-04-25 03:08:55 INFO imhead     ##########################################
+2016-04-25 03:09:07 INFO imhead
+2016-04-25 03:09:07 INFO imhead     ##########################################
+2016-04-25 03:09:07 INFO imhead     ##### Begin Task: imhead             #####
+2016-04-25 03:09:07 INFO imhead     imhead(imagename=&quot;../simulations/simimage_firsttest.image&quot;,mode=&quot;summary&quot;,hdkey=&quot;&quot;,hdvalue=&quot;&quot;,verbose=False)
+2016-04-25 03:09:07 INFO ImageAnalysis
+2016-04-25 03:09:07 INFO ImageAnalysis      Image name       : simimage_firsttest.image
+2016-04-25 03:09:07 INFO ImageAnalysis      Object name      :
+2016-04-25 03:09:07 INFO ImageAnalysis      Image type       : PagedImage
+2016-04-25 03:09:07 INFO ImageAnalysis      Image quantity   : Intensity
+2016-04-25 03:09:07 INFO ImageAnalysis      Pixel mask(s)    : None
+2016-04-25 03:09:07 INFO ImageAnalysis      Region(s)        : None
+2016-04-25 03:09:07 INFO ImageAnalysis      Image units      : Jy/beam
+2016-04-25 03:09:07 INFO ImageAnalysis      Restoring Beam   : 0.21023 arcsec, 0.192666 arcsec, 79.8538 deg
+2016-04-25 03:09:07 INFO ImageAnalysis
+2016-04-25 03:09:07 INFO ImageAnalysis      Direction reference : J2000
+2016-04-25 03:09:07 INFO ImageAnalysis      Spectral  reference : Undefined
+2016-04-25 03:09:07 INFO ImageAnalysis      Velocity  type      : RADIO
+2016-04-25 03:09:07 INFO ImageAnalysis      Rest frequency      : 2.33947e+11 Hz
+2016-04-25 03:09:07 INFO ImageAnalysis      Pointing center     :  19:23:41.629000  +14.30.42.380000
+2016-04-25 03:09:07 INFO ImageAnalysis      Telescope           : ALMA
+2016-04-25 03:09:07 INFO ImageAnalysis      Observer            : keflavich
+2016-04-25 03:09:07 INFO ImageAnalysis      Date observation    : 2015/04/23/09:47:44
+2016-04-25 03:09:07 INFO ImageAnalysis      Telescope position: [2.22514e+06m, -5.44031e+06m, -2.48103e+06m] (ITRF)
+2016-04-25 03:09:07 INFO ImageAnalysis
+2016-04-25 03:09:07 INFO ImageAnalysis      Axis Coord Type      Name             Proj Shape Tile   Coord value at pixel    Coord incr Units
+2016-04-25 03:09:07 INFO ImageAnalysis      ------------------------------------------------------------------------------------------------
+2016-04-25 03:09:07 INFO ImageAnalysis      0    0     Direction Right Ascension   TAN  3072  192  19:23:41.629  1536.00 -5.000000e-02 arcsec
+2016-04-25 03:09:07 INFO ImageAnalysis      1    0     Direction Declination       TAN  3072  192 +14.30.42.380  1536.00  5.000000e-02 arcsec
+2016-04-25 03:09:07 INFO ImageAnalysis      2    1     Stokes    Stokes                    1    1             I
+2016-04-25 03:09:07 INFO ImageAnalysis      3    2     Spectral  Frequency                 1    1   2.33947e+11     0.00  1.000000e+09 Hz
+2016-04-25 03:09:07 INFO ImageAnalysis                           Velocity                                     0     0.00 -1.281456e+03 km/s
+2016-04-25 03:09:07 INFO imhead     ##### End Task: imhead               #####
+2016-04-25 03:09:07 INFO imhead     ##########################################
+</pre>
+<p>if anything, the ALMA file includes <em>extra</em> data. Removing this data has no
+effect.</p>
+<p>The only really substantial difference left is the order of the axes, which
+is <em>not what I put in</em> for the ALMA data: it puts Stokes as 2 instead of 3
+despite the fact that <tt class="docutils literal"><span class="pre">CTYPE4='STOKES'</span></tt> and <tt class="docutils literal"><span class="pre">CTYPE3='FREQ'</span></tt>.</p>
+<p>By doing a round trip FITS-&gt;image-&gt;FITS-&gt;image, I was able to fix the order,
+but that is not the underlying problem, apparently.</p>
+<p>Could the missing pixel mask be at fault?  It doesn't jive at all with the
+error message, so I doubt it.  <tt class="docutils literal">OBSDATE</tt> is not the problem.</p>
+<p>Turns out, the error is that ALMA is the telescope.  I added the header entry:</p>
+<pre class="literal-block">
+ffile[0].header['TELESCOP'] = 'NotReal'
+</pre>
+<p>and it Just Worked.  It is approaching the end of my shift, so I think it is
+now acceptable to say &quot;what kind of !#$&#64;#$!&#64;% up #&#64;$$&#64;% is that?!&quot;.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -423,69 +574,6 @@ L59 image, but it does not have a preferred direction. Unfortunately, it
 is not obvious whether or where filamentation shows up in fourier space
 if it does not have a preferred direction. There is no excess at any
 spatial scale that I can pick out.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/hunting-for-preferred-directions.html" rel="bookmark" title="Permalink to Hunting for preferred directions">
-                    Hunting for preferred directions</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-06-06T03:58:00"> 2011/06/06 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>In our last group meeting, we discussed simulations using filamentary
-structures. I've been trying to determine how best to generate
-random/artificial filamentary structures in images. The first step in
-that direction is coming up with a way to measure asymmetries and
-therefore preferred directions within a real map. In order to do this,
-I've had to develop a number of new tools in agpy for azimuthally binned
-radial profiles and radially-averaged azimuthal profiles
-(<a class="reference external" href="http://code.google.com/p/agpy/source/browse/trunk/agpy/radialprofile.py">radialprofile.py</a>).
-Examining real maps is necessary because a simple sinusoidal dependence
-of the power introduces filamentation along the same directions at ALL
-scales, which is not obviously (or in some cases, obviously not) the
-correct solution. Filaments are observed on large scales, but sometimes
-there can be 'kinks' in opposite directions on small scales.
-So, the map I picked to examine was one with the most flagrantly obvious
-filamentary structure in it: the Motte DR 21 MAMBO map. It was also a
-choice of convenience because I already had the data on my laptop....</p>
-<img alt="" src="http://3.bp.blogspot.com/-ULjqyt_ofEI/TexIAK9ohhI/AAAAAAAAGM0/eCEys_tFOTA/s320/MAMBOmap.png" />
-<p>The preferred direction is quite obvious in this map: there is a long
-filament going up and down the map. Therefore, the DC component should
-be substantially higher in one direction than the other.</p>
-<img alt="" src="http://1.bp.blogspot.com/-X7TY9wPUL7Y/TexIAZ7hH_I/AAAAAAAAGM8/IEkgX500_Os/s320/MAMBOpsd.png" />
-<p>In the power-spectral-density image, it is quite clear that there is a
-preferred direction, though it is not obvious that the fourier transform
-is rotated 90 degrees from the image. My fourier intuition somewhat
-fails me here.... I realize that a broad, smooth profile in real space
-should be narrow and highly peaked in fourier space, but I don't fully
-understand why it effectively spreads out in the perpendicular
-direction, which I have confirmed that it does with a simple experiment.
-I also don't know what the Shah function is, but it implies a periodic
-dip in the image at every 1/5th of the image, or every 50 pixels.</p>
-<img alt="" src="http://2.bp.blogspot.com/-l4qWlj1G42k/TexIAufhjSI/AAAAAAAAGNE/UqagczdWzwA/s320/MAMBOpowerspectra.png" />
-<p>These are the power spectra averaged over different angles as labeled.
--15 corresponds to -15 to +15, 15 corresponds to 15 to 45, etc. The
-highly peaked 75-105 power spectrum shows the large-scale filamentary
-profile. I think the difference in the DC component is actually an
-artifact of the azimuthal binning process: each pixel can only be
-assigned one angle, so the DC value isn't included in all of them...
-I'll need to find a workaround for that because it's quite deceptive.</p>
-<img alt="" src="http://4.bp.blogspot.com/-qEWk2rRrwNI/TexIBKn59FI/AAAAAAAAGNM/MXdsiKagpW4/s320/MAMBOazspectra.png" />
-<p>The more interesting way to view the data - and perhaps to analyze maps
-- is to take <em>radial</em> averages in some range of spatial scales and plot
-the azimuthal dependence. There is a clear sinusoid at large scales. The
-legend shows &quot;spatial frequency&quot; in 1/pixel units. The distribution
-becomes more even with angle and even changes preferred direction at
-smaller scales (higher frequencies).
-Next step is testing different approaches. I think an added,
-steeper-power-law component would probably be the best way to start.
-Another suggestion, courtesy Bruce Elmegreen, is to attempt this sort of
-asymmetric power law sampling in 3 dimensions (with only 1 or 2
-dimensions asymmetric) and then projecting down onto two dimensions.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
