@@ -9,7 +9,7 @@ More CASA simulation & debugging
 (tl; dr version: ``sm.setvp`` doesn't work if you have ``TELESCOP="ALMA"`` in
 your header)
 
-I'm tryin to repeat an experiment very similar to 
+I'm trying to repeat an experiment very similar to 
 `previous <|filename|/casa_simulating.rst>`__
 `simulation work <|filename|/simulated_imaging.rst>`__
 in order to quantify my completeness and largest angular scales
