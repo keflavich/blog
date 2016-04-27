@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/04/26
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-simulated-imaging-now-ftmachine-is-whining.html">CASA simulated imaging: now FTMachine is whining</a>
+              </li>
+              <li class="post">
                   2016/04/24
                   <br>
                   <a href="http://keflavich.github.io/blog/more-casa-simulation-debugging.html">More CASA simulation & debugging</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/simulated-observations-of-perseus-in-w51.html">Simulated Observations of Perseus in W51</a>
               </li>
-              <li class="post">
-                  2016/02/25
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-simulation.html">CASA Simulation</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,52 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/astrophysical-signal-modeling.html" rel="bookmark" title="Permalink to Astrophysical Signal Modeling">
+                    Astrophysical Signal Modeling</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-05-24T17:39:00"> 2011/05/24 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Here we finally get into the meat of the simulations. The goal is to
+develop realistic - but arbitrary - astrophysical models to run through
+simulations.
+The first step is to figure out what a realistic sky looks like. To this
+end, I use the HiGal SDP fields, looking only at their power spectra.
+They are well represented by a power law with α = 3 (shown in the dashed
+black line below).</p>
+<img alt="" src="http://2.bp.blogspot.com/-50R2lfaIGrY/TdvZi5tl5VI/AAAAAAAAGLQ/w45OC9dk3Rg/s320/sdp_psds_powerlaw.png" />
+<p>Therefore, I've attempted to randomly sample from a similar power law
+distribution using the following IDL code:</p>
+<p><tt class="docutils literal">dimsize = 512&nbsp;&nbsp;&nbsp; realpower = realpowers[ii]&nbsp;&nbsp;&nbsp; imagpower = imagpowers[ii]&nbsp;&nbsp;&nbsp; imagscale = imagscales[ii]&nbsp;&nbsp;&nbsp; peakamp = 1.0&nbsp;&nbsp;&nbsp; noise = 0.03&nbsp;&nbsp;&nbsp; smoothscale = 2.0&nbsp;&nbsp;&nbsp; smoothkernel = <span class="pre">psf_gaussian(npix=512,ndim=2,fwhm=31.2/7.2/2.0,/normalize)</span>&nbsp;&nbsp;&nbsp; sigma_gp = 128.0 ; <span class="pre">sigma-width</span> of the Galactic Plane (can get more accurate value from Cara's paper)&nbsp;&nbsp;&nbsp; xx = findgen(dimsize) #&nbsp; replicate(1.0,dimsize)&nbsp;&nbsp;&nbsp; yy = findgen(dimsize) ## replicate(1.0,dimsize)&nbsp;&nbsp;&nbsp; rr = sqrt( <span class="pre">(xx-255.5)^2</span> + <span class="pre">(yy-255.5)^2</span> )&nbsp;&nbsp;&nbsp; realpart = (rr^realpower) * <span class="pre">randomn(seed1,[dimsize,dimsize])</span>&nbsp;&nbsp;&nbsp; imagpart = <span class="pre">((rr*imagscale)^imagpower)</span> * <span class="pre">randomn(seed2,[dimsize,dimsize])*complex(0,1)</span>&nbsp;&nbsp;&nbsp;&nbsp; fakesky = abs(fft(shift(realpart + <span class="pre">imagpart,0,0),1))</span>&nbsp;&nbsp;&nbsp; expweight = <span class="pre">exp(-(yy-255.5)^2/(2.0*sigma_gp^2))</span> ; most power is in the inner plane&nbsp;&nbsp;&nbsp; fakesky *= peakamp/max(fakesky)&nbsp;&nbsp;&nbsp; fakesky_sm = convolve(fakesky,smoothkernel)&nbsp;&nbsp;&nbsp; fakesky_sm = fakesky_sm*expweight&nbsp;&nbsp;&nbsp; fakesky_sm += <span class="pre">randomn(seed3,[dimsize,dimsize])</span> * noise</tt></p>
+<p>Since Power is the fourier-transform squared, I'm using a power-law of
+α=1.5 for the &quot;real&quot; part of the sampling. The imaginary part follows a
+shallower slope to reduce the amount of power in large structures, which
+didn't look quite right (but maybe I should leave both slopes the
+same?). With both the same, and without the imaginary part down-scaled,
+the structure appears too &quot;cloudy&quot; and not &quot;clumpy&quot; enough. But back to
+that later...</p>
+<p>The peak amplitude is set by re-scaling the map. Ideally, we'd like to
+see this set by a point source, since that is true in most fields.
+The noise level should not be included in simulations, but should be
+used to show the difference between pipeline-leftover noise and gaussian
+noise on the sky. i.e., what structures disappear when you just add
+noise, and what structures are removed by the pipeline.</p>
+<p>The PSF is simply to smooth out signals that are removed by the
+telescope beam. We can replace this with a &quot;real&quot; PSF if and when we've
+come up with a believable one.</p>
+<p>The noise is added after the smoothing because it should be on a pixel
+scale rather than a beam scale.</p>
+<p>Here are some example realizations with different power laws:</p>
+<img alt="" src="http://3.bp.blogspot.com/-vCy9Lx2RjWw/Tdvs_PO1u6I/AAAAAAAAGLw/cc7cIupQu0U/s320/exp7_fakesky_sm_realP-1.0_imagP-1.0_imagS01.0_seednum02.png" />
+<img alt="" src="http://4.bp.blogspot.com/-qpgg2U41r6U/Tdvs_RPxARI/AAAAAAAAGL4/v5exzhhqDew/s320/exp7_fakesky_sm_realP-1.5_imagP-1.5_imagS01.0_seednum02.png" />
+<img alt="" src="http://3.bp.blogspot.com/-2kUqO9aE8zM/Tdvs_maHaCI/AAAAAAAAGMA/u5bDCfiVuH0/s320/exp7_fakesky_sm_realP-2.0_imagP-2.0_imagS01.0_seednum02.png" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -405,37 +451,6 @@ approximately negligible.
 deconv does NOT recover point sources, but reconv does (perfectly)
 The algorithm starts to decay and produce weird ringey residuals at a
 S/N ~300. The residuals are only at the 1% level out to S/N ~1000.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/tests-running.html" rel="bookmark" title="Permalink to Tests running">
-                    Tests running</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-04-08T17:48:00"> 2011/04/08 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <ul class="simple">
-<li>Re-doing December 2010 calibration (remember to check &amp; compare AFGL
-4029)</li>
-<li>Mapping L351 with deconv, reconv, nodeconv</li>
-</ul>
-<p>ARGH something is wrong with l351 pointing! Is the pointing model
-broken? What HAPPENED?!
-OK, on to 4/8/2011 stuff:
-I've done more work on the Memo from a few weeks ago, and now have a
-concrete recommendation that we do some more observing in 2011. Why I
-torture myself so, I do not know....
-Examination of the 2009 tests shows that reconv is by far the superior
-approach for pointing observations as previously noted. Since reconv
-doesn't look bad, but definitely not best, for science, it might be the
-compromise we have to make. nodeconv completely fails for ds5 data, but
-the ds5 data in general are abominable. They drop by 15-20% compared to
-ds1 for Mars. The problem with nodeconv appears to be extremely high
-noise maps.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

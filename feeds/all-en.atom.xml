@@ -1,8 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all-en.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-04-24T22:57:00-06:00</updated><entry><title>More CASA simulation &amp; debugging</title><link href="http://keflavich.github.io/blog/more-casa-simulation-debugging.html" rel="alternate"></link><updated>2016-04-24T22:57:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-04-24:more-casa-simulation-debugging.html</id><summary type="html">&lt;p&gt;(this post written from snowy-ish ALMA; &lt;a class="reference external" href="https://goo.gl/photos/z3fUkCT6VVRzt8EW6"&gt;just cloudy at the OSF though&lt;/a&gt;)&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all-en.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-04-26T15:12:00-06:00</updated><entry><title>CASA simulated imaging: now FTMachine is whining</title><link href="http://keflavich.github.io/blog/casa-simulated-imaging-now-ftmachine-is-whining.html" rel="alternate"></link><updated>2016-04-26T15:12:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-04-26:casa-simulated-imaging-now-ftmachine-is-whining.html</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="|filename|/casa_simulation_debugging.rst"&gt;A few days ago&lt;/a&gt;
+I apparently got my broken simulator working again.  Today, in my first
+attempt to repeat those results, I... have broken it again.:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+WARN        FTMachine::initMaps     No overlap in frequency between image channels and selected data found for this FTMachine
+WARN        FTMachine::initMaps+     Check your data selection and image parameters if you end up with a blank image
+&lt;/pre&gt;
+&lt;p&gt;This warning is not a simple warning, it means nothing is being done.  My
+images are empty, pure noise (which, interestingly enough, is far from
+gaussian).&lt;/p&gt;
+&lt;p&gt;I have encountered these errors &lt;cite&gt;before
+&amp;lt;|filename|/separating_line_and_continuum.rst&amp;gt;&lt;/cite&gt;, but unfortunately did not
+resolve the issue.&lt;/p&gt;
+&lt;p&gt;Turns out, the difference was the .ms file I used,
+&lt;tt class="docutils literal"&gt;continuum_7m12m_noflag.ms&lt;/tt&gt;, which works, vs the useful one,
+&lt;tt class="docutils literal"&gt;w51_contvis_selfcal_3.ms&lt;/tt&gt;, which doesn't.&lt;/p&gt;
+&lt;p&gt;Checking out their headers, the continuum image does overlap with the
+data but the selfcal version doesn't.  Wonderful.  Now I'll bet it's only
+populating one channel at a time when I invert too...&lt;/p&gt;
+&lt;p&gt;This leads me to try:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+split(vis='w51_contvis_selfcal_3.ms', outputvis='simulation_continuum.ms', datacolumn='data', width=100)
+&lt;/pre&gt;
+&lt;p&gt;then use (borrowed from &lt;a class="reference external" href="https://github.com/radio-astro-tools/sandbox/blob/master/casa_7m12m_tools/weight_density_uv_plot.py"&gt;this tool&lt;/a&gt;):&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+mymsmd = msmdtool()
+mymsmd.open(vis)
+
+reffreq = &amp;quot;{value}{unit}&amp;quot;.format(**mymsmd.reffreq(spw)['m0'])
+&lt;/pre&gt;
+&lt;p&gt;to get the frequency to write into the header each time.&lt;/p&gt;
+&lt;p&gt;At a glance, just changing the frequency of the FITS file to match the first
+SPW seems to work.  However, I haven't yet examined whether the other SPWs
+are populated.&lt;/p&gt;
+&lt;p&gt;This assumption proved wrong.  No, it simply doesn't work.  The warnings went away,
+but the output images are empty.  Also, the noise went up, which I don't understand.&lt;/p&gt;
+&lt;p&gt;Imaging just spw1 kind of worked, but resulted in an image with the wrong
+resolution by factors of many.&lt;/p&gt;
+&lt;p&gt;Trying to loop over all spws failed miserably, resulting in &lt;em&gt;nothing&lt;/em&gt; being done by
+predict and &lt;em&gt;no warning&lt;/em&gt; being given.&lt;/p&gt;
+&lt;p&gt;OK, finally, solution is to make sure CDELT is large enough to cover &lt;em&gt;all&lt;/em&gt; SPWs.&lt;/p&gt;
+&lt;p&gt;Another important note: Jy/beam and Jy/pixel inputs into CASA result in identical images.
+In both cases, they are wrong images: they correspond to multiplying the input data by
+factors of at least 100.  Therefore, my conclusion now is that I have to divide everything
+by some fact, which I &lt;em&gt;sincerely&lt;/em&gt; hope is ppbeam, to correct the data.&lt;/p&gt;
+&lt;p&gt;It looked vaguely like the divide-by-ppbeam trick worked, but my tests kept coming up funny
+because the &lt;em&gt;original&lt;/em&gt; images were scaled down.  So I tried unscaling them.  Somehow,
+without changing anything about the headers, I landed on another failed predict error:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+2016-04-27 19:14:42 SEVERE  Simulator::createSkyEquation() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2200)        Caught exception: (/Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc : 2266) Failed AlwaysAssert spectralIndex&amp;gt;=0
+2016-04-27 19:14:42 SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Failed to create SkyEquation
+&lt;/pre&gt;
+&lt;p&gt;Spectral Index?  I encountered this &lt;a class="reference external" href="http://keflavich.github.io/blog/casa-simulation.html"&gt;previously&lt;/a&gt;, but didn't record any solution.
+After checking the header, it appears that my files are &lt;em&gt;now&lt;/em&gt; missing axes 3 and 4.
+I didn't make any changes that should cause this; the axes are just not being added
+on importfits despite being forcibly added in the command.&lt;/p&gt;
+&lt;p&gt;The problem is unfortunately not in the FITS part, but again in the CASA part.
+Re-importing the FITS file to .image without forcing &lt;tt class="docutils literal"&gt;defaultaxes&lt;/tt&gt; again just
+broke it.&lt;/p&gt;
+</summary><category term="casa"></category><category term="clean"></category><category term="simulation"></category></entry><entry><title>More CASA simulation &amp; debugging</title><link href="http://keflavich.github.io/blog/more-casa-simulation-debugging.html" rel="alternate"></link><updated>2016-04-24T22:57:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-04-24:more-casa-simulation-debugging.html</id><summary type="html">&lt;p&gt;(this post written from snowy-ish ALMA; &lt;a class="reference external" href="https://goo.gl/photos/z3fUkCT6VVRzt8EW6"&gt;just cloudy at the OSF though&lt;/a&gt;)&lt;/p&gt;
 &lt;p&gt;(tl; dr version: &lt;tt class="docutils literal"&gt;sm.setvp&lt;/tt&gt; doesn't work if you have &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;TELESCOP=&amp;quot;ALMA&amp;quot;&lt;/span&gt;&lt;/tt&gt; in
 your header)&lt;/p&gt;
-&lt;p&gt;I'm tryin to repeat an experiment very similar to
+&lt;p&gt;I'm trying to repeat an experiment very similar to
 &lt;a class="reference external" href="http://keflavich.github.io/blog/casa-simulation.html"&gt;previous&lt;/a&gt;
 &lt;a class="reference external" href="http://keflavich.github.io/blog/simulated-observations-of-perseus-in-w51.html"&gt;simulation work&lt;/a&gt;
 in order to quantify my completeness and largest angular scales

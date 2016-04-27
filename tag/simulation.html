@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/04/26
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-simulated-imaging-now-ftmachine-is-whining.html">CASA simulated imaging: now FTMachine is whining</a>
+              </li>
+              <li class="post">
                   2016/04/24
                   <br>
                   <a href="http://keflavich.github.io/blog/more-casa-simulation-debugging.html">More CASA simulation & debugging</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/stf-measurement-attempts-round-3.html">STF measurement attempts, round 3?</a>
               </li>
-              <li class="post">
-                  2011/07/27
-                  <br>
-                  <a href="http://keflavich.github.io/blog/examining-bolocat.html">Examining bolocat</a>
-              </li>
         </ul>
       </li>
     
@@ -104,6 +104,78 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/casa-simulated-imaging-now-ftmachine-is-whining.html" rel="bookmark" title="Permalink to CASA simulated imaging: now FTMachine is whining">
+                    CASA simulated imaging: now FTMachine is whining</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-04-26T15:12:00"> 2016/04/26 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a class="reference external" href="|filename|/casa_simulation_debugging.rst">A few days ago</a>
+I apparently got my broken simulator working again.  Today, in my first
+attempt to repeat those results, I... have broken it again.:</p>
+<pre class="literal-block">
+WARN        FTMachine::initMaps     No overlap in frequency between image channels and selected data found for this FTMachine
+WARN        FTMachine::initMaps+     Check your data selection and image parameters if you end up with a blank image
+</pre>
+<p>This warning is not a simple warning, it means nothing is being done.  My
+images are empty, pure noise (which, interestingly enough, is far from
+gaussian).</p>
+<p>I have encountered these errors <cite>before
+&lt;|filename|/separating_line_and_continuum.rst&gt;</cite>, but unfortunately did not
+resolve the issue.</p>
+<p>Turns out, the difference was the .ms file I used,
+<tt class="docutils literal">continuum_7m12m_noflag.ms</tt>, which works, vs the useful one,
+<tt class="docutils literal">w51_contvis_selfcal_3.ms</tt>, which doesn't.</p>
+<p>Checking out their headers, the continuum image does overlap with the
+data but the selfcal version doesn't.  Wonderful.  Now I'll bet it's only
+populating one channel at a time when I invert too...</p>
+<p>This leads me to try:</p>
+<pre class="literal-block">
+split(vis='w51_contvis_selfcal_3.ms', outputvis='simulation_continuum.ms', datacolumn='data', width=100)
+</pre>
+<p>then use (borrowed from <a class="reference external" href="https://github.com/radio-astro-tools/sandbox/blob/master/casa_7m12m_tools/weight_density_uv_plot.py">this tool</a>):</p>
+<pre class="literal-block">
+mymsmd = msmdtool()
+mymsmd.open(vis)
+
+reffreq = &quot;{value}{unit}&quot;.format(**mymsmd.reffreq(spw)['m0'])
+</pre>
+<p>to get the frequency to write into the header each time.</p>
+<p>At a glance, just changing the frequency of the FITS file to match the first
+SPW seems to work.  However, I haven't yet examined whether the other SPWs
+are populated.</p>
+<p>This assumption proved wrong.  No, it simply doesn't work.  The warnings went away,
+but the output images are empty.  Also, the noise went up, which I don't understand.</p>
+<p>Imaging just spw1 kind of worked, but resulted in an image with the wrong
+resolution by factors of many.</p>
+<p>Trying to loop over all spws failed miserably, resulting in <em>nothing</em> being done by
+predict and <em>no warning</em> being given.</p>
+<p>OK, finally, solution is to make sure CDELT is large enough to cover <em>all</em> SPWs.</p>
+<p>Another important note: Jy/beam and Jy/pixel inputs into CASA result in identical images.
+In both cases, they are wrong images: they correspond to multiplying the input data by
+factors of at least 100.  Therefore, my conclusion now is that I have to divide everything
+by some fact, which I <em>sincerely</em> hope is ppbeam, to correct the data.</p>
+<p>It looked vaguely like the divide-by-ppbeam trick worked, but my tests kept coming up funny
+because the <em>original</em> images were scaled down.  So I tried unscaling them.  Somehow,
+without changing anything about the headers, I landed on another failed predict error:</p>
+<pre class="literal-block">
+2016-04-27 19:14:42 SEVERE  Simulator::createSkyEquation() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2200)        Caught exception: (/Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc : 2266) Failed AlwaysAssert spectralIndex&gt;=0
+2016-04-27 19:14:42 SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Failed to create SkyEquation
+</pre>
+<p>Spectral Index?  I encountered this <a class="reference external" href="http://keflavich.github.io/blog/casa-simulation.html">previously</a>, but didn't record any solution.
+After checking the header, it appears that my files are <em>now</em> missing axes 3 and 4.
+I didn't make any changes that should cause this; the axes are just not being added
+on importfits despite being forcibly added in the command.</p>
+<p>The problem is unfortunately not in the FITS part, but again in the CASA part.
+Re-importing the FITS file to .image without forcing <tt class="docutils literal">defaultaxes</tt> again just
+broke it.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
                 <a href="http://keflavich.github.io/blog/more-casa-simulation-debugging.html" rel="bookmark" title="Permalink to More CASA simulation & debugging">
                     More CASA simulation &amp; debugging</a>
             </h2> 
@@ -114,7 +186,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <div class="entry-content"> <p>(this post written from snowy-ish ALMA; <a class="reference external" href="https://goo.gl/photos/z3fUkCT6VVRzt8EW6">just cloudy at the OSF though</a>)</p>
 <p>(tl; dr version: <tt class="docutils literal">sm.setvp</tt> doesn't work if you have <tt class="docutils literal"><span class="pre">TELESCOP=&quot;ALMA&quot;</span></tt> in
 your header)</p>
-<p>I'm tryin to repeat an experiment very similar to
+<p>I'm trying to repeat an experiment very similar to
 <a class="reference external" href="http://keflavich.github.io/blog/casa-simulation.html">previous</a>
 <a class="reference external" href="http://keflavich.github.io/blog/simulated-observations-of-perseus-in-w51.html">simulation work</a>
 in order to quantify my completeness and largest angular scales
@@ -541,39 +613,6 @@ show that that is the cause have in fact shown no problems at all. What
 else could cause a scale-independent power loss?
 Also, the flat power spectrum (and inverted) aren't quite flat because I
 impose a &quot;galactic scale height&quot; on them. Should I stop doing that?</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/measuring-preferred-angles-in-the-herschel-data-on-larger-scales.html" rel="bookmark" title="Permalink to Measuring preferred angles in the Herschel data on larger scales">
-                    Measuring preferred angles in the Herschel data on larger scales</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-06-07T22:09:00"> 2011/06/07 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>This is something of a repeat of yesterday's exercise, but for Herschel
-data on larger scales, where filamentation is expected (at different
-angles?) on a different scale than the Galactic plane.
-First example: L030 500 microns</p>
-<img alt="" src="http://1.bp.blogspot.com/-wtocYOxuJGo/Te6boI6cE7I/AAAAAAAAGNU/f9h0MXIPNh8/s320/bin_l30_plw_PSD.png" />
-<img alt="" src="http://4.bp.blogspot.com/-HlNCVZYyly4/Te6bob1mWLI/AAAAAAAAGNc/Jq6MTJnVyWE/s320/bin_l30_plw_azprofile.png" />
-<p>There is evidently a preferred direction that is correlated down to the
-resolution of the map, though the preference is smallest at the smallest
-scales. This may simply be a statement that there are more sources along
-the galactic plane, though, since there really isn't any particularly
-obvious filamentation in the image.</p>
-<img alt="" src="http://4.bp.blogspot.com/-LfWovOR8nBk/Te6bpM-PNTI/AAAAAAAAGNk/T9il85L34p0/s320/bin_l59_plw_PSD.png" />
-<img alt="" src="http://4.bp.blogspot.com/-1_7ezH0S6tk/Te6bpokBuYI/AAAAAAAAGNs/AQL0U86N4gw/s320/bin_l59_plw_azprofile.png" />
-<p>In L59, on the other hand, there is at most a very weak preference
-except at the largest scales corresponding to the Galactic Plane. This
-is somewhat interesting because there IS obvious filamentation in the
-L59 image, but it does not have a preferred direction. Unfortunately, it
-is not obvious whether or where filamentation shows up in fourier space
-if it does not have a preferred direction. There is no excess at any
-spatial scale that I can pick out.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

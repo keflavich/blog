@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/04/26
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-simulated-imaging-now-ftmachine-is-whining.html">CASA simulated imaging: now FTMachine is whining</a>
+              </li>
+              <li class="post">
                   2016/04/24
                   <br>
                   <a href="http://keflavich.github.io/blog/more-casa-simulation-debugging.html">More CASA simulation & debugging</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/simulated-observations-of-perseus-in-w51.html">Simulated Observations of Perseus in W51</a>
               </li>
-              <li class="post">
-                  2016/02/25
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-simulation.html">CASA Simulation</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,20 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/idl-to-python.html" rel="bookmark" title="Permalink to IDL-to-Python">
+                    IDL-to-Python</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>astrobetter started up an <a class="reference external" href="http://www.astrobetter.com/wiki/tiki-index.php?page=Python+Switchers+Guide">idl-to-python guide</a> on their wiki.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -353,28 +367,6 @@ directory. It's available <a class="reference external" href="http://code.google
 <pre class="literal-block">
 function! WhichTab(filename)    &quot; Try to determine whether file is open in any tab.      &quot; Return number of tab it's open in    let buffername = bufname(a:filename)    if buffername == &quot;&quot;        return 0    endif    let buffernumber = bufnr(buffername)    &quot; tabdo will loop through pages and leave you on the last one;    &quot; this is to make sure we don't leave the current page    let currenttab = tabpagenr()    let tab_arr = []    tabdo let tab_arr += tabpagebuflist()    &quot; return to current page    exec &quot;tabnext &quot;.currenttab    &quot; Start checking tab numbers for matches    let i = 0    for tnum in tab_arr        let i += 1        echo &quot;tnum: &quot;.tnum.&quot; buff: &quot;.buffernumber.&quot; i: &quot;.i        if tnum == buffernumber            return i        endif    endforendfunctionfunction! WhichWindow(filename)    &quot; Try to determine whether the file is open in any GVIM *window*    let serverlist = split(serverlist(),&quot;\n&quot;)    &quot;let currentserver = ????    for server in serverlist        let remotetabnum = remote_expr(server,             \&quot;WhichTab('&quot;.a:filename.&quot;')&quot;)        if remotetabnum != 0            return server        endif    endforendfunction
 </pre>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/listing-variables-eg-idl-help-in-python.html" rel="bookmark" title="Permalink to Listing variables (e.g IDL help) in Python">
-                    Listing variables (e.g IDL help) in Python</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Again, IDL has the simple 'help' command to tell you all variables in
-your namespace. Python has the same thing, but the namespace tends to be
-cluttered with imported functions. The commands who, who_ls, and whos
-are meant for interactive use. They are a hell of a lot more useful than
-var, locals, globals, and dir.
-examples:
-<tt class="docutils literal">whos floatwhos ndarraywho modulefloat_vars = %who_ls <span class="pre">floatgrep('x',float_vars)</span></tt>
-I'm afraid I don't know how to make the last two lines into a one-liner,
-as would be desirable.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

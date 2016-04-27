@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/04/26
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-simulated-imaging-now-ftmachine-is-whining.html">CASA simulated imaging: now FTMachine is whining</a>
+              </li>
+              <li class="post">
                   2016/04/24
                   <br>
                   <a href="http://keflavich.github.io/blog/more-casa-simulation-debugging.html">More CASA simulation & debugging</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/simulated-observations-of-perseus-in-w51.html">Simulated Observations of Perseus in W51</a>
               </li>
-              <li class="post">
-                  2016/02/25
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-simulation.html">CASA Simulation</a>
-              </li>
         </ul>
       </li>
     
@@ -102,6 +102,35 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles by Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/comparing-tclean-parameters.html" rel="bookmark" title="Permalink to Comparing tclean parameters">
+                    Comparing tclean parameters</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-01-14T09:57:00"> 2016/01/14 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Comparing clean methods with identical data &amp; parameters (as far as possible):
+<a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/script_merge/clean_method_comparison.py">code</a>.</p>
+<p>An example using natural weighting:</p>
+<img alt="" src="http://keflavich.github.io/blog/images/casa/tclean_compare.png" style="width: 600px;" />
+<p>None of the methods are acceptable.  Multiscale is the worst, but hogbom is
+extremely bad: there are major ringing artifacts (stripes parallel to the main
+filament).</p>
+<p>Disturbingly, even though I have given multiple scales, there are clearly no
+non-pointlike scales in any of the model images, including mem, so I think
+there's a major problem with tclean:</p>
+<img alt="" src="http://keflavich.github.io/blog/images/casa/tclean_compare_models.png" style="width: 600px;" />
+<p>I'm re-doing it with uniform weighting, because that's the case I was actually
+interested in.</p>
+<img alt="" src="http://keflavich.github.io/blog/images/casa/tclean_compare_uniform.png" style="width: 600px;" />
+<p>The uniform tests come up with a clear and obvious answer: use clark clean, DO
+NOT use any other methods as they are all unstable.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -482,72 +511,11 @@ miriad% fits in=h2comos1.clr out=h2comos1.fits op=xyout
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/position-velocity-diagrams.html" rel="bookmark" title="Permalink to Position-Velocity Diagrams">
-                    Position-Velocity Diagrams</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-09-24T00:00:00"> 2013/09/24 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>tl;dr version: IPython notebook <a class="reference external" href="http://keflavich.github.io/pvextractor/examples/IRAS05358Slicing.html">here</a>, code <a class="reference external" href="http://keflavich.github.io/pvextractor/">available on github</a></p>
-<div class="section" id="current-state-of-affairs">
-<h2>Current state of affairs</h2>
-<p>Position-velocity diagrams with arbitrary position axes have been a common tool
-for studying spectra for a long time, probably because the &quot;native&quot; format of
-long-slit spectra on CCDs is effectively a position-velocity diagram.</p>
-<p>It's becoming more common now to have data cubes (PPV) than 1D or 2D spectra.
-But PV diagrams still have utility.  Unfortunately, there aren't very good
-tools to produce them.</p>
-<p>There are plenty of tools that can slice along any of the native axes of a data
-cube.  If you take your data cube in RA/Dec space, extracting along lines of
-constant RA or Dec is trivial (<a class="reference external" href="http://star-www.dur.ac.uk/~pdraper/gaia/gaia.html">GAIA</a> can do it natively, but it's easy to
-slice a cube in IDL or python).</p>
-<p>However, if you wanted to slice along lines of constant GLON or GLAT, you'd
-have to reproject the cube to use this approach.  There are nice tools that
-implement cube rotation: CASA has an <a class="reference external" href="http://star-www.dur.ac.uk/~pdraper/gaia/gaia.html">imrebin recipe</a> and STARLINK has a
-rotation tool (though I can't find it now...).</p>
-<p>However, this approach is terribly inefficient if you want slices at multiple
-different angles, and it's outright awful if you want to track a filament.</p>
-</div>
-<div class="section" id="an-alternative-approach">
-<h2>An alternative approach</h2>
-<p>The alternative is to interpolate between pixels along a specified axis.  This
-can be done very efficiently in python using scipy's <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.interpolation.map_coordinates.html">map_coordinates</a>, which
-by default does a cubic-spline interpolation at the specified points.</p>
-<p>I've started to build a tool to extract position-velocity diagrams on this
-basis.  It's fully functional, but doesn't do anything interactive just yet.
-<a class="reference external" href="https://github.com/keflavich/pvextractor">pvextractor</a> is <a class="reference external" href="http://keflavich.github.io/pvextractor/">available on github</a>.</p>
-<p>There is a complete example demonstrating its use <a class="reference external" href="http://keflavich.github.io/pvextractor/examples/IRAS05358Slicing.html">here</a>.</p>
-<p>In short, though, it allows you to describe paths like this:</p>
-<img alt="" src="http://keflavich.github.io/blog/images/paths_i05358.png" style="width: 800px;" />
-<p>and extract them into position-velocity diagrams like this:</p>
-<img alt="" src="http://keflavich.github.io/blog/images/pv_i05358.png" style="width: 800px;" />
-</div>
-<div class="section" id="postscript-figshare">
-<h2>Postscript: Figshare</h2>
-<p>(note: postscript as in &quot;P.S.&quot;, not &quot;.ps&quot;)</p>
-<p>In order to create the example document (<a class="reference external" href="http://keflavich.github.io/pvextractor/examples/IRAS05358Slicing.html">here</a>), I needed a small data cube
-that could easily be downloaded. <a class="reference external" href="theastrodata.org">Dataverse</a> hosts the <a class="reference external" href="http://www.cfa.harvard.edu/COMPLETE/">COMPLETE</a> survey, but
-they make you jump through a javascript hoop to download their data, which
-means that it is not possible to write an easily reproducible script.  Too bad,
-since I would have used them except for this minor interface issue.</p>
-<p>Instead, I've found that <a class="reference external" href="http://figshare.com">figshare</a> has fixed up their interface since I last
-used them.  It was easy enough that I decided to upload my <a class="reference external" href="http://figshare.com/articles/IRAS_05358_3543_Data_Cubes/806315">IRAS 05358+3543
-data cubes</a> and had no trouble at all.  I also posted an update to the <a class="reference external" href="http://arxiv.org/abs/0910.2990">arxiv</a>
-page for the article indictating that the data are freely shared.  I'll do my
-best to share the data for the rest of my papers too, though it will take some
-time and I'll hit data limits for W5 pretty quickly.</p>
-</div>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
             <a href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">&laquo;</a>
-    Page 2 / 2
+    Page 2 / 3
+        <a href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom3.html">&raquo;</a>
 </p>
 </section><!-- /#content -->
   </div>
