@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all-en.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-04-26T15:12:00-06:00</updated><entry><title>CASA simulated imaging: now FTMachine is whining</title><link href="http://keflavich.github.io/blog/casa-simulated-imaging-now-ftmachine-is-whining.html" rel="alternate"></link><updated>2016-04-26T15:12:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-04-26:casa-simulated-imaging-now-ftmachine-is-whining.html</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="|filename|/casa_simulation_debugging.rst"&gt;A few days ago&lt;/a&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all-en.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-05-01T10:21:00-06:00</updated><entry><title>CASA tclean adds negative components</title><link href="http://keflavich.github.io/blog/casa-tclean-adds-negative-components.html" rel="alternate"></link><updated>2016-05-01T10:21:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-05-01:casa-tclean-adds-negative-components.html</id><summary type="html">&lt;p&gt;I'm trying to examine some of my 7m+12m combined data and have run into yet another
+mysterious behavior of CASA.  &lt;tt class="docutils literal"&gt;tclean&lt;/tt&gt; is adding negative components in regions with
+exclusively positive emission.&lt;/p&gt;
+&lt;p&gt;In this image, the &lt;em&gt;left&lt;/em&gt; is the clean image, which doesn't make any sense; it
+looks like it should be a residual image but it is not.  2nd image is the clean
+components (negative!!), 3rd is the residual, 4th is the dirty map.&lt;/p&gt;
+&lt;img alt="" src="http://keflavich.github.io/blog/images/casa/bad_cleancomps.png" style="width: 600px;" /&gt;
+&lt;p&gt;One tricky thing for this particular image is that the emission is real, BUT it
+is also directly on top of a major sidelobe of the brightest source in the
+region.  Nonetheless, I cannot imagine any way to explain the negative
+component.  I don't really understand when a negative component is added, but
+presumably it ought to happen when the residual has a negative value but also
+the highest amplitude in the map; this obviously never happens here since the
+residual in fact has one of the highest &lt;em&gt;positive&lt;/em&gt; amplitudes in the map.&lt;/p&gt;
+&lt;p&gt;The imaging parameters seem not to affect this problem. I attempted reducing the
+gain to 0.05 to no avail.  Changing from natural to robust weighting actually
+removed most of the negative components.&lt;/p&gt;
+&lt;div class="section" id="failed-combination-of-7m-and-12m-data"&gt;
+&lt;h2&gt;Failed combination of 7m and 12m data&lt;/h2&gt;
+&lt;p&gt;The above was a tangent.  The real reason I was working on this data set was to
+combine the 7m and 12m spectral data.  The problem I keep seeing is very large,
+smooth blobs that are spatially distinct from the more compact emission.  It's
+as if someone took the two independent cubes (12m and 7m) and just added them
+together; it looks like flux is not being conserved.&lt;/p&gt;
+&lt;p&gt;The UV plots, especially weight vs uvdist, look fine.  The 7m antenna are
+downweighted relative to the 7m antennae by a factor ~2.&lt;/p&gt;
+&lt;p&gt;One of the bigger problems is that I have a vague - possibly not justified -
+sense that there is a velocity offset of ~1 km/s between the 7m and 12m data.
+If this is the case, there's no wonder the combination isn't working.
+However, it's nearly inconceivable.&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="casa"></category><category term="tclean"></category></entry><entry><title>CASA simulated imaging: now FTMachine is whining</title><link href="http://keflavich.github.io/blog/casa-simulated-imaging-now-ftmachine-is-whining.html" rel="alternate"></link><updated>2016-04-26T15:12:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-04-26:casa-simulated-imaging-now-ftmachine-is-whining.html</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="|filename|/casa_simulation_debugging.rst"&gt;A few days ago&lt;/a&gt;
 I apparently got my broken simulator working again.  Today, in my first
 attempt to repeat those results, I... have broken it again.:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;

@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/05/01
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-tclean-adds-negative-components.html">CASA tclean adds negative components</a>
+              </li>
+              <li class="post">
                   2016/04/26
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-simulated-imaging-now-ftmachine-is-whining.html">CASA simulated imaging: now FTMachine is whining</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/clean-has-extreme-sensitivity-to-the-threshold.html">CLEAN has extreme sensitivity to the threshold</a>
               </li>
-              <li class="post">
-                  2016/02/27
-                  <br>
-                  <a href="http://keflavich.github.io/blog/simulated-observations-of-perseus-in-w51.html">Simulated Observations of Perseus in W51</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,23 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/centroiding-and-merediths-files.html" rel="bookmark" title="Permalink to Centroiding and Meredith's files">
+                    Centroiding and Meredith's files</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-13T03:54:00"> 2008/08/13 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I tried the pointing offset calculations on Meredith's maps and I still
+get an RMS of ~9&quot; in both RA and DEC. Check out the files:
+/scratch/adam_work/plots/models_meredith*
+So... what?</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -337,34 +354,6 @@ Totally messed up (two sets of images many degrees apart):
 .. image:: <a class="reference external" href="http://4.bp.blogspot.com/_lsgW26mWZnU/SJuIDL161GI/AAAAAAAADN4/D4mxFyx1Fr0/s320/070709_ob7_1730m130_peanut.png">http://4.bp.blogspot.com/_lsgW26mWZnU/SJuIDL161GI/AAAAAAAADN4/D4mxFyx1Fr0/s320/070709_ob7_1730m130_peanut.png</a>
 070703_o48 :
 .. image:: <a class="reference external" href="http://4.bp.blogspot.com/_lsgW26mWZnU/SJuICzavE_I/AAAAAAAADNw/70Hl5930eU8/s320/070703_o48_3c454.3.png">http://4.bp.blogspot.com/_lsgW26mWZnU/SJuICzavE_I/AAAAAAAADNw/70Hl5930eU8/s320/070703_o48_3c454.3.png</a></p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/looking-back-at-the-old-pipeline.html" rel="bookmark" title="Permalink to Looking back at the old pipeline">
-                    Looking back at the old pipeline</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-07T16:33:00"> 2008/08/07 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I've obviously missed something. So to try to figure out what it is, I'm
-going back to the old pipeline... again...
-in map_ncdf_reading, lines 441-448, there is something curious that
-goes back to a definition-of-variables problem: ddec and dra are ADDED
-to ra and dec to get the new &quot;ra_all&quot; and &quot;dec_all&quot; variables. ddec
-and dra are calculated from eaz and eel: ERROR OFFSETS in Az and El.
-Why? What?!
-I added a new piece of code, correct_eaz_eel.pro. It is extremely
-short, but extremely necessary.</p>
-<pre class="literal-block">
-pro correct_eaz_eel,ra,dec,el,az,eel,eaz,pa    dra=-eaz*cos(!dtor*pa)*cos(!dtor*el)+eel*sin(!dtor*pa)    ddec=eaz*sin(!dtor*pa)*cos(!dtor*el)+eel*cos(!dtor*pa)    dec += ddec/3600.    ra  += dra/3600. / cos(!dtor*dec) / 15.end
-</pre>
-<p>This comes back to the fact that I don't know what ANY of the variables
-in the NCDF header are supposed to be. Why are &quot;error&quot; variables
-actually OFFSET variables, and why didn't anyone know about them?</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

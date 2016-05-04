@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/05/01
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-tclean-adds-negative-components.html">CASA tclean adds negative components</a>
+              </li>
+              <li class="post">
                   2016/04/26
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-simulated-imaging-now-ftmachine-is-whining.html">CASA simulated imaging: now FTMachine is whining</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/clean-has-extreme-sensitivity-to-the-threshold.html">CLEAN has extreme sensitivity to the threshold</a>
               </li>
-              <li class="post">
-                  2016/02/27
-                  <br>
-                  <a href="http://keflavich.github.io/blog/simulated-observations-of-perseus-in-w51.html">Simulated Observations of Perseus in W51</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,24 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/awk-sexagesimal-to-decimal-conversion.html" rel="bookmark" title="Permalink to Awk sexagesimal to decimal conversion">
+                    Awk sexagesimal to decimal conversion</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In VIM I often need to convert columns of RA/Dec from Sexagesimal into
+Decimal format.
+<tt class="docutils literal">%!awk '{ra = <span class="pre">($2+$3/60+$4/3600)*15;</span> dec = <span class="pre">$6+$7/60+$8/3600;</span> print <span class="pre">$1,&quot;ra=&quot;,ra,&quot;,</span>&nbsp; dec=&nbsp; <span class="pre">&quot;,$5,dec}'</span></tt>
+The far more irritating inverse operation:
+`` %!awk '{h=($2/15); h=h-(h%1);  m=($2-h*15)/15*60; m=m-(m%1); s=($2-h*15-m*15/60)/15*3600; d=-($3-$3%1); am=(-$3-d)*60; am=am-(am%1); as=(-$3-d-am/60)*3600; printf &quot;%s  %02i:%02i:%02.2f,  -%02i:%02i:%02.2f   %s  %s  %sn&quot; , $1,h,m,s,d,am,as,$4,$5,$6}'   ``</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -271,22 +289,6 @@ AddType text/html  .htmAddHandler application/x-httpd-php .php .htmAddHandler se
 twice, I can never again do history-search-backwards (i.e. when you type
 part of a command and type &quot;up&quot; and reverse-search through your command
 history). Any idea how to fix this?</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/command-of-the-day.html" rel="bookmark" title="Permalink to Command of the Day">
-                    Command of the Day</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>`` ls | wc ``
-and for when `` ls * `` fails
-`` find . -name &quot;*&quot; | xargs -I {} mv {} away/ ``</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
