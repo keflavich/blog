@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/05/19
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-coordinate-defaults.html">CASA coordinate defaults</a>
+              </li>
+              <li class="post">
                   2016/05/01
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-tclean-adds-negative-components.html">CASA tclean adds negative components</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/which-one-is-real.html">Which one is real?</a>
               </li>
-              <li class="post">
-                  2016/03/10
-                  <br>
-                  <a href="http://keflavich.github.io/blog/clean-has-extreme-sensitivity-to-the-threshold.html">CLEAN has extreme sensitivity to the threshold</a>
-              </li>
         </ul>
       </li>
     
@@ -102,6 +102,41 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles by Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/sensitivity-plots-using-astroquery-nrao-tool.html" rel="bookmark" title="Permalink to Sensitivity Plots using astroquery NRAO tool">
+                    Sensitivity Plots using astroquery NRAO tool</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-10-09T14:00:00"> 2015/10/09 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I wanted to see what the approximate depth achieved by (repeated)
+VLA observations of a few sources was, at least theoretically.
+This is relatively easy to do:</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<span class="kn">from</span> <span class="nn">astroquery.nrao</span> <span class="kn">import</span> <span class="n">Nrao</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">Nrao</span><span class="p">()</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">coordinates</span><span class="o">=</span><span class="n">coordinates</span><span class="o">.</span><span class="n">SkyCoord</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="s">&#39;Sgr B2(M)&#39;</span><span class="p">),</span>
+                      <span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcmin</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">pl</span>
+
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s">&#39;Observing Freq&#39;</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s">&#39;TOS&#39;</span><span class="p">],</span> <span class="s">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&quot;Observed Frequency (GHz)&quot;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&quot;Time-on-Source (s)&quot;</span><span class="p">)</span>
+
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s">&#39;Observing Freq&#39;</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s">&#39;TOS&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">result</span><span class="p">[</span><span class="s">&#39;Bandwidth&#39;</span><span class="p">],</span> <span class="s">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&quot;Observed Frequency (GHz)&quot;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&quot;Relative depth (Hz s)&quot;</span><span class="p">)</span>
+</pre></div>
+<img alt="" src="http://keflavich.github.io/blog/images/TOS_vs_freq.png" style="width: 800px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/depth_vs_freq.png" style="width: 800px;" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">

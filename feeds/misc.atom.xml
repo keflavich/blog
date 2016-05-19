@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/misc.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-05-01T10:21:00-06:00</updated><entry><title>CASA tclean adds negative components</title><link href="http://keflavich.github.io/blog/casa-tclean-adds-negative-components.html" rel="alternate"></link><updated>2016-05-01T10:21:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-05-01:casa-tclean-adds-negative-components.html</id><summary type="html">&lt;p&gt;I'm trying to examine some of my 7m+12m combined data and have run into yet another
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/misc.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-05-19T09:31:00-06:00</updated><entry><title>CASA coordinate defaults</title><link href="http://keflavich.github.io/blog/casa-coordinate-defaults.html" rel="alternate"></link><updated>2016-05-19T09:31:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-05-19:casa-coordinate-defaults.html</id><summary type="html">&lt;p&gt;A brief public service announcement: CASA coordinate strings follow a
+convention of their own making that I at least find thoroughly
+counterintuitive.  If you specify a sexagesimal coordinate, e.g. 05:12:15.3
+-5:10:20.5 or something similar, CASA interprets that as 5 hours, -5 hours.
+The declination is interpreted as being in hours.  Those are units no one has
+ever used.  The CASA version requires the second half of the sexagesimal string
+to be decimal separated:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+2016-05-19 00:45:13     WARN    SynthesisParams::stringToMDirection (file /var/rpmbuild/BUILD/casa-prerelease/casa-prerelease-4.6.0/code/synthesis/ImagerObjects/SynthesisUtilMethods.cc, line 786)     You provided the Declination/Latitude value &amp;quot;-28:23:29.22&amp;quot; which is understood to be in units of hours.
+2016-05-19 00:45:13     WARN    SynthesisParams::stringToMDirection (file /var/rpmbuild/BUILD/casa-prerelease/casa-prerelease-4.6.0/code/synthesis/ImagerObjects/SynthesisUtilMethods.cc, line 786)+    If you meant degrees, please replace &amp;quot;:&amp;quot; by &amp;quot;.&amp;quot;.
+&lt;/pre&gt;
+&lt;p&gt;This has broken my scripts more than a handful of times now, since copying &amp;amp;
+pasting coordinates from any other program inevitable has the &amp;quot;wrong&amp;quot;
+units.&lt;/p&gt;
+</summary><category term="CASA"></category></entry><entry><title>CASA tclean adds negative components</title><link href="http://keflavich.github.io/blog/casa-tclean-adds-negative-components.html" rel="alternate"></link><updated>2016-05-01T10:21:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-05-01:casa-tclean-adds-negative-components.html</id><summary type="html">&lt;p&gt;I'm trying to examine some of my 7m+12m combined data and have run into yet another
 mysterious behavior of CASA.  &lt;tt class="docutils literal"&gt;tclean&lt;/tt&gt; is adding negative components in regions with
 exclusively positive emission.&lt;/p&gt;
 &lt;p&gt;In this image, the &lt;em&gt;left&lt;/em&gt; is the clean image, which doesn't make any sense; it
