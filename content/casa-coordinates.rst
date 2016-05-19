@@ -17,5 +17,5 @@ to be decimal separated::
     2016-05-19 00:45:13     WARN    SynthesisParams::stringToMDirection (file /var/rpmbuild/BUILD/casa-prerelease/casa-prerelease-4.6.0/code/synthesis/ImagerObjects/SynthesisUtilMethods.cc, line 786)+    If you meant degrees, please replace ":" by ".".
 
 This has broken my scripts more than a handful of times now, since copying &
-pasting coordinates from any other program inevitable has the "wrong"
+pasting coordinates from any other program inevitably has the "wrong"
 units.
