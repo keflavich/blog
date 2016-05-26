@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-05-26T08:29:00-06:00</updated><entry><title>What does feather do?</title><link href="http://keflavich.github.io/blog/what-does-feather-do.html" rel="alternate"></link><updated>2016-05-26T08:29:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-05-26:what-does-feather-do.html</id><summary type="html">&lt;p&gt;This is an examination of the 'feather' task in CASA.&lt;/p&gt;
 &lt;p&gt;First we have to track down what code is actually called.&lt;/p&gt;
-&lt;p&gt;On mac, this is:
-/Applications/CASA.app/Contents/Resources/python/feather_cli.py -&amp;gt; feather_cli
-/Applications/CASA.app/Contents/Resources/python/task_feather.py -&amp;gt; feather
-/Applications/CASA.app/Contents/Resources/python/taskinit.py -&amp;gt; imtool-&amp;gt;imager-&amp;gt;casac.imager-&amp;gt;/Applications/CASA.app/Contents/Resources/python/feather_cli.py
-&lt;a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Imager.cc#L2257"&gt;Imager.cc&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;On mac, this is:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;/Applications/CASA.app/Contents/Resources/python/feather_cli.py -&amp;gt; feather_cli&lt;/li&gt;
+&lt;li&gt;/Applications/CASA.app/Contents/Resources/python/task_feather.py -&amp;gt; feather&lt;/li&gt;
+&lt;li&gt;/Applications/CASA.app/Contents/Resources/python/taskinit.py -&amp;gt; imtool-&amp;gt;imager-&amp;gt;casac.imager-&amp;gt;/Applications/CASA.app/Contents/Resources/python/feather_cli.py&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Imager.cc#L2257"&gt;Imager.cc&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;Within the imager, &lt;cite&gt;setvp&lt;/cite&gt; is used to do something with the primary beam.  As
 far as I can tell, this function spews a lot of text into the logger, sets
 local variables, sets one larger-scope variable &lt;cite&gt;BeamSquint::&lt;/cite&gt;, then does

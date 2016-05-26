@@ -114,11 +114,15 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>This is an examination of the 'feather' task in CASA.</p>
 <p>First we have to track down what code is actually called.</p>
-<p>On mac, this is:
-/Applications/CASA.app/Contents/Resources/python/feather_cli.py -&gt; feather_cli
-/Applications/CASA.app/Contents/Resources/python/task_feather.py -&gt; feather
-/Applications/CASA.app/Contents/Resources/python/taskinit.py -&gt; imtool-&gt;imager-&gt;casac.imager-&gt;/Applications/CASA.app/Contents/Resources/python/feather_cli.py
-<a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Imager.cc#L2257">Imager.cc</a></p>
+<p>On mac, this is:</p>
+<blockquote>
+<ul class="simple">
+<li>/Applications/CASA.app/Contents/Resources/python/feather_cli.py -&gt; feather_cli</li>
+<li>/Applications/CASA.app/Contents/Resources/python/task_feather.py -&gt; feather</li>
+<li>/Applications/CASA.app/Contents/Resources/python/taskinit.py -&gt; imtool-&gt;imager-&gt;casac.imager-&gt;/Applications/CASA.app/Contents/Resources/python/feather_cli.py</li>
+<li><a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Imager.cc#L2257">Imager.cc</a></li>
+</ul>
+</blockquote>
 <p>Within the imager, <cite>setvp</cite> is used to do something with the primary beam.  As
 far as I can tell, this function spews a lot of text into the logger, sets
 local variables, sets one larger-scope variable <cite>BeamSquint::</cite>, then does
