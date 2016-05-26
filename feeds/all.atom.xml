@@ -39,10 +39,20 @@ multiplies the high-resolution image by this weight.&lt;/p&gt;
 task, the single-dish data are fourier transformed, then a scaling factor, the ratio
 between the low and high beam areas, is computed.  Finally, the single-dish
 (scaled) and interferometer &lt;a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L694"&gt;fourier-transformed&lt;/a&gt; images are &lt;a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L703"&gt;added&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The most important note here is that the single-dish image is &lt;em&gt;not&lt;/em&gt; weighted:
-only the interferometer image is!  Maybe that is the correct behavior?  By
-weighting by (1-convolved beam), which means setting the total flux in the
-interferometer image to zero, the process is guaranteed to be flux conserving.&lt;/p&gt;
+&lt;p&gt;Is the single-dish image weighted by the beam at all?  The single-dish image will
+be convolved with a kernel only if &lt;a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L1235"&gt;doHighPassFilterOnSD&lt;/a&gt; is set
+or if the effective dish diameter is set.  If the beam is the same size as the original
+beam, nothing will happen.
+In &lt;a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L256"&gt;setEffectiveDishDiam&lt;/a&gt;
+the low-resolution image is convolved with the &lt;a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/components/ComponentModels/GaussianDeconvolver.cc#L34"&gt;*deconvolved*&lt;/a&gt;
+beam.&lt;/p&gt;
+&lt;p&gt;The most important note in this post is that the single-dish image is &lt;em&gt;not&lt;/em&gt;
+weighted unless &lt;cite&gt;doHighPassFilterOnSD&lt;/cite&gt; is set, and even then nothing will be
+done if the single-dish beam size passed as a parameter is the same as the beam
+size specified in the header.  That means only the interferometer image is
+weighted.  Maybe that is the correct behavior?  By weighting by (1-convolved
+beam), which means setting the total flux in the interferometer image to zero,
+the process is guaranteed to be flux conserving.&lt;/p&gt;
 &lt;!-- this is how you include images --&gt;
 &lt;!-- .. image:: |filename|/images/psfFfftF.png --&gt;
 &lt;!-- :width: 600px --&gt;
