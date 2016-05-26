@@ -10,10 +10,11 @@ This is an examination of the 'feather' task in CASA.
 First we have to track down what code is actually called.
 
 On mac, this is:
-/Applications/CASA.app/Contents/Resources/python/feather_cli.py -> feather_cli
-/Applications/CASA.app/Contents/Resources/python/task_feather.py -> feather
-/Applications/CASA.app/Contents/Resources/python/taskinit.py -> imtool->imager->casac.imager->/Applications/CASA.app/Contents/Resources/python/feather_cli.py
-`https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Imager.cc#L2257`__
+
+ * /Applications/CASA.app/Contents/Resources/python/feather_cli.py -> feather_cli
+ * /Applications/CASA.app/Contents/Resources/python/task_feather.py -> feather
+ * /Applications/CASA.app/Contents/Resources/python/taskinit.py -> imtool->imager->casac.imager->/Applications/CASA.app/Contents/Resources/python/feather_cli.py
+ * `Imager.cc <https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Imager.cc#L2257>`__
 
 Within the imager, `setvp` is used to do something with the primary beam.  As
 far as I can tell, this function spews a lot of text into the logger, sets
@@ -50,7 +51,7 @@ command seems to do the actual work.
 It starts with `calcCWeightImage <https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L414>`__,
 which sets the "weight" to one minus the peak-normalized fourier transform of
 the low-resolution (single-dish) beam
-`https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L427`__,
+`Feather.cc line 427 <https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L427>`__,
 with the result stored in the variable `cwImage_p`.
 `applyFeather <https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L408>`__ then just
 multiplies the high-resolution image by this weight.
