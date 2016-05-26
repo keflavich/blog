@@ -1,5 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/misc.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-05-19T09:31:00-06:00</updated><entry><title>CASA coordinate defaults</title><link href="http://keflavich.github.io/blog/casa-coordinate-defaults.html" rel="alternate"></link><updated>2016-05-19T09:31:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-05-19:casa-coordinate-defaults.html</id><summary type="html">&lt;p&gt;A brief public service announcement: CASA coordinate strings follow a
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/misc.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-05-26T08:29:00-06:00</updated><entry><title>What does feather do?</title><link href="http://keflavich.github.io/blog/what-does-feather-do.html" rel="alternate"></link><updated>2016-05-26T08:29:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-05-26:what-does-feather-do.html</id><summary type="html">&lt;p&gt;This is an examination of the 'feather' task in CASA.&lt;/p&gt;
+&lt;p&gt;First we have to track down what code is actually called.&lt;/p&gt;
+&lt;p&gt;On mac, this is:
+/Applications/CASA.app/Contents/Resources/python/feather_cli.py -&amp;gt; feather_cli
+/Applications/CASA.app/Contents/Resources/python/task_feather.py -&amp;gt; feather
+/Applications/CASA.app/Contents/Resources/python/taskinit.py -&amp;gt; imtool-&amp;gt;imager-&amp;gt;casac.imager-&amp;gt;/Applications/CASA.app/Contents/Resources/python/feather_cli.py
+&lt;a href="#id1"&gt;&lt;span class="problematic" id="id2"&gt;`https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Imager.cc#L2257`__&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Within the imager, &lt;cite&gt;setvp&lt;/cite&gt; is used to do something with the primary beam.  As
+far as I can tell, this function spews a lot of text into the logger, sets
+local variables, sets one larger-scope variable &lt;cite&gt;BeamSquint::&lt;/cite&gt;, then does
+&lt;cite&gt;destroySkyEquation();&lt;/cite&gt;.  In short, I don't know what this does.  Probably my
+reading of the C code is incorrect and these variables are &lt;em&gt;not&lt;/em&gt; local, in
+which case it is just setting a bunch of default beam parameters.&lt;/p&gt;
+&lt;p&gt;Then, &lt;cite&gt;Imager.cc&lt;/cite&gt; calls &lt;a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L1211"&gt;Feather.cc&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Feather sets parameters based on the effective dish diameter.  It uses
+&lt;a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L244"&gt;1.22*(speed of light)/frequency/dish_diameter&lt;/a&gt;,
+so it is retrieving the FWHM
+assuming a Gaussian beam by default.&lt;/p&gt;
+&lt;p&gt;A lovely aside: &lt;cite&gt;Imager.cc&lt;/cite&gt; passes the local variable &lt;a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Imager.cc#L2320"&gt;lowPassFilterSD&lt;/a&gt;
+to &lt;cite&gt;Feather.cc&lt;/cite&gt;, which is read in to the input boolean parameter
+&lt;a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L244"&gt;doHiPassFilterOnSD&lt;/a&gt;.
+That seems like a potential place for confusion.&lt;/p&gt;
+&lt;p&gt;If &lt;cite&gt;doHiPassFilterOnSD&lt;/cite&gt; is set &lt;em&gt;or&lt;/em&gt; the effective beam diameter is set as a
+parameter, the single dish image is deconvolved with its beam using the
+GaussianDeconvolver.  This is actually disabled by default, though.&lt;/p&gt;
+&lt;p&gt;The low resolution image is &lt;a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L142"&gt;regridded&lt;/a&gt;
+to match the high resolution image.&lt;/p&gt;
+&lt;p&gt;The &lt;a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L375"&gt;applyFeather&lt;/a&gt;
+command seems to do the actual work.
+It starts with &lt;a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L414"&gt;calcCWeightImage&lt;/a&gt;,
+which sets the &amp;quot;weight&amp;quot; to one minus the peak-normalized fourier transform of
+the low-resolution (single-dish) beam
+&lt;a href="#id1"&gt;&lt;span class="problematic" id="id3"&gt;`https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L427`__&lt;/span&gt;&lt;/a&gt;,
+with the result stored in the variable &lt;cite&gt;cwImage_p&lt;/cite&gt;.
+&lt;a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L408"&gt;applyFeather&lt;/a&gt; then just
+multiplies the high-resolution image by this weight.&lt;/p&gt;
+&lt;p&gt;Back in the &lt;a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L695"&gt;saveFeatheredImage&lt;/a&gt;
+task, the single-dish data are fourier transformed, then a scaling factor, the ratio
+between the low and high beam areas, is computed.  Finally, the single-dish
+(scaled) and interferometer &lt;a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L694"&gt;fourier-transformed&lt;/a&gt; images are &lt;a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L703"&gt;added&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The most important note here is that the single-dish image is &lt;em&gt;not&lt;/em&gt; weighted:
+only the interferometer image is!  Maybe that is the correct behavior?  By
+weighting by (1-convolved beam), which means setting the total flux in the
+interferometer image to zero, the process is guaranteed to be flux conserving.&lt;/p&gt;
+&lt;!-- this is how you include images --&gt;
+&lt;!-- .. image:: |filename|/images/psfFfftF.png --&gt;
+&lt;!-- :width: 600px --&gt;
+&lt;div class="system-messages section"&gt;
+&lt;h2&gt;Docutils System Messages&lt;/h2&gt;
+&lt;div class="system-message" id="id1"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/what_does_feather_do.rst&lt;/tt&gt;); &lt;em&gt;backlinks: &lt;a href="#id2"&gt;1&lt;/a&gt;, &lt;a href="#id3"&gt;2&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Anonymous hyperlink mismatch: 2 references but 0 targets.
+See &amp;quot;backrefs&amp;quot; attribute for IDs.&lt;/div&gt;
+&lt;/div&gt;
+</summary><category term="casa"></category></entry><entry><title>CASA coordinate defaults</title><link href="http://keflavich.github.io/blog/casa-coordinate-defaults.html" rel="alternate"></link><updated>2016-05-19T09:31:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-05-19:casa-coordinate-defaults.html</id><summary type="html">&lt;p&gt;A brief public service announcement: CASA coordinate strings follow a
 convention of their own making that I at least find thoroughly
 counterintuitive.  If you specify a sexagesimal coordinate, e.g. 05:12:15.3
 -5:10:20.5 or something similar, CASA interprets that as 5 hours, -5 hours.

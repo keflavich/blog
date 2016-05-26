@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/05/26
+                  <br>
+                  <a href="http://keflavich.github.io/blog/what-does-feather-do.html">What does feather do?</a>
+              </li>
+              <li class="post">
                   2016/05/19
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-coordinate-defaults.html">CASA coordinate defaults</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/more-casa-simulation-debugging.html">More CASA simulation & debugging</a>
               </li>
-              <li class="post">
-                  2016/03/12
-                  <br>
-                  <a href="http://keflavich.github.io/blog/which-one-is-real.html">Which one is real?</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,50 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/bolocat-v1-v2-comparison.html" rel="bookmark" title="Permalink to Bolocat v1-v2 comparison">
+                    Bolocat v1-v2 comparison</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-08-23T04:39:00"> 2011/08/23 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>For this experiment, I ran Bolocat on all of the v1 and v2 images using
+the source masks Erik derived for v1. I then compared the derived fluxes
+using both aperture photometry (as defined in bolocat) and the mask
+sums.</p>
+<p>First, note that the object_photometry code Erik wrote does NOT do
+background subtraction - this is important for understanding
+non-multiplicative offsets between v1 and v2.</p>
+<p>I fit a 2-parameter model (a line) to the v2 vs v1 plots using two
+methods. The simple linear-least-squares method is one we're all
+familiar with, and it gives semi-reasonable results, but is NOT
+statistically robust when there are errors on both axes. The other fit
+method used was Total Least Squares, which is approximately equivalent
+to Principle Component Analysis with 2 vectors. It uses components of
+the singular-value-decomposition to determine the best fit. The fits
+returned by TLS should be more robust, though the additive offsets need
+not be.</p>
+<p>Conclusion: Our factor of 1.5 looks like it was pretty accurate. For 40&quot;
+apertures, the best fit is ~1.56, which is easily within the error bars.
+Luckily, for 40&quot; apertures, there is no apparent need for an additive
+offset (I'm pretty sure the uncertainty on the measured offset is larger
+than the offset, though statistically that is not the case), which would
+complicate things.</p>
+<p>However, for the source mask, there is a greater scaling factor and a
+very substantial offset. This implies that the peaks in v2 are brighter
+by a large factor, but the backgrounds in v2 are actually lower than in
+v1 (though please do check my reasoning here). I'm really not sure what
+to make of the difference between source mask and aperture yet,
+though... there's probably something significant in the source mask
+being forced to pick positive pixels. (and peppered pickles)</p>
+<img alt="" src="http://2.bp.blogspot.com/-9a-O_TQx3Ek/TlMr1f-nmKI/AAAAAAAAGbs/Tp6UY_vwl_s/s320/total_v1v2_40arcsec_fit_compare.png" />
+<img alt="" src="http://2.bp.blogspot.com/-zhLxvflZ-30/TlMr1mWy6kI/AAAAAAAAGb0/GH7xSizIjnk/s320/total_v1v2_sourcemask_fit_compare.png" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -389,30 +433,6 @@ star formation in the S233-235 region in Auriga.</p>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <img alt="" src="http://4.bp.blogspot.com/-YX2VAOPAHso/TiNwkZ3l1MI/AAAAAAAAGTs/JsOe6JIxpuQ/s320/whoatrippy.png" />
 <p>that's all.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/open-questions-im-trying-to-answer.html" rel="bookmark" title="Permalink to Open Questions I'm trying to answer">
-                    Open Questions I'm trying to answer</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-07-17T22:58:00"> 2011/07/17 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I still haven't dealt with
-<a class="reference external" href="http://bolocam.blogspot.com/2011/07/additional-problems.html">http://bolocam.blogspot.com/2011/07/additional-problems.html</a>, or
-essentiall any of
-<a class="reference external" href="http://bolocam.blogspot.com/2011/07/minor-ongoing-problems.html">http://bolocam.blogspot.com/2011/07/minor-ongoing-problems.html</a>.
-However, they're probably related to this problem:
-<tt class="docutils literal">% CLEAN_ITER_STRUCT: There were&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 bolometers with high weights:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 13.5047 indices:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 142 or flagged indices&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 142</tt>
-which indicates that in a simulation in which there can be no outliers
-(in terms of weight/scale), there is one being rejected as an outlier.
-That indicates that weights are being computed incorrectly, despite the
-fact that scales look right (so far):
-<tt class="docutils literal">Relsens calibration: Scaled to bolometer #&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0% RELSENS_CAL_PCA: There were&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 NAN scales and&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 very low scales% RELSENS_CAL_PCA: Scale Median/Mad:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">1.0005510+/-</span>&nbsp;&nbsp;&nbsp;&nbsp; 0.010990833 led to&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 scales set to zero for a total of&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 bad bolos% RELSENS_CAL_PCA: Scales <span class="pre">avg+/-std</span> =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">1.0007304355062783+/-</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.0103252880998329Relsens calibration: Scaled to bolometer #&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0% RELSENS_CAL_PCA: There were&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 NAN scales and&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 very low scales% RELSENS_CAL_PCA: Scale Median/Mad:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">0.99955294+/-</span>&nbsp;&nbsp;&nbsp; 0.0093122063 led to&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 scales set to zero for a total of&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 bad bolos% RELSENS_CAL_PCA: Scales <span class="pre">avg+/-std</span> =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">0.9990063123041220+/-</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.0096663438876613</tt></p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

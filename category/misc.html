@@ -68,6 +68,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/05/26
+                  <br>
+                  <a href="http://keflavich.github.io/blog/what-does-feather-do.html">What does feather do?</a>
+              </li>
+              <li class="post">
                   2016/05/19
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-coordinate-defaults.html">CASA coordinate defaults</a>
@@ -87,11 +92,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/more-casa-simulation-debugging.html">More CASA simulation & debugging</a>
               </li>
-              <li class="post">
-                  2016/03/12
-                  <br>
-                  <a href="http://keflavich.github.io/blog/which-one-is-real.html">Which one is real?</a>
-              </li>
         </ul>
       </li>
     
@@ -103,6 +103,73 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles in the misc category</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/what-does-feather-do.html" rel="bookmark" title="Permalink to What does feather do?">
+                    What does feather do?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-05-26T08:29:00"> 2016/05/26 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>This is an examination of the 'feather' task in CASA.</p>
+<p>First we have to track down what code is actually called.</p>
+<p>On mac, this is:
+/Applications/CASA.app/Contents/Resources/python/feather_cli.py -&gt; feather_cli
+/Applications/CASA.app/Contents/Resources/python/task_feather.py -&gt; feather
+/Applications/CASA.app/Contents/Resources/python/taskinit.py -&gt; imtool-&gt;imager-&gt;casac.imager-&gt;/Applications/CASA.app/Contents/Resources/python/feather_cli.py
+<a href="#id1"><span class="problematic" id="id2">`https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Imager.cc#L2257`__</span></a></p>
+<p>Within the imager, <cite>setvp</cite> is used to do something with the primary beam.  As
+far as I can tell, this function spews a lot of text into the logger, sets
+local variables, sets one larger-scope variable <cite>BeamSquint::</cite>, then does
+<cite>destroySkyEquation();</cite>.  In short, I don't know what this does.  Probably my
+reading of the C code is incorrect and these variables are <em>not</em> local, in
+which case it is just setting a bunch of default beam parameters.</p>
+<p>Then, <cite>Imager.cc</cite> calls <a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L1211">Feather.cc</a>.</p>
+<p>Feather sets parameters based on the effective dish diameter.  It uses
+<a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L244">1.22*(speed of light)/frequency/dish_diameter</a>,
+so it is retrieving the FWHM
+assuming a Gaussian beam by default.</p>
+<p>A lovely aside: <cite>Imager.cc</cite> passes the local variable <a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Imager.cc#L2320">lowPassFilterSD</a>
+to <cite>Feather.cc</cite>, which is read in to the input boolean parameter
+<a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L244">doHiPassFilterOnSD</a>.
+That seems like a potential place for confusion.</p>
+<p>If <cite>doHiPassFilterOnSD</cite> is set <em>or</em> the effective beam diameter is set as a
+parameter, the single dish image is deconvolved with its beam using the
+GaussianDeconvolver.  This is actually disabled by default, though.</p>
+<p>The low resolution image is <a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L142">regridded</a>
+to match the high resolution image.</p>
+<p>The <a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L375">applyFeather</a>
+command seems to do the actual work.
+It starts with <a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L414">calcCWeightImage</a>,
+which sets the &quot;weight&quot; to one minus the peak-normalized fourier transform of
+the low-resolution (single-dish) beam
+<a href="#id1"><span class="problematic" id="id3">`https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L427`__</span></a>,
+with the result stored in the variable <cite>cwImage_p</cite>.
+<a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L408">applyFeather</a> then just
+multiplies the high-resolution image by this weight.</p>
+<p>Back in the <a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L695">saveFeatheredImage</a>
+task, the single-dish data are fourier transformed, then a scaling factor, the ratio
+between the low and high beam areas, is computed.  Finally, the single-dish
+(scaled) and interferometer <a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L694">fourier-transformed</a> images are <a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L703">added</a>.</p>
+<p>The most important note here is that the single-dish image is <em>not</em> weighted:
+only the interferometer image is!  Maybe that is the correct behavior?  By
+weighting by (1-convolved beam), which means setting the total flux in the
+interferometer image to zero, the process is guaranteed to be flux conserving.</p>
+<!-- this is how you include images -->
+<!-- .. image:: |filename|/images/psfFfftF.png -->
+<!-- :width: 600px -->
+<div class="system-messages section">
+<h2>Docutils System Messages</h2>
+<div class="system-message" id="id1">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/what_does_feather_do.rst</tt>); <em>backlinks: <a href="#id2">1</a>, <a href="#id3">2</a></em></p>
+Anonymous hyperlink mismatch: 2 references but 0 targets.
+See &quot;backrefs&quot; attribute for IDs.</div>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -640,39 +707,9 @@ it doesn't do anything)</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/a-tclean-vs-clean-comparison.html" rel="bookmark" title="Permalink to A tclean vs clean comparison">
-                    A tclean vs clean comparison</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2016-02-22T11:23:00"> 2016/02/22 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Comparing tclean to clean with the following parameters:</p>
-<pre class="literal-block">
-clean(vis=vis0, imagename=myimagebase, field=&quot;&quot;, spw='',
-      mode='mfs', outframe='LSRK', interpolation='linear',
-      imagermode='mosaic', multiscale=multiscale, interactive=False,
-      niter=1000, threshold='100mJy', imsize=imsize, minpb=0.5, cell=cell,
-      phasecenter=phasecenter, weighting='briggs', usescratch=True,
-      pbcor=True, robust=-2.0)
-
-tclean(vis=vis0, imagename=myimagebase, field=&quot;&quot;, spw='',
-       outframe='LSRK', interpolation='linear', gridder='mosaic',
-       scales=multiscale, interactive=False, niter=1000,
-       threshold='100mJy', imsize=imsize, mask='auto-pb', specmode='mfs',
-       cell=cell, phasecenter=phasecenter, weighting='briggs', robust=-2.0)
-</pre>
-<p>Note the very bad cleaning instability creeping in in the clean image:</p>
-<img alt="" src="http://keflavich.github.io/blog/images/tclean_vs_clean_7m12m.png" style="width: 600px;" />
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
-    Page 1 / 25
+    Page 1 / 26
         <a href="http://keflavich.github.io/blog/category/misc2.html">&raquo;</a>
 </p>
 </section><!-- /#content -->
