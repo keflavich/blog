@@ -62,10 +62,23 @@ between the low and high beam areas, is computed.  Finally, the single-dish
 (scaled) and interferometer `fourier-transformed <https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L694>`__ images are `added
 <https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L703>`__.
 
-The most important note here is that the single-dish image is *not* weighted:
-only the interferometer image is!  Maybe that is the correct behavior?  By
-weighting by (1-convolved beam), which means setting the total flux in the
-interferometer image to zero, the process is guaranteed to be flux conserving.
+Is the single-dish image weighted by the beam at all?  The single-dish image will
+be convolved with a kernel only if `doHighPassFilterOnSD <https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L1235>`__ is set
+or if the effective dish diameter is set.  If the beam is the same size as the original
+beam, nothing will happen.
+In `setEffectiveDishDiam
+<https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L256>`__
+the low-resolution image is convolved with the `*deconvolved*
+<https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/components/ComponentModels/GaussianDeconvolver.cc#L34>`__
+beam.
+
+The most important note in this post is that the single-dish image is *not*
+weighted unless `doHighPassFilterOnSD` is set, and even then nothing will be
+done if the single-dish beam size passed as a parameter is the same as the beam
+size specified in the header.  That means only the interferometer image is
+weighted.  Maybe that is the correct behavior?  By weighting by (1-convolved
+beam), which means setting the total flux in the interferometer image to zero,
+the process is guaranteed to be flux conserving.
 
 .. this is how you include images
 .. .. image:: |filename|/images/psfFfftF.png
