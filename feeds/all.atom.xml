@@ -5,7 +5,7 @@
 /Applications/CASA.app/Contents/Resources/python/feather_cli.py -&amp;gt; feather_cli
 /Applications/CASA.app/Contents/Resources/python/task_feather.py -&amp;gt; feather
 /Applications/CASA.app/Contents/Resources/python/taskinit.py -&amp;gt; imtool-&amp;gt;imager-&amp;gt;casac.imager-&amp;gt;/Applications/CASA.app/Contents/Resources/python/feather_cli.py
-&lt;a href="#id1"&gt;&lt;span class="problematic" id="id2"&gt;`https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Imager.cc#L2257`__&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Imager.cc#L2257"&gt;Imager.cc&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Within the imager, &lt;cite&gt;setvp&lt;/cite&gt; is used to do something with the primary beam.  As
 far as I can tell, this function spews a lot of text into the logger, sets
 local variables, sets one larger-scope variable &lt;cite&gt;BeamSquint::&lt;/cite&gt;, then does
@@ -31,7 +31,7 @@ command seems to do the actual work.
 It starts with &lt;a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L414"&gt;calcCWeightImage&lt;/a&gt;,
 which sets the &amp;quot;weight&amp;quot; to one minus the peak-normalized fourier transform of
 the low-resolution (single-dish) beam
-&lt;a href="#id1"&gt;&lt;span class="problematic" id="id3"&gt;`https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L427`__&lt;/span&gt;&lt;/a&gt;,
+&lt;a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L427"&gt;Feather.cc line 427&lt;/a&gt;,
 with the result stored in the variable &lt;cite&gt;cwImage_p&lt;/cite&gt;.
 &lt;a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L408"&gt;applyFeather&lt;/a&gt; then just
 multiplies the high-resolution image by this weight.&lt;/p&gt;
@@ -56,13 +56,6 @@ the process is guaranteed to be flux conserving.&lt;/p&gt;
 &lt;!-- this is how you include images --&gt;
 &lt;!-- .. image:: |filename|/images/psfFfftF.png --&gt;
 &lt;!-- :width: 600px --&gt;
-&lt;div class="system-messages section"&gt;
-&lt;h2&gt;Docutils System Messages&lt;/h2&gt;
-&lt;div class="system-message" id="id1"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/Users/adam/repos/pelican.keflavich.github.com/content/what_does_feather_do.rst&lt;/tt&gt;); &lt;em&gt;backlinks: &lt;a href="#id2"&gt;1&lt;/a&gt;, &lt;a href="#id3"&gt;2&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-Anonymous hyperlink mismatch: 2 references but 0 targets.
-See &amp;quot;backrefs&amp;quot; attribute for IDs.&lt;/div&gt;
-&lt;/div&gt;
 </summary><category term="casa"></category></entry><entry><title>CASA coordinate defaults</title><link href="http://keflavich.github.io/blog/casa-coordinate-defaults.html" rel="alternate"></link><updated>2016-05-19T09:31:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-05-19:casa-coordinate-defaults.html</id><summary type="html">&lt;p&gt;A brief public service announcement: CASA coordinate strings follow a
 convention of their own making that I at least find thoroughly
 counterintuitive.  If you specify a sexagesimal coordinate, e.g. 05:12:15.3
