@@ -55,7 +55,9 @@ It turns out ``tclean`` will fail silently if it doesn't find the
 ``startmodel``, which has to be specified as an image *prefix* for version
 <=4.6, and the image has to exist as a ``.model`` file.  For higher versions, 4.6+,
 the model can be directly referenced (as in clean).  Eventually, tclean seems to have
-completed, though the results indicate that it does not treat the units as I expected:
+completed, though the results indicate that it does not treat the units as I expected;
+the total power data seems to be over-weighted by a factor of 10^3+, probably by the ratio
+of the beam areas:
 
 .. image:: http://i.imgur.com/8dW7t8I.png
    :width: 600px
