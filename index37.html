@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/06/02
+                  <br>
+                  <a href="http://keflavich.github.io/blog/single-dish-combination-continued.html">Single Dish Combination Continued</a>
+              </li>
+              <li class="post">
                   2016/06/01
                   <br>
                   <a href="http://keflavich.github.io/blog/single-dish-interferometer-combination-experiments.html">Single Dish - Interferometer Combination Experiments</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-tclean-adds-negative-components.html">CASA tclean adds negative components</a>
               </li>
-              <li class="post">
-                  2016/04/26
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-simulated-imaging-now-ftmachine-is-whining.html">CASA simulated imaging: now FTMachine is whining</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,28 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/weighting-and-scaling.html" rel="bookmark" title="Permalink to Weighting and Scaling">
+                    Weighting and Scaling</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-04-19T23:08:00"> 2011/04/19 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The &quot;simple&quot; relative sensitivity calibration was causing serious
+problems.
+The assumed model for a &quot;gain&quot; $G$, timestream $S$, and reference
+timestream $R$ is:
+$S = G R$
+Naively, one would assume that something like
+$G = median(S/R)$
+would work. However, it doesn't. The distribution of $G$ values looks
+like:</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -408,40 +430,10 @@ BAD but L030 is GOOD (bordering on amazing))</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/careful-comparison-of-ds1-and-ds5.html" rel="bookmark" title="Permalink to Careful comparison of ds1 and ds5">
-                    Careful comparison of ds1 and ds5</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-03-29T15:23:00"> 2011/03/29 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I looked very closely at the timestream and maps of 101208_o11 and had
-a pretty hard time figuring out why the data were different, but it
-looked like the data really did differ on a point-by-point basis
-(according to pyflagger). The only conclusion I was able to draw is that
-the scaling must be off. I realized that the scaling was being done
-before delining. I moved scaling from readall_pc to premap, and it
-brought at least this one source into agreement. Time to run ds1-ds5
-comparisons again!
-(this means that ds1 data MUST have deline run on it, but ds5 data
-doesn't really need it)
-Here are examples of ds1 and ds5 timestreams, with and without scaling,
-and ds1 with and without delining:</p>
-<img alt="" src="http://4.bp.blogspot.com/-KR_NYG31_O0/TZECtBAgqFI/AAAAAAAAGCg/1jC9Ys2r9Iw/s200/101208_o11_ds5_uranus_indivtesttimestream011_plots_20_bolo02.png" />
-<img alt="" src="http://3.bp.blogspot.com/-HbK-hAXjSDs/TZECtUNe8AI/AAAAAAAAGCo/i4fsH12Iw8Y/s200/101208_o11_ds1_uranus_indivtest_delinetimestream011_plots_20_bolo02.png" />
-<img alt="" src="http://3.bp.blogspot.com/-edXLnDrrt5o/TZECt0No8oI/AAAAAAAAGCw/QjHg1ScBHG0/s200/101208_o11_ds1_uranus_indivtesttimestream011_plots_20_bolo02.png" />
-<img alt="" src="http://1.bp.blogspot.com/-4NIxFxEQ1jU/TZECuDJ1fVI/AAAAAAAAGC4/tGE5tDH_168/s200/101208_o11_ds1_uranus_indivtest_deline_noscaleacbtimestream011_plots_20_bolo02.png" />
-<img alt="" src="http://2.bp.blogspot.com/-DfIepZXXCFc/TZECuhm8lwI/AAAAAAAAGDA/Awp60ZuPGps/s200/101208_o11_ds5_uranus_indivtest_noscaleacbtimestream011_plots_20_bolo02.png" />
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
             <a href="http://keflavich.github.io/blog/index36.html">&laquo;</a>
-    Page 37 / 51
+    Page 37 / 52
         <a href="http://keflavich.github.io/blog/index38.html">&raquo;</a>
 </p>
 </section><!-- /#content -->

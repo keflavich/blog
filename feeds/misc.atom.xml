@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/misc.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-06-01T11:17:00-06:00</updated><entry><title>Single Dish - Interferometer Combination Experiments</title><link href="http://keflavich.github.io/blog/single-dish-interferometer-combination-experiments.html" rel="alternate"></link><updated>2016-06-01T11:17:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-06-01:single-dish-interferometer-combination-experiments.html</id><summary type="html">&lt;p&gt;I spent 3 days in Köln with Alvaro Sanchez-Mongé, Peter Schilke, Fanyi Meng,
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/misc.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-06-02T16:59:00-06:00</updated><entry><title>Single Dish Combination Continued</title><link href="http://keflavich.github.io/blog/single-dish-combination-continued.html" rel="alternate"></link><updated>2016-06-02T16:59:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-06-02:single-dish-combination-continued.html</id><summary type="html">&lt;p&gt;Continuing from yesterday, I've done some more analysis of my HC3N data on
+different scales.  The first critical note is that there appears to be
+disagreement between the 7m and 12m data.
+In principle, smoothing the 12m data to the 7m resolution should at most
+recover the 7m brightness; instead it seems that the 12m data significantly
+overpredict the 7m brightness.&lt;/p&gt;
+&lt;img alt="" src="http://keflavich.github.io/blog/images/sgrb2/array_imagecomparison.png" style="width: 600px;" /&gt;
+&lt;p&gt;This discrepancy is also evident in the power spectra, where there appears to be missing flux
+on 20-100 arcsecond scales.&lt;/p&gt;
+&lt;img alt="" src="http://keflavich.github.io/blog/images/sgrb2/array_pspeccomparison.png" style="width: 600px;" /&gt;
+&lt;p&gt;So maybe it's just that the 7m data are bad?&lt;/p&gt;
+&lt;p&gt;I discussed the image combination process with Baobab, and he suggested that it
+may not be the flux calibration of the images (their absolute scaling) but the
+relative weights used to combine them.  The default weights, and pretty much
+all variants I had experimented with, use the single-dish beam as the starting
+point: you weight the interferometer data by (1-SDbeam) in the fourier domain.&lt;/p&gt;
+&lt;p&gt;It turns out that, while this weighting scheme is the obvious thing to do
+because the single-dish beam is well-characterized, it may not be the best.
+The interferometer data may lose sensitivity on larger scales much faster than
+(1-SDbeam) would suggest.&lt;/p&gt;
+&lt;p&gt;Carrying the single-dish weight down to smaller angular scales does a better
+job of ensuring there are no negatives, but is it really &amp;quot;right&amp;quot;?
+Unfortunately, there's no good answer to this; the process is essentially the
+same as modifying the Briggs parameter when weighting intereferometric clean
+data.  You just have to choose a scale, or a weighting function, and go with
+it.  As long as the weights are conservative (i.e., sum to 1), the resulting
+image should in some sense be correct.&lt;/p&gt;
+&lt;img alt="" src="http://keflavich.github.io/blog/images/sgrb2/combination_weighting_scales.png" style="width: 600px;" /&gt;
+</summary><category term="CASA"></category><category term="data"></category></entry><entry><title>Single Dish - Interferometer Combination Experiments</title><link href="http://keflavich.github.io/blog/single-dish-interferometer-combination-experiments.html" rel="alternate"></link><updated>2016-06-01T11:17:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-06-01:single-dish-interferometer-combination-experiments.html</id><summary type="html">&lt;p&gt;I spent 3 days in Köln with Alvaro Sanchez-Mongé, Peter Schilke, Fanyi Meng,
 and Anika Schmiedeke working on Sgr B2 data and specifically on trying to
 combine the single dish (total power) data with my merged ACA+12m data from
 ALMA program 2013.1.00269.S.&lt;/p&gt;
