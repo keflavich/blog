@@ -46,7 +46,7 @@ image should in some sense be correct.
    :width: 600px
 
 In that figure, the weighting scheme for the large angular scale data was set
-to a series of different Gaussians.  The resolution of the 7m+12m data is
+to a series of different Gaussians.  The resolution of the 7m+TP data is
 (theoretically) 24x11 arcseconds, but preserving the large angular scales below
 the major beam axis seems to do a better job of preserving the image's
 positivity.
