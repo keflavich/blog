@@ -68,6 +68,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/06/14
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-clean-splotchy-artifacts.html">CASA clean: "splotchy" artifacts</a>
+              </li>
+              <li class="post">
                   2016/06/02
                   <br>
                   <a href="http://keflavich.github.io/blog/single-dish-combination-continued.html">Single Dish Combination Continued</a>
@@ -87,11 +92,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-coordinate-defaults.html">CASA coordinate defaults</a>
               </li>
-              <li class="post">
-                  2016/05/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-tclean-adds-negative-components.html">CASA tclean adds negative components</a>
-              </li>
         </ul>
       </li>
     
@@ -103,6 +103,70 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles in the misc category</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/cvel-errors.html" rel="bookmark" title="Permalink to CVEL errors">
+                    CVEL errors</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-11-02T20:50:00"> 2015/11/02 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm trying to get a good image of the W51 main sources that have line forests.
+MFS clean does a pretty good job, but is very limited in dynamic range
+presumably because the spectral lines manifest as amplitude errors.</p>
+<p>I tried splitting the data to merge my two spectral windows using <cite>cvel</cite>
+(<a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/4c29c8dc763e3f994279d50db72b9a0dfc2a35b7/script_12m/split_for_localtests.py#L8">code</a>),
+but I see thousands of errors like this:</p>
+<pre class="literal-block">
+2015-11-02 19:52:15     WARN    SubMS::combineSpws()    Averaging failed for the following channel/correllation pairs from output row 44432 up to 44459. Corresponding visibilities will be flagged:
+2015-11-02 19:52:15     WARN    SubMS::combineSpws()+   (60, 0) (60, 1) (1804, 0) (1804, 1) (1998, 0) (1998, 1)
+</pre>
+<p>and when I image the cube, there is a jump at one channel that occurs because
+the resolution suddenly changes either because SPW3 (the lo-res SPW) is not
+included or because the hi-res one suddenly is.</p>
+<img alt="" src="http://keflavich.github.io/blog/images/w51/cvel_jump.png" style="width: 400px;" />
+<p>It doesn't look like there's any obvious workaround at the moment, but I'll
+probably try sending another helpdesk ticket about this.</p>
+<p>My best idea for getting a decent continuum out now is something like this:</p>
+<blockquote>
+<ul class="simple">
+<li>image the whole cube in frequency</li>
+<li>determine channels that can approximate the bright continuum</li>
+<li>use those to uvcontsub the data</li>
+<li>image the uvcontsub'd cube</li>
+<li>uvsub the imaged spectral line cube from the original data</li>
+<li>re-image the now-continuum-only cube using mfs</li>
+</ul>
+</blockquote>
+<p>EDIT: Dirk replied to the helpdesk ticket, suggesting:</p>
+<pre class="literal-block">
+Concerning cvel: try to process one SPW at a time. Otherwise cvel will
+_combine_ the SPWs and if they are not observed at the same time, this will
+lead to problems.
+</pre>
+<p>So I've now <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/2d15ce46f9ecd75d70ab7ac4ee8f91b272139d9e/script_12m/split_for_localtests.py#L8">split the cvel into two commands</a>.
+I also added <cite>outframe='bary'</cite> because otherwise it's not obvious that the
+frequency command is doing anything
+sensible or useful.  That's actually probably why I was getting non-overlapping
+segments before - it tried converting to barycentric, but maybe too late in the
+process (i.e., it tried selecting in topo, then converting to bary for output).
+I also added a phasecenter, because it was automatically selecting pointing 24
+as the phasecenter for cvel before.</p>
+<p>This led to a new error:</p>
+<pre class="literal-block">
+2015-11-03 14:38:27     WARN    cvel::SubMS::convertGridPars     *** Requested new channel width is smaller than smallest original channel width
+2015-11-03 14:38:27     WARN    cvel::SubMS::convertGridPars+        which is 488319 Hz
+</pre>
+<p>which I've fixed by setting the output width to be 0.5 MHz, just a simple round
+number greater than the input even accounting for shift.  Unfortunately, this
+seems to have produced a dramatically larger output MS, which cannot be
+correct.... ahhh, it turns out that was temporary, once regridding was complete,
+it turned small again.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -453,23 +517,6 @@ ARCH_FLAGS=&quot;&quot; make -j 8</blockquote>
 <p>To compile cairo, I had to install pixman (no problem) the setup a PKG_CONFIG_PATH:</p>
 <blockquote>
 PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./configure</blockquote>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/azimuthal-mass-profiles.html" rel="bookmark" title="Permalink to Azimuthal Mass Profiles">
-                    Azimuthal Mass Profiles</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2014-06-13T09:00:00"> 2014/06/13 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Can we characterize &quot;hub&quot; clumps vs &quot;filament&quot; clumps by examining their
-azimuthal column density profile?  Filaments would have two-peaked structures,
-hubs many-peaked, and spherically symmetric &quot;isolated&quot; clumps would be
-peakless.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

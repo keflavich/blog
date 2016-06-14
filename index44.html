@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/06/14
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-clean-splotchy-artifacts.html">CASA clean: "splotchy" artifacts</a>
+              </li>
+              <li class="post">
                   2016/06/02
                   <br>
                   <a href="http://keflavich.github.io/blog/single-dish-combination-continued.html">Single Dish Combination Continued</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-coordinate-defaults.html">CASA coordinate defaults</a>
               </li>
-              <li class="post">
-                  2016/05/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-tclean-adds-negative-components.html">CASA tclean adds negative components</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,22 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/4-errors.html" rel="bookmark" title="Permalink to 4 errors">
+                    4 errors</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-28T16:46:00"> 2008/11/28 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>l047, l083, l359 (l000 is in /usb, l359 is in /scratch), l136p15
+Only 83 is a code error, the others are file location errors. l083 is an
+error in 'pixshift' with subscripting and will require real debugging.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -291,36 +307,6 @@ Probably only the first/last 5% of each scan should be linearly
 downweighted.
 I'm running a lot of tests on l001 with/without deconvolution, lots of
 iterations, different pca components. They'll be done sometime tomorrow.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/weighting-and-high-frequency-noise.html" rel="bookmark" title="Permalink to Weighting and high-frequency noise">
-                    Weighting and high-frequency noise</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-11-15T00:41:00"> 2008/11/15 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/SR4DzVCz1WI/AAAAAAAADfk/cJ70OPeqEzg/s400/psds.png" />
-<p>Image of PSDs (with no normalization) of the raw (blue), delined and
-exponential and polynomial subtracted (white), the noise timestream
-(yellow), and the data (cyan).
-The good: It looks like all of the powerline noise got into the noise
-timestream and almost none in the data.
-The bad: weighting is based on the noise timestream so it's possible
-that the weights aren't quite right as a result
-The weird: the data PSD. What's up with that? Apparently I'm
-preferentially subtracting certain scales but I don't know why, unless
-deconvolution is at fault.
-Edit/Update: The deconvolution is definitely at fault. Here's the same
-scan done without deconvolution:</p>
-<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/SR4ZM6FPfrI/AAAAAAAADf0/baHOQwedeqs/s400/psds2.png" />
-<p>It should have been obvious; the cyan in the first plot is the PSD of
-the deconvolution straight up, and that should have no high-frequency
-structure...</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

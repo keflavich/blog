@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/06/14
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-clean-splotchy-artifacts.html">CASA clean: "splotchy" artifacts</a>
+              </li>
+              <li class="post">
                   2016/06/02
                   <br>
                   <a href="http://keflavich.github.io/blog/single-dish-combination-continued.html">Single Dish Combination Continued</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-coordinate-defaults.html">CASA coordinate defaults</a>
               </li>
-              <li class="post">
-                  2016/05/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-tclean-adds-negative-components.html">CASA tclean adds negative components</a>
-              </li>
         </ul>
       </li>
     
@@ -102,6 +102,28 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles by Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/casa-clean-splotchy-artifacts.html" rel="bookmark" title="Permalink to CASA clean: "splotchy" artifacts">
+                    CASA clean: &quot;splotchy&quot; artifacts</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-06-14T09:31:00"> 2016/06/14 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>This image shows artifacts that look &quot;splotchy&quot;.  They are locations clean has
+placed a negative model component where none belongs, so the residual is highly
+positive and the resulting image is negative.</p>
+<img alt="" src="http://keflavich.github.io/blog/images/casa/splotchy.png" style="width: 600px;" />
+<p>Discussing with others, it appears that this artifact may be unique to
+multiscale clean and therefore may be a result of a too-strong component being
+added on a large scale.  It is not yet clear how to suppress these artifacts,
+but I'm attempting to change the scales included.  Other ideas would be welcome
+in the comments.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -687,79 +709,6 @@ subtracting a component increased the amplitude of some other part of the map
 this might be a rarer occurrence than the divergence that I see all the time,
 which may be related to gridding (given the sharp grid pattern seen in panel 4
 of the linked image).</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/simulated-observations-of-perseus-in-w51.html" rel="bookmark" title="Permalink to Simulated Observations of Perseus in W51">
-                    Simulated Observations of Perseus in W51</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2016-02-27T10:40:00"> 2016/02/27 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>The W51 and Sgr B2 ALMA mosaics contain ~50 and ~150 pointlike sources,
-respectively.  However, they have pretty miserable high-noise regions
-such that determining completeness is a serious challenge.</p>
-<p>To determine completeness in a means comparable to other observations,
-I have therefore been using the Gould's Belt Survey Perseus data
-as an input to do synthetic observations.</p>
-<p>It turns out this is technically challenging because CASA does some
-<a class="reference external" href="http://keflavich.github.io/blog/casa-simulation.html">strange things</a> when importing files.</p>
-<p>I finally got a <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/commit/b046ff5c82992ef44a1dbaac303fcc6497511142">version</a>
-working.</p>
-<p>Important details when reading in a FITS file:</p>
-<blockquote>
-<ul>
-<li><p class="first">The header <em>must</em> be fully populated with a 4-dimensional WCS.  If stokes or
-frequency are missing, CASA will choke with uninformative errors such as:</p>
-<p>2016-02-26 11:25:24  SEVERE  Simulator::createSkyEquation() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2200)        Caught exception: (/Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc : 2266) Failed AlwaysAssert spectralIndex&gt;=0
-2016-02-26 11:25:24  SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Failed to create SkyEquation</p>
-<p>and</p>
-<p>2016-02-26 11:27:36  SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Caught exception: (/Users/rpmbuild/gradle/workdir/casasources/release-4_5/casacore/coordinates/Coordinates/CoordinateSystem.cc : 793) Failed AlwaysAssert which &lt; nCoordinates() &amp;&amp; coordinates_p[which]-&gt;type() == Coordinate::STOKES</p>
-</li>
-<li><p class="first">Flux units should be in Jy/beam.  Other flux units <em>may</em> be acceptable (e.g.,
-MJy/sr, Jy/pixel), but their behavior is not entirely predictable.  I did not
-get out the expected values when I used MJy/sr as input, but I did not pursue
-further why this happened.  Using Jy/beam, and ensuring that the units were correctly
-set to Jy/beam in the file (by scaling them in the FITS image before importing),
-I got the expected results.</p>
-</li>
-<li><p class="first">CASA apparently does not read beam information from headers.  You need to include the
-beam information when doing importfits, e.g.:</p>
-<blockquote>
-<dl class="docutils">
-<dt>beam=[&quot;{0}deg&quot;.format(hdr['BMAJ']),</dt>
-<dd><p class="first last">&quot;{0}deg&quot;.format(hdr['BMIN']),
-&quot;{0}deg&quot;.format(hdr['BPA'])]</p>
-</dd>
-</dl>
-</blockquote>
-</li>
-<li><p class="first">CASA will happily read a FITS file into a <tt class="docutils literal">.image</tt> that cannot be used by
-other casa routines.  You will not get an exception until you try a later
-step.</p>
-</li>
-</ul>
-</blockquote>
-<p>Once the FITS image is read into a CASA <tt class="docutils literal">.image</tt>, <em>if</em> it has the CASA-expected
-units and dimensions, you can use <tt class="docutils literal">sm.predict</tt> to fourier transform the data
-and sample it onto the UV grid in your <tt class="docutils literal">.ms</tt> file:</p>
-<pre class="literal-block">
-sm.openfromms(&quot;file.ms&quot;)
-sm.setvp() # &quot;set voltage pattern&quot;: not clear if this is needed
-success = sm.predict(&quot;myfile.image&quot;)
-sm.done()
-sm.close()
-</pre>
-<p>This (seems to) populate the <em>data</em> column, not the model column as I had
-originally expected.  Therefore, be warned!  DO NOT DO THIS TO YOUR ORIGINAL
-DATA!  It will probably overwrite it.</p>
-<p>Once your <tt class="docutils literal">.ms</tt> file is populated, you can clean it as normal.  Some
-examples:</p>
-<img alt="" src="http://keflavich.github.io/blog/images/casa/perseus_in_w51_imaging.png" style="width: 600px;" />
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
