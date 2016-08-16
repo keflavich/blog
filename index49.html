@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/08/15
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-synthetic-observations.html">CASA synthetic observations</a>
+              </li>
+              <li class="post">
                   2016/06/14
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-clean-splotchy-artifacts.html">CASA clean: "splotchy" artifacts</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/what-does-feather-do.html">What does feather do?</a>
               </li>
-              <li class="post">
-                  2016/05/19
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-coordinate-defaults.html">CASA coordinate defaults</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,24 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/new-pointing-models.html" rel="bookmark" title="Permalink to New pointing models">
+                    New pointing models</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-21T20:45:00"> 2008/08/21 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I decided to try to fit the pointing model as a full alt/az or ra/dec
+dependent thing using mpfitfun and a 12 (or 16) parameter model. It
+didn't work very well.
+I could fit out the alt dependence, then independently fit out the az
+dependence, and see how that goes. I think it will work brilliantly.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -352,29 +370,6 @@ only doing the polysub on the second iteration (i.e. after a source
 model has been subtracted).
 Delining runs into some issues now, though, because not all frequencies
 are sampled (?).</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/wow-fft-failure.html" rel="bookmark" title="Permalink to Wow - FFT failure">
-                    Wow - FFT failure</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-12T15:11:00"> 2008/08/12 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>On my huge Cygnus run, the fft keeps failing in the deline code. It's
-actually pretty impressive, but there are 844604 points in the
-timestream. The prime factorization of 844604 is 2^2 * 211151. This is
-just damned bad luck, because I think an FFT is extremely inefficient
-when it can't factorize. What's the best workaround? ....
-9 AM update: I've rewritten the deliner to work on a scan-by-scan basis.
-It's possible that the delining failed in the past because it was
-essentially removing a constant amplitude at the line frequencies across
-the observation (or combined observations!) which is not likely to be
-true.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/08/15
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-synthetic-observations.html">CASA synthetic observations</a>
+              </li>
+              <li class="post">
                   2016/06/14
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-clean-splotchy-artifacts.html">CASA clean: "splotchy" artifacts</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/what-does-feather-do.html">What does feather do?</a>
               </li>
-              <li class="post">
-                  2016/05/19
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-coordinate-defaults.html">CASA coordinate defaults</a>
-              </li>
         </ul>
       </li>
     
@@ -102,6 +102,48 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles by Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/clean-has-extreme-sensitivity-to-the-threshold.html" rel="bookmark" title="Permalink to CLEAN has extreme sensitivity to the threshold">
+                    CLEAN has extreme sensitivity to the threshold</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-03-10T10:12:00"> 2016/03/10 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>CLEAN diverges sometimes.  The point at which divergence begins is very
+difficult to identify and unfortunately it looks like the images get mostly
+better as you slowly approach the toxic threshold:</p>
+<img alt="" src="http://keflavich.github.io/blog/images/w51/tclean_threshold_sensitivity.png" style="width: 600px;" />
+<p>The precise clean command used, with only threshold changing, is:</p>
+<pre class="literal-block">
+2016-03-10 07:49:28     INFO    tclean::::      tclean(vis=&quot;w51_contvis_selfcal_4.ms&quot;,selectdata=True,field=&quot;&quot;,spw=&quot;&quot;,timerange=&quot;&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             uvrange=&quot;&quot;,antenna=&quot;&quot;,scan=&quot;&quot;,observation=&quot;&quot;,intent=&quot;&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             datacolumn=&quot;corrected&quot;,imagename=&quot;selfcal_allspw_selfcal_4ampphase_mfs_tclean_deeper_4mJy&quot;,imsize=[3072, 3072],cell=&quot;0.05arcsec&quot;,phasecenter=&quot;J2000 19:23:41.629000 +14.30.42.38000&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             stokes=&quot;I&quot;,projection=&quot;SIN&quot;,startmodel=&quot;&quot;,specmode=&quot;mfs&quot;,reffreq=&quot;&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             nchan=-1,start=&quot;&quot;,width=&quot;&quot;,outframe=&quot;LSRK&quot;,veltype=&quot;radio&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             restfreq=[],interpolation=&quot;linear&quot;,gridder=&quot;mosaic&quot;,facets=1,wprojplanes=1,
+2016-03-10 07:49:28     INFO    tclean::::+             aterm=True,psterm=False,wbawp=True,conjbeams=True,cfcache=&quot;&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             computepastep=360.0,rotatepastep=360.0,pblimit=0.4,normtype=&quot;flatnoise&quot;,deconvolver=&quot;clark&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             scales=[],nterms=2,restoringbeam=[],outlierfile=&quot;&quot;,weighting=&quot;briggs&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             robust=-2.0,npixels=0,uvtaper=[],niter=100000,gain=0.1,
+2016-03-10 07:49:28     INFO    tclean::::+             threshold=&quot;4mJy&quot;,cycleniter=-1,cyclefactor=1.0,minpsffraction=0.05,maxpsffraction=0.8,
+2016-03-10 07:49:28     INFO    tclean::::+             interactive=False,mask=&quot;&quot;,overwrite=True,savemodel=&quot;modelcolumn&quot;,calcres=True,
+2016-03-10 07:49:28     INFO    tclean::::+             calcpsf=True,parallel=False)
+</pre>
+<p>It looks like CLEAN needs a different type of threshold to finish on, perhaps
+something requiring each subsequent component to be some value less than the
+previous component.  If each component is forced to be less than the previous
+one, the clean can never diverage, though clean would stop unexpectedly if
+subtracting a component increased the amplitude of some other part of the map
+(i.e., if the next brightest source is sitting in a negative bowl).  Still,
+this might be a rarer occurrence than the divergence that I see all the time,
+which may be related to gridding (given the sharp grid pattern seen in panel 4
+of the linked image).</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -540,46 +582,6 @@ use <a class="reference external" href="https://code.google.com/p/agpy/source/br
 <img alt="" src="http://keflavich.github.io/blog/images/psfFfftT.png" style="width: 600px;" />
 <img alt="" src="http://keflavich.github.io/blog/images/psfFfftF.png" style="width: 600px;" />
 <p><a class="reference external" href="https://gist.github.com/6a2d338830efdc02959a">Notebook containing comparisons between FFT and FFTW</a></p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/separating-line-from-continuum-in-casa-data.html" rel="bookmark" title="Permalink to Separating Line from Continuum in CASA data">
-                    Separating Line from Continuum in CASA data</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2015-11-04T15:57:00"> 2015/11/04 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I'm continuing to try to separate the line forest from the continuum data in my
-W51 cube.  Some approaches 'kinda work', some don't.</p>
-<p>The iterative approach suggested in the <a class="reference external" href="http://keflavich.github.io/blog/cvel-errors.html">previous post</a> <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/630c60e7e57ea7b57877d66b15860b26419a5552/script_12m/uvcontsub_test.py">works reasonably well</a>,
-but results in oversubtraction of the continuum, even with
-a few iterations.  Note that this approach requires <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/630c60e7e57ea7b57877d66b15860b26419a5552/script_12m/uvcontsub_test.py#L17">copying columns between ms
-files using the table toolkit</a>.</p>
-<img alt="" src="http://keflavich.github.io/blog/images/w51/oversubtracted_spectrum.png" style="width: 400px;" />
-<p>Another approach I wanted to try was to image the whole cube, take the minimum
-value along the spectral axis, and subtract that.  This would avoid the
-oversubtraction issue by force.  However, <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/c58e4fdf755f85b163d1684cc7383ef31d6a1669/script_12m/mincontsub.py">this</a>
-leads to failures in the <cite>ft</cite> task:</p>
-<pre class="literal-block">
-CASA &lt;85&gt;: ft(vis='w51_test_small_imcont.ms', model='test_continuum_min.image', usescratch=True, nterms=1)
-2015-11-04 15:01:29 WARN    ft::FTMachine::initMaps No overlap in frequency between image channels and selected data found for this FTMachine
-2015-11-04 15:01:29 WARN    ft::FTMachine::initMaps+         Check your data selection and image parameters if you end up with a blank image
-</pre>
-<p>which I don't understand.  I had to <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/c58e4fdf755f85b163d1684cc7383ef31d6a1669/script_12m/mincontsub.py#L22">hack the header</a>
-just to get ft to load the file at all, and apparently my hack wasn't good enough.
-It's really unclear to me now how to load a model from a FITS file.</p>
-<p>The next approach is to load the whole continuum-subtracted cube into a model,
-subtract THAT, then make a continuum image, then subtract that, then maybe
-we have line and continuum?  Maybe?  I suspect this approach will require
-some sort of cube masking.</p>
-<p>Unfortunately, ft is again the problem:</p>
-<pre class="literal-block">
-2015-11-04 15:09:08 SEVERE  ft::imager::ft() (file /Users/rpmbuild/gradle/workdir/casaautobuild/release-4_5/code/synthesis/MeasurementEquations/Imager.cc, line 4488)       Exception: (/Users/rpmbuild/gradle/workdir/casaautobuild/release-4_5/darwin/include/casacore/lattices/Lattices/Lattice.tcc : 299) Failed AlwaysAssert shapeIn.isEqual (shapeOut)
-</pre>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

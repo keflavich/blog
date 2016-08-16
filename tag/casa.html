@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2016/08/15
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-synthetic-observations.html">CASA synthetic observations</a>
+              </li>
+              <li class="post">
                   2016/06/14
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-clean-splotchy-artifacts.html">CASA clean: "splotchy" artifacts</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/what-does-feather-do.html">What does feather do?</a>
               </li>
-              <li class="post">
-                  2016/05/19
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-coordinate-defaults.html">CASA coordinate defaults</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,79 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/casa-synthetic-observations.html" rel="bookmark" title="Permalink to CASA synthetic observations">
+                    CASA synthetic observations</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-08-15T09:36:00"> 2016/08/15 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>To evaluate imaging robustness &amp; quality, it is necessary to do some sort of
+synthetic observation.  These synthetic observations can be done on real
+images, e.g. Herschel data shifted to greater distances, or on simulated data.</p>
+<p>Some examples:</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_perseus.py">https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_perseus.py</a></li>
+<li><a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_perseus_2.py">https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_perseus_2.py</a></li>
+<li><a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_aquila.py">https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_aquila.py</a></li>
+</ul>
+</blockquote>
+<p>General process:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>Import file into CASA .image form (e.g., <tt class="docutils literal">importfits</tt>)</li>
+<li>Load the .ms file and replace visibilities w/fourier transform of image</li>
+<li>Clean.</li>
+</ol>
+</blockquote>
+<p>The hard part is setting up the files to be imported.</p>
+<p>For example, you can import a FITS file, which to me seems to be the most
+straightforward approach:</p>
+<pre class="literal-block">
+importfits(fitsimage=perseus_rescaled,
+           imagename=perseus_casa_image,
+           overwrite=True,
+           defaultaxes=True,#['RA---TAN','DEC--TAN','FREQUENCY','STOKES'],
+           defaultaxesvalues=['2.909234541667E+02deg',
+                              '1.451177222222E+01deg',
+                              '233.9468GHz','I'],
+           # 18&quot; = 1.22 lambda/D
+           beam=[&quot;{0}deg&quot;.format(18/3600.*distance_scaling),
+                 &quot;{0}deg&quot;.format(18/3600.*distance_scaling),
+                 &quot;0deg&quot;],
+          )
+</pre>
+<p>The beam probably matters for Jy-&gt;K, or Jy/beam-&gt;Jy conversion.  The
+<tt class="docutils literal">defaultaxesvalues</tt> should correspond to the pointing center of the
+interferometer pointing or mosaic.</p>
+<p>Next is bringing this image - which we now pray is in the correct units - into UV space.:</p>
+<pre class="literal-block">
+sm.openfromms(&quot;continuum_7m12m_noflag.ms&quot;)
+sm.setvp()
+success = sm.predict(perseus_casa_image)
+assert success
+# TODO: get these from ASDM_CALWVR and WEATHER
+success2 = sm.setnoise(mode='tsys-atm', relhum=60.0, pwv='2mm', tatmos=265.0, )
+success3 = sm.corrupt()
+sm.done()
+sm.close()
+</pre>
+<p>This snippet loads the .ms file (the visibilities), then overwrites them with
+the fourier transform of the image using <tt class="docutils literal">sm.predict</tt>.  It's not clear whether
+<tt class="docutils literal">setvp</tt> is necessary.  <tt class="docutils literal">setnoise</tt> + <tt class="docutils literal">corrupt</tt> just adds &quot;appropriate&quot;
+atmospheric noise to the visibilities.</p>
+<p>From there, you should just use the same <tt class="docutils literal">clean</tt> parameters as for the
+original data, or try to optimize <tt class="docutils literal">clean</tt> here and use these parameters on
+the real data.</p>
+<p>The result will be the 'perfect' (no phase error, no amplitude error)
+interferometric image.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -666,48 +739,6 @@ but it is completely absent in the 7m+12m data.  That leads me to believe
 that it is not real, but at such high significance that is very worrisome.
 I'm also concerned by the loss of the compact source at the bottom of the e8
 filament and to the left: these seem unlikely to be affected by the filament.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/clean-has-extreme-sensitivity-to-the-threshold.html" rel="bookmark" title="Permalink to CLEAN has extreme sensitivity to the threshold">
-                    CLEAN has extreme sensitivity to the threshold</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2016-03-10T10:12:00"> 2016/03/10 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>CLEAN diverges sometimes.  The point at which divergence begins is very
-difficult to identify and unfortunately it looks like the images get mostly
-better as you slowly approach the toxic threshold:</p>
-<img alt="" src="http://keflavich.github.io/blog/images/w51/tclean_threshold_sensitivity.png" style="width: 600px;" />
-<p>The precise clean command used, with only threshold changing, is:</p>
-<pre class="literal-block">
-2016-03-10 07:49:28     INFO    tclean::::      tclean(vis=&quot;w51_contvis_selfcal_4.ms&quot;,selectdata=True,field=&quot;&quot;,spw=&quot;&quot;,timerange=&quot;&quot;,
-2016-03-10 07:49:28     INFO    tclean::::+             uvrange=&quot;&quot;,antenna=&quot;&quot;,scan=&quot;&quot;,observation=&quot;&quot;,intent=&quot;&quot;,
-2016-03-10 07:49:28     INFO    tclean::::+             datacolumn=&quot;corrected&quot;,imagename=&quot;selfcal_allspw_selfcal_4ampphase_mfs_tclean_deeper_4mJy&quot;,imsize=[3072, 3072],cell=&quot;0.05arcsec&quot;,phasecenter=&quot;J2000 19:23:41.629000 +14.30.42.38000&quot;,
-2016-03-10 07:49:28     INFO    tclean::::+             stokes=&quot;I&quot;,projection=&quot;SIN&quot;,startmodel=&quot;&quot;,specmode=&quot;mfs&quot;,reffreq=&quot;&quot;,
-2016-03-10 07:49:28     INFO    tclean::::+             nchan=-1,start=&quot;&quot;,width=&quot;&quot;,outframe=&quot;LSRK&quot;,veltype=&quot;radio&quot;,
-2016-03-10 07:49:28     INFO    tclean::::+             restfreq=[],interpolation=&quot;linear&quot;,gridder=&quot;mosaic&quot;,facets=1,wprojplanes=1,
-2016-03-10 07:49:28     INFO    tclean::::+             aterm=True,psterm=False,wbawp=True,conjbeams=True,cfcache=&quot;&quot;,
-2016-03-10 07:49:28     INFO    tclean::::+             computepastep=360.0,rotatepastep=360.0,pblimit=0.4,normtype=&quot;flatnoise&quot;,deconvolver=&quot;clark&quot;,
-2016-03-10 07:49:28     INFO    tclean::::+             scales=[],nterms=2,restoringbeam=[],outlierfile=&quot;&quot;,weighting=&quot;briggs&quot;,
-2016-03-10 07:49:28     INFO    tclean::::+             robust=-2.0,npixels=0,uvtaper=[],niter=100000,gain=0.1,
-2016-03-10 07:49:28     INFO    tclean::::+             threshold=&quot;4mJy&quot;,cycleniter=-1,cyclefactor=1.0,minpsffraction=0.05,maxpsffraction=0.8,
-2016-03-10 07:49:28     INFO    tclean::::+             interactive=False,mask=&quot;&quot;,overwrite=True,savemodel=&quot;modelcolumn&quot;,calcres=True,
-2016-03-10 07:49:28     INFO    tclean::::+             calcpsf=True,parallel=False)
-</pre>
-<p>It looks like CLEAN needs a different type of threshold to finish on, perhaps
-something requiring each subsequent component to be some value less than the
-previous component.  If each component is forced to be less than the previous
-one, the clean can never diverage, though clean would stop unexpectedly if
-subtracting a component increased the amplitude of some other part of the map
-(i.e., if the next brightest source is sitting in a negative bowl).  Still,
-this might be a rarer occurrence than the divergence that I see all the time,
-which may be related to gridding (given the sharp grid pattern seen in panel 4
-of the linked image).</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

@@ -1,5 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all-en.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-06-14T09:31:00-06:00</updated><entry><title>CASA clean: "splotchy" artifacts</title><link href="http://keflavich.github.io/blog/casa-clean-splotchy-artifacts.html" rel="alternate"></link><updated>2016-06-14T09:31:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-06-14:casa-clean-splotchy-artifacts.html</id><summary type="html">&lt;p&gt;This image shows artifacts that look &amp;quot;splotchy&amp;quot;.  They are locations clean has
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all-en.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2016-08-15T09:36:00-06:00</updated><entry><title>CASA synthetic observations</title><link href="http://keflavich.github.io/blog/casa-synthetic-observations.html" rel="alternate"></link><updated>2016-08-15T09:36:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-08-15:casa-synthetic-observations.html</id><summary type="html">&lt;p&gt;To evaluate imaging robustness &amp;amp; quality, it is necessary to do some sort of
+synthetic observation.  These synthetic observations can be done on real
+images, e.g. Herschel data shifted to greater distances, or on simulated data.&lt;/p&gt;
+&lt;p&gt;Some examples:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_perseus.py"&gt;https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_perseus.py&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_perseus_2.py"&gt;https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_perseus_2.py&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_aquila.py"&gt;https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_aquila.py&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;General process:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Import file into CASA .image form (e.g., &lt;tt class="docutils literal"&gt;importfits&lt;/tt&gt;)&lt;/li&gt;
+&lt;li&gt;Load the .ms file and replace visibilities w/fourier transform of image&lt;/li&gt;
+&lt;li&gt;Clean.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The hard part is setting up the files to be imported.&lt;/p&gt;
+&lt;p&gt;For example, you can import a FITS file, which to me seems to be the most
+straightforward approach:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+importfits(fitsimage=perseus_rescaled,
+           imagename=perseus_casa_image,
+           overwrite=True,
+           defaultaxes=True,#['RA---TAN','DEC--TAN','FREQUENCY','STOKES'],
+           defaultaxesvalues=['2.909234541667E+02deg',
+                              '1.451177222222E+01deg',
+                              '233.9468GHz','I'],
+           # 18&amp;quot; = 1.22 lambda/D
+           beam=[&amp;quot;{0}deg&amp;quot;.format(18/3600.*distance_scaling),
+                 &amp;quot;{0}deg&amp;quot;.format(18/3600.*distance_scaling),
+                 &amp;quot;0deg&amp;quot;],
+          )
+&lt;/pre&gt;
+&lt;p&gt;The beam probably matters for Jy-&amp;gt;K, or Jy/beam-&amp;gt;Jy conversion.  The
+&lt;tt class="docutils literal"&gt;defaultaxesvalues&lt;/tt&gt; should correspond to the pointing center of the
+interferometer pointing or mosaic.&lt;/p&gt;
+&lt;p&gt;Next is bringing this image - which we now pray is in the correct units - into UV space.:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+sm.openfromms(&amp;quot;continuum_7m12m_noflag.ms&amp;quot;)
+sm.setvp()
+success = sm.predict(perseus_casa_image)
+assert success
+# TODO: get these from ASDM_CALWVR and WEATHER
+success2 = sm.setnoise(mode='tsys-atm', relhum=60.0, pwv='2mm', tatmos=265.0, )
+success3 = sm.corrupt()
+sm.done()
+sm.close()
+&lt;/pre&gt;
+&lt;p&gt;This snippet loads the .ms file (the visibilities), then overwrites them with
+the fourier transform of the image using &lt;tt class="docutils literal"&gt;sm.predict&lt;/tt&gt;.  It's not clear whether
+&lt;tt class="docutils literal"&gt;setvp&lt;/tt&gt; is necessary.  &lt;tt class="docutils literal"&gt;setnoise&lt;/tt&gt; + &lt;tt class="docutils literal"&gt;corrupt&lt;/tt&gt; just adds &amp;quot;appropriate&amp;quot;
+atmospheric noise to the visibilities.&lt;/p&gt;
+&lt;p&gt;From there, you should just use the same &lt;tt class="docutils literal"&gt;clean&lt;/tt&gt; parameters as for the
+original data, or try to optimize &lt;tt class="docutils literal"&gt;clean&lt;/tt&gt; here and use these parameters on
+the real data.&lt;/p&gt;
+&lt;p&gt;The result will be the 'perfect' (no phase error, no amplitude error)
+interferometric image.&lt;/p&gt;
+</summary><category term="CASA"></category><category term="simulation"></category><category term="synthetic observation"></category></entry><entry><title>CASA clean: "splotchy" artifacts</title><link href="http://keflavich.github.io/blog/casa-clean-splotchy-artifacts.html" rel="alternate"></link><updated>2016-06-14T09:31:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2016-06-14:casa-clean-splotchy-artifacts.html</id><summary type="html">&lt;p&gt;This image shows artifacts that look &amp;quot;splotchy&amp;quot;.  They are locations clean has
 placed a negative model component where none belongs, so the residual is highly
 positive and the resulting image is negative.&lt;/p&gt;
 &lt;img alt="" src="http://keflavich.github.io/blog/images/casa/splotchy.png" style="width: 600px;" /&gt;
