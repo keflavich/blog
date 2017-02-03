@@ -41,3 +41,8 @@ some sort of cube masking.
 Unfortunately, ft is again the problem::
 
     2015-11-04 15:09:08	SEVERE	ft::imager::ft() (file /Users/rpmbuild/gradle/workdir/casaautobuild/release-4_5/code/synthesis/MeasurementEquations/Imager.cc, line 4488)	Exception: (/Users/rpmbuild/gradle/workdir/casaautobuild/release-4_5/darwin/include/casacore/lattices/Lattices/Lattice.tcc : 299) Failed AlwaysAssert shapeIn.isEqual (shapeOut)
+
+
+Followup in early 2017: a cube-based approach is generally more successful.
+See Sanchez-Monge in prep and the related `statcont
+<https://github.com/radio-astro-tools/statcont>`_ software package.
