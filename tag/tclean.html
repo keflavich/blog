@@ -127,6 +127,15 @@ sense that there is a velocity offset of ~1 km/s between the 7m and 12m data.
 If this is the case, there's no wonder the combination isn't working.
 However, it's nearly inconceivable.</p>
 </div>
+<div class="section" id="followup-feb-2017">
+<h2>Followup Feb 2017</h2>
+<p>That vague fear turned out to be entirely justified.  It turned out that the 7m
+and 12m array data sets were not in a common frame, and they were therefore
+offset by something like the Earth's change in velocity between the observation
+dates.  The solution was to cvel the data sets to the LSRK frame prior to
+concatenating them.  While I know I made these changes, I unfortunately can't
+find the specific commit where I made them.</p>
+</div>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
