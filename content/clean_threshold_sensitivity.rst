@@ -33,7 +33,7 @@ The precise clean command used, with only threshold changing, is::
 It looks like CLEAN needs a different type of threshold to finish on, perhaps
 something requiring each subsequent component to be some value less than the
 previous component.  If each component is forced to be less than the previous
-one, the clean can never diverage, though clean would stop unexpectedly if
+one, the clean can never diverge, though clean would stop unexpectedly if
 subtracting a component increased the amplitude of some other part of the map
 (i.e., if the next brightest source is sitting in a negative bowl).  Still,
 this might be a rarer occurrence than the divergence that I see all the time,
