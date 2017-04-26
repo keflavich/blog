@@ -114,8 +114,9 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
             <abbr class="published" title="2017-04-26T11:03:00"> 2017/04/26 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I ran some speed tests to compare CASA's speed when imaging single channels vs
-blocks of channels.  The tests were run with savemodel='none' on a lustre node.</p>
-<p>'speedtest_nchan1_concat': 249,
+blocks of channels.  The tests were run with savemodel='none' on a lustre node</p>
+<pre class="literal-block">
+'speedtest_nchan1_concat': 249,
 'speedtest_nchan1_individual': 523,
 'speedtest_nchan5_concat': 803,
 'speedtest_nchan5_individual': 916,
@@ -124,8 +125,9 @@ blocks of channels.  The tests were run with savemodel='none' on a lustre node.<
 'speedtest_nchan40_concat': 4010,
 'speedtest_nchan40_individual': 4136,
 'speedtest_nchan80_concat': 8101,
-'speedtest_nchan80_individual': 9298,</p>
-<img alt="" src="|filename|/images/cube_performance.png" style="width: 600px;" />
+'speedtest_nchan80_individual': 9298,
+</pre>
+<img alt="" src="http://keflavich.github.io/blog/images/casa/cube_performance.png" style="width: 600px;" />
 <p>The fit is y = 98x + 237</p>
 <p>So at least until swapping happens, there is no serious advantage or
 disadvantage to running a different # of channels simultaneously.</p>

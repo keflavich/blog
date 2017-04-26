@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all-en.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2017-04-26T11:03:00-06:00</updated><entry><title>A quick performance test on CASA cleaning</title><link href="http://keflavich.github.io/blog/a-quick-performance-test-on-casa-cleaning.html" rel="alternate"></link><updated>2017-04-26T11:03:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2017-04-26:a-quick-performance-test-on-casa-cleaning.html</id><summary type="html">&lt;p&gt;I ran some speed tests to compare CASA's speed when imaging single channels vs
-blocks of channels.  The tests were run with savemodel='none' on a lustre node.&lt;/p&gt;
-&lt;p&gt;'speedtest_nchan1_concat': 249,
+blocks of channels.  The tests were run with savemodel='none' on a lustre node&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+'speedtest_nchan1_concat': 249,
 'speedtest_nchan1_individual': 523,
 'speedtest_nchan5_concat': 803,
 'speedtest_nchan5_individual': 916,
@@ -10,8 +11,9 @@ blocks of channels.  The tests were run with savemodel='none' on a lustre node.&
 'speedtest_nchan40_concat': 4010,
 'speedtest_nchan40_individual': 4136,
 'speedtest_nchan80_concat': 8101,
-'speedtest_nchan80_individual': 9298,&lt;/p&gt;
-&lt;img alt="" src="|filename|/images/cube_performance.png" style="width: 600px;" /&gt;
+'speedtest_nchan80_individual': 9298,
+&lt;/pre&gt;
+&lt;img alt="" src="http://keflavich.github.io/blog/images/casa/cube_performance.png" style="width: 600px;" /&gt;
 &lt;p&gt;The fit is y = 98x + 237&lt;/p&gt;
 &lt;p&gt;So at least until swapping happens, there is no serious advantage or
 disadvantage to running a different # of channels simultaneously.&lt;/p&gt;
