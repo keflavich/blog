@@ -68,6 +68,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2017/04/26
+                  <br>
+                  <a href="http://keflavich.github.io/blog/a-quick-performance-test-on-casa-cleaning.html">A quick performance test on CASA cleaning</a>
+              </li>
+              <li class="post">
                   2017/01/30
                   <br>
                   <a href="http://keflavich.github.io/blog/high-mass-protostellar-sio-masers.html">High-mass Protostellar SiO Masers</a>
@@ -87,11 +92,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/single-dish-combination-continued.html">Single Dish Combination Continued</a>
               </li>
-              <li class="post">
-                  2016/06/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/single-dish-interferometer-combination-experiments.html">Single Dish - Interferometer Combination Experiments</a>
-              </li>
         </ul>
       </li>
     
@@ -103,6 +103,36 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles in the misc category</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/.html" rel="bookmark" title="Permalink to ">
+                    </a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-09-14T00:00:00"> 2015/09/14 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>From Andrew Walsh, a script to install MIRIAD:</p>
+<div class="highlight"><pre>wget ftp://ftp.atnf.csiro.au/pub/software/miriad/miriad-common.tar.bz2
+wget ftp://ftp.atnf.csiro.au/pub/software/miriad/miriad-linux64.tar.bz2
+bzcat miriad-common.tar.bz2 <span class="p">|</span> tar xvf -
+bzcat miriad-linux64.tar.bz2  <span class="p">|</span> tar xvf -
+<span class="nb">cd </span>miriad
+<span class="nb">export </span><span class="nv">MIR</span><span class="o">=</span><span class="nv">$PWD</span>
+<span class="c"># define the MIR variable in your bashrc</span>
+<span class="nb">echo</span> <span class="s2">&quot;export MIR=</span><span class="nv">$MIR</span><span class="s2">&quot;</span> &gt;&gt; ~/.bashrc
+sed -e <span class="s2">&quot;s,@MIRROOT@,</span><span class="nv">$MIR</span><span class="s2">,&quot;</span> scripts/MIRRC.in &gt; MIRRC
+sed -e <span class="s2">&quot;s,@MIRROOT@,</span><span class="nv">$MIR</span><span class="s2">,&quot;</span> scripts/MIRRC.sh.in &gt; MIRRC.sh
+chmod <span class="m">644</span> MIRRC*
+
+<span class="c"># Put these into .bashrc, or call them each time you want to run MIRIAD</span>
+. <span class="nv">$MIR</span>/MIRRC.sh
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$MIRBIN</span>
+</pre></div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -771,149 +801,6 @@ physics...</li>
 absorption.  Is it possible to measure CO absorption to red giants?</li>
 </ol>
 </blockquote>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/installing-multinest-on-mac-os-x-107.html" rel="bookmark" title="Permalink to Installing MultiNest on Mac OS X 10.7">
-                    Installing MultiNest on Mac OS X 10.7</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-10-06T15:25:00"> 2013/10/06 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Installing multinest &amp; pymultinest has proved non-trivial.</p>
-<p>First, you probably can't build using the default mac gcc; a gcc version &gt;4.5
-is probably needed.  The error I got installing MultiNest only turned up one
-useful result on google... it was a <a class="reference external" href="https://github.com/hyperion-rt/hyperion/issues/23">question I had asked</a> on the <a class="reference external" href="https://github.com/hyperion-rt">hyperion github
-page</a>.</p>
-<p>To get around that, I installed the <a class="reference external" href="http://hpc.sourceforge.net/">hpc compilers</a> (4.7 since I'm on OS X 10.7) into
-<cite>/usr/local/hpc/</cite> to keep them distinct from the system gcc, which is needed
-for many other things.</p>
-<p>I then installed the <a class="reference external" href="http://www.open-mpi.org/">openMPI compilers</a> to <cite>/usr/local/openmpi</cite>:</p>
-<pre class="literal-block">
-./configure --prefix=/usr/local/openmpi
-make
-sudo make install
-</pre>
-<p>Then I tried installing pymultinest</p>
-<pre class="literal-block">
-dor ~/repos/MultiNest cmake/master$ mkdir build
-dor ~/repos/MultiNest cmake/master$ cd build/
-dor ~/repos/MultiNest/build cmake/master$ which mpif90
-/usr/local/openmpi/bin/mpif90
-dor ~/repos/MultiNest/build cmake/master$ which gfortran
-/usr/local/hpc/bin//gfortran
-dor ~/repos/MultiNest/build cmake/master$ which gcc
-/usr/local/hpc/bin//gcc
-dor ~/repos/MultiNest/build cmake/master$ cmake -DCMAKE_{C,CXX}_FLAGS=&quot;-arch x86_64&quot; -DCMAKE_Fortran_FLAGS=&quot;-m64&quot; ..
--- The Fortran compiler identification is GNU
--- The C compiler identification is GNU 4.7.1
--- The CXX compiler identification is GNU 4.7.1
--- Check for working Fortran compiler: /usr/local/hpc/bin/gfortran
--- Check for working Fortran compiler: /usr/local/hpc/bin/gfortran  -- works
--- Detecting Fortran compiler ABI info
--- Detecting Fortran compiler ABI info - done
--- Checking whether /usr/local/hpc/bin/gfortran supports Fortran 90
--- Checking whether /usr/local/hpc/bin/gfortran supports Fortran 90 -- yes
--- Checking whether C compiler has -isysroot
--- Checking whether C compiler has -isysroot - yes
--- Checking whether C compiler supports OSX deployment target flag
--- Checking whether C compiler supports OSX deployment target flag - yes
--- Check for working C compiler: /usr/local/hpc/bin/gcc
--- Check for working C compiler: /usr/local/hpc/bin/gcc -- works
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Checking whether CXX compiler has -isysroot
--- Checking whether CXX compiler has -isysroot - yes
--- Checking whether CXX compiler supports OSX deployment target flag
--- Checking whether CXX compiler supports OSX deployment target flag - yes
--- Check for working CXX compiler: /usr/local/hpc/bin/g++
--- Check for working CXX compiler: /usr/local/hpc/bin/g++ -- works
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Looking for Fortran dgemm
--- Looking for Fortran dgemm - found
--- Looking for include file pthread.h
--- Looking for include file pthread.h - found
--- Looking for pthread_create
--- Looking for pthread_create - found
--- Found Threads: TRUE
--- A library with BLAS API found.
--- Looking for Fortran cheev
--- Looking for Fortran cheev - found
--- A library with LAPACK API found.
--- Detected gfortran, adding -ffree-line-length-none compiler option.
--- Found MPI_C: /usr/local/openmpi/lib/libmpi.dylib;/usr/lib/libm.dylib
--- Found MPI_CXX: /usr/local/openmpi/lib/libmpi_cxx.dylib;/usr/local/openmpi/lib/libmpi.dylib;/usr/lib/libm.dylib
--- Found MPI_Fortran: /usr/local/openmpi/lib/libmpi_f90.a;/usr/local/openmpi/lib/libmpi_f77.dylib;/usr/local/openmpi/lib/libmpi.dylib;/usr/lib/libm.dylib
--- Configuring done
--- Generating done
--- Build files have been written to: /Users/adam/repos/MultiNest/build
-dor ~/repos/MultiNest/build cmake/master$ make
-Scanning dependencies of target multinest_mpi_shared
-[  1%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/utils.f90.o
-[  3%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/utils1.f90.o
-[  5%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/kmeans_clstr.f90.o
-[  6%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/xmeans_clstr.f90.o
-[  8%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/posterior.F90.o
-[ 10%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/priors.f90.o
-[ 12%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/nested.F90.o
-[ 13%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/cwrapper.f90.o
-Linking Fortran shared library ../../lib/libmultinest_mpi.dylib
-[ 13%] Built target multinest_mpi_shared
-Scanning dependencies of target multinest_mpi_static
-[ 15%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/utils.f90.o
-[ 17%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/utils1.f90.o
-[ 18%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/kmeans_clstr.f90.o
-[ 20%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/xmeans_clstr.f90.o
-[ 22%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/posterior.F90.o
-[ 24%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/priors.f90.o
-[ 25%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/nested.F90.o
-[ 27%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/cwrapper.f90.o
-Linking Fortran static library ../../lib/libmultinest_mpi.a
-[ 27%] Built target multinest_mpi_static
-Scanning dependencies of target multinest_shared
-[ 29%] Building Fortran object src/CMakeFiles/multinest_shared.dir/utils.f90.o
-[ 31%] Building Fortran object src/CMakeFiles/multinest_shared.dir/utils1.f90.o
-[ 32%] Building Fortran object src/CMakeFiles/multinest_shared.dir/kmeans_clstr.f90.o
-[ 34%] Building Fortran object src/CMakeFiles/multinest_shared.dir/xmeans_clstr.f90.o
-[ 36%] Building Fortran object src/CMakeFiles/multinest_shared.dir/posterior.F90.o
-[ 37%] Building Fortran object src/CMakeFiles/multinest_shared.dir/priors.f90.o
-[ 39%] Building Fortran object src/CMakeFiles/multinest_shared.dir/nested.F90.o
-[ 41%] Building Fortran object src/CMakeFiles/multinest_shared.dir/cwrapper.f90.o
-Linking Fortran shared library ../../lib/libmultinest.dylib
-[ 41%] Built target multinest_shared
-Scanning dependencies of target multinest_static
-[ 43%] Building Fortran object src/CMakeFiles/multinest_static.dir/utils.f90.o
-[ 44%] Building Fortran object src/CMakeFiles/multinest_static.dir/utils1.f90.o
-[ 46%] Building Fortran object src/CMakeFiles/multinest_static.dir/kmeans_clstr.f90.o
-[ 48%] Building Fortran object src/CMakeFiles/multinest_static.dir/xmeans_clstr.f90.o
-[ 50%] Building Fortran object src/CMakeFiles/multinest_static.dir/posterior.F90.o
-[ 51%] Building Fortran object src/CMakeFiles/multinest_static.dir/priors.f90.o
-[ 53%] Building Fortran object src/CMakeFiles/multinest_static.dir/nested.F90.o
-[ 55%] Building Fortran object src/CMakeFiles/multinest_static.dir/cwrapper.f90.o
-Linking Fortran static library ../../lib/libmultinest.a
-Error copying file &quot;/Users/adam/repos/MultiNest/build/src/kmeans_clstr.mod&quot; to &quot;/Users/adam/repos/MultiNest/modules/&quot;.
-make[2]: *** [../lib/libmultinest.a] Error 1
-make[1]: *** [src/CMakeFiles/multinest_static.dir/all] Error 2
-make: *** [all] Error 2
-</pre>
-<p>The approach that worked:</p>
-<pre class="literal-block">
-mkdir -p build lib modules bin/chains
-cd build
-cmake -DCMAKE_{C,CXX}_FLAGS=&quot;-arch x86_64&quot; -DCMAKE_Fortran_FLAGS=&quot;-m64&quot; ..
-make
-sudo make install
-cd ../lib
-ln -s libmultinest.dylib libmultinest.so
-export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/usr/local/hpc/lib:/usr/local/openmpi/lib/
-export LD_LIBRARY_PATH=/Users/adam/repos/MultiNest/lib
-</pre>
-<p>At this point, multinest imports but doesn't run the tests...</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

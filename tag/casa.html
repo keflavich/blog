@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2017/04/26
+                  <br>
+                  <a href="http://keflavich.github.io/blog/a-quick-performance-test-on-casa-cleaning.html">A quick performance test on CASA cleaning</a>
+              </li>
+              <li class="post">
                   2016/08/15
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-synthetic-observations.html">CASA synthetic observations</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/single-dish-interferometer-combination-experiments.html">Single Dish - Interferometer Combination Experiments</a>
               </li>
-              <li class="post">
-                  2016/05/26
-                  <br>
-                  <a href="http://keflavich.github.io/blog/what-does-feather-do.html">What does feather do?</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,35 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/a-quick-performance-test-on-casa-cleaning.html" rel="bookmark" title="Permalink to A quick performance test on CASA cleaning">
+                    A quick performance test on CASA cleaning</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2017-04-26T11:03:00"> 2017/04/26 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I ran some speed tests to compare CASA's speed when imaging single channels vs
+blocks of channels.  The tests were run with savemodel='none' on a lustre node.</p>
+<p>'speedtest_nchan1_concat': 249,
+'speedtest_nchan1_individual': 523,
+'speedtest_nchan5_concat': 803,
+'speedtest_nchan5_individual': 916,
+'speedtest_nchan20_concat': 2303,
+'speedtest_nchan20_individual': 2346,
+'speedtest_nchan40_concat': 4010,
+'speedtest_nchan40_individual': 4136,
+'speedtest_nchan80_concat': 8101,
+'speedtest_nchan80_individual': 9298,</p>
+<img alt="" src="|filename|/images/cube_performance.png" style="width: 600px;" />
+<p>The fit is y = 98x + 237</p>
+<p>So at least until swapping happens, there is no serious advantage or
+disadvantage to running a different # of channels simultaneously.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -716,38 +745,6 @@ ffile[0].header['TELESCOP'] = 'NotReal'
 </pre>
 <p>and it Just Worked.  It is approaching the end of my shift, so I think it is
 now acceptable to say &quot;what kind of !#$&#64;#$!&#64;% up #&#64;$$&#64;% is that?!&quot;.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/which-one-is-real.html" rel="bookmark" title="Permalink to Which one is real?">
-                    Which one is real?</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2016-03-12T10:25:00"> 2016/03/12 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I've &quot;successfully&quot; combined 7m and 12m data, and I've also &quot;successfully&quot;
-processed 12m data.  In both cases, I've self-calibrated the long-baseline 12m
-data.</p>
-<p>The question now is: why are these images so different?  There are features
-in the 12m-only data that are a factor of ~2 brighter than in the 12m+7m data.
-That should not happen.</p>
-<p>This image shows the problem.  7m+12m left, 12m-only right:</p>
-<img alt="" src="http://keflavich.github.io/blog/images/w51/7m12m_vs_12m.png" style="width: 600px;" />
-<p>Note the sharp features on the left and the small tail (filament) toward the
-top right that appear in the 12m but not in the 7m+12m data.</p>
-<p>Which features are real?  How do we decide?</p>
-<p>I really want to believe the 12m-only data, but I am very worried that it is
-artificially enhanced by sidelobes from the e8 filament:</p>
-<img alt="" src="http://keflavich.github.io/blog/images/w51/7m12m_vs_12m_zoomout.png" style="width: 600px;" />
-<p>There is a ~20-sigma feature between e8 and e2 along the e8 filament axis,
-but it is completely absent in the 7m+12m data.  That leads me to believe
-that it is not real, but at such high significance that is very worrisome.
-I'm also concerned by the loss of the compact source at the bottom of the e8
-filament and to the left: these seem unlikely to be affected by the filament.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

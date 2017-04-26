@@ -68,6 +68,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2017/04/26
+                  <br>
+                  <a href="http://keflavich.github.io/blog/a-quick-performance-test-on-casa-cleaning.html">A quick performance test on CASA cleaning</a>
+              </li>
+              <li class="post">
                   2017/01/30
                   <br>
                   <a href="http://keflavich.github.io/blog/high-mass-protostellar-sio-masers.html">High-mass Protostellar SiO Masers</a>
@@ -87,11 +92,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/single-dish-combination-continued.html">Single Dish Combination Continued</a>
               </li>
-              <li class="post">
-                  2016/06/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/single-dish-interferometer-combination-experiments.html">Single Dish - Interferometer Combination Experiments</a>
-              </li>
         </ul>
       </li>
     
@@ -103,6 +103,84 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles in the misc category</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/jeans-mass.html" rel="bookmark" title="Permalink to Jeans Mass">
+                    Jeans Mass</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-03-12T20:16:00"> 2013/03/12 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Some notes about the Jeans mass scale using astropy's units.</p>
+<p>Simple approaches to determining mass scales:</p>
+<div class="formula">
+<i>v</i><sub><i>esc</i></sub> = <span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>G</i><i>M</i></span><span class="ignored">)/(</span><span class="denominator"><i>R</i></span><span class="ignored">)</span></span></span><span class="ignored">)</span></span>
+</div>
+<p>Isothermal equation of state:</p>
+<div class="formula">
+<i>P</i> = <i>ρ</i><i>k</i><i>T</i>
+</div>
+<div class="formula">
+<i>c</i><sub><i>s</i></sub> = <span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root">2<i>k</i><i>T</i> ⁄ <i>m</i></span><span class="ignored">)</span></span>
+</div>
+<p>Setting <span class="formula"><i>v</i><sub><i>esc</i></sub> = <i>c</i><sub><i>s</i></sub></span> yields the mass scale:</p>
+<div class="formula">
+<i>M</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>R</i></span><span class="ignored">)/(</span><span class="denominator"><i>G</i></span><span class="ignored">)</span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>k</i><i>T</i></span><span class="ignored">)/(</span><span class="denominator"><i>m</i></span><span class="ignored">)</span></span> = <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>R</i><i>c</i><span class="scripts"><sup class="script">2</sup><sub class="script"><i>s</i></sub></span></span><span class="ignored">)/(</span><span class="denominator"><i>G</i></span><span class="ignored">)</span></span>
+</div>
+<p>Using <span class="formula"><i>ρ</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>M</i></span><span class="ignored">)/(</span><span class="denominator">4 ⁄ 3<i>π</i><i>R</i><sup>3</sup></span><span class="ignored">)</span></span></span>,</p>
+<div class="formula">
+<i>R</i> = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>M</i></span><span class="ignored">)/(</span><span class="denominator">4 ⁄ 3<i>π</i><i>ρ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>1 ⁄ 3</sup>
+</div>
+<p>so</p>
+<div class="formula">
+<i>M</i> = <i>M</i><sup>1 ⁄ 3</sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>c</i><span class="scripts"><sup class="script">2</sup><sub class="script"><i>s</i></sub></span></span><span class="ignored">)/(</span><span class="denominator"><i>G</i><i>ρ</i><sup>1 ⁄ 3</sup></span><span class="ignored">)</span></span>
+</div>
+<p>which rearranges to</p>
+<div class="formula">
+<i>M</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>c</i><span class="scripts"><sup class="script">3</sup><sub class="script"><i>s</i></sub></span></span><span class="ignored">)/(</span><span class="denominator"><i>G</i><sup>3 ⁄ 2</sup><i>ρ</i><sup>1 ⁄ 2</sup></span><span class="ignored">)</span></span>
+</div>
+<p>where <span class="formula"><i>M</i></span> is now <span class="formula"><i>M</i><sub><i>J</i></sub></span>, the Jeans mass. In terms of
+temperature, this is:</p>
+<div class="formula">
+<i>M</i><sub><i>J</i></sub> = <span class="fraction"><span class="ignored">(</span><span class="numerator">(2<i>k</i><i>T</i>)<sup>3 ⁄ 2</sup></span><span class="ignored">)/(</span><span class="denominator">(<i>m</i><i>G</i>)<sup>3 ⁄ 2</sup><i>ρ</i><sup>1 ⁄ 2</sup></span><span class="ignored">)</span></span>
+</div>
+<p>where <span class="formula"><i>m</i></span> is the particle mass, usually assumed to be 2.8 amu. (actually,
+2.8 is for mass per H$_2$ particle, it should really be 2.3 amu)</p>
+<p>In[1]:</p>
+<div class="highlight"><pre><span class="c"># astropy imports</span>
+<span class="kn">import</span> <span class="nn">astropy.units</span> <span class="kn">as</span> <span class="nn">u</span>
+<span class="kn">import</span> <span class="nn">astropy.constants</span> <span class="kn">as</span> <span class="nn">c</span>
+<span class="c"># turn off verbose but unnecessary information</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">UnitsWarning</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+<pre class="literal-block">
+WARNING: ConfigurationDefaultMissingWarning: Requested default
+configuration file /Users/adam/repos/astropy/astropy/astropy.cfg is not a
+file. Cannot install default profile. If you are importing from source,
+this is expected. [astropy]
+</pre>
+<p>In[7]:</p>
+<div class="highlight"><pre><span class="n">amu</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">m_p</span>
+<span class="n">temperature</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">K</span>
+<span class="n">m</span> <span class="o">=</span> <span class="p">(((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">k_B</span> <span class="o">*</span> <span class="n">temperature</span><span class="p">)</span><span class="o">**</span><span class="mf">1.5</span> <span class="o">/</span> <span class="p">((</span><span class="mf">2.8</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">m_p</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">G</span><span class="p">)</span><span class="o">**</span><span class="mf">1.5</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.8</span><span class="o">*</span><span class="mf">1e4</span><span class="o">*</span><span class="n">amu</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mf">2.</span><span class="p">))))</span><span class="o">.</span><span class="n">cgs</span>
+</pre></div>
+<p>In[5]:</p>
+<div class="highlight"><pre><span class="n">m</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">solMass</span><span class="p">)</span>
+</pre></div>
+<p>Out[5]:</p>
+<div class="formula">
+1.92903<span class="mathrm"> M<sub>⊙</sub></span>
+</div>
+<pre class="literal-block">
+&lt;Quantity 1.92902547696 solMass&gt;
+</pre>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -1002,22 +1080,6 @@ line responsible for the brightness cannot be directly determined.
 &nbsp;Whereas, for variability, calibration is important, but it can be
 computed directly from other stars in the field.</p>
 </div></div></p> </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/1-year-of-data.html" rel="bookmark" title="Permalink to 1 year of data">
-                    1 year of data</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/SLzMyB3yfnI/AAAAAAAADWM/Iivs5k7uLJQ/s400/weight.jpg" />
-<p>Weight in pounds as a function of time, starting 8/12/07, with nearly
-uniform sampling immediately before bed each night.</p>
- </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
 </ul><!-- /#posts-list -->

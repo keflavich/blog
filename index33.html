@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2017/04/26
+                  <br>
+                  <a href="http://keflavich.github.io/blog/a-quick-performance-test-on-casa-cleaning.html">A quick performance test on CASA cleaning</a>
+              </li>
+              <li class="post">
                   2017/01/30
                   <br>
                   <a href="http://keflavich.github.io/blog/high-mass-protostellar-sio-masers.html">High-mass Protostellar SiO Masers</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-clean-splotchy-artifacts.html">CASA clean: "splotchy" artifacts</a>
               </li>
-              <li class="post">
-                  2016/06/02
-                  <br>
-                  <a href="http://keflavich.github.io/blog/single-dish-combination-continued.html">Single Dish Combination Continued</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,21 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/major-error.html" rel="bookmark" title="Permalink to Major Error">
+                    Major Error</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-01-06T23:29:00"> 2012/01/06 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>This was a big problem:
+<tt class="docutils literal">Rev 472, by ginsbura, <span class="pre">2009-12-15</span> 14:43readall_pc wasn't getting passed mvperjy</tt></p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -386,46 +401,6 @@ photometry is perhaps even more severe:</p>
 <img alt="" src="http://2.bp.blogspot.com/-2kmy7UjYx-U/TkrX2i9j3KI/AAAAAAAAGbU/WTPdP7p6nHY/s320/v1.0.2_compare_to_v2.0_ds2_reconv_point.png" />
 <img alt="" src="http://3.bp.blogspot.com/-Uhcyj_rCPrY/TkrX2-k72nI/AAAAAAAAGbc/yePgRQO3RCU/s320/v1.0.2_compare_to_v2.0_ds2_reconv_point2.png" />
 <p>Those are a difference of a factor of 2.5, which is rather enormous.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/aperture-photometry.html" rel="bookmark" title="Permalink to Aperture Photometry">
-                    Aperture Photometry</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-08-13T02:50:00"> 2011/08/13 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/jared-adamgginsburggmailcom.html">Jared (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>So the code to add point sources to the maps and perform basic aperture
-photometry has started working to the point where I can share some
-results.</p>
-<p>For maps with no underlying sky structure, only point sources, recovery
-is very nearly perfect, with PearsonR coefficients essentially equal to
-1 until the peak amplitude of the point sources drops below 2.0 (and
-even then they only drop to ~0.997)</p>
-<p>Below is a sample of the difference residual of output-input flux vs
-input flux for 40&quot;, 80&quot; and 120&quot; apertures</p>
-<img alt="" src="http://2.bp.blogspot.com/-j5k--Oz92T0/TkXiYHLWjQI/AAAAAAAAABc/MnRtjz6hAMo/s320/exp13_ds2_astrosky_arrang45_srcpeakalpha002.00source_range_00.1_02.0ptsrc_brightness_diffresid.png" />
-<p>flux vs input flux will show just how correlated these are:</p>
-<img alt="" src="http://3.bp.blogspot.com/-zL6VyzobtkU/TkXix_KEExI/AAAAAAAAABk/6vYph5jtyM4/s320/exp13_ds2_astrosky_arrang45_srcpeakalpha002.00source_range_00.1_02.0ptsrc_brightness_lin.png" />
-<p>Note that for the blank maps, these are taken from simulations using a
-power law distribution of point sources from 0.1 to 2.0 Jy in magnitude
-(if we allow the range to extend above 2.0 Jy, the recoveries become
-even more closely correlated.</p>
-<p>As for simulations with background sky structure we see similar patterns
-for the most part, however a few interesting pieces appear:</p>
-<p>For the 4 different source ranges I ran, the 80&quot; aperture had the
-highest pearson r coefficient across all simulations. Generally sitting
-around 0.95 with the 40&quot; and 120&quot; apertures floating from 0.75-0.9. This
-may be a fluke, however, I need to run more simulations to see if this
-is reproducible with other seeds.</p>
-<p>Also, in the difference residuals we can clearly see an underrecovery of
-flux as input flux increases, which we should probably work to quantify,
-as seen by this example:</p>
-<img alt="" src="http://1.bp.blogspot.com/-X4lP1Pl4PLg/TkXka4eio7I/AAAAAAAAABs/RCKTuX14PD8/s320/exp13_ds2_astrosky_arrang45_atmotest_amp2.0E%252B01_sky00_seed00_peak001.00_smooth_srcpeakalpha002.00source_range_00.1_02.0_wptsrcptsrc_brightness_diffresid.png" />
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
