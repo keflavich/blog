@@ -51,7 +51,10 @@ which has a positive power-law slope in the lowest bin in the Kroupa MF,
 showing the usual peak at 0.3 Msun.  This version of the functions is
 nontrivial to compute, especially for the modified PMFs.
 
-The Chabrier version is a near-perfect match to Figure 3 of `McKee and Offner`_.
+The Chabrier version is a near-perfect match to Figure 3 of `McKee and
+Offner`_, with slightly different normalization.  A notable feature of this
+plot is that it cuts off at 3 Msun.  I want to examine the same distribution at
+higher masses.
 
 
 .. image:: |filename|/images/taperedaccretion_pmf_chabrier.png
@@ -60,6 +63,44 @@ The Chabrier version is a near-perfect match to Figure 3 of `McKee and Offner`_.
 .. image:: |filename|/images/taperedaccretion_pmf_kroupa.png
    :width: 600px
            
+The above plots are the same as before, but with tapered accretion following
+the prescription in `McKee and Offner`_.  The tapering function is apparently
+arbitrary, and picked purely to enforce smoothness (i.e., prevent a possibly
+nonphysical instantaneous shutoff of accretion).
+
+Extending to higher masses
+--------------------------
+
+When we reevaluate the same functions with mmax=120 instead of 3, we can start
+to see the high mass end, which is of course power-law dominated.   In all cases,
+the PMF is dominated by the highest-mass sources, since in all cases they take
+the longest to form.
+
+
+.. image:: |filename|/images/steadystate_pmf_chabrier_mmax120.png
+   :width: 600px
+
+.. image:: |filename|/images/steadystate_pmf_kroupa_mmax120.png
+   :width: 600px
+
+The accretion model changes the slope and the overall ratio of high- to
+low-mass stars.
+
+These are the mass fractions of various IMFs:
+
+Mass fraction for ChabrierIMF M>10 = 0.821
+Mass fraction for ChabrierPMF_2CTC M>10 = 0.849
+Mass fraction for ChabrierPMF_CA M>10 = 0.743
+Mass fraction for ChabrierPMF_IS M>10 = 0.964
+Mass fraction for ChabrierPMF_TC M>10 = 0.839
+Mass fraction for KroupaIMF M>10 = 0.185
+Mass fraction for KroupaPMF_2CTC M>10 = 0.849
+Mass fraction for KroupaPMF_CA M>10 = 0.148
+Mass fraction for KroupaPMF_IS M>10 = 0.781
+Mass fraction for KroupaPMF_TC M>10 = 0.294
+
+This realization of the Chabrier IMF is a bit weird...
+
 
 .. _McKee and Offner:
 .. _protostellar mass function: http://adsabs.harvard.edu/abs/2010ApJ...716..167M
