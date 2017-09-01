@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2017/08/30
+                  <br>
+                  <a href="http://keflavich.github.io/blog/protostellar-mass-functions.html">Protostellar Mass Functions</a>
+              </li>
+              <li class="post">
                   2017/04/26
                   <br>
                   <a href="http://keflavich.github.io/blog/a-quick-performance-test-on-casa-cleaning.html">A quick performance test on CASA cleaning</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-synthetic-observations.html">CASA synthetic observations</a>
               </li>
-              <li class="post">
-                  2016/06/14
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-clean-splotchy-artifacts.html">CASA clean: "splotchy" artifacts</a>
-              </li>
         </ul>
       </li>
     
@@ -102,6 +102,103 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles by Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/protostellar-mass-functions.html" rel="bookmark" title="Permalink to Protostellar Mass Functions">
+                    Protostellar Mass Functions</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2017-08-30T15:18:00"> 2017/08/30 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The stellar <a class="reference external" href="https://en.wikipedia.org/wiki/Initial_mass_function">initial mass function</a> is important for a wide
+variety of astronomical topics, and I'm interested in studying its formation.
+The <a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...716..167M">protostellar mass function</a>, by contrast, is much
+less well-studied, but understanding it can provide important insights into the
+formation of the IMF.  In particular, we assume both for simplicity and because
+of a lack of contrary evidence, that the IMF is uniform in time in space.  In
+other words, given that a star is going to form at some point, it has a
+likelihood to become a star of a given mass described exclusively by the IMF.
+While this assertion is entirely absurd - if you are &quot;about to form&quot; a star in
+a blob of gas that only has 0.1 Msun in a 1 pc radius, it certainly cannot form
+a 100 Msun star - it remains consistent with nearly all observations and is
+therefore used in this time- and space-invariant form.</p>
+<p>It is likely that new studies of stellar populations, e.g., GAIA's observations
+of a huge population of stars with well-determined distances (and therefore
+luminosities), will reveal some variations in the IMF.  However, many studies
+based on evolved stellar populations are subject to ambiguities in the initial
+conditions.  So, it is still quite useful to study those initial conditions
+directly.</p>
+<p>There has not been a huge amount of work on protostellar mass functions.
+<a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...716..167M">McKee and Offner</a> defined the PMF as the distribution of masses of
+protostellar sources that would produce a given IMF.  Their PMFs are therefore
+strongly dependent on the underlying IMF assumed.</p>
+<p>I have implemented the mass functions they defined in <a class="reference external" href="https://github.com/keflavich/imf/blob/master/imf/pmf.py">this code</a>.  The code
+is generalized such that you can input other mass functions.  McKee &amp; Offner
+only used the <a class="reference external" href="http://adsabs.harvard.edu/abs/2005ASSL..327...41C">Chabrier 2005</a> mass function; I include the <a class="reference external" href="http://adsabs.harvard.edu/abs/2001MNRAS.322..231K">Kroupa 2001</a> mass
+function as well for comparison</p>
+<img alt="" src="http://keflavich.github.io/blog/images/steadystate_pmf_chabrier.png" style="width: 600px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/steadystate_pmf_kroupa.png" style="width: 600px;" />
+<p>The comparison between the Chabrier and Kroupa mass functions is shown above.
+Note that these are somewhat deceptive plots, since they show P(M) vs log(M).
+The plot shows the most likely individual masses by number, but the plots are
+actually quite squished to the left in linear space, such that the most common
+range of stars (the integral of both functions) is closer to the same (~0.2-0.3
+Msun).  The more commonly shown version of these plots is the integral form,
+which has a positive power-law slope in the lowest bin in the Kroupa MF,
+showing the usual peak at 0.3 Msun.  This version of the functions is
+nontrivial to compute, especially for the modified PMFs.</p>
+<p>The Chabrier version is a near-perfect match to Figure 3 of <a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...716..167M">McKee and
+Offner</a>, with slightly different normalization.  A notable feature of this
+plot is that it cuts off at 3 Msun.  I want to examine the same distribution at
+higher masses.</p>
+<img alt="" src="http://keflavich.github.io/blog/images/taperedaccretion_pmf_chabrier.png" style="width: 600px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/taperedaccretion_pmf_kroupa.png" style="width: 600px;" />
+<p>The above plots are the same as before, but with tapered accretion following
+the prescription in <a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...716..167M">McKee and Offner</a>.  The tapering function is apparently
+arbitrary, and picked purely to enforce smoothness (i.e., prevent a possibly
+nonphysical instantaneous shutoff of accretion).</p>
+<div class="section" id="extending-to-higher-masses">
+<h2>Extending to higher masses</h2>
+<p>When we reevaluate the same functions with mmax=120 instead of 3, we can start
+to see the high mass end, which is of course power-law dominated.   In all cases,
+the PMF is dominated by the highest-mass sources, since in all cases they take
+the longest to form.</p>
+<img alt="" src="http://keflavich.github.io/blog/images/steadystate_pmf_chabrier_mmax120.png" style="width: 600px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/steadystate_pmf_kroupa_mmax120.png" style="width: 600px;" />
+<p>The accretion model changes the slope and the overall ratio of high- to
+low-mass stars.</p>
+<p>These are the mass fractions of various MFs:</p>
+<blockquote>
+<ul class="simple">
+<li>Mass fraction for ChabrierIMF M&gt;10 = 0.192</li>
+<li>Mass fraction for ChabrierPMF_2CTC M&gt;10 = 0.334</li>
+<li>Mass fraction for ChabrierPMF_CA M&gt;10 = 0.150</li>
+<li>Mass fraction for ChabrierPMF_IS M&gt;10 = 0.765</li>
+<li>Mass fraction for ChabrierPMF_TC M&gt;10 = 0.288</li>
+<li>Mass fraction for KroupaIMF M&gt;10 = 0.185</li>
+<li>Mass fraction for KroupaPMF_2CTC M&gt;10 = 0.348</li>
+<li>Mass fraction for KroupaPMF_CA M&gt;10 = 0.148</li>
+<li>Mass fraction for KroupaPMF_IS M&gt;10 = 0.781</li>
+<li>Mass fraction for KroupaPMF_TC M&gt;10 = 0.294</li>
+</ul>
+</blockquote>
+<p>The isothermal sphere case is pretty extremely top-heavy, but all except
+competitive accretion result in a more top-heavy MF, which is a fairly neat
+result - it means that simple binning can distinguish between these theories
+(assuming the parametrization is right).  It also means that the SFRs
+inferred from integrating the high-mass end of the mass function (as I have
+done in <a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/">my Sgr B2 paper</a>) is subject to a factor of +/-2x uncertainty
+depending on the accretion history if we assume steady state.</p>
+<p>The next step is to extend this to different accretion histories (tapered,
+accelerating) and then possibly different star formation histories.
+I will also create some 'synthetic clusters' using the <a class="reference external" href="https://zenodo.org/record/166732">Robitaille</a>
+and <a class="reference external" href="https://arxiv.org/abs/1708.08853">Zhang</a> models.</p>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -697,59 +794,6 @@ to be decimal separated:</p>
 <p>This has broken my scripts more than a handful of times now, since copying &amp;
 pasting coordinates from any other program inevitably has the &quot;wrong&quot;
 units.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/casa-tclean-adds-negative-components.html" rel="bookmark" title="Permalink to CASA tclean adds negative components">
-                    CASA tclean adds negative components</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2016-05-01T10:21:00"> 2016/05/01 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I'm trying to examine some of my 7m+12m combined data and have run into yet another
-mysterious behavior of CASA.  <tt class="docutils literal">tclean</tt> is adding negative components in regions with
-exclusively positive emission.</p>
-<p>In this image, the <em>left</em> is the clean image, which doesn't make any sense; it
-looks like it should be a residual image but it is not.  2nd image is the clean
-components (negative!!), 3rd is the residual, 4th is the dirty map.</p>
-<img alt="" src="http://keflavich.github.io/blog/images/casa/bad_cleancomps.png" style="width: 600px;" />
-<p>One tricky thing for this particular image is that the emission is real, BUT it
-is also directly on top of a major sidelobe of the brightest source in the
-region.  Nonetheless, I cannot imagine any way to explain the negative
-component.  I don't really understand when a negative component is added, but
-presumably it ought to happen when the residual has a negative value but also
-the highest amplitude in the map; this obviously never happens here since the
-residual in fact has one of the highest <em>positive</em> amplitudes in the map.</p>
-<p>The imaging parameters seem not to affect this problem. I attempted reducing the
-gain to 0.05 to no avail.  Changing from natural to robust weighting actually
-removed most of the negative components.</p>
-<div class="section" id="failed-combination-of-7m-and-12m-data">
-<h2>Failed combination of 7m and 12m data</h2>
-<p>The above was a tangent.  The real reason I was working on this data set was to
-combine the 7m and 12m spectral data.  The problem I keep seeing is very large,
-smooth blobs that are spatially distinct from the more compact emission.  It's
-as if someone took the two independent cubes (12m and 7m) and just added them
-together; it looks like flux is not being conserved.</p>
-<p>The UV plots, especially weight vs uvdist, look fine.  The 7m antenna are
-downweighted relative to the 7m antennae by a factor ~2.</p>
-<p>One of the bigger problems is that I have a vague - possibly not justified -
-sense that there is a velocity offset of ~1 km/s between the 7m and 12m data.
-If this is the case, there's no wonder the combination isn't working.
-However, it's nearly inconceivable.</p>
-</div>
-<div class="section" id="followup-feb-2017">
-<h2>Followup Feb 2017</h2>
-<p>That vague fear turned out to be entirely justified.  It turned out that the 7m
-and 12m array data sets were not in a common frame, and they were therefore
-offset by something like the Earth's change in velocity between the observation
-dates.  The solution was to cvel the data sets to the LSRK frame prior to
-concatenating them.  While I know I made these changes, I unfortunately can't
-find the specific commit where I made them.</p>
-</div>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

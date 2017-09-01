@@ -1,5 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/misc.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2017-04-26T11:03:00-06:00</updated><entry><title>A quick performance test on CASA cleaning</title><link href="http://keflavich.github.io/blog/a-quick-performance-test-on-casa-cleaning.html" rel="alternate"></link><updated>2017-04-26T11:03:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2017-04-26:a-quick-performance-test-on-casa-cleaning.html</id><summary type="html">&lt;p&gt;I ran some speed tests to compare CASA's speed when imaging single channels vs
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/misc.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2017-08-30T15:18:00-06:00</updated><entry><title>Protostellar Mass Functions</title><link href="http://keflavich.github.io/blog/protostellar-mass-functions.html" rel="alternate"></link><updated>2017-08-30T15:18:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2017-08-30:protostellar-mass-functions.html</id><summary type="html">&lt;p&gt;The stellar &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Initial_mass_function"&gt;initial mass function&lt;/a&gt; is important for a wide
+variety of astronomical topics, and I'm interested in studying its formation.
+The &lt;a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...716..167M"&gt;protostellar mass function&lt;/a&gt;, by contrast, is much
+less well-studied, but understanding it can provide important insights into the
+formation of the IMF.  In particular, we assume both for simplicity and because
+of a lack of contrary evidence, that the IMF is uniform in time in space.  In
+other words, given that a star is going to form at some point, it has a
+likelihood to become a star of a given mass described exclusively by the IMF.
+While this assertion is entirely absurd - if you are &amp;quot;about to form&amp;quot; a star in
+a blob of gas that only has 0.1 Msun in a 1 pc radius, it certainly cannot form
+a 100 Msun star - it remains consistent with nearly all observations and is
+therefore used in this time- and space-invariant form.&lt;/p&gt;
+&lt;p&gt;It is likely that new studies of stellar populations, e.g., GAIA's observations
+of a huge population of stars with well-determined distances (and therefore
+luminosities), will reveal some variations in the IMF.  However, many studies
+based on evolved stellar populations are subject to ambiguities in the initial
+conditions.  So, it is still quite useful to study those initial conditions
+directly.&lt;/p&gt;
+&lt;p&gt;There has not been a huge amount of work on protostellar mass functions.
+&lt;a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...716..167M"&gt;McKee and Offner&lt;/a&gt; defined the PMF as the distribution of masses of
+protostellar sources that would produce a given IMF.  Their PMFs are therefore
+strongly dependent on the underlying IMF assumed.&lt;/p&gt;
+&lt;p&gt;I have implemented the mass functions they defined in &lt;a class="reference external" href="https://github.com/keflavich/imf/blob/master/imf/pmf.py"&gt;this code&lt;/a&gt;.  The code
+is generalized such that you can input other mass functions.  McKee &amp;amp; Offner
+only used the &lt;a class="reference external" href="http://adsabs.harvard.edu/abs/2005ASSL..327...41C"&gt;Chabrier 2005&lt;/a&gt; mass function; I include the &lt;a class="reference external" href="http://adsabs.harvard.edu/abs/2001MNRAS.322..231K"&gt;Kroupa 2001&lt;/a&gt; mass
+function as well for comparison&lt;/p&gt;
+&lt;img alt="" src="http://keflavich.github.io/blog/images/steadystate_pmf_chabrier.png" style="width: 600px;" /&gt;
+&lt;img alt="" src="http://keflavich.github.io/blog/images/steadystate_pmf_kroupa.png" style="width: 600px;" /&gt;
+&lt;p&gt;The comparison between the Chabrier and Kroupa mass functions is shown above.
+Note that these are somewhat deceptive plots, since they show P(M) vs log(M).
+The plot shows the most likely individual masses by number, but the plots are
+actually quite squished to the left in linear space, such that the most common
+range of stars (the integral of both functions) is closer to the same (~0.2-0.3
+Msun).  The more commonly shown version of these plots is the integral form,
+which has a positive power-law slope in the lowest bin in the Kroupa MF,
+showing the usual peak at 0.3 Msun.  This version of the functions is
+nontrivial to compute, especially for the modified PMFs.&lt;/p&gt;
+&lt;p&gt;The Chabrier version is a near-perfect match to Figure 3 of &lt;a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...716..167M"&gt;McKee and
+Offner&lt;/a&gt;, with slightly different normalization.  A notable feature of this
+plot is that it cuts off at 3 Msun.  I want to examine the same distribution at
+higher masses.&lt;/p&gt;
+&lt;img alt="" src="http://keflavich.github.io/blog/images/taperedaccretion_pmf_chabrier.png" style="width: 600px;" /&gt;
+&lt;img alt="" src="http://keflavich.github.io/blog/images/taperedaccretion_pmf_kroupa.png" style="width: 600px;" /&gt;
+&lt;p&gt;The above plots are the same as before, but with tapered accretion following
+the prescription in &lt;a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...716..167M"&gt;McKee and Offner&lt;/a&gt;.  The tapering function is apparently
+arbitrary, and picked purely to enforce smoothness (i.e., prevent a possibly
+nonphysical instantaneous shutoff of accretion).&lt;/p&gt;
+&lt;div class="section" id="extending-to-higher-masses"&gt;
+&lt;h2&gt;Extending to higher masses&lt;/h2&gt;
+&lt;p&gt;When we reevaluate the same functions with mmax=120 instead of 3, we can start
+to see the high mass end, which is of course power-law dominated.   In all cases,
+the PMF is dominated by the highest-mass sources, since in all cases they take
+the longest to form.&lt;/p&gt;
+&lt;img alt="" src="http://keflavich.github.io/blog/images/steadystate_pmf_chabrier_mmax120.png" style="width: 600px;" /&gt;
+&lt;img alt="" src="http://keflavich.github.io/blog/images/steadystate_pmf_kroupa_mmax120.png" style="width: 600px;" /&gt;
+&lt;p&gt;The accretion model changes the slope and the overall ratio of high- to
+low-mass stars.&lt;/p&gt;
+&lt;p&gt;These are the mass fractions of various MFs:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Mass fraction for ChabrierIMF M&amp;gt;10 = 0.192&lt;/li&gt;
+&lt;li&gt;Mass fraction for ChabrierPMF_2CTC M&amp;gt;10 = 0.334&lt;/li&gt;
+&lt;li&gt;Mass fraction for ChabrierPMF_CA M&amp;gt;10 = 0.150&lt;/li&gt;
+&lt;li&gt;Mass fraction for ChabrierPMF_IS M&amp;gt;10 = 0.765&lt;/li&gt;
+&lt;li&gt;Mass fraction for ChabrierPMF_TC M&amp;gt;10 = 0.288&lt;/li&gt;
+&lt;li&gt;Mass fraction for KroupaIMF M&amp;gt;10 = 0.185&lt;/li&gt;
+&lt;li&gt;Mass fraction for KroupaPMF_2CTC M&amp;gt;10 = 0.348&lt;/li&gt;
+&lt;li&gt;Mass fraction for KroupaPMF_CA M&amp;gt;10 = 0.148&lt;/li&gt;
+&lt;li&gt;Mass fraction for KroupaPMF_IS M&amp;gt;10 = 0.781&lt;/li&gt;
+&lt;li&gt;Mass fraction for KroupaPMF_TC M&amp;gt;10 = 0.294&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The isothermal sphere case is pretty extremely top-heavy, but all except
+competitive accretion result in a more top-heavy MF, which is a fairly neat
+result - it means that simple binning can distinguish between these theories
+(assuming the parametrization is right).  It also means that the SFRs
+inferred from integrating the high-mass end of the mass function (as I have
+done in &lt;a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/"&gt;my Sgr B2 paper&lt;/a&gt;) is subject to a factor of +/-2x uncertainty
+depending on the accretion history if we assume steady state.&lt;/p&gt;
+&lt;p&gt;The next step is to extend this to different accretion histories (tapered,
+accelerating) and then possibly different star formation histories.
+I will also create some 'synthetic clusters' using the &lt;a class="reference external" href="https://zenodo.org/record/166732"&gt;Robitaille&lt;/a&gt;
+and &lt;a class="reference external" href="https://arxiv.org/abs/1708.08853"&gt;Zhang&lt;/a&gt; models.&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="imf"></category><category term="pmf"></category></entry><entry><title>A quick performance test on CASA cleaning</title><link href="http://keflavich.github.io/blog/a-quick-performance-test-on-casa-cleaning.html" rel="alternate"></link><updated>2017-04-26T11:03:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2017-04-26:a-quick-performance-test-on-casa-cleaning.html</id><summary type="html">&lt;p&gt;I ran some speed tests to compare CASA's speed when imaging single channels vs
 blocks of channels.  The tests were run with savemodel='none' on a lustre node&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 'speedtest_nchan1_concat': 249,

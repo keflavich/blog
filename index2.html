@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2017/08/30
+                  <br>
+                  <a href="http://keflavich.github.io/blog/protostellar-mass-functions.html">Protostellar Mass Functions</a>
+              </li>
+              <li class="post">
                   2017/04/26
                   <br>
                   <a href="http://keflavich.github.io/blog/a-quick-performance-test-on-casa-cleaning.html">A quick performance test on CASA cleaning</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-synthetic-observations.html">CASA synthetic observations</a>
               </li>
-              <li class="post">
-                  2016/06/14
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-clean-splotchy-artifacts.html">CASA clean: "splotchy" artifacts</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,59 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/casa-tclean-adds-negative-components.html" rel="bookmark" title="Permalink to CASA tclean adds negative components">
+                    CASA tclean adds negative components</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-05-01T10:21:00"> 2016/05/01 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm trying to examine some of my 7m+12m combined data and have run into yet another
+mysterious behavior of CASA.  <tt class="docutils literal">tclean</tt> is adding negative components in regions with
+exclusively positive emission.</p>
+<p>In this image, the <em>left</em> is the clean image, which doesn't make any sense; it
+looks like it should be a residual image but it is not.  2nd image is the clean
+components (negative!!), 3rd is the residual, 4th is the dirty map.</p>
+<img alt="" src="http://keflavich.github.io/blog/images/casa/bad_cleancomps.png" style="width: 600px;" />
+<p>One tricky thing for this particular image is that the emission is real, BUT it
+is also directly on top of a major sidelobe of the brightest source in the
+region.  Nonetheless, I cannot imagine any way to explain the negative
+component.  I don't really understand when a negative component is added, but
+presumably it ought to happen when the residual has a negative value but also
+the highest amplitude in the map; this obviously never happens here since the
+residual in fact has one of the highest <em>positive</em> amplitudes in the map.</p>
+<p>The imaging parameters seem not to affect this problem. I attempted reducing the
+gain to 0.05 to no avail.  Changing from natural to robust weighting actually
+removed most of the negative components.</p>
+<div class="section" id="failed-combination-of-7m-and-12m-data">
+<h2>Failed combination of 7m and 12m data</h2>
+<p>The above was a tangent.  The real reason I was working on this data set was to
+combine the 7m and 12m spectral data.  The problem I keep seeing is very large,
+smooth blobs that are spatially distinct from the more compact emission.  It's
+as if someone took the two independent cubes (12m and 7m) and just added them
+together; it looks like flux is not being conserved.</p>
+<p>The UV plots, especially weight vs uvdist, look fine.  The 7m antenna are
+downweighted relative to the 7m antennae by a factor ~2.</p>
+<p>One of the bigger problems is that I have a vague - possibly not justified -
+sense that there is a velocity offset of ~1 km/s between the 7m and 12m data.
+If this is the case, there's no wonder the combination isn't working.
+However, it's nearly inconceivable.</p>
+</div>
+<div class="section" id="followup-feb-2017">
+<h2>Followup Feb 2017</h2>
+<p>That vague fear turned out to be entirely justified.  It turned out that the 7m
+and 12m array data sets were not in a common frame, and they were therefore
+offset by something like the Earth's change in velocity between the observation
+dates.  The solution was to cvel the data sets to the LSRK frame prior to
+concatenating them.  While I know I made these changes, I unfortunately can't
+find the specific commit where I made them.</p>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -622,55 +675,6 @@ that appears not to bt true.  Instead, it seems that even phase solutions with
 image.  I could have understood if this was happening to amplitude
 self-calibration, but I can't understand how it is happening with phase
 self-cal.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/casa-imaging-of-huge-cube.html" rel="bookmark" title="Permalink to CASA imaging of huge cube">
-                    CASA imaging of huge cube</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2016-01-25T10:09:00"> 2016/01/25 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Imaging full cubes, i.e. every channel and every pixel, from ALMA data proved
-too much for the first few machines I tried it on, so I then tried splitting
-the cubes into chunks (<a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/script_12m/scriptForImaging_fullcube.py">source</a>).</p>
-<p>For the most part, this works well, but there are some serious problems:</p>
-<img alt="" src="http://keflavich.github.io/blog/images/casa/spectrum_with_badchunk.png" style="width: 600px;" />
-<p>Note the range from 233.8-234 GHz.  It has a continuum level way above the
-rest.  This is utter nonsense, and turns out to be due to some imaging error.
-The first image below shows a &quot;good&quot; chunk of the cube, the second image shows
-a &quot;bad&quot; chunk.</p>
-<img alt="" src="http://keflavich.github.io/blog/images/casa/w51_cube_chunk_compare_good.png" style="width: 600px;" />
-<img alt="" src="http://keflavich.github.io/blog/images/casa/w51_cube_chunk_compare_bad.png" style="width: 600px;" />
-<p>It is clear that the second image was restore using a too-large beam, and this is verified by examining the header:</p>
-<div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">badcube</span><span class="o">.</span><span class="n">beam</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">Beam</span><span class="p">:</span> <span class="n">BMAJ</span><span class="o">=</span><span class="mf">1.15963029861</span> <span class="n">arcsec</span> <span class="n">BMIN</span><span class="o">=</span><span class="mf">0.96223282814</span> <span class="n">arcsec</span> <span class="n">BPA</span><span class="o">=-</span><span class="mf">71.0310058594</span> <span class="n">deg</span>
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">goodcube</span><span class="o">.</span><span class="n">beam</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">Beam</span><span class="p">:</span> <span class="n">BMAJ</span><span class="o">=</span><span class="mf">0.408393889665</span> <span class="n">arcsec</span> <span class="n">BMIN</span><span class="o">=</span><span class="mf">0.229679107666</span> <span class="n">arcsec</span> <span class="n">BPA</span><span class="o">=</span><span class="mf">45.966835022</span> <span class="n">deg</span>
-</pre></div>
-<p>I don't yet know what is causing this error.  When I try re-doing the clean
-with <tt class="docutils literal">tclean</tt>, I get the following message, which is a hint:</p>
-<pre class="literal-block">
-2016-01-25 09:13:04     WARN    task_tclean::SIImageStore::getPSFGaussian (file
-/var/rpmbuild/BUILD/casa-prerelease/casa-prerelease-4.5.0/code/synthesis/ImagerObjects/SIImageStore.cc,
-line 1262)      PSF is blank for[C139:P0] [C140:P0] [C141:P0] [C142:P0]
-[C143:P0] [C144:P0] [C145:P0] [C146:P0] [C147:P0] [C148:P0] [C149:P0] [C150:P0]
-[C151:P0] [C152:P0] [C153:P0] [C154:P0] [C155:P0] [C156:P0] [C157:P0] [C158:P0]
-[C159:P0] [C160:P0] [C161:P0] [C162:P0] [C163:P0] [C164:P0] [C165:P0] [C166:P0]
-[C167:P0] [C168:P0] [C169:P0] [C170:P0] [C171:P0] [C172:P0] [C173:P0] [C174:P0]
-[C175:P0] [C176:P0] [C177:P0] [C178:P0] [C179:P0] [C180:P0] [C181:P0] [C182:P0]
-[C183:P0] [C184:P0] [C185:P0] [C186:P0]
-</pre>
-<p>Apparently tclean solves this problem!  Instead of using a single beam for all
-channels, it creates a CASAMBM table in the FITS output and uses different
-beams at each channel.  There must be genuinely bad data (probably an
-atmospheric absorption line) at the specified frequencies.  At least now, that
-will come up more naturally, rather than spiking the data.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
