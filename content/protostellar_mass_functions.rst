@@ -35,10 +35,10 @@ is generalized such that you can input other mass functions.  McKee & Offner
 only used the `Chabrier 2005`_ mass function; I include the `Kroupa 2001`_ mass
 function as well for comparison
 
-.. image:: |filename|/images/steadystate_pmf_chabrier.png
+.. image:: |filename|/images/steadystate_pmf_chabrier_mmax3.png
    :width: 600px
 
-.. image:: |filename|/images/steadystate_pmf_kroupa.png
+.. image:: |filename|/images/steadystate_pmf_kroupa_mmax3.png
    :width: 600px
 
 The comparison between the Chabrier and Kroupa mass functions is shown above.
@@ -57,10 +57,10 @@ plot is that it cuts off at 3 Msun.  I want to examine the same distribution at
 higher masses.
 
 
-.. image:: |filename|/images/taperedaccretion_pmf_chabrier.png
+.. image:: |filename|/images/taperedaccretion_pmf_chabrier_mmax3.png
    :width: 600px
 
-.. image:: |filename|/images/taperedaccretion_pmf_kroupa.png
+.. image:: |filename|/images/taperedaccretion_pmf_kroupa_mmax3.png
    :width: 600px
            
 The above plots are the same as before, but with tapered accretion following
@@ -86,20 +86,31 @@ the longest to form.
 The accretion model changes the slope and the overall ratio of high- to
 low-mass stars.
 
-These are the mass fractions of various IMFs:
+These are the mass fractions of various MFs:
 
-Mass fraction for ChabrierIMF M>10 = 0.821
-Mass fraction for ChabrierPMF_2CTC M>10 = 0.849
-Mass fraction for ChabrierPMF_CA M>10 = 0.743
-Mass fraction for ChabrierPMF_IS M>10 = 0.964
-Mass fraction for ChabrierPMF_TC M>10 = 0.839
-Mass fraction for KroupaIMF M>10 = 0.185
-Mass fraction for KroupaPMF_2CTC M>10 = 0.849
-Mass fraction for KroupaPMF_CA M>10 = 0.148
-Mass fraction for KroupaPMF_IS M>10 = 0.781
-Mass fraction for KroupaPMF_TC M>10 = 0.294
+ * Mass fraction for ChabrierIMF M>10 = 0.192
+ * Mass fraction for ChabrierPMF_2CTC M>10 = 0.334
+ * Mass fraction for ChabrierPMF_CA M>10 = 0.150
+ * Mass fraction for ChabrierPMF_IS M>10 = 0.765
+ * Mass fraction for ChabrierPMF_TC M>10 = 0.288
+ * Mass fraction for KroupaIMF M>10 = 0.185
+ * Mass fraction for KroupaPMF_2CTC M>10 = 0.348
+ * Mass fraction for KroupaPMF_CA M>10 = 0.148
+ * Mass fraction for KroupaPMF_IS M>10 = 0.781
+ * Mass fraction for KroupaPMF_TC M>10 = 0.294
 
-This realization of the Chabrier IMF is a bit weird...
+The isothermal sphere case is pretty extremely top-heavy, but all except
+competitive accretion result in a more top-heavy MF, which is a fairly neat
+result - it means that simple binning can distinguish between these theories
+(assuming the parametrization is right).  It also means that the SFRs
+inferred from integrating the high-mass end of the mass function (as I have
+done in `my Sgr B2 paper`_) is subject to a factor of +/-2x uncertainty
+depending on the accretion history if we assume steady state.
+
+The next step is to extend this to different accretion histories (tapered,
+accelerating) and then possibly different star formation histories.
+I will also create some 'synthetic clusters' using the `Robitaille`_
+and `Zhang`_ models.
 
 
 .. _McKee and Offner:
@@ -107,3 +118,6 @@ This realization of the Chabrier IMF is a bit weird...
 .. _this code: https://github.com/keflavich/imf/blob/master/imf/pmf.py
 .. _Chabrier 2005: http://adsabs.harvard.edu/abs/2005ASSL..327...41C
 .. _Kroupa 2001: http://adsabs.harvard.edu/abs/2001MNRAS.322..231K
+.. _my Sgr B2 paper: https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/
+.. _Robitaille: https://zenodo.org/record/166732
+.. _Zhang: https://arxiv.org/abs/1708.08853
