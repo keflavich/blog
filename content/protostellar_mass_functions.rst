@@ -36,10 +36,10 @@ only used the `Chabrier 2005`_ mass function; I include the `Kroupa 2001`_ mass
 function as well for comparison
 
 .. image:: |filename|/images/steadystate_pmf_chabrier_mmax3.png
-   :width: 600px
+   :width: 300px
 
 .. image:: |filename|/images/steadystate_pmf_kroupa_mmax3.png
-   :width: 600px
+   :width: 300px
 
 The comparison between the Chabrier and Kroupa mass functions is shown above.
 Note that these are somewhat deceptive plots, since they show P(M) vs log(M).
@@ -51,17 +51,27 @@ which has a positive power-law slope in the lowest bin in the Kroupa MF,
 showing the usual peak at 0.3 Msun.  This version of the functions is
 nontrivial to compute, especially for the modified PMFs.
 
+The mass-weighted versions of these may be more familiar, and they are more
+similar to the P(log M) version used in `McKee and Offner`_ and `Chabrier 2005`_:
+
+.. image:: |filename|/images/steadystate_pmf_chabrier_integral_mmax3.png
+   :width: 300px
+
+.. image:: |filename|/images/steadystate_pmf_kroupa_integral_mmax3.png
+   :width: 300px
+
 The Chabrier version is a near-perfect match to Figure 3 of `McKee and
-Offner`_, with slightly different normalization.  A notable feature of this
-plot is that it cuts off at 3 Msun.  I want to examine the same distribution at
-higher masses.
+Offner`_, with slightly different normalization (and I'm expressing P(M), not
+P(log M); a previous version showed P(log M), but was incorrect).  A notable
+feature of this plot is that it cuts off at 3 Msun.  I want to examine the same
+distribution at higher masses.
 
 
 .. image:: |filename|/images/taperedaccretion_pmf_chabrier_mmax3.png
-   :width: 600px
+   :width: 300px
 
 .. image:: |filename|/images/taperedaccretion_pmf_kroupa_mmax3.png
-   :width: 600px
+   :width: 300px
            
 The above plots are the same as before, but with tapered accretion following
 the prescription in `McKee and Offner`_.  The tapering function is apparently
@@ -78,10 +88,10 @@ the longest to form.
 
 
 .. image:: |filename|/images/steadystate_pmf_chabrier_mmax120.png
-   :width: 600px
+   :width: 300px
 
 .. image:: |filename|/images/steadystate_pmf_kroupa_mmax120.png
-   :width: 600px
+   :width: 300px
 
 The accretion model changes the slope and the overall ratio of high- to
 low-mass stars.
