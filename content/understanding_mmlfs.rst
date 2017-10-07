@@ -77,6 +77,28 @@ don't plot exactly the same things).
 .. image:: |filename|/images/Klassen_vs_Hosokawa_model_comparison.png
    :width: 600px
 
+At least in priniple, these tools give us a mechanism to determine L(M, M_f),
+the luminosity as a function of the current mass and the final mass of a star.
+Alternatively, that can be written as L(t, M_f), the luminosity as a function
+of time and final mass.  However, there is at least one major practical concern:
+the protostellar evolution models have the free variable mdot, not M_f, so
+in order to use these models, we need to populate a 'fully sampled' L(M, M_f) table.
+Offner et al computed such a table, but then used an approximation for
+R(M) - the stellar radius as a function of its mass - for their calculations.
+
+TODO: compute function that obtains R, T given M, t
+
+Protostellar SED Models
+-----------------------
+The next step in computing a millimeter luminosity distribution is to convert
+from stellar luminosity to the reprocessed flux at a given wavelength.  This
+step has an enormous number of free parameters, since the surrounding structure
+may include both a disk and a core whose shapes will both vary.
+
+There are two large grids of radiative transfer models that have been computed
+for this purpose.  The `Robitaille grid`_ is complete and open, and it should
+cover all stellar masses.  The `Zhang+ 2017`_ grid is not yet available, but it
+may be more self-consistent.
 
 
 .. _McKee and Offner:
@@ -90,3 +112,6 @@ don't plot exactly the same things).
 .. _Hosokawa & Omukai: http://adsabs.harvard.edu/abs/2009ApJ...691..823H
 .. _Offner+ 2009: http://adsabs.harvard.edu/abs/2009ApJ...703..131O
 .. _Protostellar Mass Functions: protostellar_mass_functions.rst
+.. _robitaille sedfitter: github.com/astrofrog/sedfitter
+.. _Robitaille grid: https://zenodo.org/record/166732#.WdlXwmK3xcw
+.. _Zhang+ 2017: http://adsabs.harvard.edu/abs/2017arXiv170808853Z
