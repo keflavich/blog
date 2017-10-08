@@ -141,6 +141,94 @@ for this purpose.  The `Robitaille grid`_ is complete and open, and it should
 cover all stellar masses.  The `Zhang+ 2017`_ grid is not yet available, but it
 may be more self-consistent.
 
+I plan to use the protostellar evolutionary model parameters, i.e., the radius
+and luminosity, to select models from this grid.  However, the Robitaille grid
+uses surface temperature and radius, not luminosity and radius.  So we either
+need to compute the stellar luminosity in the Robitaille models assuming the
+stars are perfect blackbodies, then use the stellar luminosity to select from
+that grid, or we need to compute the stellar surface temperature from
+the evolutionary model.
+
+Since the Robitaille models cover a large number of parameters, but do so in a
+fairly sparse grid, it is not trivial to map from radius+luminosity to the
+models.  For example, for a $2-3\times10^5$ Lsun star with radius 40-50 Rsun,
+there are 860 models in the ``spubhmi`` grid, most of which lack flux measurements
+in many apertures.
+
+Example Model Selection
++++++++++++++++++++++++
+
+For this example, I'm looking at an mf=10 Msun star at t=0.58 Myr, at which
+point it has m=6.5 Msun.  Its radius at this time is 9.0 Rsun and *stellar*
+luminosity 1300 Lsun.  This is the line of output from the Klassen model::
+
+                 Time        Stellar_Mass      Accretion_Rate      Stellar_Radius    Polytropic_Index      Deuterium_Mass       Intrinsic_Lum    Total_Luminosity    Stage
+     0.1842924478E+14    0.1300261603E+35    0.1404188516E+22    0.6278790980E+12    0.3000000000E+01    0.0000000000E+00    0.5084830934E+37    0.6525577133E+37        4
+
+I select models within 5% of this one's radius and luminosity:
+
+.. code-block:: python
+
+   lum = (0.5084830934E+37*u.erg/u.s).to(u.L_sun)
+   rad = (0.6278790980E+12*u.cm).to(u.R_sun)
+   selpars = pars[(pars['Luminosity'] > lum.value*0.95) & (pars['Luminosity'] < lum.value*1.05) & (pars['star.radius']>rad.value*0.95) & (pars['star.radius']<rad.value*1.05)]
+
+My first attempt at this, with the ``spubhmi`` model, resulted in one that has
+no flux in small (4000 AU) aperture, which I don't yet know how to interpret -
+it is certainly possible for such a source, with a non-negligible envelope, to
+exist, and it would certainly produce some flux.
+
+More lenient parameters are needed:
+
+   lum = (0.5084830934E+37*u.erg/u.s).to(u.L_sun)
+   rad = (0.6278790980E+12*u.cm).to(u.R_sun)
+   apnum = np.argmin(np.abs(seds.apertures - 2000*u.au))
+   wav = (95*u.GHz).to(u.mm, u.spectral())
+   wavnum = np.argmin(np.abs(seds.wav - wav))
+   ok = np.isfinite(seds.val[:,wavnum,apnum])
+   selpars = pars[(pars['Luminosity'] > lum.value*0.9) & (pars['Luminosity'] < lum.value*1.10) & (pars['star.radius']>rad.value*0.9) & (pars['star.radius']<rad.value*1.10) & ok]
+
+This one at least results in some hits.  There are three models with fluxes (at
+Sgr B2, in a 2000 AU radius aperture, at 95 GHz) of 15-25, 155-170, and 55-60 mJy.
+To build a model cluster, we would randomly select one of these models.
+Robitaille notes, however, that some of the models are nonphysical; at the moment,
+we have no way to assess that, so we have to do the selection blindly.  The brightest
+model has a denser envelope and more massive disk.
+
+We can use this to make a model cluster, but this is a pretty discouraging first model
+given my previous work; this is presently a low-luminosity source that is surprisingly
+intense at 3mm.
+
+
+Full Workflow
+-------------
+
+We first create a cluster by sampling from a stellar initial mass function.
+This part is straightforward, at least.
+
+Then, for each source, we 'rewind' to a specific time and select model parameters
+from the protostellar evolution models described above.  The 'rewind' could be
+from the point at which the stars reach "stage 5", main sequence, or we could
+select some other criteria.
+
+Finally, we sample from the Robitaille parameters.  For this first example,
+we just randomly select from some parameters that are within 5-10% of the target
+parameters.  In the longer term, we'll want to be much more accurate
+and find a way to interpolate the Robitaille models onto a "fully sampled" grid
+of the parameter space we're interested in.  The Zhang models are probably
+better to use once they become available since they may have accretion histories
+consistent with those used for the evolutionary model.
+
+
+Final comments
+--------------
+For the next post, I hope to actually generate some clusters and see what sorts
+of uncertainties we're dealing with.  The above examples suggest they could be
+truly extreme, and perhaps that the Robitaille models will be inadequate for
+this purpose.  We'll see.
+
+
+
 
 .. _McKee and Offner:
 .. _protostellar mass function: http://adsabs.harvard.edu/abs/2010ApJ...716..167M
