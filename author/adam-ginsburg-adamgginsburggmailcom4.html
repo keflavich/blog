@@ -67,6 +67,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2017/10/07
+                  <br>
+                  <a href="http://keflavich.github.io/blog/understanding-millimeter-source-counts.html">Understanding Millimeter Source Counts</a>
+              </li>
+              <li class="post">
+                  2017/10/02
+                  <br>
+                  <a href="http://keflavich.github.io/blog/what-simulations-use-a-density-threshold-determined-from-local-clouds.html">What simulations use a density threshold determined from local clouds?</a>
+              </li>
+              <li class="post">
                   2017/08/30
                   <br>
                   <a href="http://keflavich.github.io/blog/protostellar-mass-functions.html">Protostellar Mass Functions</a>
@@ -81,16 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/high-mass-protostellar-sio-masers.html">High-mass Protostellar SiO Masers</a>
               </li>
-              <li class="post">
-                  2017/01/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/publications-from-2016.html">Publications from 2016</a>
-              </li>
-              <li class="post">
-                  2016/08/15
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-synthetic-observations.html">CASA synthetic observations</a>
-              </li>
         </ul>
       </li>
     
@@ -102,6 +102,61 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles by Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/casa-clean-errors-related-to-channels.html" rel="bookmark" title="Permalink to CASA clean errors related to channels">
+                    CASA clean errors related to channels</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-10-28T16:51:00"> 2015/10/28 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>When cleaning my ALMA data, especially when trying to <a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m/scriptForImaging.py#L120">image the full cube (all
+channels)</a>
+when there are multiple SBs
+with slightly different frequencies, I see this error frequently:</p>
+<blockquote>
+No valid data, skip CLEANing this channel</blockquote>
+<p>It seems that the channel really is being skipped in many cases.  In the Sgr B2
+cube, this wasn't a problem because I unintentionally cleaned only one of the
+observations.  For the W51 and Orion data, I tried to <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/script_12m/scriptForImaging_fullcube.py">include all of the data</a>,
+but that is causing problems.  Perhaps CASA does not work at all when 'channel'
+is specified and the channels aren't aligned?  Or maybe it only accepts channels
+when all channels exist?</p>
+<p>I've now redone the 'full cube' imaging to separately image the two SBs in W51.
+I'll see if that works...</p>
+<p>Nope, the resulting error is much worse:</p>
+<pre class="literal-block">
+Log:
+2015-10-28 15:49:01     INFO    imager::clean() Fitted beam used in restoration: 1.07809 by 0.913862 (arcsec) at pa -63.3899 (deg)
+2015-10-28 15:49:01     INFO    imager::iClean()        Restoring Image(s) with the clean-beam
+2015-10-28 15:49:02     SEVERE  clean::::       An error occurred running task clean.
+
+Terminal:
+*** Error ***  The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2015-10-28 15:49:02     SEVERE  clean::::       An error occurred running task clean.
+</pre>
+<p>This is an indication of a major underlying python bug.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/pyspeckit-is-py3-compatible.html" rel="bookmark" title="Permalink to pyspeckit is py3-compatible">
+                    pyspeckit is py3-compatible</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-10-28T10:28:00"> 2015/10/28 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>With PR <a class="reference external" href="https://github.com/pyspeckit/pyspeckit/pull/110">#110</a> and <a class="reference external" href="https://github.com/pyspeckit/pyspeckit/pull/111">#111</a>, pyspeckit is now (apparently)
+fully python3-compatible.  The test suite passes, but that's not a guarantee
+that I've caught all bugs in the translation.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">

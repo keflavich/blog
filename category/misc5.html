@@ -68,6 +68,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2017/10/07
+                  <br>
+                  <a href="http://keflavich.github.io/blog/understanding-millimeter-source-counts.html">Understanding Millimeter Source Counts</a>
+              </li>
+              <li class="post">
+                  2017/10/02
+                  <br>
+                  <a href="http://keflavich.github.io/blog/what-simulations-use-a-density-threshold-determined-from-local-clouds.html">What simulations use a density threshold determined from local clouds?</a>
+              </li>
+              <li class="post">
                   2017/08/30
                   <br>
                   <a href="http://keflavich.github.io/blog/protostellar-mass-functions.html">Protostellar Mass Functions</a>
@@ -82,16 +92,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/high-mass-protostellar-sio-masers.html">High-mass Protostellar SiO Masers</a>
               </li>
-              <li class="post">
-                  2016/08/15
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-synthetic-observations.html">CASA synthetic observations</a>
-              </li>
-              <li class="post">
-                  2016/06/14
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-clean-splotchy-artifacts.html">CASA clean: "splotchy" artifacts</a>
-              </li>
         </ul>
       </li>
     
@@ -103,6 +103,316 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles in the misc category</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/converting-a-fits-cube-to-a-casa-image.html" rel="bookmark" title="Permalink to Converting a FITS cube to a CASA Image">
+                    Converting a FITS cube to a CASA Image</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-12-18T15:15:00"> 2013/12/18 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg <adam.g.ginsburg@gmail.com></a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>If you want to perform analysis on a FITS file in CASA, you first need to
+import it into <cite>.image</cite> format.</p>
+<blockquote>
+importfits('file.fits','file.image')</blockquote>
+<p>If this works, great!  You can move on.  CASA will treat NaN values in an image
+as 'masked'.</p>
+<div class="section" id="dealing-with-errors">
+<h2>Dealing with Errors</h2>
+<p>There may be issues with FITS headers.  CASA respects a large number of header
+keys (<a class="reference external" href="http://www.eso.org/projects/alma/arc/tw/pub/External/EUARCCASATutorialJan2012/ImageAnalysis-CASA.pdf">reference</a>).</p>
+<p>There are many ways to edit a FITS header.  One of the most straightforward to
+use is <a class="reference external" href="http://tdc-www.harvard.edu/wcstools/edhead.html">edhead</a>.  Otherwise, one can use CASA's <a class="reference external" href="http://casaguides.nrao.edu/index.php?title=Imhead">imhead</a></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="14%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>CASA Keyword</td>
+<td>FITS keyword</td>
+<td>Description</td>
+</tr>
+<tr><td>beammaj</td>
+<td>BMAJ</td>
+<td>Major&nbsp;axis&nbsp;of&nbsp;the&nbsp;clean&nbsp;beam</td>
+</tr>
+<tr><td>beammin</td>
+<td>BMIN</td>
+<td>Minor&nbsp;axis&nbsp;of&nbsp;the&nbsp;clean&nbsp;beam</td>
+</tr>
+<tr><td>beampa</td>
+<td>BPA</td>
+<td>Position&nbsp;angle&nbsp;of&nbsp;the&nbsp;clean&nbsp;beam</td>
+</tr>
+<tr><td>bunit</td>
+<td>BUNIT</td>
+<td>Brightness&nbsp;unit&nbsp;(K,&nbsp;Jy/beam,&nbsp;etc)</td>
+</tr>
+<tr><td>cdeltn</td>
+<td>CDELTn</td>
+<td>Pixel&nbsp;size,&nbsp;nth&nbsp;axis&nbsp;&nbsp;(max&nbsp;n&nbsp;is&nbsp;4)</td>
+</tr>
+<tr><td>crpixn</td>
+<td>CRPIXn</td>
+<td>Pixel&nbsp;coordinate&nbsp;of&nbsp;reference&nbsp;point,&nbsp;nth&nbsp;axis</td>
+</tr>
+<tr><td>crvaln</td>
+<td>CRVALn</td>
+<td>Pixel&nbsp;location&nbsp;of&nbsp;reference&nbsp;point,&nbsp;nth&nbsp;axis</td>
+</tr>
+<tr><td>ctypen</td>
+<td>CTYPEn</td>
+<td>Axis&nbsp;name,&nbsp;nth&nbsp;axis.  For FITS, this includes the projection</td>
+</tr>
+<tr><td>cunitn</td>
+<td>CUNITn</td>
+<td>Pixel&nbsp;units,&nbsp;nth&nbsp;axis</td>
+</tr>
+<tr><td>datamax</td>
+<td>DATAMAX</td>
+<td>Maximum&nbsp;pixel&nbsp;value&nbsp;in&nbsp;image</td>
+</tr>
+<tr><td>datamin</td>
+<td>DATAMIN</td>
+<td>Minimum&nbsp;pixel&nbsp;value&nbsp;in&nbsp;image</td>
+</tr>
+<tr><td>date-obs</td>
+<td>DATE-OBS</td>
+<td>Date&nbsp;of&nbsp;the&nbsp;observation</td>
+</tr>
+<tr><td>equinox</td>
+<td>EQUINOX</td>
+<td>Reference&nbsp;frame&nbsp;for&nbsp;directional&nbsp;coordinates</td>
+</tr>
+<tr><td>imtype</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Image&nbsp;type:&nbsp;intensity,</td>
+</tr>
+<tr><td>minpos</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Position&nbsp;of&nbsp;the&nbsp;minimum&nbsp;value&nbsp;(world&nbsp;unit)</td>
+</tr>
+<tr><td>minpixpos</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Same&nbsp;in&nbsp;pixel&nbsp;(array)</td>
+</tr>
+<tr><td>maxpos</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Position&nbsp;of&nbsp;the&nbsp;maximum&nbsp;value&nbsp;(world&nbsp;unit)</td>
+</tr>
+<tr><td>maxpixpos</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Same&nbsp;in&nbsp;pixel&nbsp;(array)</td>
+</tr>
+<tr><td>object</td>
+<td>OBJECT</td>
+<td>Source&nbsp;name</td>
+</tr>
+<tr><td>observer</td>
+<td>OBSERVER</td>
+<td>Observer&nbsp;name</td>
+</tr>
+<tr><td>projection</td>
+<td>CTYPEn</td>
+<td>Image&nbsp;projection&nbsp;('SIN','TAN',&nbsp;or&nbsp;'ZEA')</td>
+</tr>
+<tr><td>reffreqtype</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Reference&nbsp;frame&nbsp;for&nbsp;the&nbsp;spectral&nbsp;coordinates</td>
+</tr>
+<tr><td>restfreq</td>
+<td>RESTFREQ</td>
+<td>Rest&nbsp;Frequency</td>
+</tr>
+<tr><td>shape</td>
+<td>NAXISn</td>
+<td>Number&nbsp;of&nbsp;pixels&nbsp;along&nbsp;each&nbsp;axis</td>
+</tr>
+<tr><td>telescope</td>
+<td>TELESCOP</td>
+<td>Telescope&nbsp;name</td>
+</tr>
+</tbody>
+</table>
+<p>What does it mean if you get this sort of error?</p>
+<blockquote>
+CASA &lt;1&gt;: importfits('file.fits','file.image')
+2013-12-18 13:06:18     WARN    importfits::FITSCoordinateUtil::fromFITSHeader  The wcs function failures are too severe to continue ...
+2013-12-18 13:06:18     WARN    importfits::ImageFITSConverterImpl::FITSToImage (file /var/rpmbuild/BUILD/casapy-stable/casapy-stable-42.0.26945/casacore/images/Images/ImageFITSConverter.tcc, line 71)       No proper coordinate system defined in FITS file. Using dummy linear system instead.</blockquote>
+<p>First, go to the <cite>casapy-yyyymmdd-hhmmss.log</cite> file and look at the errors.</p>
+<blockquote>
+2013-12-18 13:06:18     INFO    importfits::FITSCoordinateUtil::fromFITSHeader  celfix incurred the error Inconsistent or unrecognized coordinate axis types
+2013-12-18 13:06:18     INFO    importfits::FITSCoordinateUtil::fromFITSHeader  spcfix incurred the error Inconsistent or unrecognized coordinate axis types
+2013-12-18 13:06:18     INFO    importfits::FITSCoordinateUtil::fromFITSHeader  cylfix incurred the error Inconsistent or unrecognized coordinate axis types</blockquote>
+<p>In my case, the error turned out to be that <cite>CTYPE3</cite> was set to <cite>RADI-LSR</cite>,
+while it should be <cite>VELO-LSR</cite> to be recognized by the CASA system.  The
+velocity convention is, unfortunately, lost.</p>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/there-is-a-gap-in-the-dust-around-sgr-b2.html" rel="bookmark" title="Permalink to There is a "gap" in the dust around Sgr B2">
+                    There is a &quot;gap&quot; in the dust around Sgr B2</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-12-13T00:00:00"> 2013/12/13 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Sgr B2 is the most massive gas clump in our Galaxy.  It's about 100 pc away
+from Sgr A*, the black hole at the center of the Galaxy.  It is forming stars
+prodigiously, and has extreme properties in many regards.</p>
+<p>In many physical aspects - mass, luminosity, velocity dispersion, temperature -
+the Sgr B2 region is similar to &quot;proto-cluster clumps&quot; seen in other galaxies,
+e.g. the Antennae galaxies.</p>
+<p>There are plenty of mysteries about Sgr B2, including its extraordinarily
+diverse chemistry and its peculiar kinematics.</p>
+<p>I'm raising a sort of new one.  There appears to be a hole next to Sgr B2,
+towards the southeast in Galactic coordinates.  It appears as a relatively
+empty spot in the dust continuum bands.  It doesn't seem to be filled in
+with anything in particular.</p>
+<html>
+<div class="output_html rendered_html">
+
+    <script type="text/javascript">
+
+      var image_dir='blog/images/sgrb2/'
+
+      var images=new Array(
+                   "TheGap_GLM_00000+0000_mosaic_I2.png",
+                   "TheGap_GLM_00000+0000_mosaic_I4.png",
+                   "TheGap_gcmosaic_24um.png",
+                   "TheGap_igls_l000_blue_cnr_hh.png",
+                   "TheGap_igls_l000_red_cnr_hh.png",
+                   "TheGap_igls_l000_psw_deglitch_hh.png",
+                   "TheGap_igls_l000_pmw_deglitch_hh.png",
+                   "TheGap_SgrB2_350um_gal.png",
+                   "TheGap_gc450_gal.png",
+                   "TheGap_igls_l000_plw_deglitch_hh.png",
+                   "TheGap_gc850_gal.png",
+                   "TheGap_ATLASGAL.1.5_reprojectoverlap9.png",
+                   "TheGap_v2.0_ds2_l001_13pca_map20.png",
+                   //"TheGap_sgrb2_nh311_sum.png",
+                   "TheGap_sgrb2_20cm_12as_gal.png",
+                   "TheGap_20cm_0.png"
+                   )
+      var titles=new Array(
+                   "4.5um",
+                   "8um",
+                   "24um",
+                   "70um",
+                   "160um",
+                   "250um",
+                   "350um Herschel",
+                   "350um SHARC",
+                   "450um",
+                   "500um",
+                   "850um SCUBA",
+                   "870um ATLASGAL",
+                   "1100um",
+                   //"1.3cm NH3",
+                   "20cm",
+                   "20cm (poor resolution)"
+                   )
+
+      function interactUpdate(div){
+         var outputs = div.getElementsByTagName("img");
+         var divoutputs = div.getElementsByTagName("div");
+         var controls = div.getElementsByTagName("input");
+
+         var value = "";
+         for(i=0; i<controls.length; i++){
+           if((controls[i].type == "range") || controls[i].checked){
+             //value = value + controls[i].getAttribute("name") + controls[i].value;
+             value = controls[i].value;
+           }
+         }
+
+         for(i=0; i<outputs.length; i++){
+           var name = outputs[i].getAttribute("name");
+           if(name=="figure"){
+                 outputs[i].src = image_dir+images[value]
+           }
+         }
+
+         for(i=0; i<divoutputs.length; i++){
+           var name = divoutputs[i].getAttribute("name");
+           if(name=="caption"){
+                 divoutputs[i].innerHTML = titles[value];
+           }
+         }
+
+         //for(i=0; i<images.length; i++){
+         //  var name = outputs[i].getAttribute("name");
+         //  if(name == value){
+         //     outputs[i].style.display = 'block';
+         //  } else if(name != "controls"){
+         //     outputs[i].style.display = 'none';
+         //  }
+         //}
+      }
+    </script>
+    
+    <div>
+      
+    <div name="figure" style="display:block">
+        <div name="caption">
+            20cm
+        </div>
+        <img name="figure" src="blog/images/sgrb2/TheGap_20cm_0.png" height=600px>
+    </div>
+
+<input type="range" name="figure" min="0" max="14" step="1" value="0" style="width:350px" onchange="interactUpdate(this.parentNode);">
+</html>
+<p>Note the slider here: you can view Sgr B2 at any wavelength where I have data.
+The green circle highlights the major deficiency that is evident in all
+dust-containing bands.  There are other &quot;minor&quot; deficiencies elsewhere.</p>
+<p>It is tricky to interpret this: I don't think the absolute flux densities in
+any of the millimeter observations are perfectly trustworthy because of their
+proximity to the extremely bright Sgr B2 point sources.</p>
+<p>Additionally, this gap is not perfectly evident in NH3 or CO.  In the HOPS NH3
+maps, there is a relative lack of emission at ~56 km/s - relative to
+neighboring regions; this is actually the peak of the line profile extracted
+from the ellipse!</p>
+<p>This is in contrast to the central &quot;Gas Hole&quot; which has been noted by others;
+it exists in CO and NH3.  There is almost certainly some NH3 self-absorption
+involved.  The &quot;Gas Hole&quot; coincides with the peak in other gas species and the
+peak in the dust emission, so it really seems to be a different phenomenon,
+having to do with line-of-sight confusion and excitation conditions.</p>
+<p>The one feature of the &quot;dust gap&quot; that distinguishes this part of Sgr B2 from
+the other regions surrounding it is that 8 micron emission can readily be
+observed here.  A little 24 micron emission is in the gap as well, but not as
+much as the 8 micron.  The 70 micron emission is quite weak, but not really
+deficient.  Perhaps in this region, very small grains are more common than in
+its surroundings?</p>
+<p>There's a lot more hypothesizing to be done here.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -1281,94 +1591,6 @@ square below), so the maximum <span class="formula"><i>ρ</i><sub><i>M</i></sub>
 </div>
 </div>
 </div>
-</div>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/recovering-from-startup-drive-out-of-memory.html" rel="bookmark" title="Permalink to Recovering from "Startup drive out of memory"">
-                    Recovering from &quot;Startup drive out of memory&quot;</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-05-13T09:26:00"> 2013/05/13 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>To continue frozen processes, you need to find all sleeping procs and restart them with <tt class="docutils literal">kill <span class="pre">-CONT</span></tt>.</p>
-<p>In principle, this command should do that:</p>
-<p><tt class="docutils literal">ps <span class="pre">-A</span> <span class="pre">-o</span> tpgid,uid,pid,state,flags | awk <span class="pre">'$1!=&quot;0&quot;</span> &amp;&amp; <span class="pre">$2==501</span> &amp;&amp; <span class="pre">$4==&quot;S&quot;</span> &amp;&amp; <span class="pre">$5!=&quot;4000410c&quot;</span> {print &quot;kill <span class="pre">-CONT</span> &quot; $3}' | bash</tt></p>
-<p>Without the flags exclusion, this failed for me on apple's VNC server:
-<tt class="docutils literal">ps <span class="pre">-A</span> <span class="pre">-o</span> tpgid,uid,pid,state,flags | awk <span class="pre">'$2==501</span> &amp;&amp; <span class="pre">$4==&quot;S&quot;</span> &amp;&amp; <span class="pre">$5!=&quot;4000410c&quot;</span> {print &quot;kill <span class="pre">-CONT</span> &quot; $3}' | bash</tt></p>
-<p>This is necessary for recovering mac processes:
-<tt class="docutils literal"><span class="pre">-A</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Display information about other users' processes, including those without controlling terminals.</tt></p>
-<p>The outputs from the <tt class="docutils literal">ps</tt> process are:</p>
-<blockquote>
-<ul class="simple">
-<li>tpgid      control terminal process group ID</li>
-<li>pid        process ID</li>
-<li>uid        effective user ID</li>
-</ul>
-</blockquote>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/bolocam-mass-calculations.html" rel="bookmark" title="Permalink to Bolocam Mass Calculations">
-                    Bolocam Mass Calculations</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-03-25T11:14:00"> 2013/03/25 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Adopt an effective Bolocam center frequency,  f = 271.1 GHz</p>
-<p>Use Ossenkopf, V. &amp; Henning, Th. 1994, A&amp;A, 291, 943 Table 1. [<a class="reference external" href="http://adsabs.harvard.edu/abs/1994A%26A...291..943O">http://adsabs.harvard.edu/abs/1994A%26A...291..943O</a>]
-Interpolate last two entries (lambda = 1.0 mm and 1.3 mm to f)</p>
-<p>This gives <span class="formula"><i>κ</i> = 0.01166<i>cm</i><sup>2</sup><i>g</i><sup> − 1</sup></span> (or round to 0.0117)
-for gas-to-dust = 100.
-But the slope between these 2 points is only 1.61!</p>
-<p>The points in OH94 table 1 jump around and locally give a variety of
-slopes around 1.8.  A fit to kappa longward of 100 microns
-gives a slope of 1.8.</p>
-<p>Interpolating kappa from 1.00 mm where OH5 gives <span class="formula"><i>κ</i>(1.00) = 0.0137</span>
-(for a gas-to-dust ratio = 100) to 271.1 GHz (= 1.1058 mm)
-using a slope of 1.8 gives:</p>
-<p><span class="formula"><i>κ</i> = 0.01143<i>cm</i><sup>2</sup><i>g</i><sup> − 1</sup></span></p>
-<p>This is the same as the value used by Enoch, so let's adopt it
-(round to 0.0114), but note that this was calculated for 271.1 GHz.</p>
-<p>For the v1.0 data, the BGPS has the following properties:</p>
-<p>effective beam FWHM = 33&quot;</p>
-<p>gaussian beam <span class="formula"><i>σ</i> = 14.01</span>&quot;    (= FWHM / <span class="formula"><span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root">(8*ln(2))</span><span class="ignored">)</span></span></span>)</p>
-<p>effective beam radius = 19.82&quot;    (= FWHM / <span class="formula"><span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root">(4*ln(2))</span><span class="ignored">)</span></span></span>)</p>
-<p>This is the radius of a circular top-hat function that has the
-same solid angle as a gaussian.  At a distance of
-D = 1 kpc, this radius corresponds to a length  = <span class="formula">2.97<i>x</i>10<sup>17</sup></span> cm.
-The effective beam solid angle is <span class="formula">Ω = 2.902<i>x</i>10<sup> − 8</sup></span> sr.</p>
-<p>Adopt a fiducial dust temperature for mass calculations, <span class="formula"><i>T</i><sub><i>d</i></sub> = 20<i>K</i></span></p>
-<p>The total mass per Jy at <span class="formula"><i>D</i><sub><i>kpc</i></sub></span> = 1 kpc is given by</p>
-<div class="formula">
-<i>M</i> = 1.0<i>x</i>10<sup> − 23</sup>*<i>S</i>(<i>Jy</i>)*<i>D</i><sup>2</sup> ⁄ <i>κ</i>*<i>B</i><sub><i>ν</i></sub>(<i>T</i>)
-</div>
-<div class="formula">
- = 14.30*[<i>e</i><sup>13.01 ⁄ <i>T</i>(<i>K</i>) − 1</sup>]*<i>S</i>(<i>Jy</i>)*<i>D</i><span class="scripts"><sub class="script"><i>kpc</i></sub><sup class="script">2</sup></span><i>M</i><sub>⊙</sub>
-</div>
-<p>For <span class="formula"><i>T</i> = 20<i>K</i></span>:</p>
-<div class="formula">
-<i>M</i> = 13.07*<i>S</i>(<i>Jy</i>)*<i>D</i><span class="scripts"><sub class="script"><i>kpc</i></sub><sup class="script">2</sup></span><i>M</i><sub>⊙</sub>
-</div>
-<p>This corresponds to a beam-filling column density of <span class="formula"><i>H</i><sub>2</sub></span>,</p>
-<div class="formula">
-<i>N</i>(<i>H</i>2) = 2.19<i>e</i> + 22*[<i>e</i><sup>13.01 ⁄ <i>T</i>(<i>K</i>) − 1</sup>]*<i>S</i>(<i>Jy</i>)(<i>cm</i><sup> − 2</sup>)
-</div>
-<p>For <span class="formula"><i>T</i> = 20<i>K</i></span>:</p>
-<div class="formula">
-<i>N</i>(<i>H</i>2) = 2.01<i>x</i>10<sup>22</sup>*<i>S</i>(<i>Jy</i>)(<i>cm</i><sup> − 2</sup>)<i>A</i><sub><i>V</i></sub> = 21.1<span class="mathrm"> magnitudes</span><i>Jy</i><sup> − 1</sup>
-</div>
-<p>where we use the Bohlin &amp; Savage calibration</p>
-<div class="formula">
-<i>A</i><sub><i>V</i></sub> = 1<i>mag</i>. &lt;  =  &gt; <i>N</i>(<i>H</i>) = 1.9<i>x</i>10<sup>20</sup><i>cm</i><sup> − 2</sup><span class="mathrm"> and</span><i>N</i>(<i>H</i><sub>2</sub>) = <i>N</i>(<i>H</i>) ⁄ 2
 </div>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>

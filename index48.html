@@ -67,6 +67,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2017/10/07
+                  <br>
+                  <a href="http://keflavich.github.io/blog/understanding-millimeter-source-counts.html">Understanding Millimeter Source Counts</a>
+              </li>
+              <li class="post">
+                  2017/10/02
+                  <br>
+                  <a href="http://keflavich.github.io/blog/what-simulations-use-a-density-threshold-determined-from-local-clouds.html">What simulations use a density threshold determined from local clouds?</a>
+              </li>
+              <li class="post">
                   2017/08/30
                   <br>
                   <a href="http://keflavich.github.io/blog/protostellar-mass-functions.html">Protostellar Mass Functions</a>
@@ -81,16 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/high-mass-protostellar-sio-masers.html">High-mass Protostellar SiO Masers</a>
               </li>
-              <li class="post">
-                  2017/01/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/publications-from-2016.html">Publications from 2016</a>
-              </li>
-              <li class="post">
-                  2016/08/15
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-synthetic-observations.html">CASA synthetic observations</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,69 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/disagreement-over-definition-of-lb-coordinates.html" rel="bookmark" title="Permalink to Disagreement over definition of l,b coordinates">
+                    Disagreement over definition of l,b coordinates</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-09-10T22:43:00"> 2008/09/10 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>DS9 does something intuitive: cd0_0 and cd1_1 multiplied by the x,y
+pixel difference gets you the new l,b coordinate. I think this is very
+likely to be correct on the galactic plane. IDL does something
+different. I don't know why different, or really how - it's buried
+somewhere in wcsxy2sph - but it's definitely different. Which is right?</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/broken-rotation.html" rel="bookmark" title="Permalink to Broken rotation">
+                    Broken rotation</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-09-09T01:34:00"> 2008/09/09 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I have to echo James in saying how remarkable it is than anything I ever
+did worked at all! I'm growing more and more certain that I've been
+double-correcting rotation for the past 2 months, and my maps don't look
+all that bad!
+.. image:: <a class="reference external" href="http://4.bp.blogspot.com/_lsgW26mWZnU/SMW4oOPcLaI/AAAAAAAADXw/1ARG8iyVXDQ/s400/070717_o15_rotations.png">http://4.bp.blogspot.com/_lsgW26mWZnU/SMW4oOPcLaI/AAAAAAAADXw/1ARG8iyVXDQ/s400/070717_o15_rotations.png</a>
+Image caption:
+Top left - both PA and rotang
+Top right - neither
+Bottom left - rotang only
+Bottom right - PA only
+I'm running the same sort of comparison on all of the GC and L=24 data.
+Check out /scratch/adam_work/ROT_TEST for the results. I'll be
+updating this when I've completed that analysis.
+Update 6:35 PM: !&#64;#$, etc. New problem child:
+.. image:: <a class="reference external" href="http://1.bp.blogspot.com/_lsgW26mWZnU/SMXFUjLjRGI/AAAAAAAADX4/aynvuycRzGM/s400/060603_o16_rotations.png">http://1.bp.blogspot.com/_lsgW26mWZnU/SMXFUjLjRGI/AAAAAAAADX4/aynvuycRzGM/s400/060603_o16_rotations.png</a>
+Image caption (same as above, luckily):
+Top left - both PA and rotang
+Top right - neither
+Bottom left - rotang only
+Bottom right - PA only
+So, can anyone tell me which one of THESE is right? Because I can't. Top
+left is 'correct' except that it's not.
+Update 7:10 PM: I compared adding/subtracting PA and RA, and I can say
+this: subtracting PA never works. Adding/subtracting RA works variably.
+I think I'm done testing parameter space. I haven't had very good luck
+doing parameter space tests in the past; it usually is more beneficial
+to take a step back and try to think through the problem.
+Update 7:30 PM: Fixed. Much as this looks like a short-lived, easily
+solved problem, it was one of the most subtle and insidious errors I've
+made. I got extremely lucky that plotting PA and ROTANGLE happened to
+spark off warning sirens in my mind about the positioning of the
+variable names. I wouldn't normally look for that.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -313,55 +376,6 @@ My priority list:</p>
 <li>make maps!</li>
 <li>figure out the rest of pointing</li>
 </ol>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/iterating-to-convergence.html" rel="bookmark" title="Permalink to Iterating to Convergence">
-                    Iterating to Convergence</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-25T17:42:00"> 2008/08/25 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/SLLufcweELI/AAAAAAAADOs/5LV8RF28aUk/s400/iteratetoconvergence-0.png" />
-<p>Some sample plots of flux-vs-iteration number in the Galactic Center.
-The above is for a 13-pca-component map, and the plot is of the
-northeast peak of SGR B2. The other plots (available in postscript
-below) are of two other points in the GC, and the last one is of the
-whole of SGR B2 (it's a very large aperture).
-ps version here:
-<a class="reference external" href="http://sites.google.com/site/bolocam/pipeline/mapping/iteratetoconvergence.ps?attredirects=0">http://sites.google.com/site/bolocam/pipeline/mapping/iteratetoconvergence.ps?attredirects=0</a>
-or /scratch/adam_work/plots/iteratetoconvergence.ps</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/g343-pca-subtraction-comparison.html" rel="bookmark" title="Permalink to G34.3 PCA subtraction comparison">
-                    G34.3 PCA subtraction comparison</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-24T20:30:00"> 2008/08/24 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/SLHDrcGWxqI/AAAAAAAADOM/mVp0tqm6qjI/s400/g34.3_pca_compare.png" />
-<p>From top-left to the blue highlighted box, the 20th iteration of N pca
-components subtracted is shown. N goes from 1 to 19. The other plots are
-'ascending' and 0-pca components with median and baseline subtraction -
-ask if you want more details on those.
-19 iterations recovers a LOT of flux. I haven't generated the plots for
-flux as a function of iteration, but I have software to do that
-available.
-Things to note: at 10 iterations and higher, you start to generate
-negative bowls.
-One observation is probably independently responsible for the chunks of
-glitchy data present even in the 19 PCA component subtraction. While the
-bowls do worsen with higher number of PCA components, we also find
-fainter structure (e.g. those tongues to the southeast and northwest).</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

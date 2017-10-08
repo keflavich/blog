@@ -67,6 +67,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2017/10/07
+                  <br>
+                  <a href="http://keflavich.github.io/blog/understanding-millimeter-source-counts.html">Understanding Millimeter Source Counts</a>
+              </li>
+              <li class="post">
+                  2017/10/02
+                  <br>
+                  <a href="http://keflavich.github.io/blog/what-simulations-use-a-density-threshold-determined-from-local-clouds.html">What simulations use a density threshold determined from local clouds?</a>
+              </li>
+              <li class="post">
                   2017/08/30
                   <br>
                   <a href="http://keflavich.github.io/blog/protostellar-mass-functions.html">Protostellar Mass Functions</a>
@@ -81,16 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/high-mass-protostellar-sio-masers.html">High-mass Protostellar SiO Masers</a>
               </li>
-              <li class="post">
-                  2017/01/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/publications-from-2016.html">Publications from 2016</a>
-              </li>
-              <li class="post">
-                  2016/08/15
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-synthetic-observations.html">CASA synthetic observations</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,173 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/trying-to-bootstrap.html" rel="bookmark" title="Permalink to Trying to bootstrap">
+                    Trying to bootstrap</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-03-28T02:01:00"> 2011/03/28 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've concluded, based on previous posts
+<a class="reference external" href="http://bolocam.blogspot.com/2011/02/downsampling-why-is-dec-2010-different.html">http://bolocam.blogspot.com/2011/02/downsampling-why-is-dec-2010-different.html</a>,
+<a class="reference external" href="http://bolocam.blogspot.com/2011/03/revisiting-calibration-yet-again.html">http://bolocam.blogspot.com/2011/03/revisiting-calibration-yet-again.html</a>,
+and
+<a class="reference external" href="http://bolocam.blogspot.com/2011/03/workaround-for-individual-maps.html">http://bolocam.blogspot.com/2011/03/workaround-for-individual-maps.html</a>,
+that ds5 is a problem primarily for undersampled images, i.e. those
+taken in the normal mapping mode. This makes bootstrapping a bit tricky.</p>
+<p>There are two options:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>Map Uranus and AFGL 4029 both in Volts and figure out what flux density
+AFGL 4029 must have to lie on that curve</li>
+<li>Map Uranus and compute a calibration curve, apply that calibration curve
+to AFGL 4029, and then compare derived flux densities.</li>
+</ol>
+</blockquote>
+<p>Both have the major problem that the individual AFGL 4029 maps will
+forcibly be undersampled if I use ds5 data (which is normally OK,
+according to the first paragraph). In the second case, it is possible to
+co-add the images and get around the under-sampling issue, while in the
+first case it is not because of the dependence on total loading
+(MEANDC).</p>
+<p>The real problem is that the whole goal of these observations was to
+compare the different observing methods and see if they agree (1x1, 3x1,
+pointing, etc.) since the pointing-style observations were used to
+calibrate the others. But if the 1x1s are just straight-up unreliable,
+how can we do the comparison? I think the co-added AFGL 4029 is the only
+option, but then how do I test if it's correct? It would be really nice
+to have AFGL 4029 observed with both scan types...</p>
+<p>Alright, onto the data. After last week's fix of the bad bolos, I really
+hope ds1 and ds5 agree. However, first glance at the cal curves says
+they don't. ds1 and ds2 agree, but ds5 is different.</p>
+<p>After checking them out with
+<tt class="docutils literal">ds9 <span class="pre">*ds[15]*13pca*_map10.fits</span> <span class="pre">-scale</span> limits <span class="pre">-1</span> 1000 <span class="pre">-log</span> <span class="pre">-cmap</span> hsv <span class="pre">-match</span> colorbars <span class="pre">-match</span> scales <span class="pre">-match</span> frames wcs &amp;</tt>,
+it appears that the _mask_ data is all... wrong, somehow. That's OK, I
+want to discard the mask data anyway, so I'm happy to NOT spend time
+debugging it.</p>
+<p>Even after careful examination showing that the fits look good - and
+noting that the fluxes look pretty much the same - the calibration
+curves still look rather different. Unfortunately I had to spend 3 hours
+debugging IDL plotting commands; I want to show the fits each time and
+save them as postscripts. What does &quot;xyouts&quot; with &quot;/device,/normal&quot; do?
+I thought that should plot x,y text at the coordinates specified in the
+plot window... but no, that is JUST /normalize.</p>
+<p>Anyway, realized that centroid_map treated NANs as zero. Added ERR
+keyword (with a reasonable estimate of the error) in centroid_map to
+ignore NANs. It looks like improper treatment of NANs is responsible for
+a lot of the scatter seen in the calibration plots.</p>
+<p>There is a substantial difference between the &quot;fitted&quot; peak and the
+&quot;measured&quot; peak (the latter computed by taking the sum of the pixels
+divided by the area of the fitted gaussian). It looks like the
+&quot;measured&quot; version is more robust, at first glance. However,
+unfortunately, for 101208_o11, the difference between ds1 and ds5
+exists in both quantities. I will have to examine timestreams now...
+ARGH.</p>
+<p>Well, the timestreams show... that indeed the model is lower in ds1, but
+not why. The &quot;remainder&quot; (new_astro; the stuff that never gets
+incorporated into the model but DOES get incorporated into the map)
+appears to be the same in both. Similarly, there is little to no flux in
+the PCA atmosphere, so it's not simply being cleaned out. Where is the
+flux going or coming from?</p>
+<img alt="" src="http://3.bp.blogspot.com/-6lqGwWn650Q/TY_rgZKA9QI/AAAAAAAAGCI/Iq9O5mnmhl8/s320/101208_o11_ds1_uranus_indivtest_delinetimestream011_plots_20_bolo02.png" />
+<img alt="" src="http://1.bp.blogspot.com/-7uBbEU1tAqM/TY_rgg6Jq9I/AAAAAAAAGCQ/iaGhOSb6gtQ/s320/101208_o11_ds5_uranus_indivtesttimestream011_plots_20_bolo02.png" />
+<img alt="" src="http://1.bp.blogspot.com/-YKdZcNOjm7Q/TY_rg6tcvhI/AAAAAAAAGCY/fr4l8j-v4xI/s320/101208_o11_ds1_uranus_indivtesttimestream011_plots_20_bolo02.png" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/a-workaround-for-individual-maps.html" rel="bookmark" title="Permalink to A workaround for individual maps?">
+                    A workaround for individual maps?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-03-24T00:33:00"> 2011/03/24 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I closely examined the timestreams of 101208_ob7 as I said I would
+yesterday. Unfortunately, all I can do is describe the symptoms: the
+first deconvolution model looks good, though it isn't quite as wide as
+the true source (this should be OK; it is an iterative method, after
+all). In the second iteration, though, the deconvolution model is even
+smaller and lower amplitude... and it goes on like that.</p>
+<p>Not deconvolving results in a healthy-looking clean map - pretty much
+what you expect and want to see.</p>
+<p>This implies that somehow removing an incomplete deconvolved model leads
+to more of the source being included in the 'atmosphere' than would have
+been included with no model subtraction at all. I'm not sure how this is
+possible. In fact... I'm really quite sure that it is not.
+The workaround is to only add positive changes to the model. This should
+'definitely work' but may be non-convergent and assumes that the model
+never has anything wrong with it at any iteration. I have demonstrated
+that this works nicely for the two Uranus observations I tested on, but
+now I have to run the gamut of tests.... the first (very obvious)
+problem is that the background is now positive, which is dead wrong.
+This workaround is not viable.
+Alright, so what next? I've described the symptoms and that I think they
+can't occur...
+A closer look shows that new_astro is not being incorporated into
+astro_model at the second iteration. Why?
+AHA! Pyflagger + find_all_points reveals the problem!</p>
+<pre class="literal-block">
+Map value: 16.939728   Weighted average: 17.476323   Unweighted Average: 524.573136
+scan,bolo,time:       mapped       astro       flags      weight       scale
+3,  22,  12:     8.380408   13.561113    0.000000    0.025132    1.000000
+4, 124,  23:   822.005327   13.561113    0.000000    0.000038    1.118012
+4,  21,  38:   719.408983   13.561113    0.000000    0.000037    0.946721
+5,  20,   7:     4.470616   13.561113    0.000000    0.013303    1.400000
+5, 119,  23:   882.508303   13.561113    0.000000    0.000033    0.926887
+5, 100,  35:   327.007750   13.561113    0.000000    0.000074    1.184397
+5, 106,  38:   162.562098   13.561113    0.000000    0.000704    0.970000
+6, 116,  27:   779.075640   13.561113    0.000000    0.000033    0.891768
+8, 112,   3:   235.557390   13.561113    0.000000    0.000147    0.947130
+9,   3,  14:   966.721773   13.561113    0.000000    0.000032    1.166292
+9, 109,  41:   139.753656   13.561113    0.000000    0.000753    1.075269
+10, 104,   8:   641.121935   13.561113    0.000000    0.000050    0.927827
+10, 105,  24:     4.323228   13.561113    0.000000    0.032759    0.019022
+10,  32,  36:   847.646990   13.561113    0.000000    0.000034    1.099406
+11,  36,   9:   834.757586   13.561113    0.000000    0.000038    1.184751
+11,  76,  37:   566.851891   13.561113    0.000000    0.000040    1.111000
+12,  77,  13:   834.603090   13.561113    0.000000    0.000034    1.128464
+12,  44,  44:   335.465654   13.561113    0.000000    0.000195    2.165775
+13,  26,  17:    50.423143   13.561113    0.000000    0.004826    0.829932
+13,  75,  29:   724.884676   13.561113    0.000000    0.000042    0.923077
+14,  49,  21:   797.618990   13.561113    0.000000    0.000038    1.091918
+14,  29,  33:   743.856012   13.561113    0.000000    0.000035    1.050360
+15,  33,  13:   660.670099   13.561113    0.000000    0.000031    0.832180
+15,  53,  25:   604.174286   13.561113    0.000000    0.000047    0.889922
+15,  88,  40:     4.626476   13.561113    0.000000    0.008241    0.191489
+17,  64,  20:   778.950533   13.561113    0.000000    0.000037    1.233108
+18,  68,  30:   686.048136   13.561113    0.000000    0.000040    1.387283
+</pre>
+<p>Note that the lowest points have the highest weights. They DEFINITELY
+shouldn't. What's wrong with them?
+Apparently they have NO sensitivity to the sky! What?! There were a
+bunch of bad bolos in Dec2010 that weren't flagged out... I wonder if
+that problem persists to other epochs. Still, why does it only affect
+pointing observations? Looking at the power spectra... the
+large-timescale stuff becomes less dominant when scans are longer, but
+the noisy spectra are still clearly noise-only. How odd.
+Dropped to 112 good bolos from 134. That is much more believable. Have
+to go back and fix Dec09 data too...
+Even after fixing the bad bolos, the model drops with iteration number.
+Why why why?
+Well, looking at deconv_map, I've always returned the truly deconvolved
+version, not the reconvolved... maybe the reconvolved really is better?
+Again, this will have to be extensively tested, but it certainly gets
+rid of the obvious/dominant error that the model kept dropping off.
+However, FINALLY, based on how ridiculously good the reconv-deconvolved
+map looks, I think I'm ready to do the extensive pipeline tests. So,
+10dec_caltest has been started up with all of the new bolo_params
+applied and the changes in place to deconv_map... let's see what
+happens.</p>
+<p>After that runs, I'll have to re-run the fit_and_plot routines</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -423,105 +590,6 @@ PSF). PCA is first:</p>
 <p>A single bolometer's timestream and PSD:</p>
 <img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUsDgR4xcEI/AAAAAAAAF-4/udxMkuH6kio/s320/noiselesssim_deline_wingsupp_10hz_noscan_nsig0_psds_000.png" />
 <img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUsDgtnBPNI/AAAAAAAAF_A/weQNMCgtrtc/s320/noiselesssim_deline_wingsupp_10hz_noscan_nsig0_timestreams_000.png" />
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/delining.html" rel="bookmark" title="Permalink to Delining">
-                    Delining</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-02-03T04:54:00"> 2011/02/03 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Delining refers to the process of removing electronic noise that is
-aliased to
-particular frequencies by the discrete sampling of the data. Typical
-electronic noise is at 60 Hz with some width. It gets aliased to these
-frequencies:
-<tt class="docutils literal">linefreqs = <span class="pre">[10.05+findgen(10)*1.2,10.05-((findgen(7)+1))*1.2]</span></tt>
-The 10.05 Hz and 20.10 Hz are the worst in most cases, and they are
-wider. For
-the above lines, we &quot;remove&quot; a bandwidth of 0.09 Hz by averaging over
-the
-neighboring 0.5 Hz on either side. For the wider lines, we remove 0.5 Hz
-by
-averaging over the neighboring 1.5 Hz on either side.
-There are a few new things about the delining process that did not exist
-in James' old version:</p>
-<ol class="arabic simple">
-<li>The wide-band lines are removed</li>
-<li>A check is performed before removing the lines - they are only
-removed if the line region mean is
-2-sigma above the average region (as computed via median and mad)</li>
-<li>The replaced noise is computed via median/mad, and the new noise
-level is set 5x lower than in the
-neighboring region</li>
-</ol>
-<hr class="docutils" />
-<p>Now, some examples:</p>
-<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUisqDHJ08I/AAAAAAAAF58/BpgnudfdAAw/s400/deline_timestreams_003.png" />
-<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUisqWN6ueI/AAAAAAAAF6E/yAka7dlomjo/s400/deline_psds_003.png" />
-<p>The timestream (left) and PSD (right) of a &quot;pretty good&quot; bolometer.
-There is a lot of noise in lines, but note that the peak power is 2-3
-orders of magnitude below the PSD peak. In this case the &quot;Power&quot; is in
-Jy. There is little astrophysical information below ~14&quot; (9 Hz), and
-there should be none below 7.2&quot; (17 Hz), but there is plausibly
-information at these scales. It therefore makes sense to save as much
-information as possible. As can be seen in the delined PSD, the peaks
-drop by a substantial fraction, but not all the way - that's because
-these lines are wider than typically observed. Unfortunately, I don't
-have any really good ideas about how to fix this issue - I think fitting
-gaussians to each line, while attractive, is going to be prohibitively
-expensive in both programmer and processor time. However... it would be
-a very interesting project to undertake. In the timestream, it can be
-seen that the RMS drops substantially when the lines are filtered out
-(note that the timestream is strongly dominated by large-scale
-structure, so 'substantial' is really based on the RMS of the lines
-removed).</p>
-<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUisq6D55wI/AAAAAAAAF6M/PZ4hyu5FkZM/s400/deline_10hz_timestreams_003.png" />
-<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUisrWpL7yI/AAAAAAAAF6U/tSsL5Jc4n-A/s400/deline_10hz_psds_003.png" />
-<p>The next two plots look identical to the previous ones. In principle,
-they include the wide-band delining. However, in this case, the
-satellite lines to either side of the 10 Hz line are too strong and
-prevent identification of the 10 Hz line. This is unfortunate, again,
-but no obvious solution presents itself.</p>
-<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixLZbVHPI/AAAAAAAAF6c/xCWLpb9CKX4/s400/deline_timestreams_004.png" />
-<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixL8APCQI/AAAAAAAAF6k/j8FyKbgOdDo/s400/deline_psds_004.png" />
-<p>Now we come to a truly problematic bolometer. The lines completely
-dominate the power spectrum. Narrow line removal fails.</p>
-<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUixMjNxbkI/AAAAAAAAF6s/Hr8ouprcMpY/s400/deline_10hz_timestreams_004.png" />
-<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixNMO2NsI/AAAAAAAAF60/ZAsirbb25QY/s400/deline_10hz_psds_004.png" />
-<p>Wide line removal does a much, much better job, dropping the RMS by an
-order of magnitude.... but the bolometer probably still needs to be
-removed, since the astrophysical signal is 2-3 orders of magnitude below
-that.</p>
-<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUizkq9x4TI/AAAAAAAAF68/2xYY86d6aTQ/s400/deline_timestreams_001.png" />
-<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUizlH0XvMI/AAAAAAAAF7E/ptDb5I3os6A/s400/deline_psds_001.png" />
-<p>The 2010 data had much worse line noise and had to be delined. JS
-accomplished this by throwing out all data above a certain frequency,
-but I prefer the delining approach. It is clearly effective, but again
-leaves much to be desired. Should the flagged bandwidth be increased?
-What about the extra lines around 18 Hz?</p>
-<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUizln1mSCI/AAAAAAAAF7M/hTkZRUU3-ck/s400/deline_10hz_timestreams_001.png" />
-<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUizmdrMkgI/AAAAAAAAF7U/-dlB4u30hBo/s400/deline_10hz_psds_001.png" />
-<p>Again, the wide line flagging fails because of the satellite lines.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/next-step-prove-that-this-works-in-maps.html" rel="bookmark" title="Permalink to Next step: prove that this works in maps...">
-                    Next step: prove that this works in maps...</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-02-03T04:53:00"> 2011/02/03 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Next step: prove that this works in maps...</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

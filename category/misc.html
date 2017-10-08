@@ -68,6 +68,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2017/10/07
+                  <br>
+                  <a href="http://keflavich.github.io/blog/understanding-millimeter-source-counts.html">Understanding Millimeter Source Counts</a>
+              </li>
+              <li class="post">
+                  2017/10/02
+                  <br>
+                  <a href="http://keflavich.github.io/blog/what-simulations-use-a-density-threshold-determined-from-local-clouds.html">What simulations use a density threshold determined from local clouds?</a>
+              </li>
+              <li class="post">
                   2017/08/30
                   <br>
                   <a href="http://keflavich.github.io/blog/protostellar-mass-functions.html">Protostellar Mass Functions</a>
@@ -82,16 +92,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/high-mass-protostellar-sio-masers.html">High-mass Protostellar SiO Masers</a>
               </li>
-              <li class="post">
-                  2016/08/15
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-synthetic-observations.html">CASA synthetic observations</a>
-              </li>
-              <li class="post">
-                  2016/06/14
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-clean-splotchy-artifacts.html">CASA clean: "splotchy" artifacts</a>
-              </li>
         </ul>
       </li>
     
@@ -103,6 +103,238 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles in the misc category</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/understanding-millimeter-source-counts.html" rel="bookmark" title="Permalink to Understanding Millimeter Source Counts">
+                    Understanding Millimeter Source Counts</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2017-10-07T14:48:00"> 2017/10/07 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>A few recent projects (<a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S">ALMA W51</a> and <a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/">ALMA Sgr B2</a>) have raised
+the question: How do we interpret unresolved millimeter sources?</p>
+<p>In the two linked works, I concluded that most of the 1mm and 3mm point sources
+we detected with ALMA at D&gt;5 kpc are protostars with dust envelopes - i.e.,
+they are &quot;Class 0/I&quot;-like sources, but they are generally more luminous (and
+therefore more massive) than their local analogs.</p>
+<p>One of the appeals of the dust continuum, the wavelength range from about 0.5
+to 2 mm, for studying star formation is that we usually assume that the source
+brightness is proportional to the source mass.  For optically thin dust, this
+assumption is pretty good.  The (systematic, unmeasurable) uncertainty is, to
+first order, just the uncertainty in the dust temperature.</p>
+<p>However, protostellar cores - dust cores that contain a YSO or any luminous
+object (whether the luminosity is nuclear or gravitational in nature doesn't
+matter) - violate those assumptions.  First, the dust is not isothermal, so the
+emission is weighted toward the hotter dust that represents less of the total
+mass.  Second, the dust is not necessarily optically thin - a centrally
+concentrated source is likely to have a significant optical depth, particularly
+at the shorter wavelengths.  Third, once the optically thin assumption is
+broken, the source geometry matters; there may be some axes along which the
+source is substantially brighter.</p>
+<p>The <a class="reference external" href="https://almascience.nrao.edu/observing/highest-priority-projects#flyout_2017.1.01355.L">ALMA-IMF program</a>,
+which I am co-leading with Frederique Motte, has the broad goal of
+understanding the formation of the IMF in the Galaxy.  In practice, we will
+measure some form of 1 mm luminosity function.  In the long term, we may be
+able to obtain some additional constraints on the internal temperature
+structures of the sources.  The imminence of this large data set motivates the
+development of a general systematic analysis tool for assessing the
+implications of the mm luminosity function on the underlying mass function.</p>
+<p>In the related <a class="reference external" href="protostellar_mass_functions.rst">Protostellar Mass Functions</a> post, I implemented the
+protostellar mass functions described by <a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...716..167M">McKee and Offner</a>.  These functions
+provide the mapping between a stellar mass function and a protostellar mass
+function given some assumed accretion history.  The assumed accretion histories
+for the stars are very simple (in reality, accretion is probably quite
+stochastic), but that's fine since it provides something testable.</p>
+<p>I've then tried to follow up by implementing the next step toward producing
+something comparable to observables as defined in <a class="reference external" href="http://adsabs.harvard.edu/abs/2011ApJ...736...53O">Offner and McKee</a>, but
+unfortunately this is a good deal more challenging.  We need a means to map a
+protostellar mass to a luminosity, and there is no simple one-to-one function
+to do this.</p>
+<div class="section" id="protostellar-evolution-models">
+<h2>Protostellar Evolution Models</h2>
+<p>Several authors have described protostellar evolution models.  They mostly
+refer back to <a class="reference external" href="http://adsabs.harvard.edu/abs/1991ApJ...375..288P">Palla &amp; Stahler I</a> and <a class="reference external" href="Palla&amp;StahlerII">II</a>.  The <a class="reference external" href="Offner+2009">Offner
+&amp; McKee model</a> is based on <a class="reference external" href="http://adsabs.harvard.edu/abs/2004ApJ...603..383T">Tan &amp; McKee 2004</a>.  There is a
+similar model by <a class="reference external" href="http://adsabs.harvard.edu/abs/2009ApJ...691..823H">Hosokawa &amp; Omukai</a>, who have shown that high-mass stars can
+have substantially varying structures (radii -&gt; luminosities) depending on
+their accretion rates.  Mikhail Klassen implemented the <a class="reference external" href="http://adsabs.harvard.edu/abs/2009ApJ...703..131O">Offner+ 2009</a>
+protostellar evolution models <a class="reference external" href="MikhailKlassen">in fortran</a> in <a class="reference external" href="Klassen+2012">this paper</a>, with only slight differences assumed in the polytropic
+parameters and the accretion luminosity (<a class="reference external" href="Offner+2009">Offner+</a> assumed 25%
+of the accretion energy is lost to wind and treated the disk and star accretion
+luminosity separately, according to <a class="reference external" href="http://adsabs.harvard.edu/abs/2012MNRAS.421.2861K">Klassen+ 2012</a>).</p>
+<p>The Klassen implementation is the best immediately available to me.  Both they
+and <cite>Offner and McKee</cite> compared their results to <a class="reference external" href="http://adsabs.harvard.edu/abs/2009ApJ...691..823H">Hosokawa &amp; Omukai</a>,
+considering the latter to be more accurate, and found &quot;good&quot; agreement (&lt;2x
+disagreement) in the radius as a function of mass.  The same comparison is
+shown below; these figures match <a class="reference external" href="http://adsabs.harvard.edu/abs/2012MNRAS.421.2861K">Klassen+ 2012</a> Figures 1 and 2 (though I
+don't plot exactly the same things).</p>
+<img alt="" src="http://keflavich.github.io/blog/images/Klassen_vs_Hosokawa_model_comparison.png" style="width: 600px;" />
+<p>At least in priniple, these tools give us a mechanism to determine L(M, M_f),
+the luminosity as a function of the current mass and the final mass of a star.
+Alternatively, that can be written as L(t, M_f), the luminosity as a function
+of time and final mass.  However, there is at least one major practical concern:
+the protostellar evolution models have the free variable mdot, not M_f, so
+in order to use these models, we need to populate a 'fully sampled' L(M, M_f) table.
+Offner et al computed such a table, but then used an approximation for
+R(M) - the stellar radius as a function of its mass - for their calculations.</p>
+<!-- There are two types of accretion histories considered by Offner.  First, they -->
+<!-- consider a series of constant (time-independent) accretion histories with mdot -->
+<!-- determined by the final mass.  Second, they consider an accelerating -->
+<!-- (time-dependent) accretion history.  Grids based on the former are easier to build; -->
+<!-- grids based on the latter require modification of the Klassen code. -->
+<p>Following Offner, though, the accretion histories are not constant.  Instead,
+they use a variety of accretion histories: isothermal sphere, turbulent core,
+and competitive accretion.
+To compute the L(M, M_f) tables, we need to run a
+modified version of the Klassen code with a variable accretion history.</p>
+<p>The isothermal sphere case is actually a constant accretion rate, so that one is
+pretty easy.  The turbulent core and competitive accretion models have an accretion
+rate that depends on time or mass.</p>
+<div class="section" id="turbulent-core-protostellar-evolution">
+<h3>Turbulent Core Protostellar Evolution</h3>
+<p>I've implemented the turbulent core accretion history in my <a class="reference external" href="https://github.com/keflavich/protostellar_evolution">fork</a> of Mikhail
+Klassen's repository.  The modification is fairly straightforward: the
+accretion rate is set at each timestep according to Equation 23 of <a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...716..167M">McKee and
+Offner</a> using the numerical constants they computed.  Then, if the stellar
+mass has reached (or exceeds) the target stellar mass, set the accretion rate
+to zero.  The stellar evolution code can then proceed with no further
+accretion.</p>
+<p>I've run this using the default initial conditions, a clump surface density
+$Sigma_{cl} = 0.1$ g cm$^{-2}$.  The results are in the next figure: nearly
+all of the interesting evolution happens before the stars reach 10 Msun.  The
+accretion luminosity is almost always subdominant, at least once anything
+reaches 10 Lsun.  The most massive star seems to shrink below its main sequence
+size prior to reaching the main sequence, which is a little weird.  I'm not
+sure if I trust that.</p>
+<img alt="" src="http://keflavich.github.io/blog/images/Klassen_turbulentcore_model.png" style="width: 600px;" />
+<p>Further exploration of accretion history parameter space is future work.
+I now at least know how to set up the basic models and assemble lookup
+tables for L(mf,t).</p>
+</div>
+</div>
+<div class="section" id="protostellar-sed-models">
+<h2>Protostellar SED Models</h2>
+<p>The next step in computing a millimeter luminosity distribution is to convert
+from stellar luminosity to the reprocessed flux at a given wavelength.  This
+step has an enormous number of free parameters, since the surrounding structure
+may include both a disk and a core whose shapes will both vary.</p>
+<p>There are two large grids of radiative transfer models that have been computed
+for this purpose.  The <a class="reference external" href="https://zenodo.org/record/166732#.WdlXwmK3xcw">Robitaille grid</a> is complete and open, and it should
+cover all stellar masses.  The <a class="reference external" href="http://adsabs.harvard.edu/abs/2017arXiv170808853Z">Zhang+ 2017</a> grid is not yet available, but it
+may be more self-consistent.</p>
+<p>I plan to use the protostellar evolutionary model parameters, i.e., the radius
+and luminosity, to select models from this grid.  However, the Robitaille grid
+uses surface temperature and radius, not luminosity and radius.  So we either
+need to compute the stellar luminosity in the Robitaille models assuming the
+stars are perfect blackbodies, then use the stellar luminosity to select from
+that grid, or we need to compute the stellar surface temperature from
+the evolutionary model.</p>
+<p>Since the Robitaille models cover a large number of parameters, but do so in a
+fairly sparse grid, it is not trivial to map from radius+luminosity to the
+models.  For example, for a $2-3times10^5$ Lsun star with radius 40-50 Rsun,
+there are 860 models in the <tt class="docutils literal">spubhmi</tt> grid, most of which lack flux measurements
+in many apertures.</p>
+<div class="section" id="example-model-selection">
+<h3>Example Model Selection</h3>
+<p>For this example, I'm looking at an mf=10 Msun star at t=0.58 Myr, at which
+point it has m=6.5 Msun.  Its radius at this time is 9.0 Rsun and <em>stellar</em>
+luminosity 1300 Lsun.  This is the line of output from the Klassen model:</p>
+<pre class="literal-block">
+            Time        Stellar_Mass      Accretion_Rate      Stellar_Radius    Polytropic_Index      Deuterium_Mass       Intrinsic_Lum    Total_Luminosity    Stage
+0.1842924478E+14    0.1300261603E+35    0.1404188516E+22    0.6278790980E+12    0.3000000000E+01    0.0000000000E+00    0.5084830934E+37    0.6525577133E+37        4
+</pre>
+<p>I select models within 5% of this one's radius and luminosity:</p>
+<div class="highlight"><pre><span class="n">lum</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.5084830934E+37</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">erg</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">L_sun</span><span class="p">)</span>
+<span class="n">rad</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.6278790980E+12</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">R_sun</span><span class="p">)</span>
+<span class="n">selpars</span> <span class="o">=</span> <span class="n">pars</span><span class="p">[(</span><span class="n">pars</span><span class="p">[</span><span class="s">&#39;Luminosity&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">lum</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">0.95</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s">&#39;Luminosity&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lum</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">1.05</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s">&#39;star.radius&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="n">rad</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">0.95</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s">&#39;star.radius&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">rad</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">1.05</span><span class="p">)]</span>
+</pre></div>
+<p>My first attempt at this, with the <tt class="docutils literal">spubhmi</tt> model, resulted in one that has
+no flux in small (4000 AU) aperture, which I don't yet know how to interpret -
+it is certainly possible for such a source, with a non-negligible envelope, to
+exist, and it would certainly produce some flux.</p>
+<p>More lenient parameters are needed:</p>
+<blockquote>
+lum = (0.5084830934E+37*u.erg/u.s).to(u.L_sun)
+rad = (0.6278790980E+12*u.cm).to(u.R_sun)
+apnum = np.argmin(np.abs(seds.apertures - 2000*u.au))
+wav = (95*u.GHz).to(u.mm, u.spectral())
+wavnum = np.argmin(np.abs(seds.wav - wav))
+ok = np.isfinite(seds.val[:,wavnum,apnum])
+selpars = pars[(pars['Luminosity'] &gt; lum.value*0.9) &amp; (pars['Luminosity'] &lt; lum.value*1.10) &amp; (pars['star.radius']&gt;rad.value*0.9) &amp; (pars['star.radius']&lt;rad.value*1.10) &amp; ok]</blockquote>
+<p>This one at least results in some hits.  There are three models with fluxes (at
+Sgr B2, in a 2000 AU radius aperture, at 95 GHz) of 15-25, 155-170, and 55-60 mJy.
+To build a model cluster, we would randomly select one of these models.
+Robitaille notes, however, that some of the models are nonphysical; at the moment,
+we have no way to assess that, so we have to do the selection blindly.  The brightest
+model has a denser envelope and more massive disk.</p>
+<p>We can use this to make a model cluster, but this is a pretty discouraging first model
+given my previous work; this is presently a low-luminosity source that is surprisingly
+intense at 3mm.</p>
+</div>
+</div>
+<div class="section" id="full-workflow">
+<h2>Full Workflow</h2>
+<p>We first create a cluster by sampling from a stellar initial mass function.
+This part is straightforward, at least.</p>
+<p>Then, for each source, we 'rewind' to a specific time and select model parameters
+from the protostellar evolution models described above.  The 'rewind' could be
+from the point at which the stars reach &quot;stage 5&quot;, main sequence, or we could
+select some other criteria.</p>
+<p>Finally, we sample from the Robitaille parameters.  For this first example,
+we just randomly select from some parameters that are within 5-10% of the target
+parameters.  In the longer term, we'll want to be much more accurate
+and find a way to interpolate the Robitaille models onto a &quot;fully sampled&quot; grid
+of the parameter space we're interested in.  The Zhang models are probably
+better to use once they become available since they may have accretion histories
+consistent with those used for the evolutionary model.</p>
+</div>
+<div class="section" id="final-comments">
+<h2>Final comments</h2>
+<p>For the next post, I hope to actually generate some clusters and see what sorts
+of uncertainties we're dealing with.  The above examples suggest they could be
+truly extreme, and perhaps that the Robitaille models will be inadequate for
+this purpose.  We'll see.</p>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/what-simulations-use-a-density-threshold-determined-from-local-clouds.html" rel="bookmark" title="Permalink to What simulations use a density threshold determined from local clouds?">
+                    What simulations use a density threshold determined from local clouds?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2017-10-02T09:41:00"> 2017/10/02 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Howard 2017</p>
+<p>this is how you include images
+.. image:: <a href="#id1"><span class="problematic" id="id2">|filename|</span></a>/images/psfFfftF.png</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/simulators_using_threshold.rst</tt>, line 13)</p>
+Unexpected indentation.</div>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">width:</th><td class="field-body">600px</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<div class="system-messages section">
+<h2>Docutils System Messages</h2>
+<div class="system-message" id="id1">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/Users/adam/repos/pelican.keflavich.github.com/content/simulators_using_threshold.rst</tt>, line 11); <em><a href="#id2">backlink</a></em></p>
+Undefined substitution referenced: &quot;filename&quot;.</div>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -579,86 +811,6 @@ the process is guaranteed to be flux conserving.</p>
 <!-- this is how you include images -->
 <!-- .. image:: |filename|/images/psfFfftF.png -->
 <!-- :width: 600px -->
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/casa-coordinate-defaults.html" rel="bookmark" title="Permalink to CASA coordinate defaults">
-                    CASA coordinate defaults</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2016-05-19T09:31:00"> 2016/05/19 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>A brief public service announcement: CASA coordinate strings follow a
-convention of their own making that I at least find thoroughly
-counterintuitive.  If you specify a sexagesimal coordinate, e.g. 05:12:15.3
--5:10:20.5 or something similar, CASA interprets that as 5 hours, -5 hours.
-The declination is interpreted as being in hours.  Those are units no one has
-ever used.  The CASA version requires the second half of the sexagesimal string
-to be decimal separated:</p>
-<pre class="literal-block">
-2016-05-19 00:45:13     WARN    SynthesisParams::stringToMDirection (file /var/rpmbuild/BUILD/casa-prerelease/casa-prerelease-4.6.0/code/synthesis/ImagerObjects/SynthesisUtilMethods.cc, line 786)     You provided the Declination/Latitude value &quot;-28:23:29.22&quot; which is understood to be in units of hours.
-2016-05-19 00:45:13     WARN    SynthesisParams::stringToMDirection (file /var/rpmbuild/BUILD/casa-prerelease/casa-prerelease-4.6.0/code/synthesis/ImagerObjects/SynthesisUtilMethods.cc, line 786)+    If you meant degrees, please replace &quot;:&quot; by &quot;.&quot;.
-</pre>
-<p>This has broken my scripts more than a handful of times now, since copying &amp;
-pasting coordinates from any other program inevitably has the &quot;wrong&quot;
-units.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/casa-tclean-adds-negative-components.html" rel="bookmark" title="Permalink to CASA tclean adds negative components">
-                    CASA tclean adds negative components</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2016-05-01T10:21:00"> 2016/05/01 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I'm trying to examine some of my 7m+12m combined data and have run into yet another
-mysterious behavior of CASA.  <tt class="docutils literal">tclean</tt> is adding negative components in regions with
-exclusively positive emission.</p>
-<p>In this image, the <em>left</em> is the clean image, which doesn't make any sense; it
-looks like it should be a residual image but it is not.  2nd image is the clean
-components (negative!!), 3rd is the residual, 4th is the dirty map.</p>
-<img alt="" src="http://keflavich.github.io/blog/images/casa/bad_cleancomps.png" style="width: 600px;" />
-<p>One tricky thing for this particular image is that the emission is real, BUT it
-is also directly on top of a major sidelobe of the brightest source in the
-region.  Nonetheless, I cannot imagine any way to explain the negative
-component.  I don't really understand when a negative component is added, but
-presumably it ought to happen when the residual has a negative value but also
-the highest amplitude in the map; this obviously never happens here since the
-residual in fact has one of the highest <em>positive</em> amplitudes in the map.</p>
-<p>The imaging parameters seem not to affect this problem. I attempted reducing the
-gain to 0.05 to no avail.  Changing from natural to robust weighting actually
-removed most of the negative components.</p>
-<div class="section" id="failed-combination-of-7m-and-12m-data">
-<h2>Failed combination of 7m and 12m data</h2>
-<p>The above was a tangent.  The real reason I was working on this data set was to
-combine the 7m and 12m spectral data.  The problem I keep seeing is very large,
-smooth blobs that are spatially distinct from the more compact emission.  It's
-as if someone took the two independent cubes (12m and 7m) and just added them
-together; it looks like flux is not being conserved.</p>
-<p>The UV plots, especially weight vs uvdist, look fine.  The 7m antenna are
-downweighted relative to the 7m antennae by a factor ~2.</p>
-<p>One of the bigger problems is that I have a vague - possibly not justified -
-sense that there is a velocity offset of ~1 km/s between the 7m and 12m data.
-If this is the case, there's no wonder the combination isn't working.
-However, it's nearly inconceivable.</p>
-</div>
-<div class="section" id="followup-feb-2017">
-<h2>Followup Feb 2017</h2>
-<p>That vague fear turned out to be entirely justified.  It turned out that the 7m
-and 12m array data sets were not in a common frame, and they were therefore
-offset by something like the Earth's change in velocity between the observation
-dates.  The solution was to cvel the data sets to the LSRK frame prior to
-concatenating them.  While I know I made these changes, I unfortunately can't
-find the specific commit where I made them.</p>
-</div>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

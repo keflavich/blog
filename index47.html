@@ -67,6 +67,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2017/10/07
+                  <br>
+                  <a href="http://keflavich.github.io/blog/understanding-millimeter-source-counts.html">Understanding Millimeter Source Counts</a>
+              </li>
+              <li class="post">
+                  2017/10/02
+                  <br>
+                  <a href="http://keflavich.github.io/blog/what-simulations-use-a-density-threshold-determined-from-local-clouds.html">What simulations use a density threshold determined from local clouds?</a>
+              </li>
+              <li class="post">
                   2017/08/30
                   <br>
                   <a href="http://keflavich.github.io/blog/protostellar-mass-functions.html">Protostellar Mass Functions</a>
@@ -81,16 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/high-mass-protostellar-sio-masers.html">High-mass Protostellar SiO Masers</a>
               </li>
-              <li class="post">
-                  2017/01/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/publications-from-2016.html">Publications from 2016</a>
-              </li>
-              <li class="post">
-                  2016/08/15
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-synthetic-observations.html">CASA synthetic observations</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,51 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/bgps-photo.html" rel="bookmark" title="Permalink to BGPS Photo">
+                    BGPS Photo</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-06T07:29:00"> 2008/11/06 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a class="reference external" href="http://www.nrao.edu/index.php/learn/gallery/imagecontest">http://www.nrao.edu/index.php/learn/gallery/imagecontest</a></p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/new-to-do-list-updated-things.html" rel="bookmark" title="Permalink to New to-do list, updated things....">
+                    New to-do list, updated things....</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-10-15T12:57:00"> 2008/10/15 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><tt class="docutils literal">do_maptests.pro</tt> is running a bunch of different mapping parameters
+(pca components, deconvolution, etc.) on l000, l002, l003, l033, l083.
+We'll then run bolocat on it and look for the following:
+-number of sources found
+-flux in sources found as a function of n_pca
+-size of sources as function of n_pca
+-BADNESS, e.g. blurring / unremoved atmosphere / oversubtracted sources
+<tt class="docutils literal">bolocat2reg</tt> makes a region file out of a bolocat catalog. I'd like
+to make a separate ds9 region file that includes the actual pointing
+error + the centroiding error rather than just the elliptical fit to a
+given source; that will be more useful for finder charts.
+My current goal is to get a nice set of images I can combine to release
+as a poster to Jason Glenn's student who is making pretty posters for
+publicity purposes; probably to promote CCAT. Umm.... I blame the late
+hour for the alliteration.
+That goal also means I've been using an IRAF task to do some mosaicing
+(easier than writing the IDL code AGAIN):
+<tt class="docutils literal">mscstack l001_5pca_map09.fits,l002_5pca_map09.fits,l000_5pca_map09.fits,l359_5pca_map09.fits,l003_5pca_map09.fits&nbsp; GCCOMBINE_5pca.fits <span class="pre">lthresh=-1l001_13pca_map09_scuba_aligned.fits,l002_13pca_map09_scuba_aligned.fits,l000_13pca_map09_scuba_aligned.fits,l359_13pca_map09_scuba_aligned.fits,l003_13pca_map09_scuba_aligned.fits</span>&nbsp; GCCOMBINE.fits <span class="pre">lthresh=-1mscstack</span> l029_13pca_map09_scuba_aligned.fits,l030_13pca_map09_scuba_aligned.fits,l031_13pca_map09_scuba_aligned.fits,l032_13pca_map09_scuba_aligned.fits,l033_13pca_map09_scuba_aligned.fits,l034_13pca_map09_scuba_aligned.fits L33COMBINE.fits <span class="pre">lthresh=-1</span> hsig=5 lsig=5</tt></p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -336,69 +381,6 @@ bad, BUT the code failed on ncdf_open, so it possible the observation
 turned bad during downsampling/preprocessing.
 fixed: 30, 26, 55, 35, 28, 31, 38, 54, 57
 so far all observations on 060605 are bad.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/disagreement-over-definition-of-lb-coordinates.html" rel="bookmark" title="Permalink to Disagreement over definition of l,b coordinates">
-                    Disagreement over definition of l,b coordinates</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-09-10T22:43:00"> 2008/09/10 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>DS9 does something intuitive: cd0_0 and cd1_1 multiplied by the x,y
-pixel difference gets you the new l,b coordinate. I think this is very
-likely to be correct on the galactic plane. IDL does something
-different. I don't know why different, or really how - it's buried
-somewhere in wcsxy2sph - but it's definitely different. Which is right?</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/broken-rotation.html" rel="bookmark" title="Permalink to Broken rotation">
-                    Broken rotation</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-09-09T01:34:00"> 2008/09/09 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I have to echo James in saying how remarkable it is than anything I ever
-did worked at all! I'm growing more and more certain that I've been
-double-correcting rotation for the past 2 months, and my maps don't look
-all that bad!
-.. image:: <a class="reference external" href="http://4.bp.blogspot.com/_lsgW26mWZnU/SMW4oOPcLaI/AAAAAAAADXw/1ARG8iyVXDQ/s400/070717_o15_rotations.png">http://4.bp.blogspot.com/_lsgW26mWZnU/SMW4oOPcLaI/AAAAAAAADXw/1ARG8iyVXDQ/s400/070717_o15_rotations.png</a>
-Image caption:
-Top left - both PA and rotang
-Top right - neither
-Bottom left - rotang only
-Bottom right - PA only
-I'm running the same sort of comparison on all of the GC and L=24 data.
-Check out /scratch/adam_work/ROT_TEST for the results. I'll be
-updating this when I've completed that analysis.
-Update 6:35 PM: !&#64;#$, etc. New problem child:
-.. image:: <a class="reference external" href="http://1.bp.blogspot.com/_lsgW26mWZnU/SMXFUjLjRGI/AAAAAAAADX4/aynvuycRzGM/s400/060603_o16_rotations.png">http://1.bp.blogspot.com/_lsgW26mWZnU/SMXFUjLjRGI/AAAAAAAADX4/aynvuycRzGM/s400/060603_o16_rotations.png</a>
-Image caption (same as above, luckily):
-Top left - both PA and rotang
-Top right - neither
-Bottom left - rotang only
-Bottom right - PA only
-So, can anyone tell me which one of THESE is right? Because I can't. Top
-left is 'correct' except that it's not.
-Update 7:10 PM: I compared adding/subtracting PA and RA, and I can say
-this: subtracting PA never works. Adding/subtracting RA works variably.
-I think I'm done testing parameter space. I haven't had very good luck
-doing parameter space tests in the past; it usually is more beneficial
-to take a step back and try to think through the problem.
-Update 7:30 PM: Fixed. Much as this looks like a short-lived, easily
-solved problem, it was one of the most subtle and insidious errors I've
-made. I got extremely lucky that plotting PA and ROTANGLE happened to
-spark off warning sirens in my mind about the positioning of the
-variable names. I wouldn't normally look for that.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

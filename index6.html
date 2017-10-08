@@ -67,6 +67,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2017/10/07
+                  <br>
+                  <a href="http://keflavich.github.io/blog/understanding-millimeter-source-counts.html">Understanding Millimeter Source Counts</a>
+              </li>
+              <li class="post">
+                  2017/10/02
+                  <br>
+                  <a href="http://keflavich.github.io/blog/what-simulations-use-a-density-threshold-determined-from-local-clouds.html">What simulations use a density threshold determined from local clouds?</a>
+              </li>
+              <li class="post">
                   2017/08/30
                   <br>
                   <a href="http://keflavich.github.io/blog/protostellar-mass-functions.html">Protostellar Mass Functions</a>
@@ -81,16 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/high-mass-protostellar-sio-masers.html">High-mass Protostellar SiO Masers</a>
               </li>
-              <li class="post">
-                  2017/01/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/publications-from-2016.html">Publications from 2016</a>
-              </li>
-              <li class="post">
-                  2016/08/15
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-synthetic-observations.html">CASA synthetic observations</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,187 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/late-night-ideas-oct-6-2013.html" rel="bookmark" title="Permalink to Late Night Ideas, Oct 6 2013">
+                    Late Night Ideas, Oct 6 2013</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-10-07T01:00:00"> 2013/10/07 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Coffee at 7 pm usually isn't a problem...</p>
+<blockquote>
+<ol class="arabic simple">
+<li>Dendrogram analysis of turbulent simulations.  What do the structures look
+like?  Mostly for visualization in a talk, but perhaps the start of a paper.
+Are the high-density substructures too small to collapse?  Too hot?</li>
+<li>A deep GBT+AO observation of the center of the G49 40km/s cloud.  Can we
+perform the same measurement as I did originally against a uniform
+backlight?  Will that provide new information</li>
+<li>Corollary to 2: In simulations, what effect does a varying size and
+brightness backlight have on the inferred density?</li>
+<li>Measure the distance to the G49 cloud with NIR extinction.  Keep working
+with Jonathan Foster on that...</li>
+<li>Test the Cepheid / RR Lyrae distance method on the G49 cloud.  It's close
+enough that the targets should be bright.  Start off with 1-hour pilot
+(DD?) on the most distant star with a &quot;guaranteed&quot; CO detection, then
+propose a longer project to begin using the bisector approach to determine
+its true distance.</li>
+<li>Eta Car ALMA.  Basically, same thing, but now invoke the SN 1987A CO
+detection.  Eta is the closer laboratory, and it must have similar shock
+physics...</li>
+<li>H3+ in the CMZ with Juergen.  Talk to Tom Geballe about H3+ and CO
+absorption.  Is it possible to measure CO absorption to red giants?</li>
+</ol>
+</blockquote>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/installing-multinest-on-mac-os-x-107.html" rel="bookmark" title="Permalink to Installing MultiNest on Mac OS X 10.7">
+                    Installing MultiNest on Mac OS X 10.7</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-10-06T15:25:00"> 2013/10/06 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Installing multinest &amp; pymultinest has proved non-trivial.</p>
+<p>First, you probably can't build using the default mac gcc; a gcc version &gt;4.5
+is probably needed.  The error I got installing MultiNest only turned up one
+useful result on google... it was a <a class="reference external" href="https://github.com/hyperion-rt/hyperion/issues/23">question I had asked</a> on the <a class="reference external" href="https://github.com/hyperion-rt">hyperion github
+page</a>.</p>
+<p>To get around that, I installed the <a class="reference external" href="http://hpc.sourceforge.net/">hpc compilers</a> (4.7 since I'm on OS X 10.7) into
+<cite>/usr/local/hpc/</cite> to keep them distinct from the system gcc, which is needed
+for many other things.</p>
+<p>I then installed the <a class="reference external" href="http://www.open-mpi.org/">openMPI compilers</a> to <cite>/usr/local/openmpi</cite>:</p>
+<pre class="literal-block">
+./configure --prefix=/usr/local/openmpi
+make
+sudo make install
+</pre>
+<p>Then I tried installing pymultinest</p>
+<pre class="literal-block">
+dor ~/repos/MultiNest cmake/master$ mkdir build
+dor ~/repos/MultiNest cmake/master$ cd build/
+dor ~/repos/MultiNest/build cmake/master$ which mpif90
+/usr/local/openmpi/bin/mpif90
+dor ~/repos/MultiNest/build cmake/master$ which gfortran
+/usr/local/hpc/bin//gfortran
+dor ~/repos/MultiNest/build cmake/master$ which gcc
+/usr/local/hpc/bin//gcc
+dor ~/repos/MultiNest/build cmake/master$ cmake -DCMAKE_{C,CXX}_FLAGS=&quot;-arch x86_64&quot; -DCMAKE_Fortran_FLAGS=&quot;-m64&quot; ..
+-- The Fortran compiler identification is GNU
+-- The C compiler identification is GNU 4.7.1
+-- The CXX compiler identification is GNU 4.7.1
+-- Check for working Fortran compiler: /usr/local/hpc/bin/gfortran
+-- Check for working Fortran compiler: /usr/local/hpc/bin/gfortran  -- works
+-- Detecting Fortran compiler ABI info
+-- Detecting Fortran compiler ABI info - done
+-- Checking whether /usr/local/hpc/bin/gfortran supports Fortran 90
+-- Checking whether /usr/local/hpc/bin/gfortran supports Fortran 90 -- yes
+-- Checking whether C compiler has -isysroot
+-- Checking whether C compiler has -isysroot - yes
+-- Checking whether C compiler supports OSX deployment target flag
+-- Checking whether C compiler supports OSX deployment target flag - yes
+-- Check for working C compiler: /usr/local/hpc/bin/gcc
+-- Check for working C compiler: /usr/local/hpc/bin/gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Checking whether CXX compiler has -isysroot
+-- Checking whether CXX compiler has -isysroot - yes
+-- Checking whether CXX compiler supports OSX deployment target flag
+-- Checking whether CXX compiler supports OSX deployment target flag - yes
+-- Check for working CXX compiler: /usr/local/hpc/bin/g++
+-- Check for working CXX compiler: /usr/local/hpc/bin/g++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Looking for Fortran dgemm
+-- Looking for Fortran dgemm - found
+-- Looking for include file pthread.h
+-- Looking for include file pthread.h - found
+-- Looking for pthread_create
+-- Looking for pthread_create - found
+-- Found Threads: TRUE
+-- A library with BLAS API found.
+-- Looking for Fortran cheev
+-- Looking for Fortran cheev - found
+-- A library with LAPACK API found.
+-- Detected gfortran, adding -ffree-line-length-none compiler option.
+-- Found MPI_C: /usr/local/openmpi/lib/libmpi.dylib;/usr/lib/libm.dylib
+-- Found MPI_CXX: /usr/local/openmpi/lib/libmpi_cxx.dylib;/usr/local/openmpi/lib/libmpi.dylib;/usr/lib/libm.dylib
+-- Found MPI_Fortran: /usr/local/openmpi/lib/libmpi_f90.a;/usr/local/openmpi/lib/libmpi_f77.dylib;/usr/local/openmpi/lib/libmpi.dylib;/usr/lib/libm.dylib
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/adam/repos/MultiNest/build
+dor ~/repos/MultiNest/build cmake/master$ make
+Scanning dependencies of target multinest_mpi_shared
+[  1%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/utils.f90.o
+[  3%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/utils1.f90.o
+[  5%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/kmeans_clstr.f90.o
+[  6%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/xmeans_clstr.f90.o
+[  8%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/posterior.F90.o
+[ 10%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/priors.f90.o
+[ 12%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/nested.F90.o
+[ 13%] Building Fortran object src/CMakeFiles/multinest_mpi_shared.dir/cwrapper.f90.o
+Linking Fortran shared library ../../lib/libmultinest_mpi.dylib
+[ 13%] Built target multinest_mpi_shared
+Scanning dependencies of target multinest_mpi_static
+[ 15%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/utils.f90.o
+[ 17%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/utils1.f90.o
+[ 18%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/kmeans_clstr.f90.o
+[ 20%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/xmeans_clstr.f90.o
+[ 22%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/posterior.F90.o
+[ 24%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/priors.f90.o
+[ 25%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/nested.F90.o
+[ 27%] Building Fortran object src/CMakeFiles/multinest_mpi_static.dir/cwrapper.f90.o
+Linking Fortran static library ../../lib/libmultinest_mpi.a
+[ 27%] Built target multinest_mpi_static
+Scanning dependencies of target multinest_shared
+[ 29%] Building Fortran object src/CMakeFiles/multinest_shared.dir/utils.f90.o
+[ 31%] Building Fortran object src/CMakeFiles/multinest_shared.dir/utils1.f90.o
+[ 32%] Building Fortran object src/CMakeFiles/multinest_shared.dir/kmeans_clstr.f90.o
+[ 34%] Building Fortran object src/CMakeFiles/multinest_shared.dir/xmeans_clstr.f90.o
+[ 36%] Building Fortran object src/CMakeFiles/multinest_shared.dir/posterior.F90.o
+[ 37%] Building Fortran object src/CMakeFiles/multinest_shared.dir/priors.f90.o
+[ 39%] Building Fortran object src/CMakeFiles/multinest_shared.dir/nested.F90.o
+[ 41%] Building Fortran object src/CMakeFiles/multinest_shared.dir/cwrapper.f90.o
+Linking Fortran shared library ../../lib/libmultinest.dylib
+[ 41%] Built target multinest_shared
+Scanning dependencies of target multinest_static
+[ 43%] Building Fortran object src/CMakeFiles/multinest_static.dir/utils.f90.o
+[ 44%] Building Fortran object src/CMakeFiles/multinest_static.dir/utils1.f90.o
+[ 46%] Building Fortran object src/CMakeFiles/multinest_static.dir/kmeans_clstr.f90.o
+[ 48%] Building Fortran object src/CMakeFiles/multinest_static.dir/xmeans_clstr.f90.o
+[ 50%] Building Fortran object src/CMakeFiles/multinest_static.dir/posterior.F90.o
+[ 51%] Building Fortran object src/CMakeFiles/multinest_static.dir/priors.f90.o
+[ 53%] Building Fortran object src/CMakeFiles/multinest_static.dir/nested.F90.o
+[ 55%] Building Fortran object src/CMakeFiles/multinest_static.dir/cwrapper.f90.o
+Linking Fortran static library ../../lib/libmultinest.a
+Error copying file &quot;/Users/adam/repos/MultiNest/build/src/kmeans_clstr.mod&quot; to &quot;/Users/adam/repos/MultiNest/modules/&quot;.
+make[2]: *** [../lib/libmultinest.a] Error 1
+make[1]: *** [src/CMakeFiles/multinest_static.dir/all] Error 2
+make: *** [all] Error 2
+</pre>
+<p>The approach that worked:</p>
+<pre class="literal-block">
+mkdir -p build lib modules bin/chains
+cd build
+cmake -DCMAKE_{C,CXX}_FLAGS=&quot;-arch x86_64&quot; -DCMAKE_Fortran_FLAGS=&quot;-m64&quot; ..
+make
+sudo make install
+cd ../lib
+ln -s libmultinest.dylib libmultinest.so
+export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/usr/local/hpc/lib:/usr/local/openmpi/lib/
+export LD_LIBRARY_PATH=/Users/adam/repos/MultiNest/lib
+</pre>
+<p>At this point, multinest imports but doesn't run the tests...</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -808,145 +989,6 @@ spiral arms?  Could foreground confuse?  Linewidths consistent with CMZ?</li>
 <ul class="simple">
 <li>Q Farhad: Shocked gas seen everywhere in loop?</li>
 <li>A: need to observe complete loop to get gradient temperature</li>
-</ul>
-</blockquote>
-</div>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/kazushi-sakamoto-the-kinematics-and-dynamics-of-molecular-gas-in-galactic-centers.html" rel="bookmark" title="Permalink to Kazushi Sakamoto: The Kinematics and Dynamics of Molecular Gas in Galactic Centers">
-                    Kazushi Sakamoto: The Kinematics and Dynamics of Molecular Gas in Galactic Centers</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-10-01T11:00:00"> 2013/10/01 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <img alt="" src="http://keflavich.github.io/blog/iau303/images/sakomoto.jpg" style="width: 800px;" />
-<dl class="docutils">
-<dt>Driving gas into Galactic centers</dt>
-<dd><ul class="first last simple">
-<li>opposing torques at corotation point drives gas inward</li>
-<li>observational evidence from nearby galaxies</li>
-<li>barred galaxies have greater concentration (Sheth et al 2005)</li>
-<li>observations of CO gas kinematics in M83, NGC 1097
-+ FCRAO Quarry obs</li>
-<li>ALMA concentration to M83 core...
-+ high velocity gas near core
-+ southern nucleus has spatially distinct outflow lobes</li>
-</ul>
-</dd>
-</dl>
-<div class="section" id="questions">
-<h2>Questions</h2>
-<blockquote>
-<ul class="simple">
-<li>Q Fred Lo: Can you distinguish between streamline convergence and cloud
-collisions?  Can you determine what happens when clouds collide?</li>
-<li>A: Yes, with ALMA.</li>
-<li>Q Farhad: Physical conditions in NGC 253.  Temperature distribution?  All
-warm?</li>
-<li>A: Our obs don't measure temperature. CO gives 50K on 10's of pc scales, so
-at least that temperature.</li>
-<li>Q: Big bubbles in NGC 253.  Are there clusters near them?</li>
-<li>A: Didn't find any in original data.</li>
-</ul>
-</blockquote>
-</div>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/betsy-mills-hot-gas-masers-and-cloud-collisions-the-extreme-properties-of-molecular-gas-at-the-heart-of-the-milky-way-galaxy.html" rel="bookmark" title="Permalink to Betsy Mills: Hot Gas, Masers, and Cloud Collisions: The extreme properties of molecular gas at the heart of the Milky Way Galaxy">
-                    Betsy Mills: Hot Gas, Masers, and Cloud Collisions: The extreme properties of molecular gas at the heart of the Milky Way Galaxy</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-10-01T09:50:00"> 2013/10/01 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <img alt="" src="http://keflavich.github.io/blog/iau303/images/mills.jpg" style="width: 800px;" />
-<dl class="docutils">
-<dt>VLA Survey</dt>
-<dd><ul class="first last">
-<li><p class="first">DnC at 24-36 GHz</p>
-</li>
-<li><p class="first">Brick NH3
-+ very high temperatures in brick: 100's of K
-+ optically thin 4-4,5-5,7-7
-+ brightest, densest clumps have lowest temperatures
-+ 300K gas, but no SF</p>
-<blockquote>
-<ul class="simple">
-<li>CR heating?</li>
-<li>Shock heating?</li>
-</ul>
-</blockquote>
-</li>
-<li><p class="first">36 GHz methanol maser
-+ shock excited
-+ dozens of point sources
-+ 75 candidates, 29 T_B &gt; 1000K (masing)</p>
-</li>
-<li><p class="first">why so many masers?
-+ large-scale shocks?
-+ 80 km/s velocity gradient across cloud
-+ methanol &amp; ammonia emission dominated by convergence point of velocities</p>
-</li>
-<li><p class="first">class I methanol masers usually show SF</p>
-</li>
-</ul>
-</dd>
-<dt>SF in the Brick?</dt>
-<dd><ul class="first last simple">
-<li>7 VLA continuum sources
-+ peaks in a more distributed set of continuum emission</li>
-<li>25 GHz continuum
-+ most continuum outside of the molecular gas
-+ external ionization</li>
-</ul>
-</dd>
-<dt>Rest of the CMZ</dt>
-<dd><ul class="first last simple">
-<li>Pistol &amp; Quintuplet continuum with streaks from the nonthermal filaments
-+ second LBV seen in radio</li>
-<li>NH3 near Sgr A*
-+ NH3 traces edges of Sgr A East SNR
-+ some SF in 50km/s cloud and 20km/s cloud</li>
-<li>CND not in HC3N, weakly in ammonia</li>
-<li>no NH3 or HC3N at brightest submm clump</li>
-<li>nonthermal 3-3 line</li>
-</ul>
-</dd>
-<dt>Sgr B2</dt>
-<dd><ul class="first last simple">
-<li>CH3OH only non-self-absorbed against hot core
-+ shell structure</li>
-<li>NH3 2-2 maser</li>
-</ul>
-</dd>
-</dl>
-<div class="section" id="questions">
-<h2>Questions</h2>
-<blockquote>
-<ul class="simple">
-<li>Q Walsh: NH3 3-3 maser.  Expected more of those.  Were there others?</li>
-<li>A: yes, there are at least 2 others</li>
-<li>Q: Temperatures of ammonia.  Is ammonia the only tracer that gives high
-temperature towards the Brick?</li>
-<li>A: Yes, only one towards brick.  400-600K from H2 from Rodriguez-Fernandez.
-400K in Sgr A from NH3 too.</li>
-<li>Q: Formation pumping?</li>
-<li>A: yes, possible.  Need to form on short timescales.</li>
-<li>Q: Need hefty CR for that heating.  Can you expand on what VLA is good for?</li>
-<li>A: CRs 10^-14, 10^-15.  May happen.  Hard to explain 100's K</li>
-<li>A: VLA gets NH3 transitions for temperatures.  ALMA gives density.  VLA
-gives free-free. No overlap in frequency</li>
-<li>Q: Is the brick a cloud?  Is this really a transient colliding flow?</li>
-<li>A: I don't claim that it's bound.</li>
 </ul>
 </blockquote>
 </div>

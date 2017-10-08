@@ -67,6 +67,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2017/10/07
+                  <br>
+                  <a href="http://keflavich.github.io/blog/understanding-millimeter-source-counts.html">Understanding Millimeter Source Counts</a>
+              </li>
+              <li class="post">
+                  2017/10/02
+                  <br>
+                  <a href="http://keflavich.github.io/blog/what-simulations-use-a-density-threshold-determined-from-local-clouds.html">What simulations use a density threshold determined from local clouds?</a>
+              </li>
+              <li class="post">
                   2017/08/30
                   <br>
                   <a href="http://keflavich.github.io/blog/protostellar-mass-functions.html">Protostellar Mass Functions</a>
@@ -81,16 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/high-mass-protostellar-sio-masers.html">High-mass Protostellar SiO Masers</a>
               </li>
-              <li class="post">
-                  2017/01/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/publications-from-2016.html">Publications from 2016</a>
-              </li>
-              <li class="post">
-                  2016/08/15
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-synthetic-observations.html">CASA synthetic observations</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,105 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/delining.html" rel="bookmark" title="Permalink to Delining">
+                    Delining</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-02-03T04:54:00"> 2011/02/03 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Delining refers to the process of removing electronic noise that is
+aliased to
+particular frequencies by the discrete sampling of the data. Typical
+electronic noise is at 60 Hz with some width. It gets aliased to these
+frequencies:
+<tt class="docutils literal">linefreqs = <span class="pre">[10.05+findgen(10)*1.2,10.05-((findgen(7)+1))*1.2]</span></tt>
+The 10.05 Hz and 20.10 Hz are the worst in most cases, and they are
+wider. For
+the above lines, we &quot;remove&quot; a bandwidth of 0.09 Hz by averaging over
+the
+neighboring 0.5 Hz on either side. For the wider lines, we remove 0.5 Hz
+by
+averaging over the neighboring 1.5 Hz on either side.
+There are a few new things about the delining process that did not exist
+in James' old version:</p>
+<ol class="arabic simple">
+<li>The wide-band lines are removed</li>
+<li>A check is performed before removing the lines - they are only
+removed if the line region mean is
+2-sigma above the average region (as computed via median and mad)</li>
+<li>The replaced noise is computed via median/mad, and the new noise
+level is set 5x lower than in the
+neighboring region</li>
+</ol>
+<hr class="docutils" />
+<p>Now, some examples:</p>
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUisqDHJ08I/AAAAAAAAF58/BpgnudfdAAw/s400/deline_timestreams_003.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUisqWN6ueI/AAAAAAAAF6E/yAka7dlomjo/s400/deline_psds_003.png" />
+<p>The timestream (left) and PSD (right) of a &quot;pretty good&quot; bolometer.
+There is a lot of noise in lines, but note that the peak power is 2-3
+orders of magnitude below the PSD peak. In this case the &quot;Power&quot; is in
+Jy. There is little astrophysical information below ~14&quot; (9 Hz), and
+there should be none below 7.2&quot; (17 Hz), but there is plausibly
+information at these scales. It therefore makes sense to save as much
+information as possible. As can be seen in the delined PSD, the peaks
+drop by a substantial fraction, but not all the way - that's because
+these lines are wider than typically observed. Unfortunately, I don't
+have any really good ideas about how to fix this issue - I think fitting
+gaussians to each line, while attractive, is going to be prohibitively
+expensive in both programmer and processor time. However... it would be
+a very interesting project to undertake. In the timestream, it can be
+seen that the RMS drops substantially when the lines are filtered out
+(note that the timestream is strongly dominated by large-scale
+structure, so 'substantial' is really based on the RMS of the lines
+removed).</p>
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUisq6D55wI/AAAAAAAAF6M/PZ4hyu5FkZM/s400/deline_10hz_timestreams_003.png" />
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUisrWpL7yI/AAAAAAAAF6U/tSsL5Jc4n-A/s400/deline_10hz_psds_003.png" />
+<p>The next two plots look identical to the previous ones. In principle,
+they include the wide-band delining. However, in this case, the
+satellite lines to either side of the 10 Hz line are too strong and
+prevent identification of the 10 Hz line. This is unfortunate, again,
+but no obvious solution presents itself.</p>
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixLZbVHPI/AAAAAAAAF6c/xCWLpb9CKX4/s400/deline_timestreams_004.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixL8APCQI/AAAAAAAAF6k/j8FyKbgOdDo/s400/deline_psds_004.png" />
+<p>Now we come to a truly problematic bolometer. The lines completely
+dominate the power spectrum. Narrow line removal fails.</p>
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUixMjNxbkI/AAAAAAAAF6s/Hr8ouprcMpY/s400/deline_10hz_timestreams_004.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixNMO2NsI/AAAAAAAAF60/ZAsirbb25QY/s400/deline_10hz_psds_004.png" />
+<p>Wide line removal does a much, much better job, dropping the RMS by an
+order of magnitude.... but the bolometer probably still needs to be
+removed, since the astrophysical signal is 2-3 orders of magnitude below
+that.</p>
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUizkq9x4TI/AAAAAAAAF68/2xYY86d6aTQ/s400/deline_timestreams_001.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUizlH0XvMI/AAAAAAAAF7E/ptDb5I3os6A/s400/deline_psds_001.png" />
+<p>The 2010 data had much worse line noise and had to be delined. JS
+accomplished this by throwing out all data above a certain frequency,
+but I prefer the delining approach. It is clearly effective, but again
+leaves much to be desired. Should the flagged bandwidth be increased?
+What about the extra lines around 18 Hz?</p>
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUizln1mSCI/AAAAAAAAF7M/hTkZRUU3-ck/s400/deline_10hz_timestreams_001.png" />
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUizmdrMkgI/AAAAAAAAF7U/-dlB4u30hBo/s400/deline_10hz_psds_001.png" />
+<p>Again, the wide line flagging fails because of the satellite lines.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/next-step-prove-that-this-works-in-maps.html" rel="bookmark" title="Permalink to Next step: prove that this works in maps...">
+                    Next step: prove that this works in maps...</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-02-03T04:53:00"> 2011/02/03 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Next step: prove that this works in maps...</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -339,54 +438,6 @@ MAMBO, there may be curvature in the best-fit lines.&nbsp; Also, l=35 does
 not appear to scale up linearly... G34 is fainter in v2.0?
 In the low S/N fields, the PSD is more reliable than the pixel-pixel
 comparison.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/pps-comparison-completed.html" rel="bookmark" title="Permalink to PPS comparison completed">
-                    PPS comparison completed</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2010-06-24T15:24:00"> 2010/06/24 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>The PPS scale factor seems to hold for many different (and ridiculous)
-aperture sizes.&nbsp; The full results are <a class="reference external" href="http://casa.colorado.edu/%7Eginsbura/bgps/pps_comparison.pdf">here.</a></p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/pps-analysis-suggests-a-possible-solution-to-the-discrepancy.html" rel="bookmark" title="Permalink to PPS analysis: suggests a possible solution to the discrepancy">
-                    PPS analysis: suggests a possible solution to the discrepancy</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2010-06-21T18:17:00"> 2010/06/21 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>The comparisons I mentioned in the previous post are sort of done.&nbsp; They
-are pretty suggestive of a solution to the &quot;flux recovery problem&quot; we
-think must be true.&nbsp; However, even if it is a solution, it doesn't
-really solve the problem completely.
-It looks like v1.0 should be scaled up by a factor of 1.3-1.4 (not
-1.5).&nbsp; v2.0 is consistent with the PPS sources to within 5%, and might
-even be slightly too high.
-The comparison was done by taking the flux in a 60&quot; radius aperture
-(equivalent to bolocat 120&quot; diameter apertures) and subtracting off the
-background measured in a 120&quot; radius annulus around the source.&nbsp; Without
-the background subtraction, these numbers would look very different: in
-the science fields, most of the sources sit on an extended background.
-Even though the &quot;background flux&quot; isn't recovered in the PPS fields, it
-should contribute to the source background because it is involved in the
-atmosphere subtraction (it's sort of &quot;already subtracted&quot; so you have to
-subtract from the science fields).</p>
-<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TB-rPT7MLdI/AAAAAAAAFws/7oWTt3FOF-M/s320/BGPS_correction_factors.png" />
-<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TB-rQId8G_I/AAAAAAAAFw0/NUJKQO_5zI4/s320/BGPS_correction_factor_histograms.png" />
-<p>Next step: direct comparison between v1.0 and v2.0.&nbsp; Pixel by pixel,
-aperture, and powerspectrum</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
