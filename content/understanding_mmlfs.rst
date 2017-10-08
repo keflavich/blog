@@ -86,7 +86,48 @@ in order to use these models, we need to populate a 'fully sampled' L(M, M_f) ta
 Offner et al computed such a table, but then used an approximation for
 R(M) - the stellar radius as a function of its mass - for their calculations.
 
-TODO: compute function that obtains R, T given M, t
+.. There are two types of accretion histories considered by Offner.  First, they
+.. consider a series of constant (time-independent) accretion histories with mdot
+.. determined by the final mass.  Second, they consider an accelerating
+.. (time-dependent) accretion history.  Grids based on the former are easier to build;
+.. grids based on the latter require modification of the Klassen code.
+
+Following Offner, though, the accretion histories are not constant.  Instead,
+they use a variety of accretion histories: isothermal sphere, turbulent core,
+and competitive accretion.
+To compute the L(M, M_f) tables, we need to run a
+modified version of the Klassen code with a variable accretion history.
+
+The isothermal sphere case is actually a constant accretion rate, so that one is
+pretty easy.  The turbulent core and competitive accretion models have an accretion
+rate that depends on time or mass.
+
+Turbulent Core Protostellar Evolution
++++++++++++++++++++++++++++++++++++++
+
+I've implemented the turbulent core accretion history in my fork_ of Mikhail
+Klassen's repository.  The modification is fairly straightforward: the
+accretion rate is set at each timestep according to Equation 23 of `McKee and
+Offner`_ using the numerical constants they computed.  Then, if the stellar
+mass has reached (or exceeds) the target stellar mass, set the accretion rate
+to zero.  The stellar evolution code can then proceed with no further
+accretion.
+
+I've run this using the default initial conditions, a clump surface density
+$\Sigma_{cl} = 0.1$ g cm$^{-2}$.  The results are in the next figure: nearly
+all of the interesting evolution happens before the stars reach 10 Msun.  The
+accretion luminosity is almost always subdominant, at least once anything
+reaches 10 Lsun.  The most massive star seems to shrink below its main sequence
+size prior to reaching the main sequence, which is a little weird.  I'm not
+sure if I trust that.
+
+.. image:: |filename|/images/Klassen_turbulentcore_model.png
+   :width: 600px
+
+Further exploration of accretion history parameter space is future work.
+I now at least know how to set up the basic models and assemble lookup
+tables for L(mf,t).
+
 
 Protostellar SED Models
 -----------------------
@@ -115,3 +156,4 @@ may be more self-consistent.
 .. _robitaille sedfitter: github.com/astrofrog/sedfitter
 .. _Robitaille grid: https://zenodo.org/record/166732#.WdlXwmK3xcw
 .. _Zhang+ 2017: http://adsabs.harvard.edu/abs/2017arXiv170808853Z
+.. _fork: https://github.com/keflavich/protostellar_evolution

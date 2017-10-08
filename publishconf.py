@@ -5,7 +5,7 @@ import sys
 sys.path.append('.')
 from pelicanconf import *
 
-MENUITEMS = [(a,'/blog/'+b)  if 'http' not in b else (a,b) for a,b in MENUITEMS]
+MENUITEMS = [(a,'/blog/'+b) if 'http' not in b else (a,b) for a,b in MENUITEMS]
 
 #SITEURL = 'file://localhost/Volumes/disk5/Users/adam/repos/blog/output'
 #SITEURL = ""
@@ -19,6 +19,8 @@ DELETE_OUTPUT_DIRECTORY = True
 # Uncomment following line for absolute URLs in production:
 # because apparently nothing works in pelican...
 RELATIVE_URLS = False
+
+PLUGINS = ["render_math"]
 
 DISQUS_SITENAME = "adamginsburgsblog"
 GOOGLE_ANALYTICS = 'UA-37306139-1'

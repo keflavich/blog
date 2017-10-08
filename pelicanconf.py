@@ -57,7 +57,7 @@ MENUITEMS = [('Homepage','http://www.adamgginsburg.com',),
              ('Tags','/tags.html',),
             ]
 
-#PLUGINS = ["latex"]
+PLUGINS = ["render_math"]
 
 USE_FOLDER_AS_CATEGORY = True
 
