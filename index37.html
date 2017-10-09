@@ -72,11 +72,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <a href="http://keflavich.github.io/blog/understanding-millimeter-source-counts.html">Understanding Millimeter Source Counts</a>
               </li>
               <li class="post">
-                  2017/10/02
-                  <br>
-                  <a href="http://keflavich.github.io/blog/what-simulations-use-a-density-threshold-determined-from-local-clouds.html">What simulations use a density threshold determined from local clouds?</a>
-              </li>
-              <li class="post">
                   2017/08/30
                   <br>
                   <a href="http://keflavich.github.io/blog/protostellar-mass-functions.html">Protostellar Mass Functions</a>
@@ -91,6 +86,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/high-mass-protostellar-sio-masers.html">High-mass Protostellar SiO Masers</a>
               </li>
+              <li class="post">
+                  2017/01/01
+                  <br>
+                  <a href="http://keflavich.github.io/blog/publications-from-2016.html">Publications from 2016</a>
+              </li>
         </ul>
       </li>
     
@@ -101,69 +101,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/hunting-for-preferred-directions.html" rel="bookmark" title="Permalink to Hunting for preferred directions">
-                    Hunting for preferred directions</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-06-06T03:58:00"> 2011/06/06 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>In our last group meeting, we discussed simulations using filamentary
-structures. I've been trying to determine how best to generate
-random/artificial filamentary structures in images. The first step in
-that direction is coming up with a way to measure asymmetries and
-therefore preferred directions within a real map. In order to do this,
-I've had to develop a number of new tools in agpy for azimuthally binned
-radial profiles and radially-averaged azimuthal profiles
-(<a class="reference external" href="http://code.google.com/p/agpy/source/browse/trunk/agpy/radialprofile.py">radialprofile.py</a>).
-Examining real maps is necessary because a simple sinusoidal dependence
-of the power introduces filamentation along the same directions at ALL
-scales, which is not obviously (or in some cases, obviously not) the
-correct solution. Filaments are observed on large scales, but sometimes
-there can be 'kinks' in opposite directions on small scales.
-So, the map I picked to examine was one with the most flagrantly obvious
-filamentary structure in it: the Motte DR 21 MAMBO map. It was also a
-choice of convenience because I already had the data on my laptop....</p>
-<img alt="" src="http://3.bp.blogspot.com/-ULjqyt_ofEI/TexIAK9ohhI/AAAAAAAAGM0/eCEys_tFOTA/s320/MAMBOmap.png" />
-<p>The preferred direction is quite obvious in this map: there is a long
-filament going up and down the map. Therefore, the DC component should
-be substantially higher in one direction than the other.</p>
-<img alt="" src="http://1.bp.blogspot.com/-X7TY9wPUL7Y/TexIAZ7hH_I/AAAAAAAAGM8/IEkgX500_Os/s320/MAMBOpsd.png" />
-<p>In the power-spectral-density image, it is quite clear that there is a
-preferred direction, though it is not obvious that the fourier transform
-is rotated 90 degrees from the image. My fourier intuition somewhat
-fails me here.... I realize that a broad, smooth profile in real space
-should be narrow and highly peaked in fourier space, but I don't fully
-understand why it effectively spreads out in the perpendicular
-direction, which I have confirmed that it does with a simple experiment.
-I also don't know what the Shah function is, but it implies a periodic
-dip in the image at every 1/5th of the image, or every 50 pixels.</p>
-<img alt="" src="http://2.bp.blogspot.com/-l4qWlj1G42k/TexIAufhjSI/AAAAAAAAGNE/UqagczdWzwA/s320/MAMBOpowerspectra.png" />
-<p>These are the power spectra averaged over different angles as labeled.
--15 corresponds to -15 to +15, 15 corresponds to 15 to 45, etc. The
-highly peaked 75-105 power spectrum shows the large-scale filamentary
-profile. I think the difference in the DC component is actually an
-artifact of the azimuthal binning process: each pixel can only be
-assigned one angle, so the DC value isn't included in all of them...
-I'll need to find a workaround for that because it's quite deceptive.</p>
-<img alt="" src="http://4.bp.blogspot.com/-qEWk2rRrwNI/TexIBKn59FI/AAAAAAAAGNM/MXdsiKagpW4/s320/MAMBOazspectra.png" />
-<p>The more interesting way to view the data - and perhaps to analyze maps
-- is to take <em>radial</em> averages in some range of spatial scales and plot
-the azimuthal dependence. There is a clear sinusoid at large scales. The
-legend shows &quot;spatial frequency&quot; in 1/pixel units. The distribution
-becomes more even with angle and even changes preferred direction at
-smaller scales (higher frequencies).
-Next step is testing different approaches. I think an added,
-steeper-power-law component would probably be the best way to start.
-Another suggestion, courtesy Bruce Elmegreen, is to attempt this sort of
-asymmetric power law sampling in 3 dimensions (with only 1 or 2
-dimensions asymmetric) and then projecting down onto two dimensions.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -513,6 +450,41 @@ Naively, one would assume that something like
 $G = median(S/R)$
 would work. However, it doesn't. The distribution of $G$ values looks
 like:</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/sampling-causes-problems-rd-2.html" rel="bookmark" title="Permalink to Sampling Causes Problems: Rd 2">
+                    Sampling Causes Problems: Rd 2</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-04-19T17:39:00"> 2011/04/19 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Proof that a well-sampled timestream / gaussian is recovered better than
+a poorly sampled one:</p>
+<img alt="" src="http://3.bp.blogspot.com/-PVt1suBQt3s/Ta3EQqypzAI/AAAAAAAAGG4/ap-3_SKjigI/s320/airy_test_superres_ds1_smallpix_sn100timestream012_plots_16_bolo12.png" />
+<img alt="" src="http://1.bp.blogspot.com/-HMr4DXKBVMY/Ta3GE49GmcI/AAAAAAAAGHA/ULLRUq_IWn8/s320/airy_test_superres_ds1_sn100timestream012_plots_20_bolo12.png" />
+<img alt="" src="http://3.bp.blogspot.com/-ujL_h0j-Gms/Ta3GWwcEttI/AAAAAAAAGHI/4uVLXXXhtqc/s320/airy_test_superres_ds1_smallpix_sn100_compare.png" />
+<img alt="" src="http://4.bp.blogspot.com/-r98h73qcMKY/Ta3GXBKAT3I/AAAAAAAAGHQ/k3y8j427TC0/s320/airy_test_superres_ds1_sn100_compare.png" />
+<p>These aren't really the most convincing, since the flux loss is only
+1-8% depending on how you count. The atmosphere-included ones have
+larger flux loss, which is important to understand... WHY does the added
+noise INCREASE the flux loss?
+Ugh, unfortunately, there is a perfect counter-example. The first image
+shows a timestream in which the input map is sampled by 7.2&quot; pixels,
+which is just shy of nyquist sampling the 1-sigma width of the gaussian
+(but is fine for the FWHM of the gaussian). The second shows 3.6&quot;
+sampling of the same. No improvement. The third, very surprisingly,
+shows significant improvement - but this was an experiment in which the
+relative scales were allowed to vary.</p>
+<img alt="" src="http://4.bp.blogspot.com/-NIwHLJT2SOw/Ta3IAGQA4HI/AAAAAAAAGHY/N3Oju7RHhRE/s320/airy_test_ds1_reconv_arrang45_atmotest_amp1.0E-01timestream011_plots_20_bolo07.png" />
+<img alt="" src="http://4.bp.blogspot.com/-Qo8-kSCFMCc/Ta3IATO7P1I/AAAAAAAAGHg/Jx9ufNhabiE/s320/airy_test_ds1_reconv_arrang45_atmotest_smallpix_amp1.0E-01timestream011_plots_20_bolo07.png" />
+<img alt="" src="http://3.bp.blogspot.com/-6PlqmOsDRFY/Ta3IA00cfBI/AAAAAAAAGHo/t5b2jddw5Lw/s320/airy_test_ds1_reconv_arrang45_atmotest_varyrelscale_amp1.0E-01timestream011_plots_20_bolo07.png" />
+<p>The first two each had one high-weight bolometer rejected, the last had
+12 high-weight bolos rejected. So that's problably the problem....</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

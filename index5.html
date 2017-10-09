@@ -72,11 +72,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <a href="http://keflavich.github.io/blog/understanding-millimeter-source-counts.html">Understanding Millimeter Source Counts</a>
               </li>
               <li class="post">
-                  2017/10/02
-                  <br>
-                  <a href="http://keflavich.github.io/blog/what-simulations-use-a-density-threshold-determined-from-local-clouds.html">What simulations use a density threshold determined from local clouds?</a>
-              </li>
-              <li class="post">
                   2017/08/30
                   <br>
                   <a href="http://keflavich.github.io/blog/protostellar-mass-functions.html">Protostellar Mass Functions</a>
@@ -91,6 +86,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/high-mass-protostellar-sio-masers.html">High-mass Protostellar SiO Masers</a>
               </li>
+              <li class="post">
+                  2017/01/01
+                  <br>
+                  <a href="http://keflavich.github.io/blog/publications-from-2016.html">Publications from 2016</a>
+              </li>
         </ul>
       </li>
     
@@ -101,78 +101,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/python-stack-on-mavericks.html" rel="bookmark" title="Permalink to Python stack on Mavericks">
-                    Python stack on Mavericks</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2014-02-19T12:02:00"> 2014/02/19 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/napattack-adamgginsburggmailcom.html">napattack (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>As you might expect from numerous blog posts and the general difficulty people
-have always experienced upgrading mac OS versions, Mavericks caused some truly
-hideous issues.</p>
-<p>The only really &quot;new&quot; issues specifically for Mavericks relate to app nap.  The
-main solution is minrk's <a class="reference external" href="https://github.com/minrk/appnope">appnope</a>.  Otherwise, command line options like
-<cite>defaults write &lt;app domain name&gt; NSAppSleepDisabled -bool YES</cite> are required
-<a class="reference external" href="http://apple.stackexchange.com/questions/121386/missing-prevent-app-nap-button-on-app">if the button is missing</a> from Mac's Get Info pane.</p>
-<p>I tried installing the <a class="reference external" href="https://store.continuum.io/cshop/anaconda/">conda</a> stack to get python running quickly.  This
-worked to an extremely limited degree: the TkAgg shipped with anaconda links to
-<a class="reference external" href="xquartz.macosforge.org">XQuartz</a>, which is highly undesirable for a number of reasons.  This meant
-that matplotlib plots showed up as X11 plots.  With the Mac OS X backend, the
-windows failed to show up in the Dock and therefore were totally unusable (though
-they did look OK).</p>
-<p>I am still using <a class="reference external" href="https://store.continuum.io/cshop/anaconda/">conda</a> to maintain multiple parallel versions of python for
-testing.  However, I went back to my typical install-from-source approach.</p>
-<p>To get the matplotlib backends to interact nicely with apple, you need to install
-them using the <cite>/Library</cite> version of python</p>
-<div class="highlight"><pre><span class="c"># this had to happen sometime early:</span>
-<span class="nv">$ </span>xcode-select --install
-
-<span class="nv">$ </span>wget https://pypi.python.org/pypi/pip#downloads
-<span class="nv">$ </span>tar -xzvf ~/Downloads/pip-1.5.2.tar.gz
-<span class="nv">$ </span><span class="nb">cd </span>pip-1.5.2
-<span class="nv">$ </span>/Library/Frameworks/Python.framework/Versions/2.7/bin/python setup.py install
-<span class="nv">$ </span>/Library/Frameworks/Python.framework/Versions/2.7/bin/pip install virtualenv
-<span class="nv">$ </span><span class="nb">cd</span>
-<span class="nv">$ </span>/Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenv virtual-python
-</pre></div>
-<p>After this, I was surprisingly able to install everything in the python stack
-with no hitches.  Obviously, that could not possibly last.</p>
-<p>While matplotlib and numpy worked fine, scipy had problems.</p>
-<pre class="literal-block">
-ImportError: dlopen(/Users/adam/virtual-python/lib/python2.7/site-packages/scipy/integrate/_odepack.so, 2): Symbol not found: __gfortran_internal_free
-Referenced from: /Users/adam/virtual-python/lib/python2.7/site-packages/scipy/integrate/_odepack.so
-Expected in: flat namespace
-   in /Users/adam/virtual-python/lib/python2.7/site-packages/scipy/integrate/_odepack.so
-</pre>
-<p>This terrible error led me back to re-compiling scipy.  I tried installing with
-<a class="reference external" href="hpc.sourceforge.net">hpc</a> gfortran, but that didn't work at all, first apparently because of linking
-errors in numpy.  When I investigated numpy, I found that the compilers
-apparently don't work at all:</p>
-<pre class="literal-block">
-C compiler: /usr/local/bin/gcc -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -arch i386 -arch x86_64
-...
-RuntimeError: Broken toolchain: cannot link a simple C program
-</pre>
-<p>I had to give up on that, and then googling returned no results at all, which I
-thought was a bit weird.  Scipy seems to want gcc and g++ 4.2, even though
-they're years old.  I had to find those and gfortran-4.2 somehow, but the <a class="reference external" href="r.research.att.com/tools/">old
-site</a> that used to serve them seems to have lost the files!  They had an
-<a class="reference external" href="http://r.research.att.com/tools/gcc-42-5666.3-darwin11.pkg">older version</a>, though, which appears to work.  Scipy is a scary install.</p>
-<div class="section" id="problems-with-xquartz">
-<h2>Problems with XQuartz</h2>
-<p>XQuartz is not well-behaved on Mac OS X 10.9.  First, <a class="reference external" href="https://xquartz.macosforge.org/trac/ticket/661">on retina machines, it
-does not display well</a>.  Second, and much more important, it <a class="reference external" href="http://xquartz.macosforge.org/trac/ticket/797">does not work on
-external monitors</a>.  Apparently this can be worked around by turning off
-&quot;Displays have different spaces&quot;  in Mission Control, but so far that has had
-no effect for me.</p>
-</div>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -1820,6 +1748,44 @@ accelerated less -&gt; powerlaw.</li>
 </ul>
 </blockquote>
 </div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/late-night-ideas-oct-6-2013.html" rel="bookmark" title="Permalink to Late Night Ideas, Oct 6 2013">
+                    Late Night Ideas, Oct 6 2013</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-10-07T01:00:00"> 2013/10/07 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Coffee at 7 pm usually isn't a problem...</p>
+<blockquote>
+<ol class="arabic simple">
+<li>Dendrogram analysis of turbulent simulations.  What do the structures look
+like?  Mostly for visualization in a talk, but perhaps the start of a paper.
+Are the high-density substructures too small to collapse?  Too hot?</li>
+<li>A deep GBT+AO observation of the center of the G49 40km/s cloud.  Can we
+perform the same measurement as I did originally against a uniform
+backlight?  Will that provide new information</li>
+<li>Corollary to 2: In simulations, what effect does a varying size and
+brightness backlight have on the inferred density?</li>
+<li>Measure the distance to the G49 cloud with NIR extinction.  Keep working
+with Jonathan Foster on that...</li>
+<li>Test the Cepheid / RR Lyrae distance method on the G49 cloud.  It's close
+enough that the targets should be bright.  Start off with 1-hour pilot
+(DD?) on the most distant star with a &quot;guaranteed&quot; CO detection, then
+propose a longer project to begin using the bisector approach to determine
+its true distance.</li>
+<li>Eta Car ALMA.  Basically, same thing, but now invoke the SN 1987A CO
+detection.  Eta is the closer laboratory, and it must have similar shock
+physics...</li>
+<li>H3+ in the CMZ with Juergen.  Talk to Tom Geballe about H3+ and CO
+absorption.  Is it possible to measure CO absorption to red giants?</li>
+</ol>
+</blockquote>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
