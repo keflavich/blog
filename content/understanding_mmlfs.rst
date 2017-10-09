@@ -68,7 +68,7 @@ of the accretion energy is lost to wind and treated the disk and star accretion
 luminosity separately, according to `Klassen+ 2012`_).
 
 The Klassen implementation is the best immediately available to me.  Both they
-and `Offner and McKee` compared their results to `Hosokawa & Omukai`_,
+and `Offner and McKee`_ compared their results to `Hosokawa & Omukai`_,
 considering the latter to be more accurate, and found "good" agreement (<2x
 disagreement) in the radius as a function of mass.  The same comparison is
 shown below; these figures match `Klassen+ 2012`_ Figures 1 and 2 (though I
@@ -151,7 +151,7 @@ the evolutionary model.
 
 Since the Robitaille models cover a large number of parameters, but do so in a
 fairly sparse grid, it is not trivial to map from radius+luminosity to the
-models.  For example, for a $2-3\times10^5$ Lsun star with radius 40-50 Rsun,
+models.  For example, for a $2-3x10^5$ Lsun star with radius 40-50 Rsun,
 there are 860 models in the ``spubhmi`` grid, most of which lack flux measurements
 in many apertures.
 
@@ -179,6 +179,8 @@ it is certainly possible for such a source, with a non-negligible envelope, to
 exist, and it would certainly produce some flux.
 
 More lenient parameters are needed:
+
+.. code-block:: python
 
    lum = (0.5084830934E+37*u.erg/u.s).to(u.L_sun)
    rad = (0.6278790980E+12*u.cm).to(u.R_sun)
@@ -240,7 +242,7 @@ this purpose.  We'll see.
 .. _Tan & McKee 2004: http://adsabs.harvard.edu/abs/2004ApJ...603..383T
 .. _Hosokawa & Omukai: http://adsabs.harvard.edu/abs/2009ApJ...691..823H
 .. _Offner+ 2009: http://adsabs.harvard.edu/abs/2009ApJ...703..131O
-.. _Protostellar Mass Functions: protostellar_mass_functions.rst
+.. _Protostellar Mass Functions: blog/protostellar_mass_functions.html
 .. _robitaille sedfitter: github.com/astrofrog/sedfitter
 .. _Robitaille grid: https://zenodo.org/record/166732#.WdlXwmK3xcw
 .. _Zhang+ 2017: http://adsabs.harvard.edu/abs/2017arXiv170808853Z
