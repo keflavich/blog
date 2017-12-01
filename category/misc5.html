@@ -68,6 +68,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2017/12/01
+                  <br>
+                  <a href="http://keflavich.github.io/blog/the-extragalactic-view-of-w51-at-220-and-290-ghz.html">The extragalactic view of W51 at 220 and 290 GHz</a>
+              </li>
+              <li class="post">
                   2017/10/07
                   <br>
                   <a href="http://keflavich.github.io/blog/understanding-millimeter-source-counts.html">Understanding Millimeter Source Counts</a>
@@ -87,11 +92,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/high-mass-protostellar-sio-masers.html">High-mass Protostellar SiO Masers</a>
               </li>
-              <li class="post">
-                  2016/08/15
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-synthetic-observations.html">CASA synthetic observations</a>
-              </li>
         </ul>
       </li>
     
@@ -103,6 +103,176 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles in the misc category</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/converting-a-fits-cube-to-a-casa-image.html" rel="bookmark" title="Permalink to Converting a FITS cube to a CASA Image">
+                    Converting a FITS cube to a CASA Image</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-12-18T15:15:00"> 2013/12/18 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg <adam.g.ginsburg@gmail.com></a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>If you want to perform analysis on a FITS file in CASA, you first need to
+import it into <cite>.image</cite> format.</p>
+<blockquote>
+importfits('file.fits','file.image')</blockquote>
+<p>If this works, great!  You can move on.  CASA will treat NaN values in an image
+as 'masked'.</p>
+<div class="section" id="dealing-with-errors">
+<h2>Dealing with Errors</h2>
+<p>There may be issues with FITS headers.  CASA respects a large number of header
+keys (<a class="reference external" href="http://www.eso.org/projects/alma/arc/tw/pub/External/EUARCCASATutorialJan2012/ImageAnalysis-CASA.pdf">reference</a>).</p>
+<p>There are many ways to edit a FITS header.  One of the most straightforward to
+use is <a class="reference external" href="http://tdc-www.harvard.edu/wcstools/edhead.html">edhead</a>.  Otherwise, one can use CASA's <a class="reference external" href="http://casaguides.nrao.edu/index.php?title=Imhead">imhead</a></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="14%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>CASA Keyword</td>
+<td>FITS keyword</td>
+<td>Description</td>
+</tr>
+<tr><td>beammaj</td>
+<td>BMAJ</td>
+<td>Major&nbsp;axis&nbsp;of&nbsp;the&nbsp;clean&nbsp;beam</td>
+</tr>
+<tr><td>beammin</td>
+<td>BMIN</td>
+<td>Minor&nbsp;axis&nbsp;of&nbsp;the&nbsp;clean&nbsp;beam</td>
+</tr>
+<tr><td>beampa</td>
+<td>BPA</td>
+<td>Position&nbsp;angle&nbsp;of&nbsp;the&nbsp;clean&nbsp;beam</td>
+</tr>
+<tr><td>bunit</td>
+<td>BUNIT</td>
+<td>Brightness&nbsp;unit&nbsp;(K,&nbsp;Jy/beam,&nbsp;etc)</td>
+</tr>
+<tr><td>cdeltn</td>
+<td>CDELTn</td>
+<td>Pixel&nbsp;size,&nbsp;nth&nbsp;axis&nbsp;&nbsp;(max&nbsp;n&nbsp;is&nbsp;4)</td>
+</tr>
+<tr><td>crpixn</td>
+<td>CRPIXn</td>
+<td>Pixel&nbsp;coordinate&nbsp;of&nbsp;reference&nbsp;point,&nbsp;nth&nbsp;axis</td>
+</tr>
+<tr><td>crvaln</td>
+<td>CRVALn</td>
+<td>Pixel&nbsp;location&nbsp;of&nbsp;reference&nbsp;point,&nbsp;nth&nbsp;axis</td>
+</tr>
+<tr><td>ctypen</td>
+<td>CTYPEn</td>
+<td>Axis&nbsp;name,&nbsp;nth&nbsp;axis.  For FITS, this includes the projection</td>
+</tr>
+<tr><td>cunitn</td>
+<td>CUNITn</td>
+<td>Pixel&nbsp;units,&nbsp;nth&nbsp;axis</td>
+</tr>
+<tr><td>datamax</td>
+<td>DATAMAX</td>
+<td>Maximum&nbsp;pixel&nbsp;value&nbsp;in&nbsp;image</td>
+</tr>
+<tr><td>datamin</td>
+<td>DATAMIN</td>
+<td>Minimum&nbsp;pixel&nbsp;value&nbsp;in&nbsp;image</td>
+</tr>
+<tr><td>date-obs</td>
+<td>DATE-OBS</td>
+<td>Date&nbsp;of&nbsp;the&nbsp;observation</td>
+</tr>
+<tr><td>equinox</td>
+<td>EQUINOX</td>
+<td>Reference&nbsp;frame&nbsp;for&nbsp;directional&nbsp;coordinates</td>
+</tr>
+<tr><td>imtype</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Image&nbsp;type:&nbsp;intensity,</td>
+</tr>
+<tr><td>minpos</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Position&nbsp;of&nbsp;the&nbsp;minimum&nbsp;value&nbsp;(world&nbsp;unit)</td>
+</tr>
+<tr><td>minpixpos</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Same&nbsp;in&nbsp;pixel&nbsp;(array)</td>
+</tr>
+<tr><td>maxpos</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Position&nbsp;of&nbsp;the&nbsp;maximum&nbsp;value&nbsp;(world&nbsp;unit)</td>
+</tr>
+<tr><td>maxpixpos</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Same&nbsp;in&nbsp;pixel&nbsp;(array)</td>
+</tr>
+<tr><td>object</td>
+<td>OBJECT</td>
+<td>Source&nbsp;name</td>
+</tr>
+<tr><td>observer</td>
+<td>OBSERVER</td>
+<td>Observer&nbsp;name</td>
+</tr>
+<tr><td>projection</td>
+<td>CTYPEn</td>
+<td>Image&nbsp;projection&nbsp;('SIN','TAN',&nbsp;or&nbsp;'ZEA')</td>
+</tr>
+<tr><td>reffreqtype</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Reference&nbsp;frame&nbsp;for&nbsp;the&nbsp;spectral&nbsp;coordinates</td>
+</tr>
+<tr><td>restfreq</td>
+<td>RESTFREQ</td>
+<td>Rest&nbsp;Frequency</td>
+</tr>
+<tr><td>shape</td>
+<td>NAXISn</td>
+<td>Number&nbsp;of&nbsp;pixels&nbsp;along&nbsp;each&nbsp;axis</td>
+</tr>
+<tr><td>telescope</td>
+<td>TELESCOP</td>
+<td>Telescope&nbsp;name</td>
+</tr>
+</tbody>
+</table>
+<p>What does it mean if you get this sort of error?</p>
+<blockquote>
+CASA &lt;1&gt;: importfits('file.fits','file.image')
+2013-12-18 13:06:18     WARN    importfits::FITSCoordinateUtil::fromFITSHeader  The wcs function failures are too severe to continue ...
+2013-12-18 13:06:18     WARN    importfits::ImageFITSConverterImpl::FITSToImage (file /var/rpmbuild/BUILD/casapy-stable/casapy-stable-42.0.26945/casacore/images/Images/ImageFITSConverter.tcc, line 71)       No proper coordinate system defined in FITS file. Using dummy linear system instead.</blockquote>
+<p>First, go to the <cite>casapy-yyyymmdd-hhmmss.log</cite> file and look at the errors.</p>
+<blockquote>
+2013-12-18 13:06:18     INFO    importfits::FITSCoordinateUtil::fromFITSHeader  celfix incurred the error Inconsistent or unrecognized coordinate axis types
+2013-12-18 13:06:18     INFO    importfits::FITSCoordinateUtil::fromFITSHeader  spcfix incurred the error Inconsistent or unrecognized coordinate axis types
+2013-12-18 13:06:18     INFO    importfits::FITSCoordinateUtil::fromFITSHeader  cylfix incurred the error Inconsistent or unrecognized coordinate axis types</blockquote>
+<p>In my case, the error turned out to be that <cite>CTYPE3</cite> was set to <cite>RADI-LSR</cite>,
+while it should be <cite>VELO-LSR</cite> to be recognized by the CASA system.  The
+velocity convention is, unfortunately, lost.</p>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -1422,34 +1592,6 @@ square below), so the maximum <span class="formula"><i>ρ</i><sub><i>M</i></sub>
 </div>
 </div>
 </div>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/recovering-from-startup-drive-out-of-memory.html" rel="bookmark" title="Permalink to Recovering from "Startup drive out of memory"">
-                    Recovering from &quot;Startup drive out of memory&quot;</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-05-13T09:26:00"> 2013/05/13 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>To continue frozen processes, you need to find all sleeping procs and restart them with <tt class="docutils literal">kill <span class="pre">-CONT</span></tt>.</p>
-<p>In principle, this command should do that:</p>
-<p><tt class="docutils literal">ps <span class="pre">-A</span> <span class="pre">-o</span> tpgid,uid,pid,state,flags | awk <span class="pre">'$1!=&quot;0&quot;</span> &amp;&amp; <span class="pre">$2==501</span> &amp;&amp; <span class="pre">$4==&quot;S&quot;</span> &amp;&amp; <span class="pre">$5!=&quot;4000410c&quot;</span> {print &quot;kill <span class="pre">-CONT</span> &quot; $3}' | bash</tt></p>
-<p>Without the flags exclusion, this failed for me on apple's VNC server:
-<tt class="docutils literal">ps <span class="pre">-A</span> <span class="pre">-o</span> tpgid,uid,pid,state,flags | awk <span class="pre">'$2==501</span> &amp;&amp; <span class="pre">$4==&quot;S&quot;</span> &amp;&amp; <span class="pre">$5!=&quot;4000410c&quot;</span> {print &quot;kill <span class="pre">-CONT</span> &quot; $3}' | bash</tt></p>
-<p>This is necessary for recovering mac processes:
-<tt class="docutils literal"><span class="pre">-A</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Display information about other users' processes, including those without controlling terminals.</tt></p>
-<p>The outputs from the <tt class="docutils literal">ps</tt> process are:</p>
-<blockquote>
-<ul class="simple">
-<li>tpgid      control terminal process group ID</li>
-<li>pid        process ID</li>
-<li>uid        effective user ID</li>
-</ul>
-</blockquote>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

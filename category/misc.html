@@ -68,6 +68,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2017/12/01
+                  <br>
+                  <a href="http://keflavich.github.io/blog/the-extragalactic-view-of-w51-at-220-and-290-ghz.html">The extragalactic view of W51 at 220 and 290 GHz</a>
+              </li>
+              <li class="post">
                   2017/10/07
                   <br>
                   <a href="http://keflavich.github.io/blog/understanding-millimeter-source-counts.html">Understanding Millimeter Source Counts</a>
@@ -87,11 +92,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/high-mass-protostellar-sio-masers.html">High-mass Protostellar SiO Masers</a>
               </li>
-              <li class="post">
-                  2016/08/15
-                  <br>
-                  <a href="http://keflavich.github.io/blog/casa-synthetic-observations.html">CASA synthetic observations</a>
-              </li>
         </ul>
       </li>
     
@@ -103,6 +103,33 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles in the misc category</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/the-extragalactic-view-of-w51-at-220-and-290-ghz.html" rel="bookmark" title="Permalink to The extragalactic view of W51 at 220 and 290 GHz">
+                    The extragalactic view of W51 at 220 and 290 GHz</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2017-12-01T11:23:00"> 2017/12/01 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>These are APEX data covering 5.5' x 5.5' centered on W51 Main:
+<a class="reference external" href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/RYEANM">https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/RYEANM</a></p>
+<p>W51 is at a distance of 5.1 kpc, so this field of view is equivalent to 8.1 pc, or 1.7&quot; at
+1 Mpc or 0.33&quot; at 5 Mpc.</p>
+<p>The linewidth is 12.7-15.2 km/s (H2CO 4-3, CO 2-1) FWHM averaged over this full field.</p>
+<p>Images of the spectra, with some lines identified, are shown here:</p>
+<img alt="" src="http://keflavich.github.io/blog/images/w51/lineid_avg_W51_12CO_merge.png" style="width: 200px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/w51/lineid_avg_W51_217GHz_merge.png" style="width: 200px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/w51/lineid_avg_W51_218GHz_merge.png" style="width: 200px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/w51/lineid_avg_W51_232GHz_merge.png" style="width: 200px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/w51/lineid_avg_W51_291GHz_merge.png" style="width: 200px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/w51/lineid_avg_W51_293GHz_merge.png" style="width: 200px;" />
+<p>Scripts to obtain the data and process them are here:
+<a class="reference external" href="https://github.com/keflavich/W51_APEX_H2CO">https://github.com/keflavich/W51_APEX_H2CO</a></p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -776,33 +803,6 @@ the process is guaranteed to be flux conserving.</p>
 <!-- this is how you include images -->
 <!-- .. image:: |filename|/images/psfFfftF.png -->
 <!-- :width: 600px -->
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/casa-coordinate-defaults.html" rel="bookmark" title="Permalink to CASA coordinate defaults">
-                    CASA coordinate defaults</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2016-05-19T09:31:00"> 2016/05/19 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>A brief public service announcement: CASA coordinate strings follow a
-convention of their own making that I at least find thoroughly
-counterintuitive.  If you specify a sexagesimal coordinate, e.g. 05:12:15.3
--5:10:20.5 or something similar, CASA interprets that as 5 hours, -5 hours.
-The declination is interpreted as being in hours.  Those are units no one has
-ever used.  The CASA version requires the second half of the sexagesimal string
-to be decimal separated:</p>
-<pre class="literal-block">
-2016-05-19 00:45:13     WARN    SynthesisParams::stringToMDirection (file /var/rpmbuild/BUILD/casa-prerelease/casa-prerelease-4.6.0/code/synthesis/ImagerObjects/SynthesisUtilMethods.cc, line 786)     You provided the Declination/Latitude value &quot;-28:23:29.22&quot; which is understood to be in units of hours.
-2016-05-19 00:45:13     WARN    SynthesisParams::stringToMDirection (file /var/rpmbuild/BUILD/casa-prerelease/casa-prerelease-4.6.0/code/synthesis/ImagerObjects/SynthesisUtilMethods.cc, line 786)+    If you meant degrees, please replace &quot;:&quot; by &quot;.&quot;.
-</pre>
-<p>This has broken my scripts more than a handful of times now, since copying &amp;
-pasting coordinates from any other program inevitably has the &quot;wrong&quot;
-units.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
