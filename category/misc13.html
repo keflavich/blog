@@ -68,6 +68,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2018/04/18
+                  <br>
+                  <a href="http://keflavich.github.io/blog/derivation-of-co-column-density.html">Derivation of CO Column Density</a>
+              </li>
+              <li class="post">
                   2017/12/01
                   <br>
                   <a href="http://keflavich.github.io/blog/the-extragalactic-view-of-w51-at-220-and-290-ghz.html">The extragalactic view of W51 at 220 and 290 GHz</a>
@@ -87,11 +92,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/a-quick-performance-test-on-casa-cleaning.html">A quick performance test on CASA cleaning</a>
               </li>
-              <li class="post">
-                  2017/01/30
-                  <br>
-                  <a href="http://keflavich.github.io/blog/high-mass-protostellar-sio-masers.html">High-mass Protostellar SiO Masers</a>
-              </li>
         </ul>
       </li>
     
@@ -103,6 +103,26 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles in the misc category</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/gildas-class.html" rel="bookmark" title="Permalink to Gildas CLASS">
+                    Gildas CLASS</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>It's absurdly difficult to find help on GILDAS Class, probably because
+you can't google &quot;class&quot; and most people probably don't label every
+piece of code with &quot;GILDAS class&quot;.
+Anyway, here are some scripts that I refer back to often:
+<tt class="docutils literal">file in August2009BGPS.datfile out August2009fits.dat multipleon error &quot;file out August2009fits.dat&quot;say &quot;READ IN FILES&quot;define character sourcelist*10[300]accept sourcelist /column observed_sources.txton error &quot;continue&quot;get 1001set window <span class="pre">-100</span> 160set mask <span class="pre">-400</span> <span class="pre">-100</span> 160 400set mode x <span class="pre">-400</span> 400set align velocityfor i 1 to 161&nbsp;&nbsp;&nbsp; say &quot;Working on SOURCE &quot;'i'&nbsp;&nbsp;&nbsp; find /source 'sourcelist[i]' /telescope &quot;CSO 4GHZ IF1&quot; /offset 0 0 /quality 5&nbsp;&nbsp;&nbsp; average&nbsp;&nbsp;&nbsp; on error &quot;&#64;avplot2 'sourcelist[i]' 'i'; next&quot;&nbsp;&nbsp;&nbsp; base 3&nbsp;&nbsp;&nbsp; line 0&nbsp;&nbsp;&nbsp; min&nbsp;&nbsp;&nbsp; plot&nbsp;&nbsp;&nbsp; vis&nbsp;&nbsp;&nbsp; write i!&nbsp;&nbsp;&nbsp; on error &quot;continue&quot;next</tt>
+and
+<tt class="docutils literal">file in <span class="pre">araya-2004.clsfinddefine</span> character filename*20for i 1 to 20&nbsp;&nbsp;&nbsp;&nbsp; say &quot;Working on source &quot;'i'&nbsp;&nbsp;&nbsp; get next&nbsp;&nbsp;&nbsp; let filename <span class="pre">&quot;araya-2004_&quot;'i'&quot;.fits&quot;</span>&nbsp;&nbsp;&nbsp;&nbsp; say &quot;fits write &quot;'filename'&quot; /mode spectrum&quot;&nbsp;&nbsp;&nbsp; fits write 'filename' /mode spectrumnext!file in <span class="pre">araya-2002.cls!find!define</span> character filename*20!for i 1 to 42 !&nbsp;&nbsp;&nbsp; say &quot;Working on source &quot;'i'!&nbsp;&nbsp;&nbsp; get i!&nbsp;&nbsp;&nbsp; let filename <span class="pre">&quot;araya-2002_&quot;'i'&quot;.fits&quot;</span> !&nbsp;&nbsp;&nbsp; say &quot;fits write &quot;'filename'&quot; /mode spectrum&quot;!&nbsp;&nbsp;&nbsp; fits write 'filename' /mode spectrum!next</tt></p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -274,25 +294,6 @@ to different sites for a while)</li>
 <li>had to allow override so that .htaccess files would work.</li>
 </ol>
 </p> </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/how-do-i-print-a-multi-page-postscript.html" rel="bookmark" title="Permalink to How do I print a multi-page postscript?">
-                    How do I print a multi-page postscript?</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-09-20T20:02:00"> 2012/09/20 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I want to print a multi-page postscript duplexed and, if possible, two
-per page. pstopng, pstopdf, and the variants failed me horribly by
-making postscripts that don't fit the bounding box at all. Any ideas?
-So far the best I've come up with is switching gnuplot's output to pdf,
-which is a workaround rather than a solution, but is useful nonetheless:
-<tt class="docutils literal">set terminal pdf enhanced dashed</tt></p>
- </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
 </ul><!-- /#posts-list -->

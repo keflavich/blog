@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2018/04/18
+                  <br>
+                  <a href="http://keflavich.github.io/blog/derivation-of-co-column-density.html">Derivation of CO Column Density</a>
+              </li>
+              <li class="post">
                   2017/12/01
                   <br>
                   <a href="http://keflavich.github.io/blog/the-extragalactic-view-of-w51-at-220-and-290-ghz.html">The extragalactic view of W51 at 220 and 290 GHz</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/a-quick-performance-test-on-casa-cleaning.html">A quick performance test on CASA cleaning</a>
               </li>
-              <li class="post">
-                  2017/01/30
-                  <br>
-                  <a href="http://keflavich.github.io/blog/high-mass-protostellar-sio-masers.html">High-mass Protostellar SiO Masers</a>
-              </li>
         </ul>
       </li>
     
@@ -102,6 +102,102 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles by Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/single-dish-interferometer-combination-experiments.html" rel="bookmark" title="Permalink to Single Dish - Interferometer Combination Experiments">
+                    Single Dish - Interferometer Combination Experiments</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-06-01T11:17:00"> 2016/06/01 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I spent 3 days in Köln with Alvaro Sanchez-Mongé, Peter Schilke, Fanyi Meng,
+and Anika Schmiedeke working on Sgr B2 data and specifically on trying to
+combine the single dish (total power) data with my merged ACA+12m data from
+ALMA program 2013.1.00269.S.</p>
+<p>tl;dr: feathering appears to work fine, and many other methods work equally
+well (assuming they can be implemented, which is uniformly harder).  Negative
+bowls persisting after feathering are an indication of a problem with the input
+data.</p>
+<div class="section" id="feathering">
+<h2>Feathering</h2>
+<p>Fourier space combination of the single-dish and interferometric data is by
+far the most straightforward to implement and the fastest.  However, in the HC3N
+data, it left strong negative bowls, which should not be possible.</p>
+<p>On the Einstein image, the image quality from feathering was not great, but
+there were no negative bowls left.  The dynamic range is lower in the Einstein
+data, but this still hints that there is a problem with the HC3N images.  We're
+investigating the possibility that the 7m data are improperly calibrated or
+weighted.</p>
+</div>
+<div class="section" id="miriad">
+<h2>Miriad</h2>
+<p>We never managed to create UV data from the single dish data because of complaints about
+the pointing information.</p>
+</div>
+<div class="section" id="cleaning-with-a-single-dish-image-as-an-input-model">
+<h2>Cleaning with a single dish image as an input model</h2>
+<p>We attempted to clean the data using the single dish image as an input model.</p>
+<p>On the real data, this failed with both tclean and clean.  With <tt class="docutils literal">tclean</tt>, there
+was no error message, it just hung indefinitely.
+With <tt class="docutils literal">clean</tt>, the error message is:</p>
+<pre class="literal-block">
+*** Error ***  LatticeExprNode - coordinates of operands mismatch
+Scanned so far: modelos_0 + __temp_model2
+
+2016-06-01 10:35:05     SEVERE  clean::::       An error occurred running task clean.
+</pre>
+<p>Changing CDELT to 1 GHz, which solved a previous issue, had no effect here.</p>
+<p>It turns out <tt class="docutils literal">tclean</tt> will fail silently if it doesn't find the
+<tt class="docutils literal">startmodel</tt>, which has to be specified as an image <em>prefix</em> for version
+&lt;=4.6, and the image has to exist as a <tt class="docutils literal">.model</tt> file.  For higher versions, 4.6+,
+the model can be directly referenced (as in clean).  Eventually, tclean seems to have
+completed, though the results indicate that it does not treat the units as I expected;
+the total power data seems to be over-weighted by a factor of 10^3+, probably by the ratio
+of the beam areas:</p>
+<img alt="" src="http://i.imgur.com/8dW7t8I.png" style="width: 600px;" />
+<p>For the simulated images (einstein), we get the error:</p>
+<pre class="literal-block">
+2016-06-01 10:55:11 SEVERE  SynthesisImager::defineImage (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/ImagerObjects/SynthesisImager.cc, line 668)    Error in adding Mapper : Error in createImStore : ::operator!= (const IPosition&amp;, const IPosition&amp;) - left and right operand do not conform
+2016-06-01 10:55:11 SEVERE  tclean::task_tclean::   Exception from task_tclean : 2016-06-01 10:55:11        SEVERE  SynthesisImager::defineImage (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/ImagerObjects/SynthesisImager.cc, line 668)    Error in adding Mapper : Error in createImStore : ::operator!= (const IPosition&amp;, const IPosition&amp;) - left and right operand do not conform
+</pre>
+<p>This is probably an issue with regridding.  <tt class="docutils literal">imregrid</tt> doesn't like our data:</p>
+<pre class="literal-block">
+2016-06-01 11:00:41 SEVERE  imregrid::image::regrid Exception Reported: Exception: The number of pixel axes in the output shape and Coordinate System must be the same. Shape has size 4. Output coordinate system has 3 axes.
+2016-06-01 11:00:41 SEVERE  imregrid::image::regrid+        ... thrown by SPIIF casa::ImageRegridder::_regrid() const at File: /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/imageanalysis/ImageAnalysis/ImageRegridder.cc, line: 138
+</pre>
+<p>Adding a frequency axis to the FITS data (which was missing before...) seems to
+have fixed this error for the Einstein data, but not for the real HC3N data.</p>
+<!-- (this is now incorporated in an above paragraph) -->
+<!-- tclean appears to use the wrong units for the input model, treating that model -->
+<!-- very differently than ``clean`` does.  This error may be limited to CASA <= -->
+<!-- 4.5, since the tclean documentation regarding models changed substantially from -->
+<!-- 4.5 to 4.6. -->
+</div>
+<div class="section" id="linear-combination-in-image-space">
+<h2>Linear Combination in Image Space</h2>
+<p>Linear combination of the single dish and interferometer data in image space,
+followed by image-space deconvolution, has been used successfully on HI data.
+In principle, this is very straightforward, except for the need for
+deconvolution.  CASA now has an image-space deconvolution program
+(<tt class="docutils literal">deconvolve</tt>), so I was able to implement this approach.  However, the
+deconvolver seems to only work on the inner 1/4 of the image in each dimension,
+which left incomplete images that were difficult to compare.  Additionally,
+CASA does not (obviously) carry the appropriate machinery for computing the
+residual image and adding the convolved model back to the residual image.
+Still, this is a promising route forward as it is computationally relatively
+cheap and mostly easy to implement.</p>
+<p>Linear combination is partly implemented now using the CASA <tt class="docutils literal">deconvolve</tt> task;
+it hasn't been generalized but you can see the outline / single working case at
+<a class="reference external" href="https://github.com/radio-astro-tools/uvcombine/blob/master/uvcombine/realspace_combine.py">this link</a>.</p>
+<!-- this is how you include images -->
+<!-- .. image:: |filename|/images/psfFfftF.png -->
+<!-- :width: 600px -->
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -683,42 +779,6 @@ a model.  If I try to <tt class="docutils literal">ft</tt> the model, I get:</p>
 <p>which probably means that CASA doesn't know how to turn a single-band continuum
 image into a model for a multi-frequency .ms (which is all .ms's, including
 continuum, in the ALMA world).</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/retrieving-and-selecting-data-in-casa.html" rel="bookmark" title="Permalink to Retrieving and Selecting Data in CASA">
-                    Retrieving and Selecting Data in CASA</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2016-02-24T13:44:00"> 2016/02/24 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I learned a few important things at the 7m+12m workshop in Garching:</p>
-<ol class="arabic">
-<li><p class="first"><tt class="docutils literal">clean</tt> treats input models in Jy/beam and Jy/pixel qualitatively (not
-just quantitatively) differently.  Jy/pixel images are taken to be model
-images exactly, where Jy/beam are... somehow interpreted differently, maybe
-as clean component assemblies.  I don't know the details, but this is a
-major caution.</p>
-</li>
-<li><p class="first">The <tt class="docutils literal">tbtool</tt> is not very good for extracting data for plotting.  The flags
-are not guaranteed to be in a sane shape, which will lead to crashes if you
-try <tt class="docutils literal"><span class="pre">tb.getcolumn('FLAG')</span></tt>.  <tt class="docutils literal">ms.msselect</tt>, however, allows you access
-to most of the normal selection routines used in <tt class="docutils literal">clean</tt>, <tt class="docutils literal">split</tt>, etc.
-It is tricky, though, because <tt class="docutils literal">ms.select</tt> does <em>not</em> allow you access to
-the same selection.  Also, while <tt class="docutils literal">spw</tt>-based selection normally allows you
-to select channels, in <tt class="docutils literal">ms.msselect</tt> it does not: instead you must use
-<tt class="docutils literal">ms.selectchannel</tt>.  See <a class="reference external" href="https://github.com/radio-astro-tools/sandbox/blob/master/casa_7m12m_tools/weight_density_uv_plot.py">this example</a>.</p>
-<p>Details about the selection are at this URL, but the documentation is
-incomplete and, in places, incorrect:</p>
-<p><a class="reference external" href="http://www.aoc.nrao.edu/~sbhatnag/misc/msselection/FrequencySelection.html">http://www.aoc.nrao.edu/~sbhatnag/misc/msselection/FrequencySelection.html</a></p>
-<p>(for example, <tt class="docutils literal">chanspec</tt> is not valid in <tt class="docutils literal">msselect</tt>, or at least
-it doesn't do anything)</p>
-</li>
-</ol>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
