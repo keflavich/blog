@@ -39,10 +39,10 @@ Anyway, the talks I've created are hosted at github, and they're fully-featured:
 you should be able to just click these links and walk through the talks.
 
 My "Tracing the Flow" invited talk on High Mass Cluster Formation:
-https://keflavich.github.io/YMCFormationTalk/slides.html
+https://keflavich.github.io/talks/HighMassClusterFormation_TracingTheFlow2018.html
 
 Some slides for a work meeting on the ALMA-IMF project, with a technical bent:
-https://keflavich.github.io/ALMA_IMF_W51_SgrB2_talk/slides.html
+https://keflavich.github.io/talks/ALMA_IMF_W51_SgrB2.html
 
 If you want the pdf version of either of these, add ``?print_pdf`` to the end
 of the URL, then use your browser to print and save to pdf.
