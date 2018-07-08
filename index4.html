@@ -67,6 +67,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2018/07/08
+                  <br>
+                  <a href="http://keflavich.github.io/blog/talks-now-using-revealjs.html">Talks: Now using revealjs</a>
+              </li>
+              <li class="post">
+                  2018/06/18
+                  <br>
+                  <a href="http://keflavich.github.io/blog/brief-review-of-cluster-formation-simulations.html">Brief review of cluster formation simulations</a>
+              </li>
+              <li class="post">
                   2018/04/18
                   <br>
                   <a href="http://keflavich.github.io/blog/derivation-of-co-column-density.html">Derivation of CO Column Density</a>
@@ -81,16 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/understanding-millimeter-source-counts.html">Understanding Millimeter Source Counts</a>
               </li>
-              <li class="post">
-                  2017/08/30
-                  <br>
-                  <a href="http://keflavich.github.io/blog/protostellar-mass-functions.html">Protostellar Mass Functions</a>
-              </li>
-              <li class="post">
-                  2017/04/26
-                  <br>
-                  <a href="http://keflavich.github.io/blog/a-quick-performance-test-on-casa-cleaning.html">A quick performance test on CASA cleaning</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,113 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/fft-comparisons-in-python.html" rel="bookmark" title="Permalink to FFT comparisons in python">
+                    FFT comparisons in python</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-12-07T11:24:00"> 2015/12/07 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm trying to figure out which ffts are fastest, best, etc.</p>
+<p>First, it is difficult to get fftw3 + pyfftw installed into python.</p>
+<p>For pyfftw to install, you need to <a class="reference external" href="http://www.fftw.org/doc/Installation-on-Unix.html">enable floats and every specific type</a> when compiling <a class="reference external" href="http://www.fftw.org/">fftw3</a> (thanks to <a class="reference external" href="http://linuxtoolkit.blogspot.de/2010/04/cant-find-fftw3f-library-when.html">linux toolkits blog</a>).
+Apparently you can't have <tt class="docutils literal"><span class="pre">--enable-long-double</span></tt> and <tt class="docutils literal"><span class="pre">--enable-float</span></tt> simultaneously,
+but pyfftw requires both, so you have to install twice or thrice?  Nope, four
+times!!  Also, <a class="reference external" href="https://github.com/hgomersall/pyFFTW/issues/16#issuecomment-19422752">my own post</a>
+indicates that I should install to a different path to avoid weird conflicts
+with other libraries.</p>
+<pre class="literal-block">
+./configure --enable-threads --enable-openmp --enable-mpi --enable-shared \
+            --enable-fortran --enable-avx \
+            CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
+make -j 4
+sudo make install
+
+./configure --enable-float --enable-threads --enable-openmp --enable-mpi --enable-shared \
+            --enable-fortran --enable-avx \
+            CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
+make -j 4
+sudo make install
+
+# quad precision is not supported in mpi
+./configure --enable-quad-precision --enable-threads --enable-openmp --enable-shared \
+            --enable-fortran --enable-avx \
+             CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
+make -j 4
+sudo make install
+
+./configure --enable-long-double --enable-threads --enable-openmp --enable-mpi --enable-shared \
+            --enable-fortran --enable-avx \
+             CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
+make -j 4
+sudo make install
+</pre>
+<p>Onto speed test comparisons:</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="https://gist.github.com/mperrin/5763120">Marshal Perrin's</a></li>
+<li><a class="reference external" href="https://gist.github.com/keflavich/5797994">my fork</a></li>
+<li><a class="reference external" href="http://code.google.com/p/agpy/source/browse/trunk/tests/test_ffts.py">speed tests on agpy</a></li>
+<li><a class="reference external" href="https://github.com/astropy/astropy/pull/4374">profiling convolve_fft with different parameters</a></li>
+</ul>
+</blockquote>
+<p>If you want to use <tt class="docutils literal">fftw3</tt> with astropy's <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.convolution.convolve_fft.html#astropy.convolution.convolve_fft">convolve_fft</a>,
+use <a class="reference external" href="https://code.google.com/p/agpy/source/browse/trunk/AG_fft_tools/convolve_nd.py?r=479#8">this example</a>.</p>
+<p>Onto some comparisons from <a class="reference external" href="https://github.com/astropy/astropy/pull/4374">astropy issue 4374</a>:</p>
+<img alt="" src="http://keflavich.github.io/blog/images/time_vs_mem.png" style="width: 600px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/psfTfftT.png" style="width: 600px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/psfTfftF.png" style="width: 600px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/psfFfftT.png" style="width: 600px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/psfFfftF.png" style="width: 600px;" />
+<p><a class="reference external" href="https://gist.github.com/6a2d338830efdc02959a">Notebook containing comparisons between FFT and FFTW</a></p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/separating-line-from-continuum-in-casa-data.html" rel="bookmark" title="Permalink to Separating Line from Continuum in CASA data">
+                    Separating Line from Continuum in CASA data</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-11-04T15:57:00"> 2015/11/04 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm continuing to try to separate the line forest from the continuum data in my
+W51 cube.  Some approaches 'kinda work', some don't.</p>
+<p>The iterative approach suggested in the <a class="reference external" href="http://keflavich.github.io/blog/cvel-errors.html">previous post</a> <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/630c60e7e57ea7b57877d66b15860b26419a5552/script_12m/uvcontsub_test.py">works reasonably well</a>,
+but results in oversubtraction of the continuum, even with
+a few iterations.  Note that this approach requires <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/630c60e7e57ea7b57877d66b15860b26419a5552/script_12m/uvcontsub_test.py#L17">copying columns between ms
+files using the table toolkit</a>.</p>
+<img alt="" src="http://keflavich.github.io/blog/images/w51/oversubtracted_spectrum.png" style="width: 400px;" />
+<p>Another approach I wanted to try was to image the whole cube, take the minimum
+value along the spectral axis, and subtract that.  This would avoid the
+oversubtraction issue by force.  However, <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/c58e4fdf755f85b163d1684cc7383ef31d6a1669/script_12m/mincontsub.py">this</a>
+leads to failures in the <cite>ft</cite> task:</p>
+<pre class="literal-block">
+CASA &lt;85&gt;: ft(vis='w51_test_small_imcont.ms', model='test_continuum_min.image', usescratch=True, nterms=1)
+2015-11-04 15:01:29 WARN    ft::FTMachine::initMaps No overlap in frequency between image channels and selected data found for this FTMachine
+2015-11-04 15:01:29 WARN    ft::FTMachine::initMaps+         Check your data selection and image parameters if you end up with a blank image
+</pre>
+<p>which I don't understand.  I had to <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/c58e4fdf755f85b163d1684cc7383ef31d6a1669/script_12m/mincontsub.py#L22">hack the header</a>
+just to get ft to load the file at all, and apparently my hack wasn't good enough.
+It's really unclear to me now how to load a model from a FITS file.</p>
+<p>The next approach is to load the whole continuum-subtracted cube into a model,
+subtract THAT, then make a continuum image, then subtract that, then maybe
+we have line and continuum?  Maybe?  I suspect this approach will require
+some sort of cube masking.</p>
+<p>Unfortunately, ft is again the problem:</p>
+<pre class="literal-block">
+2015-11-04 15:09:08 SEVERE  ft::imager::ft() (file /Users/rpmbuild/gradle/workdir/casaautobuild/release-4_5/code/synthesis/MeasurementEquations/Imager.cc, line 4488)       Exception: (/Users/rpmbuild/gradle/workdir/casaautobuild/release-4_5/darwin/include/casacore/lattices/Lattices/Lattice.tcc : 299) Failed AlwaysAssert shapeIn.isEqual (shapeOut)
+</pre>
+<p>Followup in early 2017: a cube-based approach is generally more successful.
+See Sanchez-Monge in prep and the related <a class="reference external" href="https://github.com/radio-astro-tools/statcont">statcont</a> software package.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -369,152 +476,6 @@ chmod <span class="m">644</span> MIRRC*
 . <span class="nv">$MIR</span>/MIRRC.sh
 <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$MIRBIN</span>
 </pre></div>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/my-python-ipython-vim-debugging-workflow.html" rel="bookmark" title="Permalink to My python + ipython + vim debugging workflow">
-                    My python + ipython + vim debugging workflow</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2015-05-07T12:00:00"> 2015/05/07 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>My <a class="reference external" href="http://www.eso.org/~eemselle/CV.html">boss</a> asked a great question at our first weekly <a class="reference external" href="https://github.com/ESO-python/ESOPythonTutorials">ESO-python tutorial</a>
-session: What does a good ipython debugging workflow look like?</p>
-<p>The one advantage I had found in IDL was that <em>everything</em> is a script, which
-means that <em>everything</em> can be debugged in the same way: add a stop statement
-at the relevant line of code.  Of course, that debugging model breaks apart
-badly once you start writing complex programs and using things like common
-blocks.</p>
-<p>In ipython, there is a beautiful debugger that is far more feature-rich than
-the IDL equivalent.  It can be activated simply:</p>
-<div class="highlight"><pre><span class="o">%</span><span class="n">pdb</span>
-</pre></div>
-<p>will toggle the interactive ipython debugger.  Then, if you run into a code
-crash, you will be dumped out at an <cite>ipdb&gt;</cite> prompt, with access to a
-fully-functional python prompt in the local namespace / environment of the
-crash point.  You can also move up and down the function hierarchy with the <tt class="docutils literal">u</tt>
-and <tt class="docutils literal">d</tt> commands.</p>
-<p>The existence of the ipdb debugger suggests a natural approach for those
-familiar with IDL debugging: simply add a <tt class="docutils literal">raise</tt> statement wherever you would
-normally have put a <tt class="docutils literal">stop</tt> statement.  There are a few key differences,
-however: in IDL, you could just <tt class="docutils literal">.continue</tt> to run the rest of the code as if
-no stop occurred; in python the same is not possible with the default ipdb.</p>
-<p>However, the <a class="reference external" href="https://pypi.python.org/pypi/ipdb">ipdb</a> package allows the insertion of breakpoints just like in IDL:</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">ipdb</span><span class="p">;</span> <span class="n">ipdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
-</pre></div>
-<p>From within one of these breakpoints, the <tt class="docutils literal">.continue</tt> command will continue on
-to the next breakpoint, as you might expect.  The <tt class="docutils literal">n</tt> and <tt class="docutils literal">s</tt> commands will go
-to the next line in the code, while <tt class="docutils literal">s</tt> will allow you to drop into called functions (how?)</p>
-<p><a class="reference external" href="http://scipy-lectures.github.io/advanced/debugging/#using-the-python-debugger">Postmortem debugging</a> is also awesome.  If you have run a command and gotten a traceback,
-you can retroactively enter the debugger:</p>
-<div class="highlight"><pre><span class="o">%</span><span class="n">debug</span>
-</pre></div>
-<p>but as with the normal traceback debugger, one cannot <tt class="docutils literal">continue</tt> afterward.</p>
-<div class="section" id="reloading-code">
-<h2>Reloading Code</h2>
-<p>Python code is typically distributed in packages managed with a <tt class="docutils literal">setup.py</tt>
-script.  These are the most convenient way to install, use, and distribute
-code, but they are not ideal for debugging.</p>
-<p>When debugging a normal script, something you could run by invoking</p>
-<div class="highlight"><pre>python myfile.py
-</pre></div>
-<p>or</p>
-<div class="highlight"><pre><span class="o">%</span><span class="n">run</span> <span class="n">myfile</span><span class="o">.</span><span class="n">py</span>
-<span class="c"># in the local namespace</span>
-<span class="o">%</span><span class="n">run</span> <span class="o">-</span><span class="n">i</span> <span class="n">myfile</span><span class="o">.</span><span class="n">py</span>
-<span class="c"># with the python debugger active:</span>
-<span class="o">%</span><span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="n">myfile</span><span class="o">.</span><span class="n">py</span>
-</pre></div>
-<p>can easily be debugged by running it line-by-line.  The <a class="reference external" href="http://ipython.org/ipython-doc/dev/interactive/tutorial.html#running-and-editing">documentation</a>
-can be accessed via the <tt class="docutils literal">%magic</tt> command.</p>
-<p>For debugging &quot;compiled&quot; packages, though, more thought is needed.</p>
-<p>If you are working on your own package, you can use <a class="reference external" href="https://pythonhosted.org/setuptools/setuptools.html#develop-deploy-the-project-source-in-development-mode">setuptools</a> to enable the
-<tt class="docutils literal">python setup.py develop</tt> command, which installs a symbolic link to the
-source code directory - meaning any changes you make are immediately reflected
-in the python source path.  This does <em>not</em> mean that any changes are
-recognized in the local python environment, though!</p>
-<p>If you are in an active <tt class="docutils literal">ipython</tt> session, you need to <tt class="docutils literal">reload</tt> packages to
-see their results.  As far as I know, you can <em>never</em> &quot;reload&quot; the source code
-underlying an already-instantiated class, so you have to remake any class
-instances you want to examine.</p>
-<p>The <tt class="docutils literal">reload</tt> command is tricky to use.  You will only see changes to the source code
-if you import the exact package in which the code is stored.  For example, if you have a file structure like this:</p>
-<div class="highlight"><pre>mypackage/
-    __init__.py
-    core.py
-</pre></div>
-<p>and you do <tt class="docutils literal">reload(mypackage)</tt>, that will effectively reload only the source
-code in <tt class="docutils literal">__init__.py</tt>.  If the code you want to use is called <tt class="docutils literal">myfunction</tt>
-and it lives in <tt class="docutils literal">core.py</tt>, you can reload that source code by doing
-<tt class="docutils literal">reload(mypackage.core)</tt>.  Reloading <tt class="docutils literal">mypackage</tt> may have no effect.  So
-the key for developing packages is finding the right module to reload!</p>
-<p>IPython has a <a class="reference external" href="http://ipython.org/ipython-doc/dev/interactive/reference.html#dreload">deepreload package</a>
-intended to recursively reload functions; it may work but I had trouble in the
-past.</p>
-</div>
-<div class="section" id="tests">
-<h2>Tests</h2>
-<p>It's generally much better to have a test suite enabled with unit tests for
-each component of your code.  This is the approach adopted by most open-source
-projects and many industrial code developers.</p>
-<p>Tests are invoked with the command <tt class="docutils literal">py.test</tt> with a variety of command
-options.  Among my favorites are <tt class="docutils literal">py.test <span class="pre">--tb=short</span></tt>, which gives a much
-less verbose traceback, <tt class="docutils literal">py.test <span class="pre">--pastebin=failed</span></tt>, which posts any failure
-results to pastebin for easy sharing, <tt class="docutils literal">py.test <span class="pre">-p</span> packagename</tt> (or <tt class="docutils literal">python
-setup.py test <span class="pre">-P</span> packagename</tt> in astropy) to select tests for a specific
-package.  A great deal more options can be found in the <a class="reference external" href="http://pytest.org/latest/">pytest docs</a>.</p>
-<p>A test suite, if properly constructed, can also be run from with in ipython:</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">astroquery</span>
-<span class="n">astroquery</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s">&#39;eso&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="section" id="postscript">
-<h2>Postscript</h2>
-<p>Some useful related links:</p>
-<blockquote>
-<ul class="simple">
-<li><a class="reference external" href="http://stackoverflow.com/questions/1623039/python-debugging-tips">http://stackoverflow.com/questions/1623039/python-debugging-tips</a></li>
-<li><a class="reference external" href="https://pypi.python.org/pypi/pudb">https://pypi.python.org/pypi/pudb</a></li>
-</ul>
-</blockquote>
-<!-- great picture: http://commons.wikimedia.org/wiki/File:Richard_Hook_and_Eric_Emsellem_at_the_ESO_50th_Anniversary_Gala_Event.jpg -->
-</div>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/installing-astrometrynet-in-november-2014.html" rel="bookmark" title="Permalink to Installing astrometry.net in November 2014">
-                    Installing astrometry.net in November 2014</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2014-11-26T09:57:00"> 2014/11/26 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam.html">Adam</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Installing astrometry.net is all about navigating dependency hell.</p>
-<p>Requirements:</p>
-<blockquote>
-<ul class="simple">
-<li>libpng</li>
-<li>libtiff</li>
-<li>libjpeg</li>
-<li>netpbm (requires above 3)</li>
-</ul>
-</blockquote>
-<p>To install netpbm, a recent version - NOT the stable version - is required,
-which means navigating throught 3-4 layers of links including a sourceforge
-build-my-tarball link.</p>
-<p>To compile astrometry.net-0.50:</p>
-<blockquote>
-ARCH_FLAGS=&quot;&quot; make -j 8</blockquote>
-<p>To compile cairo, I had to install pixman (no problem) the setup a PKG_CONFIG_PATH:</p>
-<blockquote>
-PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./configure</blockquote>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
