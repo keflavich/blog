@@ -32,7 +32,7 @@ source is substantially brighter.
 
 The `ALMA-IMF program
 <https://almascience.nrao.edu/observing/highest-priority-projects#flyout_2017.1.01355.L>`_,
-which I am co-leading with Frederique Motte, has the broad goal of
+which I am co-leading with Frederique Motte, Patricio Sanhueza, and Fabien Louvet, has the broad goal of
 understanding the formation of the IMF in the Galaxy.  In practice, we will
 measure some form of 1 mm luminosity function.  In the long term, we may be
 able to obtain some additional constraints on the internal temperature
@@ -242,7 +242,7 @@ this purpose.  We'll see.
 .. _Tan & McKee 2004: http://adsabs.harvard.edu/abs/2004ApJ...603..383T
 .. _Hosokawa & Omukai: http://adsabs.harvard.edu/abs/2009ApJ...691..823H
 .. _Offner+ 2009: http://adsabs.harvard.edu/abs/2009ApJ...703..131O
-.. _Protostellar Mass Functions: blog/protostellar_mass_functions.html
+.. _Protostellar Mass Functions: blog/protostellar-mass-functions.html
 .. _robitaille sedfitter: github.com/astrofrog/sedfitter
 .. _Robitaille grid: https://zenodo.org/record/166732#.WdlXwmK3xcw
 .. _Zhang+ 2017: http://adsabs.harvard.edu/abs/2017arXiv170808853Z
