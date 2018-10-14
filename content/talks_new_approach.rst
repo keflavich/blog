@@ -16,10 +16,11 @@ little with mixed success.  The slid.es editor seems nearly fully featured as a
 replacement for keynote, but I quickly dropped it because of its
 subscription-only paid features; the cost-benefit analysis is that Keynote is
 much cheaper than slid.es for someone like me, since Keynote cost
-<span>$</span>30 one-time for ~10 years of use, while the minimum usable plan
-for slid.es is <span>$</span>10/month, or <span>$</span>1200 over the same
+30 dollars one-time for ~10 years of use, while the minimum usable plan
+for slid.es is 10 dollars/month,
+or 1200 dollars over the same
 period.  If that was the tradeoff I was considering, mac+keynote would be about
-the same as linux+slid.es.
+the same as linux+slid.es, since I'd be paying a few thousand dollars for the mac.
 
 I'm taking the somewhat ridiculous approach of raw HTML/CSS editing with the
 Chrome inspector as my interactive testing tool.  This is a little tedious
