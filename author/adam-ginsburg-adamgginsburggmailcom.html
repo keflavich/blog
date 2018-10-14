@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2018/10/14
+                  <br>
+                  <a href="http://keflavich.github.io/blog/feo-nondetection-in-orion.html">FeO Nondetection in Orion</a>
+              </li>
+              <li class="post">
                   2018/07/08
                   <br>
                   <a href="http://keflavich.github.io/blog/talks-now-using-revealjs.html">Talks: Now using revealjs</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/the-extragalactic-view-of-w51-at-220-and-290-ghz.html">The extragalactic view of W51 at 220 and 290 GHz</a>
               </li>
-              <li class="post">
-                  2017/10/07
-                  <br>
-                  <a href="http://keflavich.github.io/blog/understanding-millimeter-source-counts.html">Understanding Millimeter Source Counts</a>
-              </li>
         </ul>
       </li>
     
@@ -102,6 +102,58 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles by Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/feo-nondetection-in-orion.html" rel="bookmark" title="Permalink to FeO Nondetection in Orion">
+                    FeO Nondetection in Orion</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2018-10-14T15:09:00"> 2018/10/14 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I had a Cycle 3 ALMA program <a class="reference external" href="https://almascience.nrao.edu/observing/highest-priority-projects">2015.1.00262.S:
+Digging for rusty bullets at an explosion site</a>
+that aimed to detect <a class="reference external" href="https://en.wikipedia.org/wiki/Iron(II)_oxide">ferrous oxide, FeO</a>
+in the shocked outflows of the Orion nebula.</p>
+<p>I haven't published anything on this data set because it resulted in a fairly
+boring non-detection.  You can find the source code to retrieve and process
+the data from <a class="reference external" href="https://github.com/keflavich/FeO_2015.1.00262.S">here</a>
+The nondetection is several orders of magnitude deeper than previous
+ones, but to demonstrate this definitively, we need to do some more modeling
+work, which my co-I's and I have decided isn't worth the time, since we're
+all flooded with very exciting new ALMA data that has interesting detections
+in it (see salts soon).</p>
+<p>In brief, we were looking at a location where we know molecules (H2, molecular
+hydrogen) and gas-phase iron (Fe II, as seein in the [Fe II] 1.64 micron lines)
+are approximately coincident.  The most likely (and broadly accepted)
+explanation is that dust particles are being destroyed (sputtered) in the
+high-velocity ($&gt;30$ km/s, up to $sim100-200$ km/s) shocks produced in an
+outflow.  Since iron in the interstellar medium mostly lives in the cores of
+dust grains, we thought it might be released in a molecular form detectable by
+ALMA before being split into an atomic, ionized form.</p>
+<p>Despite having a good location and a sensitive observation, we didn't detect
+any.  It might mean that iron is mostly in a different molecular form, or it
+might mean that when iron gets sputtered out of grains, it never goes into
+a molecular form at all, instead dissociating straight into atomic form.</p>
+<p>There are a few things that, with infinite time, I would do with this data set:</p>
+<ol class="arabic simple">
+<li>Come up with a formal upper limit on the FeO abundance.</li>
+<li>Compare the lines we did detect to the outflows and see if we can better
+constrain their physical conditions</li>
+<li>Catalog the stars and publish the catalog for comparison to other data sets.
+(actually, this is done: <a class="reference external" href="https://github.com/keflavich/FeO_2015.1.00262.S/blob/master/tables/gaussian_fit_table.ipac">this table</a>
+contains Gaussian fits to each of the stars in the continuum image (<a class="reference external" href="https://github.com/keflavich/FeO_2015.1.00262.S/blob/master/analysis/contsource_centroids.py">source</a>).</li>
+</ol>
+<p>These figure show the apertures we used to extract spectra and search for the
+lines, then the spectra of different species for one of the apertures.  The
+background image is the H2 (orange) + FeII (cyan) + K-band (mostly white) I
+made for my <a class="reference external" href="href=&quot;http://adsabs.harvard.edu/abs/2015A%26A...579A.130B">2015 paper with John Bally</a>.</p>
+<img alt="" src="http://keflavich.github.io/blog/images/feo/aperture_overlays.png" style="width: 600px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/feo/BulletHeads4_alllines.png" style="width: 600px;" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -120,10 +172,11 @@ using reveal.js based on <a class="reference external" href="https://github.com/
 little with mixed success.  The slid.es editor seems nearly fully featured as a
 replacement for keynote, but I quickly dropped it because of its
 subscription-only paid features; the cost-benefit analysis is that Keynote is
-much cheaper than slid.es for someone like me, since Keynote cost $30 one-time
-for ~10 years of use, while the minimum usable plan for slid.es is $10/month,
-or $1200 over the same period.  If that was the tradeoff I was considering,
-mac+keynote would be about the same as linux+slid.es.</p>
+much cheaper than slid.es for someone like me, since Keynote cost
+&lt;span&gt;$&lt;/span&gt;30 one-time for ~10 years of use, while the minimum usable plan
+for slid.es is &lt;span&gt;$&lt;/span&gt;10/month, or &lt;span&gt;$&lt;/span&gt;1200 over the same
+period.  If that was the tradeoff I was considering, mac+keynote would be about
+the same as linux+slid.es.</p>
 <p>I'm taking the somewhat ridiculous approach of raw HTML/CSS editing with the
 Chrome inspector as my interactive testing tool.  This is a little tedious
 because of the html tagging, but that's honestly not so bad; it lets me do the
@@ -800,79 +853,6 @@ But that checklist has been getting very long lately.</p>
     <span class="URL"><a href=""></a></span><br />
 </remoteURLs>
 <dd /> </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/casa-synthetic-observations.html" rel="bookmark" title="Permalink to CASA synthetic observations">
-                    CASA synthetic observations</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2016-08-15T09:36:00"> 2016/08/15 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>To evaluate imaging robustness &amp; quality, it is necessary to do some sort of
-synthetic observation.  These synthetic observations can be done on real
-images, e.g. Herschel data shifted to greater distances, or on simulated data.</p>
-<p>Some examples:</p>
-<blockquote>
-<ul class="simple">
-<li><a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_perseus.py">https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_perseus.py</a></li>
-<li><a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_perseus_2.py">https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_perseus_2.py</a></li>
-<li><a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_aquila.py">https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_aquila.py</a></li>
-</ul>
-</blockquote>
-<p>General process:</p>
-<blockquote>
-<ol class="arabic simple">
-<li>Import file into CASA .image form (e.g., <tt class="docutils literal">importfits</tt>)</li>
-<li>Load the .ms file and replace visibilities w/fourier transform of image</li>
-<li>Clean.</li>
-</ol>
-</blockquote>
-<p>The hard part is setting up the files to be imported.</p>
-<p>For example, you can import a FITS file, which to me seems to be the most
-straightforward approach:</p>
-<pre class="literal-block">
-importfits(fitsimage=perseus_rescaled,
-           imagename=perseus_casa_image,
-           overwrite=True,
-           defaultaxes=True,#['RA---TAN','DEC--TAN','FREQUENCY','STOKES'],
-           defaultaxesvalues=['2.909234541667E+02deg',
-                              '1.451177222222E+01deg',
-                              '233.9468GHz','I'],
-           # 18&quot; = 1.22 lambda/D
-           beam=[&quot;{0}deg&quot;.format(18/3600.*distance_scaling),
-                 &quot;{0}deg&quot;.format(18/3600.*distance_scaling),
-                 &quot;0deg&quot;],
-          )
-</pre>
-<p>The beam probably matters for Jy-&gt;K, or Jy/beam-&gt;Jy conversion.  The
-<tt class="docutils literal">defaultaxesvalues</tt> should correspond to the pointing center of the
-interferometer pointing or mosaic.</p>
-<p>Next is bringing this image - which we now pray is in the correct units - into UV space.:</p>
-<pre class="literal-block">
-sm.openfromms(&quot;continuum_7m12m_noflag.ms&quot;)
-sm.setvp()
-success = sm.predict(perseus_casa_image)
-assert success
-# TODO: get these from ASDM_CALWVR and WEATHER
-success2 = sm.setnoise(mode='tsys-atm', relhum=60.0, pwv='2mm', tatmos=265.0, )
-success3 = sm.corrupt()
-sm.done()
-sm.close()
-</pre>
-<p>This snippet loads the .ms file (the visibilities), then overwrites them with
-the fourier transform of the image using <tt class="docutils literal">sm.predict</tt>.  It's not clear whether
-<tt class="docutils literal">setvp</tt> is necessary.  <tt class="docutils literal">setnoise</tt> + <tt class="docutils literal">corrupt</tt> just adds &quot;appropriate&quot;
-atmospheric noise to the visibilities.</p>
-<p>From there, you should just use the same <tt class="docutils literal">clean</tt> parameters as for the
-original data, or try to optimize <tt class="docutils literal">clean</tt> here and use these parameters on
-the real data.</p>
-<p>The result will be the 'perfect' (no phase error, no amplitude error)
-interferometric image.</p>
- </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
 </ul><!-- /#posts-list -->

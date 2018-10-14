@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2018/10/14
+                  <br>
+                  <a href="http://keflavich.github.io/blog/feo-nondetection-in-orion.html">FeO Nondetection in Orion</a>
+              </li>
+              <li class="post">
                   2018/07/08
                   <br>
                   <a href="http://keflavich.github.io/blog/talks-now-using-revealjs.html">Talks: Now using revealjs</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/the-extragalactic-view-of-w51-at-220-and-290-ghz.html">The extragalactic view of W51 at 220 and 290 GHz</a>
               </li>
-              <li class="post">
-                  2017/10/07
-                  <br>
-                  <a href="http://keflavich.github.io/blog/understanding-millimeter-source-counts.html">Understanding Millimeter Source Counts</a>
-              </li>
         </ul>
       </li>
     
@@ -102,6 +102,48 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles by Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/clean-has-extreme-sensitivity-to-the-threshold.html" rel="bookmark" title="Permalink to CLEAN has extreme sensitivity to the threshold">
+                    CLEAN has extreme sensitivity to the threshold</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-03-10T10:12:00"> 2016/03/10 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>CLEAN diverges sometimes.  The point at which divergence begins is very
+difficult to identify and unfortunately it looks like the images get mostly
+better as you slowly approach the toxic threshold:</p>
+<img alt="" src="http://keflavich.github.io/blog/images/w51/tclean_threshold_sensitivity.png" style="width: 600px;" />
+<p>The precise clean command used, with only threshold changing, is:</p>
+<pre class="literal-block">
+2016-03-10 07:49:28     INFO    tclean::::      tclean(vis=&quot;w51_contvis_selfcal_4.ms&quot;,selectdata=True,field=&quot;&quot;,spw=&quot;&quot;,timerange=&quot;&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             uvrange=&quot;&quot;,antenna=&quot;&quot;,scan=&quot;&quot;,observation=&quot;&quot;,intent=&quot;&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             datacolumn=&quot;corrected&quot;,imagename=&quot;selfcal_allspw_selfcal_4ampphase_mfs_tclean_deeper_4mJy&quot;,imsize=[3072, 3072],cell=&quot;0.05arcsec&quot;,phasecenter=&quot;J2000 19:23:41.629000 +14.30.42.38000&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             stokes=&quot;I&quot;,projection=&quot;SIN&quot;,startmodel=&quot;&quot;,specmode=&quot;mfs&quot;,reffreq=&quot;&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             nchan=-1,start=&quot;&quot;,width=&quot;&quot;,outframe=&quot;LSRK&quot;,veltype=&quot;radio&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             restfreq=[],interpolation=&quot;linear&quot;,gridder=&quot;mosaic&quot;,facets=1,wprojplanes=1,
+2016-03-10 07:49:28     INFO    tclean::::+             aterm=True,psterm=False,wbawp=True,conjbeams=True,cfcache=&quot;&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             computepastep=360.0,rotatepastep=360.0,pblimit=0.4,normtype=&quot;flatnoise&quot;,deconvolver=&quot;clark&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             scales=[],nterms=2,restoringbeam=[],outlierfile=&quot;&quot;,weighting=&quot;briggs&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             robust=-2.0,npixels=0,uvtaper=[],niter=100000,gain=0.1,
+2016-03-10 07:49:28     INFO    tclean::::+             threshold=&quot;4mJy&quot;,cycleniter=-1,cyclefactor=1.0,minpsffraction=0.05,maxpsffraction=0.8,
+2016-03-10 07:49:28     INFO    tclean::::+             interactive=False,mask=&quot;&quot;,overwrite=True,savemodel=&quot;modelcolumn&quot;,calcres=True,
+2016-03-10 07:49:28     INFO    tclean::::+             calcpsf=True,parallel=False)
+</pre>
+<p>It looks like CLEAN needs a different type of threshold to finish on, perhaps
+something requiring each subsequent component to be some value less than the
+previous component.  If each component is forced to be less than the previous
+one, the clean can never diverge, though clean would stop unexpectedly if
+subtracting a component increased the amplitude of some other part of the map
+(i.e., if the next brightest source is sitting in a negative bowl).  Still,
+this might be a rarer occurrence than the divergence that I see all the time,
+which may be related to gridding (given the sharp grid pattern seen in panel 4
+of the linked image).</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -541,174 +583,6 @@ SPW4 Iteration 3: RMS=6.775e-05
     <span class="Volume">786</span>&nbsp;
     <span class="Pages">116</span>&nbsp;
     (<span class="Date">2014</span>)<br />
-<remoteURLs>
-    <span class="URL"><a href=""></a></span><br />
-</remoteURLs>
-<dd /> </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/publications-from-2015.html" rel="bookmark" title="Permalink to Publications from 2015">
-                    Publications from 2015</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2016-01-01T22:48:00"> 2016/01/01 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Summary of publications from 2015 (just c&amp;p'd from my bibdesk):</p>
-<dt class="Key" id="Ginsburg2015b">Ginsburg2015b<dt />
-<dd class="Pub">
-    <span class="Title">High-mass star-forming cloud G0.38+0.04 in the Galactic center dust ridge contains H$_2$CO and SiO masers</span><br />
-    <span class="Author">A. Ginsburg and A. Walsh and C. Henkel and P. A. Jones and M. Cunningham and J. Kauffmann and T. Pillai and E. A. C. Mills and J. Ott and J. M. D. Kruijssen and K. M. Menten and C. Battersby and J. Rathborne and Y. Contreras and S. Longmore and D. Walker and J. Dawson and J. A. P. Lopez</span><br />
-    <span class="Journal">\aap</span>&nbsp;
-    <span class="Volume">584</span>&nbsp;
-    <span class="Pages">L7</span>&nbsp;
-    (<span class="Date">2015</span>)<br />
-<remoteURLs>
-    <span class="URL"><a href=""></a></span><br />
-</remoteURLs>
-<dd /><dt class="Key" id="Colombo2015a">Colombo2015a<dt />
-<dd class="Pub">
-    <span class="Title">Graph-based interpretation of the molecular interstellar medium segmentation</span><br />
-    <span class="Author">D. Colombo and E. Rosolowsky and A. Ginsburg and A. Duarte-Cabral and A. Hughes</span><br />
-    <span class="Journal">\mnras</span>&nbsp;
-    <span class="Volume">454</span>&nbsp;
-    <span class="Pages">2067-2091</span>&nbsp;
-    (<span class="Date">2015</span>)<br />
-<remoteURLs>
-    <span class="URL"><a href=""></a></span><br />
-</remoteURLs>
-<dd /><dt class="Key" id="Weilbacher2015a">Weilbacher2015a<dt />
-<dd class="Pub">
-    <span class="Title">A MUSE map of the central Orion Nebula (M 42)</span><br />
-    <span class="Author">P. M. Weilbacher and A. Monreal-Ibero and W. Kollatschny and A. Ginsburg and A. F. McLeod and S. Kamann and C. Sandin and R. Palsa and L. Wisotzki and R. Bacon and F. Selman and J. Brinchmann and J. Caruana and A. Kelz and T. Martinsson and A. Pécontal-Rousset and J. Richard and M. Wendt</span><br />
-    <span class="Journal">\aap</span>&nbsp;
-    <span class="Volume">582</span>&nbsp;
-    <span class="Pages">A114</span>&nbsp;
-    (<span class="Date">2015</span>)<br />
-<remoteURLs>
-    <span class="URL"><a href=""></a></span><br />
-</remoteURLs>
-<dd /><dt class="Key" id="Isella2015a">Isella2015a<dt />
-<dd class="Pub">
-    <span class="Title">Next Generation Very Large Array Memo No. 6, Science Working Group 1: The Cradle of Life</span><br />
-    <span class="Author">A. Isella and C. H. Hull and A. Moullet and R. Galván-Madrid and D. Johnstone and L. Ricci and J. Tobin and L. Testi and M. Beltran and J. Lazio and A. Siemion and H. Liu and F. Du and K. Öberg and T. Bergin and P. Caselli and T. Bourke and C. Carilli and L. Perez and B. Butler and I. Pater and C. Qi and M. Hofstadter and R. Moreno and D. Alexander and J. Williams and P. Goldsmith and M. Wyatt and L. Loinard and J. Francesco and D. Wilner and P. Schilke and A. Ginsburg and Á. Sánchez-Monge and Q. Zhang and H. Beuther</span><br />
-    <span class="Journal"></span>&nbsp;
-    <span class="Volume"></span>&nbsp;
-    <span class="Pages"></span>&nbsp;
-    (<span class="Date">2015</span>)<br />
-<remoteURLs>
-    <span class="URL"><a href=""></a></span><br />
-</remoteURLs>
-<dd /><dt class="Key" id="Colombo2015b">Colombo2015b<dt />
-<dd class="Pub">
-    <span class="Title">The road toward a full, high resolution Molecular Cloud catalog of the Galaxy</span><br />
-    <span class="Author">D. Colombo and E. Rosolowsky and A. Ginsburg and A. Duarte-Cabral and A. Hughes</span><br />
-    <span class="Journal"></span>&nbsp;
-    <span class="Volume"></span>&nbsp;
-    <span class="Pages"></span>&nbsp;
-    (<span class="Date">2015</span>)<br />
-<remoteURLs>
-    <span class="URL"><a href=""></a></span><br />
-</remoteURLs>
-<dd /><dt class="Key" id="Ginsburg2015c">Ginsburg2015c<dt />
-<dd class="Pub">
-    <span class="Title">Detecting Stars at the Galactic Centre via Synchrotron Emission</span><br />
-    <span class="Author">I. Ginsburg and X. Wang and A. Loeb and O. Cohen</span><br />
-    <span class="Journal">ArXiv e-prints</span>&nbsp;
-    <span class="Volume"></span>&nbsp;
-    <span class="Pages"></span>&nbsp;
-    (<span class="Date">2015</span>)<br />
-<remoteURLs>
-    <span class="URL"><a href=""></a></span><br />
-</remoteURLs>
-<dd /><dt class="Key" id="Wang2015a">Wang2015a<dt />
-<dd class="Pub">
-    <span class="Title">Large-scale filaments associated with Milky Way spiral arms</span><br />
-    <span class="Author">K. Wang and L. Testi and A. Ginsburg and C. M. Walmsley and S. Molinari and E. Schisano</span><br />
-    <span class="Journal">\mnras</span>&nbsp;
-    <span class="Volume">450</span>&nbsp;
-    <span class="Pages">4043-4049</span>&nbsp;
-    (<span class="Date">2015</span>)<br />
-<remoteURLs>
-    <span class="URL"><a href=""></a></span><br />
-</remoteURLs>
-<dd /><dt class="Key" id="Bally2015a">Bally2015a<dt />
-<dd class="Pub">
-    <span class="Title">The Orion fingers: Near-IR adaptive optics imaging of an explosive protostellar outflow</span><br />
-    <span class="Author">J. Bally and A. Ginsburg and D. Silvia and A. Youngblood</span><br />
-    <span class="Journal">\aap</span>&nbsp;
-    <span class="Volume">579</span>&nbsp;
-    <span class="Pages">A130</span>&nbsp;
-    (<span class="Date">2015</span>)<br />
-<remoteURLs>
-    <span class="URL"><a href=""></a></span><br />
-</remoteURLs>
-<dd /><dt class="Key" id="McLeod2015a">McLeod2015a<dt />
-<dd class="Pub">
-    <span class="Title">The Pillars of Creation revisited with MUSE: gas kinematics and high-mass stellar feedback traced by optical spectroscopy</span><br />
-    <span class="Author">A. F. McLeod and J. E. Dale and A. Ginsburg and B. Ercolano and M. Gritschneder and S. Ramsay and L. Testi</span><br />
-    <span class="Journal">\mnras</span>&nbsp;
-    <span class="Volume">450</span>&nbsp;
-    <span class="Pages">1057-1076</span>&nbsp;
-    (<span class="Date">2015</span>)<br />
-<remoteURLs>
-    <span class="URL"><a href=""></a></span><br />
-</remoteURLs>
-<dd /><dt class="Key" id="Ellsworth-Bowers2015a">Ellsworth-Bowers2015a<dt />
-<dd class="Pub">
-    <span class="Title">The Bolocam Galactic Plane Survey. XIII. Physical Properties and Mass Functions of Dense Molecular Cloud Structures</span><br />
-    <span class="Author">T. P. Ellsworth-Bowers and J. Glenn and A. Riley and E. Rosolowsky and A. Ginsburg and N. J. Evans, II and J. Bally and C. Battersby and Y. L. Shirley and M. Merello</span><br />
-    <span class="Journal">\apj</span>&nbsp;
-    <span class="Volume">805</span>&nbsp;
-    <span class="Pages">157</span>&nbsp;
-    (<span class="Date">2015</span>)<br />
-<remoteURLs>
-    <span class="URL"><a href=""></a></span><br />
-</remoteURLs>
-<dd /><dt class="Key" id="Merello2015a">Merello2015a<dt />
-<dd class="Pub">
-    <span class="Title">The Bolocam Galactic Plane Survey. XI. Temperatures and Substructure of Galactic Clumps Based On 350 $\mu$M Observations</span><br />
-    <span class="Author">M. Merello and N. J. Evans, II and Y. L. Shirley and E. Rosolowsky and A. Ginsburg and J. Bally and C. Battersby and M. M. Dunham</span><br />
-    <span class="Journal">\apjs</span>&nbsp;
-    <span class="Volume">218</span>&nbsp;
-    <span class="Pages">1</span>&nbsp;
-    (<span class="Date">2015</span>)<br />
-<remoteURLs>
-    <span class="URL"><a href=""></a></span><br />
-</remoteURLs>
-<dd /><dt class="Key" id="Thompson2015c">Thompson2015c<dt />
-<dd class="Pub">
-    <span class="Title">The ionised,radical and molecular Milky Way: spectroscopic surveys with the SKA</span><br />
-    <span class="Author">M. Thompson and H. Beuther and C. Dickinson and J. Mottram and P. Klaassen and A. Ginsburg and S. Longmore and A. Remijan and K. M. Menten</span><br />
-    <span class="Journal">Advancing Astrophysics with the Square Kilometre Array (AASKA14)</span>&nbsp;
-    <span class="Volume"></span>&nbsp;
-    <span class="Pages">126</span>&nbsp;
-    (<span class="Date">2015</span>)<br />
-<remoteURLs>
-    <span class="URL"><a href=""></a></span><br />
-</remoteURLs>
-<dd /><dt class="Key" id="Ellsworth-Bowers2015b">Ellsworth-Bowers2015b<dt />
-<dd class="Pub">
-    <span class="Title">The Bolocam Galactic Plane Survey. XII. Distance Catalog Expansion Using Kinematic Isolation of Dense Molecular Cloud Structures with $^13$CO(1-0)</span><br />
-    <span class="Author">T. P. Ellsworth-Bowers and E. Rosolowsky and J. Glenn and A. Ginsburg and N. J. Evans, II and C. Battersby and Y. L. Shirley and B. Svoboda</span><br />
-    <span class="Journal">\apj</span>&nbsp;
-    <span class="Volume">799</span>&nbsp;
-    <span class="Pages">29</span>&nbsp;
-    (<span class="Date">2015</span>)<br />
-<remoteURLs>
-    <span class="URL"><a href=""></a></span><br />
-</remoteURLs>
-<dd /><dt class="Key" id="Ginsburg2015a">Ginsburg2015a<dt />
-<dd class="Pub">
-    <span class="Title">The dense gas mass fraction in the W51 cloud and its protoclusters</span><br />
-    <span class="Author">A. Ginsburg and J. Bally and C. Battersby and A. Youngblood and J. Darling and E. Rosolowsky and H. Arce and M. E. Lebrón Santos</span><br />
-    <span class="Journal">\aap</span>&nbsp;
-    <span class="Volume">573</span>&nbsp;
-    <span class="Pages">A106</span>&nbsp;
-    (<span class="Date">2015</span>)<br />
 <remoteURLs>
     <span class="URL"><a href=""></a></span><br />
 </remoteURLs>

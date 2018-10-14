@@ -68,6 +68,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2018/10/14
+                  <br>
+                  <a href="http://keflavich.github.io/blog/feo-nondetection-in-orion.html">FeO Nondetection in Orion</a>
+              </li>
+              <li class="post">
                   2018/07/08
                   <br>
                   <a href="http://keflavich.github.io/blog/talks-now-using-revealjs.html">Talks: Now using revealjs</a>
@@ -87,11 +92,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/the-extragalactic-view-of-w51-at-220-and-290-ghz.html">The extragalactic view of W51 at 220 and 290 GHz</a>
               </li>
-              <li class="post">
-                  2017/10/07
-                  <br>
-                  <a href="http://keflavich.github.io/blog/understanding-millimeter-source-counts.html">Understanding Millimeter Source Counts</a>
-              </li>
         </ul>
       </li>
     
@@ -103,6 +103,58 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles in the misc category</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/feo-nondetection-in-orion.html" rel="bookmark" title="Permalink to FeO Nondetection in Orion">
+                    FeO Nondetection in Orion</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2018-10-14T15:09:00"> 2018/10/14 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I had a Cycle 3 ALMA program <a class="reference external" href="https://almascience.nrao.edu/observing/highest-priority-projects">2015.1.00262.S:
+Digging for rusty bullets at an explosion site</a>
+that aimed to detect <a class="reference external" href="https://en.wikipedia.org/wiki/Iron(II)_oxide">ferrous oxide, FeO</a>
+in the shocked outflows of the Orion nebula.</p>
+<p>I haven't published anything on this data set because it resulted in a fairly
+boring non-detection.  You can find the source code to retrieve and process
+the data from <a class="reference external" href="https://github.com/keflavich/FeO_2015.1.00262.S">here</a>
+The nondetection is several orders of magnitude deeper than previous
+ones, but to demonstrate this definitively, we need to do some more modeling
+work, which my co-I's and I have decided isn't worth the time, since we're
+all flooded with very exciting new ALMA data that has interesting detections
+in it (see salts soon).</p>
+<p>In brief, we were looking at a location where we know molecules (H2, molecular
+hydrogen) and gas-phase iron (Fe II, as seein in the [Fe II] 1.64 micron lines)
+are approximately coincident.  The most likely (and broadly accepted)
+explanation is that dust particles are being destroyed (sputtered) in the
+high-velocity ($&gt;30$ km/s, up to $sim100-200$ km/s) shocks produced in an
+outflow.  Since iron in the interstellar medium mostly lives in the cores of
+dust grains, we thought it might be released in a molecular form detectable by
+ALMA before being split into an atomic, ionized form.</p>
+<p>Despite having a good location and a sensitive observation, we didn't detect
+any.  It might mean that iron is mostly in a different molecular form, or it
+might mean that when iron gets sputtered out of grains, it never goes into
+a molecular form at all, instead dissociating straight into atomic form.</p>
+<p>There are a few things that, with infinite time, I would do with this data set:</p>
+<ol class="arabic simple">
+<li>Come up with a formal upper limit on the FeO abundance.</li>
+<li>Compare the lines we did detect to the outflows and see if we can better
+constrain their physical conditions</li>
+<li>Catalog the stars and publish the catalog for comparison to other data sets.
+(actually, this is done: <a class="reference external" href="https://github.com/keflavich/FeO_2015.1.00262.S/blob/master/tables/gaussian_fit_table.ipac">this table</a>
+contains Gaussian fits to each of the stars in the continuum image (<a class="reference external" href="https://github.com/keflavich/FeO_2015.1.00262.S/blob/master/analysis/contsource_centroids.py">source</a>).</li>
+</ol>
+<p>These figure show the apertures we used to extract spectra and search for the
+lines, then the spectra of different species for one of the apertures.  The
+background image is the H2 (orange) + FeII (cyan) + K-band (mostly white) I
+made for my <a class="reference external" href="href=&quot;http://adsabs.harvard.edu/abs/2015A%26A...579A.130B">2015 paper with John Bally</a>.</p>
+<img alt="" src="http://keflavich.github.io/blog/images/feo/aperture_overlays.png" style="width: 600px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/feo/BulletHeads4_alllines.png" style="width: 600px;" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -121,10 +173,11 @@ using reveal.js based on <a class="reference external" href="https://github.com/
 little with mixed success.  The slid.es editor seems nearly fully featured as a
 replacement for keynote, but I quickly dropped it because of its
 subscription-only paid features; the cost-benefit analysis is that Keynote is
-much cheaper than slid.es for someone like me, since Keynote cost $30 one-time
-for ~10 years of use, while the minimum usable plan for slid.es is $10/month,
-or $1200 over the same period.  If that was the tradeoff I was considering,
-mac+keynote would be about the same as linux+slid.es.</p>
+much cheaper than slid.es for someone like me, since Keynote cost
+&lt;span&gt;$&lt;/span&gt;30 one-time for ~10 years of use, while the minimum usable plan
+for slid.es is &lt;span&gt;$&lt;/span&gt;10/month, or &lt;span&gt;$&lt;/span&gt;1200 over the same
+period.  If that was the tradeoff I was considering, mac+keynote would be about
+the same as linux+slid.es.</p>
 <p>I'm taking the somewhat ridiculous approach of raw HTML/CSS editing with the
 Chrome inspector as my interactive testing tool.  This is a little tedious
 because of the html tagging, but that's honestly not so bad; it lets me do the
@@ -679,28 +732,6 @@ original data, or try to optimize <tt class="docutils literal">clean</tt> here a
 the real data.</p>
 <p>The result will be the 'perfect' (no phase error, no amplitude error)
 interferometric image.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/casa-clean-splotchy-artifacts.html" rel="bookmark" title="Permalink to CASA clean: "splotchy" artifacts">
-                    CASA clean: &quot;splotchy&quot; artifacts</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2016-06-14T09:31:00"> 2016/06/14 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>This image shows artifacts that look &quot;splotchy&quot;.  They are locations clean has
-placed a negative model component where none belongs, so the residual is highly
-positive and the resulting image is negative.</p>
-<img alt="" src="http://keflavich.github.io/blog/images/casa/splotchy.png" style="width: 600px;" />
-<p>Discussing with others, it appears that this artifact may be unique to
-multiscale clean and therefore may be a result of a too-strong component being
-added on a large scale.  It is not yet clear how to suppress these artifacts,
-but I'm attempting to change the scales included.  Other ideas would be welcome
-in the comments.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2018/10/14
+                  <br>
+                  <a href="http://keflavich.github.io/blog/feo-nondetection-in-orion.html">FeO Nondetection in Orion</a>
+              </li>
+              <li class="post">
                   2018/07/08
                   <br>
                   <a href="http://keflavich.github.io/blog/talks-now-using-revealjs.html">Talks: Now using revealjs</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/the-extragalactic-view-of-w51-at-220-and-290-ghz.html">The extragalactic view of W51 at 220 and 290 GHz</a>
               </li>
-              <li class="post">
-                  2017/10/07
-                  <br>
-                  <a href="http://keflavich.github.io/blog/understanding-millimeter-source-counts.html">Understanding Millimeter Source Counts</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,63 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/scripting-the-whole-survey.html" rel="bookmark" title="Permalink to Scripting the Whole Survey">
+                    Scripting the Whole Survey</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-09-16T00:43:00"> 2008/09/16 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>First, discovered more fields with some sort of failure:</p>
+<pre class="literal-block">
+ls -d l[0-3][0-9][0-9] | sed 's:\(.*\):ls \1/*_map01.fits &gt; \1/\1_infile.txt:' | bashls: l004/*_map01.fits: No such file or directoryls: l017/*_map01.fits: No such file or directoryls: l025/*_map01.fits: No such file or directoryls: l108/*_map01.fits: No such file or directoryls: l135/*_map01.fits: No such file or directoryls: l136/*_map01.fits: No such file or directoryls: l137/*_map01.fits: No such file or directoryls: l138/*_map01.fits: No such file or directoryls: l192/*_map01.fits: No such file or directory
+</pre>
+<p>Also, that command was a total screwup.</p>
+<pre class="literal-block">
+ls -d l[0-3][0-9][0-9] | sed 's:\(.*\):ls /scratch/adam_work/\1/*_map01.fits &gt; \1/\1_fitslist.txt:' | bashls: /scratch/adam_work/l004/*_map01.fits: No such file or directoryls: /scratch/adam_work/l017/*_map01.fits: No such file or directorybash: line 12: l020/l020_fitslist.txt: Permission deniedls: /scratch/adam_work/l025/*_map01.fits: No such file or directoryls: /scratch/adam_work/l108/*_map01.fits: No such file or directoryls: /scratch/adam_work/l135/*_map01.fits: No such file or directoryls: /scratch/adam_work/l136/*_map01.fits: No such file or directoryls: /scratch/adam_work/l137/*_map01.fits: No such file or directoryls: /scratch/adam_work/l138/*_map01.fits: No such file or directoryls: /scratch/adam_work/l192/*_map01.fits: No such file or directory
+</pre>
+<p>Now that those files exist, it should be possible to run a set of
+super-scripts like this:
+coalign_field,'l057','070719_o29',sliced_dir='sliced_polychrome',premap=0
+coalign_field,'l351','070725_ob3'
+coalign_field,'l354','070724_o10'
+coalign_field,'l357','070724_ob3'
+coalign_field,'l000','070719_o14'
+coalign_field,'l003','070718_o16'
+coalign_field,'l006','070715_ob5'
+coalign_field,'l009','070717_ob5'
+coalign_field,'l012','070715_o10'
+coalign_field,'l015','070714_o36'
+coalign_field,'l018','070717_o10'
+coalign_field,'l021','070715_o15'
+coalign_field,'l024','070717_o15'
+coalign_field,'l027','070715_o20'
+coalign_field,'l030','070717_o20'
+coalign_field,'l033','070718_ob5',sliced_dir='sliced_polychrome'
+coalign_field,'l036','070715_o25',sliced_dir='sliced_polychrome'
+coalign_field,'l039','070717_o25',sliced_dir='sliced_polychrome'
+coalign_field,'l042','070715_o30',sliced_dir='sliced_polychrome'
+coalign_field,'l044','070718_o24',sliced_dir='sliced_polychrome'
+coalign_field,'l048','070717_o30',sliced_dir='sliced_polychrome'
+coalign_field,'l050','070718_o29',sliced_dir='sliced_polychrome'
+coalign_field,'l054','070724_o28',sliced_dir='sliced_polychrome'
+coalign_field,'l057','070719_o29',sliced_dir='sliced_polychrome'
+where premap=0 means I'm not re-mapping the whole field, the
+sliced_dir='slice_polychrome' keyword is for those fields that do not
+have a regular sliced directory.
+This kind of thing ought to be really, really helpful when mapping the
+fields whose masters are not in the field: I'll have to modify the
+'coalign_field' code to search in a different directory, though.
+Yearghhh.... last command was bad too.</p>
+<pre class="literal-block">
+ls -d l[0-3][0-9][0-9] | sed 's:\(.*\):ls /scratch/adam_work/\1/0*_map01.fits &gt; \1/\1_fitslist.txt:' | bashls: /scratch/adam_work/l004/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l017/0*_map01.fits: No such file or directorybash: line 12: l020/l020_fitslist.txt: Permission deniedls: /scratch/adam_work/l025/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l108/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l135/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l136/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l137/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l138/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l192/0*_map01.fits: No such file or directory
+</pre>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -350,32 +407,6 @@ top-level wrapper). Since offsets default to zero, this should be OK.</p>
 <pre class="literal-block">
 .\{-}
 </pre>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/pointing-model-success.html" rel="bookmark" title="Permalink to Pointing model success">
-                    Pointing model success</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-09-02T15:11:00"> 2008/09/02 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>/scratch/adam_work/plots/models_myptgmdl_0707.ps
-Look at the left plots in #1 and #4, and ignore the red lines. The RMS
-is 4.87 in alt, 3.51 in az, using all pointing observations in 0707
-(i.e. not splitting it into part1/part2 or refining heavily). Total is
-6.003&quot;, not bad.
-I'm calling it quits on pointing refinement for the moment; I'm
-satisfied using Meredith's pointing models to get science maps
-co-aligned, then we'll use my model on the PPSes to get the pointing to
-maximum precision.
-Also, in the galactic center, the mapping works happily now. No more
-silly problems with that.
-It's time for a real Next Step. I think that means mapping nearly
-everything. Well, here goes!</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

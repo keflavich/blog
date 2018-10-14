@@ -1,5 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all-en.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2018-07-08T12:37:00-06:00</updated><entry><title>Talks: Now using revealjs</title><link href="http://keflavich.github.io/blog/talks-now-using-revealjs.html" rel="alternate"></link><updated>2018-07-08T12:37:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2018-07-08:talks-now-using-revealjs.html</id><summary type="html">&lt;p&gt;I'm attempting to wean myself off of Mac-specific technology, inspired by some
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog</title><link href="http://keflavich.github.io/blog/" rel="alternate"></link><link href="http://keflavich.github.io/blog/feeds/all-en.atom.xml" rel="self"></link><id>http://keflavich.github.io/blog/</id><updated>2018-10-14T15:09:00-06:00</updated><entry><title>FeO Nondetection in Orion</title><link href="http://keflavich.github.io/blog/feo-nondetection-in-orion.html" rel="alternate"></link><updated>2018-10-14T15:09:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2018-10-14:feo-nondetection-in-orion.html</id><summary type="html">&lt;p&gt;I had a Cycle 3 ALMA program &lt;a class="reference external" href="https://almascience.nrao.edu/observing/highest-priority-projects"&gt;2015.1.00262.S:
+Digging for rusty bullets at an explosion site&lt;/a&gt;
+that aimed to detect &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Iron(II)_oxide"&gt;ferrous oxide, FeO&lt;/a&gt;
+in the shocked outflows of the Orion nebula.&lt;/p&gt;
+&lt;p&gt;I haven't published anything on this data set because it resulted in a fairly
+boring non-detection.  You can find the source code to retrieve and process
+the data from &lt;a class="reference external" href="https://github.com/keflavich/FeO_2015.1.00262.S"&gt;here&lt;/a&gt;
+The nondetection is several orders of magnitude deeper than previous
+ones, but to demonstrate this definitively, we need to do some more modeling
+work, which my co-I's and I have decided isn't worth the time, since we're
+all flooded with very exciting new ALMA data that has interesting detections
+in it (see salts soon).&lt;/p&gt;
+&lt;p&gt;In brief, we were looking at a location where we know molecules (H2, molecular
+hydrogen) and gas-phase iron (Fe II, as seein in the [Fe II] 1.64 micron lines)
+are approximately coincident.  The most likely (and broadly accepted)
+explanation is that dust particles are being destroyed (sputtered) in the
+high-velocity ($&amp;gt;30$ km/s, up to $sim100-200$ km/s) shocks produced in an
+outflow.  Since iron in the interstellar medium mostly lives in the cores of
+dust grains, we thought it might be released in a molecular form detectable by
+ALMA before being split into an atomic, ionized form.&lt;/p&gt;
+&lt;p&gt;Despite having a good location and a sensitive observation, we didn't detect
+any.  It might mean that iron is mostly in a different molecular form, or it
+might mean that when iron gets sputtered out of grains, it never goes into
+a molecular form at all, instead dissociating straight into atomic form.&lt;/p&gt;
+&lt;p&gt;There are a few things that, with infinite time, I would do with this data set:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Come up with a formal upper limit on the FeO abundance.&lt;/li&gt;
+&lt;li&gt;Compare the lines we did detect to the outflows and see if we can better
+constrain their physical conditions&lt;/li&gt;
+&lt;li&gt;Catalog the stars and publish the catalog for comparison to other data sets.
+(actually, this is done: &lt;a class="reference external" href="https://github.com/keflavich/FeO_2015.1.00262.S/blob/master/tables/gaussian_fit_table.ipac"&gt;this table&lt;/a&gt;
+contains Gaussian fits to each of the stars in the continuum image (&lt;a class="reference external" href="https://github.com/keflavich/FeO_2015.1.00262.S/blob/master/analysis/contsource_centroids.py"&gt;source&lt;/a&gt;).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;These figure show the apertures we used to extract spectra and search for the
+lines, then the spectra of different species for one of the apertures.  The
+background image is the H2 (orange) + FeII (cyan) + K-band (mostly white) I
+made for my &lt;a class="reference external" href="href=&amp;quot;http://adsabs.harvard.edu/abs/2015A%26A...579A.130B"&gt;2015 paper with John Bally&lt;/a&gt;.&lt;/p&gt;
+&lt;img alt="" src="http://keflavich.github.io/blog/images/feo/aperture_overlays.png" style="width: 600px;" /&gt;
+&lt;img alt="" src="http://keflavich.github.io/blog/images/feo/BulletHeads4_alllines.png" style="width: 600px;" /&gt;
+</summary><category term="alma"></category></entry><entry><title>Talks: Now using revealjs</title><link href="http://keflavich.github.io/blog/talks-now-using-revealjs.html" rel="alternate"></link><updated>2018-07-08T12:37:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io/blog,2018-07-08:talks-now-using-revealjs.html</id><summary type="html">&lt;p&gt;I'm attempting to wean myself off of Mac-specific technology, inspired by some
 impending hardware failures (see below), the not-falling cost of not-improving
 hardware, and the lack of budget growth.&lt;/p&gt;
 &lt;p&gt;Following a suggestion from &lt;a class="reference external" href="https://github.com/pkgw/"&gt;Peter Williams&lt;/a&gt;, I'm
@@ -7,10 +46,11 @@ using reveal.js based on &lt;a class="reference external" href="https://github.c
 little with mixed success.  The slid.es editor seems nearly fully featured as a
 replacement for keynote, but I quickly dropped it because of its
 subscription-only paid features; the cost-benefit analysis is that Keynote is
-much cheaper than slid.es for someone like me, since Keynote cost $30 one-time
-for ~10 years of use, while the minimum usable plan for slid.es is $10/month,
-or $1200 over the same period.  If that was the tradeoff I was considering,
-mac+keynote would be about the same as linux+slid.es.&lt;/p&gt;
+much cheaper than slid.es for someone like me, since Keynote cost
+&amp;lt;span&amp;gt;$&amp;lt;/span&amp;gt;30 one-time for ~10 years of use, while the minimum usable plan
+for slid.es is &amp;lt;span&amp;gt;$&amp;lt;/span&amp;gt;10/month, or &amp;lt;span&amp;gt;$&amp;lt;/span&amp;gt;1200 over the same
+period.  If that was the tradeoff I was considering, mac+keynote would be about
+the same as linux+slid.es.&lt;/p&gt;
 &lt;p&gt;I'm taking the somewhat ridiculous approach of raw HTML/CSS editing with the
 Chrome inspector as my interactive testing tool.  This is a little tedious
 because of the html tagging, but that's honestly not so bad; it lets me do the
