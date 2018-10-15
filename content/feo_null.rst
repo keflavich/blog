@@ -51,7 +51,7 @@ These figure show the apertures we used to extract spectra and search for the
 lines, then the spectra of different species for one of the apertures.  The
 background image is the H2 (orange) + FeII (cyan) + K-band (mostly white) I
 made for my `2015 paper with John Bally
-<href="http://adsabs.harvard.edu/abs/2015A%26A...579A.130B>`_.
+<http://adsabs.harvard.edu/abs/2015A%26A...579A.130B>`_.
 
 .. image:: |filename|/images/feo/aperture_overlays.png
    :width: 600px
