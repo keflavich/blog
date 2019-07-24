@@ -493,45 +493,57 @@ start &amp; end points to see how well I did on different runs.</p>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p><a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> presents a non-lognormal form of the probability distribution
 function of density in turbulence, depending primarily on a parameter
-<span class="formula"><i>T</i></span>.  I examine some of its properties here.  All of the equations shown
+<span class="math">\(T\)</span>.  I examine some of its properties here.  All of the equations shown
 on this page are implemented in <a class="reference external" href="https://github.com/keflavich/turbulence_pdfs">https://github.com/keflavich/turbulence_pdfs</a>,
 in particular the functions <tt class="docutils literal">moments_theoretical_hopkins</tt> and <tt class="docutils literal">moments</tt> in
 <a class="reference external" href="https://github.com/keflavich/turbulence_pdfs/blob/master/hopkins_pdf.py">hopkins_pdf.py</a>.</p>
 <p>The conservation equations, conservation of probability and mass</p>
-<div class="formula">
-<span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i>)<i>d</i>ln<i>ρ</i> ≡ 1
+<div class="math">
+\begin{equation*}
+\int_{-\infty}^\infty P_V(\ln \rho) d \ln \rho \equiv 1
+\end{equation*}
 </div>
-<div class="formula">
-<span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span><i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i>)<i>d</i>ln<i>ρ</i> ≡ <i>ρ</i><sub>0</sub> = 1
+<div class="math">
+\begin{equation*}
+\int_{-\infty}^\infty\rho P_V(\ln \rho) d \ln \rho \equiv \rho_0 = 1
+\end{equation*}
 </div>
-<p><span class="formula"><i>ρ</i><sub>0</sub> = 1</span> is the definition used by <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a>.  Part of the goal
-of this document is to generalize to <span class="formula"><i>ρ</i><sub>0</sub> &lt;  &gt; 1</span></p>
+<p><span class="math">\(\rho_0=1\)</span> is the definition used by <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a>.  Part of the goal
+of this document is to generalize to <span class="math">\(\rho_0 &lt;&gt; 1\)</span></p>
 <p>The most important thing to do is determine the values of the moments of the
 distribution, including the integral corrections for the Dirac Delta function
 component of the PDF.</p>
 <div class="section" id="the-pdf">
 <h2>The PDF</h2>
 <p>The full form of the Hopkins PDF is</p>
-<div class="formula">
-<i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i> = <span class="symbol">[</span><i>I</i><sub>1</sub>(2<span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><i>λ</i><i>u</i></span><span class="ignored">)</span></span>)<i>e</i><sup> − <i>λ</i> − <i>u</i></sup><span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator"><i>u</i></span><span class="ignored">)</span></span></span><span class="ignored">)</span></span> + <i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<span class="symbol">]</span><i>du</i>
+<div class="math">
+\begin{equation*}
+P_V(\ln \rho/\rho_0) d \ln \rho =  \left[I_1(2\sqrt{\lambda u}) e^{-\lambda-u} \sqrt{\frac{\lambda}{u}} + e^{-\lambda} \delta(u)\right]du
+\end{equation*}
 </div>
 <p>The mass-weighted PDF is</p>
-<div class="formula">
-<i>P</i><sub><i>M</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(2<span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><i>λ</i><i>u</i></span><span class="ignored">)</span></span>)<i>e</i><sup> − <i>λ</i> − <i>u</i></sup><span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator"><i>u</i></span><span class="ignored">)</span></span></span><span class="ignored">)</span></span> + <i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<span class="symbol">]</span><i>du</i>
+<div class="math">
+\begin{equation*}
+P_M(\ln \rho/\rho_0) d \ln \rho =  \frac{\rho}{\rho_0} \left[I_1(2\sqrt{\lambda u}) e^{-\lambda-u} \sqrt{\frac{\lambda}{u}} + e^{-\lambda} \delta(u)\right]du
+\end{equation*}
 </div>
 <p>With definitions:</p>
-<div class="formula">
-<i>u</i> ≡ <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>;(<i>u</i> ≥ 0)
+<div class="math">
+\begin{equation*}
+u\equiv \frac{\lambda}{1+T} - \frac{\ln \rho/\rho_0}{T}  ;  (u \geq 0)
+\end{equation*}
 </div>
-<div class="formula">
-<i>λ</i> ≡ <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>S</i><sub>ln<i>ρ</i>, <i>V</i></sub></span><span class="ignored">)/(</span><span class="denominator">2<i>T</i><sup>2</sup></span><span class="ignored">)</span></span>
+<div class="math">
+\begin{equation*}
+\lambda \equiv \frac{S_{\ln \rho,V}}{2 T^2}
+\end{equation*}
 </div>
-<p>The ratio <span class="formula"><i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span> is needed to ensure self-consistency: the mass
+<p>The ratio <span class="math">\(\rho/\rho_0\)</span> is needed to ensure self-consistency: the mass
 PDF must also conserve probability, which means it must be scaled by
-<span class="formula">1 ⁄ <i>ρ</i><sub>0</sub></span>.</p>
+<span class="math">\(1/\rho_0\)</span>.</p>
 <p>These distributions are slightly different than those shown in <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a>.
-The <span class="formula"><i>m</i> = 0</span> term in the summation version of the PDF yields a Dirac
-<span class="formula"><i>δ</i></span> function in the integral form of the PDF.  To quote Phil:</p>
+The <span class="math">\(m=0\)</span> term in the summation version of the PDF yields a Dirac
+<span class="math">\(\delta\)</span> function in the integral form of the PDF.  To quote Phil:</p>
 <pre class="literal-block">
 If you check, the summation expression is exact, and does exactly integrate
 to unity (and properly conserve mass) for any value of T or lambda (with
@@ -549,335 +561,577 @@ the term in u).
 <p>The important moments are the mean and variance of the volume and mass density
 probability distribution and the volume and mass <em>log</em>-density probability
 distribution.</p>
-<p>The definitions used here are <span class="formula"><i>E</i>[<i>ρ</i>] ≡  &lt; <i>ρ</i> &gt; <sub><i>V</i></sub></span>, etc.  The
-variance is computed as <span class="formula"><i>V</i>[<i>x</i>] = <i>E</i>[<i>x</i><sup>2</sup>] − <i>E</i>[<i>x</i>]<sup>2</sup></span>, which means we'll need to
+<p>The definitions used here are <span class="math">\(E[\rho] \equiv &lt;\rho&gt;_V\)</span>, etc.  The
+variance is computed as <span class="math">\(V[x]=E[x^2]-E[x]^2\)</span>, which means we'll need to
 compute the moments of various combinations of variables.</p>
-<p>Also, <span class="formula"><i>S</i><sub>ln<i>ρ</i>, <i>V</i></sub> ≡ <i>V</i>[ln<i>ρ</i><sub><i>V</i></sub>]</span></p>
-<div class="formula">
- &lt; <i>ρ</i> &gt; <sub><i>V</i></sub> ≡ <i>ρ</i><sub>0</sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span><i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i>
+<p>Also, <span class="math">\(S_{\ln \rho,V} \equiv V[\ln \rho_V]\)</span></p>
+<div class="math">
+\begin{equation*}
+&lt;\rho&gt;_V \equiv \rho_0 \equiv \int_{-\infty}^{\infty} \rho P_V(\ln \rho/\rho_0) d \ln \rho
+\end{equation*}
 </div>
-<div class="formula">
- &lt; ln<i>ρ</i> &gt; <sub><i>V</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span>ln<i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i>
+<div class="math">
+\begin{equation*}
+&lt;\ln \rho&gt;_V \equiv \int_{-\infty}^{\infty} \ln \rho P_V(\ln \rho/\rho_0) d \ln \rho
+\end{equation*}
 </div>
-<div class="formula">
- &lt; <i>ρ</i> &gt; <sub><i>M</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span><i>ρ</i>(<i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>))<i>d</i>ln<i>ρ</i>
+<div class="math">
+\begin{equation*}
+&lt;\rho&gt;_M \equiv \int_{-\infty}^{\infty} \rho (\rho P_V(\ln \rho/\rho_0)) d \ln \rho
+\end{equation*}
 </div>
-<div class="formula">
- &lt; ln<i>ρ</i> &gt; <sub><i>M</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span>ln<i>ρ</i>(<i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>))<i>d</i>ln<i>ρ</i>
+<div class="math">
+\begin{equation*}
+&lt;\ln \rho&gt;_M \equiv \int_{-\infty}^{\infty} \ln \rho (\rho P_V(\ln \rho/\rho_0)) d \ln \rho
+\end{equation*}
 </div>
-<div class="formula">
- &lt; <i>ρ</i><sup>3</sup> &gt; <sub><i>V</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span><i>ρ</i><sup>3</sup><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i>
+<div class="math">
+\begin{equation*}
+&lt;\rho^3&gt;_V \equiv \int_{-\infty}^{\infty} \rho^3 P_V(\ln \rho/\rho_0) d \ln \rho
+\end{equation*}
 </div>
-<div class="formula">
- &lt; ln<sup>2</sup><i>ρ</i> &gt; <sub><i>V</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span>(ln<i>ρ</i>)<sup>2</sup><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i>
+<div class="math">
+\begin{equation*}
+&lt;\ln^2 \rho&gt;_V \equiv \int_{-\infty}^{\infty} (\ln \rho)^2 P_V(\ln \rho/\rho_0)d \ln \rho
+\end{equation*}
 </div>
-<div class="formula">
- &lt; ln<sup>2</sup><i>ρ</i> &gt; <sub><i>M</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span>(ln<i>ρ</i>)<sup>2</sup><i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i>
+<div class="math">
+\begin{equation*}
+&lt;\ln^2 \rho&gt;_M \equiv \int_{-\infty}^{\infty} (\ln \rho)^2 \rho P_V(\ln \rho/\rho_0)d \ln \rho
+\end{equation*}
 </div>
 <p>In the moment equations, only the input to the PDF is scaled by a mean density
-<span class="formula"><i>ρ</i><sub>0</sub></span>; the &quot;weighting factors&quot; for the expectation value are not
-(i.e., we are measuring <span class="formula"><i>E</i>[<i>ρ</i>]</span>, not <span class="formula"><i>E</i>[<i>ρ</i> ⁄ <i>rho</i><sub>0</sub>]</span>).</p>
+<span class="math">\(\rho_0\)</span>; the &quot;weighting factors&quot; for the expectation value are not
+(i.e., we are measuring <span class="math">\(E[\rho]\)</span>, not <span class="math">\(E[\rho/rho_0]\)</span>).</p>
 </div>
 <div class="section" id="delta-terms">
 <h3>Delta terms</h3>
 <p>These can be integrated analytically.  In this section, I am just computing the
 means; the variances are more complicated.</p>
-<div class="formula">
- &lt; <i>ρ</i> &gt; <sub><i>V</i></sub> ≡ <i>ρ</i><sub>0</sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span><i>ρ</i><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>)<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>d</i>ln<i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>
+<div class="math">
+\begin{equation*}
+&lt;\rho&gt;_V \equiv \rho_0 \equiv \int_{-\infty}^{\infty} \rho e^{-\lambda} \delta(\frac{\lambda}{1+T} - \frac{\ln\rho/\rho_0}{T}) \frac{d \ln \rho}{T}
+\end{equation*}
 </div>
-<div class="formula">
- &lt; ln<i>ρ</i> &gt; <sub><i>V</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span>ln<i>ρ</i><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>)<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>d</i>ln<i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>
+<div class="math">
+\begin{equation*}
+&lt;\ln \rho&gt;_V \equiv \int_{-\infty}^{\infty} \ln \rho e^{-\lambda} \delta(\frac{\lambda}{1+T} - \frac{\ln\rho/\rho_0}{T}) \frac{d \ln \rho}{T}
+\end{equation*}
 </div>
-<div class="formula">
- &lt; <i>ρ</i> &gt; <sub><i>M</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span><i>ρ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>))<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>d</i>ln<i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>
+<div class="math">
+\begin{equation*}
+&lt;\rho&gt;_M \equiv \int_{-\infty}^{\infty} \rho (\frac{\rho}{\rho_0} e^{-\lambda} \delta(\frac{\lambda}{1+T} - \frac{\ln\rho/\rho_0}{T})) \frac{d \ln \rho}{T}
+\end{equation*}
 </div>
-<div class="formula">
- &lt; ln<i>ρ</i> &gt; <sub><i>M</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span>ln<i>ρ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>))<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>d</i>ln<i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>
+<div class="math">
+\begin{equation*}
+&lt;\ln \rho&gt;_M \equiv \int_{-\infty}^{\infty} \ln \rho (\frac{\rho}{\rho_0} e^{-\lambda} \delta(\frac{\lambda}{1+T} - \frac{\ln\rho/\rho_0}{T})) \frac{d \ln \rho}{T}
+\end{equation*}
 </div>
-<p>Substitution: <span class="formula"><i>v</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span></span>,
-<span class="formula"><i>dv</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator">1</span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span><i>d</i>ln<i>ρ</i></span>, <span class="formula"><i>ρ</i> = <i>ρ</i><sub>0</sub><i>e</i><sup><i>v</i>*<i>T</i></sup></span>, <span class="formula">ln<i>ρ</i> = <i>v</i><i>T</i> + ln<i>ρ</i><sub>0</sub></span></p>
-<div class="formula">
- &lt; <i>ρ</i> &gt; <sub><i>V</i><i>δ</i></sub> ≡ <i>ρ</i><sub>0</sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span><i>ρ</i><sub>0</sub><i>e</i><sup><i>vT</i></sup><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>v</i>)<i>d</i><i>v</i>
+<p>Substitution: <span class="math">\(v=\frac{\ln \rho/\rho_0}{T}\)</span>,
+<span class="math">\(dv = \frac{1}{T} d \ln \rho\)</span>, <span class="math">\(\rho=\rho_0 e^{v*T}\)</span>, <span class="math">\(\ln \rho = v T + \ln \rho_0\)</span></p>
+<div class="math">
+\begin{equation*}
+&lt;\rho&gt;_{V\delta} \equiv \rho_0 \equiv \int_{-\infty}^{\infty} \rho_0 e^{vT} e^{-\lambda} \delta(\frac{\lambda}{1+T} - v) d v
+\end{equation*}
 </div>
-<div class="formula">
- &lt; ln<i>ρ</i> &gt; <sub><i>V</i><i>δ</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span>(<i>vT</i> + ln<i>ρ</i><sub>0</sub>)<i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>v</i>)<i>d</i><i>v</i>
+<div class="math">
+\begin{equation*}
+&lt;\ln \rho&gt;_{V\delta} \equiv \int_{-\infty}^{\infty} (vT + \ln \rho_0) e^{-\lambda} \delta(\frac{\lambda}{1+T} - v) d v
+\end{equation*}
 </div>
-<div class="formula">
- &lt; <i>ρ</i> &gt; <sub><i>M</i><i>δ</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span><i>ρ</i><sub>0</sub><i>e</i><sup>2<i>vT</i></sup>(<i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>v</i>))<i>d</i><i>v</i>
+<div class="math">
+\begin{equation*}
+&lt;\rho&gt;_{M\delta} \equiv \int_{-\infty}^{\infty} \rho_0 e^{2vT} ( e^{-\lambda} \delta(\frac{\lambda}{1+T} - v)) d v
+\end{equation*}
 </div>
-<div class="formula">
- &lt; ln<i>ρ</i> &gt; <sub><i>M</i><i>δ</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span>(<i>vT</i> + ln<i>ρ</i><sub>0</sub>)<i>e</i><sup><i>vT</i></sup>(<i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>v</i>))<i>d</i><i>v</i>
+<div class="math">
+\begin{equation*}
+&lt;\ln \rho&gt;_{M\delta} \equiv \int_{-\infty}^{\infty} (vT + \ln \rho_0) e^{vT} ( e^{-\lambda} \delta(\frac{\lambda}{1+T} - v)) d v
+\end{equation*}
 </div>
 <p>Solutions:</p>
-<div class="formula">
- &lt; <i>ρ</i> &gt; <sub><i>V</i><i>δ</i></sub> = <i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>λ</i><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span> = <i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span> − <i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator">1</span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<div class="math">
+\begin{equation*}
+&lt;\rho&gt;_{V\delta} =  \rho_0 \exp\left[\frac{T \lambda }{1+T} - \lambda\right] =  \rho_0 \exp\left[-\lambda \frac{1}{1+T}\right]
+\end{equation*}
 </div>
-<div class="formula">
- &lt; ln<i>ρ</i> &gt; <sub><i>V</i><i>δ</i></sub> = <i>e</i><sup> − <i>λ</i></sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + <i>e</i><sup> − <i>λ</i></sup>ln<i>ρ</i><sub>0</sub>
+<div class="math">
+\begin{equation*}
+&lt;\ln \rho&gt;_{V\delta} =  e^{-\lambda} \frac{\lambda T}{1+T} + e^{-\lambda} \ln \rho_0
+\end{equation*}
 </div>
-<div class="formula">
- &lt; <i>ρ</i> &gt; <sub><i>M</i><i>δ</i></sub> = <i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>λ</i><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span> = <i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i> − 1</span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<div class="math">
+\begin{equation*}
+&lt;\rho&gt;_{M\delta} =  \rho_0 \exp\left[\frac{2 T \lambda }{1+T} - \lambda\right] = \rho_0 \exp\left[\lambda\frac{T-1}{T+1}\right]
+\end{equation*}
 </div>
-<div class="formula">
- &lt; ln<i>ρ</i> &gt; <sub><i>M</i><i>δ</i></sub> = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + ln<i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>λ</i><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<div class="math">
+\begin{equation*}
+&lt;\ln \rho&gt;_{M\delta} = \left( \frac{\lambda T}{1+T} + \ln \rho_0 \right) \exp\left[\frac{T \lambda }{1+T} - \lambda\right]
+\end{equation*}
 </div>
-<div class="formula">
- = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + ln<i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"> − <i>λ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<div class="math">
+\begin{equation*}
+= \left( \frac{\lambda T}{1+T} + \ln \rho_0 \right) \exp\left[\frac{ -\lambda }{T+1}\right]
+\end{equation*}
 </div>
 <p>(for these next 3, I skipped intermediate steps)</p>
-<div class="formula">
- &lt; <i>ρ</i><sup>3</sup> &gt; <sub><i>V</i><i>δ</i></sub> = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">3<i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>λ</i><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span> = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>T</i> − 1</span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<div class="math">
+\begin{equation*}
+&lt;\rho^3&gt;_{V\delta} =  \rho_0^2 \exp\left[\frac{3 T \lambda }{1+T} - \lambda\right] = \rho_0^2 \exp\left[\lambda\frac{2T-1}{T+1}\right]
+\end{equation*}
 </div>
-<div class="formula">
- &lt; ln<sup>2</sup><i>ρ</i> &gt; <sub><i>M</i><i>δ</i></sub> = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + ln<i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"> − <i>λ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<div class="math">
+\begin{equation*}
+&lt;\ln^2 \rho&gt;_{M\delta} = \left( \frac{\lambda T}{1+T} + \ln \rho_0 \right)^2 \exp\left[\frac{ -\lambda }{T+1}\right]
+\end{equation*}
 </div>
-<div class="formula">
- &lt; ln<sup>2</sup><i>ρ</i> &gt; <sub><i>V</i><i>δ</i></sub> = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + ln<i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup><i>e</i><sup> − <i>λ</i></sup>
+<div class="math">
+\begin{equation*}
+&lt;\ln^2 \rho&gt;_{V\delta} = \left( \frac{\lambda T}{1+T} + \ln \rho_0 \right)^2 e^{-\lambda}
+\end{equation*}
 </div>
-<p>Using <span class="formula"><i>ρ</i><sub>0</sub> = 1</span> as defined in <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> simplifies all of these a great deal.</p>
+<p>Using <span class="math">\(\rho_0=1\)</span> as defined in <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> simplifies all of these a great deal.</p>
 </div>
 <div class="section" id="pdf-integrals">
 <h3>PDF Integrals</h3>
 <p>These cannot be integrated analytically.</p>
 <p>However, we can work from a few simple mathematica/sympy results:</p>
-<div class="formula">
-<span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit">0</sub></span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>L</i>)</sup><i>dx</i> = <i>e</i><sup><i>L</i></sup> − 1
+<div class="math">
+\begin{equation*}
+\int_0^\infty I_1(x) e^{-x^2/(4L)} dx = e^L - 1
+\end{equation*}
 </div>
-<div class="formula">
-<span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit">0</sub></span><i>x</i><sup>2</sup><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>L</i>)</sup><i>dx</i> = 4<i>L</i><sup>2</sup>*<i>e</i><sup><i>L</i></sup>
+<div class="math">
+\begin{equation*}
+\int_0^\infty x^2 I_1(x) e^{-x^2/(4L)} dx = 4 L^2 * e^L
+\end{equation*}
 </div>
-<div class="formula">
-<span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit">0</sub></span><i>x</i><sup>4</sup><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>L</i>)</sup><i>dx</i> = 16<i>L</i><sup>3</sup>(<i>L</i> + 2)*<i>e</i><sup><i>L</i></sup>
+<div class="math">
+\begin{equation*}
+\int_0^\infty x^4 I_1(x) e^{-x^2/(4L)} dx = 16 L^3 (L+2) * e^L
+\end{equation*}
 </div>
-<p>We use <span class="formula"><i>L</i></span> instead of <span class="formula"><i>λ</i></span> in these equations because it is often substituted in later equations.</p>
+<p>We use <span class="math">\(L\)</span> instead of <span class="math">\(\lambda\)</span> in these equations because it is often substituted in later equations.</p>
 <div class="section" id="expectation-value-of-the-volume-weighted-density-e-rho">
-<h4>Expectation Value of the Volume-Weighted Density <span class="formula"><i>E</i>[<i>ρ</i>]</span></h4>
-<div class="formula">
-<i>E</i>[<i>ρ</i>] ≡ <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><i>ρ</i><i>P</i><sub><i>v</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i> = <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><i>ρ</i><span class="symbol">[</span><i>I</i><sub>1</sub>(2<span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><i>λ</i><i>u</i></span><span class="ignored">)</span></span>)<i>e</i><sup> − <i>λ</i> − <i>u</i></sup><span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator"><i>u</i></span><span class="ignored">)</span></span></span><span class="ignored">)</span></span> + <i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<span class="symbol">]</span><i>du</i>
+<h4>Expectation Value of the Volume-Weighted Density <span class="math">\(E[\rho]\)</span></h4>
+<div class="math">
+\begin{equation*}
+E[\rho] \equiv \int \rho P_v(\ln \rho/\rho_0) d \ln \rho = \int \rho \left[I_1(2\sqrt{\lambda u}) e^{-\lambda-u} \sqrt{\frac{\lambda}{u}} + e^{-\lambda} \delta(u)\right]du
+\end{equation*}
 </div>
 <p>To get to the form of the above equations, we use the substitution</p>
-<div class="formula">
-<i>x</i> = 2<span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><i>λ</i><i>u</i></span><span class="ignored">)</span></span>
+<div class="math">
+\begin{equation*}
+x = 2\sqrt{\lambda u}
+\end{equation*}
 </div>
-<p>which gives us <span class="formula"><i>ρ</i></span> in terms of <span class="formula"><i>x</i></span>:</p>
-<div class="formula">
-<i>ρ</i> = <i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<p>which gives us <span class="math">\(\rho\)</span> in terms of <span class="math">\(x\)</span>:</p>
+<div class="math">
+\begin{equation*}
+\rho = \rho_0 \exp\left[T\left(-\frac{x^2}{4\lambda} + \frac{\lambda}{1+T}\right)\right]
+\end{equation*}
 </div>
 <p>and leads to the rearrangement:</p>
-<div class="formula">
-<i>E</i>[<i>ρ</i>] = <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>) − <i>λ</i></sup><span class="symbol">]</span><i>dx</i> + <i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+<div class="math">
+\begin{equation*}
+E[\rho] = \int \rho_0 \exp\left[T\left(-\frac{x^2}{4\lambda} + \frac{\lambda}{1+T}\right)\right] \left[I_1(x) e^{-x^2/(4\lambda)-\lambda} \right]dx + \rho_0 \exp\left(- \frac{\lambda}{1+T}\right)
+\end{equation*}
 </div>
 <p>where the rightmost term is kept from the first moment above.  The integral
 term can straightforwardly be broken apart into equations of the form shown
 above.</p>
-<div class="formula">
-<i>L</i> → <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span>
+<div class="math">
+\begin{equation*}
+L \rightarrow \frac{\lambda}{1+T}
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i>[<i>ρ</i>] = <i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <i>λ</i> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>L</i>)</sup><span class="symbol">]</span><i>dx</i> + exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<div class="math">
+\begin{equation*}
+E[\rho] = \rho_0 \left[ \exp \left(-\lambda+\frac{T\lambda}{1+T}\right) \int  \left[I_1(x) e^{-x^2/(4L)} \right]dx +\exp\left(- \frac{\lambda}{1+T}\right) \right]
+\end{equation*}
 </div>
-<div class="formula">
- = <i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <i>λ</i> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>(<i>e</i><sup><i>L</i></sup> − 1) + exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<div class="math">
+\begin{equation*}
+= \rho_0 \left[ \exp \left(-\lambda+\frac{T\lambda}{1+T}\right)(e^L-1)  +\exp\left(- \frac{\lambda}{1+T}\right) \right]
+\end{equation*}
 </div>
-<div class="formula">
- = <i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <i>λ</i> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>(<i>e</i><sup><i>λ</i> ⁄ 1 + <i>T</i></sup> − 1) + exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<div class="math">
+\begin{equation*}
+= \rho_0 \left[ \exp \left(-\lambda+\frac{T\lambda}{1+T}\right)(e^{\lambda/1+T}-1)  +\exp\left(- \frac{\lambda}{1+T}\right) \right]
+\end{equation*}
 </div>
-<div class="formula">
- = <i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><i>e</i><sup> − <i>λ</i> ⁄ (1 + <i>T</i>)</sup>(<i>e</i><sup><i>λ</i> ⁄ 1 + <i>T</i></sup> − 1) + exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<div class="math">
+\begin{equation*}
+= \rho_0 \left[ e^{-\lambda/(1+T)}(e^{\lambda/1+T}-1)  +\exp\left(- \frac{\lambda}{1+T}\right) \right]
+\end{equation*}
 </div>
-<div class="formula">
- = <i>ρ</i><sub>0</sub>
+<div class="math">
+\begin{equation*}
+= \rho_0
+\end{equation*}
 </div>
 <p>The same general approach can be followed for all expectation values, but we'll skip the detailed algebra.</p>
 </div>
 <div class="section" id="variance-of-the-volume-weighted-density-v-rho-s-ln-rho-v">
-<h4>Variance of the Volume-Weighted Density <span class="formula"><i>V</i>[<i>ρ</i>] = <i>S</i><sub>ln<i>ρ</i>, <i>V</i></sub></span></h4>
-<div class="formula">
-<i>V</i>[<i>ρ</i>] = <i>E</i>[<i>ρ</i><sup>2</sup>] − <i>E</i>[<i>ρ</i>]<sup>2</sup> = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">1 + 3<i>T</i> + 2<i>T</i><sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> − 1<span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<h4>Variance of the Volume-Weighted Density <span class="math">\(V[\rho]=S_{\ln \rho,V}\)</span></h4>
+<div class="math">
+\begin{equation*}
+V[\rho] = E[\rho^2] - E[\rho]^2 = \rho_0^2 \left[  \exp\left(\lambda\frac{2 T^2}{1+3T+2T^2}\right) - 1 \right]
+\end{equation*}
 </div>
 <p>However, the &quot;correction factor&quot; is still important:</p>
-<div class="formula">
-<i>V</i><sub><i>δ</i></sub>[<i>ρ</i>] = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i> − 1</span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> − exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − 2<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<div class="math">
+\begin{equation*}
+V_\delta[\rho] = \rho_0^2 \left[ \exp\left(\lambda\frac{T-1}{T+1}\right) - \exp\left(-2\frac{\lambda}{1+T}\right) \right]
+\end{equation*}
 </div>
 </div>
 <div class="section" id="expectation-value-of-the-mass-weighted-density-e-m-rho">
-<h4>Expectation Value of the Mass-Weighted Density <span class="formula"><i>E</i><sub><i>M</i></sub>[<i>ρ</i>]</span></h4>
-<p>Start from halfway through <span class="formula"><i>E</i>[<i>ρ</i>]</span>, simply adding a factor of 2 in the exponent:</p>
-<div class="formula">
-<i>E</i><sub><i>M</i></sub>[<i>ρ</i>] = <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>2<i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>) − <i>λ</i></sup><span class="symbol">]</span><i>dx</i> + <i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i>(<i>T</i> − 1)</span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+<h4>Expectation Value of the Mass-Weighted Density <span class="math">\(E_M[\rho]\)</span></h4>
+<p>Start from halfway through <span class="math">\(E[\rho]\)</span>, simply adding a factor of 2 in the exponent:</p>
+<div class="math">
+\begin{equation*}
+E_M[\rho] = \int \rho_0 \exp\left[2T\left(-\frac{x^2}{4\lambda} + \frac{\lambda}{1+T}\right)\right] \left[I_1(x) e^{-x^2/(4\lambda)-\lambda} \right]dx + \rho_0 \exp\left(- \frac{\lambda(T-1)}{1+T}\right)
+\end{equation*}
 </div>
-<p>Follow the same math, with <span class="formula"><i>L</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + 2<i>T</i></span><span class="ignored">)</span></span></span></p>
-<div class="formula">
- = <i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <i>λ</i> + <span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>(<i>e</i><sup><i>L</i></sup> − 1) + exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i>(<i>T</i> − 1)</span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<p>Follow the same math, with <span class="math">\(L=\frac{\lambda}{1+2T}\)</span></p>
+<div class="math">
+\begin{equation*}
+= \rho_0 \left[ \exp \left(-\lambda+\frac{2T\lambda}{1+T}\right)(e^L-1)  +\exp\left(- \frac{\lambda(T-1)}{1+T}\right) \right]
+\end{equation*}
 </div>
-<div class="formula">
- = <i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">(<i>T</i> − 1)<i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>(<i>e</i><sup><i>λ</i> ⁄ (1 + 2<i>T</i>)</sup> − 1) + exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<div class="math">
+\begin{equation*}
+= \rho_0 \left[ \exp \left(\frac{(T-1)\lambda}{1+T}\right)(e^{\lambda/(1+2T)}-1)  +\exp\left(- \frac{\lambda}{1+T}\right) \right]
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i><sub><i>M</i></sub>[<i>ρ</i>] = <i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">1 + 3<i>T</i> + 2<i>T</i><sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> − exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i> − 1</span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> + exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i> − 1</span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<div class="math">
+\begin{equation*}
+E_M[\rho] = \rho_0 \left[ \exp\left(\lambda\frac{2 T^2}{1+3T+2T^2}\right) - \exp\left(\lambda\frac{T-1}{T+1}\right) + \exp\left(\lambda\frac{T-1}{T+1}\right) \right]
+\end{equation*}
 </div>
 <p>The right 2 terms cancel, yielding the value shown in Equation 7 of <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a>
-scaled by <span class="formula"><i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span></span>.  However, the right-most term is the
+scaled by <span class="math">\(\rho_0^2\)</span>.  However, the right-most term is the
 correction factor from the Dirac Delta term needed to correct any
 numerical computation of the mass-weighted density.</p>
-<div class="formula">
-<i>E</i><sub><i>δ</i>, <i>M</i></sub>[<i>ρ</i>] = exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i> − 1</span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+<div class="math">
+\begin{equation*}
+E_{\delta,M}[\rho] = \exp\left(\lambda\frac{T-1}{T+1}\right)
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i><sub><i>M</i></sub>[<i>ρ</i>] = <i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">1 + 3<i>T</i> + 2<i>T</i><sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+<div class="math">
+\begin{equation*}
+E_M[\rho] = \rho_0  \exp\left(\lambda\frac{2 T^2}{1+3T+2T^2}\right)
+\end{equation*}
 </div>
 </div>
 <div class="section" id="expectation-value-of-the-mass-weighted-density-squared-e-m-rho-2">
-<h4>Expectation Value of the Mass-Weighted Density Squared <span class="formula"><i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>]</span></h4>
-<div class="formula">
-<i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>] = <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><i>ρ</i><sup>2</sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> + <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><i>ρ</i><sup>2</sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<i>du</i>
+<h4>Expectation Value of the Mass-Weighted Density Squared <span class="math">\(E_M[\rho^2]\)</span></h4>
+<div class="math">
+\begin{equation*}
+E_M[\rho^2] = \int \rho^2 \frac{\rho}{\rho_0} e^{-\lambda} \left[I_1(x) e^{-x^2/(4\lambda)} \right]dx + \int \rho^2 \frac{\rho}{\rho_0} e^{-\lambda} \delta(u) du
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i><sub><i>δ</i>, <i>M</i></sub>[<i>ρ</i><sup>2</sup>] = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>T</i> − 1</span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<div class="math">
+\begin{equation*}
+E_{\delta,M}[\rho^2] = \rho_0^2 \exp\left[\lambda\frac{2T-1}{T+1}\right]
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i><sub><i>left</i></sub>[<i>ρ</i><sup>2</sup>] = <i>e</i><sup> − <i>λ</i></sup><span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>3<i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i>
+<div class="math">
+\begin{equation*}
+E_{left}[\rho^2] = e^{-\lambda} \int
+\rho_0^2 \exp\left[3T\left(-\frac{x^2}{4\lambda} + \frac{\lambda}{1+T}\right)\right]
+\left[I_1(x) e^{-x^2/(4\lambda)} \right]
+dx
+\end{equation*}
 </div>
-<div class="formula">
- = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">(2<i>T</i> − 1)<i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − (3<i>T</i> + 1)<i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><i>dx</i>
+<div class="math">
+\begin{equation*}
+ = \rho_0^2 \exp\left[\frac{(2T-1)\lambda}{1+T}\right]
+\int I_1(x) e^{-(3T+1)x^2/(4\lambda)}  dx
+\end{equation*}
 </div>
-<div class="formula">
- = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">(2<i>T</i> − 1)<i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">3<i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span> − 1<span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+<div class="math">
+\begin{equation*}
+ = \rho_0^2 \exp\left[\frac{(2T-1)\lambda}{1+T}\right]
+\left( \exp\left[\frac{\lambda}{3T+1}\right] - 1\right)
+\end{equation*}
 </div>
-<div class="formula">
- = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">6<i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">3<i>T</i><sup>2</sup> + 4<i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span> − exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">(2<i>T</i> − 1)<i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+<div class="math">
+\begin{equation*}
+= \rho_0^2 \left(\exp\left[\frac{6\lambda T^2}{3T^2+4T+1}\right] - \exp\left[\frac{(2T-1)\lambda}{1+T}\right] \right)
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>] = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">6<i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">3<i>T</i><sup>2</sup> + 4<i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<div class="math">
+\begin{equation*}
+E_{M}[\rho^2] = \rho_0^2 \exp\left[\frac{6\lambda T^2}{3T^2+4T+1}\right]
+\end{equation*}
 </div>
 </div>
 <div class="section" id="variance-of-the-mass-weighted-density-v-m-rho-e-m-rho-2-e-m-rho-2">
-<h4>Variance of the Mass-Weighted Density <span class="formula"><i>V</i><sub><i>M</i></sub>[<i>ρ</i>] = <i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>] − <i>E</i><sub><i>M</i></sub>[<i>ρ</i>]<sup>2</sup></span></h4>
-<p>Since correction factors are given for <span class="formula"><i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>]</span> and
-<span class="formula"><i>E</i><sub><i>M</i></sub>[<i>ρ</i>]</span>, they are not included separately here:</p>
-<div class="formula">
-<i>V</i><sub><i>M</i></sub>[<i>ρ</i>] = <i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>] − <i>E</i><sub><i>M</i></sub>[<i>ρ</i>]<sup>2</sup> = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">6<i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">3<i>T</i><sup>2</sup> + 4<i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span> − exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator">4<i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">1 + 3<i>T</i> + 2<i>T</i><sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+<h4>Variance of the Mass-Weighted Density <span class="math">\(V_M[\rho] = E_M[\rho^2] - E_M[\rho]^2\)</span></h4>
+<p>Since correction factors are given for <span class="math">\(E_M[\rho^2]\)</span> and
+<span class="math">\(E_M[\rho]\)</span>, they are not included separately here:</p>
+<div class="math">
+\begin{equation*}
+V_M[\rho] = E_M[\rho^2] - E_M[\rho]^2
+= \rho_0^2 \left( \exp\left[\frac{6\lambda T^2}{3T^2+4T+1}\right]
+-\exp\left[\lambda\frac{4 T^2}{1+3T+2T^2}\right]
+\right)
+\end{equation*}
 </div>
 </div>
 <div class="section" id="expectation-value-of-the-volume-weighted-log-density-e-ln-rho">
-<h4>Expectation Value of the Volume-Weighted Log Density <span class="formula"><i>E</i>[ln<i>ρ</i>]</span></h4>
-<div class="formula">
-<i>E</i>[ln<i>ρ</i>] = <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span>ln<i>ρ</i><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> + <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span>ln<i>ρ</i><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<i>du</i>
+<h4>Expectation Value of the Volume-Weighted Log Density <span class="math">\(E[\ln \rho]\)</span></h4>
+<div class="math">
+\begin{equation*}
+E[\ln \rho] = \int \ln \rho e^{-\lambda} \left[I_1(x) e^{-x^2/(4\lambda)} \right]dx + \int \ln \rho e^{-\lambda} \delta(u) du
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i><sub><i>δ</i></sub>[ln<i>ρ</i>] = <i>e</i><sup> − <i>λ</i></sup><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + ln<i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<div class="math">
+\begin{equation*}
+E_\delta[\ln \rho] = e^{-\lambda} \left[ \frac{\lambda T}{1+T} + \ln \rho_0 \right]
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i><sub><i>left</i></sub>[ln<i>ρ</i>] = <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>ln<i>ρ</i><sub>0</sub> + <i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i>
+<div class="math">
+\begin{equation*}
+E_{left}[\ln \rho] = \int \left[\ln \rho_0 + T\left(-\frac{x^2}{4\lambda} + \frac{\lambda}{1+T}\right) \right] e^{-\lambda} \left[I_1(x) e^{-x^2/(4\lambda)} \right]dx
+\end{equation*}
 </div>
-<div class="formula">
- = <i>e</i><sup> − <i>λ</i></sup><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> − <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+<div class="math">
+\begin{equation*}
+= e^{-\lambda} \left( \int \left[\ln \rho_0 + \frac{T\lambda}{1+T}\right] \left[I_1(x) e^{-x^2/(4\lambda)} \right]dx
+- \int \frac{T x^2}{4\lambda} \left[I_1(x) e^{-x^2/(4\lambda)} \right]dx \right)
+\end{equation*}
 </div>
-<div class="formula">
- = <i>e</i><sup> − <i>λ</i></sup><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>(<i>e</i><sup><i>λ</i></sup> − 1) − <span class="fraction"><span class="ignored">(</span><span class="numerator">4<i>T</i><i>λ</i><sup>2</sup><i>e</i><sup><i>λ</i></sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+<div class="math">
+\begin{equation*}
+= e^{-\lambda} \left( \int \left[\ln \rho_0 + \frac{T\lambda}{1+T}\right](e^{\lambda}-1)
+- \frac{4 T \lambda^2 e^{\lambda}}{4\lambda} \right)
+\end{equation*}
 </div>
-<div class="formula">
- = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>(1 − <i>e</i><sup> − <i>λ</i></sup>) − <i>T</i><i>λ</i><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+<div class="math">
+\begin{equation*}
+= \left( \left[\ln \rho_0 + \frac{T\lambda}{1+T}\right](1-e^{-\lambda})
+- T \lambda  \right)
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i>[ln<i>ρ</i>] = ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>T</i><i>λ</i>
+<div class="math">
+\begin{equation*}
+E[\ln \rho] = \ln \rho_0 + \frac{T\lambda}{1+T} - T \lambda
+\end{equation*}
 </div>
-<div class="formula">
- = ln<i>ρ</i><sub>0</sub> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span>
+<div class="math">
+\begin{equation*}
+= \ln \rho_0 - \frac{T^2\lambda}{1+T}
+\end{equation*}
 </div>
 </div>
 <div class="section" id="expectation-value-of-the-mass-weighted-log-density-e-m-ln-rho">
-<h4>Expectation Value of the Mass-Weighted Log Density <span class="formula"><i>E</i><sub><i>M</i></sub>[ln<i>ρ</i>]</span></h4>
-<div class="formula">
-<i>E</i><sub><i>M</i></sub>[ln<i>ρ</i>] = <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span>ln<i>ρ</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> + <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span>ln<i>ρ</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<i>du</i>
+<h4>Expectation Value of the Mass-Weighted Log Density <span class="math">\(E_M[\ln \rho]\)</span></h4>
+<div class="math">
+\begin{equation*}
+E_M[\ln \rho] = \int \ln \rho \frac{\rho}{\rho_0} e^{-\lambda} \left[I_1(x) e^{-x^2/(4\lambda)} \right]dx + \int \ln \rho \frac{\rho}{\rho_0} e^{-\lambda} \delta(u) du
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i><sub><i>δ</i></sub>[ln<i>ρ</i>] = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + ln<i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"> − <i>λ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<div class="math">
+\begin{equation*}
+E_\delta[\ln \rho] = \left( \frac{\lambda T}{1+T} + \ln \rho_0 \right) \exp\left[\frac{ -\lambda }{T+1}\right]
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i><sub><i>left</i></sub>[ln<i>ρ</i>] = <i>e</i><sup> − <i>λ</i></sup><span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i>
+<div class="math">
+\begin{equation*}
+E_{left}[\ln \rho] = e^{-\lambda} \int \left[
+\left(\ln \rho_0 + T\left(-\frac{x^2}{4\lambda} + \frac{\lambda}{1+T}\right) \right)
+\exp\left(T\left(-\frac{x^2}{4\lambda} + \frac{\lambda}{1+T}\right)\right) \right]
+\left[I_1(x) e^{-x^2/(4\lambda)} \right]dx
+\end{equation*}
 </div>
 <p>Again, separate into integrable terms:</p>
-<div class="formula">
- = exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>λ</i><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − (1 + <i>T</i>)<i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span> + <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>Tx</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − (1 + <i>T</i>)<i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<div class="math">
+\begin{equation*}
+= \exp\left(\frac{T\lambda}{1+T} -\lambda\right) \left[
+\left(\ln \rho_0 + \frac{T\lambda}{1+T} \right)  \left[I_1(x) e^{-(1+T)x^2/(4\lambda)} \right] +
+\left(-\frac{Tx^2}{4\lambda} \right)  \left[I_1(x) e^{-(1+T)x^2/(4\lambda)} \right]
+\right]
+\end{equation*}
 </div>
-<div class="formula">
-<i>L</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span>
+<div class="math">
+\begin{equation*}
+L = \frac{\lambda}{1+T}
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i><sub><i>left</i></sub>[ln<i>ρ</i>] = exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>λ</i><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span> − 1<span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> + <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">4<i>λ</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<div class="math">
+\begin{equation*}
+E_{left}[\ln \rho] = \exp\left(\frac{T\lambda}{1+T} -\lambda\right) \left[
+\left(\ln \rho_0 + \frac{T\lambda}{1+T} \right)  \left(\exp\left[\frac{\lambda}{1+T}\right]-1\right) +
+\left(-\frac{T}{4\lambda} \right)  \left(\frac{4  \lambda^2}{(1+T)^2}  \exp\left[\frac{\lambda}{1+T}\right]\right)
+\right]
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i><sub><i>left</i></sub>[ln<i>ρ</i>] = exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"> − <i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span> − 1<span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> + <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">4<i>λ</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<div class="math">
+\begin{equation*}
+E_{left}[\ln \rho] = \exp\left(\frac{-\lambda}{1+T}\right) \left[
+\left(\ln \rho_0 + \frac{T\lambda}{1+T} \right)  \left(\exp\left[\frac{\lambda}{1+T}\right]-1\right) +
+\left(-\frac{T}{4\lambda} \right)  \left(\frac{4  \lambda^2}{(1+T)^2}  \exp\left[\frac{\lambda}{1+T}\right]\right)
+\right]
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i><sub><i>left</i></sub>[ln<i>ρ</i>] = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>1 − exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"> − <i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> − <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+<div class="math">
+\begin{equation*}
+E_{left}[\ln \rho] =
+\left(\ln \rho_0 + \frac{T\lambda}{1+T} \right)  \left(1-\exp\left[\frac{-\lambda}{1+T}\right]\right) -
+\left(\frac{ T \lambda}{(1+T)^2}  \right)
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i><sub><i>M</i></sub>[ln<i>ρ</i>] = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> − <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+<div class="math">
+\begin{equation*}
+E_M[\ln \rho] = \left(\ln \rho_0 + \frac{T\lambda}{1+T} \right) -
+\left(\frac{ T \lambda}{(1+T)^2}  \right)
+\end{equation*}
 </div>
-<div class="formula">
- = ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span>
+<div class="math">
+\begin{equation*}
+= \ln \rho_0 + \frac{T^2\lambda}{(1+T)^2}
+\end{equation*}
 </div>
 </div>
 <div class="section" id="expectation-value-of-the-mass-weighted-log-density-squared-e-m-ln-2-rho">
-<h4>Expectation Value of the Mass-Weighted Log Density Squared <span class="formula"><i>E</i><sub><i>M</i></sub>[ln<sup>2</sup><i>ρ</i>]</span></h4>
-<div class="formula">
-<i>E</i><sub><i>M</i></sub>[ln<sup>2</sup><i>ρ</i>] = <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span>(ln<i>ρ</i>)<sup>2</sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> + <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span>(ln<i>ρ</i>)<sup>2</sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<i>du</i>
+<h4>Expectation Value of the Mass-Weighted Log Density Squared <span class="math">\(E_M[\ln^2 \rho]\)</span></h4>
+<div class="math">
+\begin{equation*}
+E_M[\ln^2 \rho] = \int (\ln \rho)^2 \frac{\rho}{\rho_0} e^{-\lambda} \left[I_1(x) e^{-x^2/(4\lambda)} \right]dx + \int (\ln \rho)^2 \frac{\rho}{\rho_0} e^{-\lambda} \delta(u) du
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i><sub><i>δ</i></sub>[ln<sup>2</sup><i>ρ</i>] = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + ln<i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"> − <i>λ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<div class="math">
+\begin{equation*}
+E_\delta[\ln^2 \rho] = \left( \frac{\lambda T}{1+T} + \ln \rho_0 \right)^2 \exp\left[\frac{ -\lambda }{T+1}\right]
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i><sub><i>left</i></sub>[ln<sup>2</sup><i>ρ</i>] = <i>e</i><sup> − <i>λ</i></sup><span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i>
+<div class="math">
+\begin{equation*}
+E_{left}[\ln^2 \rho] = e^{-\lambda} \int \left[
+\left(\ln \rho_0 + T\left(-\frac{x^2}{4\lambda} + \frac{\lambda}{1+T}\right) \right)^2
+\exp\left(T\left(-\frac{x^2}{4\lambda} + \frac{\lambda}{1+T}\right)\right) \right]
+\left[I_1(x) e^{-x^2/(4\lambda)} \right]dx
+\end{equation*}
 </div>
 <p>This time it's just too ugly.  Define a new variable:</p>
-<div class="formula">
-<i>Q</i> = ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span>
+<div class="math">
+\begin{equation*}
+Q = \ln \rho_0 + \frac{T\lambda}{1+T}
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i><sub><i>left</i></sub>[ln<sup>2</sup><i>ρ</i>] = <i>e</i><sup> − <i>λ</i> ⁄ (1 + <i>T</i>)</sup><span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>Q</i> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>Tx</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i>
+<div class="math">
+\begin{equation*}
+E_{left}[\ln^2 \rho] = e^{-\lambda/(1+T)} \int \left[
+\left(Q  -\frac{T x^2}{4\lambda} \right)^2
+\exp\left(-\frac{Tx^2}{4\lambda} \right) \right]
+\left[I_1(x) e^{-x^2/(4\lambda)} \right]dx
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i><sub><i>left</i></sub>[ln<sup>2</sup><i>ρ</i>] = <i>e</i><sup> − <i>λ</i> ⁄ (1 + <i>T</i>)</sup><span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>Q</i><sup>2</sup> − 2<i>Q</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>x</i><sup>4</sup></span><span class="ignored">)/(</span><span class="denominator">16<i>λ</i><sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − (1 + <i>T</i>)<i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><i>dx</i>
+<div class="math">
+\begin{equation*}
+E_{left}[\ln^2 \rho] = e^{-\lambda/(1+T)} \int \left[
+\left(Q^2  - 2 Q \frac{T x^2}{4\lambda} + \frac{T^2 x^4}{16\lambda^2} \right)
+\left[I_1(x) e^{-(1+T)x^2/(4\lambda)} \right]
+\right]dx
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i><sub><i>left</i></sub>[ln<sup>2</sup><i>ρ</i>] = <i>e</i><sup> − <i>λ</i> ⁄ (1 + <i>T</i>)</sup><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><i>Q</i><sup>2</sup>(<i>e</i><sup><i>λ</i> ⁄ (1 + <i>T</i>)</sup> − 1) − 2<i>Q</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">4<i>λ</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span><i>e</i><sup><i>λ</i> ⁄ (1 + <i>T</i>)</sup><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">16<i>λ</i><sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>16<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><sup>3</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + 2)<i>e</i><sup><i>λ</i> ⁄ (1 + <i>T</i>)</sup><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<div class="math">
+\begin{equation*}
+E_{left}[\ln^2 \rho] = e^{-\lambda/(1+T)}  \left[
+Q^2 (e^{\lambda/(1+T)}-1)
+- 2 Q \frac{T}{4\lambda} \left(\frac{4\lambda^2}{(1+T)^2} e^{\lambda/(1+T)}\right)
++ \frac{T^2}{16\lambda^2} \left(16 \frac{\lambda^3}{(1+T)^3} (\frac{\lambda}{1+T}+2) e^{\lambda/(1+T)} \right)
+\right]
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i><sub><i>left</i></sub>[ln<sup>2</sup><i>ρ</i>] = <i>Q</i><sup>2</sup>(1 − <i>e</i><sup> − <i>λ</i> ⁄ (1 + <i>T</i>)</sup>) − 2<i>Q</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + 2<span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+<div class="math">
+\begin{equation*}
+E_{left}[\ln^2 \rho] =
+Q^2 (1-e^{-\lambda/(1+T)})
+- 2 Q \frac{T\lambda}{(1+T)^2}
++ \frac{\lambda T^2}{(1+T)^3} \left(\frac{\lambda}{1+T}+2\right)
+\end{equation*}
 </div>
-<p>Add back the <span class="formula"><i>δ</i></span> termG</p>
-<div class="formula">
-<i>E</i><sub><i>M</i></sub>[ln<sup>2</sup><i>ρ</i>] = <i>Q</i><sup>2</sup> − 2<i>Q</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + 2<span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+<p>Add back the <span class="math">\(\delta\)</span> termG</p>
+<div class="math">
+\begin{equation*}
+E_M[\ln^2 \rho] =
+Q^2
+- 2 Q \frac{T\lambda}{(1+T)^2}
++ \frac{\lambda T^2}{(1+T)^3} \left(\frac{\lambda}{1+T}+2\right)
+\end{equation*}
 </div>
 <p>Re-expand to see if it's simplifiable....</p>
-<div class="formula">
-<i>E</i><sub><i>M</i></sub>[ln<sup>2</sup><i>ρ</i>] = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup> − 2<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + 2<span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+<div class="math">
+\begin{equation*}
+E_M[\ln^2 \rho] =
+\left(\ln \rho_0 + \frac{T\lambda}{1+T}\right)^2
+- 2 \left(\ln \rho_0 + \frac{T\lambda}{1+T}\right) \frac{T\lambda}{(1+T)^2}
++ \frac{\lambda T^2}{(1+T)^3} \left(\frac{\lambda}{1+T}+2\right)
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i><sub><i>M</i></sub>[ln<sup>2</sup><i>ρ</i>] = ln<sup>2</sup><i>ρ</i><sub>0</sub> + 2ln<i>ρ</i><sub>0</sub><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span> − 2ln<i>ρ</i><sub>0</sub><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span> − 2<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span> + 2<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span>
+<div class="math">
+\begin{equation*}
+E_M[\ln^2 \rho] =
+\ln^2 \rho_0 + 2 \ln \rho_0 \frac{T\lambda}{1+T} + \frac{T^2\lambda^2}{(1+T)^2}
+- 2 \ln \rho_0 \frac{T\lambda}{(1+T)^2} - 2 \frac{T\lambda}{1+T} \frac{T\lambda}{(1+T)^2}
++ 2 \frac{\lambda T^2}{(1+T)^3}
++ \frac{\lambda T^2}{(1+T)^3} \frac{\lambda}{1+T}
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i><sub><i>M</i></sub>[ln<sup>2</sup><i>ρ</i>] = ln<sup>2</sup><i>ρ</i><sub>0</sub> + 2ln<i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i><sup>2</sup>(1 + <i>T</i>)</span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span> − 2<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span> + 2<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><sup>2</sup><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>4</sup></span><span class="ignored">)</span></span>
+<div class="math">
+\begin{equation*}
+E_M[\ln^2 \rho] =
+\ln^2 \rho_0 + 2 \ln \rho_0 \left(\frac{T\lambda}{1+T} - \frac{T\lambda}{(1+T)^2}\right)
++ \frac{T^2\lambda^2(1+T)}{(1+T)^3}
+- 2 \frac{T^2\lambda^2}{(1+T)^3}
++ 2 \frac{\lambda T^2}{(1+T)^3}
++ \frac{\lambda^2 T^2}{(1+T)^4}
+\end{equation*}
 </div>
-<div class="formula">
-<i>E</i><sub><i>M</i></sub>[ln<sup>2</sup><i>ρ</i>] = ln<sup>2</sup><i>ρ</i><sub>0</sub> + 2ln<i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i><sup>2</sup>(1 + <i>T</i>)</span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span> − 2<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span> + 2<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><sup>2</sup><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>4</sup></span><span class="ignored">)</span></span>
+<div class="math">
+\begin{equation*}
+E_M[\ln^2 \rho] =
+\ln^2 \rho_0 + 2 \ln \rho_0 \left(\frac{T^2\lambda}{1+T}\right)
++ \frac{T^2\lambda^2(1+T)}{(1+T)^3}
+- 2 \frac{T^2\lambda^2}{(1+T)^3}
++ 2 \frac{\lambda T^2}{(1+T)^3}
++ \frac{\lambda^2 T^2}{(1+T)^4}
+\end{equation*}
 </div>
-<div class="formula">
- = ln<sup>2</sup><i>ρ</i><sub>0</sub> + 2ln<i>ρ</i><sub>0</sub><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span> + <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup> + <span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span>
+<div class="math">
+\begin{equation*}
+= \ln^2 \rho_0 + 2 \ln \rho_0 \frac{T^2 \lambda}{(1+T)^2}
++ \left(\frac{\lambda T^2}{(1+T)^2}\right)^2
++ \frac{2\lambda T^2}{(1+T)^3}
+\end{equation*}
 </div>
-<div class="formula">
- = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup> + <span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span>
+<div class="math">
+\begin{equation*}
+= \left(\ln \rho_0 + \frac{T^2\lambda}{(1+T)^2}\right)^2 +
+\frac{2\lambda T^2}{(1+T)^3}
+\end{equation*}
 </div>
 <p>As expected, we recover the correct relation from <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a>:</p>
-<div class="formula">
-<i>S</i><sub>ln<i>ρ</i>, <i>M</i></sub> = <i>E</i><sub><i>M</i></sub>[ln<i>ρ</i><sup>2</sup>] − <i>E</i><sub><i>M</i></sub>[ln<i>ρ</i>]<sup>2</sup> = ln<sup>2</sup><i>ρ</i><sub>0</sub> + 2ln<i>ρ</i><sub>0</sub><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span> + <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup> + <span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span> − <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup>
+<div class="math">
+\begin{equation*}
+S_{\ln \rho,M} = E_M[\ln \rho^2] - E_M[\ln \rho]^2 =
+\ln^2 \rho_0 + 2 \ln \rho_0 \frac{T^2 \lambda}{(1+T)^2}
++ \left(\frac{\lambda T^2}{(1+T)^2}\right)^2 + \frac{2\lambda T^2}{(1+T)^3}
+- \left(\ln \rho_0 + \frac{T^2\lambda}{(1+T)^2}\right)^2
+\end{equation*}
 </div>
-<div class="formula">
- = <span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>λ</i><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span>
+<div class="math">
+\begin{equation*}
+= \frac{2\lambda T^2}{(1+T)^3}
+\end{equation*}
 </div>
-<p><em>independent</em> of <span class="formula"><i>ρ</i><sub>0</sub></span>.</p>
+<p><em>independent</em> of <span class="math">\(\rho_0\)</span>.</p>
 <div class="section" id="properties-of-the-hopkins-pdf">
 <h5>Properties of the Hopkins PDF</h5>
 <p>I began this investigation in order to find out whether a different parameter,
@@ -887,32 +1141,94 @@ and the volume-averaged density of some clouds.</p>
 <p>I naively expected that, in compressive turbulence, more of the mass will be
 concentrated at higher density, which should drive up the mass-weighted mean
 density.</p>
-<p><a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> showed that <span class="formula"><i>T</i> ~ ℳ<sub><i>C</i></sub></span>.  If this is taken on
-face value, without recognizing the relation between <span class="formula"><i>T</i></span> and
-<span class="formula"><i>σ</i></span>, it means that for <em>fixed</em> <span class="formula"><i>σ</i></span>,
-<span class="formula"> &lt; <i>ρ</i> &gt; <sub><i>M</i></sub> ∝ <i>e</i><sup> − <i>T</i><sup>2</sup></sup></span>.</p>
-<p>This figure shows the relation of the various moments and <span class="formula"><i>T</i></span>.  The plots
+<p><a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> showed that <span class="math">\(T\sim\mathcal{M}_C\)</span>.  If this is taken on
+face value, without recognizing the relation between <span class="math">\(T\)</span> and
+<span class="math">\(\sigma\)</span>, it means that for <em>fixed</em> <span class="math">\(\sigma\)</span>,
+<span class="math">\(&lt;\rho&gt;_M\propto e^{-T^2}\)</span>.</p>
+<p>This figure shows the relation of the various moments and <span class="math">\(T\)</span>.  The plots
 show both the &quot;theoretical&quot; result (i.e., doing the integral by hand) and the
 numerical result with 50,000 data points plus a correction for the
-<span class="formula"><i>δ</i></span> terms; the agreement is essentially perfect excepting some
+<span class="math">\(\delta\)</span> terms; the agreement is essentially perfect excepting some
 numerical noise (the only visible discrepancy is for a perfect lognormal at
-high <span class="formula"><i>σ</i><sub><i>V</i></sub></span>):</p>
+high <span class="math">\(\sigma_V\)</span>):</p>
 <img alt="" src="http://keflavich.github.io/blog/images/rho1_varyT_colorSigma.png" style="width: 800px;" />
 <p>However, <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> also found that simulations generally produced
-<span class="formula"><i>T</i> ~ 0.1<i>σ</i><span class="scripts"><sup class="script">2</sup><sub class="script"><i>s</i>, <i>M</i></sub></span></span> (though a relation of the form <span class="formula"><i>T</i> ~ 0.25ln(1 + 0.25<i>σ</i><span class="scripts"><sup class="script">4</sup><sub class="script"><i>s</i>, <i>M</i></sub></span>)</span> is also a good fit).</p>
+<span class="math">\(T\sim0.1\sigma_{s,M}^2\)</span> (though a relation of the form <span class="math">\(T\sim 0.25
+\ln(1+0.25\sigma_{s,M}^4)\)</span> is also a good fit).</p>
 <p>If you use the simpler of these relations, the expected relationship (mean mass
 increasing with increasing &quot;compressiveness&quot;) is recovered.  However, it comes
-with an increasing <span class="formula"><i>σ</i><sub><i>s</i></sub></span>.  In these plots, half are labeled with
-<span class="formula"><i>σ</i></span> and the others are labeled with <span class="formula"><i>T</i></span>, though the two are
-equivalent.  The highest <span class="formula"><i>σ</i><sub><i>s</i></sub></span> observed in any of the simulations
-shown in <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> was about <span class="formula"><i>σ</i><sub><i>s</i></sub> = 4</span> (marked with a black
-square below), so the maximum <span class="formula"><i>ρ</i><sub><i>M</i></sub> ⁄ <i>ρ</i><sub><i>V</i></sub> ~ 10<sup>2</sup></span>.</p>
+with an increasing <span class="math">\(\sigma_s\)</span>.  In these plots, half are labeled with
+<span class="math">\(\sigma\)</span> and the others are labeled with <span class="math">\(T\)</span>, though the two are
+equivalent.  The highest <span class="math">\(\sigma_s\)</span> observed in any of the simulations
+shown in <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> was about <span class="math">\(\sigma_s=4\)</span> (marked with a black
+square below), so the maximum <span class="math">\(\rho_M/\rho_V \sim 10^2\)</span>.</p>
 <img alt="" src="http://keflavich.github.io/blog/images/TSigma.png" style="width: 800px;" />
 </div>
 </div>
 </div>
 </div>
- </div><!-- /.entry-content   not article.summary--> 
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script> </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
     <li><article class="hentry">
@@ -988,17 +1304,17 @@ Bolocat:</p>
 capability of recovering accurate flux density measurements from a realistic
 sky using bolocat.</p>
 <p>However, the above figures show a simulation only for one set of parameters,
-with <span class="formula"><i>α</i> = 1</span> in the power-law flux distribution, which unfortunately
+with <span class="math">\(\alpha=1\)</span> in the power-law flux distribution, which unfortunately
 is not realistic according to &quot;Figure 8&quot;:</p>
 <img alt="" src="https://raw.github.com/keflavich/bgpsv2/master/figures/l030_higal_bgps_powerspec_compare.png?login=keflavich&amp;token=fa363ee3e28903c751c2a3c9f2b318a0" style="width: 800px;" />
 <p>So I've started up a new experiment, experiment #23, to examine this problem.</p>
 <p>The problem has a few layers:</p>
 <ol class="arabic simple">
-<li>The reason I used <span class="formula"><i>α</i> = 1</span> is that it looks much like a realistic
+<li>The reason I used <span class="math">\(\alpha=1\)</span> is that it looks much like a realistic
 BGPS map after processing, in the sense that most of the field is empty
-but there are a few hundred sources in the map.  However, <span class="formula"><i>α</i> = 1</span>
+but there are a few hundred sources in the map.  However, <span class="math">\(\alpha=1\)</span>
 is not a realistic representation of the measured power spectra.</li>
-<li><span class="formula"><i>α</i> = 2</span> maps with the previous normalization had a peak value of
+<li><span class="math">\(\alpha=2\)</span> maps with the previous normalization had a peak value of
 18 Jy, which resulted in heavily signal-dominated output maps that did not
 resemble BGPS maps.</li>
 <li>The normalization is tricky.  One of the key goals of the simulations was to
@@ -1019,7 +1335,7 @@ distributed map.</li>
 <li>The normalizations used in experiment #21, the angular transfer function
 measurement, were selected such that there would be high signal-to-noise at
 all angular scales.  This means that white noise would not be dominant on
-any angular scale, since white noise is equivalent to <span class="formula"><i>α</i> = 0</span>.  So
+any angular scale, since white noise is equivalent to <span class="math">\(\alpha=0\)</span>.  So
 it wasn't crazy to use these ridiculously high-flux maps, but it is not
 feasible to use the same maps for analysis of point sources.  In maps for
 which we're interested in small-angular-scale features (&lt;100&quot;), we want the
@@ -1093,7 +1409,7 @@ Out[199]: [0.18015364, 0.18674377, -0.016305592, 0.2868295, 0.29759517, -0.00027
 <p>With background apertures:</p>
 <img alt="" src="http://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/annulus_exam_bgapers.png" style="width: 800px;" />
 <p>However, note that the background are computed using the <tt class="docutils literal">mmm.pro</tt>
-sky-background estimation procedure over a range <span class="formula">2<i>r</i></span> to <span class="formula">4<i>r</i></span>
+sky-background estimation procedure over a range <span class="math">\(2r\)</span> to <span class="math">\(4r\)</span>
 (i.e., 40-80&quot; and 120-240&quot; radius for the 40&quot; and 120&quot; diameter apertures).</p>
 <p>The numbers shown by ds9 disagree fairly severely with those from bolocat.
 In particular, it appears that the background estimate returned by <tt class="docutils literal">mmm.pro</tt>
@@ -1129,14 +1445,14 @@ must be an issue of the source brightness still not being calculated correctly):
 <img alt="" src="http://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_80_bright_1.0E-05.png" style="width: 800px;" />
 <p>I'll have to continue this analysis tomorrow once the full suite of simulations
 has completed, but I strongly suspect that we'll have to recommend strictly
-against using <tt class="docutils literal">FLUX_120</tt> if the background is expected to be <span class="formula"><i>α</i> = 2</span>
+against using <tt class="docutils literal">FLUX_120</tt> if the background is expected to be <span class="math">\(\alpha=2\)</span>
 distributed.</p>
 <div class="section" id="day-2">
 <h2>Day 2</h2>
 <p>The simulations have partly completed.  After correcting the error with
 convolved point sources vs.  delta functions, I reset the flux distributions to
 be 0.05 to 1.0 Jy for the &quot;faint&quot; distribution and 0.1 to 50.0 Jy for the
-&quot;bright&quot; distribution (both with power-law distributions <span class="formula"><i>α</i> = 2</span>).</p>
+&quot;bright&quot; distribution (both with power-law distributions <span class="math">\(\alpha=2\)</span>).</p>
 <p>The results can be summarized:</p>
 <blockquote>
 <ol class="arabic simple">
@@ -1145,7 +1461,7 @@ with amplitude comparable to the detected source brightness, only the smallest
 aperture (40&quot;) is reliable (i.e., recovers a flux in the input and
 processed map).</li>
 <li>The recovered flux density has a very high dispersion in the presence of
-high-amplitude power-law flux.  &quot;Very high&quot; = <span class="formula"><i>σ</i>≳1</span>
+high-amplitude power-law flux.  &quot;Very high&quot; = <span class="math">\(\sigma \gtrsim 1\)</span>
 around a mean of 1.</li>
 <li>There is no evident dependence of the maps on the atmospheric properties.
 Therefore, there's no sense in varying the atmospheric properties in the
@@ -1161,7 +1477,7 @@ does not affect the recovery, but it does affect the signal-to-noise of the
 recovery <em>measurement</em>.  Please don't ask me to defend this statement; it would
 require another 10 hours of computer time + me time that I really don't want to
 allocate, but I'm confident that it is true.</p>
-<p>The essential conclusion is that, for <span class="formula"><i>α</i> = 2</span>, point source recovery
+<p>The essential conclusion is that, for <span class="math">\(\alpha=2\)</span>, point source recovery
 is only possible if the point source is brighter than the background, which is
 a very intuitive result.  Background annulus subtraction isn't very effective
 at pulling out sources.</p>
@@ -1191,11 +1507,72 @@ on the right, with faint sources (0.1-1 Jy).</p>
 <img alt="" src="http://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/faint_vs_bright_background.png" style="width: 800px;" />
 <p>It's more helpful to look at that previous image with the source contours
 superposed.  These images really give a nice feel for what it means to have
-point sources subsumed in <span class="formula"><i>α</i> = 2</span> background.</p>
+point sources subsumed in <span class="math">\(\alpha=2\)</span> background.</p>
 <img alt="" src="http://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp5.0E-05_sky-2.0_seed00_peak5.0E-03_smooth_withptsrc_label_compare.png" style="width: 800px;" />
 <img alt="" src="http://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp3.2E-05_sky-2.0_seed00_peak1.0E-03_smooth_withptsrc_label_compare.png" style="width: 800px;" />
 </div>
- </div><!-- /.entry-content   not article.summary--> 
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script> </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
     <li><article class="hentry">
@@ -1239,51 +1616,126 @@ point sources subsumed in <span class="formula"><i>α</i> = 2</span> backgro
         <div class="entry-content"> <p>Adopt an effective Bolocam center frequency,  f = 271.1 GHz</p>
 <p>Use Ossenkopf, V. &amp; Henning, Th. 1994, A&amp;A, 291, 943 Table 1. [<a class="reference external" href="http://adsabs.harvard.edu/abs/1994A%26A...291..943O">http://adsabs.harvard.edu/abs/1994A%26A...291..943O</a>]
 Interpolate last two entries (lambda = 1.0 mm and 1.3 mm to f)</p>
-<p>This gives <span class="formula"><i>κ</i> = 0.01166<i>cm</i><sup>2</sup><i>g</i><sup> − 1</sup></span> (or round to 0.0117)
+<p>This gives <span class="math">\(\kappa = 0.01166 cm^2 g^{-1}\)</span> (or round to 0.0117)
 for gas-to-dust = 100.
 But the slope between these 2 points is only 1.61!</p>
 <p>The points in OH94 table 1 jump around and locally give a variety of
 slopes around 1.8.  A fit to kappa longward of 100 microns
 gives a slope of 1.8.</p>
-<p>Interpolating kappa from 1.00 mm where OH5 gives <span class="formula"><i>κ</i>(1.00) = 0.0137</span>
+<p>Interpolating kappa from 1.00 mm where OH5 gives <span class="math">\(\kappa(1.00) = 0.0137\)</span>
 (for a gas-to-dust ratio = 100) to 271.1 GHz (= 1.1058 mm)
 using a slope of 1.8 gives:</p>
-<p><span class="formula"><i>κ</i> = 0.01143<i>cm</i><sup>2</sup><i>g</i><sup> − 1</sup></span></p>
+<p><span class="math">\(\kappa = 0.01143 cm^{2} g^{-1}\)</span></p>
 <p>This is the same as the value used by Enoch, so let's adopt it
 (round to 0.0114), but note that this was calculated for 271.1 GHz.</p>
 <p>For the v1.0 data, the BGPS has the following properties:</p>
 <p>effective beam FWHM = 33&quot;</p>
-<p>gaussian beam <span class="formula"><i>σ</i> = 14.01</span>&quot;    (= FWHM / <span class="formula"><span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root">(8*ln(2))</span><span class="ignored">)</span></span></span>)</p>
-<p>effective beam radius = 19.82&quot;    (= FWHM / <span class="formula"><span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root">(4*ln(2))</span><span class="ignored">)</span></span></span>)</p>
+<p>gaussian beam <span class="math">\(\sigma = 14.01\)</span>&quot;    (= FWHM / <span class="math">\(\sqrt{(8*\ln(2))}\)</span>)</p>
+<p>effective beam radius = 19.82&quot;    (= FWHM / <span class="math">\(\sqrt{(4*\ln(2))}\)</span>)</p>
 <p>This is the radius of a circular top-hat function that has the
 same solid angle as a gaussian.  At a distance of
-D = 1 kpc, this radius corresponds to a length  = <span class="formula">2.97<i>x</i>10<sup>17</sup></span> cm.
-The effective beam solid angle is <span class="formula">Ω = 2.902<i>x</i>10<sup> − 8</sup></span> sr.</p>
-<p>Adopt a fiducial dust temperature for mass calculations, <span class="formula"><i>T</i><sub><i>d</i></sub> = 20<i>K</i></span></p>
-<p>The total mass per Jy at <span class="formula"><i>D</i><sub><i>kpc</i></sub></span> = 1 kpc is given by</p>
-<div class="formula">
-<i>M</i> = 1.0<i>x</i>10<sup> − 23</sup>*<i>S</i>(<i>Jy</i>)*<i>D</i><sup>2</sup> ⁄ <i>κ</i>*<i>B</i><sub><i>ν</i></sub>(<i>T</i>)
+D = 1 kpc, this radius corresponds to a length  = <span class="math">\(2.97 x 10^{17}\)</span> cm.
+The effective beam solid angle is <span class="math">\(\Omega = 2.902 x 10^{-8}\)</span> sr.</p>
+<p>Adopt a fiducial dust temperature for mass calculations, <span class="math">\(T_d = 20K\)</span></p>
+<p>The total mass per Jy at <span class="math">\(D_{kpc}\)</span> = 1 kpc is given by</p>
+<div class="math">
+\begin{equation*}
+M = 1.0 x 10^{-23} * S(Jy) * D^2 / \kappa * B_{\nu}(T)
+\end{equation*}
 </div>
-<div class="formula">
- = 14.30*[<i>e</i><sup>13.01 ⁄ <i>T</i>(<i>K</i>) − 1</sup>]*<i>S</i>(<i>Jy</i>)*<i>D</i><span class="scripts"><sub class="script"><i>kpc</i></sub><sup class="script">2</sup></span><i>M</i><sub>⊙</sub>
+<div class="math">
+\begin{equation*}
+=  14.30 * [e^{13.01/T(K) - 1}] * S(Jy) * D^2_{kpc}   M_{\odot}
+\end{equation*}
 </div>
-<p>For <span class="formula"><i>T</i> = 20<i>K</i></span>:</p>
-<div class="formula">
-<i>M</i> = 13.07*<i>S</i>(<i>Jy</i>)*<i>D</i><span class="scripts"><sub class="script"><i>kpc</i></sub><sup class="script">2</sup></span><i>M</i><sub>⊙</sub>
+<p>For <span class="math">\(T = 20 K\)</span>:</p>
+<div class="math">
+\begin{equation*}
+M = 13.07 * S(Jy) * D^2_{kpc} M_{\odot}
+\end{equation*}
 </div>
-<p>This corresponds to a beam-filling column density of <span class="formula"><i>H</i><sub>2</sub></span>,</p>
-<div class="formula">
-<i>N</i>(<i>H</i>2) = 2.19<i>e</i> + 22*[<i>e</i><sup>13.01 ⁄ <i>T</i>(<i>K</i>) − 1</sup>]*<i>S</i>(<i>Jy</i>)(<i>cm</i><sup> − 2</sup>)
+<p>This corresponds to a beam-filling column density of <span class="math">\(H_2\)</span>,</p>
+<div class="math">
+\begin{equation*}
+N(H2) = 2.19e+22 * [e^{13.01/T(K) - 1}] * S(Jy)             (cm^{-2})
+\end{equation*}
 </div>
-<p>For <span class="formula"><i>T</i> = 20<i>K</i></span>:</p>
-<div class="formula">
-<i>N</i>(<i>H</i>2) = 2.01<i>x</i>10<sup>22</sup>*<i>S</i>(<i>Jy</i>)(<i>cm</i><sup> − 2</sup>)<i>A</i><sub><i>V</i></sub> = 21.1<span class="mathrm"> magnitudes</span><i>Jy</i><sup> − 1</sup>
+<p>For <span class="math">\(T = 20 K\)</span>:</p>
+<div class="math">
+\begin{equation*}
+N(H2) = 2.01 x 10^{22} * S(Jy)    (cm^{-2})
+A_V = 21.1 \mathrm{magnitudes} Jy^{-1}
+\end{equation*}
 </div>
 <p>where we use the Bohlin &amp; Savage calibration</p>
-<div class="formula">
-<i>A</i><sub><i>V</i></sub> = 1<i>mag</i>. &lt;  =  &gt; <i>N</i>(<i>H</i>) = 1.9<i>x</i>10<sup>20</sup><i>cm</i><sup> − 2</sup><span class="mathrm"> and</span><i>N</i>(<i>H</i><sub>2</sub>) = <i>N</i>(<i>H</i>) ⁄ 2
+<div class="math">
+\begin{equation*}
+A_V = 1 mag. &lt;=&gt; N(H) = 1.9 x 10^{20} cm^{-2} \mathrm{and}
+N(H_2) = N(H) / 2
+\end{equation*}
 </div>
- </div><!-- /.entry-content   not article.summary--> 
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script> </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
     <li><article class="hentry">
