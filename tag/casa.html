@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2019/07/23
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-corrupted-measurement-sets.html">CASA corrupted measurement sets</a>
+              </li>
+              <li class="post">
                   2017/04/26
                   <br>
                   <a href="http://keflavich.github.io/blog/a-quick-performance-test-on-casa-cleaning.html">A quick performance test on CASA cleaning</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/single-dish-combination-continued.html">Single Dish Combination Continued</a>
               </li>
-              <li class="post">
-                  2016/06/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/single-dish-interferometer-combination-experiments.html">Single Dish - Interferometer Combination Experiments</a>
-              </li>
         </ul>
       </li>
     
@@ -104,12 +104,84 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/casa-corrupted-measurement-sets.html" rel="bookmark" title="Permalink to CASA corrupted measurement sets">
+                    CASA corrupted measurement sets</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2019-07-23T13:11:00-06:00"> 2019/07/23 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Over the weekend, I had a huge quantity of ALMA data get corrupted. The
+corruption appears to have been caused by an incorrectly-mounted lustre system
+that had &quot;flock&quot; disabled.  When they re-mounted the filesystem, every
+measurement set I had touched was unreadable.</p>
+<p>Corrupted data sets had messages like this when opened with <tt class="docutils literal">msmd.open</tt>:</p>
+<pre class="literal-block">
+RuntimeError: Exception: Illegal DATA_DESC_ID value 30 found in main table. /lustre/cv/projects/ALMA_IMF/2017.1.01355.L/science_goal.uid___A001_X1296_X211/group.uid___A001_X1296_X212/member.uid___A001_X1296_X217/calibrated/uid___A002_Xcbdb2a_X6e67.ms.split.cal/DATA_DESCRIPTION only has 0 rows (IDs).
+... thrown by void casa::MSChecker::checkReferentialIntegrity() const at File: ../../msvis/MSVis/MSChecker.cc, line: 78
+</pre>
+<p>The solution was to replace all of the <tt class="docutils literal">table.dat</tt> files in the
+<tt class="docutils literal">DATA_DESCRIPTION</tt>, <tt class="docutils literal">POLARIZATION</tt>, <tt class="docutils literal">STATE</tt>, and <tt class="docutils literal">PROCESSOR</tt> folders
+with &quot;backups&quot; from the parent measurement set.  Luckily, all of my data were
+split from other measurement sets that still existed, and they were split with
+<tt class="docutils literal">reindex=False</tt>, which meant that these tables were actually usable.  There's
+no guarantee they would be in general.</p>
+<p>My fix script is this:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getdata</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">ii</span><span class="p">:(</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">)</span> <span class="k">for</span> <span class="n">ii</span><span class="p">,(</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span> <span class="k">if</span> <span class="n">xx</span><span class="o">!=</span><span class="n">yy</span><span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">fix_bad_mses</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">dirpath</span><span class="p">,</span> <span class="n">dirnames</span><span class="p">,</span> <span class="n">filenames</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">dirnames</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">fn</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span> <span class="o">==</span> <span class="s2">&quot;.split.cal&quot;</span><span class="p">:</span>
+                <span class="n">ffn</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span>
+                <span class="n">workingfn</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="s1">&#39;working&#39;</span><span class="p">,</span> <span class="n">fn</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">])</span>
+
+                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">workingfn</span><span class="p">):</span>
+                    <span class="c1">#print(&quot;Working on files {0} and {1}&quot;.format(ffn, workingfn))</span>
+                    <span class="k">print</span><span class="p">(</span><span class="n">ffn</span><span class="p">)</span>
+
+                    <span class="k">for</span> <span class="n">dn</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;POLARIZATION&#39;</span><span class="p">,</span> <span class="s1">&#39;PROCESSOR&#39;</span><span class="p">,</span> <span class="s1">&#39;DATA_DESCRIPTION&#39;</span><span class="p">,</span> <span class="s1">&#39;STATE&#39;</span><span class="p">]:</span>
+                        <span class="n">tbpth1</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ffn</span><span class="p">,</span> <span class="n">dn</span><span class="p">,</span> <span class="s1">&#39;table.dat&#39;</span><span class="p">)</span>
+                        <span class="n">tbpth2</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workingfn</span><span class="p">,</span> <span class="n">dn</span><span class="p">,</span> <span class="s1">&#39;table.dat&#39;</span><span class="p">)</span>
+
+                        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">tbpth1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">tbpth2</span><span class="p">):</span>
+                            <span class="n">d1</span> <span class="o">=</span> <span class="n">getdata</span><span class="p">(</span><span class="n">tbpth1</span><span class="p">)</span>
+                            <span class="n">d2</span> <span class="o">=</span> <span class="n">getdata</span><span class="p">(</span><span class="n">tbpth2</span><span class="p">)</span>
+                            <span class="n">delta</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">)</span>
+                            <span class="c1">#print(&quot;Diff from {0} to {1} is {2}&quot;.format(tbpth1, tbpth2, delta))</span>
+
+                            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">delta</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;FIXING: Diff for {0} is {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dn</span><span class="p">,</span> <span class="n">delta</span><span class="p">))</span>
+                                <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">tbpth1</span><span class="p">,</span> <span class="n">tbpth1</span><span class="o">+</span><span class="s2">&quot;.bck&quot;</span><span class="p">)</span>
+                                <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">tbpth2</span><span class="p">,</span> <span class="n">tbpth1</span><span class="p">)</span>
+</pre></div>
+<p>which spewed out a bunch of messages like this:</p>
+<pre class="literal-block">
+FIXING: Diff for POLARIZATION is {24: ('\x00', '\x01'), 1059: ('\x00', '\x01')}
+FIXING: Diff for PROCESSOR is {24: ('\x00', '\x03'), 1078: ('\x00', '\x03')}
+FIXING: Diff for DATA_DESCRIPTION is {24: ('\x00', '\x18'), 772: ('\x00', '\x18')}
+FIXING: Diff for STATE is {24: ('\x00', '\x1d'), 1699: ('\x00', '\x1d')}
+</pre>
+<p>showing that for each bad file, two bytes were flipped.  I don't know how or why.  Notably, though,
+the byte flips that corrupted the data did <em>not</em> change the file modification date - somehow CASA
+hid this operation from the filesystem.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
                 <a href="http://keflavich.github.io/blog/a-quick-performance-test-on-casa-cleaning.html" rel="bookmark" title="Permalink to A quick performance test on CASA cleaning">
                     A quick performance test on CASA cleaning</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2017-04-26T11:03:00"> 2017/04/26 </abbr>
+            <abbr class="published" title="2017-04-26T11:03:00-06:00"> 2017/04/26 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I ran some speed tests to compare CASA's speed when imaging single channels vs
 blocks of channels.  The tests were run with savemodel='none' on a lustre node</p>
@@ -140,7 +212,7 @@ disadvantage to running a different # of channels simultaneously.</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2016-08-15T09:36:00"> 2016/08/15 </abbr>
+            <abbr class="published" title="2016-08-15T09:36:00-06:00"> 2016/08/15 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>To evaluate imaging robustness &amp; quality, it is necessary to do some sort of
 synthetic observation.  These synthetic observations can be done on real
@@ -213,7 +285,7 @@ interferometric image.</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2016-06-14T09:31:00"> 2016/06/14 </abbr>
+            <abbr class="published" title="2016-06-14T09:31:00-06:00"> 2016/06/14 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>This image shows artifacts that look &quot;splotchy&quot;.  They are locations clean has
 placed a negative model component where none belongs, so the residual is highly
@@ -235,7 +307,7 @@ in the comments.</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2016-06-02T16:59:00"> 2016/06/02 </abbr>
+            <abbr class="published" title="2016-06-02T16:59:00-06:00"> 2016/06/02 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Continuing from yesterday, I've done some more analysis of my HC3N data on
 different scales.  The first critical note is that there appears to be
@@ -285,7 +357,7 @@ the interferometric data dominates the map.</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2016-06-01T11:17:00"> 2016/06/01 </abbr>
+            <abbr class="published" title="2016-06-01T11:17:00-06:00"> 2016/06/01 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I spent 3 days in Köln with Alvaro Sanchez-Mongé, Peter Schilke, Fanyi Meng,
 and Anika Schmiedeke working on Sgr B2 data and specifically on trying to
@@ -381,7 +453,7 @@ it hasn't been generalized but you can see the outline / single working case at
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2016-05-26T08:29:00"> 2016/05/26 </abbr>
+            <abbr class="published" title="2016-05-26T08:29:00-06:00"> 2016/05/26 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>This is an examination of the 'feather' task in CASA.</p>
 <p>First we have to track down what code is actually called.</p>
@@ -455,7 +527,7 @@ the process is guaranteed to be flux conserving.</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2016-05-19T09:31:00"> 2016/05/19 </abbr>
+            <abbr class="published" title="2016-05-19T09:31:00-06:00"> 2016/05/19 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>A brief public service announcement: CASA coordinate strings follow a
 convention of their own making that I at least find thoroughly
@@ -482,7 +554,7 @@ units.</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2016-05-01T10:21:00"> 2016/05/01 </abbr>
+            <abbr class="published" title="2016-05-01T10:21:00-06:00"> 2016/05/01 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I'm trying to examine some of my 7m+12m combined data and have run into yet another
 mysterious behavior of CASA.  <tt class="docutils literal">tclean</tt> is adding negative components in regions with
@@ -535,7 +607,7 @@ find the specific commit where I made them.</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2016-04-26T15:12:00"> 2016/04/26 </abbr>
+            <abbr class="published" title="2016-04-26T15:12:00-06:00"> 2016/04/26 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p><a class="reference external" href="|filename|/casa_simulation_debugging.rst">A few days ago</a>
 I apparently got my broken simulator working again.  Today, in my first
@@ -596,157 +668,6 @@ on importfits despite being forcibly added in the command.</p>
 <p>The problem is unfortunately not in the FITS part, but again in the CASA part.
 Re-importing the FITS file to .image without forcing <tt class="docutils literal">defaultaxes</tt> again just
 broke it.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/more-casa-simulation-debugging.html" rel="bookmark" title="Permalink to More CASA simulation & debugging">
-                    More CASA simulation &amp; debugging</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2016-04-24T22:57:00"> 2016/04/24 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>(this post written from snowy-ish ALMA; <a class="reference external" href="https://goo.gl/photos/z3fUkCT6VVRzt8EW6">just cloudy at the OSF though</a>)</p>
-<p>(tl; dr version: <tt class="docutils literal">sm.setvp</tt> doesn't work if you have <tt class="docutils literal"><span class="pre">TELESCOP=&quot;ALMA&quot;</span></tt> in
-your header)</p>
-<p>I'm trying to repeat an experiment very similar to
-<a class="reference external" href="http://keflavich.github.io/blog/casa-simulation.html">previous</a>
-<a class="reference external" href="http://keflavich.github.io/blog/simulated-observations-of-perseus-in-w51.html">simulation work</a>
-in order to quantify my completeness and largest angular scales
-by injecting synthetic signal into the real UV data.</p>
-<p>However, as you might expect, it doesn't work as it did last time, even
-when I (afaict) copy and paste the code directly.</p>
-<p>Here's the new error:</p>
-<pre class="literal-block">
-2016-04-25 02:57:21 SEVERE  Simulator::createSkyEquation() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2200)        Caught exception: Transformations to/from frame &quot;Undefined&quot; are not possible.
-2016-04-25 02:57:21 SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Failed to create SkyEquation
-Result of predict: False
-</pre>
-<p>It's strange because there is nothing obviously undefined.</p>
-<p>I'm comparing 2 FITS files that should behave identically.
-The good header lacks these keywords that the bad header has:</p>
-<pre class="literal-block">
-['PV2_1',
- 'PV2_2',
- 'OBSERVER',
- 'DATE-OBS',
- 'OBSRA',
- 'OBSDEC',
- 'OBSGEO-X',
- 'OBSGEO-Y',
- 'OBSGEO-Z']
-</pre>
-<p>while the good header has these and the bad lacks them:</p>
-<pre class="literal-block">
-['PC03_01',
- 'PC04_01',
- 'PC03_02',
- 'PC04_02',
- 'PC01_03',
- 'PC02_03',
- 'PC03_03',
- 'PC04_03',
- 'PC01_04',
- 'PC02_04',
- 'PC03_04',
- 'PC04_04',
- 'CREATOR',
- 'INSTRUME',
- 'BAND',
- 'PROPOSAL',
- 'PRTITLE',
- 'OBSID001',
- 'OBSID002',
- 'HISTORY']
-</pre>
-<p>The only significant difference is the <tt class="docutils literal">PC</tt> values, unless CASA
-is doing something with the observatory location information.</p>
-<p>The only difference in common keywords is numerical, which seems
-very unlikely to cause this issue.</p>
-<p>I cannot discern any useful difference between these two CASA .image headers:</p>
-<pre class="literal-block">
-2016-04-25 03:08:55 INFO imhead     ##########################################
-2016-04-25 03:08:55 INFO imhead     ##### Begin Task: imhead             #####
-2016-04-25 03:08:55 INFO imhead     imhead(imagename=&quot;../perseus_synth/perseus_250_to_w51.image&quot;,mode=&quot;summary&quot;,hdkey=&quot;&quot;,hdvalue=&quot;&quot;,verbose=True)
-2016-04-25 03:08:55 INFO ImageAnalysis
-2016-04-25 03:08:55 INFO ImageAnalysis      Image name       : perseus_250_to_w51.image
-2016-04-25 03:08:55 INFO ImageAnalysis      Object name      : perseus 04
-2016-04-25 03:08:55 INFO ImageAnalysis      Image type       : PagedImage
-2016-04-25 03:08:55 INFO ImageAnalysis      Image quantity   : Intensity
-2016-04-25 03:08:55 INFO ImageAnalysis      Pixel mask(s)    : mask0
-2016-04-25 03:08:55 INFO ImageAnalysis      Region(s)        : None
-2016-04-25 03:08:55 INFO ImageAnalysis      Image units      : Jy/pixel
-2016-04-25 03:08:55 INFO ImageAnalysis      Restoring Beam   : 0.465804 arcsec, 0.465804 arcsec, 0 deg
-2016-04-25 03:08:55 INFO ImageAnalysis
-2016-04-25 03:08:55 INFO ImageAnalysis      Direction reference : J2000
-2016-04-25 03:08:55 INFO ImageAnalysis      Spectral  reference : Undefined
-2016-04-25 03:08:55 INFO ImageAnalysis      Velocity  type      : RADIO
-2016-04-25 03:08:55 INFO ImageAnalysis      Rest frequency      : 2.33947e+11 Hz
-2016-04-25 03:08:55 INFO ImageAnalysis      Telescope           : Herschel
-2016-04-25 03:08:55 INFO ImageAnalysis      Observer            : UNKNOWN
-2016-04-25 03:08:55 INFO ImageAnalysis      Date observation    : UNKNOWN
-2016-04-25 03:08:55 INFO ImageAnalysis
-2016-04-25 03:08:55 INFO ImageAnalysis      Axis Coord Type      Name             Proj Shape Tile   Coord value at pixel    Coord incr Units
-2016-04-25 03:08:55 INFO ImageAnalysis      ------------------------------------------------------------------------------------------------
-2016-04-25 03:08:55 INFO ImageAnalysis      0    0     Direction Right Ascension   TAN  2370  158  19:23:41.765  1099.00 -1.552680e-01 arcsec
-2016-04-25 03:08:55 INFO ImageAnalysis      1    0     Direction Declination       TAN  2500  250 +14.30.45.850  1552.00  1.552680e-01 arcsec
-2016-04-25 03:08:55 INFO ImageAnalysis      2    2     Spectral  Frequency                 1    1   2.33947e+11     0.00  1.000000e+09 Hz
-2016-04-25 03:08:55 INFO ImageAnalysis                           Velocity                                     0     0.00 -1.281456e+03 km/s
-2016-04-25 03:08:55 INFO ImageAnalysis      3    1     Stokes    Stokes                    1    1             I
-2016-04-25 03:08:55 INFO imhead     ##### End Task: imhead               #####
-2016-04-25 03:08:55 INFO imhead     ##########################################
-2016-04-25 03:09:07 INFO imhead
-2016-04-25 03:09:07 INFO imhead     ##########################################
-2016-04-25 03:09:07 INFO imhead     ##### Begin Task: imhead             #####
-2016-04-25 03:09:07 INFO imhead     imhead(imagename=&quot;../simulations/simimage_firsttest.image&quot;,mode=&quot;summary&quot;,hdkey=&quot;&quot;,hdvalue=&quot;&quot;,verbose=False)
-2016-04-25 03:09:07 INFO ImageAnalysis
-2016-04-25 03:09:07 INFO ImageAnalysis      Image name       : simimage_firsttest.image
-2016-04-25 03:09:07 INFO ImageAnalysis      Object name      :
-2016-04-25 03:09:07 INFO ImageAnalysis      Image type       : PagedImage
-2016-04-25 03:09:07 INFO ImageAnalysis      Image quantity   : Intensity
-2016-04-25 03:09:07 INFO ImageAnalysis      Pixel mask(s)    : None
-2016-04-25 03:09:07 INFO ImageAnalysis      Region(s)        : None
-2016-04-25 03:09:07 INFO ImageAnalysis      Image units      : Jy/beam
-2016-04-25 03:09:07 INFO ImageAnalysis      Restoring Beam   : 0.21023 arcsec, 0.192666 arcsec, 79.8538 deg
-2016-04-25 03:09:07 INFO ImageAnalysis
-2016-04-25 03:09:07 INFO ImageAnalysis      Direction reference : J2000
-2016-04-25 03:09:07 INFO ImageAnalysis      Spectral  reference : Undefined
-2016-04-25 03:09:07 INFO ImageAnalysis      Velocity  type      : RADIO
-2016-04-25 03:09:07 INFO ImageAnalysis      Rest frequency      : 2.33947e+11 Hz
-2016-04-25 03:09:07 INFO ImageAnalysis      Pointing center     :  19:23:41.629000  +14.30.42.380000
-2016-04-25 03:09:07 INFO ImageAnalysis      Telescope           : ALMA
-2016-04-25 03:09:07 INFO ImageAnalysis      Observer            : keflavich
-2016-04-25 03:09:07 INFO ImageAnalysis      Date observation    : 2015/04/23/09:47:44
-2016-04-25 03:09:07 INFO ImageAnalysis      Telescope position: [2.22514e+06m, -5.44031e+06m, -2.48103e+06m] (ITRF)
-2016-04-25 03:09:07 INFO ImageAnalysis
-2016-04-25 03:09:07 INFO ImageAnalysis      Axis Coord Type      Name             Proj Shape Tile   Coord value at pixel    Coord incr Units
-2016-04-25 03:09:07 INFO ImageAnalysis      ------------------------------------------------------------------------------------------------
-2016-04-25 03:09:07 INFO ImageAnalysis      0    0     Direction Right Ascension   TAN  3072  192  19:23:41.629  1536.00 -5.000000e-02 arcsec
-2016-04-25 03:09:07 INFO ImageAnalysis      1    0     Direction Declination       TAN  3072  192 +14.30.42.380  1536.00  5.000000e-02 arcsec
-2016-04-25 03:09:07 INFO ImageAnalysis      2    1     Stokes    Stokes                    1    1             I
-2016-04-25 03:09:07 INFO ImageAnalysis      3    2     Spectral  Frequency                 1    1   2.33947e+11     0.00  1.000000e+09 Hz
-2016-04-25 03:09:07 INFO ImageAnalysis                           Velocity                                     0     0.00 -1.281456e+03 km/s
-2016-04-25 03:09:07 INFO imhead     ##### End Task: imhead               #####
-2016-04-25 03:09:07 INFO imhead     ##########################################
-</pre>
-<p>if anything, the ALMA file includes <em>extra</em> data. Removing this data has no
-effect.</p>
-<p>The only really substantial difference left is the order of the axes, which
-is <em>not what I put in</em> for the ALMA data: it puts Stokes as 2 instead of 3
-despite the fact that <tt class="docutils literal"><span class="pre">CTYPE4='STOKES'</span></tt> and <tt class="docutils literal"><span class="pre">CTYPE3='FREQ'</span></tt>.</p>
-<p>By doing a round trip FITS-&gt;image-&gt;FITS-&gt;image, I was able to fix the order,
-but that is not the underlying problem, apparently.</p>
-<p>Could the missing pixel mask be at fault?  It doesn't jive at all with the
-error message, so I doubt it.  <tt class="docutils literal">OBSDATE</tt> is not the problem.</p>
-<p>Turns out, the error is that ALMA is the telescope.  I added the header entry:</p>
-<pre class="literal-block">
-ffile[0].header['TELESCOP'] = 'NotReal'
-</pre>
-<p>and it Just Worked.  It is approaching the end of my shift, so I think it is
-now acceptable to say &quot;what kind of !#$&#64;#$!&#64;% up #&#64;$$&#64;% is that?!&quot;.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

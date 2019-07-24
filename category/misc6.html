@@ -7,7 +7,7 @@
         <title>Adam Ginsburg's blog</title>
         <meta charset="utf-8" />
         <link href="http://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
-        <link href="http://keflavich.github.io/blog/feeds/misc.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+        <link href="http://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
 <!-- Using MathJax, with the delimiters $ -->
 <!-- Conflict with pygments for the .mo and .mi -->
 <script type="text/x-mathjax-config">
@@ -68,6 +68,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2019/07/23
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-corrupted-measurement-sets.html">CASA corrupted measurement sets</a>
+              </li>
+              <li class="post">
                   2018/10/14
                   <br>
                   <a href="http://keflavich.github.io/blog/feo-nondetection-in-orion.html">FeO Nondetection in Orion</a>
@@ -87,11 +92,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/derivation-of-co-column-density.html">Derivation of CO Column Density</a>
               </li>
-              <li class="post">
-                  2017/12/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/the-extragalactic-view-of-w51-at-220-and-290-ghz.html">The extragalactic view of W51 at 220 and 290 GHz</a>
-              </li>
         </ul>
       </li>
     
@@ -106,12 +106,93 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/blogging-from-ipython.html" rel="bookmark" title="Permalink to Blogging from IPython">
+                    Blogging from IPython</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-09-22T00:00:00-06:00"> 2013/09/22 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>[ <a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/keflavich/blog/master/content/BloggingFromIPython.ipynb">Notebook Form of this
+post</a>
+]</p>
+<p>There have been
+<a class="reference external" href="http://jmcarp.github.io/blog/2013/07/07/hello-world/">many</a>
+<a class="reference external" href="http://danielfrg.github.io/blog/2013/02/16/blogging-pelican-ipython-notebook/">other</a>
+<a class="reference external" href="http://danielfrg.github.io/blog/2013/03/08/pelican-ipython-notebook-plugin/">posts</a>
+about blogging in ipython, but they all included more overhead than I
+really wanted to deal with.</p>
+<p>Instead, I've gone directly to <a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/Carreau/posts/master/06-NBconvert-Doc-Draft.ipynb">the
+source</a>
+and used nbconvert in ipython 2.0 to convert my notebooks to rst, then
+put them through pelican.</p>
+<p>This post outlines my workflow.</p>
+<p>First, and most inconvenient, it is necessary to head any blog post with
+metadata. I don't have any convenient workflow to deal with that, I just
+write it in by hand in a raw text box (ctrl-m, t) as you can see above.
+<a class="reference external" href="http://danielfrg.github.io/">Daniel Rodriguez</a> took a <a class="reference external" href="http://danielfrg.github.io/blog/2013/03/08/pelican-ipython-notebook-plugin/">different
+approach</a>
+using the ipython metadata directly and an ipython plugin, but I didn't
+want to have to worry about installing plugins and I am definitely
+worried about breaking notebooks by messing with the
+<a class="reference external" href="https://github.com/ipython/ipython/wiki/IPEP-20%3A-Informal-structure-of-cell-metadata">metadata</a>
+as the ipy devs give some fairly <a class="reference external" href="https://gist.github.com/Carreau/4437348">strict
+warnings</a>.</p>
+<p>Next, the ipynb -&gt; rst step is fairly straightforward. I modified the
+rst template because I don't want to see the <tt class="docutils literal"><span class="pre">In[#]:</span></tt> and <tt class="docutils literal"><span class="pre">Out[#]:</span></tt>
+prefixes around my code. I also use <tt class="docutils literal">.. <span class="pre">code-block::</span></tt> rather than
+<tt class="docutils literal">.. code::</tt>.</p>
+<p>This very simple function below makes sure that my local <tt class="docutils literal">rst.tbl</tt>
+file is seen before ipython's. Their templates are in
+<tt class="docutils literal">IPython/nbconvert/templates</tt>. Note that you could normally use Jinja2
+templating and &quot;Extend&quot; their template, but I wanted to remove rather
+than extend.</p>
+<p>[
+<a class="reference external" href="https://github.com/keflavich/blog/blob/master/nbconverter.py">Source</a>
+]</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.nbconvert.exporters</span> <span class="kn">import</span> <span class="n">RSTExporter</span>
+
+<span class="k">def</span> <span class="nf">export</span><span class="p">(</span><span class="n">nbname</span><span class="p">,</span> <span class="n">outfilename</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">exportRST</span> <span class="o">=</span> <span class="n">RSTExporter</span><span class="p">()</span>
+    <span class="c1"># exclude default paths</span>
+    <span class="n">exportRST</span><span class="o">.</span><span class="n">template_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="s1">&#39;/Users/adam/repos/blog&#39;</span><span class="p">]</span>
+
+    <span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="n">resources</span><span class="p">)</span> <span class="o">=</span> <span class="n">exportRST</span><span class="o">.</span><span class="n">from_filename</span><span class="p">(</span><span class="n">nbname</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">outfilename</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">outfilename</span> <span class="o">=</span> <span class="n">nbname</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;ipynb&quot;</span><span class="p">,</span><span class="s2">&quot;rst&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfilename</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">body</span><span class="p">,</span><span class="n">resources</span>
+</pre></div>
+<p>I then run the script from the command line:
+<tt class="docutils literal"><span class="pre">~/virtual-ipydev/bin/ipython</span> ./nbconverter.py content/GenerateCVExample.ipynb</tt></p>
+<p>I'm using a virtual environment with ipython 2 installed because I'm not
+yet ready to make the jump to the dev version of ipython (though these
+days, with Travis and Jenkins around, it's probably safe to assume the
+dev version won't break anything).</p>
+<p>With this rst file generated, the only remaining step is
+<a class="reference external" href="http://blog.getpelican.com/">pelican</a>, which only requires a
+<tt class="docutils literal">make github</tt> command in the blog directory. Installing &amp; setting up
+pelican is reasonably easy, but not the topic of this post.</p>
+<p>I've made my own <a class="reference external" href="https://github.com/keflavich/pelican-themes/tree/master/mine">custom pelican
+theme</a>,
+so I generally need to update the theme before building:</p>
+<p><tt class="docutils literal"><span class="pre">pelican-themes</span> <span class="pre">--upgrade</span> <span class="pre">/Users/adam/repos/pelican-themes/mine</span> &amp;&amp; make github</tt></p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
                 <a href="http://keflavich.github.io/blog/generating-a-cv-using-the-ads-labs-api.html" rel="bookmark" title="Permalink to Generating a CV using the ADS Labs API">
                     Generating a CV using the ADS Labs API</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2013-09-21T00:00:00"> 2013/09/21 </abbr>
+            <abbr class="published" title="2013-09-21T00:00:00-06:00"> 2013/09/21 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <ul class="simple">
 <li>[ <a class="reference external" href="https://github.com/keflavich/generate_cv">Source code related to this
@@ -133,27 +214,27 @@ Casey's</a>
 <a class="reference external" href="https://github.com/andycasey/ads-python">ADS-python</a> as a starting
 point: he introduces a useful convention of storing your <a class="reference external" href="https://github.com/adsabs/adsabs-dev-api#signup--access">ADS API
 Key</a>:</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 
 <span class="k">def</span> <span class="nf">get_dev_key</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot; A convenience function for accessing a system-wide ADS Developer&#39;s Key &quot;&quot;&quot;</span>
 
-    <span class="n">ads_dev_key_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s">&#39;~/.ads/dev_key&#39;</span><span class="p">))</span>
+    <span class="n">ads_dev_key_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/.ads/dev_key&#39;</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ads_dev_key_filename</span><span class="p">):</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ads_dev_key_filename</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ads_dev_key_filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
             <span class="n">dev_key</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="n">dev_key</span>
 
-    <span class="k">if</span> <span class="s">&#39;ADS_DEV_KEY&#39;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;ADS_DEV_KEY&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="s1">&#39;ADS_DEV_KEY&#39;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;ADS_DEV_KEY&#39;</span><span class="p">]</span>
 
-    <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s">&quot;no ADS API key found in ~/.ads/dev_key&quot;</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s2">&quot;no ADS API key found in ~/.ads/dev_key&quot;</span><span class="p">)</span>
 </pre></div>
 <p>We'll use <tt class="docutils literal">requests</tt> to send the request to ADS, then <tt class="docutils literal">json</tt> to
 parse the data.</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">requests</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">import</span> <span class="nn">json</span>
 </pre></div>
 <p>We then query the database using a keyword query (parameter <tt class="docutils literal">q</tt>)
@@ -161,13 +242,13 @@ specifying the author. Other required parameters are the API key
 (<tt class="docutils literal">dev_key</tt>) and a filter to select only astronomy articles. The
 maximum number of rows returned in the API is 200 right now, which I
 have set (the default is 10 or 20).</p>
-<div class="highlight"><pre><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">&#39;http://adslabs.org/adsabs/api/search/&#39;</span><span class="p">,</span>
-                         <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;q&#39;</span><span class="p">:</span><span class="s">&#39;author:ginsburg, a&#39;</span><span class="p">,</span>
-                                 <span class="s">&#39;dev_key&#39;</span><span class="p">:</span><span class="n">get_dev_key</span><span class="p">(),</span>
-                                 <span class="s">&#39;rows&#39;</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span>
-                                 <span class="s">&#39;filter&#39;</span><span class="p">:</span><span class="s">&#39;database:astronomy&#39;</span><span class="p">})</span>
+<div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;http://adslabs.org/adsabs/api/search/&#39;</span><span class="p">,</span>
+                         <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;q&#39;</span><span class="p">:</span><span class="s1">&#39;author:ginsburg, a&#39;</span><span class="p">,</span>
+                                 <span class="s1">&#39;dev_key&#39;</span><span class="p">:</span><span class="n">get_dev_key</span><span class="p">(),</span>
+                                 <span class="s1">&#39;rows&#39;</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span>
+                                 <span class="s1">&#39;filter&#39;</span><span class="p">:</span><span class="s1">&#39;database:astronomy&#39;</span><span class="p">})</span>
 </pre></div>
-<div class="highlight"><pre><span class="n">J</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="n">J</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 <span class="n">J</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 </pre></div>
 <pre class="literal-block">
@@ -175,7 +256,7 @@ have set (the default is 10 or 20).</p>
 </pre>
 <p>The JSON 'meta' key is just metadata about the query, include the number
 of matches and execution time.</p>
-<div class="highlight"><pre><span class="n">J</span><span class="p">[</span><span class="s">&#39;meta&#39;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="n">J</span><span class="p">[</span><span class="s1">&#39;meta&#39;</span><span class="p">]</span>
 </pre></div>
 <pre class="literal-block">
 {u'api-version': u'0.1',
@@ -186,19 +267,19 @@ of matches and execution time.</p>
 </pre>
 <p>The 'results' key includes what we're actually interested in, under
 another key 'docs'.</p>
-<div class="highlight"><pre><span class="n">J</span><span class="p">[</span><span class="s">&#39;results&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="n">J</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 </pre></div>
 <pre class="literal-block">
 [u'docs']
 </pre>
-<div class="highlight"><pre><span class="n">datalist</span> <span class="o">=</span> <span class="n">J</span><span class="p">[</span><span class="s">&#39;results&#39;</span><span class="p">][</span><span class="s">&#39;docs&#39;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="n">datalist</span> <span class="o">=</span> <span class="n">J</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;docs&#39;</span><span class="p">]</span>
 <span class="nb">type</span><span class="p">(</span><span class="n">datalist</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">datalist</span><span class="p">)</span>
 </pre></div>
 <pre class="literal-block">
 (list, 54)
 </pre>
 <p><tt class="docutils literal">datalist</tt> is a list of the retrieved bibliographic entries.</p>
-<div class="highlight"><pre><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 </pre></div>
 <pre class="literal-block">
 [u'bibcode',
@@ -230,57 +311,57 @@ author names and uses a reasonably standard bibliographic format:</p>
 Authors Month, Year, Journal
 Title
 </pre>
-<div class="highlight"><pre><span class="n">fmt</span> <span class="o">=</span> <span class="p">(</span><span class="s">u&#39;                &#39;</span>
-<span class="s">u&#39;&lt;li&gt;&lt;a class=&quot;norm&quot; href=&quot;http://adsabs.harvard.edu/abs/{adsbibid}&quot;&gt;{creator}&lt;/a&gt;&#39;</span>
-<span class="s">u&#39; {month}, &lt;b&gt;{year}&lt;/b&gt; {journal}</span><span class="se">\n</span><span class="s">&#39;</span>
-<span class="s">u&#39;                &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;{titlestring}&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">fmt</span> <span class="o">=</span> <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;                &#39;</span>
+<span class="sa">u</span><span class="s1">&#39;&lt;li&gt;&lt;a class=&quot;norm&quot; href=&quot;http://adsabs.harvard.edu/abs/{adsbibid}&quot;&gt;{creator}&lt;/a&gt;&#39;</span>
+<span class="sa">u</span><span class="s1">&#39; {month}, &lt;b&gt;{year}&lt;/b&gt; {journal}</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="sa">u</span><span class="s1">&#39;                &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;{titlestring}&#39;</span><span class="p">)</span>
 </pre></div>
 <p>We need to do a little data wrangling to get the individual JSON entries
 into the appropriate format:</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">wrangle</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">authorname</span><span class="o">=</span><span class="s">&#39;Ginsburg&#39;</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">wrangle</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">authorname</span><span class="o">=</span><span class="s1">&#39;Ginsburg&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Create new fields from the input data to insert into the format string &quot;&quot;&quot;</span>
-    <span class="n">data</span><span class="p">[</span><span class="s">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;pubdate&#39;</span><span class="p">][</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span>
-    <span class="c"># Generally, the last identifier is the published version,</span>
-    <span class="c"># while the first is an arXiv identifier</span>
-    <span class="c"># (data[&#39;identifier&#39;] is a list)</span>
-    <span class="n">data</span><span class="p">[</span><span class="s">&#39;adsbibid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;identifier&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    <span class="c"># data[&#39;title&#39;] &amp; [&#39;pub&#39;] are also lists</span>
-    <span class="n">data</span><span class="p">[</span><span class="s">&#39;titlestring&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;title&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">data</span><span class="p">[</span><span class="s">&#39;journal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;bibstem&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-    <span class="c"># This trick bolds my name in the list of authors</span>
-    <span class="n">data</span><span class="p">[</span><span class="s">&#39;authors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;&lt;b&gt;{}&lt;/b&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">authorname</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">else</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;author&#39;</span><span class="p">]]</span>
-    <span class="c"># Separate names by semicolons</span>
-    <span class="n">data</span><span class="p">[</span><span class="s">&#39;creator&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">u&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;authors&#39;</span><span class="p">])</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;pubdate&#39;</span><span class="p">][</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span>
+    <span class="c1"># Generally, the last identifier is the published version,</span>
+    <span class="c1"># while the first is an arXiv identifier</span>
+    <span class="c1"># (data[&#39;identifier&#39;] is a list)</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;adsbibid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;identifier&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1"># data[&#39;title&#39;] &amp; [&#39;pub&#39;] are also lists</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;titlestring&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;journal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;bibstem&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># This trick bolds my name in the list of authors</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;authors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&lt;b&gt;{}&lt;/b&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">authorname</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">else</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">]]</span>
+    <span class="c1"># Separate names by semicolons</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;creator&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;authors&#39;</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">data</span>
 </pre></div>
 <p>The return from <tt class="docutils literal">wrangle</tt> is a dict with new keys that match the
 keywords in the format string. The python <tt class="docutils literal">string.format</tt> method will
 nicely ignore any extra keywords that we're uninterested in.</p>
-<div class="highlight"><pre><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">wrangle</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<div class="highlight"><pre><span></span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">wrangle</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
 <pre class="literal-block">
 u'                &lt;li&gt;&lt;a class=&quot;norm&quot; href=&quot;<a class="reference external" href="http://adsabs.harvard.edu/abs/2013ApJ...773..102F">http://adsabs.harvard.edu/abs/2013ApJ...773..102F</a>&quot;&gt;Fallscheer, C.; Reid, M. A.; Di Francesco, J.; Martin, P. G.; Hill, T.; Hennemann, M.; Nguyen-Luong, Q.; Motte, F.; Men'shchikov, A.; Andrxe9, Ph.; Ward-Thompson, D.; Griffin, M.; Kirk, J.; Konyves, V.; Rygl, K. L. J.; Sadavoy, S.; Sauvage, M.; Schneider, N.; Anderson, L. D.; Benedettini, M.; Bernard, J. -P.; Bontemps, S.; &lt;b&gt;Ginsburg, A.&lt;/b&gt;; Molinari, S.; Polychroni, D.; Rivera-Ingraham, A.; Roussel, H.; Testi, L.; White, G.; Williams, J. P.; Wilson, C. D.; Wong, M.; Zavagno, A.&lt;/a&gt; 08, &lt;b&gt;2013&lt;/b&gt; ApJn                &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Herschel Reveals Massive Cold Clumps in NGCxa07538'
 </pre>
 <p>Now to show it in the notebook...</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">IPython.display</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">IPython.display</span>
 <span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">wrangle</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
 </pre></div>
 <p>You can make a complete bibliography by looping over a few entries. The
 ordered list (<tt class="docutils literal">&lt;ol&gt;</tt>) tag makes a numbered list.</p>
-<div class="highlight"><pre><span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&lt;ol&gt;&quot;</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">wrangle</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="n">ii</span><span class="p">]))</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s">&quot;&lt;/ol&gt;&quot;</span>
+<div class="highlight"><pre><span></span><span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&lt;ol&gt;&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">wrangle</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="n">ii</span><span class="p">]))</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;&lt;/ol&gt;&quot;</span>
 <span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
 </pre></div>
 <p>If you want to make sure you only include refereed articles, use the
 'property' tag.</p>
-<div class="highlight"><pre><span class="k">print</span> <span class="p">[</span><span class="s">&#39;REFEREED&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;property&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="k">print</span> <span class="p">[</span><span class="s1">&#39;REFEREED&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;property&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span><span class="p">]</span>
 </pre></div>
 <pre class="literal-block">
 [True, False, True, False, False, False, True, True, False, False, False, False, True, True, True, False, False, True, True, False, False, True, True, True, False, False, False, False, True, False, False, True, True, True, True, True, True, False, False, False, False, False, False, True, True, False, False, False, False, False, True, False, False, True]
 </pre>
 <p>And don't forget that you can also include the citation count:</p>
-<div class="highlight"><pre><span class="k">print</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&quot;{} {}: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s">&#39;author&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="s">&#39;year&#39;</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="s">&#39;citation_count&#39;</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><span class="k">print</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;{} {}: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;citation_count&#39;</span><span class="p">])</span>
                 <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span>
-                <span class="k">if</span> <span class="s">&#39;citation_count&#39;</span> <span class="ow">in</span> <span class="n">d</span> <span class="ow">and</span> <span class="s">&#39;REFEREED&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;property&#39;</span><span class="p">]])</span>
+                <span class="k">if</span> <span class="s1">&#39;citation_count&#39;</span> <span class="ow">in</span> <span class="n">d</span> <span class="ow">and</span> <span class="s1">&#39;REFEREED&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;property&#39;</span><span class="p">]])</span>
 </pre></div>
 <pre class="literal-block">
 Fallscheer, C. 2013: 0
@@ -323,9 +404,9 @@ if they have by querying their API settings. If the query below returns
 &quot;True&quot;, then you can access the bibstem.</p>
 <p>UPDATE 9/23/2013: Jay Luker &#64;ADS <a class="reference external" href="https://twitter.com/lbjay/status/382138570632204291">added 'bibstem' to the allowed return
 entries</a></p>
-<div class="highlight"><pre><span class="n">permissions_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">&#39;http://adslabs.org/adsabs/api/settings/&#39;</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;dev_key&#39;</span><span class="p">:</span><span class="n">get_dev_key</span><span class="p">()})</span>
+<div class="highlight"><pre><span></span><span class="n">permissions_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;http://adslabs.org/adsabs/api/settings/&#39;</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;dev_key&#39;</span><span class="p">:</span><span class="n">get_dev_key</span><span class="p">()})</span>
 <span class="n">permissions</span> <span class="o">=</span> <span class="n">permissions_response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-<span class="s">&#39;bibstem&#39;</span> <span class="ow">in</span> <span class="n">permissions</span><span class="p">[</span><span class="s">&#39;allowed_fields&#39;</span><span class="p">]</span>
+<span class="s1">&#39;bibstem&#39;</span> <span class="ow">in</span> <span class="n">permissions</span><span class="p">[</span><span class="s1">&#39;allowed_fields&#39;</span><span class="p">]</span>
 </pre></div>
 <pre class="literal-block">
 True
@@ -336,32 +417,32 @@ True
 that might be useful.</p>
 <p>The approach we'll use is also a good way to reject unwanted articles in
 the HTML bibliography above.</p>
-<div class="highlight"><pre><span class="n">bibfmt</span> <span class="o">=</span> <span class="s">u&quot;&quot;&quot;@article{{{tagname},</span>
-<span class="s">abstract={{{abstract}}},</span>
-<span class="s">author={{{bibtexauthors}}},</span>
-<span class="s">month={{{month}}},</span>
-<span class="s">pages={{{page}}},</span>
-<span class="s">title={{{titlestring}}},</span>
-<span class="s">year={{{year}}},</span>
-<span class="s">volume={{{volume}}},</span>
-<span class="s">journal={{</span><span class="se">\\</span><span class="s">{lowercasejournal}}}</span>
-<span class="s">}}&quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><span class="n">bibfmt</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;&quot;&quot;@article{{{tagname},</span>
+<span class="s2">abstract={{{abstract}}},</span>
+<span class="s2">author={{{bibtexauthors}}},</span>
+<span class="s2">month={{{month}}},</span>
+<span class="s2">pages={{{page}}},</span>
+<span class="s2">title={{{titlestring}}},</span>
+<span class="s2">year={{{year}}},</span>
+<span class="s2">volume={{{volume}}},</span>
+<span class="s2">journal={{</span><span class="se">\\</span><span class="s2">{lowercasejournal}}}</span>
+<span class="s2">}}&quot;&quot;&quot;</span>
 </pre></div>
 <p>Of course, it's necessary to wrangle the data again for the appropriate
 author list formatting for bibtex:</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">wrangleauthors</span><span class="p">(</span><span class="n">authorlist</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">wrangleauthors</span><span class="p">(</span><span class="n">authorlist</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Fit the author list into a bibtex-friendly format.</span>
 <span class="sd">    Not the cleanest hack, since we need to allow for single-name</span>
 <span class="sd">    authors (e.g., astropy collaboration, Planck collaboration, etc.)</span>
 <span class="sd">    The triple braces are needed because TeX uses them&quot;&quot;&quot;</span>
-    <span class="n">splita</span> <span class="o">=</span> <span class="p">[[</span><span class="n">b</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;,&quot;</span><span class="p">)]</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">authorlist</span><span class="p">]</span>
-    <span class="n">bracketed</span> <span class="o">=</span> <span class="p">[</span><span class="s">u&#39;{{{}}}, {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">,</span><span class="s">&quot;~&quot;</span><span class="p">))</span>
+    <span class="n">splita</span> <span class="o">=</span> <span class="p">[[</span><span class="n">b</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)]</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">authorlist</span><span class="p">]</span>
+    <span class="n">bracketed</span> <span class="o">=</span> <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;{{{}}}, {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="s2">&quot;~&quot;</span><span class="p">))</span>
                  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
-                 <span class="k">else</span> <span class="s">u&#39;{{{}}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                 <span class="k">else</span> <span class="sa">u</span><span class="s1">&#39;{{{}}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
                  <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">splita</span><span class="p">]</span>
-    <span class="k">return</span> <span class="s">u&quot; and &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">bracketed</span><span class="p">)</span>
+    <span class="k">return</span> <span class="sa">u</span><span class="s2">&quot; and &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">bracketed</span><span class="p">)</span>
 </pre></div>
-<div class="highlight"><pre><span class="n">wrangleauthors</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">&#39;author&#39;</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><span class="n">wrangleauthors</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;author&#39;</span><span class="p">])</span>
 </pre></div>
 <pre class="literal-block">
 u&quot;{Fallscheer}, C. and {Reid}, M.~A. and {Di Francesco}, J. and {Martin}, P.~G. and {Hill}, T. and {Hennemann}, M. and {Nguyen-Luong}, Q. and {Motte}, F. and {Men'shchikov}, A. and {Andrxe9}, Ph. and {Ward-Thompson}, D. and {Griffin}, M. and {Kirk}, J. and {Konyves}, V. and {Rygl}, K.~L.~J. and {Sadavoy}, S. and {Sauvage}, M. and {Schneider}, N. and {Anderson}, L.~D. and {Benedettini}, M. and {Bernard}, J.~-P. and {Bontemps}, S. and {Ginsburg}, A. and {Molinari}, S. and {Polychroni}, D. and {Rivera-Ingraham}, A. and {Roussel}, H. and {Testi}, L. and {White}, G. and {Williams}, J.~P. and {Wilson}, C.~D. and {Wong}, M. and {Zavagno}, A.&quot;
@@ -369,37 +450,37 @@ u&quot;{Fallscheer}, C. and {Reid}, M.~A. and {Di Francesco}, J. and {Martin}, P
 <p>Now we can start looping through, performing checks for article status,
 and making bibentries. We'll use python's <tt class="docutils literal">dateutils.parse</tt> to turn
 month numbers into names</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">dateutil.parser</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dateutil.parser</span>
 </pre></div>
-<div class="highlight"><pre><span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span><span class="p">:</span>
-    <span class="n">d</span><span class="p">[</span><span class="s">&#39;bibtexauthors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wrangleauthors</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s">&#39;author&#39;</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span><span class="p">:</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;bibtexauthors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wrangleauthors</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">])</span>
 
-    <span class="c"># pubdates don&#39;t include days, and sometimes don&#39;t include months,</span>
-    <span class="c"># so we have to be careful</span>
-    <span class="n">d</span><span class="p">[</span><span class="s">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dateutil</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s">&#39;pubdate&#39;</span><span class="p">][:</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%B&quot;</span><span class="p">)</span>
-                  <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;pubdate&#39;</span><span class="p">][</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#39;00&#39;</span>
-                  <span class="k">else</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+    <span class="c1"># pubdates don&#39;t include days, and sometimes don&#39;t include months,</span>
+    <span class="c1"># so we have to be careful</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dateutil</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;pubdate&#39;</span><span class="p">][:</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%B&quot;</span><span class="p">)</span>
+                  <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;pubdate&#39;</span><span class="p">][</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;00&#39;</span>
+                  <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
 
-    <span class="c"># To make the standard macros, e.g. \apj, \aa</span>
-    <span class="n">d</span><span class="p">[</span><span class="s">&#39;lowercasejournal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;bibstem&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-    <span class="c"># list -&gt; string</span>
-    <span class="n">d</span><span class="p">[</span><span class="s">&#39;titlestring&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;title&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># To make the standard macros, e.g. \apj, \aa</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;lowercasejournal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;bibstem&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="c1"># list -&gt; string</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;titlestring&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
-    <span class="c"># need to make sure there is something to put in the volume field</span>
-    <span class="n">d</span><span class="p">[</span><span class="s">&#39;volume&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;volume&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s">&#39;volume&#39;</span> <span class="ow">in</span> <span class="n">d</span> <span class="k">else</span> <span class="s">&#39;&#39;</span>
+    <span class="c1"># need to make sure there is something to put in the volume field</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;volume&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;volume&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;volume&#39;</span> <span class="ow">in</span> <span class="n">d</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
 
-    <span class="c"># tagname is [First author&#39;s last name][year]</span>
-    <span class="n">d</span><span class="p">[</span><span class="s">&#39;tagname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;author&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s">&quot;,&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;year&#39;</span><span class="p">]</span>
+    <span class="c1"># tagname is [First author&#39;s last name][year]</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;tagname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span>
 </pre></div>
-<div class="highlight"><pre><span class="n">bibdata</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+<div class="highlight"><pre><span></span><span class="n">bibdata</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span><span class="p">:</span>
-    <span class="k">if</span> <span class="s">&#39;ARTICLE&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;property&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="s">&#39;EPRINT&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;property&#39;</span><span class="p">]:</span>
-        <span class="n">bibdata</span> <span class="o">+=</span> <span class="n">bibfmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n\n</span><span class="s">&quot;</span>
+    <span class="k">if</span> <span class="s1">&#39;ARTICLE&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;property&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="s1">&#39;EPRINT&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;property&#39;</span><span class="p">]:</span>
+        <span class="n">bibdata</span> <span class="o">+=</span> <span class="n">bibfmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span>
 </pre></div>
 <p>Now this data can be saved to a bibliography file and parsed by LaTeX.</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">codecs</span> <span class="c"># for writing unicode</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">codecs</span> <span class="c1"># for writing unicode</span>
 
-<span class="k">with</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#39;mypapers.bib&#39;</span><span class="p">,</span><span class="s">&#39;w&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s">&#39;utf8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;mypapers.bib&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">bibdata</span><span class="p">)</span>
 </pre></div>
 <p>Future work:</p>
@@ -419,31 +500,31 @@ month numbers into names</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2013-08-05T10:37:59"> 2013/08/05 </abbr>
+            <abbr class="published" title="2013-08-05T10:37:59-06:00"> 2013/08/05 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I tend to be most interested in low-energy molecular lines: CO, NH<sub>3</sub>, and
 H<sub>2</sub>CO being the main candidates.</p>
 <p>Note: Splatalogue has made some recent changes to their returned tables, partly
 per my recommendations.  The code below has been update to reflect these
 changes.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">astroquery.splatalogue</span> <span class="kn">import</span> <span class="n">Splatalogue</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">S</span> <span class="o">=</span> <span class="n">Splatalogue</span><span class="p">(</span><span class="n">energy_max</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
-<span class="o">...</span>    <span class="n">energy_type</span><span class="o">=</span><span class="s">&#39;eu_k&#39;</span><span class="p">,</span><span class="n">energy_levels</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;el4&#39;</span><span class="p">],</span>
-<span class="o">...</span>    <span class="n">line_strengths</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;ls4&#39;</span><span class="p">],</span>
+<span class="o">...</span>    <span class="n">energy_type</span><span class="o">=</span><span class="s1">&#39;eu_k&#39;</span><span class="p">,</span><span class="n">energy_levels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;el4&#39;</span><span class="p">],</span>
+<span class="o">...</span>    <span class="n">line_strengths</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ls4&#39;</span><span class="p">],</span>
 <span class="o">...</span>    <span class="n">only_NRAO_recommended</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">noHFS</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">trimmed_query</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="o">...</span>     <span class="n">columns</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;Species&#39;</span><span class="p">,</span><span class="s">&#39;Chemical Name&#39;</span><span class="p">,</span><span class="s">&#39;Resolved QNs&#39;</span><span class="p">,</span><span class="s">&#39;Freq-GHz&#39;</span><span class="p">,</span>
-<span class="o">...</span>                <span class="s">&#39;Meas Freq-GHz&#39;</span><span class="p">,</span><span class="s">&#39;Log&lt;sub&gt;10&lt;/sub&gt; (A&lt;sub&gt;ij&lt;/sub&gt;)&#39;</span><span class="p">,</span>
-<span class="o">...</span>                <span class="s">&#39;E_U (K)&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">columns</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Species&#39;</span><span class="p">,</span><span class="s1">&#39;Chemical Name&#39;</span><span class="p">,</span><span class="s1">&#39;Resolved QNs&#39;</span><span class="p">,</span><span class="s1">&#39;Freq-GHz&#39;</span><span class="p">,</span>
+<span class="o">...</span>                <span class="s1">&#39;Meas Freq-GHz&#39;</span><span class="p">,</span><span class="s1">&#39;Log&lt;sub&gt;10&lt;/sub&gt; (A&lt;sub&gt;ij&lt;/sub&gt;)&#39;</span><span class="p">,</span>
+<span class="o">...</span>                <span class="s1">&#39;E_U (K)&#39;</span><span class="p">)</span>
 <span class="o">...</span>     <span class="n">table</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">query_lines</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)[</span><span class="n">columns</span><span class="p">]</span>
-<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s">&#39;Log&lt;sub&gt;10&lt;/sub&gt; (A&lt;sub&gt;ij&lt;/sub&gt;)&#39;</span><span class="p">,</span><span class="s">&#39;log10(Aij)&#39;</span><span class="p">)</span>
-<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s">&#39;E_U (K)&#39;</span><span class="p">,</span><span class="s">&#39;EU_K&#39;</span><span class="p">)</span>
-<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s">&#39;Resolved QNs&#39;</span><span class="p">,</span><span class="s">&#39;QNs&#39;</span><span class="p">)</span>
-<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">&#39;EU_K&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s1">&#39;Log&lt;sub&gt;10&lt;/sub&gt; (A&lt;sub&gt;ij&lt;/sub&gt;)&#39;</span><span class="p">,</span><span class="s1">&#39;log10(Aij)&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s1">&#39;E_U (K)&#39;</span><span class="p">,</span><span class="s1">&#39;EU_K&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s1">&#39;Resolved QNs&#39;</span><span class="p">,</span><span class="s1">&#39;QNs&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">&#39;EU_K&#39;</span><span class="p">)</span>
 <span class="o">...</span>     <span class="k">return</span> <span class="n">table</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span><span class="mi">30</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span>
-<span class="o">...</span>     <span class="n">chemical_name</span><span class="o">=</span><span class="s">&#39;(H2.*Formaldehyde)|( HDCO )&#39;</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">chemical_name</span><span class="o">=</span><span class="s1">&#39;(H2.*Formaldehyde)|( HDCO )&#39;</span><span class="p">,</span>
 <span class="o">...</span>     <span class="n">energy_max</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
 <span class="n">Species</span> <span class="n">Chemical</span> <span class="n">Name</span>      <span class="n">QNs</span>      <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">Meas</span> <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">log10</span><span class="p">(</span><span class="n">Aij</span><span class="p">)</span>   <span class="n">EU_K</span>
 <span class="o">-------</span> <span class="o">-------------</span> <span class="o">-------------</span> <span class="o">--------</span> <span class="o">-------------</span> <span class="o">----------</span> <span class="o">--------</span>
@@ -461,7 +542,7 @@ changes.</p>
 
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span><span class="mi">400</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span>
-<span class="o">...</span>     <span class="n">chemical_name</span><span class="o">=</span><span class="s">&#39;Carbon Monoxide&#39;</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">chemical_name</span><span class="o">=</span><span class="s1">&#39;Carbon Monoxide&#39;</span><span class="p">,</span>
 <span class="o">...</span>     <span class="n">energy_max</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
 <span class="n">Species</span>  <span class="n">Chemical</span> <span class="n">Name</span>   <span class="n">QNs</span>   <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">Meas</span> <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">log10</span><span class="p">(</span><span class="n">Aij</span><span class="p">)</span>   <span class="n">EU_K</span>
 <span class="o">-------</span> <span class="o">---------------</span> <span class="o">-----</span> <span class="o">---------</span> <span class="o">-------------</span> <span class="o">----------</span> <span class="o">--------</span>
@@ -479,15 +560,15 @@ changes.</p>
   <span class="n">COv</span><span class="o">=</span><span class="mi">0</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">3</span><span class="o">-</span><span class="mi">2</span> <span class="mf">345.79599</span>     <span class="mf">345.79599</span>   <span class="o">-</span><span class="mf">5.60192</span> <span class="mf">33.19169</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">MHz</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span>
-<span class="o">...</span>     <span class="n">chemical_name</span><span class="o">=</span><span class="s">&#39; H2CO .*Formaldehyde&#39;</span><span class="p">,</span><span class="n">energy_max</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span>
-<span class="o">...</span>     <span class="n">energy_type</span><span class="o">=</span><span class="s">&#39;eu_k&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
+<span class="o">...</span>     <span class="n">chemical_name</span><span class="o">=</span><span class="s1">&#39; H2CO .*Formaldehyde&#39;</span><span class="p">,</span><span class="n">energy_max</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">energy_type</span><span class="o">=</span><span class="s1">&#39;eu_k&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
 <span class="n">Species</span> <span class="n">Chemical</span> <span class="n">Name</span>      <span class="n">QNs</span>      <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">Meas</span> <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">log10</span><span class="p">(</span><span class="n">Aij</span><span class="p">)</span>   <span class="n">EU_K</span>
 <span class="o">-------</span> <span class="o">-------------</span> <span class="o">-------------</span> <span class="o">--------</span> <span class="o">-------------</span> <span class="o">----------</span> <span class="o">--------</span>
    <span class="n">H2CO</span>  <span class="n">Formaldehyde</span> <span class="mi">2</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>       <span class="o">--</span>       <span class="mf">0.07114</span>  <span class="o">-</span><span class="mf">13.81846</span>   <span class="mf">57.612</span>
    <span class="n">H2CO</span>  <span class="n">Formaldehyde</span> <span class="mi">3</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>       <span class="o">--</span>       <span class="mf">0.35557</span>  <span class="o">-</span><span class="mf">12.02319</span> <span class="mf">68.11082</span>
 
 
-<span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">MHz</span><span class="p">,</span><span class="mi">25</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span><span class="n">chemical_name</span><span class="o">=</span><span class="s">&#39; NH3 &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">MHz</span><span class="p">,</span><span class="mi">25</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span><span class="n">chemical_name</span><span class="o">=</span><span class="s1">&#39; NH3 &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
 <span class="n">Species</span> <span class="n">Chemical</span> <span class="n">Name</span>      <span class="n">QNs</span>       <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">Meas</span> <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">log10</span><span class="p">(</span><span class="n">Aij</span><span class="p">)</span>    <span class="n">EU_K</span>
 <span class="o">-------</span> <span class="o">-------------</span> <span class="o">--------------</span> <span class="o">--------</span> <span class="o">-------------</span> <span class="o">----------</span> <span class="o">---------</span>
  <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">23.69447</span>       <span class="mf">23.6945</span>   <span class="o">-</span><span class="mf">6.43769</span>  <span class="mf">24.40492</span>
@@ -518,7 +599,7 @@ changes.</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2013-06-09T20:30:00"> 2013/06/09 </abbr>
+            <abbr class="published" title="2013-06-09T20:30:00-06:00"> 2013/06/09 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I've been running up the same mountain about a dozen times with a GPS on.  With
 a little hacking, I was able to take the GPS data and normalize it to the same
@@ -535,7 +616,7 @@ start &amp; end points to see how well I did on different runs.</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2013-06-04T15:00:00"> 2013/06/04 </abbr>
+            <abbr class="published" title="2013-06-04T15:00:00-06:00"> 2013/06/04 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p><a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a> presents a non-lognormal form of the probability distribution
 function of density in turbulence, depending primarily on a parameter
@@ -545,10 +626,10 @@ in particular the functions <tt class="docutils literal">moments_theoretical_hop
 <a class="reference external" href="https://github.com/keflavich/turbulence_pdfs/blob/master/hopkins_pdf.py">hopkins_pdf.py</a>.</p>
 <p>The conservation equations, conservation of probability and mass</p>
 <div class="formula">
-<span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i>)<i>d</i>ln<i>ρ</i> ≡ 1
+<span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i>)<i>d</i>ln<i>ρ</i> ≡ 1
 </div>
 <div class="formula">
-<span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span><i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i>)<i>d</i>ln<i>ρ</i> ≡ <i>ρ</i><sub>0</sub> = 1
+<span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span><i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i>)<i>d</i>ln<i>ρ</i> ≡ <i>ρ</i><sub>0</sub> = 1
 </div>
 <p><span class="formula"><i>ρ</i><sub>0</sub> = 1</span> is the definition used by <a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H">Hopkins 2013</a>.  Part of the goal
 of this document is to generalize to <span class="formula"><i>ρ</i><sub>0</sub> &lt;  &gt; 1</span></p>
@@ -600,25 +681,25 @@ variance is computed as <span class="formula"><i>V</i>[<i>x</i>] = <i>E</i>[
 compute the moments of various combinations of variables.</p>
 <p>Also, <span class="formula"><i>S</i><sub>ln<i>ρ</i>, <i>V</i></sub> ≡ <i>V</i>[ln<i>ρ</i><sub><i>V</i></sub>]</span></p>
 <div class="formula">
- &lt; <i>ρ</i> &gt; <sub><i>V</i></sub> ≡ <i>ρ</i><sub>0</sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span><i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i>
+ &lt; <i>ρ</i> &gt; <sub><i>V</i></sub> ≡ <i>ρ</i><sub>0</sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span><i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i>
 </div>
 <div class="formula">
- &lt; ln<i>ρ</i> &gt; <sub><i>V</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span>ln<i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i>
+ &lt; ln<i>ρ</i> &gt; <sub><i>V</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span>ln<i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i>
 </div>
 <div class="formula">
- &lt; <i>ρ</i> &gt; <sub><i>M</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span><i>ρ</i>(<i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>))<i>d</i>ln<i>ρ</i>
+ &lt; <i>ρ</i> &gt; <sub><i>M</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span><i>ρ</i>(<i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>))<i>d</i>ln<i>ρ</i>
 </div>
 <div class="formula">
- &lt; ln<i>ρ</i> &gt; <sub><i>M</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span>ln<i>ρ</i>(<i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>))<i>d</i>ln<i>ρ</i>
+ &lt; ln<i>ρ</i> &gt; <sub><i>M</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span>ln<i>ρ</i>(<i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>))<i>d</i>ln<i>ρ</i>
 </div>
 <div class="formula">
- &lt; <i>ρ</i><sup>3</sup> &gt; <sub><i>V</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span><i>ρ</i><sup>3</sup><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i>
+ &lt; <i>ρ</i><sup>3</sup> &gt; <sub><i>V</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span><i>ρ</i><sup>3</sup><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i>
 </div>
 <div class="formula">
- &lt; ln<sup>2</sup><i>ρ</i> &gt; <sub><i>V</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span>(ln<i>ρ</i>)<sup>2</sup><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i>
+ &lt; ln<sup>2</sup><i>ρ</i> &gt; <sub><i>V</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span>(ln<i>ρ</i>)<sup>2</sup><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i>
 </div>
 <div class="formula">
- &lt; ln<sup>2</sup><i>ρ</i> &gt; <sub><i>M</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span>(ln<i>ρ</i>)<sup>2</sup><i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i>
+ &lt; ln<sup>2</sup><i>ρ</i> &gt; <sub><i>M</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span>(ln<i>ρ</i>)<sup>2</sup><i>ρ</i><i>P</i><sub><i>V</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i>
 </div>
 <p>In the moment equations, only the input to the PDF is scaled by a mean density
 <span class="formula"><i>ρ</i><sub>0</sub></span>; the &quot;weighting factors&quot; for the expectation value are not
@@ -629,30 +710,30 @@ compute the moments of various combinations of variables.</p>
 <p>These can be integrated analytically.  In this section, I am just computing the
 means; the variances are more complicated.</p>
 <div class="formula">
- &lt; <i>ρ</i> &gt; <sub><i>V</i></sub> ≡ <i>ρ</i><sub>0</sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span><i>ρ</i><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>)<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>d</i>ln<i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>
+ &lt; <i>ρ</i> &gt; <sub><i>V</i></sub> ≡ <i>ρ</i><sub>0</sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span><i>ρ</i><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>)<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>d</i>ln<i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>
 </div>
 <div class="formula">
- &lt; ln<i>ρ</i> &gt; <sub><i>V</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span>ln<i>ρ</i><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>)<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>d</i>ln<i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>
+ &lt; ln<i>ρ</i> &gt; <sub><i>V</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span>ln<i>ρ</i><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>)<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>d</i>ln<i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>
 </div>
 <div class="formula">
- &lt; <i>ρ</i> &gt; <sub><i>M</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span><i>ρ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>))<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>d</i>ln<i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>
+ &lt; <i>ρ</i> &gt; <sub><i>M</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span><i>ρ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>))<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>d</i>ln<i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>
 </div>
 <div class="formula">
- &lt; ln<i>ρ</i> &gt; <sub><i>M</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span>ln<i>ρ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>))<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>d</i>ln<i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>
+ &lt; ln<i>ρ</i> &gt; <sub><i>M</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span>ln<i>ρ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>))<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>d</i>ln<i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span>
 </div>
 <p>Substitution: <span class="formula"><i>v</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator">ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub></span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span></span>,
 <span class="formula"><i>dv</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator">1</span><span class="ignored">)/(</span><span class="denominator"><i>T</i></span><span class="ignored">)</span></span><i>d</i>ln<i>ρ</i></span>, <span class="formula"><i>ρ</i> = <i>ρ</i><sub>0</sub><i>e</i><sup><i>v</i>*<i>T</i></sup></span>, <span class="formula">ln<i>ρ</i> = <i>v</i><i>T</i> + ln<i>ρ</i><sub>0</sub></span></p>
 <div class="formula">
- &lt; <i>ρ</i> &gt; <sub><i>V</i><i>δ</i></sub> ≡ <i>ρ</i><sub>0</sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span><i>ρ</i><sub>0</sub><i>e</i><sup><i>vT</i></sup><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>v</i>)<i>d</i><i>v</i>
+ &lt; <i>ρ</i> &gt; <sub><i>V</i><i>δ</i></sub> ≡ <i>ρ</i><sub>0</sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span><i>ρ</i><sub>0</sub><i>e</i><sup><i>vT</i></sup><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>v</i>)<i>d</i><i>v</i>
 </div>
 <div class="formula">
- &lt; ln<i>ρ</i> &gt; <sub><i>V</i><i>δ</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span>(<i>vT</i> + ln<i>ρ</i><sub>0</sub>)<i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>v</i>)<i>d</i><i>v</i>
+ &lt; ln<i>ρ</i> &gt; <sub><i>V</i><i>δ</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span>(<i>vT</i> + ln<i>ρ</i><sub>0</sub>)<i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>v</i>)<i>d</i><i>v</i>
 </div>
 <div class="formula">
- &lt; <i>ρ</i> &gt; <sub><i>M</i><i>δ</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span><i>ρ</i><sub>0</sub><i>e</i><sup>2<i>vT</i></sup>(<i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>v</i>))<i>d</i><i>v</i>
+ &lt; <i>ρ</i> &gt; <sub><i>M</i><i>δ</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span><i>ρ</i><sub>0</sub><i>e</i><sup>2<i>vT</i></sup>(<i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>v</i>))<i>d</i><i>v</i>
 </div>
 <div class="formula">
- &lt; ln<i>ρ</i> &gt; <sub><i>M</i><i>δ</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit"> − ∞</sub></span>(<i>vT</i> + ln<i>ρ</i><sub>0</sub>)<i>e</i><sup><i>vT</i></sup>(<i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>v</i>))<i>d</i><i>v</i>
+ &lt; ln<i>ρ</i> &gt; <sub><i>M</i><i>δ</i></sub> ≡ <span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit"> − ∞</sub></span>(<i>vT</i> + ln<i>ρ</i><sub>0</sub>)<i>e</i><sup><i>vT</i></sup>(<i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> − <i>v</i>))<i>d</i><i>v</i>
 </div>
 <p>Solutions:</p>
 <div class="formula">
@@ -687,19 +768,19 @@ means; the variances are more complicated.</p>
 <p>These cannot be integrated analytically.</p>
 <p>However, we can work from a few simple mathematica/sympy results:</p>
 <div class="formula">
-<span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit">0</sub></span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>L</i>)</sup><i>dx</i> = <i>e</i><sup><i>L</i></sup> − 1
+<span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit">0</sub></span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>L</i>)</sup><i>dx</i> = <i>e</i><sup><i>L</i></sup> − 1
 </div>
 <div class="formula">
-<span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit">0</sub></span><i>x</i><sup>2</sup><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>L</i>)</sup><i>dx</i> = 4<i>L</i><sup>2</sup>*<i>e</i><sup><i>L</i></sup>
+<span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit">0</sub></span><i>x</i><sup>2</sup><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>L</i>)</sup><i>dx</i> = 4<i>L</i><sup>2</sup>*<i>e</i><sup><i>L</i></sup>
 </div>
 <div class="formula">
-<span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="symbol">∫</span></span><sub class="limit">0</sub></span><i>x</i><sup>4</sup><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>L</i>)</sup><i>dx</i> = 16<i>L</i><sup>3</sup>(<i>L</i> + 2)*<i>e</i><sup><i>L</i></sup>
+<span class="limits"><sup class="limit">∞</sup><span class="limit">⌠</span><span class="limit">⌡</span><sub class="limit">0</sub></span><i>x</i><sup>4</sup><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>L</i>)</sup><i>dx</i> = 16<i>L</i><sup>3</sup>(<i>L</i> + 2)*<i>e</i><sup><i>L</i></sup>
 </div>
 <p>We use <span class="formula"><i>L</i></span> instead of <span class="formula"><i>λ</i></span> in these equations because it is often substituted in later equations.</p>
 <div class="section" id="expectation-value-of-the-volume-weighted-density-e-rho">
 <h4>Expectation Value of the Volume-Weighted Density <span class="formula"><i>E</i>[<i>ρ</i>]</span></h4>
 <div class="formula">
-<i>E</i>[<i>ρ</i>] ≡ <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><i>ρ</i><i>P</i><sub><i>v</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i> = <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><i>ρ</i><span class="symbol">[</span><i>I</i><sub>1</sub>(2<span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><i>λ</i><i>u</i></span><span class="ignored">)</span></span>)<i>e</i><sup> − <i>λ</i> − <i>u</i></sup><span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator"><i>u</i></span><span class="ignored">)</span></span></span><span class="ignored">)</span></span> + <i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<span class="symbol">]</span><i>du</i>
+<i>E</i>[<i>ρ</i>] ≡ <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><i>ρ</i><i>P</i><sub><i>v</i></sub>(ln<i>ρ</i> ⁄ <i>ρ</i><sub>0</sub>)<i>d</i>ln<i>ρ</i> = <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><i>ρ</i><span class="symbol">[</span><i>I</i><sub>1</sub>(2<span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><i>λ</i><i>u</i></span><span class="ignored">)</span></span>)<i>e</i><sup> − <i>λ</i> − <i>u</i></sup><span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator"><i>u</i></span><span class="ignored">)</span></span></span><span class="ignored">)</span></span> + <i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<span class="symbol">]</span><i>du</i>
 </div>
 <p>To get to the form of the above equations, we use the substitution</p>
 <div class="formula">
@@ -711,7 +792,7 @@ means; the variances are more complicated.</p>
 </div>
 <p>and leads to the rearrangement:</p>
 <div class="formula">
-<i>E</i>[<i>ρ</i>] = <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>) − <i>λ</i></sup><span class="symbol">]</span><i>dx</i> + <i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+<i>E</i>[<i>ρ</i>] = <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>) − <i>λ</i></sup><span class="symbol">]</span><i>dx</i> + <i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
 </div>
 <p>where the rightmost term is kept from the first moment above.  The integral
 term can straightforwardly be broken apart into equations of the form shown
@@ -720,7 +801,7 @@ above.</p>
 <i>L</i> → <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span>
 </div>
 <div class="formula">
-<i>E</i>[<i>ρ</i>] = <i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <i>λ</i> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>L</i>)</sup><span class="symbol">]</span><i>dx</i> + exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
+<i>E</i>[<i>ρ</i>] = <i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <i>λ</i> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>L</i>)</sup><span class="symbol">]</span><i>dx</i> + exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
 </div>
 <div class="formula">
  = <i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <i>λ</i> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>(<i>e</i><sup><i>L</i></sup> − 1) + exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
@@ -750,7 +831,7 @@ above.</p>
 <h4>Expectation Value of the Mass-Weighted Density <span class="formula"><i>E</i><sub><i>M</i></sub>[<i>ρ</i>]</span></h4>
 <p>Start from halfway through <span class="formula"><i>E</i>[<i>ρ</i>]</span>, simply adding a factor of 2 in the exponent:</p>
 <div class="formula">
-<i>E</i><sub><i>M</i></sub>[<i>ρ</i>] = <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>2<i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>) − <i>λ</i></sup><span class="symbol">]</span><i>dx</i> + <i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i>(<i>T</i> − 1)</span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+<i>E</i><sub><i>M</i></sub>[<i>ρ</i>] = <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>2<i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>) − <i>λ</i></sup><span class="symbol">]</span><i>dx</i> + <i>ρ</i><sub>0</sub>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i>(<i>T</i> − 1)</span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
 </div>
 <p>Follow the same math, with <span class="formula"><i>L</i> = <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + 2<i>T</i></span><span class="ignored">)</span></span></span></p>
 <div class="formula">
@@ -776,16 +857,16 @@ numerical computation of the mass-weighted density.</p>
 <div class="section" id="expectation-value-of-the-mass-weighted-density-squared-e-m-rho-2">
 <h4>Expectation Value of the Mass-Weighted Density Squared <span class="formula"><i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>]</span></h4>
 <div class="formula">
-<i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>] = <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><i>ρ</i><sup>2</sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> + <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><i>ρ</i><sup>2</sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<i>du</i>
+<i>E</i><sub><i>M</i></sub>[<i>ρ</i><sup>2</sup>] = <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><i>ρ</i><sup>2</sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> + <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><i>ρ</i><sup>2</sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<i>du</i>
 </div>
 <div class="formula">
 <i>E</i><sub><i>δ</i>, <i>M</i></sub>[<i>ρ</i><sup>2</sup>] = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><i>λ</i><span class="fraction"><span class="ignored">(</span><span class="numerator">2<i>T</i> − 1</span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
 </div>
 <div class="formula">
-<i>E</i><sub><i>left</i></sub>[<i>ρ</i><sup>2</sup>] = <i>e</i><sup> − <i>λ</i></sup><span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>3<i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i>
+<i>E</i><sub><i>left</i></sub>[<i>ρ</i><sup>2</sup>] = <i>e</i><sup> − <i>λ</i></sup><span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>3<i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i>
 </div>
 <div class="formula">
- = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">(2<i>T</i> − 1)<i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − (3<i>T</i> + 1)<i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><i>dx</i>
+ = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">(2<i>T</i> − 1)<i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − (3<i>T</i> + 1)<i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><i>dx</i>
 </div>
 <div class="formula">
  = <i>ρ</i><span class="scripts"><sup class="script">2</sup><sub class="script">0</sub></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">(2<i>T</i> − 1)<i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">3<i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span> − 1<span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
@@ -808,19 +889,19 @@ numerical computation of the mass-weighted density.</p>
 <div class="section" id="expectation-value-of-the-volume-weighted-log-density-e-ln-rho">
 <h4>Expectation Value of the Volume-Weighted Log Density <span class="formula"><i>E</i>[ln<i>ρ</i>]</span></h4>
 <div class="formula">
-<i>E</i>[ln<i>ρ</i>] = <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span>ln<i>ρ</i><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> + <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span>ln<i>ρ</i><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<i>du</i>
+<i>E</i>[ln<i>ρ</i>] = <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span>ln<i>ρ</i><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> + <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span>ln<i>ρ</i><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<i>du</i>
 </div>
 <div class="formula">
 <i>E</i><sub><i>δ</i></sub>[ln<i>ρ</i>] = <i>e</i><sup> − <i>λ</i></sup><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + ln<i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
 </div>
 <div class="formula">
-<i>E</i><sub><i>left</i></sub>[ln<i>ρ</i>] = <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>ln<i>ρ</i><sub>0</sub> + <i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i>
+<i>E</i><sub><i>left</i></sub>[ln<i>ρ</i>] = <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>ln<i>ρ</i><sub>0</sub> + <i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i>
 </div>
 <div class="formula">
- = <i>e</i><sup> − <i>λ</i></sup><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> − <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+ = <i>e</i><sup> − <i>λ</i></sup><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> − <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
 </div>
 <div class="formula">
- = <i>e</i><sup> − <i>λ</i></sup><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>(<i>e</i><sup><i>λ</i></sup> − 1) − <span class="fraction"><span class="ignored">(</span><span class="numerator">4<i>T</i><i>λ</i><sup>2</sup><i>e</i><sup><i>λ</i></sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
+ = <i>e</i><sup> − <i>λ</i></sup><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>(<i>e</i><sup><i>λ</i></sup> − 1) − <span class="fraction"><span class="ignored">(</span><span class="numerator">4<i>T</i><i>λ</i><sup>2</sup><i>e</i><sup><i>λ</i></sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
 </div>
 <div class="formula">
  = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span>ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>(1 − <i>e</i><sup> − <i>λ</i></sup>) − <i>T</i><i>λ</i><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>
@@ -835,13 +916,13 @@ numerical computation of the mass-weighted density.</p>
 <div class="section" id="expectation-value-of-the-mass-weighted-log-density-e-m-ln-rho">
 <h4>Expectation Value of the Mass-Weighted Log Density <span class="formula"><i>E</i><sub><i>M</i></sub>[ln<i>ρ</i>]</span></h4>
 <div class="formula">
-<i>E</i><sub><i>M</i></sub>[ln<i>ρ</i>] = <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span>ln<i>ρ</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> + <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span>ln<i>ρ</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<i>du</i>
+<i>E</i><sub><i>M</i></sub>[ln<i>ρ</i>] = <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span>ln<i>ρ</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> + <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span>ln<i>ρ</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<i>du</i>
 </div>
 <div class="formula">
 <i>E</i><sub><i>δ</i></sub>[ln<i>ρ</i>] = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + ln<i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"> − <i>λ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
 </div>
 <div class="formula">
-<i>E</i><sub><i>left</i></sub>[ln<i>ρ</i>] = <i>e</i><sup> − <i>λ</i></sup><span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i>
+<i>E</i><sub><i>left</i></sub>[ln<i>ρ</i>] = <i>e</i><sup> − <i>λ</i></sup><span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i>
 </div>
 <p>Again, separate into integrable terms:</p>
 <div class="formula">
@@ -869,23 +950,23 @@ numerical computation of the mass-weighted density.</p>
 <div class="section" id="expectation-value-of-the-mass-weighted-log-density-squared-e-m-ln-2-rho">
 <h4>Expectation Value of the Mass-Weighted Log Density Squared <span class="formula"><i>E</i><sub><i>M</i></sub>[ln<sup>2</sup><i>ρ</i>]</span></h4>
 <div class="formula">
-<i>E</i><sub><i>M</i></sub>[ln<sup>2</sup><i>ρ</i>] = <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span>(ln<i>ρ</i>)<sup>2</sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> + <span class="limits"><span class="limit"><span class="symbol">∫</span></span></span>(ln<i>ρ</i>)<sup>2</sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<i>du</i>
+<i>E</i><sub><i>M</i></sub>[ln<sup>2</sup><i>ρ</i>] = <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span>(ln<i>ρ</i>)<sup>2</sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i> + <span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span>(ln<i>ρ</i>)<sup>2</sup><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ρ</i></span><span class="ignored">)/(</span><span class="denominator"><i>ρ</i><sub>0</sub></span><span class="ignored">)</span></span><i>e</i><sup> − <i>λ</i></sup><i>δ</i>(<i>u</i>)<i>du</i>
 </div>
 <div class="formula">
 <i>E</i><sub><i>δ</i></sub>[ln<sup>2</sup><i>ρ</i>] = <span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><i>T</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + ln<i>ρ</i><sub>0</sub><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator"> − <i>λ</i></span><span class="ignored">)/(</span><span class="denominator"><i>T</i> + 1</span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
 </div>
 <div class="formula">
-<i>E</i><sub><i>left</i></sub>[ln<sup>2</sup><i>ρ</i>] = <i>e</i><sup> − <i>λ</i></sup><span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i>
+<i>E</i><sub><i>left</i></sub>[ln<sup>2</sup><i>ρ</i>] = <i>e</i><sup> − <i>λ</i></sup><span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>ln<i>ρ</i><sub>0</sub> + <i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>T</i><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i>
 </div>
 <p>This time it's just too ugly.  Define a new variable:</p>
 <div class="formula">
 <i>Q</i> = ln<i>ρ</i><sub>0</sub> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span>
 </div>
 <div class="formula">
-<i>E</i><sub><i>left</i></sub>[ln<sup>2</sup><i>ρ</i>] = <i>e</i><sup> − <i>λ</i> ⁄ (1 + <i>T</i>)</sup><span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>Q</i> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>Tx</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i>
+<i>E</i><sub><i>left</i></sub>[ln<sup>2</sup><i>ρ</i>] = <i>e</i><sup> − <i>λ</i> ⁄ (1 + <i>T</i>)</sup><span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>Q</i> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><sup>2</sup>exp<span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span> − <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>Tx</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − <i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><i>dx</i>
 </div>
 <div class="formula">
-<i>E</i><sub><i>left</i></sub>[ln<sup>2</sup><i>ρ</i>] = <i>e</i><sup> − <i>λ</i> ⁄ (1 + <i>T</i>)</sup><span class="limits"><span class="limit"><span class="symbol">∫</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>Q</i><sup>2</sup> − 2<i>Q</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>x</i><sup>4</sup></span><span class="ignored">)/(</span><span class="denominator">16<i>λ</i><sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − (1 + <i>T</i>)<i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><i>dx</i>
+<i>E</i><sub><i>left</i></sub>[ln<sup>2</sup><i>ρ</i>] = <i>e</i><sup> − <i>λ</i> ⁄ (1 + <i>T</i>)</sup><span class="limits"><span class="limit">⌠</span><span class="limit">⌡</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><i>Q</i><sup>2</sup> − 2<i>Q</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><i>x</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup><i>x</i><sup>4</sup></span><span class="ignored">)/(</span><span class="denominator">16<i>λ</i><sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="symbol">[</span><i>I</i><sub>1</sub>(<i>x</i>)<i>e</i><sup> − (1 + <i>T</i>)<i>x</i><sup>2</sup> ⁄ (4<i>λ</i>)</sup><span class="symbol">]</span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span><i>dx</i>
 </div>
 <div class="formula">
 <i>E</i><sub><i>left</i></sub>[ln<sup>2</sup><i>ρ</i>] = <i>e</i><sup> − <i>λ</i> ⁄ (1 + <i>T</i>)</sup><span class="array"><span class="arrayrow"><span class="bracket align-left">⎡</span></span><span class="arrayrow"><span class="bracket align-left">⎣</span></span></span><i>Q</i><sup>2</sup>(<i>e</i><sup><i>λ</i> ⁄ (1 + <i>T</i>)</sup> − 1) − 2<i>Q</i><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i></span><span class="ignored">)/(</span><span class="denominator">4<i>λ</i></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span><span class="fraction"><span class="ignored">(</span><span class="numerator">4<i>λ</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>2</sup></span><span class="ignored">)</span></span><i>e</i><sup><i>λ</i> ⁄ (1 + <i>T</i>)</sup><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span> + <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>T</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">16<i>λ</i><sup>2</sup></span><span class="ignored">)</span></span><span class="array"><span class="arrayrow"><span class="bracket align-left">⎛</span></span><span class="arrayrow"><span class="bracket align-left">⎝</span></span></span>16<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><sup>3</sup></span><span class="ignored">)/(</span><span class="denominator">(1 + <i>T</i>)<sup>3</sup></span><span class="ignored">)</span></span>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i></span><span class="ignored">)/(</span><span class="denominator">1 + <i>T</i></span><span class="ignored">)</span></span> + 2)<i>e</i><sup><i>λ</i> ⁄ (1 + <i>T</i>)</sup><span class="array"><span class="arrayrow"><span class="bracket align-right">⎞</span></span><span class="arrayrow"><span class="bracket align-right">⎠</span></span></span><span class="array"><span class="arrayrow"><span class="bracket align-right">⎤</span></span><span class="arrayrow"><span class="bracket align-right">⎦</span></span></span>
@@ -969,7 +1050,7 @@ square below), so the maximum <span class="formula"><i>ρ</i><sub><i>M</i></sub>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2013-05-13T09:26:00"> 2013/05/13 </abbr>
+            <abbr class="published" title="2013-05-13T09:26:00-06:00"> 2013/05/13 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>To continue frozen processes, you need to find all sleeping procs and restart them with <tt class="docutils literal">kill <span class="pre">-CONT</span></tt>.</p>
 <p>In principle, this command should do that:</p>
@@ -997,7 +1078,7 @@ square below), so the maximum <span class="formula"><i>ρ</i><sub><i>M</i></sub>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2013-03-25T11:14:00"> 2013/03/25 </abbr>
+            <abbr class="published" title="2013-03-25T11:14:00-06:00"> 2013/03/25 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Adopt an effective Bolocam center frequency,  f = 271.1 GHz</p>
 <p>Use Ossenkopf, V. &amp; Henning, Th. 1994, A&amp;A, 291, 943 Table 1. [<a class="reference external" href="http://adsabs.harvard.edu/abs/1994A%26A...291..943O">http://adsabs.harvard.edu/abs/1994A%26A...291..943O</a>]
@@ -1057,14 +1138,14 @@ The effective beam solid angle is <span class="formula">Ω = 2.902<i>x</i>10
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2013-03-22T22:50:00"> 2013/03/22 </abbr>
+            <abbr class="published" title="2013-03-22T22:50:00-06:00"> 2013/03/22 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Worked on reducing the Arecibo continuum data.  There were some serious
 problems with the off positions previously, in particular generating weird
 slopes.</p>
 <p>I suspect the problem was with these lines</p>
 <!-- this is really IDL but there's no pygment for IDL -->
-<div class="highlight"><pre><span class="n">sorted1</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">totals</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><span class="n">sorted1</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">totals</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">sorted2</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">totals</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
 </pre></div>
 <p>since the indexing is wrong, but I'm not sure yet.  I re-wrote the whole
@@ -1084,7 +1165,7 @@ fitting works now. Here's an example:</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2013-03-12T20:16:00"> 2013/03/12 </abbr>
+            <abbr class="published" title="2013-03-12T20:16:00-06:00"> 2013/03/12 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Some notes about the Jeans mass scale using astropy's units.</p>
 <p>Simple approaches to determining mass scales:</p>
@@ -1122,13 +1203,13 @@ temperature, this is:</p>
 <p>where <span class="formula"><i>m</i></span> is the particle mass, usually assumed to be 2.8 amu. (actually,
 2.8 is for mass per H$_2$ particle, it should really be 2.3 amu)</p>
 <p>In[1]:</p>
-<div class="highlight"><pre><span class="c"># astropy imports</span>
+<div class="highlight"><pre><span></span><span class="c1"># astropy imports</span>
 <span class="kn">import</span> <span class="nn">astropy.units</span> <span class="kn">as</span> <span class="nn">u</span>
 <span class="kn">import</span> <span class="nn">astropy.constants</span> <span class="kn">as</span> <span class="nn">c</span>
-<span class="c"># turn off verbose but unnecessary information</span>
+<span class="c1"># turn off verbose but unnecessary information</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s">&#39;ignore&#39;</span><span class="p">)</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">UnitsWarning</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">UnitsWarning</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 <pre class="literal-block">
 WARNING: ConfigurationDefaultMissingWarning: Requested default
@@ -1137,12 +1218,12 @@ file. Cannot install default profile. If you are importing from source,
 this is expected. [astropy]
 </pre>
 <p>In[7]:</p>
-<div class="highlight"><pre><span class="n">amu</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">m_p</span>
+<div class="highlight"><pre><span></span><span class="n">amu</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">m_p</span>
 <span class="n">temperature</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">K</span>
 <span class="n">m</span> <span class="o">=</span> <span class="p">(((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">k_B</span> <span class="o">*</span> <span class="n">temperature</span><span class="p">)</span><span class="o">**</span><span class="mf">1.5</span> <span class="o">/</span> <span class="p">((</span><span class="mf">2.8</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">m_p</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">G</span><span class="p">)</span><span class="o">**</span><span class="mf">1.5</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.8</span><span class="o">*</span><span class="mf">1e4</span><span class="o">*</span><span class="n">amu</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mf">2.</span><span class="p">))))</span><span class="o">.</span><span class="n">cgs</span>
 </pre></div>
 <p>In[5]:</p>
-<div class="highlight"><pre><span class="n">m</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">solMass</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">solMass</span><span class="p">)</span>
 </pre></div>
 <p>Out[5]:</p>
 <div class="formula">
@@ -1162,31 +1243,31 @@ this is expected. [astropy]
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2013-02-27T18:02:00"> 2013/02/27 </abbr>
+            <abbr class="published" title="2013-02-27T18:02:00-07:00"> 2013/02/27 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Attempting to install sextractor.</p>
 <p>First, tried following these instructions:</p>
 <p><a class="reference external" href="http://henrysmac.org/blog/2012/8/17/install-sextractor-on-os-x-lion.html">http://henrysmac.org/blog/2012/8/17/install-sextractor-on-os-x-lion.html</a></p>
 <p>Then found out that mac's tar doesn't work properly (see this note: <a class="reference external" href="http://math-atlas.sourceforge.net/atlas_install/node60.html">http://math-atlas.sourceforge.net/atlas_install/node60.html</a>)</p>
 <p>Fixed that with:</p>
-<div class="highlight"><pre>wget ftp://gnu.mirror.iweb.com/gnu/tar/tar-latest.tar.gz
+<div class="highlight"><pre><span></span>wget ftp://gnu.mirror.iweb.com/gnu/tar/tar-latest.tar.gz
 <span class="nb">cd</span> ~/repos/
-tar -xzvf ~/Downloads/tar-latest.tar.gz <span class="c"># ironically</span>
-<span class="nb">cd </span>tar-1.26/
+tar -xzvf ~/Downloads/tar-latest.tar.gz <span class="c1"># ironically</span>
+<span class="nb">cd</span> tar-1.26/
 ./configure
 make
-make install <span class="c"># fails</span>
+make install <span class="c1"># fails</span>
 sudo make install
 <span class="nb">hash</span> -r
 </pre></div>
 <p>OK, try the instructions again:</p>
-<div class="highlight"><pre><span class="c"># first command may not work... visit that link if so</span>
+<div class="highlight"><pre><span></span><span class="c1"># first command may not work... visit that link if so</span>
 wget https://sourceforge.net/projects/math-atlas/files/latest/download?source<span class="o">=</span>files
 mkdir ~/repos/ATLAS3.10
 <span class="nb">cd</span> ~/repos/ATLAS3.10
-tar -xf ~/Downloads/atlas3.10.1.tar -C ./ --strip-components 1
+tar -xf ~/Downloads/atlas3.10.1.tar -C ./ --strip-components <span class="m">1</span>
 mkdir build/
-<span class="nb">cd </span>build/
+<span class="nb">cd</span> build/
 ../configure -b <span class="m">64</span> --shared --prefix<span class="o">=</span>/usr/local/lib/atlas --with-netlib-lapack-tarfile<span class="o">=</span>/Users/adam/Downloads/lapack-3.4.2.tar
 make build
 </pre></div>
@@ -1576,62 +1657,6 @@ wget http://www.astromatic.net/download/sextractor/sextractor-2.8.6.tar.gz
 tar -xzvf ~/Downloads/sextractor-2.8.6.tar.gz
 </pre>
  </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/short-timescale-variability-in-orion-nope.html" rel="bookmark" title="Permalink to Short timescale variability in Orion? Nope.">
-                    Short timescale variability in Orion?  Nope.</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2012-11-19T17:07:00"> 2012/11/19 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <div dir="ltr" style="text-align: left;"><p>I attempted to use TripleSpec finder / guider images to search for
-variability &nbsp;on short (~5s) timescales in the Orion Nebula region. &nbsp;This
-project was an offshoot of the related
-<a class="reference external" href="http://adamginsburg.blogspot.com/2012/10/using-guider-images-to-achieve.html">http://adamginsburg.blogspot.com/2012/10/using-guider-images-to-achieve.html</a>.
-&nbsp;I successfully matched the images using a particular catalog &amp; the
-ever-cool&nbsp;<a class="reference external" href="http://astrometry.net/">astrometry.net</a>with a great deal of assistance from
-<a class="reference external" href="http://www.astro.princeton.edu/~dstn/">Dustin Lang</a>&nbsp;and some from <a class="reference external" href="http://hoggresearch.blogspot.com/2012/10/time-for-astrometrynet-to-rise-again.html">David Hogg</a>. &nbsp;I'll post details of that
-process later; it proved challenging but will DEFINITELY be useful again
-in the future. &nbsp;Short story: I had to build my own indices, then fit
-twice - once for the first match, once after distortion was applied to
-re-extract the sources in the right location.
-Conveniently, one of the products output by the astrometry.net code is
-ra,dec locations and fluxes (background subtracted) for all of the
-identified sources. &nbsp;So, I used a simple script to match all sources
-within 2&quot; of a known source from my input catalog and generate
-timestream data. &nbsp;It took about an hour of processing (nested for loops
-- awful, but the only obvious choice at first. &nbsp;Half of the time was
-probably file IO anyway).
-I now had a few hundred timestreams of Orion stars. &nbsp;At this point, I
-hadn't done any kind of quality control, which was obviously a problem
-because the Trapezium and neighbors were clearly saturated. &nbsp;Also, there
-are known hot pixels that will drive some stars into weird behavior.
-&nbsp;But I ignored all of that. &nbsp;All I did for quality control was reject
-stars with more than about 5% missing data.
-I elected to go straight for PCA analysis. &nbsp;I assumed the primary
-component (the most correlated component) would be from the atmosphere,
-which is almost certainly true. &nbsp;Subtracting that off (shown in the
-notebook linked below) left some clearly correlated components left over
-- some of these are instrumental, others are correlated backgrounds,
-others are correlated saturation levels. &nbsp;I don't honestly know what all
-of the components are, but I DO know that correlated components are very
-unlikely to be intrinsic phenomena - stellar brightness isn't
-correlated.
-So I tried to cut out ALL correlated components. &nbsp;However, I think in
-the process I probably removed any useful information - even
-un-correlated signal should probably have a high amplitude (if it's
-interesting...) that will get removed through the process I used.
-&nbsp;Nonetheless, I probably have some upper limits on the 5s scale
-variability of these stars in K-band. &nbsp;Not enough to do anything like
-asteroseismology, but it was worth a day's effort.
-Here's the ipython notebook (gist &amp; nbviewer) for those interested:
-<a class="reference external" href="https://gist.github.com/4109329">https://gist.github.com/4109329</a>
-<a class="reference external" href="http://nbviewer.ipython.org/4109329/">http://nbviewer.ipython.org/4109329/</a></p>
-</div></p> </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
 </ul><!-- /#posts-list -->

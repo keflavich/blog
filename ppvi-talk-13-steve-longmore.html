@@ -7,7 +7,7 @@
         <title>Adam Ginsburg's blog</title>
         <meta charset="utf-8" />
         <link href="http://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
-        <link href="http://keflavich.github.io/blog/feeds/pp6.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+        <link href="http://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
 <!-- Using MathJax, with the delimiters $ -->
 <!-- Conflict with pygments for the .mo and .mi -->
 <script type="text/x-mathjax-config">
@@ -68,6 +68,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2019/07/23
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-corrupted-measurement-sets.html">CASA corrupted measurement sets</a>
+              </li>
+              <li class="post">
                   2018/10/14
                   <br>
                   <a href="http://keflavich.github.io/blog/feo-nondetection-in-orion.html">FeO Nondetection in Orion</a>
@@ -87,11 +92,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/derivation-of-co-column-density.html">Derivation of CO Column Density</a>
               </li>
-              <li class="post">
-                  2017/12/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/the-extragalactic-view-of-w51-at-220-and-290-ghz.html">The extragalactic view of W51 at 220 and 290 GHz</a>
-              </li>
         </ul>
       </li>
     
@@ -107,7 +107,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
  
   </header>
   <footer class="post-info">
-    <abbr class="published" title="2013-07-16T18:00:00">
+    <abbr class="published" title="2013-07-16T18:00:00-06:00">
       2013/07/16
     </abbr>
     <address class="vcard author">
@@ -199,14 +199,12 @@ earliest epochs of the universe.</p>
 <h2>Observations</h2>
 <dl class="docutils">
 <dt>What do we expect to see?</dt>
-<dd><ul class="first last">
-<li><p class="first">mass-radius diagram</p>
-</li>
-<li><p class="first">need v_esc &gt; c_II</p>
-</li>
+<dd><ul class="first last simple">
+<li>mass-radius diagram</li>
+<li>need v_esc &gt; c_II</li>
 <li><dl class="first docutils">
 <dt>How dense?  YMC at given mass, radius</dt>
-<dd><ul class="first last simple">
+<dd><ul class="first last">
 <li>Collapse of single cloud?</li>
 <li>Cloud-cloud collision?</li>
 </ul>
@@ -326,44 +324,31 @@ earliest epochs of the universe.</p>
 <div class="section" id="questions">
 <h2>Questions</h2>
 <blockquote>
-<ul>
-<li><p class="first">Q: Battersby - &quot;in situ&quot; idea.  Short lifetime.  CMZ should not be forming stars.</p>
-</li>
-<li><p class="first">A: SF is slower according to Kruijssen.  Once the turbulence dissipates, stars will form anyway.</p>
-</li>
-<li><p class="first">Q: Battersby - What does the previous state of the gas look like for in situ?</p>
-</li>
-<li><p class="first">A: Thor HI envelopes will tell you about kinematics.  We don't know initial
-conditions for things in the disk.</p>
-</li>
-<li><p class="first">Q Hans: Continuum image of brick.  High density.  No stars formed.  Cries
+<ul class="simple">
+<li>Q: Battersby - &quot;in situ&quot; idea.  Short lifetime.  CMZ should not be forming stars.</li>
+<li>A: SF is slower according to Kruijssen.  Once the turbulence dissipates, stars will form anyway.</li>
+<li>Q: Battersby - What does the previous state of the gas look like for in situ?</li>
+<li>A: Thor HI envelopes will tell you about kinematics.  We don't know initial
+conditions for things in the disk.</li>
+<li>Q Hans: Continuum image of brick.  High density.  No stars formed.  Cries
 out as the initial conditions of SF.  Is THIS the initial conditions for SPH
-codes?</p>
-</li>
-<li><p class="first">A: Surprisingly small clumps.  Most massive is ~few hundred Msun</p>
-</li>
-<li><p class="first">Hans: can form more massive stars later</p>
-</li>
-<li><p class="first">Q McKee: What fraction of YMC has already formed in disk?</p>
-</li>
-<li><p class="first">A: High Q (lyman continuum luminosity).  Don't know</p>
-</li>
-<li><p class="first">Q Henrik: Help a little with the interpretation.  Do the data help say
-something about shocks, anything?</p>
-</li>
+codes?</li>
+<li>A: Surprisingly small clumps.  Most massive is ~few hundred Msun</li>
+<li>Hans: can form more massive stars later</li>
+<li>Q McKee: What fraction of YMC has already formed in disk?</li>
+<li>A: High Q (lyman continuum luminosity).  Don't know</li>
+<li>Q Henrik: Help a little with the interpretation.  Do the data help say
+something about shocks, anything?</li>
 <li><dl class="first docutils">
 <dt>A: A lot of potential answers... simulations of gas cloud at Sgr C, whiz by Sgr A.</dt>
-<dd><p class="first last">(we will be able to say things...)</p>
-</dd>
+<dd>(we will be able to say things...)</dd>
 </dl>
 </li>
-<li><p class="first">Q: Klessen - in Alma data, do you have OI? [No]  Clarke and Glover predict
+<li>Q: Klessen - in Alma data, do you have OI? [No]  Clarke and Glover predict
 OI prominent and bright.
-Could distinguish between UV and CR flux.</p>
-</li>
-<li><p class="first">A: Different gas temperature.  Wish we had OI.  Shock or CR heating.  SOFIA
-only thing that can do it</p>
-</li>
+Could distinguish between UV and CR flux.</li>
+<li>A: Different gas temperature.  Wish we had OI.  Shock or CR heating.  SOFIA
+only thing that can do it</li>
 </ul>
 </blockquote>
 </div>

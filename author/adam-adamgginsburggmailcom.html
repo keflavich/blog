@@ -110,7 +110,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2015-05-07T12:00:00"> 2015/05/07 </abbr>
+            <abbr class="published" title="2015-05-07T12:00:00-06:00"> 2015/05/07 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>My <a class="reference external" href="http://www.eso.org/~eemselle/CV.html">boss</a> asked a great question at our first weekly <a class="reference external" href="https://github.com/ESO-python/ESOPythonTutorials">ESO-python tutorial</a>
 session: What does a good ipython debugging workflow look like?</p>
@@ -121,7 +121,7 @@ badly once you start writing complex programs and using things like common
 blocks.</p>
 <p>In ipython, there is a beautiful debugger that is far more feature-rich than
 the IDL equivalent.  It can be activated simply:</p>
-<div class="highlight"><pre><span class="o">%</span><span class="n">pdb</span>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pdb</span>
 </pre></div>
 <p>will toggle the interactive ipython debugger.  Then, if you run into a code
 crash, you will be dumped out at an <cite>ipdb&gt;</cite> prompt, with access to a
@@ -134,14 +134,14 @@ normally have put a <tt class="docutils literal">stop</tt> statement.  There are
 however: in IDL, you could just <tt class="docutils literal">.continue</tt> to run the rest of the code as if
 no stop occurred; in python the same is not possible with the default ipdb.</p>
 <p>However, the <a class="reference external" href="https://pypi.python.org/pypi/ipdb">ipdb</a> package allows the insertion of breakpoints just like in IDL:</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">ipdb</span><span class="p">;</span> <span class="n">ipdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ipdb</span><span class="p">;</span> <span class="n">ipdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
 </pre></div>
 <p>From within one of these breakpoints, the <tt class="docutils literal">.continue</tt> command will continue on
 to the next breakpoint, as you might expect.  The <tt class="docutils literal">n</tt> and <tt class="docutils literal">s</tt> commands will go
 to the next line in the code, while <tt class="docutils literal">s</tt> will allow you to drop into called functions (how?)</p>
 <p><a class="reference external" href="http://scipy-lectures.github.io/advanced/debugging/#using-the-python-debugger">Postmortem debugging</a> is also awesome.  If you have run a command and gotten a traceback,
 you can retroactively enter the debugger:</p>
-<div class="highlight"><pre><span class="o">%</span><span class="n">debug</span>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">debug</span>
 </pre></div>
 <p>but as with the normal traceback debugger, one cannot <tt class="docutils literal">continue</tt> afterward.</p>
 <div class="section" id="reloading-code">
@@ -150,13 +150,13 @@ you can retroactively enter the debugger:</p>
 script.  These are the most convenient way to install, use, and distribute
 code, but they are not ideal for debugging.</p>
 <p>When debugging a normal script, something you could run by invoking</p>
-<div class="highlight"><pre>python myfile.py
+<div class="highlight"><pre><span></span>python myfile.py
 </pre></div>
 <p>or</p>
-<div class="highlight"><pre><span class="o">%</span><span class="n">run</span> <span class="n">myfile</span><span class="o">.</span><span class="n">py</span>
-<span class="c"># in the local namespace</span>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">run</span> <span class="n">myfile</span><span class="o">.</span><span class="n">py</span>
+<span class="c1"># in the local namespace</span>
 <span class="o">%</span><span class="n">run</span> <span class="o">-</span><span class="n">i</span> <span class="n">myfile</span><span class="o">.</span><span class="n">py</span>
-<span class="c"># with the python debugger active:</span>
+<span class="c1"># with the python debugger active:</span>
 <span class="o">%</span><span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="n">myfile</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 <p>can easily be debugged by running it line-by-line.  The <a class="reference external" href="http://ipython.org/ipython-doc/dev/interactive/tutorial.html#running-and-editing">documentation</a>
@@ -173,7 +173,7 @@ underlying an already-instantiated class, so you have to remake any class
 instances you want to examine.</p>
 <p>The <tt class="docutils literal">reload</tt> command is tricky to use.  You will only see changes to the source code
 if you import the exact package in which the code is stored.  For example, if you have a file structure like this:</p>
-<div class="highlight"><pre>mypackage/
+<div class="highlight"><pre><span></span>mypackage/
     __init__.py
     core.py
 </pre></div>
@@ -198,8 +198,8 @@ results to pastebin for easy sharing, <tt class="docutils literal">py.test <span
 setup.py test <span class="pre">-P</span> packagename</tt> in astropy) to select tests for a specific
 package.  A great deal more options can be found in the <a class="reference external" href="http://pytest.org/latest/">pytest docs</a>.</p>
 <p>A test suite, if properly constructed, can also be run from with in ipython:</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">astroquery</span>
-<span class="n">astroquery</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s">&#39;eso&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">astroquery</span>
+<span class="n">astroquery</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s1">&#39;eso&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="section" id="postscript">
@@ -224,7 +224,7 @@ package.  A great deal more options can be found in the <a class="reference exte
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-12-26T23:02:00"> 2012/12/26 </abbr>
+            <abbr class="published" title="2012-12-26T23:02:00-07:00"> 2012/12/26 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>In the <a class="reference external" href="http://bolocam.blogspot.com/2012/12/pointing-cross-correlation-yet-again.html">previous post</a>, I came up with a final plot showing the
 pointing offset was, on average, not significant, even in the ATLASGAL
@@ -266,7 +266,7 @@ don't feel confident about numbers below that range for ALL fields.</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-12-26T23:02:00"> 2012/12/26 </abbr>
+            <abbr class="published" title="2012-12-26T23:02:00-07:00"> 2012/12/26 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>This post has been baleeted.</p>
  </div><!-- /.entry-content   not article.summary--> 
@@ -280,7 +280,7 @@ don't feel confident about numbers below that range for ALL fields.</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-12-22T02:53:00"> 2012/12/22 </abbr>
+            <abbr class="published" title="2012-12-22T02:53:00-07:00"> 2012/12/22 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Can use BGPS + HiGal to look for correlated (thermal) components and
 decorrelated (free-free) components. &nbsp;Obviously needs to be tried in GC
@@ -298,7 +298,7 @@ unsharp-masking for herschel-bolocam comparison</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-12-15T03:21:00"> 2012/12/15 </abbr>
+            <abbr class="published" title="2012-12-15T03:21:00-07:00"> 2012/12/15 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Prompted in part by a <a class="reference external" href="http://arxiv.org/abs/1211.0741">recent ATLASGAL paper</a>&nbsp;identifying pointing
 offsets of about 3&quot; in the BGPS, we revisit the BGPS pointing.
@@ -482,7 +482,7 @@ knows what new errors I'll turn up?</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-09-08T08:06:00"> 2012/09/08 </abbr>
+            <abbr class="published" title="2012-09-08T08:06:00-06:00"> 2012/09/08 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Since last time (<a class="reference external" href="http://bolocam.blogspot.com/2009/03/43-relative-alignment-and-mosaicing.html">Taylor Expansion &amp; Cross
 Correlation</a><a class="reference external" href="http://bolocam.blogspot.com/2012/03/new-coalignment-code.html">,</a><a class="reference external" href="http://bolocam.blogspot.com/2012/03/new-coalignment-code.html">Coalignment Code</a>), I have attempted to re-do the
@@ -518,7 +518,7 @@ offsets):</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-06-23T09:11:00"> 2012/06/23 </abbr>
+            <abbr class="published" title="2012-06-23T09:11:00-06:00"> 2012/06/23 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <img alt="" src="http://3.bp.blogspot.com/-c_JUkbALzlE/T-WIDgFQgpI/AAAAAAAAHM0/wQIBvsgQtQU/s320/longwav500_sn10_Herschelsn50_bb_test.png" />
 <img alt="" src="http://1.bp.blogspot.com/-CZHBZFtEpC8/T-WIExxu5uI/AAAAAAAAHM8/wxR_0xFujm8/s320/longwav500_sn20_Herschelsn50_bb_test.png" />
@@ -536,7 +536,7 @@ beta in a greybody fit.</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-05-24T17:59:00"> 2012/05/24 </abbr>
+            <abbr class="published" title="2012-05-24T17:59:00-06:00"> 2012/05/24 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I've done some very extensive comparison of v1 and v2. The plots below
 are included in the current BGPS draft, but I'll go into more excessive
@@ -610,7 +610,7 @@ explanation here is the changed spatial transfer function in v2.</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-05-23T23:59:00"> 2012/05/23 </abbr>
+            <abbr class="published" title="2012-05-23T23:59:00-06:00"> 2012/05/23 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>BGPS V2.0 pointing offsets relative to V1 and Herschel:</p>
 <img alt="" src="http://4.bp.blogspot.com/-41YC6GZJR-0/T715bELMplI/AAAAAAAAHE0/Fzk41wW8ysM/s320/Offsets_CDF.png" />
@@ -632,7 +632,7 @@ corresponding to the standard deviations.</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2012-03-31T00:28:00"> 2012/03/31 </abbr>
+            <abbr class="published" title="2012-03-31T00:28:00-06:00"> 2012/03/31 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Haloes are when images look like this:</p>
 <img alt="" src="http://1.bp.blogspot.com/-Hwwiewo9FyU/T3Yhs6TpYcI/AAAAAAAAG0k/uKSTBCn95FY/s320/Screen%2Bshot%2B2012-03-30%2Bat%2B3.09.54%2BPM.png" />

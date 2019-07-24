@@ -7,7 +7,7 @@
         <title>Adam Ginsburg's blog</title>
         <meta charset="utf-8" />
         <link href="http://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
-        <link href="http://keflavich.github.io/blog/feeds/misc.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+        <link href="http://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
 <!-- Using MathJax, with the delimiters $ -->
 <!-- Conflict with pygments for the .mo and .mi -->
 <script type="text/x-mathjax-config">
@@ -68,6 +68,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2019/07/23
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-corrupted-measurement-sets.html">CASA corrupted measurement sets</a>
+              </li>
+              <li class="post">
                   2018/10/14
                   <br>
                   <a href="http://keflavich.github.io/blog/feo-nondetection-in-orion.html">FeO Nondetection in Orion</a>
@@ -87,11 +92,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/derivation-of-co-column-density.html">Derivation of CO Column Density</a>
               </li>
-              <li class="post">
-                  2017/12/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/the-extragalactic-view-of-w51-at-220-and-290-ghz.html">The extragalactic view of W51 at 220 and 290 GHz</a>
-              </li>
         </ul>
       </li>
     
@@ -107,7 +107,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
  
   </header>
   <footer class="post-info">
-    <abbr class="published" title="2013-02-27T18:02:00">
+    <abbr class="published" title="2013-02-27T18:02:00-07:00">
       2013/02/27
     </abbr>
     <address class="vcard author">
@@ -120,24 +120,24 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <p><a class="reference external" href="http://henrysmac.org/blog/2012/8/17/install-sextractor-on-os-x-lion.html">http://henrysmac.org/blog/2012/8/17/install-sextractor-on-os-x-lion.html</a></p>
 <p>Then found out that mac's tar doesn't work properly (see this note: <a class="reference external" href="http://math-atlas.sourceforge.net/atlas_install/node60.html">http://math-atlas.sourceforge.net/atlas_install/node60.html</a>)</p>
 <p>Fixed that with:</p>
-<div class="highlight"><pre>wget ftp://gnu.mirror.iweb.com/gnu/tar/tar-latest.tar.gz
+<div class="highlight"><pre><span></span>wget ftp://gnu.mirror.iweb.com/gnu/tar/tar-latest.tar.gz
 <span class="nb">cd</span> ~/repos/
-tar -xzvf ~/Downloads/tar-latest.tar.gz <span class="c"># ironically</span>
-<span class="nb">cd </span>tar-1.26/
+tar -xzvf ~/Downloads/tar-latest.tar.gz <span class="c1"># ironically</span>
+<span class="nb">cd</span> tar-1.26/
 ./configure
 make
-make install <span class="c"># fails</span>
+make install <span class="c1"># fails</span>
 sudo make install
 <span class="nb">hash</span> -r
 </pre></div>
 <p>OK, try the instructions again:</p>
-<div class="highlight"><pre><span class="c"># first command may not work... visit that link if so</span>
+<div class="highlight"><pre><span></span><span class="c1"># first command may not work... visit that link if so</span>
 wget https://sourceforge.net/projects/math-atlas/files/latest/download?source<span class="o">=</span>files
 mkdir ~/repos/ATLAS3.10
 <span class="nb">cd</span> ~/repos/ATLAS3.10
-tar -xf ~/Downloads/atlas3.10.1.tar -C ./ --strip-components 1
+tar -xf ~/Downloads/atlas3.10.1.tar -C ./ --strip-components <span class="m">1</span>
 mkdir build/
-<span class="nb">cd </span>build/
+<span class="nb">cd</span> build/
 ../configure -b <span class="m">64</span> --shared --prefix<span class="o">=</span>/usr/local/lib/atlas --with-netlib-lapack-tarfile<span class="o">=</span>/Users/adam/Downloads/lapack-3.4.2.tar
 make build
 </pre></div>

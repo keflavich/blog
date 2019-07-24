@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2019/07/23
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-corrupted-measurement-sets.html">CASA corrupted measurement sets</a>
+              </li>
+              <li class="post">
                   2018/10/14
                   <br>
                   <a href="http://keflavich.github.io/blog/feo-nondetection-in-orion.html">FeO Nondetection in Orion</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/derivation-of-co-column-density.html">Derivation of CO Column Density</a>
               </li>
-              <li class="post">
-                  2017/12/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/the-extragalactic-view-of-w51-at-220-and-290-ghz.html">The extragalactic view of W51 at 220 and 290 GHz</a>
-              </li>
         </ul>
       </li>
     
@@ -104,29 +104,47 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/export-to-fits-with-miriad.html" rel="bookmark" title="Permalink to Export to FITS with MIRIAD">
+                    Export to FITS with MIRIAD</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-09-15T15:30:00-06:00"> 2015/09/15 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>To convert from MIRIAD map files to FITS, use:</p>
+<pre class="literal-block">
+miriad% fits in=h2comos1.clr out=h2comos1.fits op=xyout
+</pre>
+<p>(see <a class="reference external" href="converting-gildas-class-data-cubes-lmv-files-to-fits.rst">the CLASS conversion post</a>)</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
                 <a href="http://keflavich.github.io/blog/.html" rel="bookmark" title="Permalink to ">
                     </a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2015-09-14T00:00:00"> 2015/09/14 </abbr>
+            <abbr class="published" title="2015-09-14T00:00:00-06:00"> 2015/09/14 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>From Andrew Walsh, a script to install MIRIAD:</p>
-<div class="highlight"><pre>wget ftp://ftp.atnf.csiro.au/pub/software/miriad/miriad-common.tar.bz2
+<div class="highlight"><pre><span></span>wget ftp://ftp.atnf.csiro.au/pub/software/miriad/miriad-common.tar.bz2
 wget ftp://ftp.atnf.csiro.au/pub/software/miriad/miriad-linux64.tar.bz2
 bzcat miriad-common.tar.bz2 <span class="p">|</span> tar xvf -
 bzcat miriad-linux64.tar.bz2  <span class="p">|</span> tar xvf -
-<span class="nb">cd </span>miriad
-<span class="nb">export </span><span class="nv">MIR</span><span class="o">=</span><span class="nv">$PWD</span>
-<span class="c"># define the MIR variable in your bashrc</span>
+<span class="nb">cd</span> miriad
+<span class="nb">export</span> <span class="nv">MIR</span><span class="o">=</span><span class="nv">$PWD</span>
+<span class="c1"># define the MIR variable in your bashrc</span>
 <span class="nb">echo</span> <span class="s2">&quot;export MIR=</span><span class="nv">$MIR</span><span class="s2">&quot;</span> &gt;&gt; ~/.bashrc
 sed -e <span class="s2">&quot;s,@MIRROOT@,</span><span class="nv">$MIR</span><span class="s2">,&quot;</span> scripts/MIRRC.in &gt; MIRRC
 sed -e <span class="s2">&quot;s,@MIRROOT@,</span><span class="nv">$MIR</span><span class="s2">,&quot;</span> scripts/MIRRC.sh.in &gt; MIRRC.sh
 chmod <span class="m">644</span> MIRRC*
 
-<span class="c"># Put these into .bashrc, or call them each time you want to run MIRIAD</span>
+<span class="c1"># Put these into .bashrc, or call them each time you want to run MIRIAD</span>
 . <span class="nv">$MIR</span>/MIRRC.sh
-<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$MIRBIN</span>
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$MIRBIN</span>
 </pre></div>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
@@ -139,7 +157,7 @@ chmod <span class="m">644</span> MIRRC*
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2015-05-07T12:00:00"> 2015/05/07 </abbr>
+            <abbr class="published" title="2015-05-07T12:00:00-06:00"> 2015/05/07 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>My <a class="reference external" href="http://www.eso.org/~eemselle/CV.html">boss</a> asked a great question at our first weekly <a class="reference external" href="https://github.com/ESO-python/ESOPythonTutorials">ESO-python tutorial</a>
 session: What does a good ipython debugging workflow look like?</p>
@@ -150,7 +168,7 @@ badly once you start writing complex programs and using things like common
 blocks.</p>
 <p>In ipython, there is a beautiful debugger that is far more feature-rich than
 the IDL equivalent.  It can be activated simply:</p>
-<div class="highlight"><pre><span class="o">%</span><span class="n">pdb</span>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pdb</span>
 </pre></div>
 <p>will toggle the interactive ipython debugger.  Then, if you run into a code
 crash, you will be dumped out at an <cite>ipdb&gt;</cite> prompt, with access to a
@@ -163,14 +181,14 @@ normally have put a <tt class="docutils literal">stop</tt> statement.  There are
 however: in IDL, you could just <tt class="docutils literal">.continue</tt> to run the rest of the code as if
 no stop occurred; in python the same is not possible with the default ipdb.</p>
 <p>However, the <a class="reference external" href="https://pypi.python.org/pypi/ipdb">ipdb</a> package allows the insertion of breakpoints just like in IDL:</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">ipdb</span><span class="p">;</span> <span class="n">ipdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ipdb</span><span class="p">;</span> <span class="n">ipdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
 </pre></div>
 <p>From within one of these breakpoints, the <tt class="docutils literal">.continue</tt> command will continue on
 to the next breakpoint, as you might expect.  The <tt class="docutils literal">n</tt> and <tt class="docutils literal">s</tt> commands will go
 to the next line in the code, while <tt class="docutils literal">s</tt> will allow you to drop into called functions (how?)</p>
 <p><a class="reference external" href="http://scipy-lectures.github.io/advanced/debugging/#using-the-python-debugger">Postmortem debugging</a> is also awesome.  If you have run a command and gotten a traceback,
 you can retroactively enter the debugger:</p>
-<div class="highlight"><pre><span class="o">%</span><span class="n">debug</span>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">debug</span>
 </pre></div>
 <p>but as with the normal traceback debugger, one cannot <tt class="docutils literal">continue</tt> afterward.</p>
 <div class="section" id="reloading-code">
@@ -179,13 +197,13 @@ you can retroactively enter the debugger:</p>
 script.  These are the most convenient way to install, use, and distribute
 code, but they are not ideal for debugging.</p>
 <p>When debugging a normal script, something you could run by invoking</p>
-<div class="highlight"><pre>python myfile.py
+<div class="highlight"><pre><span></span>python myfile.py
 </pre></div>
 <p>or</p>
-<div class="highlight"><pre><span class="o">%</span><span class="n">run</span> <span class="n">myfile</span><span class="o">.</span><span class="n">py</span>
-<span class="c"># in the local namespace</span>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">run</span> <span class="n">myfile</span><span class="o">.</span><span class="n">py</span>
+<span class="c1"># in the local namespace</span>
 <span class="o">%</span><span class="n">run</span> <span class="o">-</span><span class="n">i</span> <span class="n">myfile</span><span class="o">.</span><span class="n">py</span>
-<span class="c"># with the python debugger active:</span>
+<span class="c1"># with the python debugger active:</span>
 <span class="o">%</span><span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="n">myfile</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 <p>can easily be debugged by running it line-by-line.  The <a class="reference external" href="http://ipython.org/ipython-doc/dev/interactive/tutorial.html#running-and-editing">documentation</a>
@@ -202,7 +220,7 @@ underlying an already-instantiated class, so you have to remake any class
 instances you want to examine.</p>
 <p>The <tt class="docutils literal">reload</tt> command is tricky to use.  You will only see changes to the source code
 if you import the exact package in which the code is stored.  For example, if you have a file structure like this:</p>
-<div class="highlight"><pre>mypackage/
+<div class="highlight"><pre><span></span>mypackage/
     __init__.py
     core.py
 </pre></div>
@@ -227,8 +245,8 @@ results to pastebin for easy sharing, <tt class="docutils literal">py.test <span
 setup.py test <span class="pre">-P</span> packagename</tt> in astropy) to select tests for a specific
 package.  A great deal more options can be found in the <a class="reference external" href="http://pytest.org/latest/">pytest docs</a>.</p>
 <p>A test suite, if properly constructed, can also be run from with in ipython:</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">astroquery</span>
-<span class="n">astroquery</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s">&#39;eso&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">astroquery</span>
+<span class="n">astroquery</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s1">&#39;eso&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="section" id="postscript">
@@ -253,7 +271,7 @@ package.  A great deal more options can be found in the <a class="reference exte
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2014-11-26T09:57:00"> 2014/11/26 </abbr>
+            <abbr class="published" title="2014-11-26T09:57:00-07:00"> 2014/11/26 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam.html">Adam</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Installing astrometry.net is all about navigating dependency hell.</p>
 <p>Requirements:</p>
@@ -285,7 +303,7 @@ PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./configure</blockquote>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2014-06-13T09:00:00"> 2014/06/13 </abbr>
+            <abbr class="published" title="2014-06-13T09:00:00-06:00"> 2014/06/13 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Can we characterize &quot;hub&quot; clumps vs &quot;filament&quot; clumps by examining their
 azimuthal column density profile?  Filaments would have two-peaked structures,
@@ -302,7 +320,7 @@ peakless.</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2014-02-19T12:02:00"> 2014/02/19 </abbr>
+            <abbr class="published" title="2014-02-19T12:02:00-07:00"> 2014/02/19 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/napattack-adamgginsburggmailcom.html">napattack (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>As you might expect from numerous blog posts and the general difficulty people
 have always experienced upgrading mac OS versions, Mavericks caused some truly
@@ -321,16 +339,16 @@ they did look OK).</p>
 testing.  However, I went back to my typical install-from-source approach.</p>
 <p>To get the matplotlib backends to interact nicely with apple, you need to install
 them using the <cite>/Library</cite> version of python</p>
-<div class="highlight"><pre><span class="c"># this had to happen sometime early:</span>
-<span class="nv">$ </span>xcode-select --install
+<div class="highlight"><pre><span></span><span class="c1"># this had to happen sometime early:</span>
+$ xcode-select --install
 
-<span class="nv">$ </span>wget https://pypi.python.org/pypi/pip#downloads
-<span class="nv">$ </span>tar -xzvf ~/Downloads/pip-1.5.2.tar.gz
-<span class="nv">$ </span><span class="nb">cd </span>pip-1.5.2
-<span class="nv">$ </span>/Library/Frameworks/Python.framework/Versions/2.7/bin/python setup.py install
-<span class="nv">$ </span>/Library/Frameworks/Python.framework/Versions/2.7/bin/pip install virtualenv
-<span class="nv">$ </span><span class="nb">cd</span>
-<span class="nv">$ </span>/Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenv virtual-python
+$ wget https://pypi.python.org/pypi/pip#downloads
+$ tar -xzvf ~/Downloads/pip-1.5.2.tar.gz
+$ <span class="nb">cd</span> pip-1.5.2
+$ /Library/Frameworks/Python.framework/Versions/2.7/bin/python setup.py install
+$ /Library/Frameworks/Python.framework/Versions/2.7/bin/pip install virtualenv
+$ <span class="nb">cd</span>
+$ /Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenv virtual-python
 </pre></div>
 <p>After this, I was surprisingly able to install everything in the python stack
 with no hitches.  Obviously, that could not possibly last.</p>
@@ -374,7 +392,7 @@ no effect for me.</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2014-01-16T00:00:00"> 2014/01/16 </abbr>
+            <abbr class="published" title="2014-01-16T00:00:00-07:00"> 2014/01/16 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>In the process of creating W51 data cubes from the GBT mapping data (project
 GBT 10B/019), I've had to deal with a lot of bad data.</p>
@@ -411,36 +429,36 @@ the data from the maps, but that SHOULD be in the code history (git) and is not.
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2013-12-18T17:52:00"> 2013/12/18 </abbr>
+            <abbr class="published" title="2013-12-18T17:52:00-07:00"> 2013/12/18 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg <adam.g.ginsburg@gmail.com></a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>In order to regrid an image, you need some target reprojection.  The simplest way to acquire such a reprojection
 is by extracting it from another image, e.g. a <a class="reference external" href="casaguides.nrao.edu/index.php?title=FITStoImage">FITS image</a></p>
 <p>(I use <cite>&gt;&gt;&gt;</cite> to indicate the <cite>CASA &lt;#&gt;:</cite> prompt here because it allows you to copy &amp; paste the code into CASA)</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">header</span> <span class="o">=</span> <span class="n">imregrid</span><span class="p">(</span><span class="n">imagename</span><span class="o">=</span><span class="s">&#39;file.image&#39;</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s">&#39;get&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">header</span> <span class="o">=</span> <span class="n">imregrid</span><span class="p">(</span><span class="n">imagename</span><span class="o">=</span><span class="s1">&#39;file.image&#39;</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s1">&#39;get&#39;</span><span class="p">)</span>
 </pre></div>
 <p>This header will be a python dictionary with two keys, <cite>csys</cite>, which specifies
 the coordinate system, and <cite>shap</cite>, which gives the shape.</p>
 <p>If you want to write up your own FITS header and you don't have a FITS file
 with those exact coordinates, you can use the <a class="reference external" href="https://github.com/keflavich/casa_tools/blob/master/casa_tools/header_to_template.py#L11">header_to_template</a> convenience
 tool in <a class="reference external" href="https://github.com/keflavich/casa_tools">casa_tools</a>.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">casa_tools</span> <span class="kn">import</span> <span class="n">header_to_template</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">casa_tools</span> <span class="kn">import</span> <span class="n">header_to_template</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">fits_header</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">Header</span><span class="o">.</span><span class="n">fromtextfile</span><span class="p">(</span><span class="s">&#39;my_header.hdr&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">fits_header</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">Header</span><span class="o">.</span><span class="n">fromtextfile</span><span class="p">(</span><span class="s1">&#39;my_header.hdr&#39;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">header</span> <span class="o">=</span> <span class="n">header_to_template</span><span class="p">(</span><span class="n">fits_header</span><span class="p">)</span>
 </pre></div>
 <p>In order to regrid the file, you then need to pass in the image name and template to imregrid.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">imregrid</span><span class="p">(</span><span class="n">imagename</span><span class="o">=</span><span class="s">&#39;file.image&#39;</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">imregrid</span><span class="p">(</span><span class="n">imagename</span><span class="o">=</span><span class="s1">&#39;file.image&#39;</span><span class="p">,</span>
 <span class="o">...</span>          <span class="n">template</span><span class="o">=</span><span class="n">header</span><span class="p">,</span>
-<span class="o">...</span>          <span class="n">output</span><span class="o">=</span><span class="s">&#39;file_regrid.image&#39;</span><span class="p">)</span>
+<span class="o">...</span>          <span class="n">output</span><span class="o">=</span><span class="s1">&#39;file_regrid.image&#39;</span><span class="p">)</span>
 </pre></div>
 <p>If your input image's header did not include a 'telescope' keyword, CASA will complain:</p>
 <blockquote>
 2013-12-18 16:46:33 SEVERE  imregrid::ImageRegrid::regrid (file /opt/casa/release-4_1_0-release-1/darwin64/include/casacore/images/Images/ImageRegrid.tcc, line 118)        Cannot find the observatory name UNKNOWN in the CASA</blockquote>
 <p>You can add the keyword to the header yourself:</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">imhead</span><span class="p">(</span><span class="s">&#39;file.image&#39;</span><span class="p">,</span>
-<span class="o">...</span>        <span class="n">mode</span><span class="o">=</span><span class="s">&#39;put&#39;</span><span class="p">,</span>
-<span class="o">...</span>        <span class="n">hdkey</span><span class="o">=</span><span class="s">&#39;telescope&#39;</span><span class="p">,</span>
-<span class="o">...</span>        <span class="n">hdvalue</span><span class="o">=</span><span class="s">&#39;Arecibo&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">imhead</span><span class="p">(</span><span class="s1">&#39;file.image&#39;</span><span class="p">,</span>
+<span class="o">...</span>        <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;put&#39;</span><span class="p">,</span>
+<span class="o">...</span>        <span class="n">hdkey</span><span class="o">=</span><span class="s1">&#39;telescope&#39;</span><span class="p">,</span>
+<span class="o">...</span>        <span class="n">hdvalue</span><span class="o">=</span><span class="s1">&#39;Arecibo&#39;</span><span class="p">)</span>
 </pre></div>
 <div class="section" id="references">
 <h2>References</h2>
@@ -462,7 +480,7 @@ tool in <a class="reference external" href="https://github.com/keflavich/casa_to
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2013-12-18T15:15:00"> 2013/12/18 </abbr>
+            <abbr class="published" title="2013-12-18T15:15:00-07:00"> 2013/12/18 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg <adam.g.ginsburg@gmail.com></a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>If you want to perform analysis on a FITS file in CASA, you first need to
 import it into <cite>.image</cite> format.</p>
@@ -632,7 +650,7 @@ velocity convention is, unfortunately, lost.</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2013-12-13T00:00:00"> 2013/12/13 </abbr>
+            <abbr class="published" title="2013-12-13T00:00:00-07:00"> 2013/12/13 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Sgr B2 is the most massive gas clump in our Galaxy.  It's about 100 pc away
 from Sgr A*, the black hole at the center of the Galaxy.  It is forming stars
@@ -761,58 +779,6 @@ much as the 8 micron.  The 70 micron emission is quite weak, but not really
 deficient.  Perhaps in this region, very small grains are more common than in
 its surroundings?</p>
 <p>There's a lot more hypothesizing to be done here.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-5.html" rel="bookmark" title="Permalink to Notes from the ISM-PP conference: Day 5">
-                    Notes from the ISM-PP conference: Day 5</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-10-25T00:00:00"> 2013/10/25 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <div class="section" id="linda-tacconi">
-<h2>Linda Tacconi</h2>
-<dl class="docutils">
-<dt>High-redshift</dt>
-<dd><ul class="first last simple">
-<li>Outflows with mass-loading parameters 1-10</li>
-<li>velocity dispersions 25-80 km/s
-+ seen in both CO and H-alpha</li>
-</ul>
-</dd>
-</dl>
-</div>
-<div class="section" id="avishai-dekel-violent-disk-instability">
-<h2>Avishai Dekel: Violent Disk Instability</h2>
-<dl class="docutils">
-<dt>Galaxies form at nodes in web at high z</dt>
-<dd><ul class="first last simple">
-<li>disk surrounded by messy &quot;interaction region&quot;</li>
-<li>disk outflows observed</li>
-<li>Toomre unstable clumps ~10^9 msun
-+ dynamically dominant (unlike MW clumps)
-+ violent instability, not secular</li>
-<li>long time spent in disks</li>
-<li>Stellar-dominated galaxies at z~1 stop &quot;VDI&quot;
-+ bulge stabilizes inner part of galaxy</li>
-<li>&quot;clumps&quot; are rapidly spinnign</li>
-<li>both VDI and &quot;ex-situ&quot; dark matter clumps</li>
-<li>universal SF law: divide by t_ff
-+ t_ff is either Toomre tff or gmc tff</li>
-<li>&quot;redshift 2 is the only important phase, forget about z=0&quot;</li>
-<li>Steve: How does &quot;universal law&quot; fit with Galactic CMZ?
-+ Ignorance.  Ask Mark.</li>
-<li>Rahul: Toomre Q threshold only works for infinitely thin disk.  Shouldn't
-threshold be lower because of thick disk?</li>
-<li>Goldreich &amp; Linden-Bell: 30% effect.  Elmegreen addresses this.</li>
-</ul>
-</dd>
-</dl>
-</div>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

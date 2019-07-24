@@ -89,24 +89,24 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2015-09-14T00:00:00"> 2015/09/14 </abbr>
+            <abbr class="published" title="2015-09-14T00:00:00-06:00"> 2015/09/14 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>From Andrew Walsh, a script to install MIRIAD:</p>
-<div class="highlight"><pre>wget ftp://ftp.atnf.csiro.au/pub/software/miriad/miriad-common.tar.bz2
+<div class="highlight"><pre><span></span>wget ftp://ftp.atnf.csiro.au/pub/software/miriad/miriad-common.tar.bz2
 wget ftp://ftp.atnf.csiro.au/pub/software/miriad/miriad-linux64.tar.bz2
 bzcat miriad-common.tar.bz2 <span class="p">|</span> tar xvf -
 bzcat miriad-linux64.tar.bz2  <span class="p">|</span> tar xvf -
-<span class="nb">cd </span>miriad
-<span class="nb">export </span><span class="nv">MIR</span><span class="o">=</span><span class="nv">$PWD</span>
-<span class="c"># define the MIR variable in your bashrc</span>
+<span class="nb">cd</span> miriad
+<span class="nb">export</span> <span class="nv">MIR</span><span class="o">=</span><span class="nv">$PWD</span>
+<span class="c1"># define the MIR variable in your bashrc</span>
 <span class="nb">echo</span> <span class="s2">&quot;export MIR=</span><span class="nv">$MIR</span><span class="s2">&quot;</span> &gt;&gt; ~/.bashrc
 sed -e <span class="s2">&quot;s,@MIRROOT@,</span><span class="nv">$MIR</span><span class="s2">,&quot;</span> scripts/MIRRC.in &gt; MIRRC
 sed -e <span class="s2">&quot;s,@MIRROOT@,</span><span class="nv">$MIR</span><span class="s2">,&quot;</span> scripts/MIRRC.sh.in &gt; MIRRC.sh
 chmod <span class="m">644</span> MIRRC*
 
-<span class="c"># Put these into .bashrc, or call them each time you want to run MIRIAD</span>
+<span class="c1"># Put these into .bashrc, or call them each time you want to run MIRIAD</span>
 . <span class="nv">$MIR</span>/MIRRC.sh
-<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$MIRBIN</span>
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$MIRBIN</span>
 </pre></div>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>

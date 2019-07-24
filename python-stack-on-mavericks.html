@@ -7,7 +7,7 @@
         <title>Adam Ginsburg's blog</title>
         <meta charset="utf-8" />
         <link href="http://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
-        <link href="http://keflavich.github.io/blog/feeds/misc.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+        <link href="http://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
 <!-- Using MathJax, with the delimiters $ -->
 <!-- Conflict with pygments for the .mo and .mi -->
 <script type="text/x-mathjax-config">
@@ -68,6 +68,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2019/07/23
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-corrupted-measurement-sets.html">CASA corrupted measurement sets</a>
+              </li>
+              <li class="post">
                   2018/10/14
                   <br>
                   <a href="http://keflavich.github.io/blog/feo-nondetection-in-orion.html">FeO Nondetection in Orion</a>
@@ -87,11 +92,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/derivation-of-co-column-density.html">Derivation of CO Column Density</a>
               </li>
-              <li class="post">
-                  2017/12/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/the-extragalactic-view-of-w51-at-220-and-290-ghz.html">The extragalactic view of W51 at 220 and 290 GHz</a>
-              </li>
         </ul>
       </li>
     
@@ -107,7 +107,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
  
   </header>
   <footer class="post-info">
-    <abbr class="published" title="2014-02-19T12:02:00">
+    <abbr class="published" title="2014-02-19T12:02:00-07:00">
       2014/02/19
     </abbr>
     <address class="vcard author">
@@ -132,16 +132,16 @@ they did look OK).</p>
 testing.  However, I went back to my typical install-from-source approach.</p>
 <p>To get the matplotlib backends to interact nicely with apple, you need to install
 them using the <cite>/Library</cite> version of python</p>
-<div class="highlight"><pre><span class="c"># this had to happen sometime early:</span>
-<span class="nv">$ </span>xcode-select --install
+<div class="highlight"><pre><span></span><span class="c1"># this had to happen sometime early:</span>
+$ xcode-select --install
 
-<span class="nv">$ </span>wget https://pypi.python.org/pypi/pip#downloads
-<span class="nv">$ </span>tar -xzvf ~/Downloads/pip-1.5.2.tar.gz
-<span class="nv">$ </span><span class="nb">cd </span>pip-1.5.2
-<span class="nv">$ </span>/Library/Frameworks/Python.framework/Versions/2.7/bin/python setup.py install
-<span class="nv">$ </span>/Library/Frameworks/Python.framework/Versions/2.7/bin/pip install virtualenv
-<span class="nv">$ </span><span class="nb">cd</span>
-<span class="nv">$ </span>/Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenv virtual-python
+$ wget https://pypi.python.org/pypi/pip#downloads
+$ tar -xzvf ~/Downloads/pip-1.5.2.tar.gz
+$ <span class="nb">cd</span> pip-1.5.2
+$ /Library/Frameworks/Python.framework/Versions/2.7/bin/python setup.py install
+$ /Library/Frameworks/Python.framework/Versions/2.7/bin/pip install virtualenv
+$ <span class="nb">cd</span>
+$ /Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenv virtual-python
 </pre></div>
 <p>After this, I was surprisingly able to install everything in the python stack
 with no hitches.  Obviously, that could not possibly last.</p>

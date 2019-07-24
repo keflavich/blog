@@ -7,7 +7,7 @@
         <title>Adam Ginsburg's blog</title>
         <meta charset="utf-8" />
         <link href="http://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
-        <link href="http://keflavich.github.io/blog/feeds/misc.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+        <link href="http://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
 <!-- Using MathJax, with the delimiters $ -->
 <!-- Conflict with pygments for the .mo and .mi -->
 <script type="text/x-mathjax-config">
@@ -68,6 +68,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2019/07/23
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-corrupted-measurement-sets.html">CASA corrupted measurement sets</a>
+              </li>
+              <li class="post">
                   2018/10/14
                   <br>
                   <a href="http://keflavich.github.io/blog/feo-nondetection-in-orion.html">FeO Nondetection in Orion</a>
@@ -87,11 +92,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/derivation-of-co-column-density.html">Derivation of CO Column Density</a>
               </li>
-              <li class="post">
-                  2017/12/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/the-extragalactic-view-of-w51-at-220-and-290-ghz.html">The extragalactic view of W51 at 220 and 290 GHz</a>
-              </li>
         </ul>
       </li>
     
@@ -107,7 +107,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
  
   </header>
   <footer class="post-info">
-    <abbr class="published" title="2013-08-05T10:37:59">
+    <abbr class="published" title="2013-08-05T10:37:59-06:00">
       2013/08/05
     </abbr>
     <address class="vcard author">
@@ -120,24 +120,24 @@ H<sub>2</sub>CO being the main candidates.</p>
 <p>Note: Splatalogue has made some recent changes to their returned tables, partly
 per my recommendations.  The code below has been update to reflect these
 changes.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">astroquery.splatalogue</span> <span class="kn">import</span> <span class="n">Splatalogue</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">S</span> <span class="o">=</span> <span class="n">Splatalogue</span><span class="p">(</span><span class="n">energy_max</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
-<span class="o">...</span>    <span class="n">energy_type</span><span class="o">=</span><span class="s">&#39;eu_k&#39;</span><span class="p">,</span><span class="n">energy_levels</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;el4&#39;</span><span class="p">],</span>
-<span class="o">...</span>    <span class="n">line_strengths</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;ls4&#39;</span><span class="p">],</span>
+<span class="o">...</span>    <span class="n">energy_type</span><span class="o">=</span><span class="s1">&#39;eu_k&#39;</span><span class="p">,</span><span class="n">energy_levels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;el4&#39;</span><span class="p">],</span>
+<span class="o">...</span>    <span class="n">line_strengths</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ls4&#39;</span><span class="p">],</span>
 <span class="o">...</span>    <span class="n">only_NRAO_recommended</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">noHFS</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">trimmed_query</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="o">...</span>     <span class="n">columns</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;Species&#39;</span><span class="p">,</span><span class="s">&#39;Chemical Name&#39;</span><span class="p">,</span><span class="s">&#39;Resolved QNs&#39;</span><span class="p">,</span><span class="s">&#39;Freq-GHz&#39;</span><span class="p">,</span>
-<span class="o">...</span>                <span class="s">&#39;Meas Freq-GHz&#39;</span><span class="p">,</span><span class="s">&#39;Log&lt;sub&gt;10&lt;/sub&gt; (A&lt;sub&gt;ij&lt;/sub&gt;)&#39;</span><span class="p">,</span>
-<span class="o">...</span>                <span class="s">&#39;E_U (K)&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">columns</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Species&#39;</span><span class="p">,</span><span class="s1">&#39;Chemical Name&#39;</span><span class="p">,</span><span class="s1">&#39;Resolved QNs&#39;</span><span class="p">,</span><span class="s1">&#39;Freq-GHz&#39;</span><span class="p">,</span>
+<span class="o">...</span>                <span class="s1">&#39;Meas Freq-GHz&#39;</span><span class="p">,</span><span class="s1">&#39;Log&lt;sub&gt;10&lt;/sub&gt; (A&lt;sub&gt;ij&lt;/sub&gt;)&#39;</span><span class="p">,</span>
+<span class="o">...</span>                <span class="s1">&#39;E_U (K)&#39;</span><span class="p">)</span>
 <span class="o">...</span>     <span class="n">table</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">query_lines</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)[</span><span class="n">columns</span><span class="p">]</span>
-<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s">&#39;Log&lt;sub&gt;10&lt;/sub&gt; (A&lt;sub&gt;ij&lt;/sub&gt;)&#39;</span><span class="p">,</span><span class="s">&#39;log10(Aij)&#39;</span><span class="p">)</span>
-<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s">&#39;E_U (K)&#39;</span><span class="p">,</span><span class="s">&#39;EU_K&#39;</span><span class="p">)</span>
-<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s">&#39;Resolved QNs&#39;</span><span class="p">,</span><span class="s">&#39;QNs&#39;</span><span class="p">)</span>
-<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">&#39;EU_K&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s1">&#39;Log&lt;sub&gt;10&lt;/sub&gt; (A&lt;sub&gt;ij&lt;/sub&gt;)&#39;</span><span class="p">,</span><span class="s1">&#39;log10(Aij)&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s1">&#39;E_U (K)&#39;</span><span class="p">,</span><span class="s1">&#39;EU_K&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s1">&#39;Resolved QNs&#39;</span><span class="p">,</span><span class="s1">&#39;QNs&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">&#39;EU_K&#39;</span><span class="p">)</span>
 <span class="o">...</span>     <span class="k">return</span> <span class="n">table</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span><span class="mi">30</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span>
-<span class="o">...</span>     <span class="n">chemical_name</span><span class="o">=</span><span class="s">&#39;(H2.*Formaldehyde)|( HDCO )&#39;</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">chemical_name</span><span class="o">=</span><span class="s1">&#39;(H2.*Formaldehyde)|( HDCO )&#39;</span><span class="p">,</span>
 <span class="o">...</span>     <span class="n">energy_max</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
 <span class="n">Species</span> <span class="n">Chemical</span> <span class="n">Name</span>      <span class="n">QNs</span>      <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">Meas</span> <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">log10</span><span class="p">(</span><span class="n">Aij</span><span class="p">)</span>   <span class="n">EU_K</span>
 <span class="o">-------</span> <span class="o">-------------</span> <span class="o">-------------</span> <span class="o">--------</span> <span class="o">-------------</span> <span class="o">----------</span> <span class="o">--------</span>
@@ -155,7 +155,7 @@ changes.</p>
 
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span><span class="mi">400</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span>
-<span class="o">...</span>     <span class="n">chemical_name</span><span class="o">=</span><span class="s">&#39;Carbon Monoxide&#39;</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">chemical_name</span><span class="o">=</span><span class="s1">&#39;Carbon Monoxide&#39;</span><span class="p">,</span>
 <span class="o">...</span>     <span class="n">energy_max</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
 <span class="n">Species</span>  <span class="n">Chemical</span> <span class="n">Name</span>   <span class="n">QNs</span>   <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">Meas</span> <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">log10</span><span class="p">(</span><span class="n">Aij</span><span class="p">)</span>   <span class="n">EU_K</span>
 <span class="o">-------</span> <span class="o">---------------</span> <span class="o">-----</span> <span class="o">---------</span> <span class="o">-------------</span> <span class="o">----------</span> <span class="o">--------</span>
@@ -173,15 +173,15 @@ changes.</p>
   <span class="n">COv</span><span class="o">=</span><span class="mi">0</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">3</span><span class="o">-</span><span class="mi">2</span> <span class="mf">345.79599</span>     <span class="mf">345.79599</span>   <span class="o">-</span><span class="mf">5.60192</span> <span class="mf">33.19169</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">MHz</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span>
-<span class="o">...</span>     <span class="n">chemical_name</span><span class="o">=</span><span class="s">&#39; H2CO .*Formaldehyde&#39;</span><span class="p">,</span><span class="n">energy_max</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span>
-<span class="o">...</span>     <span class="n">energy_type</span><span class="o">=</span><span class="s">&#39;eu_k&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
+<span class="o">...</span>     <span class="n">chemical_name</span><span class="o">=</span><span class="s1">&#39; H2CO .*Formaldehyde&#39;</span><span class="p">,</span><span class="n">energy_max</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">energy_type</span><span class="o">=</span><span class="s1">&#39;eu_k&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
 <span class="n">Species</span> <span class="n">Chemical</span> <span class="n">Name</span>      <span class="n">QNs</span>      <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">Meas</span> <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">log10</span><span class="p">(</span><span class="n">Aij</span><span class="p">)</span>   <span class="n">EU_K</span>
 <span class="o">-------</span> <span class="o">-------------</span> <span class="o">-------------</span> <span class="o">--------</span> <span class="o">-------------</span> <span class="o">----------</span> <span class="o">--------</span>
    <span class="n">H2CO</span>  <span class="n">Formaldehyde</span> <span class="mi">2</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>       <span class="o">--</span>       <span class="mf">0.07114</span>  <span class="o">-</span><span class="mf">13.81846</span>   <span class="mf">57.612</span>
    <span class="n">H2CO</span>  <span class="n">Formaldehyde</span> <span class="mi">3</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>       <span class="o">--</span>       <span class="mf">0.35557</span>  <span class="o">-</span><span class="mf">12.02319</span> <span class="mf">68.11082</span>
 
 
-<span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">MHz</span><span class="p">,</span><span class="mi">25</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span><span class="n">chemical_name</span><span class="o">=</span><span class="s">&#39; NH3 &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">MHz</span><span class="p">,</span><span class="mi">25</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span><span class="n">chemical_name</span><span class="o">=</span><span class="s1">&#39; NH3 &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
 <span class="n">Species</span> <span class="n">Chemical</span> <span class="n">Name</span>      <span class="n">QNs</span>       <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">Meas</span> <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">log10</span><span class="p">(</span><span class="n">Aij</span><span class="p">)</span>    <span class="n">EU_K</span>
 <span class="o">-------</span> <span class="o">-------------</span> <span class="o">--------------</span> <span class="o">--------</span> <span class="o">-------------</span> <span class="o">----------</span> <span class="o">---------</span>
  <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">23.69447</span>       <span class="mf">23.6945</span>   <span class="o">-</span><span class="mf">6.43769</span>  <span class="mf">24.40492</span>

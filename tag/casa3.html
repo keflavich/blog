@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2019/07/23
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-corrupted-measurement-sets.html">CASA corrupted measurement sets</a>
+              </li>
+              <li class="post">
                   2017/04/26
                   <br>
                   <a href="http://keflavich.github.io/blog/a-quick-performance-test-on-casa-cleaning.html">A quick performance test on CASA cleaning</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/single-dish-combination-continued.html">Single Dish Combination Continued</a>
               </li>
-              <li class="post">
-                  2016/06/01
-                  <br>
-                  <a href="http://keflavich.github.io/blog/single-dish-interferometer-combination-experiments.html">Single Dish - Interferometer Combination Experiments</a>
-              </li>
         </ul>
       </li>
     
@@ -104,12 +104,54 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/separating-line-from-continuum-in-casa-data.html" rel="bookmark" title="Permalink to Separating Line from Continuum in CASA data">
+                    Separating Line from Continuum in CASA data</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-11-04T15:57:00-07:00"> 2015/11/04 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm continuing to try to separate the line forest from the continuum data in my
+W51 cube.  Some approaches 'kinda work', some don't.</p>
+<p>The iterative approach suggested in the <a class="reference external" href="http://keflavich.github.io/blog/cvel-errors.html">previous post</a> <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/630c60e7e57ea7b57877d66b15860b26419a5552/script_12m/uvcontsub_test.py">works reasonably well</a>,
+but results in oversubtraction of the continuum, even with
+a few iterations.  Note that this approach requires <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/630c60e7e57ea7b57877d66b15860b26419a5552/script_12m/uvcontsub_test.py#L17">copying columns between ms
+files using the table toolkit</a>.</p>
+<img alt="" src="http://keflavich.github.io/blog/images/w51/oversubtracted_spectrum.png" style="width: 400px;" />
+<p>Another approach I wanted to try was to image the whole cube, take the minimum
+value along the spectral axis, and subtract that.  This would avoid the
+oversubtraction issue by force.  However, <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/c58e4fdf755f85b163d1684cc7383ef31d6a1669/script_12m/mincontsub.py">this</a>
+leads to failures in the <cite>ft</cite> task:</p>
+<pre class="literal-block">
+CASA &lt;85&gt;: ft(vis='w51_test_small_imcont.ms', model='test_continuum_min.image', usescratch=True, nterms=1)
+2015-11-04 15:01:29 WARN    ft::FTMachine::initMaps No overlap in frequency between image channels and selected data found for this FTMachine
+2015-11-04 15:01:29 WARN    ft::FTMachine::initMaps+         Check your data selection and image parameters if you end up with a blank image
+</pre>
+<p>which I don't understand.  I had to <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/c58e4fdf755f85b163d1684cc7383ef31d6a1669/script_12m/mincontsub.py#L22">hack the header</a>
+just to get ft to load the file at all, and apparently my hack wasn't good enough.
+It's really unclear to me now how to load a model from a FITS file.</p>
+<p>The next approach is to load the whole continuum-subtracted cube into a model,
+subtract THAT, then make a continuum image, then subtract that, then maybe
+we have line and continuum?  Maybe?  I suspect this approach will require
+some sort of cube masking.</p>
+<p>Unfortunately, ft is again the problem:</p>
+<pre class="literal-block">
+2015-11-04 15:09:08 SEVERE  ft::imager::ft() (file /Users/rpmbuild/gradle/workdir/casaautobuild/release-4_5/code/synthesis/MeasurementEquations/Imager.cc, line 4488)       Exception: (/Users/rpmbuild/gradle/workdir/casaautobuild/release-4_5/darwin/include/casacore/lattices/Lattices/Lattice.tcc : 299) Failed AlwaysAssert shapeIn.isEqual (shapeOut)
+</pre>
+<p>Followup in early 2017: a cube-based approach is generally more successful.
+See Sanchez-Monge in prep and the related <a class="reference external" href="https://github.com/radio-astro-tools/statcont">statcont</a> software package.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
                 <a href="http://keflavich.github.io/blog/cvel-errors.html" rel="bookmark" title="Permalink to CVEL errors">
                     CVEL errors</a>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2015-11-02T20:50:00"> 2015/11/02 </abbr>
+            <abbr class="published" title="2015-11-02T20:50:00-07:00"> 2015/11/02 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I'm trying to get a good image of the W51 main sources that have line forests.
 MFS clean does a pretty good job, but is very limited in dynamic range
@@ -173,7 +215,7 @@ it turned small again.</p>
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2015-10-28T16:51:00"> 2015/10/28 </abbr>
+            <abbr class="published" title="2015-10-28T16:51:00-06:00"> 2015/10/28 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>When cleaning my ALMA data, especially when trying to <a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m/scriptForImaging.py#L120">image the full cube (all
 channels)</a>
@@ -212,7 +254,7 @@ Terminal:
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2015-10-14T14:30:00"> 2015/10/14 </abbr>
+            <abbr class="published" title="2015-10-14T14:30:00-06:00"> 2015/10/14 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>The Sgr B2 ALMA data from project 2013.1.00269.S has imaging problems around
 the brightest sources, especially Sgr B2 M.

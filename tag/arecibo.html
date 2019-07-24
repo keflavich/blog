@@ -89,14 +89,14 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
             </h2> 
         </header>
         <footer class="post-info">
-            <abbr class="published" title="2013-03-22T22:50:00"> 2013/03/22 </abbr>
+            <abbr class="published" title="2013-03-22T22:50:00-06:00"> 2013/03/22 </abbr>
 <address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Worked on reducing the Arecibo continuum data.  There were some serious
 problems with the off positions previously, in particular generating weird
 slopes.</p>
 <p>I suspect the problem was with these lines</p>
 <!-- this is really IDL but there's no pygment for IDL -->
-<div class="highlight"><pre><span class="n">sorted1</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">totals</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><span class="n">sorted1</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">totals</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">sorted2</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">totals</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
 </pre></div>
 <p>since the indexing is wrong, but I'm not sure yet.  I re-wrote the whole
