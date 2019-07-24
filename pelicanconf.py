@@ -31,7 +31,8 @@ DEFAULT_PAGINATION = 10
 #THEME='waterspill-en' 
 #THEME='simple_editable' 
 THEME='mine'
- 
+THEME='/Users/adam/repos/pelican-themes/mine'
+
 STATIC_PATHS = ['images','bgps/images','iau303/images','images/sgrb2']
 
 INLINESTYLES = True
