@@ -58,6 +58,7 @@ MENUITEMS = [('Homepage','http://www.adamgginsburg.com',),
              ('Tags','/tags.html',),
             ]
 
+PLUGIN_PATHS = ['/Users/adam/repos/pelican-plugins']
 PLUGINS = ["render_math"]
 
 USE_FOLDER_AS_CATEGORY = True
