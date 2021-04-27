@@ -7,7 +7,15 @@ Determing ALMA Array Configurations
 ALMA's named array configurations are not accessible through CASA.
 They are available from https://almascience.eso.org/observing/observing-configuration-schedule/prior-cycle-observing-and-configuration-schedule
 
-This snippet will let you grab the tables and create a mapping from date to array config name:
+This snippet will let you grab the tables and create a mapping from date to array config name.
+
+However, it's a HUGE waste of time, because these data are stored directly in the MS!
+
+.. code:: python
+
+   tb.open(vis+'/ASDM_EXECBLOCK')
+   tb.getcol('configName')
+   # array(['C43-3'], dtype='<U16')
 
 
 .. code:: python
