@@ -24,4 +24,4 @@ That was dumb anyway, because
 https://github.com/radio-astro/casa/blob/master/gcwrap/python/scripts/task_tclean.py
 does everything I really needed.
 
-My version saves the image, residual, and model at each major cycle.  
+My version saves the image, residual, and model at each major cycle.
