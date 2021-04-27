@@ -18,6 +18,8 @@ This snippet will let you grab the tables and create a mapping from date to arra
    from astropy.io import ascii
    from astropy.time import Time
 
+   url = "https://almascience.eso.org/observing/observing-configuration-schedule/prior-cycle-observing-and-configuration-schedule"
+
    response = requests.get(url)
    response.raise_for_status()
    soup = BeautifulSoup(response.text)
