@@ -56,16 +56,10 @@ are multiple targets in a scheduling block:
    from casatools import msmetadata
    msmd = msmetadata()
 
-   msmd.open(mses[0])
-   obstime = Time(msmd.timerangeforobs(0)['begin']['m0']['value'], format='mjd')
-   fieldnames = np.array(msmd.fieldnames())
-   fields = np.unique(fieldnames[msmd.fieldsforintent('OBSERVE_TARGET#ON_SOURCE')])
-   msmd.close()
-
    results = {}
 
    for vis in mses:
-       msmd.open(mses[0])
+       msmd.open(mses)
        obstime = Time(msmd.timerangeforobs(0)['begin']['m0']['value'], format='mjd')
        fieldnames = np.array(msmd.fieldnames())
        fields = np.unique(fieldnames[msmd.fieldsforintent('OBSERVE_TARGET#ON_SOURCE')])
