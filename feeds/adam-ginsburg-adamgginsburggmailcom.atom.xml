@@ -100,6 +100,11 @@ enough to self-calibrate, but the lines aren't.  In these cases, I want to apply
 the continuum-derived selfcal solutions to the line data.&lt;/p&gt;
 &lt;p&gt;In all of these cases, I have several independent execution blocks that I've
 split and downsampled before combining to make the continuum image.&lt;/p&gt;
+&lt;p&gt;I got stuck trying to make this happen, but we reconvened on the topic in early
+2021, and Manuel Fernandez and Roberto Galvan-Madrid and I came up with this
+tool to match spectral windows in a concatenated data set to the appropriate
+windows in the original:
+&lt;a class="reference external" href="https://github.com/ALMA-IMF/reduction/blob/master/misc/applycal_tests.py"&gt;https://github.com/ALMA-IMF/reduction/blob/master/misc/applycal_tests.py&lt;/a&gt;&lt;/p&gt;
 </content><category term="tags"></category></entry><entry><title>CASA corrupted measurement sets</title><link href="http://keflavich.github.io/blog/casa-corrupted-measurement-sets.html" rel="alternate"></link><published>2019-07-23T13:11:00-06:00</published><updated>2019-07-23T13:11:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io,2019-07-23:/blog/casa-corrupted-measurement-sets.html</id><summary type="html">&lt;p&gt;Over the weekend, I had a huge quantity of ALMA data get corrupted. The
 corruption appears to have been caused by an incorrectly-mounted lustre system
 that had &amp;quot;flock&amp;quot; disabled.  When they re-mounted the filesystem, every
