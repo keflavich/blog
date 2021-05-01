@@ -67,6 +67,21 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2021/04/27
+                  <br>
+                  <a href="http://keflavich.github.io/blog/determing-alma-array-configurations.html">Determing ALMA Array Configurations</a>
+              </li>
+              <li class="post">
+                  2020/05/09
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-logfiles-tclean-from-pysynthesisimager.html">CASA: Logfiles & tclean from pysynthesisimager</a>
+              </li>
+              <li class="post">
+                  2019/08/22
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-cross-calibration-application.html">CASA Cross-Calibration Application</a>
+              </li>
+              <li class="post">
                   2019/07/23
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-corrupted-measurement-sets.html">CASA corrupted measurement sets</a>
@@ -75,21 +90,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   2018/10/14
                   <br>
                   <a href="http://keflavich.github.io/blog/feo-nondetection-in-orion.html">FeO Nondetection in Orion</a>
-              </li>
-              <li class="post">
-                  2018/07/08
-                  <br>
-                  <a href="http://keflavich.github.io/blog/talks-now-using-revealjs.html">Talks: Now using revealjs</a>
-              </li>
-              <li class="post">
-                  2018/06/18
-                  <br>
-                  <a href="http://keflavich.github.io/blog/brief-review-of-cluster-formation-simulations.html">Brief review of cluster formation simulations</a>
-              </li>
-              <li class="post">
-                  2018/04/18
-                  <br>
-                  <a href="http://keflavich.github.io/blog/derivation-of-co-column-density.html">Derivation of CO Column Density</a>
               </li>
         </ul>
       </li>
@@ -101,6 +101,663 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/generating-a-cv-using-the-ads-labs-api.html" rel="bookmark" title="Permalink to Generating a CV using the ADS Labs API">
+                    Generating a CV using the ADS Labs API</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-09-21T00:00:00-06:00"> 2013/09/21 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <ul class="simple">
+<li>[ <a class="reference external" href="https://github.com/keflavich/generate_cv">Source code related to this
+post</a> ]</li>
+<li>[ <a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/keflavich/generate_cv/master/examples/GenerateCVExample.ipynb">Notebook
+form</a>
+]</li>
+<li>[ <a class="reference external" href="http://www.adamgginsburg.com/cv.htm">CV partly generated from this
+post</a> ]</li>
+</ul>
+<p>At <a class="reference external" href="http://dotastronomy.com/">.astronomy</a> this past week, the keynote
+speaker was <a class="reference external" href="https://www.cfa.harvard.edu/~alberto/">Alberto
+Accomazzi</a>, introducing ADS
+Labs and <a class="reference external" href="http://labs.adsabs.harvard.edu/adsabs/">ADS 2.0</a>, which are
+really quite impressive.</p>
+<p>I was inspired to use ADS Labs to help me auto-generate a nicely
+formatted CV for myself. I used <a class="reference external" href="https://twitter.com/astrowizicist">Andy
+Casey's</a>
+<a class="reference external" href="https://github.com/andycasey/ads-python">ADS-python</a> as a starting
+point: he introduces a useful convention of storing your <a class="reference external" href="https://github.com/adsabs/adsabs-dev-api#signup--access">ADS API
+Key</a>:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">get_dev_key</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; A convenience function for accessing a system-wide ADS Developer&#39;s Key &quot;&quot;&quot;</span>
+
+    <span class="n">ads_dev_key_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/.ads/dev_key&#39;</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ads_dev_key_filename</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ads_dev_key_filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+            <span class="n">dev_key</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">dev_key</span>
+
+    <span class="k">if</span> <span class="s1">&#39;ADS_DEV_KEY&#39;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;ADS_DEV_KEY&#39;</span><span class="p">]</span>
+
+    <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s2">&quot;no ADS API key found in ~/.ads/dev_key&quot;</span><span class="p">)</span>
+</pre></div>
+<p>We'll use <tt class="docutils literal">requests</tt> to send the request to ADS, then <tt class="docutils literal">json</tt> to
+parse the data.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+</pre></div>
+<p>We then query the database using a keyword query (parameter <tt class="docutils literal">q</tt>)
+specifying the author. Other required parameters are the API key
+(<tt class="docutils literal">dev_key</tt>) and a filter to select only astronomy articles. The
+maximum number of rows returned in the API is 200 right now, which I
+have set (the default is 10 or 20).</p>
+<div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;http://adslabs.org/adsabs/api/search/&#39;</span><span class="p">,</span>
+                         <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;q&#39;</span><span class="p">:</span><span class="s1">&#39;author:ginsburg, a&#39;</span><span class="p">,</span>
+                                 <span class="s1">&#39;dev_key&#39;</span><span class="p">:</span><span class="n">get_dev_key</span><span class="p">(),</span>
+                                 <span class="s1">&#39;rows&#39;</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span>
+                                 <span class="s1">&#39;filter&#39;</span><span class="p">:</span><span class="s1">&#39;database:astronomy&#39;</span><span class="p">})</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">J</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="n">J</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+<pre class="literal-block">
+[u'meta', u'results']
+</pre>
+<p>The JSON 'meta' key is just metadata about the query, include the number
+of matches and execution time.</p>
+<div class="highlight"><pre><span></span><span class="n">J</span><span class="p">[</span><span class="s1">&#39;meta&#39;</span><span class="p">]</span>
+</pre></div>
+<pre class="literal-block">
+{u'api-version': u'0.1',
+ u'count': 54,
+ u'hits': 54,
+ u'qtime': 7,
+ u'query': u'author:ginsburg, a'}
+</pre>
+<p>The 'results' key includes what we're actually interested in, under
+another key 'docs'.</p>
+<div class="highlight"><pre><span></span><span class="n">J</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+<pre class="literal-block">
+[u'docs']
+</pre>
+<div class="highlight"><pre><span></span><span class="n">datalist</span> <span class="o">=</span> <span class="n">J</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;docs&#39;</span><span class="p">]</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">datalist</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">datalist</span><span class="p">)</span>
+</pre></div>
+<pre class="literal-block">
+(list, 54)
+</pre>
+<p><tt class="docutils literal">datalist</tt> is a list of the retrieved bibliographic entries.</p>
+<div class="highlight"><pre><span></span><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+<pre class="literal-block">
+[u'bibcode',
+ u'keyword',
+ u'pubdate',
+ u'bibstem',
+ u'property',
+ u'aff',
+ u'author',
+ u'citation_count',
+ u'pub',
+ u'page',
+ u'volume',
+ u'database',
+ u'doi',
+ u'year',
+ u'abstract',
+ u'title',
+ u'identifier',
+ u'issue',
+ u'id']
+</pre>
+<p>At this point, most of the remaining work is building up a nicely
+formatted output. We'll start with a web-specific example, using HTML
+unordered lists.</p>
+<p>In this example, we'll make a list item that creates a hyperlink for the
+author names and uses a reasonably standard bibliographic format:</p>
+<pre class="literal-block">
+Authors Month, Year, Journal
+Title
+</pre>
+<div class="highlight"><pre><span></span><span class="n">fmt</span> <span class="o">=</span> <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;                &#39;</span>
+<span class="sa">u</span><span class="s1">&#39;&lt;li&gt;&lt;a class=&quot;norm&quot; href=&quot;http://adsabs.harvard.edu/abs/</span><span class="si">{adsbibid}</span><span class="s1">&quot;&gt;</span><span class="si">{creator}</span><span class="s1">&lt;/a&gt;&#39;</span>
+<span class="sa">u</span><span class="s1">&#39; </span><span class="si">{month}</span><span class="s1">, &lt;b&gt;</span><span class="si">{year}</span><span class="s1">&lt;/b&gt; </span><span class="si">{journal}</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="sa">u</span><span class="s1">&#39;                &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;</span><span class="si">{titlestring}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+<p>We need to do a little data wrangling to get the individual JSON entries
+into the appropriate format:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">wrangle</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">authorname</span><span class="o">=</span><span class="s1">&#39;Ginsburg&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Create new fields from the input data to insert into the format string &quot;&quot;&quot;</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;pubdate&#39;</span><span class="p">][</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span>
+    <span class="c1"># Generally, the last identifier is the published version,</span>
+    <span class="c1"># while the first is an arXiv identifier</span>
+    <span class="c1"># (data[&#39;identifier&#39;] is a list)</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;adsbibid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;identifier&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1"># data[&#39;title&#39;] &amp; [&#39;pub&#39;] are also lists</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;titlestring&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;journal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;bibstem&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># This trick bolds my name in the list of authors</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;authors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&lt;b&gt;</span><span class="si">{}</span><span class="s1">&lt;/b&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">authorname</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">else</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">]]</span>
+    <span class="c1"># Separate names by semicolons</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;creator&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;authors&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+<p>The return from <tt class="docutils literal">wrangle</tt> is a dict with new keys that match the
+keywords in the format string. The python <tt class="docutils literal">string.format</tt> method will
+nicely ignore any extra keywords that we're uninterested in.</p>
+<div class="highlight"><pre><span></span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">wrangle</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+<pre class="literal-block">
+u'                &lt;li&gt;&lt;a class=&quot;norm&quot; href=&quot;<a class="reference external" href="http://adsabs.harvard.edu/abs/2013ApJ...773..102F">http://adsabs.harvard.edu/abs/2013ApJ...773..102F</a>&quot;&gt;Fallscheer, C.; Reid, M. A.; Di Francesco, J.; Martin, P. G.; Hill, T.; Hennemann, M.; Nguyen-Luong, Q.; Motte, F.; Men'shchikov, A.; Andrxe9, Ph.; Ward-Thompson, D.; Griffin, M.; Kirk, J.; Konyves, V.; Rygl, K. L. J.; Sadavoy, S.; Sauvage, M.; Schneider, N.; Anderson, L. D.; Benedettini, M.; Bernard, J. -P.; Bontemps, S.; &lt;b&gt;Ginsburg, A.&lt;/b&gt;; Molinari, S.; Polychroni, D.; Rivera-Ingraham, A.; Roussel, H.; Testi, L.; White, G.; Williams, J. P.; Wilson, C. D.; Wong, M.; Zavagno, A.&lt;/a&gt; 08, &lt;b&gt;2013&lt;/b&gt; ApJn                &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Herschel Reveals Massive Cold Clumps in NGCxa07538'
+</pre>
+<p>Now to show it in the notebook...</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">IPython.display</span>
+<span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">wrangle</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+</pre></div>
+<p>You can make a complete bibliography by looping over a few entries. The
+ordered list (<tt class="docutils literal">&lt;ol&gt;</tt>) tag makes a numbered list.</p>
+<div class="highlight"><pre><span></span><span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&lt;ol&gt;&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">wrangle</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="n">ii</span><span class="p">]))</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;&lt;/ol&gt;&quot;</span>
+<span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</pre></div>
+<p>If you want to make sure you only include refereed articles, use the
+'property' tag.</p>
+<div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">[</span><span class="s1">&#39;REFEREED&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;property&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span><span class="p">]</span>
+</pre></div>
+<pre class="literal-block">
+[True, False, True, False, False, False, True, True, False, False, False, False, True, True, True, False, False, True, True, False, False, True, True, True, False, False, False, False, True, False, False, True, True, True, True, True, True, False, False, False, False, False, False, True, True, False, False, False, False, False, True, False, False, True]
+</pre>
+<p>And don't forget that you can also include the citation count:</p>
+<div class="highlight"><pre><span></span><span class="nb">print</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;citation_count&#39;</span><span class="p">])</span>
+                <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span>
+                <span class="k">if</span> <span class="s1">&#39;citation_count&#39;</span> <span class="ow">in</span> <span class="n">d</span> <span class="ow">and</span> <span class="s1">&#39;REFEREED&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;property&#39;</span><span class="p">]])</span>
+</pre></div>
+<pre class="literal-block">
+Fallscheer, C. 2013: 0
+Ellsworth-Bowers, Timothy P. 2013: 2
+Smith, Nathan 2013: 0
+Harvey, Paul M. 2013: 2
+Bressert, E. 2012: 10
+Ginsburg, A. 2012: 11
+Bally, John 2012: 0
+Ginsburg, Adam 2011: 5
+Battersby, C. 2011: 22
+Schlingman, Wayne M. 2011: 17
+Ginsburg, Adam 2011: 6
+van Aarle, E. 2011: 12
+Aguirre, James E. 2011: 72
+Bally, John 2010: 36
+Battersby, Cara 2010: 30
+Yan, Chi-Hung 2010: 5
+Bally, J. 2010: 20
+Dunham, Miranda K. 2010: 27
+Rosolowsky, Erik 2010: 80
+Ginsburg, Adam G. 2009: 10
+Rubin, D. 2009: 23
+van de Steene, G. C. 2008: 4
+Golitsyn, G. S. 1985: 4
+</pre>
+<div class="section" id="wishlist">
+<h2>Wishlist</h2>
+<p>There are a few other features that would be nice to add to the CV, but
+some are not yet well-supported.</p>
+<ol class="arabic simple">
+<li>You can get the full name, but right now not the short name
+('bibstem'), of the journal</li>
+<li>The bibtex entry is important for generating tex versions of CVs.
+Currently, it is not possible to completely reproduce one, largely
+because of point #1.</li>
+</ol>
+<p>However, the ADS folks will certainly change this soon. You can find out
+if they have by querying their API settings. If the query below returns
+&quot;True&quot;, then you can access the bibstem.</p>
+<p>UPDATE 9/23/2013: Jay Luker &#64;ADS <a class="reference external" href="https://twitter.com/lbjay/status/382138570632204291">added 'bibstem' to the allowed return
+entries</a></p>
+<div class="highlight"><pre><span></span><span class="n">permissions_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;http://adslabs.org/adsabs/api/settings/&#39;</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;dev_key&#39;</span><span class="p">:</span><span class="n">get_dev_key</span><span class="p">()})</span>
+<span class="n">permissions</span> <span class="o">=</span> <span class="n">permissions_response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="s1">&#39;bibstem&#39;</span> <span class="ow">in</span> <span class="n">permissions</span><span class="p">[</span><span class="s1">&#39;allowed_fields&#39;</span><span class="p">]</span>
+</pre></div>
+<pre class="literal-block">
+True
+</pre>
+<p>In the meantime, you can get most of the way there. We'll create
+&quot;Article&quot; entries for any articles or eprints and ignore abstracts
+(e.g., conference abstracts). I don't have any books, but for others
+that might be useful.</p>
+<p>The approach we'll use is also a good way to reject unwanted articles in
+the HTML bibliography above.</p>
+<div class="highlight"><pre><span></span><span class="n">bibfmt</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;&quot;&quot;@article{{</span><span class="si">{tagname}</span><span class="s2">,</span>
+<span class="s2">abstract={{</span><span class="si">{abstract}</span><span class="s2">}},</span>
+<span class="s2">author={{</span><span class="si">{bibtexauthors}</span><span class="s2">}},</span>
+<span class="s2">month={{</span><span class="si">{month}</span><span class="s2">}},</span>
+<span class="s2">pages={{</span><span class="si">{page}</span><span class="s2">}},</span>
+<span class="s2">title={{</span><span class="si">{titlestring}</span><span class="s2">}},</span>
+<span class="s2">year={{</span><span class="si">{year}</span><span class="s2">}},</span>
+<span class="s2">volume={{</span><span class="si">{volume}</span><span class="s2">}},</span>
+<span class="s2">journal={{</span><span class="se">\\</span><span class="si">{lowercasejournal}</span><span class="s2">}}</span>
+<span class="s2">}}&quot;&quot;&quot;</span>
+</pre></div>
+<p>Of course, it's necessary to wrangle the data again for the appropriate
+author list formatting for bibtex:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">wrangleauthors</span><span class="p">(</span><span class="n">authorlist</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Fit the author list into a bibtex-friendly format.</span>
+<span class="sd">    Not the cleanest hack, since we need to allow for single-name</span>
+<span class="sd">    authors (e.g., astropy collaboration, Planck collaboration, etc.)</span>
+<span class="sd">    The triple braces are needed because TeX uses them&quot;&quot;&quot;</span>
+    <span class="n">splita</span> <span class="o">=</span> <span class="p">[[</span><span class="n">b</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)]</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">authorlist</span><span class="p">]</span>
+    <span class="n">bracketed</span> <span class="o">=</span> <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;{{</span><span class="si">{}</span><span class="s1">}}, </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="s2">&quot;~&quot;</span><span class="p">))</span>
+                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+                 <span class="k">else</span> <span class="sa">u</span><span class="s1">&#39;{{</span><span class="si">{}</span><span class="s1">}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                 <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">splita</span><span class="p">]</span>
+    <span class="k">return</span> <span class="sa">u</span><span class="s2">&quot; and &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">bracketed</span><span class="p">)</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">wrangleauthors</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;author&#39;</span><span class="p">])</span>
+</pre></div>
+<pre class="literal-block">
+u&quot;{Fallscheer}, C. and {Reid}, M.~A. and {Di Francesco}, J. and {Martin}, P.~G. and {Hill}, T. and {Hennemann}, M. and {Nguyen-Luong}, Q. and {Motte}, F. and {Men'shchikov}, A. and {Andrxe9}, Ph. and {Ward-Thompson}, D. and {Griffin}, M. and {Kirk}, J. and {Konyves}, V. and {Rygl}, K.~L.~J. and {Sadavoy}, S. and {Sauvage}, M. and {Schneider}, N. and {Anderson}, L.~D. and {Benedettini}, M. and {Bernard}, J.~-P. and {Bontemps}, S. and {Ginsburg}, A. and {Molinari}, S. and {Polychroni}, D. and {Rivera-Ingraham}, A. and {Roussel}, H. and {Testi}, L. and {White}, G. and {Williams}, J.~P. and {Wilson}, C.~D. and {Wong}, M. and {Zavagno}, A.&quot;
+</pre>
+<p>Now we can start looping through, performing checks for article status,
+and making bibentries. We'll use python's <tt class="docutils literal">dateutils.parse</tt> to turn
+month numbers into names</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dateutil.parser</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span><span class="p">:</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;bibtexauthors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wrangleauthors</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">])</span>
+
+    <span class="c1"># pubdates don&#39;t include days, and sometimes don&#39;t include months,</span>
+    <span class="c1"># so we have to be careful</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dateutil</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;pubdate&#39;</span><span class="p">][:</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%B&quot;</span><span class="p">)</span>
+                  <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;pubdate&#39;</span><span class="p">][</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;00&#39;</span>
+                  <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="c1"># To make the standard macros, e.g. \apj, \aa</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;lowercasejournal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;bibstem&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="c1"># list -&gt; string</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;titlestring&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># need to make sure there is something to put in the volume field</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;volume&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;volume&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;volume&#39;</span> <span class="ow">in</span> <span class="n">d</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="c1"># tagname is [First author&#39;s last name][year]</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;tagname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">bibdata</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s1">&#39;ARTICLE&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;property&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="s1">&#39;EPRINT&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;property&#39;</span><span class="p">]:</span>
+        <span class="n">bibdata</span> <span class="o">+=</span> <span class="n">bibfmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+</pre></div>
+<p>Now this data can be saved to a bibliography file and parsed by LaTeX.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">codecs</span> <span class="c1"># for writing unicode</span>
+
+<span class="k">with</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;mypapers.bib&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">bibdata</span><span class="p">)</span>
+</pre></div>
+<p>Future work:</p>
+<ul class="simple">
+<li>Verify the bibtex</li>
+<li>Generate the CV LaTeX and compile it</li>
+</ul>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/my-favorite-splatalogue-queries.html" rel="bookmark" title="Permalink to My favorite Splatalogue queries">
+                    My favorite Splatalogue queries</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-08-05T10:37:59-06:00"> 2013/08/05 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I tend to be most interested in low-energy molecular lines: CO, NH<sub>3</sub>, and
+H<sub>2</sub>CO being the main candidates.</p>
+<p>Note: Splatalogue has made some recent changes to their returned tables, partly
+per my recommendations.  The code below has been update to reflect these
+changes.</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">astroquery.splatalogue</span> <span class="kn">import</span> <span class="n">Splatalogue</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">S</span> <span class="o">=</span> <span class="n">Splatalogue</span><span class="p">(</span><span class="n">energy_max</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+<span class="o">...</span>    <span class="n">energy_type</span><span class="o">=</span><span class="s1">&#39;eu_k&#39;</span><span class="p">,</span><span class="n">energy_levels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;el4&#39;</span><span class="p">],</span>
+<span class="o">...</span>    <span class="n">line_strengths</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ls4&#39;</span><span class="p">],</span>
+<span class="o">...</span>    <span class="n">only_NRAO_recommended</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">noHFS</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">trimmed_query</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="o">...</span>     <span class="n">columns</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Species&#39;</span><span class="p">,</span><span class="s1">&#39;Chemical Name&#39;</span><span class="p">,</span><span class="s1">&#39;Resolved QNs&#39;</span><span class="p">,</span><span class="s1">&#39;Freq-GHz&#39;</span><span class="p">,</span>
+<span class="o">...</span>                <span class="s1">&#39;Meas Freq-GHz&#39;</span><span class="p">,</span><span class="s1">&#39;Log&lt;sub&gt;10&lt;/sub&gt; (A&lt;sub&gt;ij&lt;/sub&gt;)&#39;</span><span class="p">,</span>
+<span class="o">...</span>                <span class="s1">&#39;E_U (K)&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">table</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">query_lines</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)[</span><span class="n">columns</span><span class="p">]</span>
+<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s1">&#39;Log&lt;sub&gt;10&lt;/sub&gt; (A&lt;sub&gt;ij&lt;/sub&gt;)&#39;</span><span class="p">,</span><span class="s1">&#39;log10(Aij)&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s1">&#39;E_U (K)&#39;</span><span class="p">,</span><span class="s1">&#39;EU_K&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s1">&#39;Resolved QNs&#39;</span><span class="p">,</span><span class="s1">&#39;QNs&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">table</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">&#39;EU_K&#39;</span><span class="p">)</span>
+<span class="o">...</span>     <span class="k">return</span> <span class="n">table</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span><span class="mi">30</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">chemical_name</span><span class="o">=</span><span class="s1">&#39;(H2.*Formaldehyde)|( HDCO )&#39;</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">energy_max</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
+<span class="n">Species</span> <span class="n">Chemical</span> <span class="n">Name</span>      <span class="n">QNs</span>      <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">Meas</span> <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">log10</span><span class="p">(</span><span class="n">Aij</span><span class="p">)</span>   <span class="n">EU_K</span>
+<span class="o">-------</span> <span class="o">-------------</span> <span class="o">-------------</span> <span class="o">--------</span> <span class="o">-------------</span> <span class="o">----------</span> <span class="o">--------</span>
+   <span class="n">HDCO</span>  <span class="n">Formaldehyde</span> <span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>       <span class="o">--</span>       <span class="mf">5.34614</span>   <span class="o">-</span><span class="mf">8.31616</span> <span class="mf">11.18287</span>
+ <span class="n">H2C18O</span>  <span class="n">Formaldehyde</span> <span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>   <span class="mf">4.3888</span>        <span class="mf">4.3888</span>   <span class="o">-</span><span class="mf">8.22052</span> <span class="mf">15.30187</span>
+ <span class="n">H213CO</span>  <span class="n">Formaldehyde</span> <span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>       <span class="o">--</span>       <span class="mf">4.59309</span>   <span class="o">-</span><span class="mf">8.51332</span> <span class="mf">15.34693</span>
+   <span class="n">H2CO</span>  <span class="n">Formaldehyde</span> <span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>  <span class="mf">4.82966</span>            <span class="o">--</span>   <span class="o">-</span><span class="mf">8.44801</span> <span class="mf">15.39497</span>
+   <span class="n">HDCO</span>  <span class="n">Formaldehyde</span> <span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>       <span class="o">--</span>      <span class="mf">16.03787</span>   <span class="o">-</span><span class="mf">7.36194</span> <span class="mf">17.62746</span>
+ <span class="n">H2C18O</span>  <span class="n">Formaldehyde</span> <span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="mf">13.16596</span>      <span class="mf">13.16596</span>   <span class="o">-</span><span class="mf">6.86839</span> <span class="mf">22.17455</span>
+ <span class="n">H213CO</span>  <span class="n">Formaldehyde</span> <span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>       <span class="o">--</span>       <span class="mf">13.7788</span>   <span class="o">-</span><span class="mf">7.55919</span> <span class="mf">22.38424</span>
+   <span class="n">H2CO</span>  <span class="n">Formaldehyde</span> <span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="mf">14.48848</span>            <span class="o">--</span>   <span class="o">-</span><span class="mf">7.49383</span> <span class="mf">22.61771</span>
+ <span class="n">H2C18O</span>  <span class="n">Formaldehyde</span> <span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="mf">26.33012</span>      <span class="mf">26.33014</span>   <span class="o">-</span><span class="mf">6.03008</span> <span class="mf">32.48204</span>
+ <span class="n">H213CO</span>  <span class="n">Formaldehyde</span> <span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>       <span class="o">--</span>      <span class="mf">27.55567</span>   <span class="o">-</span><span class="mf">6.95712</span>  <span class="mf">32.9381</span>
+   <span class="n">H2CO</span>  <span class="n">Formaldehyde</span> <span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>       <span class="o">--</span>       <span class="mf">28.9748</span>   <span class="o">-</span><span class="mf">6.89179</span> <span class="mf">33.44949</span>
+
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span><span class="mi">400</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">chemical_name</span><span class="o">=</span><span class="s1">&#39;Carbon Monoxide&#39;</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">energy_max</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
+<span class="n">Species</span>  <span class="n">Chemical</span> <span class="n">Name</span>   <span class="n">QNs</span>   <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">Meas</span> <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">log10</span><span class="p">(</span><span class="n">Aij</span><span class="p">)</span>   <span class="n">EU_K</span>
+<span class="o">-------</span> <span class="o">---------------</span> <span class="o">-----</span> <span class="o">---------</span> <span class="o">-------------</span> <span class="o">----------</span> <span class="o">--------</span>
+   <span class="n">C18O</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">1</span><span class="o">-</span><span class="mi">0</span> <span class="mf">109.78218</span>     <span class="mf">109.78218</span>   <span class="o">-</span><span class="mf">7.20058</span>  <span class="mf">5.26868</span>
+<span class="mi">13</span><span class="n">COv</span><span class="o">=</span><span class="mi">0</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">1</span><span class="o">-</span><span class="mi">0</span> <span class="mf">110.20135</span>            <span class="o">--</span>   <span class="o">-</span><span class="mf">7.49946</span>   <span class="mf">5.2888</span>
+   <span class="n">C17O</span> <span class="n">Carbon</span> <span class="n">Monoxide</span> <span class="n">J</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="mi">0</span> <span class="mf">112.35928</span>     <span class="mf">112.35928</span>   <span class="o">-</span><span class="mf">7.17404</span>  <span class="mf">5.39236</span>
+  <span class="n">COv</span><span class="o">=</span><span class="mi">0</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">1</span><span class="o">-</span><span class="mi">0</span>  <span class="mf">115.2712</span>      <span class="mf">115.2712</span>   <span class="o">-</span><span class="mf">7.14236</span>  <span class="mf">5.53211</span>
+   <span class="n">C18O</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">2</span><span class="o">-</span><span class="mi">1</span> <span class="mf">219.56036</span>     <span class="mf">219.56036</span>   <span class="o">-</span><span class="mf">6.21833</span> <span class="mf">15.80595</span>
+<span class="mi">13</span><span class="n">COv</span><span class="o">=</span><span class="mi">0</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">2</span><span class="o">-</span><span class="mi">1</span> <span class="mf">220.39868</span>            <span class="o">--</span>   <span class="o">-</span><span class="mf">6.51752</span> <span class="mf">15.86618</span>
+   <span class="n">C17O</span> <span class="n">Carbon</span> <span class="n">Monoxide</span> <span class="n">J</span><span class="o">=</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span> <span class="mf">224.71437</span>     <span class="mf">224.71439</span>   <span class="o">-</span><span class="mf">6.19179</span> <span class="mf">16.17703</span>
+  <span class="n">COv</span><span class="o">=</span><span class="mi">0</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">2</span><span class="o">-</span><span class="mi">1</span>   <span class="mf">230.538</span>       <span class="mf">230.538</span>   <span class="o">-</span><span class="mf">6.16011</span> <span class="mf">16.59608</span>
+   <span class="n">C18O</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">3</span><span class="o">-</span><span class="mi">2</span> <span class="mf">329.33055</span>     <span class="mf">329.33055</span>   <span class="o">-</span><span class="mf">5.66014</span>  <span class="mf">31.6116</span>
+<span class="mi">13</span><span class="n">COv</span><span class="o">=</span><span class="mi">0</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">3</span><span class="o">-</span><span class="mi">2</span> <span class="mf">330.58797</span>            <span class="o">--</span>   <span class="o">-</span><span class="mf">5.95976</span> <span class="mf">31.73179</span>
+   <span class="n">C17O</span> <span class="n">Carbon</span> <span class="n">Monoxide</span> <span class="n">J</span><span class="o">=</span><span class="mi">3</span><span class="o">-</span><span class="mi">2</span>  <span class="mf">337.0611</span>     <span class="mf">337.06113</span>    <span class="o">-</span><span class="mf">5.6336</span>  <span class="mf">32.3538</span>
+  <span class="n">COv</span><span class="o">=</span><span class="mi">0</span> <span class="n">Carbon</span> <span class="n">Monoxide</span>   <span class="mi">3</span><span class="o">-</span><span class="mi">2</span> <span class="mf">345.79599</span>     <span class="mf">345.79599</span>   <span class="o">-</span><span class="mf">5.60192</span> <span class="mf">33.19169</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">MHz</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">chemical_name</span><span class="o">=</span><span class="s1">&#39; H2CO .*Formaldehyde&#39;</span><span class="p">,</span><span class="n">energy_max</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">energy_type</span><span class="o">=</span><span class="s1">&#39;eu_k&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
+<span class="n">Species</span> <span class="n">Chemical</span> <span class="n">Name</span>      <span class="n">QNs</span>      <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">Meas</span> <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">log10</span><span class="p">(</span><span class="n">Aij</span><span class="p">)</span>   <span class="n">EU_K</span>
+<span class="o">-------</span> <span class="o">-------------</span> <span class="o">-------------</span> <span class="o">--------</span> <span class="o">-------------</span> <span class="o">----------</span> <span class="o">--------</span>
+   <span class="n">H2CO</span>  <span class="n">Formaldehyde</span> <span class="mi">2</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>       <span class="o">--</span>       <span class="mf">0.07114</span>  <span class="o">-</span><span class="mf">13.81846</span>   <span class="mf">57.612</span>
+   <span class="n">H2CO</span>  <span class="n">Formaldehyde</span> <span class="mi">3</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>       <span class="o">--</span>       <span class="mf">0.35557</span>  <span class="o">-</span><span class="mf">12.02319</span> <span class="mf">68.11082</span>
+
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">trimmed_query</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">MHz</span><span class="p">,</span><span class="mi">25</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span><span class="n">chemical_name</span><span class="o">=</span><span class="s1">&#39; NH3 &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
+<span class="n">Species</span> <span class="n">Chemical</span> <span class="n">Name</span>      <span class="n">QNs</span>       <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">Meas</span> <span class="n">Freq</span><span class="o">-</span><span class="n">GHz</span> <span class="n">log10</span><span class="p">(</span><span class="n">Aij</span><span class="p">)</span>    <span class="n">EU_K</span>
+<span class="o">-------</span> <span class="o">-------------</span> <span class="o">--------------</span> <span class="o">--------</span> <span class="o">-------------</span> <span class="o">----------</span> <span class="o">---------</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">23.69447</span>       <span class="mf">23.6945</span>   <span class="o">-</span><span class="mf">6.43769</span>  <span class="mf">24.40492</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">2</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span>  <span class="mf">23.7226</span>      <span class="mf">23.72263</span>   <span class="o">-</span><span class="mf">6.31125</span>   <span class="mf">65.5867</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">23.09885</span>      <span class="mf">23.09881</span>   <span class="o">-</span><span class="mf">6.94808</span>   <span class="mf">81.5904</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span> <span class="mi">3</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">23.87008</span>      <span class="mf">23.87013</span>   <span class="o">-</span><span class="mf">6.25203</span> <span class="mf">124.68113</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">3</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">22.83422</span>      <span class="mf">22.83418</span>     <span class="o">-</span><span class="mf">6.662</span> <span class="mf">151.33353</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">3</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">22.23456</span>       <span class="mf">22.2345</span>   <span class="o">-</span><span class="mf">7.29889</span> <span class="mf">167.29666</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">4</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">24.13935</span>      <span class="mf">24.13942</span>   <span class="o">-</span><span class="mf">6.20938</span> <span class="mf">201.67106</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span> <span class="mi">4</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">22.68835</span>      <span class="mf">22.68831</span>   <span class="o">-</span><span class="mf">6.54002</span> <span class="mf">238.96192</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">4</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">21.70341</span>      <span class="mf">21.70336</span>   <span class="o">-</span><span class="mf">6.95001</span> <span class="mf">265.52612</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">4</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">21.13434</span>      <span class="mf">21.13431</span>   <span class="o">-</span><span class="mf">7.58659</span> <span class="mf">281.43749</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">5</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">5</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">24.53292</span>      <span class="mf">24.53299</span>    <span class="o">-</span><span class="mf">6.1706</span> <span class="mf">296.53357</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">5</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">5</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">22.65307</span>      <span class="mf">22.65302</span>   <span class="o">-</span><span class="mf">6.46829</span> <span class="mf">344.46226</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span> <span class="mi">5</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">5</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">21.28532</span>      <span class="mf">21.28528</span>   <span class="o">-</span><span class="mf">6.79928</span>  <span class="mf">381.6003</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">5</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">5</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">20.37145</span>      <span class="mf">20.37145</span>   <span class="o">-</span><span class="mf">7.20859</span> <span class="mf">408.05568</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">5</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">5</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">19.83833</span>      <span class="mf">19.83835</span>   <span class="o">-</span><span class="mf">7.84539</span> <span class="mf">423.90259</span>
+ <span class="n">NH3v</span><span class="o">=</span><span class="mi">0</span>       <span class="n">Ammonia</span>  <span class="mi">6</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="mi">0</span><span class="n">a</span><span class="o">-</span><span class="mi">6</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="mi">0</span><span class="n">s</span> <span class="mf">22.73249</span>      <span class="mf">22.73243</span>   <span class="o">-</span><span class="mf">6.41603</span> <span class="mf">467.80451</span>
+</pre></div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/ppvi-talk-13-steve-longmore.html" rel="bookmark" title="Permalink to PPVI Talk 13: Steve Longmore">
+                    PPVI Talk 13: Steve Longmore</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-07-16T18:00:00-06:00"> 2013/07/16 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <div class="section" id="the-formation-and-early-evolution-of-young-massive-clusters">
+<h2>THE FORMATION AND EARLY EVOLUTION OF YOUNG MASSIVE CLUSTERS</h2>
+<p>S. Longmore (Astrophysics Research Institute, Liverpool John Moores University, United Kingdom),
+J. Alves (University of Vienna),
+J. Bally (University of Boulder),
+N. Bastian (Liverpool John Moores University, United Kingdom),
+E. Bressert (CSIRO Astronomy and Space Science),
+J. Dale (LMU, Germany),
+D. Kruijssen (MPA, Germany),
+J. Rathborne (CSIRO Astronomy and Space Science),
+L. Testi (ESO, Germany),
+A. Stolte (University of Bonn, Argelander Institut, Bonn, Germany)</p>
+<p>We review the formation and early evolution of the most massive (and dense)
+young stellar clusters in our Galaxy, and the role this can play in our
+understanding of star and planet formation as a whole. We start by reviewing
+the global properties and environmental conditions of the known young massive
+clusters (YMCs) and their progenitor gas clouds. We then focus on the observed
+embedded dense core and (proto)stellar populations within these clusters, and
+discuss how such large stellar systems can potentially simultaneously
+distinguish between competing cluster formation models and provide the
+strongest constraints on the physical origin of the stellar initial mass
+function. After reviewing the current theoretical framework for the formation
+and evolution of YMCs, we summarise the debate on two key open questions:
+infant (im)mortality and the evidence for/against significant age spreads
+within YMCs. We then discuss which fraction of all stars and planets, including
+our own solar system, may have formed in extreme environmental conditions
+(proximity to high-mass stars, high (proto)stellar densities etc) similar to
+those found in these clusters, rather than the more benign conditions found in
+local, low-mass star formation regions. Finally, we review how the most massive
+and dense young clusters can be used as a bridge linking what we learn about
+star and planet formation in the nearest-by regions, to starburst systems in
+the Local Universe, globular cluster formation and star/planet formation at the
+earliest epochs of the universe.</p>
+</div>
+<div class="section" id="intro">
+<h2>Intro</h2>
+<p>We understand low-mass sf; it is atypical</p>
+<dl class="docutils">
+<dt>local SF is atypical</dt>
+<dd><ul class="first last simple">
+<li>50% of SF in most massive clusters (Lee, Murray, Rahman 2012)</li>
+<li>peak SFR at z=2-3</li>
+<li>most MW stars older than a few Gyr</li>
+</ul>
+</dd>
+<dt>How universal is the SF process?</dt>
+<dd><ul class="first last simple">
+<li>Does SF care about environment?</li>
+</ul>
+</dd>
+<dt>What are YMCs?</dt>
+<dd><ul class="first last simple">
+<li>as big as globulars but currently forming</li>
+</ul>
+</dd>
+<dt>Carina: Trumpler 14</dt>
+<dd><ul class="first last simple">
+<li>association surrounding YMC.  Not YMCAs</li>
+</ul>
+</dd>
+<dt>Why good laboratory?</dt>
+<dd><ul class="first last simple">
+<li>How do lives differ in isolation vs cluster?</li>
+</ul>
+</dd>
+</dl>
+<p>Ideal probes because they probe extremal SF</p>
+</div>
+<div class="section" id="theory-how-do-they-form">
+<h2>Theory: How do they form?</h2>
+<blockquote>
+<ul class="simple">
+<li>many processes: too many to simulate</li>
+<li>gass collapse, but feedback important</li>
+<li>density essential - determines whether bound or not</li>
+<li>need to understand initial conditions: mass as a function of size scale early</li>
+</ul>
+</blockquote>
+<img alt="" src="http://keflavich.github.io/blog/images/StevePlot.jpg" style="width: 800px;" />
+</div>
+<div class="section" id="observations">
+<h2>Observations</h2>
+<dl class="docutils">
+<dt>What do we expect to see?</dt>
+<dd><ul class="first last simple">
+<li>mass-radius diagram</li>
+<li>need v_esc &gt; c_II</li>
+<li><dl class="first docutils">
+<dt>How dense?  YMC at given mass, radius</dt>
+<dd><ul class="first last">
+<li>Collapse of single cloud?</li>
+<li>Cloud-cloud collision?</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>Scenarios:</dt>
+<dd><ul class="first last simple">
+<li>Initial radius same as final stellar radius
+* &quot;in situ&quot;</li>
+<li>Initial radius &gt;&gt; final radius; shrinks
+* requires convergence; &quot;conveyor belt&quot;
+* P-cygni profiles, collision signatures</li>
+<li>Mass, radius when there are no progenitors</li>
+<li>Can do YMC progenitors out to 10's of MPC with ALMA</li>
+</ul>
+</dd>
+</dl>
+<p>Status in Jan 2012: G0.253 biggest.</p>
+<dl class="docutils">
+<dt>Inner 200 pc:</dt>
+<dd><ul class="first last simple">
+<li>Molinari Ring, reference to John's talk</li>
+<li>Masses from Herschel column maps</li>
+<li>1pc, 3pc apertures (related to tidal radius)</li>
+<li>Sgr B2, Sgr C star forming, others are not</li>
+</ul>
+</dd>
+<dt>First quadrant:</dt>
+<dd><ul class="first last simple">
+<li>All massive things are prodigiously star forming</li>
+</ul>
+</dd>
+<dt>Fourth quadrant:</dt>
+<dd><ul class="first last simple">
+<li>ATLASGAL 4th quadrant - Urquhart 2013.  6 candidates</li>
+<li>MALT 90 Contreras - a couple candidates</li>
+<li>Sarolta Zahorecz 1B040</li>
+</ul>
+</dd>
+<dt>How do you form YMCs?</dt>
+<dd><ul class="first last simple">
+<li>Where are YMCs?  Where are star-forming things?</li>
+<li>Only fair comparison if present-day gas clouds will produce same stellar population as now</li>
+<li>Only works if cluster disruption unimportant</li>
+<li>fair enough samples (10%, 30% area)</li>
+<li>Only very young clusters so they weren't disrupted</li>
+<li>same number of star-forming clouds, same number of clusters</li>
+<li>LOTS of starless in CMZ, NONE in 1st quadrant</li>
+<li>Galactic Center = in situ mode, 1st quad = conveyor belt mode</li>
+</ul>
+</dd>
+<dt>W43, W49 invoked as YMC progenitors [yikes ... W49, W51 actually]</dt>
+<dd><ul class="first last simple">
+<li>W49 fed by filaments on 60 pc scales</li>
+<li>plenty of regions show similar features</li>
+<li>looking for evidence of &quot;inflow&quot; or &quot;convergence&quot; onto massive clusters
+* conveyor belt makes sense</li>
+</ul>
+</dd>
+<dt>Back to the CMZ:</dt>
+<dd><ul class="first last simple">
+<li>Dense gas only on the left</li>
+<li>Mass in boxes same, density is changing</li>
+<li>Sgr A* is not at the center of the ring
+* Low density in the back
+* high density in the front
+* Sgr A* close to the front
+* Sgr A* compresses the gas?  (interacting with 20, 50 km/s clds)</li>
+</ul>
+</dd>
+<dt>Predictions:</dt>
+<dd><ul class="first last simple">
+<li>strongest shocks just after Sgr A*</li>
+<li>Elongated</li>
+</ul>
+</dd>
+<dt>Kruijssen+, Lucas+, Clark+</dt>
+<dd><ul class="first last simple">
+<li>comparison with observations....</li>
+<li>Exciting because following IMF as a function of absolute time
+* know orbit around Center
+* know downstream is older than upstream</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="summary">
+<h2>Summary</h2>
+<blockquote>
+<ul class="simple">
+<li>Different modes of YMC formation
+* None starless
+* &quot;would be exciting if someone found that&quot; [not for me]</li>
+<li>Galactic center is different
+* most extreme SF environment where we can resolve stars</li>
+<li>Can follow assembly as a function of time</li>
+<li>Can extrapolate Milky Way to other galaxies (Kruijssen &amp; Longmore)</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="alma-data">
+<h2>ALMA data</h2>
+<blockquote>
+<ul class="simple">
+<li>PI Rathborne</li>
+<li>Crystal Brogan helped a lot</li>
+<li>Banana!</li>
+<li>HNCO movie</li>
+<li>SiO movie</li>
+</ul>
+</blockquote>
+<img alt="" src="http://keflavich.github.io/blog/images/Banana.jpg" style="width: 800px;" />
+</div>
+<div class="section" id="questions">
+<h2>Questions</h2>
+<blockquote>
+<ul class="simple">
+<li>Q: Battersby - &quot;in situ&quot; idea.  Short lifetime.  CMZ should not be forming stars.</li>
+<li>A: SF is slower according to Kruijssen.  Once the turbulence dissipates, stars will form anyway.</li>
+<li>Q: Battersby - What does the previous state of the gas look like for in situ?</li>
+<li>A: Thor HI envelopes will tell you about kinematics.  We don't know initial
+conditions for things in the disk.</li>
+<li>Q Hans: Continuum image of brick.  High density.  No stars formed.  Cries
+out as the initial conditions of SF.  Is THIS the initial conditions for SPH
+codes?</li>
+<li>A: Surprisingly small clumps.  Most massive is ~few hundred Msun</li>
+<li>Hans: can form more massive stars later</li>
+<li>Q McKee: What fraction of YMC has already formed in disk?</li>
+<li>A: High Q (lyman continuum luminosity).  Don't know</li>
+<li>Q Henrik: Help a little with the interpretation.  Do the data help say
+something about shocks, anything?</li>
+<li><dl class="first docutils">
+<dt>A: A lot of potential answers... simulations of gas cloud at Sgr C, whiz by Sgr A.</dt>
+<dd>(we will be able to say things...)</dd>
+</dl>
+</li>
+<li>Q: Klessen - in Alma data, do you have OI? [No]  Clarke and Glover predict
+OI prominent and bright.
+Could distinguish between UV and CR flux.</li>
+<li>A: Different gas temperature.  Wish we had OI.  Shock or CR heating.  SOFIA
+only thing that can do it</li>
+</ul>
+</blockquote>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -1694,655 +2351,6 @@ about triggering now than before?</li>
 <li>A: Triggering is a great model, but observationally indistinguishable.  Only
 way to know is precision kinematics.  Need GAIA.
 It happens, but can't be proved.</li>
-</ul>
-</blockquote>
-</div>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/ppvi-talk-5-hb-li.html" rel="bookmark" title="Permalink to PPVI Talk 5: H.B. Li">
-                    PPVI Talk 5: H.B. Li</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-07-15T15:15:00-06:00"> 2013/07/15 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <div class="section" id="the-link-between-magnetic-fields-and-cloud-star-formation">
-<h2>THE LINK BETWEEN MAGNETIC FIELDS AND CLOUD/STAR FORMATION</h2>
-<p>Authors:</p>
-<p>H.-B. Li (MPIA, Heidelberg, Germany),
-A. Goodman (Harvard-Smithsonian Center for Astrophysics, United States),
-M. Houde (University of Western Ontario, Canada),
-Z.-Y. Li (University of Virginia, United States),
-G. Novak (Northwestern University, United States),
-T. Sridharan (Harvard-Smithsonian Center for Astrophysics, United States)</p>
-<p>The question of whether magnetic fields play an important role in the processes
-of molecular cloud and star formation has been debated for decades. Recent
-observations reveal a simple picture that may help illuminate these questions:
-magnetic fields have a tendency to preserve their orientation at all scales
-that have been probed - from 100-pc scale inter-cloud media down to sub-pc
-scale cloud cores. This ordered morphology has implications for the way in
-which self-gravity and turbulence should interact with magnetic fields: both
-gravitational contraction and turbulent velocities should be anisotropic, due
-to the influence of dynamically important fields. Such anisotropy is largely
-observed. Here we review these recent observations and discuss how they can
-improve our understanding of cloud/star formation.</p>
-</div>
-<div class="section" id="content">
-<h2>Content</h2>
-<p>Visualize field morphology: Turbulent or directed?</p>
-<p>Can't determine importantce of B-fields just by looking at the map</p>
-<p>If kinetic dominates B-field, B-fields will simply trace cloud morphology.
-Else, they will define it...</p>
-<p>Alfvenic Mach number important...</p>
-<p>B-field orientation and strength remains controversial on all scales.</p>
-<blockquote>
-<ol class="arabic simple" start="0">
-<li>Observational tools</li>
-</ol>
-<blockquote>
-<ul class="simple">
-<li>Dust grain alignment</li>
-<li>polarization of thermal emission A_V &gt; 100mag</li>
-<li>polarization of reflected starlight A_V &lt; 5 mag</li>
-<li>Zeeman effect <em>circular</em> poln: line-of-sight component</li>
-<li>linear line polarization</li>
-</ul>
-</blockquote>
-</blockquote>
-<p>M33 SMA observations</p>
-<blockquote>
-<ul class="simple">
-<li>synchrotron show low-density medium</li>
-<li>6 most massive clouds (for stronger signal)</li>
-<li>offset between CO polarization and spiral arms is double-peaked at 0,90 deg</li>
-</ul>
-</blockquote>
-<p>Crutcher Zeeman observations</p>
-<p>Turbulence lognormal column PDF.</p>
-<blockquote>
-<ul class="simple">
-<li>Higher column deviations from B-fields?  &quot;turning point&quot; is the gravitational critical density</li>
-</ul>
-</blockquote>
-<p>Orion:</p>
-<blockquote>
-<ul class="simple">
-<li>B-fields perpendicular to elongation of &quot;cores&quot; (perpendicular to filaments?)</li>
-<li>Mean core B-fields are approximately parallel across Orion</li>
-</ul>
-</blockquote>
-<p>For local clouds, B-field of the &quot;ICM&quot; (inter-core medium?) either antiparallel
-or parallel</p>
-<p>Clouds flatten: collapse only <em>along</em> b-fields.  Nice top illustration</p>
-<img alt="" src="http://keflavich.github.io/blog/images/talk5_top.jpg" style="width: 800px;" />
-<p>Disk formation:</p>
-<blockquote>
-<ul class="simple">
-<li>B-braking requires coupling between disk and B-fields</li>
-<li>Neutral and Ion turbulent dispersion is different because of B-induction</li>
-<li>(HCO+ systematically wider than HCN)</li>
-<li>Estimate decoupling scale ~100's au</li>
-</ul>
-</blockquote>
-<p>Recent:</p>
-<blockquote>
-<ul class="simple">
-<li>Chapman 2013: CSO B-fields perpendicular to disk</li>
-<li>Hull 2013: CARMA B-fields uncorrelated with disk angles</li>
-<li>Tomisaka 2011: Large-scales, perpendicular to disk.  Small scales, randomized.<ul>
-<li>transition from poloidal to toroidal B-field</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-</div>
-<div class="section" id="conclusions">
-<h2>Conclusions</h2>
-<p>Orion has ordered B-fields from large to small scales</p>
-<p>In general, large-scale fields lead to squishing along B-fields, small-scale</p>
-<img alt="" src="http://keflavich.github.io/blog/images/talk5_conclusion.jpg" style="width: 800px;" />
-</div>
-<div class="section" id="questions">
-<h2>Questions</h2>
-<blockquote>
-<ul class="simple">
-<li>Q: Benetti - Are you only picking out the large-scale components when there
-may be stronger small-scale fields?  How can you be sure you're seeing the
-dominant component?</li>
-<li>A:</li>
-<li>Q: Strong reduction of degree of poln in core.  Are you sampling field in core?</li>
-<li>A: Poln correlates with line widths?</li>
-<li>Q Tan:  Nice results.  Are clouds are sub- or super-critical?  If you
-account for extra turbulence, they are just about critical?</li>
-<li>Q Tan: What about sampling IMF from field strengths that produce massive cores?</li>
-<li>A: No idea</li>
-<li>Q Chris McKee: Padoan's group - let weak B-field amplify in simulations.
-Only by assuming input strong-B-field do we get correlation between large
-and small scales.</li>
-<li>A:</li>
-</ul>
-</blockquote>
-</div>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/ppvi-talk-4-christoph-federrath.html" rel="bookmark" title="Permalink to PPVI Talk 4: Christoph Federrath">
-                    PPVI Talk 4: Christoph Federrath</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-07-15T14:30:00-06:00"> 2013/07/15 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <div class="section" id="the-star-formation-rate-of-molecular-clouds">
-<h2>THE STAR FORMATION RATE OF MOLECULAR CLOUDS</h2>
-<p>Authors:</p>
-<p>P. Padoan (ICREA &amp; Institute of Cosmos Sciences, University of Barcelona, Spain),
-C. Federrath (School of Mathematical Sciences, Monash University, Australia),
-G. Chabrier (Ecole Normale Superieure de Lyon, France),
-N. Evans (The University of Texas at Austin, United States),
-D. Johnstone (Herzberg Institute of Astrophysics, National Research Council of Canada),
-J. Jorgensen (Star and Planet Formation Center, University of Copenhagen, Denmark),
-C. McKee (University of California, Berkeley, United States),
-A. Nordlund (Niels Bohr Institute &amp; Star and Planet Formation Center, University of Copenhagen)</p>
-<p>We review recent advances in the analytical and numerical modeling of the star
-formation rate in molecular clouds and discuss the available observational
-constraints. We focus on molecular clouds as the fundamental star formation
-sites, rather than on the larger-scale processes that form the clouds and set
-their properties. Molecular clouds are shaped into a complex filamentary
-structure by supersonic turbulence, with only a small fraction of the cloud
-mass channeled into collapsing protostars over a free-fall time of the system.
-In recent years, the physics of supersonic turbulence has been widely explored
-with computer simulations, leading to statistical models of this fragmentation
-process, and to the prediction of the star formation rate as a function of
-fundamental physical parameters of molecular clouds, such as the virial
-parameter, the rms Mach number, the compressive fraction of the turbulence
-forcing, and the ratio of magnetic to gas pressure. Infrared space telescopes,
-as well as ground-based observatories have provided unprecedented probes of the
-filamentary structure of molecular clouds and the location of forming stars
-within them. We may thus be on the verge of a breakthrough in our understanding
-of star formation, and particularly of the star formation rate of molecular
-clouds.</p>
-</div>
-<div class="section" id="content">
-<h2>Content</h2>
-<p>Star Formation Rate from statistics of turbulence</p>
-<p>Drastic differences in SFR, not just because of column density.  (Lada 2010:
-Pipe vs Rho Oph, Rho = 15 Pipe)</p>
-<p>Intro slides:</p>
-<blockquote>
-<ul>
-<li><p class="first">KS relation with local clouds</p>
-</li>
-<li><p class="first">CMF -&gt; IMF (30-70% SFE)</p>
-</li>
-<li><p class="first">Radiation feedback:</p>
-<blockquote>
-<ul class="simple">
-<li>only affects small scales</li>
-<li>affects &gt; 10^8 cm^-3</li>
-</ul>
-</blockquote>
-</li>
-<li><p class="first">B-fields</p>
-<ul class="simple">
-<li>reduce fragmentation <em>more effectively</em> than radiation</li>
-<li>drive outflows</li>
-</ul>
-</li>
-<li><p class="first">Outflows &amp; Jets</p>
-<ul class="simple">
-<li>direct: reduce star mass</li>
-<li>indirect - drive turbulence</li>
-<li>triggering SF</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-</div>
-<div class="section" id="what-drives-turbulence">
-<h2>What drives turbulence?</h2>
-<blockquote>
-<ul class="simple">
-<li>Jets contribute to turbulence on small scales, but don't feed back effectively on large scales</li>
-<li>Ionization fronts, bubbles?</li>
-<li>SN explosions</li>
-<li>MRI / shear?</li>
-</ul>
-</blockquote>
-<div class="section" id="turbulence">
-<h3>Turbulence</h3>
-<blockquote>
-<ul>
-<li><p class="first">Reynolds &gt; 1000</p>
-</li>
-<li><p class="first">cites da Vinci</p>
-</li>
-<li><p class="first">Supersonic &quot;cascades&quot; to sonic scale</p>
-<blockquote>
-<ul class="simple">
-<li>Kolmogorov -5/3 turbulence is incompressible (subsonic)</li>
-<li>Larson -2 supersonic, shock-dominated</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<div class="section" id="turbulence-in-a-box">
-<h4>Turbulence in a Box</h4>
-<blockquote>
-<ul class="simple">
-<li>Mach numbers 2-50</li>
-<li>&quot;Forcing term&quot; f<ul>
-<li>divergence free vs. compressive turbulence</li>
-<li>compressive -&gt; bigger voids, higher overdensity</li>
-</ul>
-</li>
-<li>Density PDF: lognormal</li>
-<li>Perseus observations: similar Mach numbers, different dispersions: requires changed <em>b</em></li>
-<li>Column vs. Volume density: Brunt</li>
-<li>Kainulainen, starless -&gt; taurus -&gt; IRDCs<ul>
-<li>starless: b=0</li>
-<li>starry: b=0.5</li>
-<li>IRDCs: higher</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-</div>
-</div>
-</div>
-<div class="section" id="density-pdf-sfr">
-<h2>Density PDF -&gt; SFR</h2>
-<p>All recent theories of SF, SFR are based on an integral over the density PDF.</p>
-<blockquote>
-<ul>
-<li><p class="first">Hennebelle &amp; Chabrier theory: Different free-fall times at different densities, so must be in an integral</p>
-</li>
-<li><p class="first">Cricitical density <span class="math">\(s_{crit}\propto \ln \left(\alpha_{vir}\mathcal{M}^2\right)\)</span></p>
-</li>
-<li><p class="first">SFR depends on alpha_vir, b, and M</p>
-</li>
-<li><p class="first">Dependence on alpha_vir: inversely proportional to SFR, SFR propto alpha_vir^-1/2</p>
-</li>
-<li><p class="first">Dependence on Mach number</p>
-<blockquote>
-<ul class="simple">
-<li>stronger when you consider non-constant t_ff</li>
-<li>SFR larger as gas compressed more</li>
-</ul>
-</blockquote>
-</li>
-<li><p class="first">Dependence on <em>b</em>: Compressive is much more star forming</p>
-<ul class="simple">
-<li>compressive drives gas to self-gravitating densities far more rapidly</li>
-</ul>
-</li>
-<li><p class="first">What about magnetic fields?  Add beta</p>
-<ul class="simple">
-<li>B-fields &quot;wash out&quot; structures</li>
-<li>Reduce fragmentation</li>
-</ul>
-</li>
-<li><p class="first">Direct measurement of line-of-sight star counts and gas density</p>
-<ul class="simple">
-<li>1%, 10% SFE examples</li>
-<li>makes a distribution similar to Heiderman plot</li>
-<li>agreement assumes total core-to-star efficiency = 100%</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-</div>
-<div class="section" id="conclusions">
-<h2>Conclusions</h2>
-<blockquote>
-<ul class="simple">
-<li>supersonic, magnetized turbulence is important for driving SFR</li>
-</ul>
-</blockquote>
-</div>
-<div class="section" id="questions">
-<h2>Questions</h2>
-<blockquote>
-<ul class="simple">
-<li>Q: Adam Frank - Abstract vs realistic forcing from, e.g., outflows.  Driving
-sources makes turbulence look different.</li>
-<li>A: These experiments are essential.  Need to find out.</li>
-<li>Q: Fabian Heitsch - How does non-isothermality affect theory?</li>
-<li>A: We are looking only at density ranges where gas is isothermal.  SFR is
-not very dependent on T, but IMF <em>is</em>.</li>
-<li>Q: How do you explain that solenoidal is a better fit, when all drivers are
-compressive?</li>
-<li>A: Don't know. BUT, compression <em>drives</em> solenoidal modes
-[this is possibly interesting - does a single compression event drive a lot of solenoids?]</li>
-<li>Q: What are the effects of field-slippage (non-ideal MHD, ambipolar diffusion)</li>
-<li>A: Not that important....</li>
-<li>Q: Tan - Filaments have ordered B-fields on large scales.  Do you see that in the simulations</li>
-<li>A: Fields are very intermittent, bouncing all over the place. Large scale
-&quot;input&quot; B-fields may be more important for mol. clds</li>
-<li>Q: Solenoidal -&gt; toroidal fields, which squeeze gas.  Do you see squeezing
-(compression) from solenoidal?</li>
-<li>A: &quot;simple&quot; version of B-fields only works for magnetic pressure, not
-magnetic tension.  For subsonic, SFR doesn't work.  Need disordered fields</li>
-<li>Q: Clark? - How do these results compare with Lada's?</li>
-<li>A: Don't know, didn't want the complexity</li>
-</ul>
-</blockquote>
-</div>
-<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script> </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/ppvi-talk-3-paul-clark.html" rel="bookmark" title="Permalink to PPVI Talk 3: Paul Clark">
-                    PPVI Talk 3: Paul Clark</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-07-15T11:45:00-06:00"> 2013/07/15 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <div class="section" id="the-origin-and-universality-of-the-initial-mass-function">
-<h2>THE ORIGIN AND UNIVERSALITY OF THE INITIAL MASS FUNCTION</h2>
-<p>Authors:</p>
-<p>S. Offner (Yale University, United States),
-P. Clark (Heidelberg University, ITA, Germany),
-P. Hennebelle (Observatoire de Paris, LERMA, Paris, France),
-N. Bastian (Liverpool John Moores University, United Kingdom),
-M. Bate (University of Exeter, United Kingdom),
-P. Hopkins (California Institute of Technology, Department of Astronomy, United States),
-E. Moraux (Institut de Planetologie et d'Astrophysique de Grenoble (IPAG), France),
-A. Whitworth (Cardiff University, Physics &amp; Astronomy, United Kingdom)</p>
-</div>
-<div class="section" id="abstract">
-<h2>Abstract</h2>
-<p>We review current theories for the origin of the Stellar Initial Mass Function
-(IMF) with particular focus on the extent to which the IMF can be considered
-universal across various environments. To place the issue in an observational
-context, we summarize the techniques used to determine the IMF for different
-stellar populations, the uncertainties affecting the results, and the evidence
-for systematic departures from universality under extreme circumstances. We
-next consider theories for the formation of prestellar cores by turbulent
-fragmentation and the possible impact of various thermal, hydrodynamic and
-magneto-hydrodynamic instabilities. We address the conversion of prestellar
-cores into stars, and evaluate the roles played by different processes:
-competitive accretion, dynamical fragmentation, ejection and starvation,
-filament fragmentation and filamentary accretion flows, disc formation and
-fragmentation, critical scales imposed by thermodynamics, and magnetic braking.
-We present explanations for the characteristic shapes of the Present-Day
-Prestellar Core Mass Function and the IMF and consider what significance can be
-attached to their apparent similarity. Substantial computational advances have
-occurred in recent years, and we review the numerical simulations that have
-been performed to predict the IMF directly and discuss the influence of
-dynamics, time-dependent phenomena, and initial conditions.</p>
-<p>Last time, IMF discussion was very heated.
-(technical difficulties)</p>
-</div>
-<div class="section" id="intro-to-imf">
-<h2>Intro to IMF</h2>
-<p>Salpeter, Kroupa, Chabrier, de Marchi (&quot;Tapered&quot; power law)
-(aside) Thies &amp; Kroupa: BDs not part of IMF</p>
-<p>SFR indicators only see &gt;10 Msun sources.  Must extrapolate downward.  This is
-why extragalactic people care.</p>
-<div class="section" id="are-there-variations-in-the-imf">
-<h3>Are there variations in the IMF?</h3>
-<p>Locally, no.</p>
-<p>More evolved clusters, yes on the low-mass end:</p>
-<blockquote>
-<ul class="simple">
-<li>Pleiades, NGC 2516, etc.</li>
-<li>Lose low-mass stars with age dynamically</li>
-<li>fraction of BDs remaining drops to zero over time</li>
-</ul>
-</blockquote>
-<p>Difficulties in measurement:</p>
-<blockquote>
-<ul class="simple">
-<li>Patchy extinction</li>
-<li>young clusters not done sampling IMF</li>
-<li>don't understand hayashi tracks that well</li>
-</ul>
-</blockquote>
-<p>Modal plot from van Dokkum</p>
-<blockquote>
-<ul class="simple">
-<li>Hints at change in IMF</li>
-</ul>
-</blockquote>
-<p>Extragalactic - big camps argue top, bottom heavy and universal</p>
-<blockquote>
-<ul class="simple">
-<li>rely on mass to light ratios</li>
-<li>M/L models depend on population synthesis models</li>
-</ul>
-</blockquote>
-</div>
-<div class="section" id="what-determines-the-imf">
-<h3>What determines the IMF?</h3>
-<p>Hoyle, Larson: the cloud fragmentation process.
-Clouds fragment into cores, cores make stars.</p>
-<p>Does supersonic turbulence regulate? (movie from Federrath)</p>
-<p>Padoan:</p>
-<blockquote>
-<ul class="simple">
-<li>CMF driven only by turbulence.</li>
-<li># of BDs controlled by Mach number.</li>
-<li>Cloud-in-cloud problem: small cores may be in big cores</li>
-</ul>
-</blockquote>
-<p>Press-Schechter &amp; Excursion Set formalism</p>
-<blockquote>
-<ul>
-<li><p class="first">Gravitational decoupling sets &quot;critical&quot; scale</p>
-</li>
-<li><p class="first">Hopkins: Density as a function of scale</p>
-<blockquote>
-<ul class="simple">
-<li>large scale: shear support</li>
-<li>intermediate: turbulence</li>
-<li>small scale: hrm...</li>
-<li>last-crossing =&gt; IMF</li>
-</ul>
-</blockquote>
-</li>
-<li><p class="first">Hennebelle &amp; Chabrier 2008 - account for non-thermal support</p>
-</li>
-<li><p class="first">GMCs are a separate population</p>
-</li>
-<li><p class="first">Useful: turbulence -&gt; more BDs, so extragalactic maybe more turbulent?</p>
-</li>
-</ul>
-</blockquote>
-</div>
-<div class="section" id="does-the-cmf-map-onto-the-imf">
-<h3>Does the CMF map onto the IMF?</h3>
-<p>Cores must:</p>
-<blockquote>
-<ul class="simple">
-<li>neither accrete nor merge (or you break the CMF my moving cores)</li>
-<li>fragment self-similarly: same number of fragments per core</li>
-<li>Same efficiency regardless of mass</li>
-<li>formation must happen on similar timescale (can't have high-mass first)</li>
-<li>Cores must be able to form stars, i.e. must be grav. bound</li>
-</ul>
-</blockquote>
-<p>Can cores form stars?</p>
-<blockquote>
-<ul class="simple">
-<li>Dust cores depend on column &amp; temperature &amp; line of sight effects</li>
-<li>number of Jeans masses goes as T^-3</li>
-<li>Velocity structure?  B-fields?</li>
-</ul>
-</blockquote>
-<p>Fragmentation within cores</p>
-<blockquote>
-<ul class="simple">
-<li>Used to think that everything fragmented...</li>
-<li>strong B-fields reduce fragmentation</li>
-<li>Still haven't studied parameter space well</li>
-</ul>
-</blockquote>
-<p>SFE within cores</p>
-<blockquote>
-<ul class="simple">
-<li>Binaries or triples form, requires 30%-50% efficiency</li>
-<li>can work with outflows</li>
-<li>but not clear... may depend on well-aligned B-field</li>
-</ul>
-</blockquote>
-<p>Problems with CMF:</p>
-<blockquote>
-<ul class="simple">
-<li>Pipe cores follow CMF shape, but are <em>pressure</em> bound</li>
-<li>CMF in Aquila is too low</li>
-<li>need CMF of Class 0 sources</li>
-</ul>
-</blockquote>
-</div>
-<div class="section" id="clusters">
-<h3>Clusters</h3>
-<p>What effects have cluster simulations had on IMF studies...</p>
-<blockquote>
-<ul class="simple">
-<li>Initial Conditions imprints thermal jeans mass in box, which imprints onto IMF</li>
-<li>thermodynamics matter</li>
-</ul>
-</blockquote>
-<p>Fraction of cloud doesn't matter</p>
-<blockquote>
-<ul class="simple">
-<li>IMF is same in small periodic box and isolated cloud</li>
-<li>colliding flows can build clouds, be more consistent</li>
-<li>How we drive turbulence doesn't seem to affect IMF (solenoidal, compressive same)</li>
-<li>power spectrum of turbulence doesn't affect IMF</li>
-</ul>
-</blockquote>
-<p>Metallicity?</p>
-<blockquote>
-<ul class="simple">
-<li>Myers 2011: 20x metallicity change -&gt; same IMF</li>
-<li>Multiplicity may change (Bate)</li>
-<li>even 10^-5 Z_sun -&gt; same IMF</li>
-</ul>
-</blockquote>
-<p>Things that DO affect IMF:</p>
-<blockquote>
-<ul class="simple">
-<li>radiative transfer: reduces fragmentation</li>
-<li>need wind feedback, otherwise radiation -&gt; flat IMF by preventing fragmentation but keeping gas</li>
-<li>B-fields reduce characteristic mass by creating more filaments with different jeans masses</li>
-</ul>
-</blockquote>
-<p>State of Simulations:</p>
-<blockquote>
-<ul class="simple">
-<li>Top of IMF about right</li>
-<li>bottom is wrong</li>
-</ul>
-</blockquote>
-</div>
-<div class="section" id="secondary-metrics">
-<h3>Secondary Metrics</h3>
-<p>Multiplicity</p>
-<blockquote>
-<ul class="simple">
-<li>Krumholz &amp; Bate both reproduce observations fairly well</li>
-<li>Require radiative transfer</li>
-</ul>
-</blockquote>
-</div>
-<div class="section" id="summary">
-<h3>Summary</h3>
-<blockquote>
-<ul class="simple">
-<li>IMF studies focused on low-mass end instead of high</li>
-<li>Cores better understood</li>
-</ul>
-</blockquote>
-<p>Future: Put simulations into observational plane</p>
-</div>
-</div>
-<div class="section" id="questions">
-<h2>Questions</h2>
-<blockquote>
-<ul class="simple">
-<li>Q: Properties of turbulence in simulations give same IMF...</li>
-<li>A: Outflows drive turbulence, but turbulence doesn't change IMF.  Outflows <em>remove</em> gas.</li>
-<li>Q Zinnecker: Binaries.</li>
-<li>A: Cathy will talk about this.  Fragmentation knobs are the issue
-Unclear that binary properties will stay constant (does field match cluster?)  N-body evolution matters</li>
-<li>Q (Galactic center star studier...): not done with discussion of high-mass issues.  Radiatitve transfer still matters.</li>
-<li>A: Many effects are actually from mass segregation</li>
-<li>Q: Alyssa Goodman:  Are the CMF and IMF both lognormals?</li>
-<li>A: Sometimes fitting distributions they expect.  Maybe different processes in low mass clouds.</li>
 </ul>
 </blockquote>
 </div>

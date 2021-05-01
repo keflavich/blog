@@ -67,6 +67,21 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2021/04/27
+                  <br>
+                  <a href="http://keflavich.github.io/blog/determing-alma-array-configurations.html">Determing ALMA Array Configurations</a>
+              </li>
+              <li class="post">
+                  2020/05/09
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-logfiles-tclean-from-pysynthesisimager.html">CASA: Logfiles & tclean from pysynthesisimager</a>
+              </li>
+              <li class="post">
+                  2019/08/22
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-cross-calibration-application.html">CASA Cross-Calibration Application</a>
+              </li>
+              <li class="post">
                   2019/07/23
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-corrupted-measurement-sets.html">CASA corrupted measurement sets</a>
@@ -75,21 +90,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   2018/10/14
                   <br>
                   <a href="http://keflavich.github.io/blog/feo-nondetection-in-orion.html">FeO Nondetection in Orion</a>
-              </li>
-              <li class="post">
-                  2018/07/08
-                  <br>
-                  <a href="http://keflavich.github.io/blog/talks-now-using-revealjs.html">Talks: Now using revealjs</a>
-              </li>
-              <li class="post">
-                  2018/06/18
-                  <br>
-                  <a href="http://keflavich.github.io/blog/brief-review-of-cluster-formation-simulations.html">Brief review of cluster formation simulations</a>
-              </li>
-              <li class="post">
-                  2018/04/18
-                  <br>
-                  <a href="http://keflavich.github.io/blog/derivation-of-co-column-density.html">Derivation of CO Column Density</a>
               </li>
         </ul>
       </li>
@@ -102,6 +102,155 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles by Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/casa-imaging-of-huge-cube.html" rel="bookmark" title="Permalink to CASA imaging of huge cube">
+                    CASA imaging of huge cube</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-01-25T10:09:00-07:00"> 2016/01/25 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Imaging full cubes, i.e. every channel and every pixel, from ALMA data proved
+too much for the first few machines I tried it on, so I then tried splitting
+the cubes into chunks (<a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/script_12m/scriptForImaging_fullcube.py">source</a>).</p>
+<p>For the most part, this works well, but there are some serious problems:</p>
+<img alt="" src="http://keflavich.github.io/blog/images/casa/spectrum_with_badchunk.png" style="width: 600px;" />
+<p>Note the range from 233.8-234 GHz.  It has a continuum level way above the
+rest.  This is utter nonsense, and turns out to be due to some imaging error.
+The first image below shows a &quot;good&quot; chunk of the cube, the second image shows
+a &quot;bad&quot; chunk.</p>
+<img alt="" src="http://keflavich.github.io/blog/images/casa/w51_cube_chunk_compare_good.png" style="width: 600px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/casa/w51_cube_chunk_compare_bad.png" style="width: 600px;" />
+<p>It is clear that the second image was restore using a too-large beam, and this is verified by examining the header:</p>
+<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">badcube</span><span class="o">.</span><span class="n">beam</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">Beam</span><span class="p">:</span> <span class="n">BMAJ</span><span class="o">=</span><span class="mf">1.15963029861</span> <span class="n">arcsec</span> <span class="n">BMIN</span><span class="o">=</span><span class="mf">0.96223282814</span> <span class="n">arcsec</span> <span class="n">BPA</span><span class="o">=-</span><span class="mf">71.0310058594</span> <span class="n">deg</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">goodcube</span><span class="o">.</span><span class="n">beam</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">Beam</span><span class="p">:</span> <span class="n">BMAJ</span><span class="o">=</span><span class="mf">0.408393889665</span> <span class="n">arcsec</span> <span class="n">BMIN</span><span class="o">=</span><span class="mf">0.229679107666</span> <span class="n">arcsec</span> <span class="n">BPA</span><span class="o">=</span><span class="mf">45.966835022</span> <span class="n">deg</span>
+</pre></div>
+<p>I don't yet know what is causing this error.  When I try re-doing the clean
+with <tt class="docutils literal">tclean</tt>, I get the following message, which is a hint:</p>
+<pre class="literal-block">
+2016-01-25 09:13:04     WARN    task_tclean::SIImageStore::getPSFGaussian (file
+/var/rpmbuild/BUILD/casa-prerelease/casa-prerelease-4.5.0/code/synthesis/ImagerObjects/SIImageStore.cc,
+line 1262)      PSF is blank for[C139:P0] [C140:P0] [C141:P0] [C142:P0]
+[C143:P0] [C144:P0] [C145:P0] [C146:P0] [C147:P0] [C148:P0] [C149:P0] [C150:P0]
+[C151:P0] [C152:P0] [C153:P0] [C154:P0] [C155:P0] [C156:P0] [C157:P0] [C158:P0]
+[C159:P0] [C160:P0] [C161:P0] [C162:P0] [C163:P0] [C164:P0] [C165:P0] [C166:P0]
+[C167:P0] [C168:P0] [C169:P0] [C170:P0] [C171:P0] [C172:P0] [C173:P0] [C174:P0]
+[C175:P0] [C176:P0] [C177:P0] [C178:P0] [C179:P0] [C180:P0] [C181:P0] [C182:P0]
+[C183:P0] [C184:P0] [C185:P0] [C186:P0]
+</pre>
+<p>Apparently tclean solves this problem!  Instead of using a single beam for all
+channels, it creates a CASAMBM table in the FITS output and uses different
+beams at each channel.  There must be genuinely bad data (probably an
+atmospheric absorption line) at the specified frequencies.  At least now, that
+will come up more naturally, rather than spiking the data.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/comparing-tclean-parameters.html" rel="bookmark" title="Permalink to Comparing tclean parameters">
+                    Comparing tclean parameters</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-01-14T09:57:00-07:00"> 2016/01/14 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Comparing clean methods with identical data &amp; parameters (as far as possible):
+<a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/script_merge/clean_method_comparison.py">code</a>.</p>
+<p>An example using natural weighting:</p>
+<img alt="" src="http://keflavich.github.io/blog/images/casa/tclean_compare.png" style="width: 600px;" />
+<p>None of the methods are acceptable.  Multiscale is the worst, but hogbom is
+extremely bad: there are major ringing artifacts (stripes parallel to the main
+filament).</p>
+<p>Disturbingly, even though I have given multiple scales, there are clearly no
+non-pointlike scales in any of the model images, including mem, so I think
+there's a major problem with tclean:</p>
+<img alt="" src="http://keflavich.github.io/blog/images/casa/tclean_compare_models.png" style="width: 600px;" />
+<p>I'm re-doing it with uniform weighting, because that's the case I was actually
+interested in.</p>
+<img alt="" src="http://keflavich.github.io/blog/images/casa/tclean_compare_uniform.png" style="width: 600px;" />
+<p>The uniform tests come up with a clear and obvious answer: use clark clean, DO
+NOT use any other methods as they are all unstable.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/self-cal-with-evla-data.html" rel="bookmark" title="Permalink to Self-cal with EVLA data">
+                    Self-cal with EVLA data</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-01-07T08:14:00-07:00"> 2016/01/07 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm trying to self-calibrate my A+C array C-band data on W51, since we're in a
+clearly dynamic-range-limited regime.  I've never had any luck with self-cal,
+though.  The images <em>always</em> get worse, and I still don't really understand
+why.</p>
+<p>This is a clue, though:</p>
+<img alt="" src="http://keflavich.github.io/blog/images/w51/selfcal_phasecal_vs_time.png" style="width: 600px;" />
+<p>For many of the antennae, especially those in C array, self-calibration results
+in phase plots that look nice, with corrections confined to +/-30 degrees as
+you would hope and expect.</p>
+<p>These plots show that some antennae are going through dozens or hundreds of
+phase wraps.  That is obviously unacceptable and incorrect: the original images
+actually looked pretty good, so it is obvious (to me, at least) that there
+should be <em>no</em> phase wrapping in the self-cal.  I'm surprised at this, since
+each of these points should have S/N &gt; 3 and there is a lot of consistency in
+these large phase shifts.</p>
+<p>My suspicion is still that the clean process has failed.  I have been trying
+multiscale clean, since the emission is completely dominated by extended
+components.  However, even if I set smallscalebias to different values, there
+are essentially no pointlike components being added to the clean model.  This
+is wrong!  There are genuine point sources.  So I still suspect that this is a
+modeling problem and the phase wraps are being caused by bad models.</p>
+<p>I'm trying again with smaller pixels in the hope that a better match between
+the beam size and the pixel size will produce a better model.  The only other
+thing I can think to try is increasing the solint, but given the high S/N
+already present, I doubt that's an important factor.</p>
+<p>Smaller pixels didn't help, <em>but</em> forcing clean to include point-source
+components by performing a second round of clean with <tt class="docutils literal"><span class="pre">multiscale=[]</span></tt> worked!
+The solutions are MUCH more reasonable (no more phase wrap every integration),
+and selfcal no longer diverges.  I also increased the solution interval to 30s
+since it seems that the phase change timescale is significantly longer than
+an integration.  I increased the S/N cutoff to 5 too.</p>
+<p>There are still some &quot;noisy&quot; phases, even in the 3rd iteration:</p>
+<img alt="" src="http://keflavich.github.io/blog/images/w51/selfcal_phasecal_vs_time_3rditer.png" style="width: 600px;" />
+<p>I think more iterations may be necessary, but I will also increase the S/N
+threshold to 6 and solint to 60s to see if that helps.</p>
+<p>RMS improvements are evident but not spectacular:</p>
+<pre class="literal-block">
+SPW4 Iteration 0: RMS=1.003e-04
+SPW4 Iteration 1: RMS=6.009e-05
+SPW4 Iteration 2: RMS=6.698e-05
+SPW4 Iteration 3: RMS=7.061e-05
+</pre>
+<p>The bump in the last one is because I forgot to add a point clean for the last
+iteration.</p>
+<p>Perhaps not unfortunately, it looks like the improvements in image quality are
+tiny when self-cal is added.  The only real hope now is that self-cal on all
+bands will result in an artifact-free final combined image.</p>
+<p>On the &quot;noisy&quot; phases, now that it looks like there are decent solutions, it
+may actually be worth keeping the flags generated by applycal.  &lt;10% of the
+data is being flagged out, which is negligible, and it probably is genuinely
+bad (or signal-free, anyway) in that case.</p>
+<p>EDIT: Looks better... or at least different... now:</p>
+<pre class="literal-block">
+SPW4 Iteration 0: RMS=1.003e-04
+SPW4 Iteration 1: RMS=5.962e-05
+SPW4 Iteration 2: RMS=6.817e-05
+SPW4 Iteration 3: RMS=6.775e-05
+</pre>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -562,91 +711,6 @@ Terminal:
         <div class="entry-content"> <p>With PR <a class="reference external" href="https://github.com/pyspeckit/pyspeckit/pull/110">#110</a> and <a class="reference external" href="https://github.com/pyspeckit/pyspeckit/pull/111">#111</a>, pyspeckit is now (apparently)
 fully python3-compatible.  The test suite passes, but that's not a guarantee
 that I've caught all bugs in the translation.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/self-calibration-of-sgr-b2-mosaic.html" rel="bookmark" title="Permalink to Self-calibration of Sgr B2 Mosaic">
-                    Self-calibration of Sgr B2 Mosaic</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2015-10-14T14:30:00-06:00"> 2015/10/14 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>The Sgr B2 ALMA data from project 2013.1.00269.S has imaging problems around
-the brightest sources, especially Sgr B2 M.
-Crystal Brogan &amp; Todd Hunter gave some useful advice, essentially the following:</p>
-<blockquote>
-<ul class="simple">
-<li>the line forest is causing trouble, so line-containing regions of the spectrum
-must be excluded when mapping</li>
-<li>there is some nasty curvature in the spectral baseline that needs to be removed
-probably by flagging out some of the data</li>
-<li>Self-calibration is needed to exceed a dynamic range ~100</li>
-</ul>
-</blockquote>
-<p>Todd developed a <cite>fitcontinuum.py</cite> script to address the first point, but I ended up
-doing this custom (<a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m/test_split_spw1.py">script</a>) because of the problem introduced by the second point.</p>
-<p>To exclude the lines, I had to use <em>frequency-based</em> selection, not channel based, because my
-spectral windows from different dates were offset by 10 MHz.  The approach to use in CASA is
-ugly: you flag the line-containing data, then split (and in splitting, average) the continuum
-into another MS.  From there, a phase-only selfcal is straigtforward (<a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m/selfcal_spw1_center.py">script</a>).</p>
-<img alt="" src="http://keflavich.github.io/blog/images/sgrb2/selfcal_compare.png" style="width: 800px;" />
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/sensitivity-plots-using-astroquery-nrao-tool.html" rel="bookmark" title="Permalink to Sensitivity Plots using astroquery NRAO tool">
-                    Sensitivity Plots using astroquery NRAO tool</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2015-10-09T14:00:00-06:00"> 2015/10/09 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I wanted to see what the approximate depth achieved by (repeated)
-VLA observations of a few sources was, at least theoretically.
-This is relatively easy to do:</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
-<span class="kn">from</span> <span class="nn">astroquery.nrao</span> <span class="kn">import</span> <span class="n">Nrao</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">Nrao</span><span class="p">()</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">coordinates</span><span class="o">=</span><span class="n">coordinates</span><span class="o">.</span><span class="n">SkyCoord</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="s1">&#39;Sgr B2(M)&#39;</span><span class="p">),</span>
-                      <span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcmin</span><span class="p">)</span>
-
-<span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">pl</span>
-
-<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;Observing Freq&#39;</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;TOS&#39;</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Observed Frequency (GHz)&quot;</span><span class="p">)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Time-on-Source (s)&quot;</span><span class="p">)</span>
-
-<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;Observing Freq&#39;</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;TOS&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;Bandwidth&#39;</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Observed Frequency (GHz)&quot;</span><span class="p">)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Relative depth (Hz s)&quot;</span><span class="p">)</span>
-</pre></div>
-<img alt="" src="http://keflavich.github.io/blog/images/TOS_vs_freq.png" style="width: 800px;" />
-<img alt="" src="http://keflavich.github.io/blog/images/depth_vs_freq.png" style="width: 800px;" />
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/export-to-fits-with-miriad.html" rel="bookmark" title="Permalink to Export to FITS with MIRIAD">
-                    Export to FITS with MIRIAD</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2015-09-15T15:30:00-06:00"> 2015/09/15 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>To convert from MIRIAD map files to FITS, use:</p>
-<pre class="literal-block">
-miriad% fits in=h2comos1.clr out=h2comos1.fits op=xyout
-</pre>
-<p>(see <a class="reference external" href="converting-gildas-class-data-cubes-lmv-files-to-fits.rst">the CLASS conversion post</a>)</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

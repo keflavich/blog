@@ -67,6 +67,21 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2021/04/27
+                  <br>
+                  <a href="http://keflavich.github.io/blog/determing-alma-array-configurations.html">Determing ALMA Array Configurations</a>
+              </li>
+              <li class="post">
+                  2020/05/09
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-logfiles-tclean-from-pysynthesisimager.html">CASA: Logfiles & tclean from pysynthesisimager</a>
+              </li>
+              <li class="post">
+                  2019/08/22
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-cross-calibration-application.html">CASA Cross-Calibration Application</a>
+              </li>
+              <li class="post">
                   2019/07/23
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-corrupted-measurement-sets.html">CASA corrupted measurement sets</a>
@@ -75,21 +90,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   2018/10/14
                   <br>
                   <a href="http://keflavich.github.io/blog/feo-nondetection-in-orion.html">FeO Nondetection in Orion</a>
-              </li>
-              <li class="post">
-                  2018/07/08
-                  <br>
-                  <a href="http://keflavich.github.io/blog/talks-now-using-revealjs.html">Talks: Now using revealjs</a>
-              </li>
-              <li class="post">
-                  2018/06/18
-                  <br>
-                  <a href="http://keflavich.github.io/blog/brief-review-of-cluster-formation-simulations.html">Brief review of cluster formation simulations</a>
-              </li>
-              <li class="post">
-                  2018/04/18
-                  <br>
-                  <a href="http://keflavich.github.io/blog/derivation-of-co-column-density.html">Derivation of CO Column Density</a>
               </li>
         </ul>
       </li>
@@ -101,6 +101,147 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/recovery-as-a-function-of-bolometer-noise.html" rel="bookmark" title="Permalink to Recovery as a function of bolometer noise">
+                    Recovery as a function of bolometer noise</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-05-26T18:47:00-06:00"> 2011/05/26 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>One clear simulation result comes from varying the amplitude of the
+gaussian noise added to each bolometer's timestream for a fixed
+atmosphere amplitude. The atmosphere amplitude sets the <em>mean</em> value of
+the atmosphere timestream.
+Increased bolometer noise results in decreased recovery of the outer
+rings of the PSF. This is demonstrated in that the peak amplitudes
+remain constant (as long as they are still recovered) while the aperture
+sums (in 100&quot; radius apertures) decrease.
+The simulations were run on a logarithmic spacing from 1e-3 to 1e0. The
+1e0 point is missing because the peak flux wasn't recovered by the
+gaussian fitter. The model maps don't recover the source at all for this
+run, which is worrisome, since it means there is no iterative process
+There is a minor concern that some simulations over-recover the peak at
+high noise, but the effect is at a &lt;1% level so not very worrisome.</p>
+<img alt="" src="http://1.bp.blogspot.com/-H0j13RdCays/Td6QrP78qWI/AAAAAAAAGMI/X-74WUEgYFE/s320/exp6_recovery_vs_bolonoiseRMS.png" />
+<p>From the same set of simulations, I derive the pixel RMS of the map (the
+noise level) derived from a give individual bolometer noise. The
+theoretical expectation would be
+Measured Noise = Input Noise / N(bolometers)
+<em>if</em> the pixel sampling and the timestream sampling were the same (i.e.
+there were exactly sqrt(nbolos) hits per pixel). This is not exactly the
+case, and there are potential additional sources of noise. Nonetheless,
+the naive theory appears to be good enough in this simulation:</p>
+<img alt="" src="http://3.bp.blogspot.com/-ar8f4tdXUkQ/Td6fecs1WoI/AAAAAAAAGMQ/f_PwoxFp4Fo/s320/exp6_measurednoise_vs_bolonoiseRMS.png" />
+<p>You can ignore the green/blue points in this plot; they just show that
+the std. dev. around the source is dominated by the source.
+Additionally, there is a noise floor, probably set by an inability to
+model the point source when the S/N gets to be ~500, preventing
+convergence of the iterator at a level better than 0.2%.
+In short, though, I'm going to use 1/sqrt(nbolos) to determine the
+appropriate input noise level in the astro simulations.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/astrophysical-signal-modeling.html" rel="bookmark" title="Permalink to Astrophysical Signal Modeling">
+                    Astrophysical Signal Modeling</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-05-24T17:39:00-06:00"> 2011/05/24 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Here we finally get into the meat of the simulations. The goal is to
+develop realistic - but arbitrary - astrophysical models to run through
+simulations.
+The first step is to figure out what a realistic sky looks like. To this
+end, I use the HiGal SDP fields, looking only at their power spectra.
+They are well represented by a power law with α = 3 (shown in the dashed
+black line below).</p>
+<img alt="" src="http://2.bp.blogspot.com/-50R2lfaIGrY/TdvZi5tl5VI/AAAAAAAAGLQ/w45OC9dk3Rg/s320/sdp_psds_powerlaw.png" />
+<p>Therefore, I've attempted to randomly sample from a similar power law
+distribution using the following IDL code:</p>
+<p><tt class="docutils literal">dimsize = 512&nbsp;&nbsp;&nbsp; realpower = realpowers[ii]&nbsp;&nbsp;&nbsp; imagpower = imagpowers[ii]&nbsp;&nbsp;&nbsp; imagscale = imagscales[ii]&nbsp;&nbsp;&nbsp; peakamp = 1.0&nbsp;&nbsp;&nbsp; noise = 0.03&nbsp;&nbsp;&nbsp; smoothscale = 2.0&nbsp;&nbsp;&nbsp; smoothkernel = <span class="pre">psf_gaussian(npix=512,ndim=2,fwhm=31.2/7.2/2.0,/normalize)</span>&nbsp;&nbsp;&nbsp; sigma_gp = 128.0 ; <span class="pre">sigma-width</span> of the Galactic Plane (can get more accurate value from Cara's paper)&nbsp;&nbsp;&nbsp; xx = findgen(dimsize) #&nbsp; replicate(1.0,dimsize)&nbsp;&nbsp;&nbsp; yy = findgen(dimsize) ## replicate(1.0,dimsize)&nbsp;&nbsp;&nbsp; rr = sqrt( <span class="pre">(xx-255.5)^2</span> + <span class="pre">(yy-255.5)^2</span> )&nbsp;&nbsp;&nbsp; realpart = (rr^realpower) * <span class="pre">randomn(seed1,[dimsize,dimsize])</span>&nbsp;&nbsp;&nbsp; imagpart = <span class="pre">((rr*imagscale)^imagpower)</span> * <span class="pre">randomn(seed2,[dimsize,dimsize])*complex(0,1)</span>&nbsp;&nbsp;&nbsp;&nbsp; fakesky = abs(fft(shift(realpart + <span class="pre">imagpart,0,0),1))</span>&nbsp;&nbsp;&nbsp; expweight = <span class="pre">exp(-(yy-255.5)^2/(2.0*sigma_gp^2))</span> ; most power is in the inner plane&nbsp;&nbsp;&nbsp; fakesky *= peakamp/max(fakesky)&nbsp;&nbsp;&nbsp; fakesky_sm = convolve(fakesky,smoothkernel)&nbsp;&nbsp;&nbsp; fakesky_sm = fakesky_sm*expweight&nbsp;&nbsp;&nbsp; fakesky_sm += <span class="pre">randomn(seed3,[dimsize,dimsize])</span> * noise</tt></p>
+<p>Since Power is the fourier-transform squared, I'm using a power-law of
+α=1.5 for the &quot;real&quot; part of the sampling. The imaginary part follows a
+shallower slope to reduce the amount of power in large structures, which
+didn't look quite right (but maybe I should leave both slopes the
+same?). With both the same, and without the imaginary part down-scaled,
+the structure appears too &quot;cloudy&quot; and not &quot;clumpy&quot; enough. But back to
+that later...</p>
+<p>The peak amplitude is set by re-scaling the map. Ideally, we'd like to
+see this set by a point source, since that is true in most fields.
+The noise level should not be included in simulations, but should be
+used to show the difference between pipeline-leftover noise and gaussian
+noise on the sky. i.e., what structures disappear when you just add
+noise, and what structures are removed by the pipeline.</p>
+<p>The PSF is simply to smooth out signals that are removed by the
+telescope beam. We can replace this with a &quot;real&quot; PSF if and when we've
+come up with a believable one.</p>
+<p>The noise is added after the smoothing because it should be on a pixel
+scale rather than a beam scale.</p>
+<p>Here are some example realizations with different power laws:</p>
+<img alt="" src="http://3.bp.blogspot.com/-vCy9Lx2RjWw/Tdvs_PO1u6I/AAAAAAAAGLw/cc7cIupQu0U/s320/exp7_fakesky_sm_realP-1.0_imagP-1.0_imagS01.0_seednum02.png" />
+<img alt="" src="http://4.bp.blogspot.com/-qpgg2U41r6U/Tdvs_RPxARI/AAAAAAAAGL4/v5exzhhqDew/s320/exp7_fakesky_sm_realP-1.5_imagP-1.5_imagS01.0_seednum02.png" />
+<img alt="" src="http://3.bp.blogspot.com/-2kUqO9aE8zM/Tdvs_maHaCI/AAAAAAAAGMA/u5bDCfiVuH0/s320/exp7_fakesky_sm_realP-2.0_imagP-2.0_imagS01.0_seednum02.png" />
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/psf-modeling.html" rel="bookmark" title="Permalink to PSF modeling">
+                    PSF modeling</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-05-22T01:19:00-06:00"> 2011/05/22 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>There haven't been many posts recently because I've primarily been
+writing up old results into the v2 paper.
+The Airy and Gaussian simulations with and without atmosphere seem to
+have yielded their results. There is a ~5% loss when mapping Airy-disk
+point sources. This is fine as long as it's quantified; it just means
+that when calibrating we need to know whether extended sources are
+similarly truncated. If all sources lose 5% in the pipeline, there will
+be no net offset.
+However, the Airy is not necessarily representative of the CSO's PSF.
+In order to come up with a more reasonable representation of the PSF,
+I've attempted to fit the *measured* PSF (from James' paper) with an
+Airy disk. The first sidelobe has a lot more amplitude and is closer to
+the peak than in an Airy disk. It is also asymmetric, but I'm ignoring
+that for the moment.
+To better represent the first sidelobe, I've fitted a modified Airy
+function. The &quot;modification&quot; is to fit two Airy functions, one to the
+peak and one to the rest. This is accomplished by setting everything
+outside the first null to zero in the first function, and everything
+inside the first null to zero in the second. The centers are the same,
+but the amplitudes and widths are independent.</p>
+<img alt="" src="http://3.bp.blogspot.com/-Vd8eey7FX4Q/TdhiEsk-FhI/AAAAAAAAGLA/ekzBJL8oNoE/s320/airy_modified_comparison.png" />
+<p>The above image shows the best fit Airy and modified Airy, both in log
+scale on an identical grid. The modeled PSF was then put through the
+pipeline to see it recovers the pipeline-derived PSF. The radial profile
+results are below, but note that this is only one particular realization
+of the simulation + pipeline.</p>
+<img alt="" src="http://2.bp.blogspot.com/-sxL-QjhRxUE/TdhidbXuAKI/AAAAAAAAGLI/NX9LdWqu4nM/s320/PSF_fit_plot_pipelinecompare.png" />
+<p>Note that the model matches the first sidelobe in the &quot;observed&quot; PSF
+pretty well, but both before and after pipeline processing, overpredicts
+the second sidelobe.
+There are a few &quot;action items&quot; remaining for this task:</p>
+<ol class="arabic simple">
+<li>Re-derive the &quot;observed&quot; PSF using V2. Does it vary with epoch?
+Source?</li>
+<li>Find a model that better recovers the observed PSF</li>
+</ol>
+<p>Any thoughts on better models to use? Does this seem like a good idea at
+all?</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -334,102 +475,6 @@ Also note that the flux loss increases from 7% to 20% from ds1 to ds5:</p>
         <div class="entry-content"> <img alt="" src="http://3.bp.blogspot.com/-Qj43vct-3Hw/TaOsoVQAeTI/AAAAAAAAGGY/Ju9HpmnrvCc/s320/airy_sn100.png" />
 <p>The recovery for an Airy function is not particularly good, since the
 pipeline assumes a purely positive response....</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/definitive-testing.html" rel="bookmark" title="Permalink to Definitive Testing">
-                    Definitive Testing</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-04-11T19:09:00-06:00"> 2011/04/11 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>It is now possible to make artificial timestreams!
-First round of tests:
-For pointing maps with ~21 scans in 15&quot; steps, array angle is
-approximately negligible.
-deconv does NOT recover point sources, but reconv does (perfectly)
-The algorithm starts to decay and produce weird ringey residuals at a
-S/N ~300. The residuals are only at the 1% level out to S/N ~1000.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/tests-running.html" rel="bookmark" title="Permalink to Tests running">
-                    Tests running</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-04-08T17:48:00-06:00"> 2011/04/08 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <ul class="simple">
-<li>Re-doing December 2010 calibration (remember to check &amp; compare AFGL
-4029)</li>
-<li>Mapping L351 with deconv, reconv, nodeconv</li>
-</ul>
-<p>ARGH something is wrong with l351 pointing! Is the pointing model
-broken? What HAPPENED?!
-OK, on to 4/8/2011 stuff:
-I've done more work on the Memo from a few weeks ago, and now have a
-concrete recommendation that we do some more observing in 2011. Why I
-torture myself so, I do not know....
-Examination of the 2009 tests shows that reconv is by far the superior
-approach for pointing observations as previously noted. Since reconv
-doesn't look bad, but definitely not best, for science, it might be the
-compromise we have to make. nodeconv completely fails for ds5 data, but
-the ds5 data in general are abominable. They drop by 15-20% compared to
-ds1 for Mars. The problem with nodeconv appears to be extremely high
-noise maps.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/examining-deconvolution-strategies.html" rel="bookmark" title="Permalink to Examining deconvolution strategies">
-                    Examining deconvolution strategies</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-04-07T22:05:00-06:00"> 2011/04/07 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>This is a direct continuation of what I did yesterday (but only posted
-today because I forgot to click post).
-No-deconvolution doesn't work, at least not reliably. It recovers
-structures that are too large to be believable. Perhaps a higher
-threshold should be required to include signal in the model? The noise
-actually looks too high anyway. Also, the flagging doesn't look great.
-Grr.
-The agreement between the three is somewhat better, down to a 50%
-increase of reconv over deconv:
-[deconv, nodeconv, reconv]:
-BMAJ: 0.00916667 BMIN: 0.00916667 PPBEAM: 23.8028 SUM/PPBEAM: 8.19765
-Sum: 195.127 Mean: 1.04346 Median: 0.751545 RMS: 0.78342 NPIX: 187
-BMAJ: 0.00916667 BMIN: 0.00916667 PPBEAM: 23.8028 SUM/PPBEAM: 10.1592
-Sum: 241.816 Mean: 1.29314 Median: 1.04031 RMS: 0.778854 NPIX: 187
-BMAJ: 0.00916667 BMIN: 0.00916667 PPBEAM: 23.8028 SUM/PPBEAM: 12.1694
-Sum: 289.664 Mean: 1.54901 Median: 1.31107 RMS: 0.808915 NPIX: 187
-But this time there is less indication of negative residuals than
-previously.
-I was very confused by negatives being included in the model for
-nodeconv, then realized it's because of the grow_mask option.
-sncut = 1 is now default for nodeconv. I think it makes sense.
-(sncut = 1 drops the flux by &lt;10%:
-BMAJ: 0.00916667 BMIN: 0.00916667 PPBEAM: 23.8028 SUM/PPBEAM: 9.31507
-Sum: 221.725 Mean: 1.18569 Median: 0.915137 RMS: 0.783316 NPIX: 187)
-While reconv has produced reasonable results in some cases, a close look
-at the maps shows that deconv ~ nodeconv &lt;&lt; reconv. There is something
-wrong with reconv. It spreads out and increases the flux artificially.
-So.... why did it work so damn well for point sources?
-The new weighting scheme seems to flag a dangerous number of bolos as
-'high weight'. It drops after iteration #1, but not all the way.
-Need to remember to reprocess all December 2009 data with more flagged
-bolos</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

@@ -67,6 +67,21 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2021/04/27
+                  <br>
+                  <a href="http://keflavich.github.io/blog/determing-alma-array-configurations.html">Determing ALMA Array Configurations</a>
+              </li>
+              <li class="post">
+                  2020/05/09
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-logfiles-tclean-from-pysynthesisimager.html">CASA: Logfiles & tclean from pysynthesisimager</a>
+              </li>
+              <li class="post">
+                  2019/08/22
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-cross-calibration-application.html">CASA Cross-Calibration Application</a>
+              </li>
+              <li class="post">
                   2019/07/23
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-corrupted-measurement-sets.html">CASA corrupted measurement sets</a>
@@ -75,21 +90,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   2018/10/14
                   <br>
                   <a href="http://keflavich.github.io/blog/feo-nondetection-in-orion.html">FeO Nondetection in Orion</a>
-              </li>
-              <li class="post">
-                  2018/07/08
-                  <br>
-                  <a href="http://keflavich.github.io/blog/talks-now-using-revealjs.html">Talks: Now using revealjs</a>
-              </li>
-              <li class="post">
-                  2018/06/18
-                  <br>
-                  <a href="http://keflavich.github.io/blog/brief-review-of-cluster-formation-simulations.html">Brief review of cluster formation simulations</a>
-              </li>
-              <li class="post">
-                  2018/04/18
-                  <br>
-                  <a href="http://keflavich.github.io/blog/derivation-of-co-column-density.html">Derivation of CO Column Density</a>
               </li>
         </ul>
       </li>
@@ -101,6 +101,87 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/methods-paper-figures-analysis-to-produce.html" rel="bookmark" title="Permalink to Methods Paper: Figures / analysis to produce">
+                    Methods Paper: Figures / analysis to produce</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-03-04T03:43:00-07:00"> 2009/03/04 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The methods paper needs some justification of the number of PCA
+components used. This will require a map of some field with a range of
+number of PCA components.
+Plan:
+simulate a map of L111 (the most square field) with 0-20 PCA components
+x 21 iterations and a variety of source sizes and plot the recovered
+flux vs. number of PCA components. Ideally, do this with both
+deconvolution and not. Estimated processing time is ~24 hours.
+Also, a plot of flux vs. iteration number will be useful.
+Glitch filtering method has been modified:
+&quot;Glitches are removed by drizzling each bolometer measurement into a
+given pixel using the mapping M[p], but retaining each pixel as an array
+of measurements. Then, measurements exceeding $3\times MAD$ (Median
+Average Deviation) are flagged out in the timestream. In cases where
+there were too few ($&lt;3$) hits per pixel, the pixel was completely
+flagged out. This only occurred for pixels at scan edges.&quot;
+Data flagging:
+Partly covered by deglitching. Many scans were flagged by hand to remove
+overly noisy scans and those that were observed to confuse the iterative
+mapper. Hand flagging is more robust than automated and can remove
+features caused by the filter convolved with the glitch.
+Creation of astrophysical model:
+Not entirely sure what this section entails. Should have a subsection on
+deconvolution though.
+Jackknifing has not generally been done...</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/43-relative-alignment-and-mosaicing.html" rel="bookmark" title="Permalink to 4.3 Relative Alignment and Mosaicing">
+                    4.3 Relative Alignment and Mosaicing</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-03-04T02:57:00-07:00"> 2009/03/04 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Relative alignment was performed by finding the peak of the
+cross-correlation between images and a pointing master selected from the
+epoch with the best-constrained pointing model for that field. Each
+observation was initially mapped individually, then all observations of
+a given field were cross-correlated with a selected master image of that
+field. The cross-correlation peak was fit with a gaussian and the
+difference between the gaussian peak and the image center was used as
+the pixel offset. The offsets were recorded and written to the
+timestreams. Finally, all observations of a field were merged into a
+single timestream with pointing offsets applied to create the field
+mosaic.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/a-bunch-of-plots.html" rel="bookmark" title="Permalink to a bunch of plots">
+                    a bunch of plots</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-03-03T01:06:00-07:00"> 2009/03/03 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/SayCk8uDT2I/AAAAAAAAEzE/hVCHxfejfxk/s400/noise_per_deg.png" />
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/SayCkyW19KI/AAAAAAAAEy8/Df_SgR-blY4/s400/fillfact_per_deg.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/SayCk9BDNzI/AAAAAAAAEy0/oBgJX2IWav8/s400/mean_per_deg.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/SayCksjhWmI/AAAAAAAAEys/vt0ZUY50Uqw/s400/sources_per_deg.png" />
+<p>I wasted a lot of time making these so I figured I might as well waste a
+little space showing them.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -264,62 +345,6 @@ explanation for this yet. More work to come...</p>
 <pre class="literal-block">
 PEAK COMPARISON BL:       5.95824  noBL:       3.09836    uranus_050619_o23 PEAK COMPARISON BL:       3.93725  noBL:       2.85479    uranus_050619_o24 PEAK COMPARISON BL:       15.5613  noBL:       523.035    neptune_050626_o19 PEAK COMPARISON BL:       16.4601  noBL:       16.0038    neptune_050626_o20 PEAK COMPARISON BL:       426.671  noBL:       375.174    mars_050627_o31 PEAK COMPARISON BL:       415.968  noBL:       413.327    mars_050627_o32  PEAK COMPARISON BL:       15.2464  noBL:       33.8593    uranus_050628_o33 PEAK COMPARISON BL:       34.6631  noBL:       35.5086    uranus_050628_o34 PEAK COMPARISON BL:       164.832  noBL:       403.189    uranus_050904_o31 PEAK COMPARISON BL:       216.820  noBL:       425.613    uranus_050904_o32 PEAK COMPARISON BL:       134.972  noBL:       156.196    uranus_050911_ob8 PEAK COMPARISON BL:       11.0957  noBL:       11.1993    neptune_060602_o30 PEAK COMPARISON BL:       12.0000  noBL:       11.0947    neptune_060602_o31 PEAK COMPARISON BL:       2478.20  noBL:       2365.17    mars_060605_ob1 PEAK COMPARISON BL:       2144.68  noBL:       2147.18    mars_060605_ob2  PEAK COMPARISON BL:       17.7354  noBL:       25.7041    uranus_060621_o29 PEAK COMPARISON BL:       18.7889  noBL:       25.6599    uranus_060621_o30 PEAK COMPARISON BL:       28.1957  noBL:       31.1013    uranus_060625_o46 PEAK COMPARISON BL:       23.0236  noBL:       27.8556    uranus_060905_ob6 PEAK COMPARISON BL:       18.8731  noBL:       28.4964    uranus_060906_o12 PEAK COMPARISON BL:       23.3481  noBL:       29.8294    uranus_060908_o13 PEAK COMPARISON BL:       20.6238  noBL:       26.9424    uranus_060909_o12 PEAK COMPARISON BL:       21.1049  noBL:       28.8533    uranus_060910_o12 PEAK COMPARISON BL:       24.0231  noBL:       32.0877    uranus_060914_o10 PEAK COMPARISON BL:       23.2590  noBL:       33.3496    uranus_060914_o11 PEAK COMPARISON BL:       24.0538  noBL:       30.0552    uranus_060919_ob9 PEAK COMPARISON BL:       355.467  noBL:       669.416    g34.3_070630_o34 PEAK COMPARISON BL:       246.803  noBL:       296.252    g34.3_070630_o35 PEAK COMPARISON BL:       724.874  noBL:       807.152    uranus_070702_o42 PEAK COMPARISON BL:       7.60370  noBL:       9.02960    uranus_070912_o27 PEAK COMPARISON BL:       98.8058  noBL:       88.9957    mars_070913_o22 PEAK COMPARISON BL:       82.2708  noBL:       89.3476    mars_070913_o23
 </pre>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/sign-errors.html" rel="bookmark" title="Permalink to sign errors">
-                    sign errors</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2009-02-01T19:50:00-07:00"> 2009/02/01 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>pinned down the problem. Was a minor sign error in the offsets. Why is
-it that simple sign errors are ALWAYS the hardest things to track down?
-Now, open question: should x,y scaling be free parameters or not? What I
-mean is, when I measure the positions of bolometers on the array using
-the planet map, should I allow the X and Y stretch (the bolometer
-spacing) to change? Should it be a uniform stretch in X and Y or should
-it be allowed to 'distort' too? My opinion is, none of the above: I'm
-measuring their actual positions (in terms of a fixed spacing) and
-therefore stretching or distorting to match the nominal positions is not
-necessary.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/blnobl-mars.html" rel="bookmark" title="Permalink to BL/noBL Mars">
-                    BL/noBL Mars</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2009-02-01T03:22:00-07:00"> 2009/02/01 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Mars using uranus_070702_o42 distortion map:</p>
-<pre class="literal-block">
-BL070706_o38_raw_ds1.nc_indiv0    134.8757324     -0.2325330      0.0721872   3282.5439453      2.0985703      2.1959550   3147.6682129      2.3311033      2.1237679BL070706_o39_raw_ds1.nc_indiv0    188.0588379     -0.0947621     -0.0643225   3782.3984375      2.1416662      1.9909470   3594.3395996      2.2364283      2.0552695BL070706_o40_raw_ds1.nc_indiv0    451.6955566     -0.0427303     -0.3303463   3461.9191895      2.1925442      2.0726480   3010.2236328      2.2352746      2.4029944BL070713_o36_raw_ds1.nc_indiv0    294.5898438     -0.2068889      0.0493107   5975.9482422      1.9935303      2.1527038   5681.3583984      2.2004192      2.1033931BL070713_o37_raw_ds1.nc_indiv0    813.5678711     -0.4597032      0.0361557   5515.4501953      2.0334179      2.1772604   4701.8823242      2.4931211      2.1411047BL070713_o38_raw_ds1.nc_indiv0    286.2934570     -0.1904230      0.0520797   5967.7011719      1.9853363      2.1624830   5681.4077148      2.1757593      2.1104033BL070713_o39_raw_ds1.nc_indiv0    773.2104492     -0.0816238     -0.3387871   5409.8344727      2.0317609      2.1736624   4636.6240234      2.1133847      2.5124495BL070714_o76_raw_ds1.nc_indiv0    244.2031250     -0.2079357      0.0572422   5312.0419922      1.9982606      2.1597764   5067.8388672      2.2061963      2.1025343BL070714_o77_raw_ds1.nc_indiv0    688.7365723     -0.1176772     -0.3138330   4706.1503906      2.0379941      2.1989338   4017.4138184      2.1556714      2.5127668BL070715_o45_raw_ds1.nc_indiv0    108.5583496     -0.0652246     -0.0818899   2397.9819336      2.1608708      1.9907858   2289.4235840      2.2260954      2.0726757BL070715_o46_raw_ds1.nc_indiv0    268.4321289     -0.2927990     -0.0692098   2236.4533691      2.1387808      2.0159581   1968.0212402      2.4315798      2.0851679BL070717_o47_raw_ds1.nc_indiv0    372.6528320     -0.2188239      0.0690587   7070.0649414      1.9820960      2.1670835   6697.4121094      2.2009199      2.0980248BL070717_o48_raw_ds1.nc_indiv0    498.4628906     -0.2993519      0.0410304   6636.1396484      2.0418782      2.1088474   6137.6767578      2.3412302      2.0678170BL070718_o41_raw_ds1.nc_indiv0    287.1591797     -0.2016468      0.0641356   6684.1699219      1.9891322      2.1470959   6397.0107422      2.1907790      2.0829604BL070718_o42_raw_ds1.nc_indiv0    841.6083984     -0.0809386     -0.3511798   5934.2832031      2.0332539      2.1427581   5092.6748047      2.1141925      2.4939380BL070725_o34_raw_ds1.nc_indiv0    245.6381836     -0.0810674     -0.0582435   5918.6728516      1.9807132      2.1547492   5673.0346680      2.0617807      2.2129927BL070725_o35_raw_ds1.nc_indiv0    697.7910156      0.1512802     -0.6174591   4873.1469727      2.3222449      2.0499101   4175.3559570      2.1709647      2.6673691BL070726_o33_raw_ds1.nc_indiv0    216.2124023     -0.0697458     -0.0627950   5056.3364258      2.1531394      1.9873902   4840.1240234      2.2228851      2.0501852BL070726_o34_raw_ds1.nc_indiv0    433.0415039     -0.0154374     -0.3017542   4586.9204102      2.1483676      2.0385454   4153.8789062      2.1638050      2.3402996BL070730_o23_raw_ds1.nc_indiv0    105.4489746      0.1025155     -0.2241490   2679.8452148      2.1567283      1.9786894   2574.3962402      2.0542128      2.2028384BL070730_o24_raw_ds1.nc_indiv0    440.7482910     -0.3968222     -0.0447321   2595.1044922      2.0618360      2.1782801   2154.3562012      2.4586582      2.2230122
-</pre>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/distortion-mapping-failures.html" rel="bookmark" title="Permalink to distortion mapping failures">
-                    distortion mapping failures</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2009-01-25T16:08:00-07:00"> 2009/01/25 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>So, despite the fact that I clearly have a distortion mapper working,
-applying the distortion maps that come out of it do NOT improve the peak
-or FWHM of the data.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

@@ -284,9 +284,9 @@ Authors Month, Year, Journal
 Title
 </pre>
 <div class="highlight"><pre><span></span><span class="n">fmt</span> <span class="o">=</span> <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;                &#39;</span>
-<span class="sa">u</span><span class="s1">&#39;&lt;li&gt;&lt;a class=&quot;norm&quot; href=&quot;http://adsabs.harvard.edu/abs/{adsbibid}&quot;&gt;{creator}&lt;/a&gt;&#39;</span>
-<span class="sa">u</span><span class="s1">&#39; {month}, &lt;b&gt;{year}&lt;/b&gt; {journal}</span><span class="se">\n</span><span class="s1">&#39;</span>
-<span class="sa">u</span><span class="s1">&#39;                &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;{titlestring}&#39;</span><span class="p">)</span>
+<span class="sa">u</span><span class="s1">&#39;&lt;li&gt;&lt;a class=&quot;norm&quot; href=&quot;http://adsabs.harvard.edu/abs/</span><span class="si">{adsbibid}</span><span class="s1">&quot;&gt;</span><span class="si">{creator}</span><span class="s1">&lt;/a&gt;&#39;</span>
+<span class="sa">u</span><span class="s1">&#39; </span><span class="si">{month}</span><span class="s1">, &lt;b&gt;</span><span class="si">{year}</span><span class="s1">&lt;/b&gt; </span><span class="si">{journal}</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="sa">u</span><span class="s1">&#39;                &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;</span><span class="si">{titlestring}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 <p>We need to do a little data wrangling to get the individual JSON entries
 into the appropriate format:</p>
@@ -301,7 +301,7 @@ into the appropriate format:</p>
     <span class="n">data</span><span class="p">[</span><span class="s1">&#39;titlestring&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">data</span><span class="p">[</span><span class="s1">&#39;journal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;bibstem&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
     <span class="c1"># This trick bolds my name in the list of authors</span>
-    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;authors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&lt;b&gt;{}&lt;/b&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">authorname</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">else</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">]]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;authors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&lt;b&gt;</span><span class="si">{}</span><span class="s1">&lt;/b&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">authorname</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">else</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">]]</span>
     <span class="c1"># Separate names by semicolons</span>
     <span class="n">data</span><span class="p">[</span><span class="s1">&#39;creator&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;authors&#39;</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">data</span>
@@ -320,18 +320,18 @@ u'                &lt;li&gt;&lt;a class=&quot;norm&quot; href=&quot;<a class="re
 </pre></div>
 <p>You can make a complete bibliography by looping over a few entries. The
 ordered list (<tt class="docutils literal">&lt;ol&gt;</tt>) tag makes a numbered list.</p>
-<div class="highlight"><pre><span></span><span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&lt;ol&gt;&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">wrangle</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="n">ii</span><span class="p">]))</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;&lt;/ol&gt;&quot;</span>
+<div class="highlight"><pre><span></span><span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&lt;ol&gt;&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">wrangle</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="n">ii</span><span class="p">]))</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;&lt;/ol&gt;&quot;</span>
 <span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
 </pre></div>
 <p>If you want to make sure you only include refereed articles, use the
 'property' tag.</p>
-<div class="highlight"><pre><span></span><span class="k">print</span> <span class="p">[</span><span class="s1">&#39;REFEREED&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;property&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">[</span><span class="s1">&#39;REFEREED&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;property&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span><span class="p">]</span>
 </pre></div>
 <pre class="literal-block">
 [True, False, True, False, False, False, True, True, False, False, False, False, True, True, True, False, False, True, True, False, False, True, True, True, False, False, False, False, True, False, False, True, True, True, True, True, True, False, False, False, False, False, False, True, True, False, False, False, False, False, True, False, False, True]
 </pre>
 <p>And don't forget that you can also include the citation count:</p>
-<div class="highlight"><pre><span></span><span class="k">print</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;{} {}: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;citation_count&#39;</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><span class="nb">print</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;citation_count&#39;</span><span class="p">])</span>
                 <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span>
                 <span class="k">if</span> <span class="s1">&#39;citation_count&#39;</span> <span class="ow">in</span> <span class="n">d</span> <span class="ow">and</span> <span class="s1">&#39;REFEREED&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;property&#39;</span><span class="p">]])</span>
 </pre></div>
@@ -389,15 +389,15 @@ True
 that might be useful.</p>
 <p>The approach we'll use is also a good way to reject unwanted articles in
 the HTML bibliography above.</p>
-<div class="highlight"><pre><span></span><span class="n">bibfmt</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;&quot;&quot;@article{{{tagname},</span>
-<span class="s2">abstract={{{abstract}}},</span>
-<span class="s2">author={{{bibtexauthors}}},</span>
-<span class="s2">month={{{month}}},</span>
-<span class="s2">pages={{{page}}},</span>
-<span class="s2">title={{{titlestring}}},</span>
-<span class="s2">year={{{year}}},</span>
-<span class="s2">volume={{{volume}}},</span>
-<span class="s2">journal={{</span><span class="se">\\</span><span class="s2">{lowercasejournal}}}</span>
+<div class="highlight"><pre><span></span><span class="n">bibfmt</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;&quot;&quot;@article{{</span><span class="si">{tagname}</span><span class="s2">,</span>
+<span class="s2">abstract={{</span><span class="si">{abstract}</span><span class="s2">}},</span>
+<span class="s2">author={{</span><span class="si">{bibtexauthors}</span><span class="s2">}},</span>
+<span class="s2">month={{</span><span class="si">{month}</span><span class="s2">}},</span>
+<span class="s2">pages={{</span><span class="si">{page}</span><span class="s2">}},</span>
+<span class="s2">title={{</span><span class="si">{titlestring}</span><span class="s2">}},</span>
+<span class="s2">year={{</span><span class="si">{year}</span><span class="s2">}},</span>
+<span class="s2">volume={{</span><span class="si">{volume}</span><span class="s2">}},</span>
+<span class="s2">journal={{</span><span class="se">\\</span><span class="si">{lowercasejournal}</span><span class="s2">}}</span>
 <span class="s2">}}&quot;&quot;&quot;</span>
 </pre></div>
 <p>Of course, it's necessary to wrangle the data again for the appropriate
@@ -408,9 +408,9 @@ author list formatting for bibtex:</p>
 <span class="sd">    authors (e.g., astropy collaboration, Planck collaboration, etc.)</span>
 <span class="sd">    The triple braces are needed because TeX uses them&quot;&quot;&quot;</span>
     <span class="n">splita</span> <span class="o">=</span> <span class="p">[[</span><span class="n">b</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)]</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">authorlist</span><span class="p">]</span>
-    <span class="n">bracketed</span> <span class="o">=</span> <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;{{{}}}, {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="s2">&quot;~&quot;</span><span class="p">))</span>
+    <span class="n">bracketed</span> <span class="o">=</span> <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;{{</span><span class="si">{}</span><span class="s1">}}, </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="s2">&quot;~&quot;</span><span class="p">))</span>
                  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
-                 <span class="k">else</span> <span class="sa">u</span><span class="s1">&#39;{{{}}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                 <span class="k">else</span> <span class="sa">u</span><span class="s1">&#39;{{</span><span class="si">{}</span><span class="s1">}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
                  <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">splita</span><span class="p">]</span>
     <span class="k">return</span> <span class="sa">u</span><span class="s2">&quot; and &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">bracketed</span><span class="p">)</span>
 </pre></div>

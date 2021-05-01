@@ -4,7 +4,7 @@
 <link rel="icon" type="image/gif" href="http://keflavich.github.io/blog/theme/favicon8.ico">
 <head>
     <base href="http://keflavich.github.io/blog">
-        <title>Adam Ginsburg's blog - CASA</title>
+        <title>Adam Ginsburg's blog - casa</title>
         <meta charset="utf-8" />
         <link href="http://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
 <!-- Using MathJax, with the delimiters $ -->
@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2020/05/09
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-logfiles-tclean-from-pysynthesisimager.html">CASA: Logfiles & tclean from pysynthesisimager</a>
+              </li>
+              <li class="post">
                   2019/07/23
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-corrupted-measurement-sets.html">CASA corrupted measurement sets</a>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-clean-splotchy-artifacts.html">CASA clean: "splotchy" artifacts</a>
               </li>
-              <li class="post">
-                  2016/06/02
-                  <br>
-                  <a href="http://keflavich.github.io/blog/single-dish-combination-continued.html">Single Dish Combination Continued</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,34 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/casa-logfiles-tclean-from-pysynthesisimager.html" rel="bookmark" title="Permalink to CASA: Logfiles & tclean from pysynthesisimager">
+                    CASA: Logfiles &amp; tclean from pysynthesisimager</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2020-05-09T14:59:00-06:00"> 2020/05/09 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>A few brief notes I don't want to forget, so I'm posting them here:</p>
+<p>The name of the log file being used by the currently active CASA session is in <tt class="docutils literal">casalog.logfile()</tt>.</p>
+<p>I'm trying to get the pysynthesisimager version of tclean to work.  This is, in
+theory, &quot;exactly the same thing as tclean&quot;, except you (the user) have the
+ability to control individual steps.  The process is documented in the <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-task-list/task_tclean/examples">tclean documentation
+under examples</a>.</p>
+<p>However, it is not a one-to-one mapping.  <tt class="docutils literal">tclean</tt> is not implemented using the exact script quoted
+in the examples.  The differences are the variety that shouldn't matter but inevitably do.</p>
+<p>I'm working on a translation of <tt class="docutils literal">tclean</tt>'s input parameters to
+<tt class="docutils literal">pysynthesisimager</tt>'s, but it's not complete:
+<a class="reference external" href="https://gist.github.com/keflavich/a9953c88cbe098b5e9bb4bdac6485f09">https://gist.github.com/keflavich/a9953c88cbe098b5e9bb4bdac6485f09</a></p>
+<p>That was dumb anyway, because
+<a class="reference external" href="https://github.com/radio-astro/casa/blob/master/gcwrap/python/scripts/task_tclean.py">https://github.com/radio-astro/casa/blob/master/gcwrap/python/scripts/task_tclean.py</a>
+does everything I really needed.</p>
+<p>My version saves the image, residual, and model at each major cycle.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -143,7 +171,7 @@ no guarantee they would be in general.</p>
 
                 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">workingfn</span><span class="p">):</span>
                     <span class="c1">#print(&quot;Working on files {0} and {1}&quot;.format(ffn, workingfn))</span>
-                    <span class="k">print</span><span class="p">(</span><span class="n">ffn</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">ffn</span><span class="p">)</span>
 
                     <span class="k">for</span> <span class="n">dn</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;POLARIZATION&#39;</span><span class="p">,</span> <span class="s1">&#39;PROCESSOR&#39;</span><span class="p">,</span> <span class="s1">&#39;DATA_DESCRIPTION&#39;</span><span class="p">,</span> <span class="s1">&#39;STATE&#39;</span><span class="p">]:</span>
                         <span class="n">tbpth1</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ffn</span><span class="p">,</span> <span class="n">dn</span><span class="p">,</span> <span class="s1">&#39;table.dat&#39;</span><span class="p">)</span>
@@ -156,7 +184,7 @@ no guarantee they would be in general.</p>
                             <span class="c1">#print(&quot;Diff from {0} to {1} is {2}&quot;.format(tbpth1, tbpth2, delta))</span>
 
                             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">delta</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;FIXING: Diff for {0} is {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dn</span><span class="p">,</span> <span class="n">delta</span><span class="p">))</span>
+                                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;FIXING: Diff for </span><span class="si">{0}</span><span class="s2"> is </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dn</span><span class="p">,</span> <span class="n">delta</span><span class="p">))</span>
                                 <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">tbpth1</span><span class="p">,</span> <span class="n">tbpth1</span><span class="o">+</span><span class="s2">&quot;.bck&quot;</span><span class="p">)</span>
                                 <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">tbpth2</span><span class="p">,</span> <span class="n">tbpth1</span><span class="p">)</span>
 </pre></div>
@@ -596,78 +624,6 @@ dates.  The solution was to cvel the data sets to the LSRK frame prior to
 concatenating them.  While I know I made these changes, I unfortunately can't
 find the specific commit where I made them.</p>
 </div>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/casa-simulated-imaging-now-ftmachine-is-whining.html" rel="bookmark" title="Permalink to CASA simulated imaging: now FTMachine is whining">
-                    CASA simulated imaging: now FTMachine is whining</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2016-04-26T15:12:00-06:00"> 2016/04/26 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p><a class="reference external" href="|filename|/casa_simulation_debugging.rst">A few days ago</a>
-I apparently got my broken simulator working again.  Today, in my first
-attempt to repeat those results, I... have broken it again.:</p>
-<pre class="literal-block">
-WARN        FTMachine::initMaps     No overlap in frequency between image channels and selected data found for this FTMachine
-WARN        FTMachine::initMaps+     Check your data selection and image parameters if you end up with a blank image
-</pre>
-<p>This warning is not a simple warning, it means nothing is being done.  My
-images are empty, pure noise (which, interestingly enough, is far from
-gaussian).</p>
-<p>I have encountered these errors <cite>before
-&lt;|filename|/separating_line_and_continuum.rst&gt;</cite>, but unfortunately did not
-resolve the issue.</p>
-<p>Turns out, the difference was the .ms file I used,
-<tt class="docutils literal">continuum_7m12m_noflag.ms</tt>, which works, vs the useful one,
-<tt class="docutils literal">w51_contvis_selfcal_3.ms</tt>, which doesn't.</p>
-<p>Checking out their headers, the continuum image does overlap with the
-data but the selfcal version doesn't.  Wonderful.  Now I'll bet it's only
-populating one channel at a time when I invert too...</p>
-<p>This leads me to try:</p>
-<pre class="literal-block">
-split(vis='w51_contvis_selfcal_3.ms', outputvis='simulation_continuum.ms', datacolumn='data', width=100)
-</pre>
-<p>then use (borrowed from <a class="reference external" href="https://github.com/radio-astro-tools/sandbox/blob/master/casa_7m12m_tools/weight_density_uv_plot.py">this tool</a>):</p>
-<pre class="literal-block">
-mymsmd = msmdtool()
-mymsmd.open(vis)
-
-reffreq = &quot;{value}{unit}&quot;.format(**mymsmd.reffreq(spw)['m0'])
-</pre>
-<p>to get the frequency to write into the header each time.</p>
-<p>At a glance, just changing the frequency of the FITS file to match the first
-SPW seems to work.  However, I haven't yet examined whether the other SPWs
-are populated.</p>
-<p>This assumption proved wrong.  No, it simply doesn't work.  The warnings went away,
-but the output images are empty.  Also, the noise went up, which I don't understand.</p>
-<p>Imaging just spw1 kind of worked, but resulted in an image with the wrong
-resolution by factors of many.</p>
-<p>Trying to loop over all spws failed miserably, resulting in <em>nothing</em> being done by
-predict and <em>no warning</em> being given.</p>
-<p>OK, finally, solution is to make sure CDELT is large enough to cover <em>all</em> SPWs.</p>
-<p>Another important note: Jy/beam and Jy/pixel inputs into CASA result in identical images.
-In both cases, they are wrong images: they correspond to multiplying the input data by
-factors of at least 100.  Therefore, my conclusion now is that I have to divide everything
-by some fact, which I <em>sincerely</em> hope is ppbeam, to correct the data.</p>
-<p>It looked vaguely like the divide-by-ppbeam trick worked, but my tests kept coming up funny
-because the <em>original</em> images were scaled down.  So I tried unscaling them.  Somehow,
-without changing anything about the headers, I landed on another failed predict error:</p>
-<pre class="literal-block">
-2016-04-27 19:14:42 SEVERE  Simulator::createSkyEquation() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2200)        Caught exception: (/Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc : 2266) Failed AlwaysAssert spectralIndex&gt;=0
-2016-04-27 19:14:42 SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Failed to create SkyEquation
-</pre>
-<p>Spectral Index?  I encountered this <a class="reference external" href="http://keflavich.github.io/blog/casa-simulation.html">previously</a>, but didn't record any solution.
-After checking the header, it appears that my files are <em>now</em> missing axes 3 and 4.
-I didn't make any changes that should cause this; the axes are just not being added
-on importfits despite being forcibly added in the command.</p>
-<p>The problem is unfortunately not in the FITS part, but again in the CASA part.
-Re-importing the FITS file to .image without forcing <tt class="docutils literal">defaultaxes</tt> again just
-broke it.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

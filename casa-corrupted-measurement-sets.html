@@ -68,6 +68,21 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2021/04/27
+                  <br>
+                  <a href="http://keflavich.github.io/blog/determing-alma-array-configurations.html">Determing ALMA Array Configurations</a>
+              </li>
+              <li class="post">
+                  2020/05/09
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-logfiles-tclean-from-pysynthesisimager.html">CASA: Logfiles & tclean from pysynthesisimager</a>
+              </li>
+              <li class="post">
+                  2019/08/22
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-cross-calibration-application.html">CASA Cross-Calibration Application</a>
+              </li>
+              <li class="post">
                   2019/07/23
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-corrupted-measurement-sets.html">CASA corrupted measurement sets</a>
@@ -76,21 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   2018/10/14
                   <br>
                   <a href="http://keflavich.github.io/blog/feo-nondetection-in-orion.html">FeO Nondetection in Orion</a>
-              </li>
-              <li class="post">
-                  2018/07/08
-                  <br>
-                  <a href="http://keflavich.github.io/blog/talks-now-using-revealjs.html">Talks: Now using revealjs</a>
-              </li>
-              <li class="post">
-                  2018/06/18
-                  <br>
-                  <a href="http://keflavich.github.io/blog/brief-review-of-cluster-formation-simulations.html">Brief review of cluster formation simulations</a>
-              </li>
-              <li class="post">
-                  2018/04/18
-                  <br>
-                  <a href="http://keflavich.github.io/blog/derivation-of-co-column-density.html">Derivation of CO Column Density</a>
               </li>
         </ul>
       </li>
@@ -147,7 +147,7 @@ no guarantee they would be in general.</p>
 
                 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">workingfn</span><span class="p">):</span>
                     <span class="c1">#print(&quot;Working on files {0} and {1}&quot;.format(ffn, workingfn))</span>
-                    <span class="k">print</span><span class="p">(</span><span class="n">ffn</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">ffn</span><span class="p">)</span>
 
                     <span class="k">for</span> <span class="n">dn</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;POLARIZATION&#39;</span><span class="p">,</span> <span class="s1">&#39;PROCESSOR&#39;</span><span class="p">,</span> <span class="s1">&#39;DATA_DESCRIPTION&#39;</span><span class="p">,</span> <span class="s1">&#39;STATE&#39;</span><span class="p">]:</span>
                         <span class="n">tbpth1</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ffn</span><span class="p">,</span> <span class="n">dn</span><span class="p">,</span> <span class="s1">&#39;table.dat&#39;</span><span class="p">)</span>
@@ -160,7 +160,7 @@ no guarantee they would be in general.</p>
                             <span class="c1">#print(&quot;Diff from {0} to {1} is {2}&quot;.format(tbpth1, tbpth2, delta))</span>
 
                             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">delta</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;FIXING: Diff for {0} is {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dn</span><span class="p">,</span> <span class="n">delta</span><span class="p">))</span>
+                                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;FIXING: Diff for </span><span class="si">{0}</span><span class="s2"> is </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dn</span><span class="p">,</span> <span class="n">delta</span><span class="p">))</span>
                                 <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">tbpth1</span><span class="p">,</span> <span class="n">tbpth1</span><span class="o">+</span><span class="s2">&quot;.bck&quot;</span><span class="p">)</span>
                                 <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">tbpth2</span><span class="p">,</span> <span class="n">tbpth1</span><span class="p">)</span>
 </pre></div>

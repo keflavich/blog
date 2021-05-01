@@ -67,6 +67,21 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2021/04/27
+                  <br>
+                  <a href="http://keflavich.github.io/blog/determing-alma-array-configurations.html">Determing ALMA Array Configurations</a>
+              </li>
+              <li class="post">
+                  2020/05/09
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-logfiles-tclean-from-pysynthesisimager.html">CASA: Logfiles & tclean from pysynthesisimager</a>
+              </li>
+              <li class="post">
+                  2019/08/22
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-cross-calibration-application.html">CASA Cross-Calibration Application</a>
+              </li>
+              <li class="post">
                   2019/07/23
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-corrupted-measurement-sets.html">CASA corrupted measurement sets</a>
@@ -75,21 +90,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   2018/10/14
                   <br>
                   <a href="http://keflavich.github.io/blog/feo-nondetection-in-orion.html">FeO Nondetection in Orion</a>
-              </li>
-              <li class="post">
-                  2018/07/08
-                  <br>
-                  <a href="http://keflavich.github.io/blog/talks-now-using-revealjs.html">Talks: Now using revealjs</a>
-              </li>
-              <li class="post">
-                  2018/06/18
-                  <br>
-                  <a href="http://keflavich.github.io/blog/brief-review-of-cluster-formation-simulations.html">Brief review of cluster formation simulations</a>
-              </li>
-              <li class="post">
-                  2018/04/18
-                  <br>
-                  <a href="http://keflavich.github.io/blog/derivation-of-co-column-density.html">Derivation of CO Column Density</a>
               </li>
         </ul>
       </li>
@@ -101,6 +101,170 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/protostellar-mass-functions.html" rel="bookmark" title="Permalink to Protostellar Mass Functions">
+                    Protostellar Mass Functions</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2017-08-30T15:18:00-06:00"> 2017/08/30 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The stellar <a class="reference external" href="https://en.wikipedia.org/wiki/Initial_mass_function">initial mass function</a> is important for a wide
+variety of astronomical topics, and I'm interested in studying its formation.
+The <a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...716..167M">protostellar mass function</a>, by contrast, is much
+less well-studied, but understanding it can provide important insights into the
+formation of the IMF.  In particular, we assume both for simplicity and because
+of a lack of contrary evidence, that the IMF is uniform in time in space.  In
+other words, given that a star is going to form at some point, it has a
+likelihood to become a star of a given mass described exclusively by the IMF.
+While this assertion is entirely absurd - if you are &quot;about to form&quot; a star in
+a blob of gas that only has 0.1 Msun in a 1 pc radius, it certainly cannot form
+a 100 Msun star - it remains consistent with nearly all observations and is
+therefore used in this time- and space-invariant form.</p>
+<p>It is likely that new studies of stellar populations, e.g., GAIA's observations
+of a huge population of stars with well-determined distances (and therefore
+luminosities), will reveal some variations in the IMF.  However, many studies
+based on evolved stellar populations are subject to ambiguities in the initial
+conditions.  So, it is still quite useful to study those initial conditions
+directly.</p>
+<p>There has not been a huge amount of work on protostellar mass functions.
+<a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...716..167M">McKee and Offner</a> defined the PMF as the distribution of masses of
+protostellar sources that would produce a given IMF.  Their PMFs are therefore
+strongly dependent on the underlying IMF assumed.</p>
+<p>I have implemented the mass functions they defined in <a class="reference external" href="https://github.com/keflavich/imf/blob/master/imf/pmf.py">this code</a>.  The code
+is generalized such that you can input other mass functions.  McKee &amp; Offner
+only used the <a class="reference external" href="http://adsabs.harvard.edu/abs/2005ASSL..327...41C">Chabrier 2005</a> mass function; I include the <a class="reference external" href="http://adsabs.harvard.edu/abs/2001MNRAS.322..231K">Kroupa 2001</a> mass
+function as well for comparison</p>
+<img alt="" src="http://keflavich.github.io/blog/images/steadystate_pmf_chabrier_mmax3.png" style="width: 400px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/steadystate_pmf_kroupa_mmax3.png" style="width: 400px;" />
+<p>The comparison between the Chabrier and Kroupa mass functions is shown above.
+Note that these are somewhat deceptive plots, since they show P(M) vs log(M).
+The plot shows the most likely individual masses by number, but the plots are
+actually quite squished to the left in linear space, such that the most common
+range of stars (the integral of both functions) is closer to the same (~0.2-0.3
+Msun).  The more commonly shown version of these plots is the integral form,
+which has a positive power-law slope in the lowest bin in the Kroupa MF,
+showing the usual peak at 0.3 Msun.  This version of the functions is
+nontrivial to compute, especially for the modified PMFs.</p>
+<p>The mass-weighted versions of these may be more familiar, and they are more
+similar to the P(log M) version used in <a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...716..167M">McKee and Offner</a> and <a class="reference external" href="http://adsabs.harvard.edu/abs/2005ASSL..327...41C">Chabrier 2005</a>:</p>
+<img alt="" src="http://keflavich.github.io/blog/images/steadystate_pmf_chabrier_integral_mmax3.png" style="width: 400px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/steadystate_pmf_kroupa_integral_mmax3.png" style="width: 400px;" />
+<p>The Chabrier version is a near-perfect match to Figure 3 of <a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...716..167M">McKee and
+Offner</a>, with slightly different normalization (and I'm expressing P(M), not
+P(log M); a previous version showed P(log M), but was incorrect).  A notable
+feature of this plot is that it cuts off at 3 Msun.  I want to examine the same
+distribution at higher masses.</p>
+<img alt="" src="http://keflavich.github.io/blog/images/taperedaccretion_pmf_chabrier_mmax3.png" style="width: 400px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/taperedaccretion_pmf_kroupa_mmax3.png" style="width: 400px;" />
+<p>The above plots are the same as before, but with tapered accretion following
+the prescription in <a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...716..167M">McKee and Offner</a>.  The tapering function is apparently
+arbitrary, and picked purely to enforce smoothness (i.e., prevent a possibly
+nonphysical instantaneous shutoff of accretion).</p>
+<div class="section" id="extending-to-higher-masses">
+<h2>Extending to higher masses</h2>
+<p>When we reevaluate the same functions with mmax=120 instead of 3, we can start
+to see the high mass end, which is of course power-law dominated.   In all cases,
+the PMF is dominated by the highest-mass sources, since in all cases they take
+the longest to form.</p>
+<img alt="" src="http://keflavich.github.io/blog/images/steadystate_pmf_chabrier_mmax120.png" style="width: 400px;" />
+<img alt="" src="http://keflavich.github.io/blog/images/steadystate_pmf_kroupa_mmax120.png" style="width: 400px;" />
+<p>The accretion model changes the slope and the overall ratio of high- to
+low-mass stars.</p>
+<p>These are the mass fractions of various MFs:</p>
+<blockquote>
+<ul class="simple">
+<li>Mass fraction for ChabrierIMF M&gt;10 = 0.192</li>
+<li>Mass fraction for ChabrierPMF_2CTC M&gt;10 = 0.334</li>
+<li>Mass fraction for ChabrierPMF_CA M&gt;10 = 0.150</li>
+<li>Mass fraction for ChabrierPMF_IS M&gt;10 = 0.765</li>
+<li>Mass fraction for ChabrierPMF_TC M&gt;10 = 0.288</li>
+<li>Mass fraction for KroupaIMF M&gt;10 = 0.185</li>
+<li>Mass fraction for KroupaPMF_2CTC M&gt;10 = 0.348</li>
+<li>Mass fraction for KroupaPMF_CA M&gt;10 = 0.148</li>
+<li>Mass fraction for KroupaPMF_IS M&gt;10 = 0.781</li>
+<li>Mass fraction for KroupaPMF_TC M&gt;10 = 0.294</li>
+</ul>
+</blockquote>
+<p>The isothermal sphere case is pretty extremely top-heavy, but all except
+competitive accretion result in a more top-heavy MF, which is a fairly neat
+result - it means that simple binning can distinguish between these theories
+(assuming the parametrization is right).  It also means that the SFRs
+inferred from integrating the high-mass end of the mass function (as I have
+done in <a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/">my Sgr B2 paper</a>) is subject to a factor of +/-2x uncertainty
+depending on the accretion history if we assume steady state.</p>
+<p>The next step is to extend this to different accretion histories (tapered,
+accelerating) and then possibly different star formation histories.
+I will also create some 'synthetic clusters' using the <a class="reference external" href="https://zenodo.org/record/166732">Robitaille</a>
+and <a class="reference external" href="https://arxiv.org/abs/1708.08853">Zhang</a> models.</p>
+</div>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/a-quick-performance-test-on-casa-cleaning.html" rel="bookmark" title="Permalink to A quick performance test on CASA cleaning">
+                    A quick performance test on CASA cleaning</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2017-04-26T11:03:00-06:00"> 2017/04/26 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I ran some speed tests to compare CASA's speed when imaging single channels vs
+blocks of channels.  The tests were run with savemodel='none' on a lustre node</p>
+<pre class="literal-block">
+'speedtest_nchan1_concat': 249,
+'speedtest_nchan1_individual': 523,
+'speedtest_nchan5_concat': 803,
+'speedtest_nchan5_individual': 916,
+'speedtest_nchan20_concat': 2303,
+'speedtest_nchan20_individual': 2346,
+'speedtest_nchan40_concat': 4010,
+'speedtest_nchan40_individual': 4136,
+'speedtest_nchan80_concat': 8101,
+'speedtest_nchan80_individual': 9298,
+</pre>
+<img alt="" src="http://keflavich.github.io/blog/images/casa/cube_performance.png" style="width: 600px;" />
+<p>The fit is y = 98x + 237</p>
+<p>So at least until swapping happens, there is no serious advantage or
+disadvantage to running a different # of channels simultaneously.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/high-mass-protostellar-sio-masers.html" rel="bookmark" title="Permalink to High-mass Protostellar SiO Masers">
+                    High-mass Protostellar SiO Masers</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2017-01-30T12:26:00-07:00"> 2017/01/30 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In working on a high-mass star formation proposal, I reviewed the discovery
+of SiO vibrationally-excited masers toward high-mass star-forming regions.</p>
+<p>Known sources include (with discovery articles listed):</p>
+<blockquote>
+<ul class="simple">
+<li>Sgr B2 M (<a class="reference external" href="http://adsabs.harvard.edu/abs/1986mmmo.conf..275H">Hasegawa</a>)</li>
+<li>Sgr B2 N (<a class="reference external" href="http://esoads.eso.org/abs/2015ApJ...815..106H">Higuchi</a>)</li>
+<li>W51N (<a class="reference external" href="http://adsabs.harvard.edu/abs/1986mmmo.conf..275H">Hasegawa</a>)</li>
+<li>Orion BN/KL (<a class="reference external" href="http://adsabs.harvard.edu/abs/1974ApJ...189L..31S">Snyder</a>, first mm maser)</li>
+<li>G19.61-0.23 (<a class="reference external" href="http://esoads.eso.org/abs/2016ApJ...826..157C">Cho</a>)</li>
+<li>G75.78+0.34 (<a class="reference external" href="http://esoads.eso.org/abs/2016ApJ...826..157C">Cho</a>)</li>
+<li>G0.38+0.04 &quot;Cloud C&quot; (<a class="reference external" href="http://esoads.eso.org/abs/2015A%26A...584L...7G">Ginsburg</a>)</li>
+<li>IRAS 19312+1950 (<a class="reference external" href="http://esoads.eso.org/abs/2016ApJ...828...51C">Cordiner</a>)</li>
+<li>DR 21(OH) (<a class="reference external" href="http://adsabs.harvard.edu/abs/2010ARep...54..295K">Kalenskii, tentative</a>)</li>
+</ul>
+</blockquote>
+<p>If you know of any I missed, or have a better collection of these masers, let
+me know.</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -634,282 +798,6 @@ to be decimal separated:</p>
 <p>This has broken my scripts more than a handful of times now, since copying &amp;
 pasting coordinates from any other program inevitably has the &quot;wrong&quot;
 units.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/casa-tclean-adds-negative-components.html" rel="bookmark" title="Permalink to CASA tclean adds negative components">
-                    CASA tclean adds negative components</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2016-05-01T10:21:00-06:00"> 2016/05/01 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I'm trying to examine some of my 7m+12m combined data and have run into yet another
-mysterious behavior of CASA.  <tt class="docutils literal">tclean</tt> is adding negative components in regions with
-exclusively positive emission.</p>
-<p>In this image, the <em>left</em> is the clean image, which doesn't make any sense; it
-looks like it should be a residual image but it is not.  2nd image is the clean
-components (negative!!), 3rd is the residual, 4th is the dirty map.</p>
-<img alt="" src="http://keflavich.github.io/blog/images/casa/bad_cleancomps.png" style="width: 600px;" />
-<p>One tricky thing for this particular image is that the emission is real, BUT it
-is also directly on top of a major sidelobe of the brightest source in the
-region.  Nonetheless, I cannot imagine any way to explain the negative
-component.  I don't really understand when a negative component is added, but
-presumably it ought to happen when the residual has a negative value but also
-the highest amplitude in the map; this obviously never happens here since the
-residual in fact has one of the highest <em>positive</em> amplitudes in the map.</p>
-<p>The imaging parameters seem not to affect this problem. I attempted reducing the
-gain to 0.05 to no avail.  Changing from natural to robust weighting actually
-removed most of the negative components.</p>
-<div class="section" id="failed-combination-of-7m-and-12m-data">
-<h2>Failed combination of 7m and 12m data</h2>
-<p>The above was a tangent.  The real reason I was working on this data set was to
-combine the 7m and 12m spectral data.  The problem I keep seeing is very large,
-smooth blobs that are spatially distinct from the more compact emission.  It's
-as if someone took the two independent cubes (12m and 7m) and just added them
-together; it looks like flux is not being conserved.</p>
-<p>The UV plots, especially weight vs uvdist, look fine.  The 7m antenna are
-downweighted relative to the 7m antennae by a factor ~2.</p>
-<p>One of the bigger problems is that I have a vague - possibly not justified -
-sense that there is a velocity offset of ~1 km/s between the 7m and 12m data.
-If this is the case, there's no wonder the combination isn't working.
-However, it's nearly inconceivable.</p>
-</div>
-<div class="section" id="followup-feb-2017">
-<h2>Followup Feb 2017</h2>
-<p>That vague fear turned out to be entirely justified.  It turned out that the 7m
-and 12m array data sets were not in a common frame, and they were therefore
-offset by something like the Earth's change in velocity between the observation
-dates.  The solution was to cvel the data sets to the LSRK frame prior to
-concatenating them.  While I know I made these changes, I unfortunately can't
-find the specific commit where I made them.</p>
-</div>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/casa-simulated-imaging-now-ftmachine-is-whining.html" rel="bookmark" title="Permalink to CASA simulated imaging: now FTMachine is whining">
-                    CASA simulated imaging: now FTMachine is whining</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2016-04-26T15:12:00-06:00"> 2016/04/26 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p><a class="reference external" href="|filename|/casa_simulation_debugging.rst">A few days ago</a>
-I apparently got my broken simulator working again.  Today, in my first
-attempt to repeat those results, I... have broken it again.:</p>
-<pre class="literal-block">
-WARN        FTMachine::initMaps     No overlap in frequency between image channels and selected data found for this FTMachine
-WARN        FTMachine::initMaps+     Check your data selection and image parameters if you end up with a blank image
-</pre>
-<p>This warning is not a simple warning, it means nothing is being done.  My
-images are empty, pure noise (which, interestingly enough, is far from
-gaussian).</p>
-<p>I have encountered these errors <cite>before
-&lt;|filename|/separating_line_and_continuum.rst&gt;</cite>, but unfortunately did not
-resolve the issue.</p>
-<p>Turns out, the difference was the .ms file I used,
-<tt class="docutils literal">continuum_7m12m_noflag.ms</tt>, which works, vs the useful one,
-<tt class="docutils literal">w51_contvis_selfcal_3.ms</tt>, which doesn't.</p>
-<p>Checking out their headers, the continuum image does overlap with the
-data but the selfcal version doesn't.  Wonderful.  Now I'll bet it's only
-populating one channel at a time when I invert too...</p>
-<p>This leads me to try:</p>
-<pre class="literal-block">
-split(vis='w51_contvis_selfcal_3.ms', outputvis='simulation_continuum.ms', datacolumn='data', width=100)
-</pre>
-<p>then use (borrowed from <a class="reference external" href="https://github.com/radio-astro-tools/sandbox/blob/master/casa_7m12m_tools/weight_density_uv_plot.py">this tool</a>):</p>
-<pre class="literal-block">
-mymsmd = msmdtool()
-mymsmd.open(vis)
-
-reffreq = &quot;{value}{unit}&quot;.format(**mymsmd.reffreq(spw)['m0'])
-</pre>
-<p>to get the frequency to write into the header each time.</p>
-<p>At a glance, just changing the frequency of the FITS file to match the first
-SPW seems to work.  However, I haven't yet examined whether the other SPWs
-are populated.</p>
-<p>This assumption proved wrong.  No, it simply doesn't work.  The warnings went away,
-but the output images are empty.  Also, the noise went up, which I don't understand.</p>
-<p>Imaging just spw1 kind of worked, but resulted in an image with the wrong
-resolution by factors of many.</p>
-<p>Trying to loop over all spws failed miserably, resulting in <em>nothing</em> being done by
-predict and <em>no warning</em> being given.</p>
-<p>OK, finally, solution is to make sure CDELT is large enough to cover <em>all</em> SPWs.</p>
-<p>Another important note: Jy/beam and Jy/pixel inputs into CASA result in identical images.
-In both cases, they are wrong images: they correspond to multiplying the input data by
-factors of at least 100.  Therefore, my conclusion now is that I have to divide everything
-by some fact, which I <em>sincerely</em> hope is ppbeam, to correct the data.</p>
-<p>It looked vaguely like the divide-by-ppbeam trick worked, but my tests kept coming up funny
-because the <em>original</em> images were scaled down.  So I tried unscaling them.  Somehow,
-without changing anything about the headers, I landed on another failed predict error:</p>
-<pre class="literal-block">
-2016-04-27 19:14:42 SEVERE  Simulator::createSkyEquation() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2200)        Caught exception: (/Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc : 2266) Failed AlwaysAssert spectralIndex&gt;=0
-2016-04-27 19:14:42 SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Failed to create SkyEquation
-</pre>
-<p>Spectral Index?  I encountered this <a class="reference external" href="http://keflavich.github.io/blog/casa-simulation.html">previously</a>, but didn't record any solution.
-After checking the header, it appears that my files are <em>now</em> missing axes 3 and 4.
-I didn't make any changes that should cause this; the axes are just not being added
-on importfits despite being forcibly added in the command.</p>
-<p>The problem is unfortunately not in the FITS part, but again in the CASA part.
-Re-importing the FITS file to .image without forcing <tt class="docutils literal">defaultaxes</tt> again just
-broke it.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/more-casa-simulation-debugging.html" rel="bookmark" title="Permalink to More CASA simulation & debugging">
-                    More CASA simulation &amp; debugging</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2016-04-24T22:57:00-06:00"> 2016/04/24 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>(this post written from snowy-ish ALMA; <a class="reference external" href="https://goo.gl/photos/z3fUkCT6VVRzt8EW6">just cloudy at the OSF though</a>)</p>
-<p>(tl; dr version: <tt class="docutils literal">sm.setvp</tt> doesn't work if you have <tt class="docutils literal"><span class="pre">TELESCOP=&quot;ALMA&quot;</span></tt> in
-your header)</p>
-<p>I'm trying to repeat an experiment very similar to
-<a class="reference external" href="http://keflavich.github.io/blog/casa-simulation.html">previous</a>
-<a class="reference external" href="http://keflavich.github.io/blog/simulated-observations-of-perseus-in-w51.html">simulation work</a>
-in order to quantify my completeness and largest angular scales
-by injecting synthetic signal into the real UV data.</p>
-<p>However, as you might expect, it doesn't work as it did last time, even
-when I (afaict) copy and paste the code directly.</p>
-<p>Here's the new error:</p>
-<pre class="literal-block">
-2016-04-25 02:57:21 SEVERE  Simulator::createSkyEquation() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2200)        Caught exception: Transformations to/from frame &quot;Undefined&quot; are not possible.
-2016-04-25 02:57:21 SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Failed to create SkyEquation
-Result of predict: False
-</pre>
-<p>It's strange because there is nothing obviously undefined.</p>
-<p>I'm comparing 2 FITS files that should behave identically.
-The good header lacks these keywords that the bad header has:</p>
-<pre class="literal-block">
-['PV2_1',
- 'PV2_2',
- 'OBSERVER',
- 'DATE-OBS',
- 'OBSRA',
- 'OBSDEC',
- 'OBSGEO-X',
- 'OBSGEO-Y',
- 'OBSGEO-Z']
-</pre>
-<p>while the good header has these and the bad lacks them:</p>
-<pre class="literal-block">
-['PC03_01',
- 'PC04_01',
- 'PC03_02',
- 'PC04_02',
- 'PC01_03',
- 'PC02_03',
- 'PC03_03',
- 'PC04_03',
- 'PC01_04',
- 'PC02_04',
- 'PC03_04',
- 'PC04_04',
- 'CREATOR',
- 'INSTRUME',
- 'BAND',
- 'PROPOSAL',
- 'PRTITLE',
- 'OBSID001',
- 'OBSID002',
- 'HISTORY']
-</pre>
-<p>The only significant difference is the <tt class="docutils literal">PC</tt> values, unless CASA
-is doing something with the observatory location information.</p>
-<p>The only difference in common keywords is numerical, which seems
-very unlikely to cause this issue.</p>
-<p>I cannot discern any useful difference between these two CASA .image headers:</p>
-<pre class="literal-block">
-2016-04-25 03:08:55 INFO imhead     ##########################################
-2016-04-25 03:08:55 INFO imhead     ##### Begin Task: imhead             #####
-2016-04-25 03:08:55 INFO imhead     imhead(imagename=&quot;../perseus_synth/perseus_250_to_w51.image&quot;,mode=&quot;summary&quot;,hdkey=&quot;&quot;,hdvalue=&quot;&quot;,verbose=True)
-2016-04-25 03:08:55 INFO ImageAnalysis
-2016-04-25 03:08:55 INFO ImageAnalysis      Image name       : perseus_250_to_w51.image
-2016-04-25 03:08:55 INFO ImageAnalysis      Object name      : perseus 04
-2016-04-25 03:08:55 INFO ImageAnalysis      Image type       : PagedImage
-2016-04-25 03:08:55 INFO ImageAnalysis      Image quantity   : Intensity
-2016-04-25 03:08:55 INFO ImageAnalysis      Pixel mask(s)    : mask0
-2016-04-25 03:08:55 INFO ImageAnalysis      Region(s)        : None
-2016-04-25 03:08:55 INFO ImageAnalysis      Image units      : Jy/pixel
-2016-04-25 03:08:55 INFO ImageAnalysis      Restoring Beam   : 0.465804 arcsec, 0.465804 arcsec, 0 deg
-2016-04-25 03:08:55 INFO ImageAnalysis
-2016-04-25 03:08:55 INFO ImageAnalysis      Direction reference : J2000
-2016-04-25 03:08:55 INFO ImageAnalysis      Spectral  reference : Undefined
-2016-04-25 03:08:55 INFO ImageAnalysis      Velocity  type      : RADIO
-2016-04-25 03:08:55 INFO ImageAnalysis      Rest frequency      : 2.33947e+11 Hz
-2016-04-25 03:08:55 INFO ImageAnalysis      Telescope           : Herschel
-2016-04-25 03:08:55 INFO ImageAnalysis      Observer            : UNKNOWN
-2016-04-25 03:08:55 INFO ImageAnalysis      Date observation    : UNKNOWN
-2016-04-25 03:08:55 INFO ImageAnalysis
-2016-04-25 03:08:55 INFO ImageAnalysis      Axis Coord Type      Name             Proj Shape Tile   Coord value at pixel    Coord incr Units
-2016-04-25 03:08:55 INFO ImageAnalysis      ------------------------------------------------------------------------------------------------
-2016-04-25 03:08:55 INFO ImageAnalysis      0    0     Direction Right Ascension   TAN  2370  158  19:23:41.765  1099.00 -1.552680e-01 arcsec
-2016-04-25 03:08:55 INFO ImageAnalysis      1    0     Direction Declination       TAN  2500  250 +14.30.45.850  1552.00  1.552680e-01 arcsec
-2016-04-25 03:08:55 INFO ImageAnalysis      2    2     Spectral  Frequency                 1    1   2.33947e+11     0.00  1.000000e+09 Hz
-2016-04-25 03:08:55 INFO ImageAnalysis                           Velocity                                     0     0.00 -1.281456e+03 km/s
-2016-04-25 03:08:55 INFO ImageAnalysis      3    1     Stokes    Stokes                    1    1             I
-2016-04-25 03:08:55 INFO imhead     ##### End Task: imhead               #####
-2016-04-25 03:08:55 INFO imhead     ##########################################
-2016-04-25 03:09:07 INFO imhead
-2016-04-25 03:09:07 INFO imhead     ##########################################
-2016-04-25 03:09:07 INFO imhead     ##### Begin Task: imhead             #####
-2016-04-25 03:09:07 INFO imhead     imhead(imagename=&quot;../simulations/simimage_firsttest.image&quot;,mode=&quot;summary&quot;,hdkey=&quot;&quot;,hdvalue=&quot;&quot;,verbose=False)
-2016-04-25 03:09:07 INFO ImageAnalysis
-2016-04-25 03:09:07 INFO ImageAnalysis      Image name       : simimage_firsttest.image
-2016-04-25 03:09:07 INFO ImageAnalysis      Object name      :
-2016-04-25 03:09:07 INFO ImageAnalysis      Image type       : PagedImage
-2016-04-25 03:09:07 INFO ImageAnalysis      Image quantity   : Intensity
-2016-04-25 03:09:07 INFO ImageAnalysis      Pixel mask(s)    : None
-2016-04-25 03:09:07 INFO ImageAnalysis      Region(s)        : None
-2016-04-25 03:09:07 INFO ImageAnalysis      Image units      : Jy/beam
-2016-04-25 03:09:07 INFO ImageAnalysis      Restoring Beam   : 0.21023 arcsec, 0.192666 arcsec, 79.8538 deg
-2016-04-25 03:09:07 INFO ImageAnalysis
-2016-04-25 03:09:07 INFO ImageAnalysis      Direction reference : J2000
-2016-04-25 03:09:07 INFO ImageAnalysis      Spectral  reference : Undefined
-2016-04-25 03:09:07 INFO ImageAnalysis      Velocity  type      : RADIO
-2016-04-25 03:09:07 INFO ImageAnalysis      Rest frequency      : 2.33947e+11 Hz
-2016-04-25 03:09:07 INFO ImageAnalysis      Pointing center     :  19:23:41.629000  +14.30.42.380000
-2016-04-25 03:09:07 INFO ImageAnalysis      Telescope           : ALMA
-2016-04-25 03:09:07 INFO ImageAnalysis      Observer            : keflavich
-2016-04-25 03:09:07 INFO ImageAnalysis      Date observation    : 2015/04/23/09:47:44
-2016-04-25 03:09:07 INFO ImageAnalysis      Telescope position: [2.22514e+06m, -5.44031e+06m, -2.48103e+06m] (ITRF)
-2016-04-25 03:09:07 INFO ImageAnalysis
-2016-04-25 03:09:07 INFO ImageAnalysis      Axis Coord Type      Name             Proj Shape Tile   Coord value at pixel    Coord incr Units
-2016-04-25 03:09:07 INFO ImageAnalysis      ------------------------------------------------------------------------------------------------
-2016-04-25 03:09:07 INFO ImageAnalysis      0    0     Direction Right Ascension   TAN  3072  192  19:23:41.629  1536.00 -5.000000e-02 arcsec
-2016-04-25 03:09:07 INFO ImageAnalysis      1    0     Direction Declination       TAN  3072  192 +14.30.42.380  1536.00  5.000000e-02 arcsec
-2016-04-25 03:09:07 INFO ImageAnalysis      2    1     Stokes    Stokes                    1    1             I
-2016-04-25 03:09:07 INFO ImageAnalysis      3    2     Spectral  Frequency                 1    1   2.33947e+11     0.00  1.000000e+09 Hz
-2016-04-25 03:09:07 INFO ImageAnalysis                           Velocity                                     0     0.00 -1.281456e+03 km/s
-2016-04-25 03:09:07 INFO imhead     ##### End Task: imhead               #####
-2016-04-25 03:09:07 INFO imhead     ##########################################
-</pre>
-<p>if anything, the ALMA file includes <em>extra</em> data. Removing this data has no
-effect.</p>
-<p>The only really substantial difference left is the order of the axes, which
-is <em>not what I put in</em> for the ALMA data: it puts Stokes as 2 instead of 3
-despite the fact that <tt class="docutils literal"><span class="pre">CTYPE4='STOKES'</span></tt> and <tt class="docutils literal"><span class="pre">CTYPE3='FREQ'</span></tt>.</p>
-<p>By doing a round trip FITS-&gt;image-&gt;FITS-&gt;image, I was able to fix the order,
-but that is not the underlying problem, apparently.</p>
-<p>Could the missing pixel mask be at fault?  It doesn't jive at all with the
-error message, so I doubt it.  <tt class="docutils literal">OBSDATE</tt> is not the problem.</p>
-<p>Turns out, the error is that ALMA is the telescope.  I added the header entry:</p>
-<pre class="literal-block">
-ffile[0].header['TELESCOP'] = 'NotReal'
-</pre>
-<p>and it Just Worked.  It is approaching the end of my shift, so I think it is
-now acceptable to say &quot;what kind of !#$&#64;#$!&#64;% up #&#64;$$&#64;% is that?!&quot;.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>

@@ -67,6 +67,21 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
               <li class="post">
+                  2021/04/27
+                  <br>
+                  <a href="http://keflavich.github.io/blog/determing-alma-array-configurations.html">Determing ALMA Array Configurations</a>
+              </li>
+              <li class="post">
+                  2020/05/09
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-logfiles-tclean-from-pysynthesisimager.html">CASA: Logfiles & tclean from pysynthesisimager</a>
+              </li>
+              <li class="post">
+                  2019/08/22
+                  <br>
+                  <a href="http://keflavich.github.io/blog/casa-cross-calibration-application.html">CASA Cross-Calibration Application</a>
+              </li>
+              <li class="post">
                   2019/07/23
                   <br>
                   <a href="http://keflavich.github.io/blog/casa-corrupted-measurement-sets.html">CASA corrupted measurement sets</a>
@@ -75,21 +90,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   2018/10/14
                   <br>
                   <a href="http://keflavich.github.io/blog/feo-nondetection-in-orion.html">FeO Nondetection in Orion</a>
-              </li>
-              <li class="post">
-                  2018/07/08
-                  <br>
-                  <a href="http://keflavich.github.io/blog/talks-now-using-revealjs.html">Talks: Now using revealjs</a>
-              </li>
-              <li class="post">
-                  2018/06/18
-                  <br>
-                  <a href="http://keflavich.github.io/blog/brief-review-of-cluster-formation-simulations.html">Brief review of cluster formation simulations</a>
-              </li>
-              <li class="post">
-                  2018/04/18
-                  <br>
-                  <a href="http://keflavich.github.io/blog/derivation-of-co-column-density.html">Derivation of CO Column Density</a>
               </li>
         </ul>
       </li>
@@ -101,6 +101,78 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/centroiding-and-merediths-files.html" rel="bookmark" title="Permalink to Centroiding and Meredith's files">
+                    Centroiding and Meredith's files</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-13T03:54:00-06:00"> 2008/08/13 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I tried the pointing offset calculations on Meredith's maps and I still
+get an RMS of ~9&quot; in both RA and DEC. Check out the files:
+/scratch/adam_work/plots/models_meredith*
+So... what?</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/searching-for-more-offsets.html" rel="bookmark" title="Permalink to Searching for more offsets">
+                    Searching for more offsets</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-12T21:35:00-06:00"> 2008/08/12 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The defining feature of my pointing calculations - and their
+inconsistency - is that the spread for individual sources is bad, which
+means that there's still something wrong in the way the bulk ra/dec are
+being calculated.</p>
+<p>I checked apply_distortion_map_radec to see if it might have inserted
+some bulk offset, but it only changes the average position by &lt;2&quot;. That
+might be an issue, but the boresight isn't necessarily aligned with the
+mean location of the bolometers. It should be shifted by at least .3&quot;
+according to a simple average of sin/cos of the bolo_params angles.
+Comparing my pointing code to map_ncdf_reading directly:</p>
+<p>readstruct=map_ncdf_reading(filename,/nopixoff)
+offsets are small (e.g. -0.050665803 -0.0029540043 arcseconds ra/dec) if
+I don't subtract fazo/fzao
+offsets in ra/dec are remarkably close to fazo/fzao if I subtract them:</p>
+<pre class="literal-block">
+92.830656 -126.12773
+95.000000 -120.00000
+</pre>
+<p>which is because ra/dec are pretty closely aligned to az/el.
+So, any difference comes from at least one of the keyword parameters.
+Therefore I AM missing something, and that something is one of the
+keywords to map_ncdf_reading</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="http://keflavich.github.io/blog/ffts-and-unlucky-primes.html" rel="bookmark" title="Permalink to FFTs and unlucky primes">
+                    FFTs and unlucky primes</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-12T17:04:00-06:00"> 2008/08/12 </abbr>
+<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've encountered a lot (!) of unlucky prime numbers that I'm trying to
+FFT in too many places, and it basically stops the code.
+211151 was impossibly bad, 5827 is pretty bad too.
+I solved the first by splitting into by-scan delining, which is better
+anyway. But the second is a map, in which I KNOW zero padding is OK.
+So... are there any functions that find the nearest reasonably efficient
+map size?</p>
+ </div><!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -282,78 +354,6 @@ Totally messed up (two sets of images many degrees apart):
 .. image:: <a class="reference external" href="http://4.bp.blogspot.com/_lsgW26mWZnU/SJuIDL161GI/AAAAAAAADN4/D4mxFyx1Fr0/s320/070709_ob7_1730m130_peanut.png">http://4.bp.blogspot.com/_lsgW26mWZnU/SJuIDL161GI/AAAAAAAADN4/D4mxFyx1Fr0/s320/070709_ob7_1730m130_peanut.png</a>
 070703_o48 :
 .. image:: <a class="reference external" href="http://4.bp.blogspot.com/_lsgW26mWZnU/SJuICzavE_I/AAAAAAAADNw/70Hl5930eU8/s320/070703_o48_3c454.3.png">http://4.bp.blogspot.com/_lsgW26mWZnU/SJuICzavE_I/AAAAAAAADNw/70Hl5930eU8/s320/070703_o48_3c454.3.png</a></p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/looking-back-at-the-old-pipeline.html" rel="bookmark" title="Permalink to Looking back at the old pipeline">
-                    Looking back at the old pipeline</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-07T16:33:00-06:00"> 2008/08/07 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I've obviously missed something. So to try to figure out what it is, I'm
-going back to the old pipeline... again...
-in map_ncdf_reading, lines 441-448, there is something curious that
-goes back to a definition-of-variables problem: ddec and dra are ADDED
-to ra and dec to get the new &quot;ra_all&quot; and &quot;dec_all&quot; variables. ddec
-and dra are calculated from eaz and eel: ERROR OFFSETS in Az and El.
-Why? What?!
-I added a new piece of code, correct_eaz_eel.pro. It is extremely
-short, but extremely necessary.</p>
-<pre class="literal-block">
-pro correct_eaz_eel,ra,dec,el,az,eel,eaz,pa    dra=-eaz*cos(!dtor*pa)*cos(!dtor*el)+eel*sin(!dtor*pa)    ddec=eaz*sin(!dtor*pa)*cos(!dtor*el)+eel*cos(!dtor*pa)    dec += ddec/3600.    ra  += dra/3600. / cos(!dtor*dec) / 15.end
-</pre>
-<p>This comes back to the fact that I don't know what ANY of the variables
-in the NCDF header are supposed to be. Why are &quot;error&quot; variables
-actually OFFSET variables, and why didn't anyone know about them?</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/something-is-wrong-in-0507.html" rel="bookmark" title="Permalink to something is wrong in 0507....">
-                    something is wrong in 0507....</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-07T00:01:00-06:00"> 2008/08/07 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <img alt="" src="http://picasaweb.google.com/keflavich/Bolocam/photo?authkey=OyC8l5sv3gI#5231555630189235762" />
-<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/SJousnsJDjI/AAAAAAAADMY/-hhiIoQ171A/s320/g34.3_zoo.jpg" />
-<p>Look at that zoomed in. Note that the first 20ish are from 0507. I don't
-know what's causing the double source. Maybe a 90 degree rotation would
-do it, I don't know. I do know that I'm applying an array angle of 76.2
-degrees for those July observations and 113.6 degrees for the June 05
-observations. Maybe that got swapped or something....
-It looks like Meredith ran into the same problems when mapping 0506, but
-not 0507.</p>
-<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/SJo7MpPYjDI/AAAAAAAADNg/6_pSjjeKjLM/s320/g34_0507_compare.jpg" />
-<p>comparing mine to hers (I even used the same downsampled/cleand file),
-it is obvious that something went wrong with the mapping. I tested a
-number of different fiducial array angles and none of them generated
-real maps, so the mapping is correct except for offsets in the scan
-direction, as usual. What the heck.</p>
- </div><!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="http://keflavich.github.io/blog/distortion-not-distortion-maps.html" rel="bookmark" title="Permalink to Distortion (not distortion maps)">
-                    Distortion (not distortion maps)</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-06T20:40:00-06:00"> 2008/08/06 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I still see distortion in a lot of maps, but not all. I think there is a
-correlation with altitude ~70+/-2 degrees. So far it's most obvious in
-the 0606 pointing sources.</p>
  </div><!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
