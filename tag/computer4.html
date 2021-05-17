@@ -110,7 +110,8 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         </header>
         <footer class="post-info">
             <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <!--<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>The errors are, in short:</p>
 <ul class="simple">
 <li>Browser stops responding / starts returning &quot;page not found&quot;
@@ -156,7 +157,8 @@ But there's definitely more going on here than just Chrome. Trying to
 change default browsers (by opening Safari and opening Preferences) led
 to a partial Dock crash (?!) in which I can alt-tab but can't see the
 Dock. Not clear at all what's going on.... argh.</p>
-</p> </div><!-- /.entry-content   not article.summary--> 
+</p> </div>
+        <!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
     <li><article class="hentry">
@@ -168,11 +170,13 @@ Dock. Not clear at all what's going on.... argh.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <!--<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>//. and /. use 'rules' of the form {x-&gt;y} for substitutions
 how do you make the layout of a page look nice? How do you change line
 spacing?</p>
- </div><!-- /.entry-content   not article.summary--> 
+ </div>
+        <!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
     <li><article class="hentry">
@@ -184,7 +188,8 @@ spacing?</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <!--<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>a clue as to why:
 functional ft2font.so:
 <tt class="docutils literal">$ otool <span class="pre">-L</span> <span class="pre">/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/matplotlib/ft2font.so</span> <span class="pre">/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/matplotlib/ft2font.so:</span> /usr/local/lib/libfreetype.6.dylib (compatibility version 10.0.0, current version 10.22.0) /usr/lib/libz.1.dylib (compatibility version 1.0.0, current version 1.2.3) <span class="pre">/usr/local/lib/libstdc++.6.dylib</span> (compatibility version 7.0.0, current version 7.14.0) /usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 125.2.11)</tt>
@@ -192,7 +197,8 @@ nonfunctional ft2font.so:
 <tt class="docutils literal">$ otool <span class="pre">-L</span> <span class="pre">/Users/adam/repos/yt/yt-i386/lib/python2.7/site-packages/matplotlib/ft2font.so/Users/adam/repos/yt/yt-i386/lib/python2.7/site-packages/matplotlib/ft2font.so:</span> <span class="pre">/Users/adam/repos/yt/yt-i386/lib/libfreetype.6.dylib</span> (compatibility version 13.0.0, current version 13.2.0) <span class="pre">/Users/adam/repos/yt/yt-i386//lib/libz.1.dylib</span> (compatibility version 1.0.0, current version 1.2.3) <span class="pre">/usr/local/lib/libstdc++.6.dylib</span> (compatibility version 7.0.0, current version 7.14.0) /usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 125.2.11) /usr/local/lib/libgcc_s.1.dylib (compatibility version 1.0.0, current version 1.0.0)</tt>
 The culprit is the difference between those two (maybe?):
 <tt class="docutils literal">$ file /usr/local/lib/libgcc_s.1.dylib/usr/local/lib/libgcc_s.1.dylib: <span class="pre">Mach-O</span> universal binary with 4 architectures/usr/local/lib/libgcc_s.1.dylib (for architecture i386): <span class="pre">Mach-O</span> dynamically linked shared library i386/usr/local/lib/libgcc_s.1.dylib (for architecture x86_64): <span class="pre">Mach-O</span> <span class="pre">64-bit</span> dynamically linked shared library x86_64/usr/local/lib/libgcc_s.1.dylib (for architecture ppc): <span class="pre">Mach-O</span> dynamically linked shared library ppc/usr/local/lib/libgcc_s.1.dylib (for architecture ppc64): <span class="pre">Mach-O</span> <span class="pre">64-bit</span> dynamically linked shared library ppc64$ otool <span class="pre">-L</span> /usr/local/lib/libgcc_s.1.dylib/usr/local/lib/libgcc_s.1.dylib: /usr/local/lib/libgcc_s.1.dylib (compatibility version 1.0.0, current version 1.0.0) /usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 88.3.9)</tt></p>
- </div><!-- /.entry-content   not article.summary--> 
+ </div>
+        <!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
     <li><article class="hentry">
@@ -204,7 +210,8 @@ The culprit is the difference between those two (maybe?):
         </header>
         <footer class="post-info">
             <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <!--<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>This is essential and really difficult to find answers to, but this guy
 gave it:
 <a class="reference external" href="http://ludo.qix.it/archive/2005/08/merge-postscript-files.html">http://ludo.qix.it/archive/2005/08/merge-postscript-files.html</a>
@@ -213,7 +220,8 @@ The keywords I would have liked to see:
 or <a class="reference external" href="http://ludo.qix.it/archive/2005/08/merge-postscript-files.html">&quot;combine postscript multiple page&quot;</a>
 e.g.
 <tt class="docutils literal">gs <span class="pre">-sDEVICE=pswrite</span> <span class="pre">-sOutputFile=output.ps</span> <span class="pre">-dNOPAUSE</span> <span class="pre">-dBATCH</span> file1.ps file2.ps file3.psorgs <span class="pre">-sDEVICE=pswrite</span> <span class="pre">-sOutputFile=05358spectra.ps</span> <span class="pre">-dNOPAUSE</span> <span class="pre">-dEPSFitPage</span> <span class="pre">-dBATCH</span> `ls <span class="pre">05358_*.eps`(the</span> added option is to make sure the .eps isn't cropped)</tt></p>
- </div><!-- /.entry-content   not article.summary--> 
+ </div>
+        <!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
     <li><article class="hentry">
@@ -225,7 +233,8 @@ e.g.
         </header>
         <footer class="post-info">
             <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <!--<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Making movies is surprisingly difficult. No matter what language you
 use, apparently true movie files can only be made by stringing together
 images, i.e. there is no native movie-producing feature. Gnuplot can do
@@ -250,7 +259,8 @@ movie given that you've installed an mpeg2 encoder (fink gave me
 <tt class="docutils literal">convert <span class="pre">-size</span> 300x300 *.png movie.mpg</tt></p>
 <p>I had to use a smaller image size because a series of 1000x12kb files
 somehow chomped ~6-8 GB of RAM and swap space.</p>
- </div><!-- /.entry-content   not article.summary--> 
+ </div>
+        <!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
     <li><article class="hentry">
@@ -262,7 +272,8 @@ somehow chomped ~6-8 GB of RAM and swap space.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <!--<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>1. <a class="reference external" href="http://www.pas.rochester.edu/~mpecaut/sptool/">sptool</a> is a quick way to compare standards to stellar spectra.
 Nice, I'd been looking for a tool like that.
 2. <a class="reference external" href="http://blog.bigsmoke.us/2008/12/04/gnu-screen-window-captions-as-xterm-tabs">GNU screen captions</a> are useful especially when working in a
@@ -272,7 +283,8 @@ damned data
 4. <a class="reference external" href="http://www.serverwatch.com/tutorials/article.php/3607246/Fresh-From-the-Linux-Kill.htm">kill -STOP and kill -CONT</a> are really useful ways to pause programs
 that are sucking up resources if you want to resume them later. Haven't
 tried this on &quot;real&quot; code yet.</p>
- </div><!-- /.entry-content   not article.summary--> 
+ </div>
+        <!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
     <li><article class="hentry">
@@ -284,13 +296,15 @@ tried this on &quot;real&quot; code yet.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <!--<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
         <div class="entry-content"> <p><a class="reference external" href="http://idlsave.sourceforge.net/">IDLsave</a> was released on my birthday. It does what you'd expect - read
 IDL save files into Python.
 <a class="reference external" href="http://aplpy.sourceforge.net/">APLpy</a>has a make_RGB_cube function now that takes care of all the
 internals of making an RGB image.... haven't tried it yet but I need to
 because it is awesome.</p>
- </div><!-- /.entry-content   not article.summary--> 
+ </div>
+        <!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
     <li><article class="hentry">
@@ -302,7 +316,8 @@ because it is awesome.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <!--<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
         <div class="entry-content"> <p><p>While it's not possible to get CGI and PHP to work within the same file,
 you can get .html and .htm files to use cgi/php scripts alternately in
 the same directory with the following .htaccess file:</p>
@@ -314,7 +329,8 @@ hours googling and hacking to try to get php and cgi to work within the
 same file.
 Also, the way the above file is parsed makes no sense to me. It is
 inverted from how I would have thought it should work.</p>
-</p> </div><!-- /.entry-content   not article.summary--> 
+</p> </div>
+        <!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
     <li><article class="hentry">
@@ -326,11 +342,13 @@ inverted from how I would have thought it should work.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <!--<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Port failed to install:
 <tt class="docutils literal"><span class="pre">adam-macbook</span> ~$ sudo port install <span class="pre">py25-matplotlib---&gt;</span>&nbsp; Building <span class="pre">py25-hashlib</span> with target <span class="pre">build---&gt;</span>&nbsp; Staging <span class="pre">py25-hashlib</span> into <span class="pre">destroot---&gt;</span>&nbsp; Installing <span class="pre">py25-hashlib</span> <span class="pre">2.5.2_0---&gt;</span>&nbsp; Activating <span class="pre">py25-hashlib</span> <span class="pre">2.5.2_0---&gt;</span>&nbsp; Cleaning <span class="pre">py25-hashlib---&gt;</span>&nbsp; Fetching <span class="pre">py25-zlib---&gt;</span>&nbsp; Verifying checksum(s) for <span class="pre">py25-zlib---&gt;</span>&nbsp; Extracting <span class="pre">py25-zlib---&gt;</span>&nbsp; Configuring <span class="pre">py25-zlib---&gt;</span>&nbsp; Building <span class="pre">py25-zlib</span> with target <span class="pre">build---&gt;</span>&nbsp; Staging <span class="pre">py25-zlib</span> into <span class="pre">destroot---&gt;</span>&nbsp; Installing <span class="pre">py25-zlib</span> <span class="pre">2.5.2_0---&gt;</span>&nbsp; Activating <span class="pre">py25-zlib</span> <span class="pre">2.5.2_0---&gt;</span>&nbsp; Cleaning <span class="pre">py25-zlib---&gt;</span>&nbsp; Fetching <span class="pre">py25-setuptools---&gt;</span>&nbsp; Attempting to fetch <span class="pre">setuptools-0.6c8.tar.gz</span> from <span class="pre">http://cheeseshop.python.org/packages/source/s/setuptools/---&gt;</span>&nbsp; Verifying checksum(s) for <span class="pre">py25-setuptools---&gt;</span>&nbsp; Extracting <span class="pre">py25-setuptools---&gt;</span>&nbsp; Applying patches to <span class="pre">py25-setuptools---&gt;</span>&nbsp; Configuring <span class="pre">py25-setuptools---&gt;</span>&nbsp; Building <span class="pre">py25-setuptools</span> with target <span class="pre">build---&gt;</span>&nbsp; Staging <span class="pre">py25-setuptools</span> into <span class="pre">destroot---&gt;</span>&nbsp; Installing <span class="pre">py25-setuptools</span> <span class="pre">0.6c8_2---&gt;</span>&nbsp; Activating <span class="pre">py25-setuptools</span> <span class="pre">0.6c8_2---&gt;</span>&nbsp; Cleaning <span class="pre">py25-setuptools---&gt;</span>&nbsp; Fetching <span class="pre">py25-tz---&gt;</span>&nbsp; Attempting to fetch <span class="pre">pytz-2007k.tar.bz2</span> from <span class="pre">http://cheeseshop.python.org/packages/source/p/pytz/---&gt;</span>&nbsp; Verifying checksum(s) for <span class="pre">py25-tz---&gt;</span>&nbsp; Extracting <span class="pre">py25-tz---&gt;</span>&nbsp; Configuring <span class="pre">py25-tz---&gt;</span>&nbsp; Building <span class="pre">py25-tz</span> with target <span class="pre">build---&gt;</span>&nbsp; Staging <span class="pre">py25-tz</span> into <span class="pre">destroot---&gt;</span>&nbsp; Installing <span class="pre">py25-tz</span> <span class="pre">2007k_0---&gt;</span>&nbsp; Activating <span class="pre">py25-tz</span> <span class="pre">2007k_0---&gt;</span>&nbsp; Cleaning <span class="pre">py25-tz---&gt;</span>&nbsp; Fetching <span class="pre">py25-dateutil---&gt;</span>&nbsp; Attempting to fetch <span class="pre">python-dateutil-1.4.1.tar.gz</span> from <span class="pre">http://labix.org/download/python-dateutil---&gt;</span>&nbsp; Verifying checksum(s) for <span class="pre">py25-dateutil---&gt;</span>&nbsp; Extracting <span class="pre">py25-dateutil---&gt;</span>&nbsp; Configuring <span class="pre">py25-dateutil---&gt;</span>&nbsp; Building <span class="pre">py25-dateutil</span> with target <span class="pre">build---&gt;</span>&nbsp; Staging <span class="pre">py25-dateutil</span> into <span class="pre">destroot---&gt;</span>&nbsp; Installing <span class="pre">py25-dateutil</span> <span class="pre">1.4.1_0---&gt;</span>&nbsp; Activating <span class="pre">py25-dateutil</span> <span class="pre">1.4.1_0---&gt;</span>&nbsp; Cleaning <span class="pre">py25-dateutil---&gt;</span>&nbsp; Fetching <span class="pre">fftw-3---&gt;</span>&nbsp; Attempting to fetch <span class="pre">fftw-3.1.3.tar.gz</span> from <span class="pre">http://www.fftw.org/---&gt;</span>&nbsp; Verifying checksum(s) for <span class="pre">fftw-3---&gt;</span>&nbsp; Extracting <span class="pre">fftw-3---&gt;</span>&nbsp; Configuring <span class="pre">fftw-3---&gt;</span>&nbsp; Building <span class="pre">fftw-3</span> with target <span class="pre">all---&gt;</span>&nbsp; Staging <span class="pre">fftw-3</span> into <span class="pre">destroot---&gt;</span>&nbsp; Installing <span class="pre">fftw-3</span> <span class="pre">3.1.3_0---&gt;</span>&nbsp; Activating <span class="pre">fftw-3</span> <span class="pre">3.1.3_0---&gt;</span>&nbsp; Cleaning <span class="pre">fftw-3---&gt;</span>&nbsp; Fetching <span class="pre">py25-nose---&gt;</span>&nbsp; Attempting to fetch <span class="pre">nose-0.10.4.tar.gz</span> from <span class="pre">http://somethingaboutorange.com/mrl/projects/nose/---&gt;</span>&nbsp; Verifying checksum(s) for <span class="pre">py25-nose---&gt;</span>&nbsp; Extracting <span class="pre">py25-nose---&gt;</span>&nbsp; Configuring <span class="pre">py25-nose---&gt;</span>&nbsp; Building <span class="pre">py25-nose</span> with target <span class="pre">build---&gt;</span>&nbsp; Staging <span class="pre">py25-nose</span> into <span class="pre">destroot---&gt;</span>&nbsp; Installing <span class="pre">py25-nose</span> <span class="pre">0.10.4_0---&gt;</span>&nbsp; Activating <span class="pre">py25-nose</span> <span class="pre">0.10.4_0---&gt;</span>&nbsp; Cleaning <span class="pre">py25-nose---&gt;</span>&nbsp; Fetching <span class="pre">py25-numpy---&gt;</span>&nbsp; Attempting to fetch <span class="pre">numpy-1.2.0.tar.gz</span> from <span class="pre">http://downloads.sourceforge.net/numpy---&gt;</span>&nbsp; Verifying checksum(s) for <span class="pre">py25-numpy---&gt;</span>&nbsp; Extracting <span class="pre">py25-numpy---&gt;</span>&nbsp; Applying patches to <span class="pre">py25-numpy---&gt;</span>&nbsp; Configuring <span class="pre">py25-numpy---&gt;</span>&nbsp; Building <span class="pre">py25-numpy</span> with target buildError: Target org.macports.build returned: shell command &quot; cd <span class="pre">&quot;/opt/local/var/macports/build/_opt_local_var_macports_sources_rsync.macports.org_release_ports_python_py25-numpy/work/numpy-1.2.0&quot;</span> &amp;&amp; /opt/local/bin/python2.5 setup.py build &quot; returned error 1Command output:&nbsp;&nbsp;&nbsp;&nbsp; setup_package()&nbsp; File &quot;setup.py&quot;, line 89, in setup_package&nbsp;&nbsp;&nbsp; configuration=configuration )&nbsp; File <span class="pre">&quot;/opt/local/var/macports/build/_opt_local_var_macports_sources_rsync.macports.org_release_ports_python_py25-numpy/work/numpy-1.2.0/numpy/distutils/core.py&quot;,</span> line 184, in setup&nbsp;&nbsp;&nbsp; return <span class="pre">old_setup(**new_attr)</span>&nbsp; File &quot;/opt/local/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/distutils/core.py&quot;, line 151, in setup&nbsp;&nbsp;&nbsp; dist.run_commands()&nbsp; File &quot;/opt/local/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/distutils/dist.py&quot;, line 974, in run_commands&nbsp;&nbsp;&nbsp; self.run_command(cmd)&nbsp; File &quot;/opt/local/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/distutils/dist.py&quot;, line 994, in run_command&nbsp;&nbsp;&nbsp; cmd_obj.run()&nbsp; File <span class="pre">&quot;/opt/local/var/macports/build/_opt_local_var_macports_sources_rsync.macports.org_release_ports_python_py25-numpy/work/numpy-1.2.0/numpy/distutils/command/build.py&quot;,</span> line 37, in run&nbsp;&nbsp;&nbsp; old_build.run(self)&nbsp; File &quot;/opt/local/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/distutils/command/build.py&quot;, line 112, in run&nbsp;&nbsp;&nbsp; self.run_command(cmd_name)&nbsp; File &quot;/opt/local/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/distutils/cmd.py&quot;, line 333, in run_command&nbsp;&nbsp;&nbsp; self.distribution.run_command(command)&nbsp; File &quot;/opt/local/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/distutils/dist.py&quot;, line 994, in run_command&nbsp;&nbsp;&nbsp; cmd_obj.run()&nbsp; File <span class="pre">&quot;/opt/local/var/macports/build/_opt_local_var_macports_sources_rsync.macports.org_release_ports_python_py25-numpy/work/numpy-1.2.0/numpy/distutils/command/build_src.py&quot;,</span> line 130, in run&nbsp;&nbsp;&nbsp; self.build_sources()&nbsp; File <span class="pre">&quot;/opt/local/var/macports/build/_opt_local_var_macports_sources_rsync.macports.org_release_ports_python_py25-numpy/work/numpy-1.2.0/numpy/distutils/command/build_src.py&quot;,</span> line 147, in build_sources&nbsp;&nbsp;&nbsp; self.build_extension_sources(ext)&nbsp; File <span class="pre">&quot;/opt/local/var/macports/build/_opt_local_var_macports_sources_rsync.macports.org_release_ports_python_py25-numpy/work/numpy-1.2.0/numpy/distutils/command/build_src.py&quot;,</span> line 250, in build_extension_sources&nbsp;&nbsp;&nbsp; sources = self.generate_sources(sources, ext)&nbsp; File <span class="pre">&quot;/opt/local/var/macports/build/_opt_local_var_macports_sources_rsync.macports.org_release_ports_python_py25-numpy/work/numpy-1.2.0/numpy/distutils/command/build_src.py&quot;,</span> line 307, in generate_sources&nbsp;&nbsp;&nbsp; source = func(extension, build_dir)&nbsp; File &quot;numpy/core/setup.py&quot;, line 87, in generate_config_h&nbsp;&nbsp;&nbsp; raise <span class="pre">SystemError,&quot;Failed</span> to test configuration. &quot;\SystemError: Failed to test configuration. See previous error messages for more information.Error: The following dependencies failed to build: <span class="pre">py25-numpy</span> <span class="pre">py25-tkinter</span> tcl tkError: Status 1 encountered during processing.</tt>
 I don't want to deal with it so I'm just using Fink.</p>
- </div><!-- /.entry-content   not article.summary--> 
+ </div>
+        <!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
     <li><article class="hentry">
@@ -342,13 +360,15 @@ I don't want to deal with it so I'm just using Fink.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <!--<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
         <div class="entry-content"> <p><tt class="docutils literal">ls *.ps | sed <span class="pre">'s/\(.*\).ps/ps2pdf</span> \1.ps \1.pdf/' | bash</tt>
 because it's impossible to view multiple postscripts in a single
 window.... how annoying.
 Corollary:
 <tt class="docutils literal">ls *.pdf | sed <span class="pre">'s/\(.*\).pdf/pdf2jpeg</span> \1.pdf \1.jpg/' | bash</tt></p>
- </div><!-- /.entry-content   not article.summary--> 
+ </div>
+        <!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
 </ul><!-- /#posts-list -->

@@ -110,7 +110,8 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
         </header>
         <footer class="post-info">
             <abbr class="published" title="2011-03-24T00:33:00-06:00"> 2011/03/24 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <!--<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>I closely examined the timestreams of 101208_ob7 as I said I would
 yesterday. Unfortunately, all I can do is describe the symptoms: the
 first deconvolution model looks good, though it isn't quite as wide as
@@ -188,7 +189,8 @@ map looks, I think I'm ready to do the extensive pipeline tests. So,
 applied and the changes in place to deconv_map... let's see what
 happens.</p>
 <p>After that runs, I'll have to re-run the fit_and_plot routines</p>
- </div><!-- /.entry-content   not article.summary--> 
+ </div>
+        <!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
     <li><article class="hentry">
@@ -200,7 +202,8 @@ happens.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2009-01-17T16:13:00-07:00"> 2009/01/17 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <!--<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>James requested sample images from the flagger for the methods paper.
 Below are images + description:
 .. image:: <a class="reference external" href="http://3.bp.blogspot.com/_lsgW26mWZnU/SXHsZcqegtI/AAAAAAAAEs4/3PjUtU2IXtQ/s400/sample_waterfall_070911_o15_highFnoisepng.png">http://3.bp.blogspot.com/_lsgW26mWZnU/SXHsZcqegtI/AAAAAAAAEs4/3PjUtU2IXtQ/s400/sample_waterfall_070911_o15_highFnoisepng.png</a>
@@ -230,7 +233,8 @@ with a different pixel marked.
 A zoom-in around the 'kidney bean' source with the Bolocam footprint
 overlaid and a pixel marked. Note that this pixel corresponds to the 3
 points in the color waterfall above.</p>
- </div><!-- /.entry-content   not article.summary--> 
+ </div>
+        <!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
     <li><article class="hentry">
@@ -242,13 +246,15 @@ points in the color waterfall above.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-11-22T01:37:00-07:00"> 2008/11/22 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <!--<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>Discovered that the flagger causes some pretty serious problems if you
 try to run it on a non-coadd for obvious reasons: there's practically no
 coverage! Individual maps should NOT go through the flagger, so I have
 added a piece of code that turns off the flagger if only one observation
 is being used. That code is in map_iter where the flagger is called.</p>
- </div><!-- /.entry-content   not article.summary--> 
+ </div>
+        <!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
     <li><article class="hentry">
@@ -260,11 +266,13 @@ is being used. That code is in map_iter where the flagger is called.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-11-19T04:50:00-07:00"> 2008/11/19 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <!--<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
         <div class="entry-content"> <pre class="literal-block">
 ; The Mad Flagger; Flag based on the median average deviation within a spatial pixelfunction mad_flagger,data,inds,flags,nsig=nsig    t = systime(/sec)    f0 = total(where(flags))    if n_e(nsig) eq 0 then nsig = 3            newflags = flags    mx=max(inds)    vec3=fltarr(mx+1)    h=histogram(inds,reverse_indices=ri,OMIN=om)    for j=0L,n_elements(h)-1 do begin        if ri[j+1] gt ri[j] then begin            v_inds = [ri[ri[j]:ri[j+1]-1]]            if n_e(v_inds) gt 2 then begin                vec = data[v_inds];                vecmad = mad(vec)  ; the MAD is WAY too small!  I ended up rejecting 8% of points!                vecmad = stddev(vec)                vecmed = median(vec,/even)                madreject = where( (vec gt vecmed + nsig*vecmad) or (vec lt vecmed - nsig*vecmad) )                if (n_e(madreject) gt 0 and total(madreject)) gt 0 then begin                    reject_inds = v_inds[madreject]                    newflags[reject_inds] = 1                endif             endif        endif    endfor    print,&quot;MAD flagger took &quot;,strc(systime(/sec)-t),&quot; seconds and flagged &quot;,$        strc(round(total(where(newflags)) - f0)),' points'    return,newflagsend
 </pre>
- </div><!-- /.entry-content   not article.summary--> 
+ </div>
+        <!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
     <li><article class="hentry">
@@ -276,10 +284,12 @@ is being used. That code is in map_iter where the flagger is called.</p>
         </header>
         <footer class="post-info">
             <abbr class="published" title="2008-10-08T04:31:00-06:00"> 2008/10/08 </abbr>
-<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>        </footer><!-- /.post-info -->
+            <!--<address class="vcard author"><a class="url fn" href="http://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
         <div class="entry-content"> <p>most of what's left now is flagging. I updated the flagger,
 flag_manual.pro. Check it out for documentation</p>
- </div><!-- /.entry-content   not article.summary--> 
+ </div>
+        <!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
 </ul><!-- /#posts-list -->
