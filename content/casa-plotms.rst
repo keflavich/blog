@@ -13,7 +13,7 @@ This is harder than it sounds, particularly for concatenated data sets.
 
 First step is that you need to assemble the metadata:
 
-.. python::
+.. code-block:: python
     msmd.open(scvis)
     scsum = msmd.summary()
     msmd.close()
@@ -26,7 +26,7 @@ with data that are actually in my concatenated MS (in my case, 8 of 11 observati
 in the metadata are not present in the data), this tool gets and flattens the resulting
 information:
 
-.. python::
+.. code-block:: python
     def walk_summary(summary, key):
         if isinstance(summary, dict):
             try:
@@ -45,7 +45,7 @@ information:
 
 Then we grab the usable observation and data description IDs:                
 
-.. python::
+.. code-block:: python
     obsids = [key for key in scsum if 'observationID' in key and scsum[key] != {}]
     ddids = walk_summary(scsum, 'data description IDs')
 
@@ -54,7 +54,7 @@ Now we have to load the actual data.  I needed to create new versions of the ``m
 because I was getting weird errors where ``ms.close()`` followed by ``ms.open(fn)`` was not properly
 resetting, which resulted in ``ms.getdata`` returning the same data for two different MSes - BAD!
 
-.. python::
+.. code-block:: python
     ms6 = mstool()
     ms6.open(scvis)
     scdata_all = {}
@@ -67,7 +67,7 @@ resetting, which resulted in ``ms.getdata`` returning the same data for two diff
 
 Then plotting is a hassle, but at least is not insane - it's just normal array manipulation:
 
-.. python::
+.. code-block:: python
     pl.figure(figsize=(12,12))
     colors = itertools.cycle(pl.rcParams["axes.prop_cycle"].by_key()["color"])
     for key in scdata_all: # the keys are SPW numbers from the multi-MS file
@@ -86,7 +86,7 @@ Selecting along various axes, like antenna, gets tricky.  You'd rather not go ba
 
 The "identifying baselines" step that you can do in plotms can be achieved through normal boolean array selection, with a result that's somewhat easier to read than CASA's logger:
 
-.. python::
+.. code-block:: python
 
     highwt = (scdata_all[56]['weight'] > 1e5)
     scdata_all[56]['axis_info']['ifr_axis']['ifr_name'][highwt.any(axis=(0,2))]
@@ -108,7 +108,7 @@ Handling flags is tricky.  The 'weight' array has shape ``[2,nbaseline,ntime]``,
 or polarization, since I have two of each and there is no information about this in the ``axis_info`` dictionary.  So... I'm
 doing the conservative thing and ignoring any row of frequency or polarization if _any_ of the data are flagged.
 
-.. python::
+.. code-block:: python
     pl.figure(figsize=(12,12))
     colors = itertools.cycle(pl.rcParams["axes.prop_cycle"].by_key()["color"])
     for key in scdata_all:
@@ -122,3 +122,101 @@ doing the conservative thing and ignoring any row of frequency or polarization i
     _=pl.ylabel("Weight")
 
 And, indeed, doing this revealed that the super-high-weight antenna was already flagged out.
+
+
+This has been a demo of how to do some stuff with CASA to replicate plotms
+
+
+Errors
+******
+
+Along the way, I hit a ton of errors I didn't understand, so I need a record of what they mean.
+
+
+"Data shape varies, selecting first data desc id only"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This is the worst.  It means that you have a multi-ms file (mms) that has been produced by ``concat``.  It is therefore doing something *explicitly wrong* and returning only the first data description ID.
+
+Data description IDs are super counterintuitive.  They refer, afaict, to SPW numbers.  If you have an MMS with unmerged SPWs (same frequency, but you didn't merge them because of tolerances or something),
+each SPW will correspond to a single observation ID.  
+
+The solution is to explicitly ``ms.selectinit``, i.e.:
+
+.. code-block:: python
+   ms.open(vis)
+   ms.selectinit(datadescid) # note: "reset=True" appears to _override_ the selection
+   ms.select(...) # use this as needed
+   data = ms.getdata(...)
+   ms.close()
+
+but ``datadescid`` is _not_ the observation ID.  It's just... some number you need to get from the metadata.
+
+
+Mismatched data shapes when comparing two MSes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+I got into this whole thing because I wanted to compare the data in two MSes to determine where we went wrong (we did go wrong).
+
+Unfortunately, somewhere along the way, the autocorrelations got dropped.  I don't know how it happened because I never did it
+(but I wish I had earlier), but that means that now the data shapes are mismatched.
+
+The solution was to use ``ms.select`` and explicitly downselect to the baselines from MS #1 in MS #2 using MS #1's ``axis_info``: ``{'ifr_number': scdata['axis_info']['ifr_axis']['ifr_number']}``:
+
+.. code-block:: python
+    ms3 = mstool()
+    ms3.open(newvis)
+    ms3.selectinit(80) # 80? what the hell kind of datadescid is that?!
+    ms3.select({'ifr_number': scdata['axis_info']['ifr_axis']['ifr_number']})
+    newdata = ms3.getdata(['amplitude', 'uvdist', 'axis_info', 'corrected_amplitude'], ifraxis=True)
+    ms3.close()
+    newdata.keys()
+
+That downselected the baselines to match the baselines present in ``scdata``, which was MS 1.
+
+The wrong data are showing up when I open a new MS
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+I was comparing several MSes, and sometimes the data looked the same for MSes I was *dead certain* were different.
+I was right, and the problem was apparently reusing the ms tool.
+
+I didn't show the import statement above, but it was this:
+
+.. code-block:: python
+    from casatools import ms, msmetadata
+    mstool = ms
+    ms = ms()
+    msmd = msmetadata()
+
+If I tried to reuse ``ms`` as normal, like so:
+
+.. code-block:: python
+   
+   ms.open(vis1)
+   ms.selectinit(80)
+   data1 = ms.getdata(...)
+   ms.close()
+
+   ms.open(vis2)
+   ms.selectinit(80)
+   data2 = ms.getdata(...)
+   ms.close()
+
+then I can't say exactly what ``data1`` and ``data2`` are, but they weren't the same.
+
+So, instead, I created a new ``mstool`` instance each time:
+
+.. code-block:: python
+
+   ms = mstool()
+   ms.open(vis1)
+   ms.selectinit(80)
+   data1 = ms.getdata(...)
+   ms.close()
+
+   ms = mstool()
+   ms.open(vis2)
+   ms.selectinit(80)
+   data2 = ms.getdata(...)
+   ms.close()
+
