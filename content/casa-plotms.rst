@@ -220,3 +220,59 @@ So, instead, I created a new ``mstool`` instance each time:
    data2 = ms.getdata(...)
    ms.close()
 
+
+
+Put all together...
+*******************
+
+Here's some code to loop over a list of MSes and plot both amp and weight vs. uvdist for the field W43-MM3.
+
+.. code-block:: python
+
+   for vis in mses:
+       msmd.open(vis)
+       vissum = msmd.summary()
+       msmd.close()
+    
+       vobsids = [key for key in vissum if 'observationID' in key and vissum[key] != {}]
+       vddids = walk_summary(vissum, 'data description IDs')
+       fids = np.where(vissum['fields'] == 'W43-MM3')[0]
+       print(f"obsids: {vobsids}, ddids: {vddids}")
+    
+       ms = mstool()
+       ms.open(vis)
+       msdata_all = {}
+       for ddid in vddids:
+           ms.selectinit(ddid, reset=True)
+           ms.selectinit(ddid)
+           ms.select({'field_id': fids})
+           msdata_all[ddid] = ms.getdata(['amplitude', 'weight', 'uvdist', 'axis_info', 'flag', 'corrected_amplitude'], ifraxis=True)
+       ms.close()
+
+       colors = itertools.cycle(pl.rcParams["axes.prop_cycle"].by_key()["color"])
+       pl.figure(figsize=(12,12))
+    
+       for key in msdata_all:
+           weight = msdata_all[key]['weight']
+           uvd = msdata_all[key]['uvdist']
+           flag = msdata_all[key]['flag']
+           okflag = ~np.any(flag, axis=(0,1))
+           pl.semilogy(uvd[okflag], weight.reshape(weight.shape[0], uvd.size).T[okflag.ravel(), :], ',', color=next(colors), label=key, alpha=0.5)
+       pl.legend(loc='best')
+       pl.set_title(vis)
+       _=pl.xlabel("UV Distance (m)")
+       _=pl.ylabel("Weight")
+    
+       colors = itertools.cycle(pl.rcParams["axes.prop_cycle"].by_key()["color"])
+       pl.figure(figsize=(12,12))
+    
+       for key in msdata_all:
+           amp = msdata_all[key]['amplitude']
+           uvd = msdata_all[key]['uvdist']
+           flag = msdata_all[key]['flag']
+           okflag = ~np.any(flag, axis=(0,1))
+           pl.plot(uvd[okflag], amp.reshape(amp.shape[0]*amp.shape[1], uvd.size).T[okflag.ravel(), :], ',', color=next(colors), label=key, alpha=0.5)
+       pl.legend(loc='best')
+       pl.set_title(vis)
+       _=pl.xlabel("UV Distance (m)")
+       _=pl.ylabel("Amplitude")    
