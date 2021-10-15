@@ -3,7 +3,7 @@ Kazushi Sakamoto: The Kinematics and Dynamics of Molecular Gas in Galactic Cente
 :date: 2013-10-01 11:00
 :tags: iau303
 
-.. image:: |filename|/iau303/images/sakomoto.jpg
+.. image:: |static|/iau303/images/sakomoto.jpg
     :width: 800px
 
 Driving gas into Galactic centers

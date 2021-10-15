@@ -3,7 +3,7 @@ Thibault Paumard: Regularized OSIRIS 3D spectroscopy at the Circumnuclear Disk i
 :date: 2013-09-30 16:45
 :tags: iau303
 
-.. image:: |filename|/iau303/images/paumard.jpg
+.. image:: |static|/iau303/images/paumard.jpg
     :width: 800px
 
 

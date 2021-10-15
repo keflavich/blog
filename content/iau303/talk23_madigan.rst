@@ -3,7 +3,7 @@ Ann-Marie Madigan: On the Origin of Young Stars in the Galactic Center
 :date: 2013-10-01 15:05
 :tags: iau303
 
-.. image:: |filename|/iau303/images/madigan.jpg
+.. image:: |static|/iau303/images/madigan.jpg
     :width: 800px
 
 Central pc cluster

@@ -3,7 +3,7 @@ Jay Gallagher: Lessons from Comparisons between the Nuclear Region of the Milky 
 :date: 2013-09-30 14:40
 :tags: iau303
 
-.. image:: |filename|/iau303/images/gallagher.jpg
+.. image:: |static|/iau303/images/gallagher.jpg
     :width: 800px
 
 Investigation to understand assumptions made in extragalactic obs

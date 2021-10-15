@@ -6,7 +6,7 @@ Wednesday Morning talks: G2
 9:00-9:30 am Stefan Gillessen (Germany): Overview Talk Observations of the G2 Cloud at SgrA* (25 + 5 minutes)
 -------------------------------------------------------------------------------------------------------------
 
-.. image:: |filename|/iau303/images/gillessen.jpg
+.. image:: |static|/iau303/images/gillessen.jpg
     :width: 800px
 
 Summary of measurements...
@@ -74,7 +74,7 @@ Questions
 9:30-9:50 am Leo Meyer (USA): Keck Observations of G2 and SgrA (15 + 5 minutes)
 -------------------------------------------------------------------------------
 
-.. image:: |filename|/iau303/images/meyer.jpg
+.. image:: |static|/iau303/images/meyer.jpg
     :width: 800px
 
 Agree on some things:
@@ -137,7 +137,7 @@ Questions
 9:50-10:10 am Andreas Eckart (Germany): The infrared K-band identification of the DSO/G2 source from VLT and Keck data (15 + 5 minutes)
 ---------------------------------------------------------------------------------------------------------------------------------------
 
-.. image:: |filename|/iau303/images/eckart.jpg
+.. image:: |static|/iau303/images/eckart.jpg
     :width: 800px
 
 Proper motions of "dusty sources"
@@ -190,7 +190,7 @@ Questions
 10:10-10:30 am Darryl Haggard (USA): G2 as a Probe of Sgr A*'s Hot Environs: A View from Chandra and JVLA (15 + 5 minutes)
 --------------------------------------------------------------------------------------------------------------------------
 
-.. image:: |filename|/iau303/images/haggard.jpg
+.. image:: |static|/iau303/images/haggard.jpg
     :width: 800px
 
 Predicted possible x-ray emission

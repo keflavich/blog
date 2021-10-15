@@ -3,7 +3,7 @@ Betsy Mills: Hot Gas, Masers, and Cloud Collisions: The extreme properties of mo
 :date: 2013-10-01 9:50
 :tags: iau303
 
-.. image:: |filename|/iau303/images/mills.jpg
+.. image:: |static|/iau303/images/mills.jpg
     :width: 800px
 
 VLA Survey

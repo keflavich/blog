@@ -3,7 +3,7 @@ Deokkeun An: The Galactic Center: Not an active galactic nucleus
 :date: 2013-09-30 14:20
 :tags: iau303
 
-.. image:: |filename|/iau303/images/an.jpg
+.. image:: |static|/iau303/images/an.jpg
     :width: 800px
 
 Focus on infrared

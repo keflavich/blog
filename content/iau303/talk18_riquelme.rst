@@ -3,7 +3,7 @@ Denise Riquelme Vasquez: Disk/Halo Interactions: Molecular Clouds in the Galacti
 :date: 2013-10-01 11:30
 :tags: iau303
 
-.. image:: |filename|/iau303/images/riquelme.jpg
+.. image:: |static|/iau303/images/riquelme.jpg
     :width: 800px
 
 CMZ mol clds

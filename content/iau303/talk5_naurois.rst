@@ -3,7 +3,7 @@ Mathieu de Naurois: TeV Observations of GC and Starburst Systems
 :date: 2013-09-30 11:30
 :tags: iau303
 
-.. image:: |filename|/iau303/images/naurois.jpg
+.. image:: |static|/iau303/images/naurois.jpg
     :width: 800px
 
 TeV observations

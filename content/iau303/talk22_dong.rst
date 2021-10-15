@@ -3,7 +3,7 @@ Hui Dong (USA): Unveiling the massive stars beyond the three young massive star 
 :date: 2013-10-01 14:50
 :tags: iau303
 
-.. image:: |filename|/iau303/images/dong.jpg
+.. image:: |static|/iau303/images/dong.jpg
     :width: 800px
 
 

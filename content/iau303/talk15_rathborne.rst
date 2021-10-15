@@ -3,7 +3,7 @@ Jill Rathborne: ALMA’s view of the initial conditions within a massive protocl
 :date: 2013-10-01 9:30
 :tags: iau303
 
-.. image:: |filename|/iau303/images/rathborne.jpg
+.. image:: |static|/iau303/images/rathborne.jpg
     :width: 800px
 
 The Brick / Lima Bean

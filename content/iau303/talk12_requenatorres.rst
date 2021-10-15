@@ -3,7 +3,7 @@ Miquel Requena-Torres: Opening again the debate: the transient nature of the cir
 :date: 2013-09-30 16:30
 :tags: iau303
 
-.. image:: |filename|/iau303/images/requentorres.jpg
+.. image:: |static|/iau303/images/requentorres.jpg
     :width: 800px
 
 Data from many sources
