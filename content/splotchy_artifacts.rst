@@ -9,7 +9,7 @@ This image shows artifacts that look "splotchy".  They are locations clean has
 placed a negative model component where none belongs, so the residual is highly
 positive and the resulting image is negative.
 
-.. image:: |filename|/images/casa/splotchy.png
+.. image:: |static|/images/casa/splotchy.png
    :width: 600px
 
 Discussing with others, it appears that this artifact may be unique to

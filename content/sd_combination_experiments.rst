@@ -101,5 +101,5 @@ it hasn't been generalized but you can see the outline / single working case at
 <https://github.com/radio-astro-tools/uvcombine/blob/master/uvcombine/realspace_combine.py>`__.
 
 .. this is how you include images
-.. .. image:: |filename|/images/psfFfftF.png
+.. .. image:: |static|/images/psfFfftF.png
 ..    :width: 600px

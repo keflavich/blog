@@ -13,7 +13,7 @@ I have therefore been using the Gould's Belt Survey Perseus data
 as an input to do synthetic observations.
 
 It turns out this is technically challenging because CASA does some 
-`strange things <|filename|/casa_simulating.rst>`_ when importing files.
+`strange things <|static|/casa_simulating.rst>`_ when importing files.
 
 I finally got a `version
 <https://github.com/keflavich/W51_ALMA_2013.1.00308.S/commit/b046ff5c82992ef44a1dbaac303fcc6497511142>`__
@@ -64,5 +64,5 @@ DATA!  It will probably overwrite it.
 Once your ``.ms`` file is populated, you can clean it as normal.  Some
 examples:
 
-.. image:: |filename|/images/casa/perseus_in_w51_imaging.png
+.. image:: |static|/images/casa/perseus_in_w51_imaging.png
    :width: 600px

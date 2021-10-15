@@ -23,5 +23,5 @@ Comparing tclean to clean with the following parameters::
 
 Note the very bad cleaning instability creeping in in the clean image:
 
-.. image:: |filename|/images/tclean_vs_clean_7m12m.png
+.. image:: |static|/images/tclean_vs_clean_7m12m.png
    :width: 600px

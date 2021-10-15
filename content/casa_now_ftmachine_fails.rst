@@ -5,7 +5,7 @@ CASA simulated imaging: now FTMachine is whining
 :tags: casa, clean, simulation
 
 
-`A few days ago <|filename|/casa_simulation_debugging.rst>`__
+`A few days ago <|static|/casa_simulation_debugging.rst>`__
 I apparently got my broken simulator working again.  Today, in my first
 attempt to repeat those results, I... have broken it again.::
 
@@ -17,7 +17,7 @@ images are empty, pure noise (which, interestingly enough, is far from
 gaussian).
 
 I have encountered these errors `before
-<|filename|/separating_line_and_continuum.rst>`, but unfortunately did not
+<|static|/separating_line_and_continuum.rst>`, but unfortunately did not
 resolve the issue.
 
 Turns out, the difference was the .ms file I used,
@@ -72,7 +72,7 @@ without changing anything about the headers, I landed on another failed predict 
     2016-04-27 19:14:42	SEVERE	Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)	Failed to create SkyEquation
 
 Spectral Index?  I encountered this `previously
-<|filename|/casa_simulating.rst>`__, but didn't record any solution.
+<|static|/casa_simulating.rst>`__, but didn't record any solution.
 After checking the header, it appears that my files are *now* missing axes 3 and 4.
 I didn't make any changes that should cause this; the axes are just not being added
 on importfits despite being forcibly added in the command.

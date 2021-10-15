@@ -6,5 +6,5 @@ This is a title
 
 
 this is how you include images
-.. image:: |filename|/images/psfFfftF.png
+.. image:: |static|/images/psfFfftF.png
    :width: 600px

@@ -18,7 +18,7 @@ my mpl_plot_templates_ repository: imdiagnostics.py_.
 
 A good waterfall looks something like this:
 
-.. image:: |filename|/images/w51/Session17_111to186_D37_F2_data_scrubbed_flagged.png
+.. image:: |static|/images/w51/Session17_111to186_D37_F2_data_scrubbed_flagged.png
     :width: 800px
 
 The line plots show the average and standard deviation along each axis; the
@@ -30,7 +30,7 @@ Helium fromt he data as presented).
 Notably, the noise correlates with the continuum brightness - this is expected;
 higher TSYS leads to higher noise.
 
-.. image:: |filename|/images/w51/Session22_10to41_D37_F2_data_scrubbed_flagged.png
+.. image:: |static|/images/w51/Session22_10to41_D37_F2_data_scrubbed_flagged.png
     :width: 800px
 
 This is an example of a data set with some extremely irritating artifacts.

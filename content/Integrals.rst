@@ -416,7 +416,7 @@ numerical result with 50,000 data points plus a correction for the
 numerical noise (the only visible discrepancy is for a perfect lognormal at
 high :math:`\sigma_V`):
 
-.. image:: |filename|/images/rho1_varyT_colorSigma.png
+.. image:: |static|/images/rho1_varyT_colorSigma.png
     :width: 800
 
 However, `Hopkins 2013`_ also found that simulations generally produced
@@ -431,7 +431,7 @@ equivalent.  The highest :math:`\sigma_s` observed in any of the simulations
 shown in `Hopkins 2013`_ was about :math:`\sigma_s=4` (marked with a black
 square below), so the maximum :math:`\rho_M/\rho_V \sim 10^2`.
 
-.. image:: |filename|/images/TSigma.png
+.. image:: |static|/images/TSigma.png
     :width: 800
 
 .. _Hopkins 2013: http://adsabs.harvard.edu/abs/2013MNRAS.430.1880H

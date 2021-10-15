@@ -11,7 +11,7 @@ the cubes into chunks (`source
 
 For the most part, this works well, but there are some serious problems:
 
-.. image:: |filename|/images/casa/spectrum_with_badchunk.png
+.. image:: |static|/images/casa/spectrum_with_badchunk.png
    :width: 600px
 
 Note the range from 233.8-234 GHz.  It has a continuum level way above the
@@ -19,10 +19,10 @@ rest.  This is utter nonsense, and turns out to be due to some imaging error.
 The first image below shows a "good" chunk of the cube, the second image shows
 a "bad" chunk.
 
-.. image:: |filename|/images/casa/w51_cube_chunk_compare_good.png
+.. image:: |static|/images/casa/w51_cube_chunk_compare_good.png
    :width: 600px
 
-.. image:: |filename|/images/casa/w51_cube_chunk_compare_bad.png
+.. image:: |static|/images/casa/w51_cube_chunk_compare_bad.png
    :width: 600px
 
 It is clear that the second image was restore using a too-large beam, and this is verified by examining the header:

@@ -15,9 +15,9 @@ W51 is at a distance of 5.1 kpc, so this field of view is equivalent to 8.1 pc, 
 
 The linewidth is 12.7-15.2 km/s (H2CO 4-3, CO 2-1) FWHM averaged over this full field.
 
-.. image:: |filename|/images/w51/gaussfit_h2co4-3_velocity.png
+.. image:: |static|/images/w51/gaussfit_h2co4-3_velocity.png
    :width: 200px
-.. image:: |filename|/images/w51/gaussfit_12co2-1_velocity.png
+.. image:: |static|/images/w51/gaussfit_12co2-1_velocity.png
    :width: 200px
 
 
@@ -26,44 +26,44 @@ Images of the spectra, with some lines identified, are shown here (open them in
 a new tab to see the full resolution).  The baselines aren't great, but it's
 easy to fit a local linear baseline around any of the fairly narrow lines.
 
-.. image:: |filename|/images/w51/lineid_avg_W51_12CO_merge.png
+.. image:: |static|/images/w51/lineid_avg_W51_12CO_merge.png
    :width: 200px
 
-.. image:: |filename|/images/w51/lineid_avg_W51_217GHz_merge.png
+.. image:: |static|/images/w51/lineid_avg_W51_217GHz_merge.png
    :width: 200px
 
-.. image:: |filename|/images/w51/lineid_avg_W51_218GHz_merge.png
+.. image:: |static|/images/w51/lineid_avg_W51_218GHz_merge.png
    :width: 200px
 
-.. image:: |filename|/images/w51/lineid_avg_W51_232GHz_merge.png
+.. image:: |static|/images/w51/lineid_avg_W51_232GHz_merge.png
    :width: 200px
 
-.. image:: |filename|/images/w51/lineid_avg_W51_291GHz_merge.png
+.. image:: |static|/images/w51/lineid_avg_W51_291GHz_merge.png
    :width: 200px
 
-.. image:: |filename|/images/w51/lineid_avg_W51_293GHz_merge.png
+.. image:: |static|/images/w51/lineid_avg_W51_293GHz_merge.png
    :width: 200px
 
 
 The same images, but not zoomed in the y-direction.  Note that 12CO 2-1 is very
 near the edge of the band; it peaks around 20 K:
 
-.. image:: |filename|/images/w51/avg_W51_12CO_merge.png
+.. image:: |static|/images/w51/avg_W51_12CO_merge.png
    :width: 200px
 
-.. image:: |filename|/images/w51/avg_W51_217GHz_merge.png
+.. image:: |static|/images/w51/avg_W51_217GHz_merge.png
    :width: 200px
 
-.. image:: |filename|/images/w51/avg_W51_218GHz_merge.png
+.. image:: |static|/images/w51/avg_W51_218GHz_merge.png
    :width: 200px
 
-.. image:: |filename|/images/w51/avg_W51_232GHz_merge.png
+.. image:: |static|/images/w51/avg_W51_232GHz_merge.png
    :width: 200px
 
-.. image:: |filename|/images/w51/avg_W51_291GHz_merge.png
+.. image:: |static|/images/w51/avg_W51_291GHz_merge.png
    :width: 200px
 
-.. image:: |filename|/images/w51/avg_W51_293GHz_merge.png
+.. image:: |static|/images/w51/avg_W51_293GHz_merge.png
    :width: 200px
 
 

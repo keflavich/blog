@@ -46,12 +46,12 @@ There is a complete example demonstrating its use `here`_.
 
 In short, though, it allows you to describe paths like this:
 
-.. image:: |filename|/images/paths_i05358.png
+.. image:: |static|/images/paths_i05358.png
    :width: 800px
 
 and extract them into position-velocity diagrams like this:
 
-.. image:: |filename|/images/pv_i05358.png
+.. image:: |static|/images/pv_i05358.png
    :width: 800px
 
 Postscript: Figshare

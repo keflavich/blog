@@ -35,10 +35,10 @@ is generalized such that you can input other mass functions.  McKee & Offner
 only used the `Chabrier 2005`_ mass function; I include the `Kroupa 2001`_ mass
 function as well for comparison
 
-.. image:: |filename|/images/steadystate_pmf_chabrier_mmax3.png
+.. image:: |static|/images/steadystate_pmf_chabrier_mmax3.png
    :width: 400px
 
-.. image:: |filename|/images/steadystate_pmf_kroupa_mmax3.png
+.. image:: |static|/images/steadystate_pmf_kroupa_mmax3.png
    :width: 400px
 
 The comparison between the Chabrier and Kroupa mass functions is shown above.
@@ -54,10 +54,10 @@ nontrivial to compute, especially for the modified PMFs.
 The mass-weighted versions of these may be more familiar, and they are more
 similar to the P(log M) version used in `McKee and Offner`_ and `Chabrier 2005`_:
 
-.. image:: |filename|/images/steadystate_pmf_chabrier_integral_mmax3.png
+.. image:: |static|/images/steadystate_pmf_chabrier_integral_mmax3.png
    :width: 400px
 
-.. image:: |filename|/images/steadystate_pmf_kroupa_integral_mmax3.png
+.. image:: |static|/images/steadystate_pmf_kroupa_integral_mmax3.png
    :width: 400px
 
 The Chabrier version is a near-perfect match to Figure 3 of `McKee and
@@ -67,10 +67,10 @@ feature of this plot is that it cuts off at 3 Msun.  I want to examine the same
 distribution at higher masses.
 
 
-.. image:: |filename|/images/taperedaccretion_pmf_chabrier_mmax3.png
+.. image:: |static|/images/taperedaccretion_pmf_chabrier_mmax3.png
    :width: 400px
 
-.. image:: |filename|/images/taperedaccretion_pmf_kroupa_mmax3.png
+.. image:: |static|/images/taperedaccretion_pmf_kroupa_mmax3.png
    :width: 400px
            
 The above plots are the same as before, but with tapered accretion following
@@ -87,10 +87,10 @@ the PMF is dominated by the highest-mass sources, since in all cases they take
 the longest to form.
 
 
-.. image:: |filename|/images/steadystate_pmf_chabrier_mmax120.png
+.. image:: |static|/images/steadystate_pmf_chabrier_mmax120.png
    :width: 400px
 
-.. image:: |filename|/images/steadystate_pmf_kroupa_mmax120.png
+.. image:: |static|/images/steadystate_pmf_kroupa_mmax120.png
    :width: 400px
 
 The accretion model changes the slope and the overall ratio of high- to

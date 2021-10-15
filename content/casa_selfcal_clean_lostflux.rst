@@ -11,14 +11,14 @@ the central field of Sgr B2 (`source
 <https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m_te/selfcal_centralfield.py>`_)
 and it worked great:
 
-.. image:: |filename|/images/casa/sgrb2_selfcal_good.png
+.. image:: |static|/images/casa/sgrb2_selfcal_good.png
    :width: 600px
 
 That image is actually from `self-calibrating the whole field
 <https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m_te/selfcal_continuum.py>`_,
 which also worked great.  Except, it deleted all the flux outside of the bright regions:
 
-.. image:: |filename|/images/casa/sgrb2_selfcal_bad.png
+.. image:: |static|/images/casa/sgrb2_selfcal_bad.png
    :width: 600px
 
 This is awful.  It is just deleting flux!  I had previously thought that the

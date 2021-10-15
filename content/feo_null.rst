@@ -53,10 +53,10 @@ background image is the H2 (orange) + FeII (cyan) + K-band (mostly white) I
 made for my `2015 paper with John Bally
 <http://adsabs.harvard.edu/abs/2015A%26A...579A.130B>`_.
 
-.. image:: |filename|/images/feo/aperture_overlays.png
+.. image:: |static|/images/feo/aperture_overlays.png
    :width: 600px
 
 
-.. image:: |filename|/images/feo/BulletHeads4_alllines.png
+.. image:: |static|/images/feo/BulletHeads4_alllines.png
    :width: 600px
 

@@ -61,19 +61,19 @@ use `this example
 
 Onto some comparisons from `astropy issue 4374 <https://github.com/astropy/astropy/pull/4374>`_:
 
-.. image:: |filename|/images/time_vs_mem.png
+.. image:: |static|/images/time_vs_mem.png
    :width: 600px
 
-.. image:: |filename|/images/psfTfftT.png
+.. image:: |static|/images/psfTfftT.png
    :width: 600px
 
-.. image:: |filename|/images/psfTfftF.png
+.. image:: |static|/images/psfTfftF.png
    :width: 600px
 
-.. image:: |filename|/images/psfFfftT.png
+.. image:: |static|/images/psfFfftT.png
    :width: 600px
 
-.. image:: |filename|/images/psfFfftF.png
+.. image:: |static|/images/psfFfftF.png
    :width: 600px
 
 

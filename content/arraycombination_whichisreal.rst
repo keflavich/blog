@@ -14,7 +14,7 @@ That should not happen.
 
 This image shows the problem.  7m+12m left, 12m-only right:
 
-.. image:: |filename|/images/w51/7m12m_vs_12m.png
+.. image:: |static|/images/w51/7m12m_vs_12m.png
    :width: 600px
 
 Note the sharp features on the left and the small tail (filament) toward the
@@ -26,7 +26,7 @@ Which features are real?  How do we decide?
 I really want to believe the 12m-only data, but I am very worried that it is
 artificially enhanced by sidelobes from the e8 filament:
 
-.. image:: |filename|/images/w51/7m12m_vs_12m_zoomout.png
+.. image:: |static|/images/w51/7m12m_vs_12m_zoomout.png
    :width: 600px
 
 There is a ~20-sigma feature between e8 and e2 along the e8 filament axis,

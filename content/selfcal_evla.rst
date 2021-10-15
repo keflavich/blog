@@ -11,7 +11,7 @@ why.
 
 This is a clue, though:
 
-.. image:: |filename|/images/w51/selfcal_phasecal_vs_time.png
+.. image:: |static|/images/w51/selfcal_phasecal_vs_time.png
    :width: 600px
 
 For many of the antennae, especially those in C array, self-calibration results
@@ -46,7 +46,7 @@ an integration.  I increased the S/N cutoff to 5 too.
 
 There are still some "noisy" phases, even in the 3rd iteration:
 
-.. image:: |filename|/images/w51/selfcal_phasecal_vs_time_3rditer.png
+.. image:: |static|/images/w51/selfcal_phasecal_vs_time_3rditer.png
    :width: 600px
 
 I think more iterations may be necessary, but I will also increase the S/N

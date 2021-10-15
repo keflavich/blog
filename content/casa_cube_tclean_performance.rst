@@ -19,7 +19,7 @@ blocks of channels.  The tests were run with savemodel='none' on a lustre node :
     'speedtest_nchan80_individual': 9298,
 
 
-.. image:: |filename|/images/casa/cube_performance.png
+.. image:: |static|/images/casa/cube_performance.png
    :width: 600px
 
 The fit is y = 98x + 237

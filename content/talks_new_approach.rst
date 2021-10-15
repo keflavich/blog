@@ -53,8 +53,8 @@ of the URL, then use your browser to print and save to pdf.
 Some pictures of the impending failure.  My mac doesn't close any more, and
 the charger cable has frayed severely:
 
-.. image:: |filename|/images/frayed_adapter.jpg
+.. image:: |static|/images/frayed_adapter.jpg
    :width: 600px
 
-.. image:: |filename|/images/lappy_wont_close.jpg
+.. image:: |static|/images/lappy_wont_close.jpg
    :width: 600px

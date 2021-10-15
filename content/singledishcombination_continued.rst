@@ -11,13 +11,13 @@ In principle, smoothing the 12m data to the 7m resolution should at most
 recover the 7m brightness; instead it seems that the 12m data significantly
 overpredict the 7m brightness.
 
-.. image:: |filename|/images/sgrb2/array_imagecomparison.png
+.. image:: |static|/images/sgrb2/array_imagecomparison.png
    :width: 600px
 
 This discrepancy is also evident in the power spectra, where there appears to be missing flux
 on 20-100 arcsecond scales.
 
-.. image:: |filename|/images/sgrb2/array_pspeccomparison.png
+.. image:: |static|/images/sgrb2/array_pspeccomparison.png
    :width: 600px
 
 So maybe it's just that the 7m data are bad?
@@ -42,7 +42,7 @@ data.  You just have to choose a scale, or a weighting function, and go with
 it.  As long as the weights are conservative (i.e., sum to 1), the resulting
 image should in some sense be correct.
 
-.. image:: |filename|/images/sgrb2/combination_weighting_scales.png
+.. image:: |static|/images/sgrb2/combination_weighting_scales.png
    :width: 600px
 
 In that figure, the weighting scheme for the large angular scale data was set
@@ -55,5 +55,5 @@ The effect is more pronounced if we just combine the 12m+TP data, ignoring the
 7m data (which might be wrong anyway).  For weighting FWHM above 30 arcseconds,
 the interferometric data dominates the map.
 
-.. image:: |filename|/images/sgrb2/combination_weighting_scales_no7m.png
+.. image:: |static|/images/sgrb2/combination_weighting_scales_no7m.png
    :width: 600px

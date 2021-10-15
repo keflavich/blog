@@ -82,5 +82,5 @@ beam), which means setting the total flux in the interferometer image to zero,
 the process is guaranteed to be flux conserving.
 
 .. this is how you include images
-.. .. image:: |filename|/images/psfFfftF.png
+.. .. image:: |static|/images/psfFfftF.png
 ..    :width: 600px

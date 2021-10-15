@@ -19,7 +19,7 @@ and when I image the cube, there is a jump at one channel that occurs because
 the resolution suddenly changes either because SPW3 (the lo-res SPW) is not
 included or because the hi-res one suddenly is.
 
-.. image:: |filename|/images/w51/cvel_jump.png
+.. image:: |static|/images/w51/cvel_jump.png
    :width: 400px
 
 It doesn't look like there's any obvious workaround at the moment, but I'll

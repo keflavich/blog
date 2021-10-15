@@ -74,7 +74,7 @@ disagreement) in the radius as a function of mass.  The same comparison is
 shown below; these figures match `Klassen+ 2012`_ Figures 1 and 2 (though I
 don't plot exactly the same things).
 
-.. image:: |filename|/images/Klassen_vs_Hosokawa_model_comparison.png
+.. image:: |static|/images/Klassen_vs_Hosokawa_model_comparison.png
    :width: 600px
 
 At least in priniple, these tools give us a mechanism to determine L(M, M_f),
@@ -121,7 +121,7 @@ reaches 10 Lsun.  The most massive star seems to shrink below its main sequence
 size prior to reaching the main sequence, which is a little weird.  I'm not
 sure if I trust that.
 
-.. image:: |filename|/images/Klassen_turbulentcore_model.png
+.. image:: |static|/images/Klassen_turbulentcore_model.png
    :width: 600px
 
 Further exploration of accretion history parameter space is future work.

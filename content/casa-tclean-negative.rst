@@ -12,7 +12,7 @@ In this image, the *left* is the clean image, which doesn't make any sense; it
 looks like it should be a residual image but it is not.  2nd image is the clean
 components (negative!!), 3rd is the residual, 4th is the dirty map.
 
-.. image:: |filename|/images/casa/bad_cleancomps.png
+.. image:: |static|/images/casa/bad_cleancomps.png
    :width: 600px
 
 One tricky thing for this particular image is that the emission is real, BUT it

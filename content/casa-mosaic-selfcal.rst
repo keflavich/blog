@@ -26,5 +26,5 @@ into another MS.  From there, a phase-only selfcal is straigtforward (script__).
 
 __ https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m/selfcal_spw1_center.py
 
-.. image:: |filename|/images/sgrb2/selfcal_compare.png
+.. image:: |static|/images/sgrb2/selfcal_compare.png
    :width: 800px

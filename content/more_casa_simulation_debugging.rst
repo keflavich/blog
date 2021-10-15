@@ -10,8 +10,8 @@ More CASA simulation & debugging
 your header)
 
 I'm trying to repeat an experiment very similar to 
-`previous <|filename|/casa_simulating.rst>`__
-`simulation work <|filename|/simulated_imaging.rst>`__
+`previous <|static|/casa_simulating.rst>`__
+`simulation work <|static|/simulated_imaging.rst>`__
 in order to quantify my completeness and largest angular scales
 by injecting synthetic signal into the real UV data.
 
