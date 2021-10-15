@@ -11,12 +11,15 @@ This snippet will let you grab the tables and create a mapping from date to arra
 
 However, it's a HUGE waste of time, because these data are stored directly in the MS!
 
+This is the right way:
 .. code:: python
 
    tb.open(vis+'/ASDM_EXECBLOCK')
    tb.getcol('configName')
    # array(['C43-3'], dtype='<U16')
 
+
+This is the hacky, reconstructed from the website, bad way:
 
 .. code:: python
 

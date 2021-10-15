@@ -227,6 +227,8 @@ Put all together...
 
 Here's some code to loop over a list of MSes and plot both amp and weight vs. uvdist for the field W43-MM3.
 
+Of course this crashed immediately because it exceeded the available memory.
+
 .. code-block:: python
 
    for vis in mses:
