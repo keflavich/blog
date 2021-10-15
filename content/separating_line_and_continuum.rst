@@ -16,6 +16,7 @@ files using the table toolkit
 <https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/630c60e7e57ea7b57877d66b15860b26419a5552/script_12m/uvcontsub_test.py#L17>`_.
 
 .. image:: |static|/images/w51/oversubtracted_spectrum.png
+   :alt: Oversubtracted spectrum
    :width: 400px
 
 Another approach I wanted to try was to image the whole cube, take the minimum

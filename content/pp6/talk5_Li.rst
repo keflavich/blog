@@ -70,7 +70,7 @@ or parallel
 
 Clouds flatten: collapse only *along* b-fields.  Nice top illustration
 
-.. image:: |filename|/images/talk5_top.jpg
+.. image:: |static|/images/talk5_top.jpg
     :width: 800px
 
 Disk formation:
@@ -95,7 +95,7 @@ Orion has ordered B-fields from large to small scales
 
 In general, large-scale fields lead to squishing along B-fields, small-scale
 
-.. image:: |filename|/images/talk5_conclusion.jpg
+.. image:: |static|/images/talk5_conclusion.jpg
     :width: 800px
 
 Questions

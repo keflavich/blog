@@ -27,10 +27,10 @@ confusion.  If you believe that there are genuine point sources in the 1.1 mm
 maps, the $\\alpha_{ps}=1$ would actually be very difficult to deal with since
 many extracted sources would actually be part of the background.
 
-.. image:: |filename|/bgps/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp5.0E-05_sky-2.0_seed00_peak5.0E-03_smooth_withptsrc_label_compare.png
+.. image:: |static|/bgps/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp5.0E-05_sky-2.0_seed00_peak5.0E-03_smooth_withptsrc_label_compare.png
     :width: 800px
 
-.. image:: |filename|/bgps/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp5.0E-05_sky-1.0_seed00_peak5.0E-03_smooth_withptsrc_label_compare.png
+.. image:: |static|/bgps/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp5.0E-05_sky-1.0_seed00_peak5.0E-03_smooth_withptsrc_label_compare.png
     :width: 800px
 
 
