@@ -16,19 +16,19 @@ https://github.com/ALMA-IMF/notebooks/blob/master/ConfettiQA.ipynb
 Preliminaries: skip this
 ------------------------
 
-.. code:: ipython3
+.. code:: python
 
     from spectral_cube import SpectralCube
     import warnings
     warnings.simplefilter('ignore')
 
-.. code:: ipython3
+.. code:: python
 
     %matplotlib inline
     import pylab as pl
     from astropy.visualization import simple_norm
 
-.. code:: ipython3
+.. code:: python
 
     from astropy import units as u
 
@@ -40,18 +40,18 @@ This is the G008.67 continuum image in Band 3.
 It has “confetti” pieces in the model image, but there is no problem: no
 artificial point sources are introduced.
 
-.. code:: ipython3
+.. code:: python
 
     contmodel = SpectralCube.read('/orange/adamginsburg/ALMA_IMF/2017.1.01355.L/imaging_results/G008.67_B3_uid___A001_X1296_X1c1_continuum_merged_12M_robust-0.5_selfcal5_finaliter.model.tt0', format='casa_image')
     contimage = SpectralCube.read('/orange/adamginsburg/ALMA_IMF/2017.1.01355.L/imaging_results/G008.67_B3_uid___A001_X1296_X1c1_continuum_merged_12M_robust-0.5_selfcal5_finaliter.image.tt0', format='casa_image')
     contresid = SpectralCube.read('/orange/adamginsburg/ALMA_IMF/2017.1.01355.L/imaging_results/G008.67_B3_uid___A001_X1296_X1c1_continuum_merged_12M_robust-0.5_selfcal5_finaliter.residual.tt0', format='casa_image')
 
-.. code:: ipython3
+.. code:: python
 
     # zoom in
     contslc = (0, slice(950,1050), slice(1900,2050))
 
-.. code:: ipython3
+.. code:: python
 
     pl.figure(figsize=(15,15))
     pl.imshow(contmodel[contslc].value, norm=simple_norm(contmodel[contslc].value, max_percent=99.995, stretch='asinh'), interpolation='none', origin='lower')
@@ -62,7 +62,7 @@ artificial point sources are introduced.
 .. image:: images/output_8_0.png
 
 
-.. code:: ipython3
+.. code:: python
 
     pl.figure(figsize=(15,15))
     im = contimage[0][contslc[1:]].value
@@ -74,7 +74,7 @@ artificial point sources are introduced.
 .. image:: images/output_9_0.png
 
 
-.. code:: ipython3
+.. code:: python
 
     pl.figure(figsize=(15,15))
     im = contresid[0][contslc[1:]].value
@@ -91,13 +91,13 @@ G008.67 Cube
 
 The G008.67 cube *does* have a problem!
 
-.. code:: ipython3
+.. code:: python
 
     cube = SpectralCube.read('/orange/adamginsburg/ALMA_IMF/2017.1.01355.L/imaging_results/G008.67_B3_spw0_12M_n2hp.image', format='casa_image').with_spectral_unit(u.km/u.s, velocity_convention='radio')
     resid = SpectralCube.read('/orange/adamginsburg/ALMA_IMF/2017.1.01355.L/imaging_results/G008.67_B3_spw0_12M_n2hp.residual', format='casa_image').with_spectral_unit(u.km/u.s, velocity_convention='radio')
     model = SpectralCube.read('/orange/adamginsburg/ALMA_IMF/2017.1.01355.L/imaging_results/G008.67_B3_spw0_12M_n2hp.model', format='casa_image').with_spectral_unit(u.km/u.s, velocity_convention='radio')
 
-.. code:: ipython3
+.. code:: python
 
     xslc = slice(1620,1654)
     yslc = slice(709,743)
@@ -115,7 +115,7 @@ There is no comparable source in either of the adjacent panels!
 That means either there is a genuinely pointlike source with linewidth
 much narrower than 0.77 km/s, or this source is fake.
 
-.. code:: ipython3
+.. code:: python
 
     specpix = np.arange(94,94+9)
     panels = cube[cubeslice].plot_channel_maps(3,3,specpix, fig_smallest_dim_inches=15, norm=simple_norm(cube[cube1slice].value))
@@ -127,7 +127,7 @@ much narrower than 0.77 km/s, or this source is fake.
 
 It is caused by one hot (bright) pixel surrounded by many faint pixels
 
-.. code:: ipython3
+.. code:: python
 
     panels = model[cubeslice].plot_channel_maps(3,3,specpix, fig_smallest_dim_inches=15, norm=simple_norm(model[cube1slice].value, stretch='log', max_percent=99.93))
 
@@ -139,7 +139,7 @@ It is caused by one hot (bright) pixel surrounded by many faint pixels
 There is no sign of it in the residual - it is apparently canceled out
 between positive and negative components added to the model
 
-.. code:: ipython3
+.. code:: python
 
     panels = resid[cubeslice].plot_channel_maps(3,3,specpix, fig_smallest_dim_inches=15)
 
@@ -150,7 +150,7 @@ between positive and negative components added to the model
 
 The manifestation in the spectra is a very sharp peak at just one pixel.
 
-.. code:: ipython3
+.. code:: python
 
     pl.figure(figsize=(14,6))
     xx,yy=1638,725
@@ -162,11 +162,6 @@ The manifestation in the spectra is a very sharp peak at just one pixel.
 
 
 
-.. parsed-literal::
-
-    [<matplotlib.lines.Line2D at 0x2b2e2ba1b610>]
-
-
 
 
 .. image:: images/output_21_1.png
@@ -174,7 +169,7 @@ The manifestation in the spectra is a very sharp peak at just one pixel.
 
 Pixels to either side look fine
 
-.. code:: ipython3
+.. code:: python
 
     pl.figure(figsize=(14,14))
     ii = 1
@@ -198,7 +193,7 @@ When is confetti *not* a problem?
 
 Here is an example you might think is “confetti”, but is a *real* source
 
-.. code:: ipython3
+.. code:: python
 
     xc, yc = 1812, 905
     xslc = slice(xc-12,xc+12)
@@ -206,7 +201,7 @@ Here is an example you might think is “confetti”, but is a *real* source
     cubeslice = (slice(94,94+9), yslc, xslc)
     cube1slice = (94, yslc, xslc)
 
-.. code:: ipython3
+.. code:: python
 
     specpix = np.arange(9)
     panels = cube[cubeslice].plot_channel_maps(3,3,specpix, fig_smallest_dim_inches=15, norm=simple_norm(cube[cube1slice].value, min_cut=cube[cubeslice].min().value, max_cut=cube[cubeslice].max().value, stretch='linear'))
@@ -216,7 +211,7 @@ Here is an example you might think is “confetti”, but is a *real* source
 .. image:: images/output_26_0.png
 
 
-.. code:: ipython3
+.. code:: python
 
     panels = model[cubeslice].plot_channel_maps(3,3,specpix, fig_smallest_dim_inches=15, norm=simple_norm(model[cube1slice].value, stretch='asinh', max_percent=99.9, min_cut=model[cubeslice].min().value, max_cut=model[cubeslice].max().value, ))
 
@@ -225,7 +220,7 @@ Here is an example you might think is “confetti”, but is a *real* source
 .. image:: images/output_27_0.png
 
 
-.. code:: ipython3
+.. code:: python
 
     panels = resid[cubeslice].plot_channel_maps(3,3,specpix, fig_smallest_dim_inches=15)
 
@@ -234,7 +229,7 @@ Here is an example you might think is “confetti”, but is a *real* source
 .. image:: images/output_28_0.png
 
 
-.. code:: ipython3
+.. code:: python
 
     pl.figure(figsize=(14,14))
     ii = 1

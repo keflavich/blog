@@ -14,6 +14,7 @@ This is harder than it sounds, particularly for concatenated data sets.
 First step is that you need to assemble the metadata:
 
 .. code-block:: python
+
     msmd.open(scvis)
     scsum = msmd.summary()
     msmd.close()
@@ -27,6 +28,7 @@ in the metadata are not present in the data), this tool gets and flattens the re
 information:
 
 .. code-block:: python
+
     def walk_summary(summary, key):
         if isinstance(summary, dict):
             try:
@@ -46,6 +48,7 @@ information:
 Then we grab the usable observation and data description IDs:                
 
 .. code-block:: python
+
     obsids = [key for key in scsum if 'observationID' in key and scsum[key] != {}]
     ddids = walk_summary(scsum, 'data description IDs')
 
@@ -55,6 +58,7 @@ because I was getting weird errors where ``ms.close()`` followed by ``ms.open(fn
 resetting, which resulted in ``ms.getdata`` returning the same data for two different MSes - BAD!
 
 .. code-block:: python
+
     ms6 = mstool()
     ms6.open(scvis)
     scdata_all = {}
@@ -68,6 +72,7 @@ resetting, which resulted in ``ms.getdata`` returning the same data for two diff
 Then plotting is a hassle, but at least is not insane - it's just normal array manipulation:
 
 .. code-block:: python
+
     pl.figure(figsize=(12,12))
     colors = itertools.cycle(pl.rcParams["axes.prop_cycle"].by_key()["color"])
     for key in scdata_all: # the keys are SPW numbers from the multi-MS file
@@ -109,6 +114,7 @@ or polarization, since I have two of each and there is no information about this
 doing the conservative thing and ignoring any row of frequency or polarization if _any_ of the data are flagged.
 
 .. code-block:: python
+
     pl.figure(figsize=(12,12))
     colors = itertools.cycle(pl.rcParams["axes.prop_cycle"].by_key()["color"])
     for key in scdata_all:
@@ -144,6 +150,7 @@ each SPW will correspond to a single observation ID.
 The solution is to explicitly ``ms.selectinit``, i.e.:
 
 .. code-block:: python
+
    ms.open(vis)
    ms.selectinit(datadescid) # note: "reset=True" appears to _override_ the selection
    ms.select(...) # use this as needed
@@ -164,6 +171,7 @@ Unfortunately, somewhere along the way, the autocorrelations got dropped.  I don
 The solution was to use ``ms.select`` and explicitly downselect to the baselines from MS #1 in MS #2 using MS #1's ``axis_info``: ``{'ifr_number': scdata['axis_info']['ifr_axis']['ifr_number']}``:
 
 .. code-block:: python
+
     ms3 = mstool()
     ms3.open(newvis)
     ms3.selectinit(80) # 80? what the hell kind of datadescid is that?!
@@ -183,6 +191,7 @@ I was right, and the problem was apparently reusing the ms tool.
 I didn't show the import statement above, but it was this:
 
 .. code-block:: python
+
     from casatools import ms, msmetadata
     mstool = ms
     ms = ms()
