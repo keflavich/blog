@@ -8,6 +8,7 @@ Reading a getsf catalog
 To read a `getsf <http://irfu.cea.fr/Pisp/alexander.menshchikov/#method>`_ catalog, you can do:
 
 .. code:: python
+
     from astropy.io import ascii
     cat = ascii.read('getsf.cat', data_start=0, format='commented_header', header_start=110, comment=\"!\")
 
