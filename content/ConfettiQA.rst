@@ -59,7 +59,7 @@ artificial point sources are introduced.
 
 
 
-.. image:: images/output_8_0.png
+.. image:: |filename|/images/output_8_0.png
 
 
 .. code:: python
@@ -71,7 +71,7 @@ artificial point sources are introduced.
 
 
 
-.. image:: images/output_9_0.png
+.. image:: |filename|/images/output_9_0.png
 
 
 .. code:: python
@@ -83,7 +83,7 @@ artificial point sources are introduced.
 
 
 
-.. image:: images/output_10_0.png
+.. image:: |filename|/images/output_10_0.png
 
 
 G008.67 Cube
@@ -122,7 +122,7 @@ much narrower than 0.77 km/s, or this source is fake.
 
 
 
-.. image:: images/output_15_0.png
+.. image:: |filename|/images/output_15_0.png
 
 
 It is caused by one hot (bright) pixel surrounded by many faint pixels
@@ -133,7 +133,7 @@ It is caused by one hot (bright) pixel surrounded by many faint pixels
 
 
 
-.. image:: images/output_17_0.png
+.. image:: |filename|/images/output_17_0.png
 
 
 There is no sign of it in the residual - it is apparently canceled out
@@ -145,7 +145,7 @@ between positive and negative components added to the model
 
 
 
-.. image:: images/output_19_0.png
+.. image:: |filename|/images/output_19_0.png
 
 
 The manifestation in the spectra is a very sharp peak at just one pixel.
@@ -164,7 +164,7 @@ The manifestation in the spectra is a very sharp peak at just one pixel.
 
 
 
-.. image:: images/output_21_1.png
+.. image:: |filename|/images/output_21_1.png
 
 
 Pixels to either side look fine
@@ -185,7 +185,7 @@ Pixels to either side look fine
 
 
 
-.. image:: images/output_23_0.png
+.. image:: |filename|/images/output_23_0.png
 
 
 When is confetti *not* a problem?
@@ -208,7 +208,7 @@ Here is an example you might think is “confetti”, but is a *real* source
 
 
 
-.. image:: images/output_26_0.png
+.. image:: |filename|/images/output_26_0.png
 
 
 .. code:: python
@@ -217,7 +217,7 @@ Here is an example you might think is “confetti”, but is a *real* source
 
 
 
-.. image:: images/output_27_0.png
+.. image:: |filename|/images/output_27_0.png
 
 
 .. code:: python
@@ -226,7 +226,7 @@ Here is an example you might think is “confetti”, but is a *real* source
 
 
 
-.. image:: images/output_28_0.png
+.. image:: |filename|/images/output_28_0.png
 
 
 .. code:: python
@@ -245,7 +245,7 @@ Here is an example you might think is “confetti”, but is a *real* source
 
 
 
-.. image:: images/output_29_0.png
+.. image:: |filename|/images/output_29_0.png
 
 
 Conclusion
