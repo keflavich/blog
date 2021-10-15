@@ -1,3 +1,5 @@
+Installing Miriad
+=================
 :author: Adam <keflavich@gmail.com>
 :tags: miriad
 :date: 2015-09-14
