@@ -2,12 +2,13 @@
 """
 Attempt to create a one-step ipynb -> rst converter
 """
+import os
 from nbconvert import RSTExporter
 
 def export(nbname, outfilename=None):
     exportRST = RSTExporter()
     # exclude default paths
-    exportRST.template_path = ['.','/Users/adam/repos/blog'] 
+    exportRST.template_path = ['.',os.path.expanduser('~/repos/blog')]
 
     (body,resources) = exportRST.from_filename(nbname)
 
