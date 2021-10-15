@@ -2,7 +2,7 @@
 """
 Attempt to create a one-step ipynb -> rst converter
 """
-from IPython.nbconvert.exporters import RSTExporter
+from nbconvert import RSTExporter
 
 def export(nbname, outfilename=None):
     exportRST = RSTExporter()
@@ -22,6 +22,12 @@ def export(nbname, outfilename=None):
 if __name__ == "__main__":
     import sys
 
-    print sys.argv
+    print(sys.argv)
 
     body,resources = export(*sys.argv[1:])
+
+    keys = sorted(resources['outputs'].keys())
+    for key in keys:
+        print(key)
+        with open(key, 'wb') as fh:
+            fh.write(resources['outputs'][key])
