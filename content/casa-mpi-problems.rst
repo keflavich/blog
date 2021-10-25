@@ -95,3 +95,22 @@ W51 spw2 had similar:
 
 
 I have not found solutions to any of these; the workaround appears to be just to not use MPI.
+
+
+EDIT: here's another one
+
+
+.. code::
+
+    2021-10-22 22:36:53     WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-2 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336) Exception for chan range [55, 109] ---   Setting masked pixels to zero for input startmodel : Error (Resource deadlock avoided) when acquiring lock on /blue/adamginsburg/adamginsburg/almaimf/workdir/G327.29_B6_spw1_12M_sio.contcube.model/table.lock
+    ##################################
+    #############################
+    Exception: Setting masked pixels to zero for input startmodel : Error (Resource deadlock avoided) when acquiring lock on /blue/adamginsburg/adamginsburg/almaimf/workdir/G327.29_B6_spw1_12M_sio.contcube.model/table.lock
+    2021-10-22 22:36:54     WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-4 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336) Exception for chan range [165, 219] ---   Setting masked pixels to zero for input startmodel : Error (Resource deadlock avoided) when acquiring lock on /blue/adamginsburg/adamginsburg/almaimf/workdir/G327.29_B6_spw1_12M_sio.contcube.model/table.lock
+    ##################################
+    #############################
+    Exception: Setting masked pixels to zero for input startmodel : Error (Resource deadlock avoided) when acquiring lock on /blue/adamginsburg/adamginsburg/almaimf/workdir/G327.29_B6_spw1_12M_sio.contcube.model/table.lock
+    2021-10-22 22:36:57     WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-1 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336) Exception for chan range [0, 54] ---   Setting masked pixels to zero for input startmodel : Error (Resource deadlock avoided) when acquiring lock on /blue/adamginsburg/adamginsburg/almaimf/workdir/G327.29_B6_spw1_12M_sio.contcube.model/table.lock
+    ##################################
+    #############################
+    Exception: Setting masked pixels to zero for input startmodel : Error (Resource deadlock avoided) when acquiring lock on /blue/adamginsburg/adamginsburg/almaimf/workdir/G327.29_B6_spw1_12M_sio.contcube.model/table.lock
