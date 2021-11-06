@@ -1,5 +1,8 @@
 Walkthrough of PSF characterization
 ===================================
+:date: 2021-11-06 17:37 
+:author: Adam Ginsburg (Adam.G.Ginsburg@gmail.com)
+:tags: casa, psf
 
 For ALMA-IMF, we want to characterize the PSF shapes and the recovered
 beam sizes.
@@ -63,7 +66,7 @@ to talk about what gets plotted.
 
 
 
-.. image:: |filename|/images/output_6_1.png
+.. image:: |static|/images/output_6_1.png
 
 
 The plot is showing:
@@ -144,7 +147,7 @@ axis than shown in these plots.
 
 
 
-.. image:: |filename|/images/output_9_1.png
+.. image:: |static|/images/output_9_1.png
 
 
 The right plot is a vertical zoom-in of the left plot.
