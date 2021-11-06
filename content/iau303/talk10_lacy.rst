@@ -3,7 +3,7 @@ John Lacy: Gas Motions in Inner 2 pc of SgrA West
 :date: 2013-09-30 15:45
 :tags: iau303
 
-.. image:: |filename|/iau303/images/lacy.jpg
+.. image:: |static|/iau303/images/lacy.jpg
     :width: 800px
 
 NeII 12um line

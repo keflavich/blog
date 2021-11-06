@@ -3,7 +3,7 @@ Rei Enokiya: Large scale and high sensitivity multi line CO surveys toward the G
 :date: 2013-10-01 11:50
 :tags: iau303
 
-.. image:: |filename|/iau303/images/enokiya.jpg
+.. image:: |static|/iau303/images/enokiya.jpg
     :width: 800px
 
 

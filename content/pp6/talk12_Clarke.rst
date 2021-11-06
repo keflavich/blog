@@ -41,7 +41,7 @@ which form a boundary condition for all models of binary evolution. Finally we
 discuss various formation mechanisms for massive binaries, and the origin of
 massive trapezia and their role in the dynamical evolution of clusters. 
 
-.. image:: |filename|/images/ClarkeTalk.jpg
+.. image:: |static|/images/ClarkeTalk.jpg
     :width: 800px
 
 Intro

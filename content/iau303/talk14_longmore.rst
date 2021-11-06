@@ -3,7 +3,7 @@ Steve Longmore: Conversion of Gas into Stars in the Galactic Center
 :date: 2013-10-01 9:00
 :tags: iau303
 
-.. image:: |filename|/iau303/images/longmore.jpg
+.. image:: |static|/iau303/images/longmore.jpg
     :width: 800px
 
 Is SF different in disk?

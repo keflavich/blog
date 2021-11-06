@@ -3,7 +3,7 @@ Fiona Harrison: NuSTAR Results: From the Galactic Center to Local Starbursts
 :date: 2013-09-30 10:00
 :tags: iau303
 
-.. image:: |filename|/iau303/images/harrison.png
+.. image:: |static|/iau303/images/harrison.png
     :width: 800px
 
 NuStar

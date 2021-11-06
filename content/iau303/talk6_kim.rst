@@ -4,7 +4,7 @@ Woong-Tae Kim: Star Formation in Nuclear Rings
 :date: 2013-09-30 11:00
 :tags: iau303
 
-.. image:: |filename|/iau303/images/kim.jpg
+.. image:: |static|/iau303/images/kim.jpg
     :width: 800px
 
 Nuclear Rings

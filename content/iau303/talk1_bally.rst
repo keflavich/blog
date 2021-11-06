@@ -3,7 +3,7 @@ John Bally - Hi-Gal CMZ
 :date: 2013-09-30 9:00
 :tags: iau303
 
-.. image:: |filename|/iau303/images/bally.png
+.. image:: |static|/iau303/images/bally.png
     :width: 800px
 
 Summary of Hi-Gal: 

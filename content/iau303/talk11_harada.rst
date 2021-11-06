@@ -3,7 +3,7 @@ Nanase Harada: Molecules in CND (Theory)
 :date: 2013-09-30 16:05
 :tags: iau303
 
-.. image:: |filename|/iau303/images/harada.jpg
+.. image:: |static|/iau303/images/harada.jpg
     :width: 800px
 
 Line survey in the southwest lobe of the CND

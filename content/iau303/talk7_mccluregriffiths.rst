@@ -3,7 +3,7 @@ Naomi McClure Griffiths: HI Outflows from the Galactic Center (20 + 5 minutes)
 :date: 2013-09-30 14:00
 :tags: iau303
 
-.. image:: |filename|/iau303/images/mccluregriffiths.jpg
+.. image:: |static|/iau303/images/mccluregriffiths.jpg
     :width: 800px
 
 Outflows - M82 example

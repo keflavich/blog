@@ -3,7 +3,7 @@ Anja Feldmeier: The Milky Way Nuclear Star Cluster Beyond 1 pc
 :date: 2013-10-01 14:30
 :tags: iau303
 
-.. image:: |filename|/iau303/images/feldmeier.jpg
+.. image:: |static|/iau303/images/feldmeier.jpg
     :width: 800px
 
 Observing the cluster

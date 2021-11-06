@@ -3,7 +3,7 @@ Fred Baganoff: X-ray Visionary Project: SgrA*
 :date: 2013-09-30 11:00
 :tags: iau303
 
-.. image:: |filename|/iau303/images/baganoff.jpg
+.. image:: |static|/iau303/images/baganoff.jpg
     :width: 800px
 
 High-res x-ray spectra of Sgr A* & surrounding emission

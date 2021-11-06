@@ -3,7 +3,7 @@ Overview Talk Jessica Lu: Young Stars in the Galactic Center
 :date: 2013-10-01 14:00
 :tags: iau303
 
-.. image:: |filename|/iau303/images/lu.jpg
+.. image:: |static|/iau303/images/lu.jpg
     :width: 800px
 
 Why care about cmz young stars?
