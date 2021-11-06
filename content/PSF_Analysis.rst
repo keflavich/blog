@@ -14,7 +14,7 @@ in a little more detail
 Front matter (imports)
 ----------------------
 
-.. code:: ipython3
+.. code:: python
 
     %matplotlib inline
     import pylab as pl
@@ -40,7 +40,7 @@ I chose to do this only for an N\ :math:`_2`\ H+ example; the
 N\ :math:`_2`\ H+ line cubes seem to have the worst-behaved beams in our
 samples.
 
-.. code:: ipython3
+.. code:: python
 
     basename = '/orange/adamginsburg/ALMAIMF_Images/G327.29/B3/linecubes_12m/G327.29_B3_spw0_12M_n2hp'
     img = SpectralCube.read(f'{basename}.image')
@@ -49,7 +49,7 @@ samples.
 The code ``get_psf_secondpeak`` does all of the work, we’re just going
 to talk about what gets plotted.
 
-.. code:: ipython3
+.. code:: python
 
     psffn = f'{basename}.psf'
     (psf_secondpeak, psf_secondpeak_loc, psf_sidelobe1_fraction, epsilon, firstnull, r_sidelobe,
@@ -93,7 +93,7 @@ where :math:`C = \theta_{min} / \theta_{maj}`. So the radial axis is
 scaled to the major axis of the beam; the true beam is smaller along one
 axis than shown in these plots.
 
-.. code:: ipython3
+.. code:: python
 
     # radial profile
     pl.figure(figsize=(12,6))
