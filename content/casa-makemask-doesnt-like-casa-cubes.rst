@@ -8,7 +8,7 @@ CASA doesn't like VaryingResolutionSpectralCubes
 I get this from trying to run ``makemask``:
 
 
-.. code-block::
+.. code-block:: python
 
     makemask(mode='copy',
             inpimage=lineimagename+".image",
