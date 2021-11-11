@@ -51,4 +51,16 @@ should not care at all about beams, there is no spectral regridding happening.
 This might be new to CASA 6.4, not sure.
 
 
+EDIT 2021-11-11 15:51:
+The workaround is easy and maybe better:
+
+.. code-block:: python
+
+    ia.open(lineimagename+".image")
+    shape = ia.shape()
+    csys = ia.coordsys().torecord()
+    ia.close()
+
+    ia.fromshape(outfile=lineimagename+".mask", shape=shape, csys=csys, type='f')
+
 
