@@ -64,6 +64,12 @@ Flagged Out Lines
 After re-copying over the calibrated MS and confirming that _no_ lines were flagged out,
 I re-imaged... and the lines are again missing.
 
+.. code-block:: python
+
+    # show the flags graphically
+    flagdata(vis='calibrated_final.ms', mode='summary', spwchan=True, display='both')
+
+
 .. image:: |static|/images/flagdataplot.png
    :width: 600px
    :alt: Flag data plot showing evidence of the flagged-out lines
