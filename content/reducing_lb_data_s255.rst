@@ -54,4 +54,32 @@ selection failed.  Probably when I copied over the `continuum_final.ms.backup`
 file, it uses the original numbering (spw 25, 27, etc.) instead of the new
 numbering.  I guess the renumbering is cased by `uvcontsub`, which I'm now
 skipping because it may have broken my data and because I'd rather image the
-continuum.
+continuum.  That proved correct; the error message above just means that I 
+selected a nonexistent SPW.
+
+Flagged Out Lines
+^^^^^^^^^^^^^^^^^
+After re-copying over the calibrated MS and confirming that _no_ lines were flagged out,
+I re-imaged... and the lines are again missing.
+
+.. image:: |static|/images/flagdataplot.png
+    Flag data plot showing evidence of the flagged-out lines
+
+The flags are coming from tclean, which makes no sense.
+
+There are messages like these:
+
+.. code-block::
+    2021-12-08 15:27:19     WARN    MPICommandServer::command_request_handler_service::SIImageStore::getPSFGaussian::MPIServer-51 (file src/code/synthesis/ImagerObjects/SIImageStore.cc, line 2037)        PSF is blank for[C9:P0] [C10:P0] [C11:P0] [C12:P0] [C13:P0] [C14:P0] [C15:P0] [C16:P0] [C17:P0] [C23:P0] [C24:P0] [C25:P0] [C26:P0]
+
+scattered throughout the PSF making.
+
+The PSF spectrum ends up like this:
+
+.. image:: |static|/images/PSF_vs_Frq.png
+    PSF vs frequency showing flagged out channels
+
+Channels are totally flagged out.  But in the data, they are not:
+
+.. image:: |static|/images/notflagged_data.png
+    The data not flagged out
