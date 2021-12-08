@@ -29,4 +29,6 @@ Running big MPI runs again, I encounter errors like these one::
 
 
 This is only quasi-repeatable.  For spw4, it happened after the 8th Major Cycle
-the first time, then the 6th Major Cycle the second time
+the first time, then the 6th Major Cycle the second time.  By repeating the
+cleans over and over, I was able to eventually get the results to converge.
+It looks like these crashes are sporadic but don't affect the data.
