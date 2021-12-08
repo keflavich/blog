@@ -65,7 +65,8 @@ After re-copying over the calibrated MS and confirming that _no_ lines were flag
 I re-imaged... and the lines are again missing.
 
 .. image:: |static|/images/flagdataplot.png
-    Flag data plot showing evidence of the flagged-out lines
+   :width: 600px
+   :alt: Flag data plot showing evidence of the flagged-out lines
 
 The flags are coming from tclean, which makes no sense.
 
@@ -78,9 +79,11 @@ scattered throughout the PSF making.
 The PSF spectrum ends up like this:
 
 .. image:: |static|/images/PSF_vs_Frq.png
-    PSF vs frequency showing flagged out channels
+   :width: 600px
+   :alt: PSF vs frequency showing flagged out channels
 
 Channels are totally flagged out.  But in the data, they are not:
 
 .. image:: |static|/images/notflagged_data.png
-    The data not flagged out
+   :width: 600px
+   :alt: The data not flagged out
