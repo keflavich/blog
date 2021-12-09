@@ -136,3 +136,17 @@ So, if we dig back into what happened in the parallel tclean....
 
 These blank psfs are `wrong`, there are no flagged data in this data set (no flagged channels).
 Something about the parallel version of clean is reading the data wrong.
+
+Solution
+--------
+I finally solved this by manually unflagging the channels.  Thanks to Brian
+Svoboda for helping with the antenna selection syntax.
+
+.. code-block:: python
+
+       flagdata(linevis, spw=str(orig_spw), antenna='*&*', mode='unflag')
+
+I don't understand why flagdata was showing the channels as being unflagged,
+as they were clearly flagged in all data sets (original & backup).
+I don't understand _when_ they were flagged, either, as it seems they were
+flagged even before continuum imaging was done.
