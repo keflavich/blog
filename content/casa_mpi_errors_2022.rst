@@ -64,3 +64,4 @@ Got this real nice one after the .image was created:
     /lib64/libc.so.6(__libc_malloc+0x4c)[0x2af73aa09b1c]
     /apps/compilers/gcc/9.3.0/lib64/libstdc++.so.6(_Znwm+0x15)[0x2af751076395]
 
+That happened in the middle of major cycle 1, so the data were probably fine, but I'm just going to restart it
