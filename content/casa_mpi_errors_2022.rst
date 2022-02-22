@@ -32,10 +32,10 @@ Errors like this one:
     WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-17 (file src/
     code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336)        Exception for chan range [1152, 1153] ---   Programmer error: sumwt disk image is non existant
 
-are probably cauased by deleting the .sumwt file in the middle of a tclean run
-- so that is genuine "user error" (I was deleting the sumwt, psf, and weight
-  files occasionally b/c they are the 'leftovers' when a tclean run fails for
-  bad reasons)
+are probably cauased by deleting the .sumwt file in the middle of a tclean run -
+so that is genuine "user error" (I was deleting the sumwt, psf, and weight
+files occasionally b/c they are the 'leftovers' when a tclean run fails for
+bad reasons)
 
 
 There are some others that don't have obvious explanations:
