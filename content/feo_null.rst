@@ -12,7 +12,7 @@ in the shocked outflows of the Orion nebula.
 
 I haven't published anything on this data set because it resulted in a fairly
 boring non-detection.  You can find the source code to retrieve and process
-the data from `here <https://github.com/keflavich/FeO_2015.1.00262.S>`_
+the data from `here <https://github.com/keflavich/FeO_2015.1.00262.S>`_.
 The nondetection is several orders of magnitude deeper than previous
 ones, but to demonstrate this definitively, we need to do some more modeling
 work, which my co-I's and I have decided isn't worth the time, since we're
@@ -20,7 +20,7 @@ all flooded with very exciting new ALMA data that has interesting detections
 in it (see salts soon).
 
 In brief, we were looking at a location where we know molecules (H2, molecular
-hydrogen) and gas-phase iron (Fe II, as seein in the [Fe II] 1.64 micron lines)
+hydrogen) and gas-phase iron (Fe II, as seen in in the [Fe II] 1.64 micron lines)
 are approximately coincident.  The most likely (and broadly accepted)
 explanation is that dust particles are being destroyed (sputtered) in the
 high-velocity ($>30$ km/s, up to about $100-200$ km/s) shocks produced in an
@@ -44,7 +44,7 @@ There are a few things that, with infinite time, I would do with this data set:
    (actually, this is done: `this table
    <https://github.com/keflavich/FeO_2015.1.00262.S/blob/master/tables/gaussian_fit_table.ipac>`_
    contains Gaussian fits to each of the stars in the continuum image (`source
-   <https://github.com/keflavich/FeO_2015.1.00262.S/blob/master/analysis/contsource_centroids.py>`_).
+   <https://github.com/keflavich/FeO_2015.1.00262.S/blob/master/analysis/contsource_centroids.py>`_).)
 
 
 These figure show the apertures we used to extract spectra and search for the
