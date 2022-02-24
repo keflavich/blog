@@ -33,7 +33,7 @@ DEFAULT_PAGINATION = 10
 #THEME='simple_editable' 
 #THEME='mine'
 #THEME=os.path.expanduser('~/repos/pelican-themes/mine')
-THEME='mine'
+THEME='./mine'
 
 STATIC_PATHS = ['images','bgps/images','iau303/images','images/sgrb2']
 
