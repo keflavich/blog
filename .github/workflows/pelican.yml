@@ -16,6 +16,10 @@ jobs:
     - uses: actions/checkout@v2
       with:
         submodules: recursive
+      - uses: actions/checkout@v2
+        with:
+          repository: keflavich/blog-theme
+          path: './mine'
     - uses: keflavich/gh-pages-pelican-action@0.1.10
       with:
         PELICAN_THEME_FOLDER: mine
