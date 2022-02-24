@@ -31,8 +31,9 @@ DEFAULT_PAGINATION = 10
 #THEME='bootstrap2' # sneakyidea is default
 #THEME='waterspill-en' 
 #THEME='simple_editable' 
-THEME='mine'
-THEME=os.path.expanduser('~/repos/pelican-themes/mine')
+#THEME='mine'
+#THEME=os.path.expanduser('~/repos/pelican-themes/mine')
+THEME='theme'
 
 STATIC_PATHS = ['images','bgps/images','iau303/images','images/sgrb2']
 
