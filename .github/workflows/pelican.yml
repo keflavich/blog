@@ -27,7 +27,9 @@ jobs:
     - run:
         pip install pelican
     - run:
-        pelican-themes --upgrade mine
+        pelican-themes --install --verbose mine
+    - run:
+        pelican-themes --list
     - uses: keflavich/gh-pages-pelican-action@keflavich-v1
       with:
         PELICAN_THEME_FOLDER: mine
