@@ -16,8 +16,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: keflavich/gh-pages-pelican-action@0.1.10
       with:
-          submodules: recursive
+        PELICAN_THEME_FOLDER: theme
 
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        PELICAN_THEME_FOLDER: theme
