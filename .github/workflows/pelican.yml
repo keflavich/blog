@@ -21,11 +21,11 @@ jobs:
         repository: keflavich/blog-theme
         path: './mine'
     - run:
+        pelican-themes --upgrade $GITHUB_WORKSPACE/mine
+    - run:
         ls *
     - run:
         ls mine
-    - run:
-        git clone git@github.com:keflavich/blog-theme.git mine
     - run:
         pelican-themes --upgrade mine
     - uses: keflavich/gh-pages-pelican-action@0.1.10
