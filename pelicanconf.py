@@ -60,7 +60,7 @@ MENUITEMS = [('Homepage','http://www.adamgginsburg.com',),
              ('Tags','/tags.html',),
             ]
 
-PLUGIN_PATHS = [os.path.expanduser('~/repos/pelican-plugins')]
+PLUGIN_PATHS = []#os.path.expanduser('~/repos/pelican-plugins')]
 PLUGINS = ["render_math"]
 
 USE_FOLDER_AS_CATEGORY = True
