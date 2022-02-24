@@ -27,6 +27,8 @@ jobs:
     - run:
         ls -lhd $GITHUB_WORKSPACE/mine
     - run:
+        pip install pelican
+    - run:
         pelican-themes --upgrade mine
     - uses: keflavich/gh-pages-pelican-action@0.1.10
       with:
