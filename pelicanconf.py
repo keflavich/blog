@@ -6,8 +6,8 @@ AUTHOR = u'Adam Ginsburg'
 SITENAME = u"Adam Ginsburg's blog"
 #SITESUBTITLE = u"about astronomy and coding, most likely"
 #SITEURL = 'file://localhost/Volumes/disk5/Users/adam/repos/blog/output'
-SITEURL = ""
-#SITEURL = 'http://keflavich.github.io/blog'
+#SITEURL = ""
+SITEURL = 'http://keflavich.github.io/blog'
 
 TIMEZONE = 'America/Denver'
 PATH = "content/"
@@ -31,8 +31,9 @@ DEFAULT_PAGINATION = 10
 #THEME='bootstrap2' # sneakyidea is default
 #THEME='waterspill-en' 
 #THEME='simple_editable' 
-THEME='mine'
-THEME=os.path.expanduser('~/repos/pelican-themes/mine')
+#THEME='mine'
+#THEME=os.path.expanduser('~/repos/pelican-themes/mine')
+THEME='./mine'
 
 STATIC_PATHS = ['images','bgps/images','iau303/images','images/sgrb2']
 
@@ -59,7 +60,7 @@ MENUITEMS = [('Homepage','http://www.adamgginsburg.com',),
              ('Tags','/tags.html',),
             ]
 
-PLUGIN_PATHS = [os.path.expanduser('~/repos/pelican-plugins')]
+PLUGIN_PATHS = []#os.path.expanduser('~/repos/pelican-plugins')]
 PLUGINS = ["render_math"]
 
 USE_FOLDER_AS_CATEGORY = True
