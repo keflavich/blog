@@ -4,10 +4,10 @@ Astronomical Software Development & Career
 :author: Adam Ginsburg (Adam.G.Ginsburg@gmail.com)
 :tags: career, colloquium
 
-I recently visited the <a href="https://www.astro.umd.edu/">University of
-Maryland</a> to give a <a
-href="https://www.astro.umd.edu/events/colloquia/colloquium/cal.0316.html">colloquium</a>
-(<a href="https://keflavich.github.io/talks/colloquium_Mar2022_UMD.html">slides here</a>).
+I recently visited the `University of Maryland <https://www.astro.umd.edu/>`_
+to give a `colloquium
+<https://www.astro.umd.edu/events/colloquia/colloquium/cal.0316.html>`_
+(`slides here <https://keflavich.github.io/talks/colloquium_Mar2022_UMD.html>`_).
 This was my first in-person colloquium as faculty because of COVID.
 
 I had a great meeting with the grad students over lunch, and they asked several good
@@ -33,13 +33,13 @@ for supporting observing proposal writing.
 The "enable my research career" component included a lot of side-work on things
 that aren't directly research, but are research-adjacent.  These projects
 included building tools to deploy my papers to github (which was a bit
-obsoleted by overleaf), automatically <a
-href="https://github.com/keflavich/cv/blob/master/update_journals.py">updating
-reference lists</a> (it turns out I often cite 5-10 arXiv papers in an article,
-but by publication time, I need to update them to official journal article
-citations), assemble lists of coauthors, <a
-href="https://github.com/keflavich/cv/blob/master/add_citations.py">add
-citation counts to the CV</a>, writing this blog, etc.
+obsoleted by overleaf), automatically `updating reference lists
+<https://github.com/keflavich/cv/blob/master/update_journals.py>`_ (it turns
+out I often cite 5-10 arXiv papers in an article, but by publication time, I
+need to update them to official journal article citations), assemble lists of
+coauthors, `add citation counts to the CV
+<https://github.com/keflavich/cv/blob/master/add_citations.py>`_, writing this
+blog, etc.
 
 The exceptions are some of the 'pure service' coding.  This necessarily had to
 be the lowest priority most of the time, but this is still career-motivated.
@@ -47,10 +47,10 @@ Some of the contributions I've made to astropy & other open-source projects are
 just to improve their code bases, either with bugfixes, added features, or
 things to improve robustness.  Most of my contributions were directly motivated
 by need, of course - either there was something basic missing, or I was the
-expert in that particular subtopic.  A good example is the <a
-href="https://docs.astropy.org/en/stable/api/astropy.units.brightness_temperature.html">J-to-K
-equivalency</a>; it wasn't directly research-motivated, but was something I
-found myself needing in day-to-day work.
+expert in that particular subtopic.  A good example is the `J-to-K equivalency
+<https://docs.astropy.org/en/stable/api/astropy.units.brightness_temperature.html>`_;
+it wasn't directly research-motivated, but was something I found myself needing
+in day-to-day work.
 
 The 'pure service' coding also entails maintaining projects.  There is still a
 selfish motivation here: if the code is maintained (if other people are using
