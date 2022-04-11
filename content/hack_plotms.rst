@@ -8,7 +8,7 @@ For the ACES project, I'm re-running the ALMA pipeline using MPI.
 
 However, this results in all runs crashing with the following error:
 
-.. code-block::
+.. code-block:: text
 
     2022-04-06 04:22:43 INFO: Executing plotms(vis='uid___A002_Xf512ae_X2626.ms', xaxis='azimuth', yaxis='elevation', spw='25:0~0,27:0~0,29:0~0,31:0~0,33:0~0,35:0~0', antenna='0&&*', avgchannel='9000', avgtime='10', coloraxis='field', customflaggedsymbol=True, flaggedsymbolshape='autoscaling', title='Elevation vs Azimuth for uid___A002_Xf512ae_X2626.ms', plotfile='azel.png', showgui=False, clearplots=True)
     fuse: failed to exec fusermount: No such file or directory
