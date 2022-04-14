@@ -32,3 +32,6 @@ the fix is really easy:
             aot.write(fh.filename)
 
 At least, this worked on the one case where I got bitten.
+
+
+This fix is based on `Erik Rosolowsky's ALMA proposal tools <https://github.com/low-sky/alma_proposal_tools>`_
