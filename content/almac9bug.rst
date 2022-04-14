@@ -5,6 +5,7 @@ ALMA Cycle 9 corrupted zip fix
 :tags: alma, proposals
 
 If you encounter a bug like this:
+
 .. image:: |static|/images/ALMAC9ZipBug.png
    :width: 600px
 
