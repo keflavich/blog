@@ -18,6 +18,7 @@ small disks in Orion.
 
 
 The monitoring results are here:
+
 .. image:: |static|/images/EPOS2022.png
    :width: 600px
 
