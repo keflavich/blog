@@ -53,6 +53,7 @@ GREAT results
  * CND in dust with SOFIA: Requenna-Torres
  * Southern targets: NGC 3603, LMC
  * CO & C+ maps of NGC3603 (cool!)
+
  Q Vazquez-Semadeni: What happens when plane hits turbulence?
  A: Counterweight keeps telescope pointed in the right place
 
