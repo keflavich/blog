@@ -1,6 +1,6 @@
 CO2 Monitoring at Conferences: Update in 2022
 #############################################
-:date: 2022-05-01 09:15 
+:date: 2022-05-01 09:15
 :author: Adam Ginsburg (Adam.G.Ginsburg@gmail.com)
 :tags: CO2, conferences
 
@@ -18,6 +18,7 @@ small disks in Orion.
 
 
 The monitoring results are here:
+
 .. image:: |static|/images/EPOS2022.png
    :width: 600px
 
