@@ -9,7 +9,7 @@ MENUITEMS = [(a,'/blog/'+b) if 'http' not in b else (a,b) for a,b in MENUITEMS]
 
 #SITEURL = 'file://localhost/Volumes/disk5/Users/adam/repos/blog/output'
 #SITEURL = ""
-SITEURL = 'http://keflavich.github.io/blog'
+SITEURL = 'https://keflavich.github.io/blog'
 FEED_DOMAIN = SITEURL
 
 DELETE_OUTPUT_DIRECTORY = True
