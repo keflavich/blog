@@ -7,7 +7,7 @@ SITENAME = u"Adam Ginsburg's blog"
 #SITESUBTITLE = u"about astronomy and coding, most likely"
 #SITEURL = 'file://localhost/Volumes/disk5/Users/adam/repos/blog/output'
 #SITEURL = ""
-SITEURL = 'http://keflavich.github.io/blog'
+SITEURL = 'https://keflavich.github.io/blog'
 
 TIMEZONE = 'America/Denver'
 PATH = "content/"
@@ -52,7 +52,7 @@ SHOW_RECENT=True
 
 DATE_FORMATS = {'en':"%Y/%m/%d"}
 
-MENUITEMS = [('Homepage','http://www.adamgginsburg.com',),
+MENUITEMS = [('Homepage','https://www.adamgginsburg.com',),
              ('Blog Index','/index.html',),
              ('BGPS Blog','/category/bgps.html',),
              ('Publications','/category/publications.html',),
