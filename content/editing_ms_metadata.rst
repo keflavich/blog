@@ -1,17 +1,22 @@
 Editing metadata in measurement sets
 ####################################
-:date: 2023-08-11 15:34:00
+:date: 2023-08-11 15:34
 :author: Adam Ginsburg (Adam.G.Ginsburg@gmail.com)
 :tags: casa
 
 
 
 I needed to update the position of VLA phase calibrator `J1744-3116 <http://simbad.u-strasbg.fr/simbad/sim-id?Ident=%402384864&Name=QSO%20J1744-3116&submit=submit>`_ in my measurement sets.  The VLA coordinate is:
-``17:33:02.705790 -13.04.49.54823 J2000``
+
+    ``17:33:02.705790 -13.04.49.54823 J2000``
+
 while the ALMA coordinate is
-``17:44:23.578227 -31.16.36.29204 ICRS``
+
+    ``17:44:23.578227 -31.16.36.29204 ICRS``
+
 and the SIMBAD coordinate is
-``17 44 23.57824 -31 16 36.2943 ICRS``
+
+    ``17 44 23.57824 -31 16 36.2943 ICRS``
 
 These are separated by a significant amount:
 
