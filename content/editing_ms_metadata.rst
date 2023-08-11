@@ -20,7 +20,7 @@ and the SIMBAD coordinate is
 
 These are separated by a significant amount:
 
-.. code:: python
+.. code-block:: python
   from astropy import units as u, coordinates
   import numpy as np
 
