@@ -42,7 +42,7 @@ This is caused by a typo in the VLA calibrator catalog (Lorant Sjouwerman, priva
 
 To fix it:
 
-.. code:: python
+.. code-block:: python
 
   tb.open('22A-020.sb41257746.eb41788351.59700.31502699074/22A-020.sb41257746.eb41788351.59700.31502699074.ms/FIELD')
 
@@ -62,7 +62,7 @@ To fix it:
 
 Put all together:
 
-.. code:: python
+.. code-block:: python
 
     from astropy import units as u, coordinates
     import numpy as np
