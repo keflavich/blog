@@ -54,10 +54,10 @@ DATE_FORMATS = {'en':"%Y/%m/%d"}
 
 MENUITEMS = [('Homepage','https://www.adamgginsburg.com',),
              ('Blog Index','/index.html',),
-             ('BGPS Blog','/category/bgps.html',),
-             ('Publications','/category/publications.html',),
-             ('Archives','/archives.html',),
-             ('Tags','/tags.html',),
+             ('BGPS Blog','/blog/category/bgps.html',),
+             ('Publications','/blog/category/publications.html',),
+             ('Archives','/blog/archives.html',),
+             ('Tags','/blog/tags.html',),
             ]
 
 PLUGIN_PATHS = []#os.path.expanduser('~/repos/pelican-plugins')]
