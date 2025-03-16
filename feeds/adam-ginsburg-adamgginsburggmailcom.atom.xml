@@ -91,7 +91,7 @@ git&lt;span class="w"&gt; &lt;/span&gt;push&lt;span class="w"&gt; &lt;/span&gt;g
 &lt;/pre&gt;&lt;/div&gt;
 </content><category term="misc"></category><category term="casa"></category></entry><entry><title>CASA MPI debugging cont'd</title><link href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html" rel="alternate"></link><published>2022-05-06T09:08:00-06:00</published><updated>2022-05-06T09:08:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io,2022-05-06:/blog/casa-mpi-debugging-contd.html</id><summary type="html">&lt;p&gt;I continue to try to get MPI to run to completion.&lt;/p&gt;
 &lt;p&gt;Using casa-6.5.0-9-py3.8, the latest error on the W51 B3 mosaic (biggest in ALMA-IMF, approximately):
-2022-05-03 06:36:06     SEVERE  MPICommandServer::command_request_handler_service::CubeMajorCycleAlgorithm::task::MPIServer-2 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 137 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I continue to try to get MPI to run to completion.&lt;/p&gt;
+2022-05-03 06:36:06     SEVERE  MPICommandServer::command_request_handler_service::CubeMajorCycleAlgorithm::task::MPIServer-2 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 137)      Exception (std): ArrayBase …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I continue to try to get MPI to run to completion.&lt;/p&gt;
 &lt;p&gt;Using casa-6.5.0-9-py3.8, the latest error on the W51 B3 mosaic (biggest in ALMA-IMF, approximately):
 2022-05-03 06:36:06     SEVERE  MPICommandServer::command_request_handler_service::CubeMajorCycleAlgorithm::task::MPIServer-2 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 137)      Exception (std): ArrayBase::validateConformance shape [3] differs from [4]&lt;/p&gt;
 &lt;p&gt;This leads to a lot of frozen nodes:
@@ -144,7 +144,7 @@ the fix is really easy:&lt;/p&gt;
 &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mkdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;recovery&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;chdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;recovery&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="c1"&gt;# replace with …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;If you encounter a bug like this:&lt;/p&gt;
+&lt;span class="c1"&gt;# replace with your …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;If you encounter a bug like this:&lt;/p&gt;
 &lt;img alt="" src="https://keflavich.github.io/blog/images/ALMAC9ZipBug.png" style="width: 600px;" /&gt;
 &lt;p&gt;&amp;quot;XML (syntax or validity) error&amp;quot; because you hit issue &lt;a class="reference external" href="https://almascience.eso.org/documents-and-tools/cycle9/known-issues"&gt;C1_032&lt;/a&gt;,
 the fix is really easy:&lt;/p&gt;
@@ -169,7 +169,7 @@ the fix is really easy:&lt;/p&gt;
 &lt;p&gt;This fix is based on &lt;a class="reference external" href="https://github.com/low-sky/alma_proposal_tools"&gt;Erik Rosolowsky's ALMA proposal tools&lt;/a&gt;&lt;/p&gt;
 </content><category term="misc"></category><category term="alma"></category><category term="proposals"></category></entry><entry><title>Hacking plotms to let pipeline run</title><link href="https://keflavich.github.io/blog/hacking-plotms-to-let-pipeline-run.html" rel="alternate"></link><published>2022-04-11T08:02:00-06:00</published><updated>2022-04-11T08:02:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io,2022-04-11:/blog/hacking-plotms-to-let-pipeline-run.html</id><summary type="html">&lt;p&gt;For the ACES project, I'm re-running the ALMA pipeline using MPI.&lt;/p&gt;
 &lt;p&gt;However, this results in all runs crashing with the following error:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2022-04-06 04:22:43 INFO: Executing plotms(vis=&amp;#39;uid___A002_Xf512ae_X2626.ms&amp;#39;, xaxis=&amp;#39;azimuth&amp;#39;, yaxis=&amp;#39;elevation&amp;#39;, spw=&amp;#39;25:0~0,27:0~0,29:0~0,31 …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;For the ACES project, I'm re-running the ALMA pipeline using MPI.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2022-04-06 04:22:43 INFO: Executing plotms(vis=&amp;#39;uid___A002_Xf512ae_X2626.ms&amp;#39;, xaxis=&amp;#39;azimuth&amp;#39;, yaxis=&amp;#39;elevation&amp;#39;, spw=&amp;#39;25:0~0,27:0~0,29:0~0,31:0~0,33 …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;For the ACES project, I'm re-running the ALMA pipeline using MPI.&lt;/p&gt;
 &lt;p&gt;However, this results in all runs crashing with the following error:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2022-04-06 04:22:43 INFO: Executing plotms(vis=&amp;#39;uid___A002_Xf512ae_X2626.ms&amp;#39;, xaxis=&amp;#39;azimuth&amp;#39;, yaxis=&amp;#39;elevation&amp;#39;, spw=&amp;#39;25:0~0,27:0~0,29:0~0,31:0~0,33:0~0,35:0~0&amp;#39;, antenna=&amp;#39;0&amp;amp;&amp;amp;*&amp;#39;, avgchannel=&amp;#39;9000&amp;#39;, avgtime=&amp;#39;10&amp;#39;, coloraxis=&amp;#39;field&amp;#39;, customflaggedsymbol=True, flaggedsymbolshape=&amp;#39;autoscaling&amp;#39;, title=&amp;#39;Elevation vs Azimuth for uid___A002_Xf512ae_X2626.ms&amp;#39;, plotfile=&amp;#39;azel.png&amp;#39;, showgui=False, clearplots=True)
 fuse: failed to exec fusermount: No such file or directory
@@ -289,7 +289,9 @@ in conjunction with gh-actions.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
 Exception: Error in making PSF : Invalid Table operation: Rows cannot be removed from table /blue/adamginsburg/adamginsburg/almaimf/workdir/G333.60_spw5_12M_B6/IMAGING_WEIGHT_1390794_230801956263_230804885819_bwtaper_0_interp_1; its storage managers do not support it
 &lt;/pre&gt;
-&lt;p&gt;This …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Running 7m+12m combination, the following errors show up:&lt;/p&gt;
+&lt;p&gt;This turns up several times repeatedly:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;
+G333.60_B6_fullcube_7M12M_5_15827045.log:2022-01-21 18:05 …&lt;/pre&gt;</summary><content type="html">&lt;p&gt;Running 7m+12m combination, the following errors show up:&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
 Exception: Error in making PSF : Invalid Table operation: Rows cannot be removed from table /blue/adamginsburg/adamginsburg/almaimf/workdir/G333.60_spw5_12M_B6/IMAGING_WEIGHT_1390794_230801956263_230804885819_bwtaper_0_interp_1; its storage managers do not support it
 &lt;/pre&gt;
@@ -338,7 +340,7 @@ casa_log_line_G338.93_B3_fullcube_7M12M_1_2022-01-22_20_25_52.log:2022-01-23 04:
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;The lines were all flagged out.  Thankfully, there is a &lt;tt class="docutils literal"&gt;calibrated_final.ms.backup&lt;/tt&gt;
 file that does not have the lines flagged out.  &lt;tt class="docutils literal"&gt;flagmanager&lt;/tt&gt; was unable to restore
-the flags.  The flagging …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;I'm trying to reduce some new data from ALMA's longest baselines (C10, B6).&lt;/p&gt;
+the flags.  The flagging comes …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;I'm trying to reduce some new data from ALMA's longest baselines (C10, B6).&lt;/p&gt;
 &lt;p&gt;There are several exciting errors:&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;The lines were all flagged out.  Thankfully, there is a &lt;tt class="docutils literal"&gt;calibrated_final.ms.backup&lt;/tt&gt;
@@ -454,7 +456,7 @@ flagged even before continuum imaging was done.&lt;/p&gt;
 </content><category term="misc"></category><category term="CASA"></category><category term="data reduction"></category></entry><entry><title>CASA reading incorrect number of bytes w/MPI</title><link href="https://keflavich.github.io/blog/casa-reading-incorrect-number-of-bytes-wmpi.html" rel="alternate"></link><published>2021-12-02T08:15:00-07:00</published><updated>2021-12-02T08:15:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io,2021-12-02:/blog/casa-reading-incorrect-number-of-bytes-wmpi.html</id><summary type="html">&lt;p&gt;Running big MPI runs again, I encounter errors like these one:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 2021-12-02 07:02:26      WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-25 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336)        Exception for chan range [1434, 1445] ---   FilebufIO::readBlock - incorr
-ect number of bytes read for file /blue …&lt;/pre&gt;</summary><content type="html">&lt;p&gt;Running big MPI runs again, I encounter errors like these one:&lt;/p&gt;
+ect number of bytes read for file /blue/adamginsburg/adamginsburg/almaimf …&lt;/pre&gt;</summary><content type="html">&lt;p&gt;Running big MPI runs again, I encounter errors like these one:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 2021-12-02 07:02:26      WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-25 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336)        Exception for chan range [1434, 1445] ---   FilebufIO::readBlock - incorr
 ect number of bytes read for file /blue/adamginsburg/adamginsburg/almaimf/workdir/G327.29_B6_spw7_12M_spw7.sumwt/table.f0
@@ -480,7 +482,7 @@ the first time, then the 6th Major Cycle the second time.  By repeating the
 cleans over and over, I was able to eventually get the results to converge.
 It looks like these crashes are sporadic but don't affect the data.&lt;/p&gt;
 </content><category term="misc"></category><category term="casa"></category></entry><entry><title>CASA table locking with MPI</title><link href="https://keflavich.github.io/blog/casa-table-locking-with-mpi.html" rel="alternate"></link><published>2021-11-11T15:53:00-07:00</published><updated>2021-11-11T15:53:00-07:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io,2021-11-11:/blog/casa-table-locking-with-mpi.html</id><summary type="html">&lt;p&gt;A bunch of CASA MPI runs have race conditioned themselves into a corner, apparently:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mi"&gt;2021&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;07&lt;/span&gt; &lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;33&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;     &lt;span class="n"&gt;WARN&lt;/span&gt;    &lt;span class="n"&gt;MPICommandServer&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;command_request_handler_service&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;SynthesisImagerVi2&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;CubeMajorCycle&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;MPIServer&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;synthesis&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ImagerObjects&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;CubeMajorCycleAlgorithm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="mi"&gt;336&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ne"&gt;Exception&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;chan&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;104&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;129&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;---&lt;/span&gt;   &lt;span class="n"&gt;Setting&lt;/span&gt; &lt;span class="n"&gt;masked&lt;/span&gt; &lt;span class="n"&gt;pixels&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;zero …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;A bunch of CASA MPI runs have race conditioned themselves into a corner, apparently:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mi"&gt;2021&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;07&lt;/span&gt; &lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;33&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;     &lt;span class="n"&gt;WARN&lt;/span&gt;    &lt;span class="n"&gt;MPICommandServer&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;command_request_handler_service&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;SynthesisImagerVi2&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;CubeMajorCycle&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;MPIServer&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;synthesis&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ImagerObjects&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;CubeMajorCycleAlgorithm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="mi"&gt;336&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ne"&gt;Exception&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;chan&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;104&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;129&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;---&lt;/span&gt;   &lt;span class="n"&gt;Setting&lt;/span&gt; &lt;span class="n"&gt;masked&lt;/span&gt; &lt;span class="n"&gt;pixels&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;zero&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nb"&gt;input&lt;/span&gt; &lt;span class="n"&gt;startmodel …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;A bunch of CASA MPI runs have race conditioned themselves into a corner, apparently:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mi"&gt;2021&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;07&lt;/span&gt; &lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;33&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;     &lt;span class="n"&gt;WARN&lt;/span&gt;    &lt;span class="n"&gt;MPICommandServer&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;command_request_handler_service&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;SynthesisImagerVi2&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;CubeMajorCycle&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;MPIServer&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;synthesis&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ImagerObjects&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;CubeMajorCycleAlgorithm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="mi"&gt;336&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ne"&gt;Exception&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;chan&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;104&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;129&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;---&lt;/span&gt;   &lt;span class="n"&gt;Setting&lt;/span&gt; &lt;span class="n"&gt;masked&lt;/span&gt; &lt;span class="n"&gt;pixels&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;zero&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nb"&gt;input&lt;/span&gt; &lt;span class="n"&gt;startmodel&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Error&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Resource&lt;/span&gt; &lt;span class="n"&gt;deadlock&lt;/span&gt; &lt;span class="n"&gt;avoided&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;when&lt;/span&gt; &lt;span class="n"&gt;acquiring&lt;/span&gt; &lt;span class="n"&gt;lock&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;blue&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;adamginsburg&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;adamginsburg&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;almaimf&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;workdir&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;G351&lt;/span&gt;&lt;span class="mf"&gt;.77&lt;/span&gt;&lt;span class="n"&gt;_B6_spw1_12M_sio&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;contcube&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lock&lt;/span&gt;
 &lt;span class="c1"&gt;##################################&lt;/span&gt;
 &lt;span class="c1"&gt;#############################&lt;/span&gt;
@@ -599,8 +601,8 @@ in a little more detail&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="n2h"&gt;
 &lt;h2&gt;N2H+&lt;/h2&gt;
-&lt;p&gt;I chose to do this only for an N&lt;span class="math"&gt;\(_2\)&lt;/span&gt;H+ example; the
-N&lt;span class="math"&gt;\(_2\)&lt;/span&gt;H+ line cubes seem to have the worst-behaved beams in our
+&lt;p&gt;I chose to do this only for an N&lt;span class="formula"&gt;&lt;sub&gt;2&lt;/sub&gt;&lt;/span&gt;H+ example; the
+N&lt;span class="formula"&gt;&lt;sub&gt;2&lt;/sub&gt;&lt;/span&gt;H+ line cubes seem to have the worst-behaved beams in our
 samples.&lt;/p&gt;
 &lt;pre class="code python literal-block"&gt;
 &lt;span class="n"&gt;basename&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'/orange/adamginsburg/ALMAIMF_Images/G327.29/B3/linecubes_12m/G327.29_B3_spw0_12M_n2hp'&lt;/span&gt;&lt;span class="w"&gt;
@@ -638,12 +640,10 @@ may not be a true null: it is the first minimum of the radial profile&lt;/li&gt;
 profile, which is why the elliptical synthesized beam has a single
 profile.&lt;/p&gt;
 &lt;p&gt;The X-axis is calculated as:&lt;/p&gt;
-&lt;div class="math"&gt;
-\begin{equation*}
-r = \left(C^2 (x \cos \theta + y \sin \theta)^2 + (x \sin \theta - y \cos \theta)^2\right)^{1/2}
-\end{equation*}
+&lt;div class="formula"&gt;
+&lt;i&gt;r&lt;/i&gt; = &lt;span class="stretchy"&gt;(&lt;/span&gt;&lt;i&gt;C&lt;/i&gt;&lt;sup&gt;2&lt;/sup&gt;(&lt;i&gt;x&lt;/i&gt;cos&lt;i&gt;θ&lt;/i&gt; + &lt;i&gt;y&lt;/i&gt;sin&lt;i&gt;θ&lt;/i&gt;)&lt;sup&gt;2&lt;/sup&gt; + (&lt;i&gt;x&lt;/i&gt;sin&lt;i&gt;θ&lt;/i&gt; − &lt;i&gt;y&lt;/i&gt;cos&lt;i&gt;θ&lt;/i&gt;)&lt;sup&gt;2&lt;/sup&gt;&lt;span class="stretchy"&gt;)&lt;/span&gt;&lt;sup&gt;1 ⁄ 2&lt;/sup&gt;
 &lt;/div&gt;
-&lt;p&gt;where &lt;span class="math"&gt;\(C = \theta_{min} / \theta_{maj}\)&lt;/span&gt;. So the radial axis is
+&lt;p&gt;where &lt;span class="formula"&gt;&lt;i&gt;C&lt;/i&gt; = &lt;i&gt;θ&lt;/i&gt;&lt;sub&gt;&lt;i&gt;min&lt;/i&gt;&lt;/sub&gt; ⁄ &lt;i&gt;θ&lt;/i&gt;&lt;sub&gt;&lt;i&gt;maj&lt;/i&gt;&lt;/sub&gt;&lt;/span&gt;. So the radial axis is
 scaled to the major axis of the beam; the true beam is smaller along one
 axis than shown in these plots.&lt;/p&gt;
 &lt;pre class="code python literal-block"&gt;
@@ -701,82 +701,21 @@ used for anything, it just highlights where the “shelf” is most
 prominent (and it is &lt;em&gt;very&lt;/em&gt; prominent in this example).&lt;/p&gt;
 &lt;p&gt;The blue vertical dashed line shows the location of the first null.&lt;/p&gt;
 &lt;p&gt;The green vertical dotted line shows the location of the first sidelobe.&lt;/p&gt;
-&lt;p&gt;&lt;span class="math"&gt;\(\epsilon\)&lt;/span&gt; is the ratio of the integral of the synthesized beam to
+&lt;p&gt;&lt;span class="formula"&gt;&lt;i&gt;ϵ&lt;/i&gt;&lt;/span&gt; is the ratio of the integral of the synthesized beam to
 the integral of the dirty beam out to the first null. It is the
 correction factor to apply to the residuals (multiply the residuals by
 this number) to convert the residuals from Jy/dirtybeam to
 Jy/synthesizedbeam.&lt;/p&gt;
-&lt;p&gt;&lt;span class="math"&gt;\(\theta_{min}\)&lt;/span&gt; and &lt;span class="math"&gt;\(\theta_{maj}\)&lt;/span&gt; are the FWHM widths of the
+&lt;p&gt;&lt;span class="formula"&gt;&lt;i&gt;θ&lt;/i&gt;&lt;sub&gt;&lt;i&gt;min&lt;/i&gt;&lt;/sub&gt;&lt;/span&gt; and &lt;span class="formula"&gt;&lt;i&gt;θ&lt;/i&gt;&lt;sub&gt;&lt;i&gt;maj&lt;/i&gt;&lt;/sub&gt;&lt;/span&gt; are the FWHM widths of the
 beam along the major and minor axes. The grey right-angle line is drawn
-at &lt;span class="math"&gt;\(y=0.5\)&lt;/span&gt; out to &lt;span class="math"&gt;\(\theta = \theta_{maj}/2\)&lt;/span&gt; (the half-width
+at &lt;span class="formula"&gt;&lt;i&gt;y&lt;/i&gt; = 0.5&lt;/span&gt; out to &lt;span class="formula"&gt;&lt;i&gt;θ&lt;/i&gt; = &lt;i&gt;θ&lt;/i&gt;&lt;sub&gt;&lt;i&gt;maj&lt;/i&gt;&lt;/sub&gt; ⁄ 2&lt;/span&gt; (the half-width
 half-max)&lt;/p&gt;
 &lt;/div&gt;
-&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</content><category term="misc"></category><category term="casa"></category><category term="psf"></category></entry><entry><title>CASA MPI problems</title><link href="https://keflavich.github.io/blog/casa-mpi-problems.html" rel="alternate"></link><published>2021-10-17T20:40:00-06:00</published><updated>2021-10-17T20:40:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io,2021-10-17:/blog/casa-mpi-problems.html</id><summary type="html">&lt;p&gt;There are several CASA MPI errors I encounter regularly.&lt;/p&gt;
+</content><category term="misc"></category><category term="casa"></category><category term="psf"></category></entry><entry><title>CASA MPI problems</title><link href="https://keflavich.github.io/blog/casa-mpi-problems.html" rel="alternate"></link><published>2021-10-17T20:40:00-06:00</published><updated>2021-10-17T20:40:00-06:00</updated><author><name>Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io,2021-10-17:/blog/casa-mpi-problems.html</id><summary type="html">&lt;p&gt;There are several CASA MPI errors I encounter regularly.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
 2021-10-17 15:56:06     SEVERE  task_tclean::SynthesisImagerVi2::runCubeGridding (file src/code/synthesis/ImagerObjects/SynthesisImagerVi2.cc, line 1579)       remainder rank 7 failed
 master 1 init 1
-2021-10-17 15:59:21     SEVERE  tclean::::casa  Task tclean raised an exception of class RuntimeError …&lt;/pre&gt;</summary><content type="html">&lt;p&gt;There are several CASA MPI errors I encounter regularly.&lt;/p&gt;
+2021-10-17 15:59:21     SEVERE  tclean::::casa  Task tclean raised an exception of class RuntimeError with …&lt;/pre&gt;</summary><content type="html">&lt;p&gt;There are several CASA MPI errors I encounter regularly.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
 2021-10-17 15:56:06     SEVERE  task_tclean::SynthesisImagerVi2::runCubeGridding (file src/code/synthesis/ImagerObjects/SynthesisImagerVi2.cc, line 1579)       remainder rank 7 failed
 master 1 init 1
@@ -1560,7 +1499,7 @@ it's likely there are errors.&lt;/p&gt;
 &lt;a class="reference external" href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/RYEANM"&gt;https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/RYEANM&lt;/a&gt;
 These are calibrated to T_A* units.  APEX telescope efficiencies can be found
 here: &lt;a class="reference external" href="http://www.apex-telescope.org/telescope/efficiency/"&gt;http://www.apex-telescope.org/telescope/efficiency/&lt;/a&gt; and are approximately
-0 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;These are APEX data covering 5.5' x 5.5' centered on W51 Main:
+0.75 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;These are APEX data covering 5.5' x 5.5' centered on W51 Main:
 &lt;a class="reference external" href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/RYEANM"&gt;https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/RYEANM&lt;/a&gt;
 These are calibrated to T_A* units.  APEX telescope efficiencies can be found
 here: &lt;a class="reference external" href="http://www.apex-telescope.org/telescope/efficiency/"&gt;http://www.apex-telescope.org/telescope/efficiency/&lt;/a&gt; and are approximately
@@ -1879,7 +1818,14 @@ blocks of channels.  The tests were run with savemodel='none' on a lustre node&l
 'speedtest_nchan5_concat': 803,
 'speedtest_nchan5_individual': 916,
 'speedtest_nchan20_concat': 2303,
-'speedtest_nchan20 …&lt;/pre&gt;</summary><content type="html">&lt;p&gt;I ran some speed tests to compare CASA's speed when imaging single channels vs
+'speedtest_nchan20_individual': 2346,
+'speedtest_nchan40_concat': 4010,
+'speedtest_nchan40_individual': 4136,
+'speedtest_nchan80_concat': 8101,
+'speedtest_nchan80_individual': 9298,
+&lt;/pre&gt;
+&lt;img alt="" src="https://keflavich.github.io/blog/images/casa/cube_performance.png" style="width: 600px;" /&gt;
+&lt;p&gt;The fit …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I ran some speed tests to compare CASA's speed when imaging single channels vs
 blocks of channels.  The tests were run with savemodel='none' on a lustre node&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 'speedtest_nchan1_concat': 249,
@@ -2115,7 +2061,7 @@ images, e.g. Herschel data shifted to greater distances, or on simulated data.&l
 &lt;p&gt;Some examples:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_perseus.py"&gt;https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;To evaluate imaging robustness &amp;amp; quality, it is necessary to do some sort of
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_perseus.py"&gt;https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_perseus …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;To evaluate imaging robustness &amp;amp; quality, it is necessary to do some sort of
 synthetic observation.  These synthetic observations can be done on real
 images, e.g. Herschel data shifted to greater distances, or on simulated data.&lt;/p&gt;
 &lt;p&gt;Some examples:&lt;/p&gt;
@@ -2324,7 +2270,7 @@ it hasn't been generalized but you can see the outline / single working case at
 &lt;ul class="simple"&gt;
 &lt;li&gt;/Applications/CASA.app/Contents/Resources/python/feather_cli.py -&amp;gt; feather_cli&lt;/li&gt;
 &lt;li&gt;/Applications/CASA.app/Contents/Resources/python/task_feather.py -&amp;gt; feather&lt;/li&gt;
-&lt;li&gt;/Applications/CASA.app/Contents …&lt;/li&gt;&lt;/ul&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;This is an examination of the 'feather' task in CASA.&lt;/p&gt;
+&lt;li&gt;/Applications/CASA.app/Contents/Resources/python/taskinit …&lt;/li&gt;&lt;/ul&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;This is an examination of the 'feather' task in CASA.&lt;/p&gt;
 &lt;p&gt;First we have to track down what code is actually called.&lt;/p&gt;
 &lt;p&gt;On mac, this is:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -2685,7 +2631,7 @@ better as you slowly approach the toxic threshold:&lt;/p&gt;
 &lt;img alt="" src="https://keflavich.github.io/blog/images/w51/tclean_threshold_sensitivity.png" style="width: 600px;" /&gt;
 &lt;p&gt;The precise clean command used, with only threshold changing, is:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
-2016-03-10 07:49:28     INFO    tclean::::      tclean(vis=&amp;quot;w51 …&lt;/pre&gt;</summary><content type="html">&lt;p&gt;CLEAN diverges sometimes.  The point at which divergence begins is very
+2016-03-10 07:49:28     INFO    tclean::::      tclean(vis=&amp;quot;w51_contvis_selfcal_4 …&lt;/pre&gt;</summary><content type="html">&lt;p&gt;CLEAN diverges sometimes.  The point at which divergence begins is very
 difficult to identify and unfortunately it looks like the images get mostly
 better as you slowly approach the toxic threshold:&lt;/p&gt;
 &lt;img alt="" src="https://keflavich.github.io/blog/images/w51/tclean_threshold_sensitivity.png" style="width: 600px;" /&gt;
@@ -3464,7 +3410,7 @@ This is relatively easy to do:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;astropy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;units&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;astroquery.nrao&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Nrao&lt;/span&gt;
 &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Nrao&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;coordinates&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;coordinates&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SkyCoord&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_name&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Sgr B2(M)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-                      &lt;span class="n"&gt;radius …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;I wanted to see what the approximate depth achieved by (repeated)
+                      &lt;span class="n"&gt;radius&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2 …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;I wanted to see what the approximate depth achieved by (repeated)
 VLA observations of a few sources was, at least theoretically.
 This is relatively easy to do:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;astropy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;units&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;

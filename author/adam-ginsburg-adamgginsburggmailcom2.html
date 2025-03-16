@@ -38,7 +38,7 @@
 </script>
 
 <script type="text/javascript"
-src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 </script>
         
 </head>
@@ -52,11 +52,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 
             <nav id="menu"><ul id="menulist">
                 <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
-                <li><a href="/index.html">Blog Index</a></li>
-                <li><a href="/blog/category/bgps.html">BGPS Blog</a></li>
-                <li><a href="/blog/category/publications.html">Publications</a></li>
-                <li><a href="/blog/archives.html">Archives</a></li>
-                <li><a href="/blog/tags.html">Tags</a></li>
+                <li><a href="/blog//index.html">Blog Index</a></li>
+                <li><a href="/blog//blog/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/blog//blog/category/publications.html">Publications</a></li>
+                <li><a href="/blog//blog/archives.html">Archives</a></li>
+                <li><a href="/blog//blog/tags.html">Tags</a></li>
             </ul></nav><!-- /#menu -->
         </div>
     </header><!-- /#banner -->
@@ -286,8 +286,8 @@ in a little more detail</p>
 </div>
 <div class="section" id="n2h">
 <h2>N2H+</h2>
-<p>I chose to do this only for an N<span class="math">\(_2\)</span>H+ example; the
-N<span class="math">\(_2\)</span>H+ line cubes seem to have the worst-behaved beams in our
+<p>I chose to do this only for an N<span class="formula"><sub>2</sub></span>H+ example; the
+N<span class="formula"><sub>2</sub></span>H+ line cubes seem to have the worst-behaved beams in our
 samples.</p>
 <pre class="code python literal-block">
 <span class="n">basename</span> <span class="o">=</span> <span class="s1">'/orange/adamginsburg/ALMAIMF_Images/G327.29/B3/linecubes_12m/G327.29_B3_spw0_12M_n2hp'</span><span class="w">
@@ -325,12 +325,10 @@ may not be a true null: it is the first minimum of the radial profile</li>
 profile, which is why the elliptical synthesized beam has a single
 profile.</p>
 <p>The X-axis is calculated as:</p>
-<div class="math">
-\begin{equation*}
-r = \left(C^2 (x \cos \theta + y \sin \theta)^2 + (x \sin \theta - y \cos \theta)^2\right)^{1/2}
-\end{equation*}
+<div class="formula">
+<i>r</i> = <span class="stretchy">(</span><i>C</i><sup>2</sup>(<i>x</i>cos<i>θ</i> + <i>y</i>sin<i>θ</i>)<sup>2</sup> + (<i>x</i>sin<i>θ</i> − <i>y</i>cos<i>θ</i>)<sup>2</sup><span class="stretchy">)</span><sup>1 ⁄ 2</sup>
 </div>
-<p>where <span class="math">\(C = \theta_{min} / \theta_{maj}\)</span>. So the radial axis is
+<p>where <span class="formula"><i>C</i> = <i>θ</i><sub><i>min</i></sub> ⁄ <i>θ</i><sub><i>maj</i></sub></span>. So the radial axis is
 scaled to the major axis of the beam; the true beam is smaller along one
 axis than shown in these plots.</p>
 <pre class="code python literal-block">
@@ -388,78 +386,17 @@ used for anything, it just highlights where the “shelf” is most
 prominent (and it is <em>very</em> prominent in this example).</p>
 <p>The blue vertical dashed line shows the location of the first null.</p>
 <p>The green vertical dotted line shows the location of the first sidelobe.</p>
-<p><span class="math">\(\epsilon\)</span> is the ratio of the integral of the synthesized beam to
+<p><span class="formula"><i>ϵ</i></span> is the ratio of the integral of the synthesized beam to
 the integral of the dirty beam out to the first null. It is the
 correction factor to apply to the residuals (multiply the residuals by
 this number) to convert the residuals from Jy/dirtybeam to
 Jy/synthesizedbeam.</p>
-<p><span class="math">\(\theta_{min}\)</span> and <span class="math">\(\theta_{maj}\)</span> are the FWHM widths of the
+<p><span class="formula"><i>θ</i><sub><i>min</i></sub></span> and <span class="formula"><i>θ</i><sub><i>maj</i></sub></span> are the FWHM widths of the
 beam along the major and minor axes. The grey right-angle line is drawn
-at <span class="math">\(y=0.5\)</span> out to <span class="math">\(\theta = \theta_{maj}/2\)</span> (the half-width
+at <span class="formula"><i>y</i> = 0.5</span> out to <span class="formula"><i>θ</i> = <i>θ</i><sub><i>maj</i></sub> ⁄ 2</span> (the half-width
 half-max)</p>
 </div>
-<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script> </div>
+ </div>
         <!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
@@ -1148,11 +1085,28 @@ does everything I really needed.</p>
     ga('create', 'UA-37306139-1');
     ga('send', 'pageview');
 </script>
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=9280906; 
+var sc_invisible=1; 
+var sc_security="7107d360"; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<!--<noscript><div class="statcounter"><a title="hit counter"
+href="http://statcounter.com/free-hit-counter/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/9280906/0/7107d360/1/"
+alt="hit counter"></a></div></noscript>-->
+<!-- End of StatCounter Code for Default Guide -->
 <script type="text/javascript">
   var disqus_shortname = 'adamginsburgsblog';
   (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
    })();
 </script>
