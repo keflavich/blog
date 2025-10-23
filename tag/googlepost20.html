@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - googlepost</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2012/12/26
+                  <br>
+                  <a href="https://keflavich.github.io/blog/catalog-vs-image-shift-a-possible-solution-to-the-atlasgal-issue.html">Catalog vs Image shift? A possible solution to the ATLASGAL issue</a>
+              </li>
+              <li class="post">
+                  2012/12/22
+                  <br>
+                  <a href="https://keflavich.github.io/blog/idea-multispectral-eigenimage-decomposition.html">Idea: Multispectral Eigenimage decomposition...</a>
+              </li>
+              <li class="post">
+                  2012/12/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pointing-cross-correlation-yet-again.html">Pointing & Cross-Correlation yet again</a>
+              </li>
+              <li class="post">
+                  2012/11/21
+                  <br>
+                  <a href="https://keflavich.github.io/blog/the-peculiar-balmer-decrement-of-sn-2009ip-constraints-on-circumstellar-geometry.html">The Peculiar Balmer Decrement of SN 2009ip: Constraints on Circumstellar Geometry</a>
+              </li>
+              <li class="post">
+                  2012/11/21
+                  <br>
+                  <a href="https://keflavich.github.io/blog/galactic-h2co-densitometry-i-pilot-survey-of-ultracompact-hii-regions-and-methodology.html">Galactic H2CO Densitometry I: Pilot survey of Ultracompact HII regions and methodology</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/fourier-transforms-are-not-commutative-or-distributive.html" rel="bookmark" title="Permalink to Fourier transforms are not commutative or distributive">
+                    Fourier transforms are not commutative or distributive</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-15T20:09:00-06:00"> 2011/07/15 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Problem with yesterday's work:</p>
+<pre class="literal-block">
+A*B = IFT(FT(A)*FT(B))A*B - A*C != IFT(FT(A)*(FT(B)-FT(C)))
+</pre>
+<p>If instead of yesterday's &quot;bandpass filter&quot; you use the convolution -
+convolution 'filter', the agreement in real space and most of fourier
+space is much better:</p>
+<img alt="" src="http://1.bp.blogspot.com/-dXT8RIHG6iI/TiCeMHu2bBI/AAAAAAAAGTc/NjQaTyJb4cc/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_map20filtercompare.png" />
+<img alt="" src="http://1.bp.blogspot.com/-m0DeYyvE0Xg/TiCeM6b_LOI/AAAAAAAAGTk/MwwIbLjhY4Q/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_map20filterpsds.png" />
+<p>though map20 clearly reproduces some structures better (higher) but is
+overall less powerful than the filtered map.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/testing-out-analytic-filter-functions.html" rel="bookmark" title="Permalink to Testing out analytic filter functions">
+                    Testing out analytic filter functions</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-15T03:03:00-06:00"> 2011/07/15 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've attempted to model the spatial filter function as a gaussian (or
+PSF) plus an inverse gaussian. i.e., the high-spatial-frequency
+components are smoothed with the PSF, and the low spatial frequency
+components are convolved with a (1-gaussian) high-pass filter.
+First, the mildly good news: With a 300&quot; FWHM large-scale cutoff, the
+filter PSD reasonably resembles the iterative map PSD:</p>
+<img alt="" src="http://3.bp.blogspot.com/-udANxY5rM98/Th-i7hx3qnI/AAAAAAAAGS0/kwoR30ZO5OI/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_map20filterpsds.png" />
+<p>Luckily, the double-filter goes a very long way in explaining the
+scale-free flux loss. In the following diagram, I show the effect of the
+filter compared to the input map.</p>
+<img alt="" src="http://3.bp.blogspot.com/-iZtSoQjlzJY/Th-jf6oatlI/AAAAAAAAGS8/p8ZcznsKGpI/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_filterpsds.png" />
+<p>The filter only recovers about 75% of the flux at ANY wavenumber. The
+map does slightly worse at high frequencies, which I can't explain yet.
+These show the recovery fraction of the iterative maps, a gaussian
+smoothing function with FWHM=33&quot;, and the mid-pass-filter. Map20 (no
+smooth) has a lot of additional &quot;noise power&quot; at high spatial
+frequencies; if it wasn't for the telescope filter function, we would
+apparently have pretty good high-frequency recovery. Hmph.
+Note that map20 is higher than the filter at some intermediate
+frequencies, but quite a bit lower at higher frequencies. Also note the
+moderately poor agreement between the 'smoothed' and 'smoothed (theory)'
+lines.</p>
+<img alt="" src="http://4.bp.blogspot.com/-zhxfyI_XDNY/Th-qZmsMZaI/AAAAAAAAGTE/550ocw2kFx8/s320/filterfunctions_smoothedx2.png" />
+<p>Finally, look at the comparison between map20 and fiiltered. The
+agreement is not bad for positive points; filtered is apparently
+slightly higher but that can be adjusted. The problem: the filter forces
+some structures that are negative or zero to be positive. For example,
+look at the feature at 210,300 that is negative in Map20 but positive in
+Filtered. In the real (input) map, this feature is lower than its
+surroundings - it is legitimately negative.</p>
+<img alt="" src="http://4.bp.blogspot.com/-zH98yuBL7lo/Th-tQIoKYCI/AAAAAAAAGTM/QNqslST6b2c/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_map20filtercompare.png" />
+<img alt="" src="http://2.bp.blogspot.com/-bvlju06_ySU/Th-ttpCOuhI/AAAAAAAAGTU/3zoCyl5gCIY/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_filtercompare.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/masked-edge-effects.html" rel="bookmark" title="Permalink to Masked edge effects?">
+                    Masked edge effects?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-13T20:28:00-06:00"> 2011/07/13 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I raised the possibility that the ratty edges of a scan could affect the
+power spectrum measurements, leading to a scale-free power loss. This
+doesn't appear to happen... instead, the masking adds some small-scale
+power and apparently a small amount of large-scale power.</p>
+<img alt="" src="http://1.bp.blogspot.com/-y7Bh9ngi7mY/Th3_sLpN0VI/AAAAAAAAGSc/4P67rBou5HE/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B00_sky03_seed00_peak010.00_nosmooth_test_compare.png" />
+<img alt="" src="http://4.bp.blogspot.com/-cg1akcZbUek/Th3_sicaVmI/AAAAAAAAGSk/_4sALFui9kA/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B00_sky03_seed00_peak010.00_nosmooth_test_psds.png" />
+<img alt="" src="http://2.bp.blogspot.com/-y-9SbSCsPqw/Th3_tHJGc8I/AAAAAAAAGSs/suuiw8xvwpQ/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B00_sky03_seed00_peak010.00_nosmooth_test_stf.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/spatial-transfer-functions.html" rel="bookmark" title="Permalink to Spatial Transfer Functions">
+                    Spatial Transfer Functions</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-13T18:54:00-06:00"> 2011/07/13 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The majority of the past week has been dedicated to debugging; it looks
+like cross-scanned simulations finally work.
+The plot below is a derivation of the spatial transfer function for a
+number of different intrinsic sky power-law power spectra.</p>
+<img alt="" src="http://2.bp.blogspot.com/-JyAPg0u9uQ8/Th3kuQh1fpI/AAAAAAAAGRs/pP7o3n9_wds/s320/Experiment10_AverageRecoveryFunction.png" />
+<p>Justifying the above plot is essential.
+First, the very steep power-laws [-3 in the example below] show a
+recovery fraction &gt;1. This is simply because their S/N was inadequate -
+the output power spectrum is nearly flat, but at a level higher than the
+sky.</p>
+<img alt="" src="http://4.bp.blogspot.com/-JPBjsLDfP5M/Th3lw5n1xTI/AAAAAAAAGR0/aDeOmMv5s8w/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky00_seed00_peak010.00_nosmooth_compare.png" />
+<img alt="" src="http://3.bp.blogspot.com/-LOCDmoLCcZs/Th3lxfnKVzI/AAAAAAAAGR8/9NCM3OroGoM/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky00_seed00_peak010.00_nosmooth_psds.png" />
+<p>Second, the most plausible power-laws [-1.5 in the example below] show
+pretty good recovery (90-95% over the relevant range):</p>
+<img alt="" src="http://1.bp.blogspot.com/-MTZ8WGl3ZRc/Th3mMkvv2II/AAAAAAAAGSE/0OO4Te39fPI/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky03_seed00_peak010.00_nosmooth_compare.png" />
+<img alt="" src="http://2.bp.blogspot.com/-5IeTZW-ZTAw/Th3mNHPC8gI/AAAAAAAAGSM/WhIWClGWqbo/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky03_seed00_peak010.00_nosmooth_psds.png" />
+<img alt="" src="http://4.bp.blogspot.com/-O6ofm7GaxUI/Th3mNgf29AI/AAAAAAAAGSU/VzQ7aL-yd_E/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky03_seed00_peak010.00_nosmooth_stf.png" />
+<p>There are some &quot;white&quot; power losses, particularly in the flatter
+power-spectra. My best guess is that this has something to do with the
+relative scales being offset from a mean of 1, but so far all tests to
+show that that is the cause have in fact shown no problems at all. What
+else could cause a scale-independent power loss?
+Also, the flat power spectrum (and inverted) aren't quite flat because I
+impose a &quot;galactic scale height&quot; on them. Should I stop doing that?</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/additional-problems.html" rel="bookmark" title="Permalink to additional problems">
+                    additional problems</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-12T19:08:00-06:00"> 2011/07/12 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>There are a few cases in the L=30 field that look awful. 050706_o31
+probably observed the inside of the dish. 070727_ob6 shows some
+streaking that I can't easily explain... though it appears that there
+are some bad bolos that need to get flagged out. I wonder if that's
+systematic over 070727 observations....</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/outflows-and-massive-stars-in-the-protocluster-iras-053583543.html" rel="bookmark" title="Permalink to Outflows and Massive Stars in the protocluster IRAS 05358+3543">
+                    Outflows and Massive Stars in the protocluster IRAS 05358+3543</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-11T16:47:00-06:00"> 2011/07/11 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><em>First Author</em> [ <a class="reference external" href="http://adsabs.harvard.edu/abs/2009ApJ...707..310G">ADS</a> ] [ <a class="reference external" href="http://arxiv.org/abs/0910.2990">arXiv</a> ]</p>
+<p>A mm and near-IR study of the IRAS 05358+3543 system. Recently (2011),
+it has become clear that &quot;protocluster&quot; is unlikely to be the right
+label for IRAS 05358+3543. &quot;proto-association&quot; might be more accurate.
+Perhaps the most interesting result of this paper is the discovery that
+the central source is likely to be a 400-AU binary with two massive (&gt;8
+msun) stars at different evolutionary stages. It is just barely in
+ALMA's range...</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/herschel-observations-of-the-w43-mini-starburst.html" rel="bookmark" title="Permalink to Herschel observations of the W43 "mini-starburst"">
+                    Herschel observations of the W43 &quot;mini-starburst&quot;</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-11T16:38:00-06:00"> 2011/07/11 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a class="reference external" href="http://adsabs.harvard.edu/abs/2010A%26A...518L..90B">ADS</a>
+<a class="reference external" href="http://arxiv.org/abs/1005.4092">arXiv</a>
+A minor work as part of the Herschel Hi-Gal early science special issue.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/the-bolocam-galactic-plane-survey-iv-l-11-and-035-mm-dust-continuum-emission-in-the-galactic-center-region.html" rel="bookmark" title="Permalink to The Bolocam Galactic Plane Survey IV: λ = 1.1 and 0.35 mm Dust Continuum Emission in the Galactic Center Region">
+                    The Bolocam Galactic Plane Survey IV: λ = 1.1 and 0.35 mm Dust Continuum Emission in the Galactic Center Region</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-11T16:37:00-06:00"> 2011/07/11 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...721..137B">ADS</a>
+<a class="reference external" href="http://arxiv.org/abs/1011.0932">arXiv</a>
+As with other Bolocam papers, I reduced the data.
+We identify a number of interesting mm sources in the Galactic Center
+and characterize some of their properties using Bolocam and SHARC data.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/the-bolocam-galactic-plane-survey-iii-characterizing-physical-properties-of-massive-star-forming-regions-in-the-gemini-ob1-molecular-cloud.html" rel="bookmark" title="Permalink to The Bolocam Galactic Plane Survey. III. Characterizing Physical Properties of Massive Star-forming Regions in the Gemini OB1 Molecular Cloud">
+                    The Bolocam Galactic Plane Survey. III. Characterizing Physical Properties of Massive Star-forming Regions in the Gemini OB1 Molecular Cloud</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-11T16:35:00-06:00"> 2011/07/11 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...717.1157D">ADS</a>
+<a class="reference external" href="http://arxiv.org/abs/1005.4969">arXiv</a>
+As with the other Bolocam papers, I reduced the data. All of the
+analysis work was done by Miranda.
+Because of Gem OB1's known distance (~2 kpc), it was possible to derive
+the physical properties of all of the 34 BGPS sources. NH<sub>3</sub>
+temperatures and line widths were combined to measure total dust mass,
+density, and virial parameter. This paper is the best characterization
+of &quot;typical&quot; BGPS sources, at least for the outer galaxy.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/the-bolocam-galactic-plane-survey-ii-catalog-of-the-image-data.html" rel="bookmark" title="Permalink to The Bolocam Galactic Plane Survey. II. Catalog of the Image Data">
+                    The Bolocam Galactic Plane Survey. II. Catalog of the Image Data</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-11T16:32:00-06:00"> 2011/07/11 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJS..188..123R">ADS</a>
+<a class="reference external" href="http://arxiv.org/abs/0909.2871">arXiv</a>
+My primary contribution to this work was reducing the data from which
+catalogs were derived. As part of this process, I also made the noise
+maps that were part of the Bolocat process and did some of the by-eye
+verification work.
+Bolocat extracted &gt;8000 sources from the BGPS using a watershed
+decomposition method. Most of these sources have now been observed with
+the HHT in HCO+ and N2H+ to determine their velocity and kinematic
+distance.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+            <a href="https://keflavich.github.io/blog/tag/googlepost19.html">&laquo;</a>
+    Page 20 / 36
+        <a href="https://keflavich.github.io/blog/tag/googlepost21.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog - napattack (adam.g.ginsburg@gmail.com)</title><link href="https://keflavich.github.io/blog/" rel="alternate"></link><link href="https://keflavich.github.io/blog/feeds/napattack-adamgginsburggmailcom.atom.xml" rel="self"></link><id>https://keflavich.github.io/blog/</id><updated>2014-02-19T12:02:00-07:00</updated><entry><title>Python stack on Mavericks</title><link href="https://keflavich.github.io/blog/python-stack-on-mavericks.html" rel="alternate"></link><published>2014-02-19T12:02:00-07:00</published><updated>2014-02-19T12:02:00-07:00</updated><author><name>napattack (adam.g.ginsburg@gmail.com)</name></author><id>tag:keflavich.github.io,2014-02-19:/blog/python-stack-on-mavericks.html</id><summary type="html">&lt;p&gt;As you might expect from numerous blog posts and the general difficulty people
+have always experienced upgrading mac OS versions, Mavericks caused some truly
+hideous issues.&lt;/p&gt;
+&lt;p&gt;The only really &amp;quot;new&amp;quot; issues specifically for Mavericks relate to app nap.  The
+main solution is minrk's &lt;a class="reference external" href="https://github.com/minrk/appnope"&gt;appnope&lt;/a&gt;.  Otherwise, command line options like
+&lt;cite&gt;defaults …&lt;/cite&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;As you might expect from numerous blog posts and the general difficulty people
+have always experienced upgrading mac OS versions, Mavericks caused some truly
+hideous issues.&lt;/p&gt;
+&lt;p&gt;The only really &amp;quot;new&amp;quot; issues specifically for Mavericks relate to app nap.  The
+main solution is minrk's &lt;a class="reference external" href="https://github.com/minrk/appnope"&gt;appnope&lt;/a&gt;.  Otherwise, command line options like
+&lt;cite&gt;defaults write &amp;lt;app domain name&amp;gt; NSAppSleepDisabled -bool YES&lt;/cite&gt; are required
+&lt;a class="reference external" href="http://apple.stackexchange.com/questions/121386/missing-prevent-app-nap-button-on-app"&gt;if the button is missing&lt;/a&gt; from Mac's Get Info pane.&lt;/p&gt;
+&lt;p&gt;I tried installing the &lt;a class="reference external" href="https://store.continuum.io/cshop/anaconda/"&gt;conda&lt;/a&gt; stack to get python running quickly.  This
+worked to an extremely limited degree: the TkAgg shipped with anaconda links to
+&lt;a class="reference external" href="xquartz.macosforge.org"&gt;XQuartz&lt;/a&gt;, which is highly undesirable for a number of reasons.  This meant
+that matplotlib plots showed up as X11 plots.  With the Mac OS X backend, the
+windows failed to show up in the Dock and therefore were totally unusable (though
+they did look OK).&lt;/p&gt;
+&lt;p&gt;I am still using &lt;a class="reference external" href="https://store.continuum.io/cshop/anaconda/"&gt;conda&lt;/a&gt; to maintain multiple parallel versions of python for
+testing.  However, I went back to my typical install-from-source approach.&lt;/p&gt;
+&lt;p&gt;To get the matplotlib backends to interact nicely with apple, you need to install
+them using the &lt;cite&gt;/Library&lt;/cite&gt; version of python&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# this had to happen sometime early:&lt;/span&gt;
+$&lt;span class="w"&gt; &lt;/span&gt;xcode-select&lt;span class="w"&gt; &lt;/span&gt;--install
+
+$&lt;span class="w"&gt; &lt;/span&gt;wget&lt;span class="w"&gt; &lt;/span&gt;https://pypi.python.org/pypi/pip#downloads
+$&lt;span class="w"&gt; &lt;/span&gt;tar&lt;span class="w"&gt; &lt;/span&gt;-xzvf&lt;span class="w"&gt; &lt;/span&gt;~/Downloads/pip-1.5.2.tar.gz
+$&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;pip-1.5.2
+$&lt;span class="w"&gt; &lt;/span&gt;/Library/Frameworks/Python.framework/Versions/2.7/bin/python&lt;span class="w"&gt; &lt;/span&gt;setup.py&lt;span class="w"&gt; &lt;/span&gt;install
+$&lt;span class="w"&gt; &lt;/span&gt;/Library/Frameworks/Python.framework/Versions/2.7/bin/pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;virtualenv
+$&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;
+$&lt;span class="w"&gt; &lt;/span&gt;/Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenv&lt;span class="w"&gt; &lt;/span&gt;virtual-python
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;After this, I was surprisingly able to install everything in the python stack
+with no hitches.  Obviously, that could not possibly last.&lt;/p&gt;
+&lt;p&gt;While matplotlib and numpy worked fine, scipy had problems.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+ImportError: dlopen(/Users/adam/virtual-python/lib/python2.7/site-packages/scipy/integrate/_odepack.so, 2): Symbol not found: __gfortran_internal_free
+Referenced from: /Users/adam/virtual-python/lib/python2.7/site-packages/scipy/integrate/_odepack.so
+Expected in: flat namespace
+   in /Users/adam/virtual-python/lib/python2.7/site-packages/scipy/integrate/_odepack.so
+&lt;/pre&gt;
+&lt;p&gt;This terrible error led me back to re-compiling scipy.  I tried installing with
+&lt;a class="reference external" href="hpc.sourceforge.net"&gt;hpc&lt;/a&gt; gfortran, but that didn't work at all, first apparently because of linking
+errors in numpy.  When I investigated numpy, I found that the compilers
+apparently don't work at all:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+C compiler: /usr/local/bin/gcc -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -arch i386 -arch x86_64
+...
+RuntimeError: Broken toolchain: cannot link a simple C program
+&lt;/pre&gt;
+&lt;p&gt;I had to give up on that, and then googling returned no results at all, which I
+thought was a bit weird.  Scipy seems to want gcc and g++ 4.2, even though
+they're years old.  I had to find those and gfortran-4.2 somehow, but the &lt;a class="reference external" href="r.research.att.com/tools/"&gt;old
+site&lt;/a&gt; that used to serve them seems to have lost the files!  They had an
+&lt;a class="reference external" href="http://r.research.att.com/tools/gcc-42-5666.3-darwin11.pkg"&gt;older version&lt;/a&gt;, though, which appears to work.  Scipy is a scary install.&lt;/p&gt;
+&lt;div class="section" id="problems-with-xquartz"&gt;
+&lt;h2&gt;Problems with XQuartz&lt;/h2&gt;
+&lt;p&gt;XQuartz is not well-behaved on Mac OS X 10.9.  First, &lt;a class="reference external" href="https://xquartz.macosforge.org/trac/ticket/661"&gt;on retina machines, it
+does not display well&lt;/a&gt;.  Second, and much more important, it &lt;a class="reference external" href="http://xquartz.macosforge.org/trac/ticket/797"&gt;does not work on
+external monitors&lt;/a&gt;.  Apparently this can be worked around by turning off
+&amp;quot;Displays have different spaces&amp;quot;  in Mission Control, but so far that has had
+no effect for me.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="misc"></category><category term="mac"></category><category term="install"></category><category term="python"></category><category term="scipy"></category><category term="fortran"></category></entry></feed>

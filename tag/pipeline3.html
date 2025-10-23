@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - pipeline</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2011/12/31
+                  <br>
+                  <a href="https://keflavich.github.io/blog/flow-charts.html">Flow Charts</a>
+              </li>
+              <li class="post">
+                  2011/08/05
+                  <br>
+                  <a href="https://keflavich.github.io/blog/spatial-transfer-functions-revisit-4.html">Spatial Transfer Functions, revisit 4</a>
+              </li>
+              <li class="post">
+                  2011/07/10
+                  <br>
+                  <a href="https://keflavich.github.io/blog/minor-ongoing-problems.html">[minor] Ongoing problems...</a>
+              </li>
+              <li class="post">
+                  2011/05/24
+                  <br>
+                  <a href="https://keflavich.github.io/blog/astrophysical-signal-modeling.html">Astrophysical Signal Modeling</a>
+              </li>
+              <li class="post">
+                  2011/05/22
+                  <br>
+                  <a href="https://keflavich.github.io/blog/psf-modeling.html">PSF modeling</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/delining.html" rel="bookmark" title="Permalink to Delining">
+                    Delining</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-02-03T04:54:00-07:00"> 2011/02/03 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Delining refers to the process of removing electronic noise that is
+aliased to
+particular frequencies by the discrete sampling of the data. Typical
+electronic noise is at 60 Hz with some width. It gets aliased to these
+frequencies:
+<tt class="docutils literal">linefreqs = <span class="pre">[10.05+findgen(10)*1.2,10.05-((findgen(7)+1))*1.2]</span></tt>
+The 10.05 Hz and 20.10 Hz are the worst in most cases, and they are
+wider. For
+the above lines, we &quot;remove&quot; a bandwidth of 0.09 Hz by averaging over
+the
+neighboring 0.5 Hz on either side. For the wider lines, we remove 0.5 Hz
+by
+averaging over the neighboring 1.5 Hz on either side.
+There are a few new things about the delining process that did not exist
+in James' old version:</p>
+<ol class="arabic simple">
+<li>The wide-band lines are removed</li>
+<li>A check is performed before removing the lines - they are only
+removed if the line region mean is
+2-sigma above the average region (as computed via median and mad)</li>
+<li>The replaced noise is computed via median/mad, and the new noise
+level is set 5x lower than in the
+neighboring region</li>
+</ol>
+<hr class="docutils" />
+<p>Now, some examples:</p>
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUisqDHJ08I/AAAAAAAAF58/BpgnudfdAAw/s400/deline_timestreams_003.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUisqWN6ueI/AAAAAAAAF6E/yAka7dlomjo/s400/deline_psds_003.png" />
+<p>The timestream (left) and PSD (right) of a &quot;pretty good&quot; bolometer.
+There is a lot of noise in lines, but note that the peak power is 2-3
+orders of magnitude below the PSD peak. In this case the &quot;Power&quot; is in
+Jy. There is little astrophysical information below ~14&quot; (9 Hz), and
+there should be none below 7.2&quot; (17 Hz), but there is plausibly
+information at these scales. It therefore makes sense to save as much
+information as possible. As can be seen in the delined PSD, the peaks
+drop by a substantial fraction, but not all the way - that's because
+these lines are wider than typically observed. Unfortunately, I don't
+have any really good ideas about how to fix this issue - I think fitting
+gaussians to each line, while attractive, is going to be prohibitively
+expensive in both programmer and processor time. However... it would be
+a very interesting project to undertake. In the timestream, it can be
+seen that the RMS drops substantially when the lines are filtered out
+(note that the timestream is strongly dominated by large-scale
+structure, so 'substantial' is really based on the RMS of the lines
+removed).</p>
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUisq6D55wI/AAAAAAAAF6M/PZ4hyu5FkZM/s400/deline_10hz_timestreams_003.png" />
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUisrWpL7yI/AAAAAAAAF6U/tSsL5Jc4n-A/s400/deline_10hz_psds_003.png" />
+<p>The next two plots look identical to the previous ones. In principle,
+they include the wide-band delining. However, in this case, the
+satellite lines to either side of the 10 Hz line are too strong and
+prevent identification of the 10 Hz line. This is unfortunate, again,
+but no obvious solution presents itself.</p>
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixLZbVHPI/AAAAAAAAF6c/xCWLpb9CKX4/s400/deline_timestreams_004.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixL8APCQI/AAAAAAAAF6k/j8FyKbgOdDo/s400/deline_psds_004.png" />
+<p>Now we come to a truly problematic bolometer. The lines completely
+dominate the power spectrum. Narrow line removal fails.</p>
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUixMjNxbkI/AAAAAAAAF6s/Hr8ouprcMpY/s400/deline_10hz_timestreams_004.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUixNMO2NsI/AAAAAAAAF60/ZAsirbb25QY/s400/deline_10hz_psds_004.png" />
+<p>Wide line removal does a much, much better job, dropping the RMS by an
+order of magnitude.... but the bolometer probably still needs to be
+removed, since the astrophysical signal is 2-3 orders of magnitude below
+that.</p>
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUizkq9x4TI/AAAAAAAAF68/2xYY86d6aTQ/s400/deline_timestreams_001.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUizlH0XvMI/AAAAAAAAF7E/ptDb5I3os6A/s400/deline_psds_001.png" />
+<p>The 2010 data had much worse line noise and had to be delined. JS
+accomplished this by throwing out all data above a certain frequency,
+but I prefer the delining approach. It is clearly effective, but again
+leaves much to be desired. Should the flagged bandwidth be increased?
+What about the extra lines around 18 Hz?</p>
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUizln1mSCI/AAAAAAAAF7M/hTkZRUU3-ck/s400/deline_10hz_timestreams_001.png" />
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUizmdrMkgI/AAAAAAAAF7U/-dlB4u30hBo/s400/deline_10hz_psds_001.png" />
+<p>Again, the wide line flagging fails because of the satellite lines.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/some-pretty-neat-things-about-delining.html" rel="bookmark" title="Permalink to Some pretty neat things about delining....">
+                    Some pretty neat things about delining....</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-02-03T04:50:00-07:00"> 2011/02/03 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Well, I did the work, so might as well come up with some plots...
+I created a gaussian-fitting based delining code that saves all of the
+fits in a text file! That's a lot of data to play with, and allows me to
+draw some conclusions:</p>
+<ol class="arabic simple">
+<li>For the narrow lines, the linewidth (gaussian sigma) is 0.03 Hz. For
+the wide lines, it is 0.05.</li>
+<li>The amplitudes from December 2010 are ENORMOUS compared to others!</li>
+<li>The width distributions of the two are similar, though the lines
+appear to be significantly wider in July 2009</li>
+</ol>
+<p>I've also gotten to the point that I'm satisfied with how delining with
+wing suppression works. Wing suppression is 0.4-2x quicker than fitting
+directly, depending on... not clear what exactly; it depends on epoch,
+but that could either be because there are more lines found or because
+of relative data size. Does delining have to be done on whole
+timestreams, or can it be done on a scan-by-scan basis? This is not
+entirely clear... the peaks are less suppressed when done on a
+scan-by-scan basis (presumably because the S/N is low and peaks are
+therefore not detected), but incorrect suppression (removing a line
+that's not there) is reduced. For short scans, the scan-by-scan approach
+is 10x faster; for longer scans it's ~20% faster. I think the
+scan-by-scan approach is going to be ideal.</p>
+<hr class="docutils" />
+<p>Examples from l089 (0709):
+Top row: non-fitted line suppression</p>
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUowz4zgpsI/AAAAAAAAF8E/iJd0tAbVj0U/s320/deline_10hz_wingsuppress_psds_003.png" />
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUow1IQ_Y9I/AAAAAAAAF8c/1OkISODwwPM/s320/deline_fitline_10hz_noscan_nsig0_preservephase_timestreams_003.png" />
+<p>Bottom row: fitted line suppression</p>
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUow0sTBKsI/AAAAAAAAF8U/GtL0nyvlNBw/s320/deline_fitline_10hz_noscan_nsig0_preservephase_psds_003.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUow0d-vEcI/AAAAAAAAF8M/or2gkvGxW4o/s320/deline_10hz_wingsuppress_timestreams_003.png" />
+<hr class="docutils" />
+<p>Examples from Uranus (1012, really really liney):</p>
+<p>Top row: non-fitted line suppression</p>
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUoxEvWqRwI/AAAAAAAAF8k/J6ImhPN9ZS0/s320/deline_10hz_wingsuppress_psds_003.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUoxFMLdujI/AAAAAAAAF8s/DrzWxFCdBu0/s320/deline_10hz_wingsuppress_timestreams_003.png" />
+<p>Bottom row: fitted line suppression</p>
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUoxFXYN_tI/AAAAAAAAF80/BQwv6ROSOJ4/s320/deline_fitline_10hz_noscan_nsig0_preservephase_psds_003.png" />
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUoxF_c0URI/AAAAAAAAF88/JU9_F-8HC2k/s320/deline_fitline_10hz_noscan_nsig0_preservephase_timestreams_003.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/more-evidence-that-downsampling-causes-problems.html" rel="bookmark" title="Permalink to More evidence that downsampling causes problems">
+                    More evidence that downsampling causes problems</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-01-21T22:48:00-07:00"> 2011/01/21 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The captions are pretty much the same as for <a class="reference external" href="http://bolocam.blogspot.com/2011/01/downsampling-has-serious-negative.html">the previous post</a>, but
+this is a larger field and the effects are more serious.</p>
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TToMoxR5xJI/AAAAAAAAF3Q/qod6NlqiNpU/s400/orion_omc1_dstest_images.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TToMpcpYjJI/AAAAAAAAF3Y/Hp9V2KcCEgE/s400/orion_omc1_dstest_autocorrfits.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TToMpxmFurI/AAAAAAAAF3g/-JJwti4yW58/s400/orion_omc1_dstest_psds.png" />
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TToMqdKihGI/AAAAAAAAF3o/X54ObZ_AHkk/s400/orion_omc1_dstest_pixel-pixel.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/bgps-pipeline-published.html" rel="bookmark" title="Permalink to BGPS Pipeline Published">
+                    BGPS Pipeline Published</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2010-06-11T19:59:00-06:00"> 2010/06/11 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The BGPS pipeline has officially been released on <a class="reference external" href="http://code.google.com/p/bgpspipeline/">Google Code</a>.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/pipeline-flowcharts.html" rel="bookmark" title="Permalink to Pipeline Flowcharts">
+                    Pipeline Flowcharts</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2010-06-07T22:39:00-06:00"> 2010/06/07 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In the process of hunting down a supposed calibration error, I
+determined that it was necessary to generate a more intuitive graphical
+display of the pipeline. Hence, pipeline flowcharts (generated in
+keynote). The key should be self-explanatory to the degree that any part
+of these charts is understandable to an outsider. The yellow boxes
+represent wrapper scripts/functions while the rounded box bubbles show
+individual functions within these wrappers and their interrelationship.</p>
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TA10NjZw6qI/AAAAAAAAFtc/ibmISvLIcm0/s400/PipelineFlowchartV1.0.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TA10O8mOl5I/AAAAAAAAFtk/W5M6XdTf6mM/s400/PipelineFlowchartV2.0.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/def_user_common-modified.html" rel="bookmark" title="Permalink to def_user_common modified">
+                    def_user_common modified</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-23T15:21:00-07:00"> 2008/11/23 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The NP doesn't work without USER_COMMON defined because at a single
+point it makes use of the 'which' function.
+def_user_common is a disaster, though, because it calls
+get_screen_size(), which forces an X connection to be launched, which
+means that if you start a remote session and close X IDL crashes. This
+has been a constant nagging problem and has cost me ~a few days of work.
+So I commented out the offending (and offensive) line. The worst of it
+is, I'm not even convinced there's anything that uses any of that
+information. The common block is only needed to get paths, so which
+could have been written better.
+The pipeline ground to a halt for an unknown reason at an unknown point
+so I added a lot more timing outputs to try to figure out what's going
+on.
+Back to the grind...</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/massive-upgrades-new-strategy.html" rel="bookmark" title="Permalink to Massive upgrades, new strategy?">
+                    Massive upgrades, new strategy?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-18T04:01:00-07:00"> 2008/11/18 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>A few major things today:</p>
+<blockquote>
+<p>#. I renamed 'ts_to_map' to 'drizzle' and made 'ts_to_map' a wrapper
+that will either median combine by scans (if passed the right keywords,
+i.e. tstomapmedian and scans_info). This will reject cosmic rays much
+more effectively than previously.
+#. My extensive test runs on the 'weird' fields completed. Conclusions:</p>
+<blockquote>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Deconvolution is DEFINITELY responsibly for the weird fuzzy effects</dt>
+<dd>seen esp. in l=33, l=2.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Even a descending iterator is ineffective at alleviating this</dt>
+<dd>problem
+What I still don't understand is WHY the deconvolver is behaving badly
+for some regions. It is extracting peaks that are too high.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Not deconvolving works pretty well, so I'm not really concerned. I'm</dt>
+<dd>resetting the defaults to no deconvolution once my next test is done....</dd>
+</dl>
+</li>
+</ul>
+</blockquote>
+<ol class="arabic simple">
+<li>Started up a new test run to compare median stacking with weighted
+average stacking</li>
+</ol>
+</blockquote>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/new-to-do-list-updated-things.html" rel="bookmark" title="Permalink to New to-do list, updated things....">
+                    New to-do list, updated things....</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-10-15T12:57:00-06:00"> 2008/10/15 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><tt class="docutils literal">do_maptests.pro</tt> is running a bunch of different mapping parameters
+(pca components, deconvolution, etc.) on l000, l002, l003, l033, l083.
+We'll then run bolocat on it and look for the following:
+-number of sources found
+-flux in sources found as a function of n_pca
+-size of sources as function of n_pca
+-BADNESS, e.g. blurring / unremoved atmosphere / oversubtracted sources
+<tt class="docutils literal">bolocat2reg</tt> makes a region file out of a bolocat catalog. I'd like
+to make a separate ds9 region file that includes the actual pointing
+error + the centroiding error rather than just the elliptical fit to a
+given source; that will be more useful for finder charts.
+My current goal is to get a nice set of images I can combine to release
+as a poster to Jason Glenn's student who is making pretty posters for
+publicity purposes; probably to promote CCAT. Umm.... I blame the late
+hour for the alliteration.
+That goal also means I've been using an IRAF task to do some mosaicing
+(easier than writing the IDL code AGAIN):
+<tt class="docutils literal">mscstack l001_5pca_map09.fits,l002_5pca_map09.fits,l000_5pca_map09.fits,l359_5pca_map09.fits,l003_5pca_map09.fits&nbsp; GCCOMBINE_5pca.fits <span class="pre">lthresh=-1l001_13pca_map09_scuba_aligned.fits,l002_13pca_map09_scuba_aligned.fits,l000_13pca_map09_scuba_aligned.fits,l359_13pca_map09_scuba_aligned.fits,l003_13pca_map09_scuba_aligned.fits</span>&nbsp; GCCOMBINE.fits <span class="pre">lthresh=-1mscstack</span> l029_13pca_map09_scuba_aligned.fits,l030_13pca_map09_scuba_aligned.fits,l031_13pca_map09_scuba_aligned.fits,l032_13pca_map09_scuba_aligned.fits,l033_13pca_map09_scuba_aligned.fits,l034_13pca_map09_scuba_aligned.fits L33COMBINE.fits <span class="pre">lthresh=-1</span> hsig=5 lsig=5</tt></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/scripting-the-whole-survey.html" rel="bookmark" title="Permalink to Scripting the Whole Survey">
+                    Scripting the Whole Survey</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-09-16T00:43:00-06:00"> 2008/09/16 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>First, discovered more fields with some sort of failure:</p>
+<pre class="literal-block">
+ls -d l[0-3][0-9][0-9] | sed 's:\(.*\):ls \1/*_map01.fits &gt; \1/\1_infile.txt:' | bashls: l004/*_map01.fits: No such file or directoryls: l017/*_map01.fits: No such file or directoryls: l025/*_map01.fits: No such file or directoryls: l108/*_map01.fits: No such file or directoryls: l135/*_map01.fits: No such file or directoryls: l136/*_map01.fits: No such file or directoryls: l137/*_map01.fits: No such file or directoryls: l138/*_map01.fits: No such file or directoryls: l192/*_map01.fits: No such file or directory
+</pre>
+<p>Also, that command was a total screwup.</p>
+<pre class="literal-block">
+ls -d l[0-3][0-9][0-9] | sed 's:\(.*\):ls /scratch/adam_work/\1/*_map01.fits &gt; \1/\1_fitslist.txt:' | bashls: /scratch/adam_work/l004/*_map01.fits: No such file or directoryls: /scratch/adam_work/l017/*_map01.fits: No such file or directorybash: line 12: l020/l020_fitslist.txt: Permission deniedls: /scratch/adam_work/l025/*_map01.fits: No such file or directoryls: /scratch/adam_work/l108/*_map01.fits: No such file or directoryls: /scratch/adam_work/l135/*_map01.fits: No such file or directoryls: /scratch/adam_work/l136/*_map01.fits: No such file or directoryls: /scratch/adam_work/l137/*_map01.fits: No such file or directoryls: /scratch/adam_work/l138/*_map01.fits: No such file or directoryls: /scratch/adam_work/l192/*_map01.fits: No such file or directory
+</pre>
+<p>Now that those files exist, it should be possible to run a set of
+super-scripts like this:
+coalign_field,'l057','070719_o29',sliced_dir='sliced_polychrome',premap=0
+coalign_field,'l351','070725_ob3'
+coalign_field,'l354','070724_o10'
+coalign_field,'l357','070724_ob3'
+coalign_field,'l000','070719_o14'
+coalign_field,'l003','070718_o16'
+coalign_field,'l006','070715_ob5'
+coalign_field,'l009','070717_ob5'
+coalign_field,'l012','070715_o10'
+coalign_field,'l015','070714_o36'
+coalign_field,'l018','070717_o10'
+coalign_field,'l021','070715_o15'
+coalign_field,'l024','070717_o15'
+coalign_field,'l027','070715_o20'
+coalign_field,'l030','070717_o20'
+coalign_field,'l033','070718_ob5',sliced_dir='sliced_polychrome'
+coalign_field,'l036','070715_o25',sliced_dir='sliced_polychrome'
+coalign_field,'l039','070717_o25',sliced_dir='sliced_polychrome'
+coalign_field,'l042','070715_o30',sliced_dir='sliced_polychrome'
+coalign_field,'l044','070718_o24',sliced_dir='sliced_polychrome'
+coalign_field,'l048','070717_o30',sliced_dir='sliced_polychrome'
+coalign_field,'l050','070718_o29',sliced_dir='sliced_polychrome'
+coalign_field,'l054','070724_o28',sliced_dir='sliced_polychrome'
+coalign_field,'l057','070719_o29',sliced_dir='sliced_polychrome'
+where premap=0 means I'm not re-mapping the whole field, the
+sliced_dir='slice_polychrome' keyword is for those fields that do not
+have a regular sliced directory.
+This kind of thing ought to be really, really helpful when mapping the
+fields whose masters are not in the field: I'll have to modify the
+'coalign_field' code to search in a different directory, though.
+Yearghhh.... last command was bad too.</p>
+<pre class="literal-block">
+ls -d l[0-3][0-9][0-9] | sed 's:\(.*\):ls /scratch/adam_work/\1/0*_map01.fits &gt; \1/\1_fitslist.txt:' | bashls: /scratch/adam_work/l004/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l017/0*_map01.fits: No such file or directorybash: line 12: l020/l020_fitslist.txt: Permission deniedls: /scratch/adam_work/l025/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l108/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l135/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l136/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l137/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l138/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l192/0*_map01.fits: No such file or directory
+</pre>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/progress-on-alignment-ideas-for-the-next-few-steps.html" rel="bookmark" title="Permalink to Progress on alignment, ideas for the next few steps">
+                    Progress on alignment, ideas for the next few steps</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-09-15T02:19:00-06:00"> 2008/09/15 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Alignment: I did a more thorough test of the aligner, and found an error
+that was getting me the wrong results. I'm still getting distinctly
+different results than I got with imalign, but I'm not convinced they're
+wrong. One problem I have to deal with is the ambiguity between pointing
+model applied / no pointing model applied. In retrospect, I should have
+done ALL of the maps with no pointing model: it would be simpler to
+maintain a self-consistent set of alignment corrections.
+However, since that isn't what I did - and there isn't enough memory to
+host both data sets at the moment - I've dealt with the problem by
+adding all of the offsets to the header. Hopefully now it will be
+obvious if and what offsets have been applied, both pointing model and
+'manual', from header keywords. Sadly, it was a pain to get that to work
+- IDL's _extra does not work the same way as normal keyword passing,
+which is disappointing and frustrating because it made me rename a lot
+of variables that should not have been renamed.
+IF this alignment fails to produce perfect results (which I don't really
+expect to happen - it will just take time to debug), it is still a good
+first step, and all we'd really need to do is use bolocat to pull out
+sources from the reference image and then match those in the others,
+doing the same thing imalign does. It wouldn't be difficult but it would
+be time consuming to program.
+Had a bunch of ideas during my insomnia last night, but I'm afraid I
+forgot most of them...
+One idea was related to the use of MAD as opposed to STDDEV: it may
+allow for a more robust sigma-rejection for automated flagging. But
+that's difficult.
+Another thought was using the maps to auto-identify glitches. To do
+this, I'd make a combined map and an individual map, hastrom them, and
+subtract the combined from the individual. We could then probably pretty
+easily spot any glitches; they should be the only outliers left, in
+principle. I'll test that idea, but it actually looks less promising
+than I'd hoped. Things are not coming out right in preliminary tests -
+huge residuals.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+            <a href="https://keflavich.github.io/blog/tag/pipeline2.html">&laquo;</a>
+    Page 3 / 5
+        <a href="https://keflavich.github.io/blog/tag/pipeline4.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

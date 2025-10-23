@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://keflavich.github.io/blog/cvel-errors.html" rel="bookmark"
+         title="Permalink to CVEL errors">CVEL errors</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2015-11-02T20:50:00-07:00">
+      2015/11/02
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>I'm trying to get a good image of the W51 main sources that have line forests.
+MFS clean does a pretty good job, but is very limited in dynamic range
+presumably because the spectral lines manifest as amplitude errors.</p>
+<p>I tried splitting the data to merge my two spectral windows using <cite>cvel</cite>
+(<a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/4c29c8dc763e3f994279d50db72b9a0dfc2a35b7/script_12m/split_for_localtests.py#L8">code</a>),
+but I see thousands of errors like this:</p>
+<pre class="literal-block">
+2015-11-02 19:52:15     WARN    SubMS::combineSpws()    Averaging failed for the following channel/correllation pairs from output row 44432 up to 44459. Corresponding visibilities will be flagged:
+2015-11-02 19:52:15     WARN    SubMS::combineSpws()+   (60, 0) (60, 1) (1804, 0) (1804, 1) (1998, 0) (1998, 1)
+</pre>
+<p>and when I image the cube, there is a jump at one channel that occurs because
+the resolution suddenly changes either because SPW3 (the lo-res SPW) is not
+included or because the hi-res one suddenly is.</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/cvel_jump.png" style="width: 400px;" />
+<p>It doesn't look like there's any obvious workaround at the moment, but I'll
+probably try sending another helpdesk ticket about this.</p>
+<p>My best idea for getting a decent continuum out now is something like this:</p>
+<blockquote>
+<ul class="simple">
+<li>image the whole cube in frequency</li>
+<li>determine channels that can approximate the bright continuum</li>
+<li>use those to uvcontsub the data</li>
+<li>image the uvcontsub'd cube</li>
+<li>uvsub the imaged spectral line cube from the original data</li>
+<li>re-image the now-continuum-only cube using mfs</li>
+</ul>
+</blockquote>
+<p>EDIT: Dirk replied to the helpdesk ticket, suggesting:</p>
+<pre class="literal-block">
+Concerning cvel: try to process one SPW at a time. Otherwise cvel will
+_combine_ the SPWs and if they are not observed at the same time, this will
+lead to problems.
+</pre>
+<p>So I've now <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/2d15ce46f9ecd75d70ab7ac4ee8f91b272139d9e/script_12m/split_for_localtests.py#L8">split the cvel into two commands</a>.
+I also added <cite>outframe='bary'</cite> because otherwise it's not obvious that the
+frequency command is doing anything
+sensible or useful.  That's actually probably why I was getting non-overlapping
+segments before - it tried converting to barycentric, but maybe too late in the
+process (i.e., it tried selecting in topo, then converting to bary for output).
+I also added a phasecenter, because it was automatically selecting pointing 24
+as the phasecenter for cvel before.</p>
+<p>This led to a new error:</p>
+<pre class="literal-block">
+2015-11-03 14:38:27     WARN    cvel::SubMS::convertGridPars     *** Requested new channel width is smaller than smallest original channel width
+2015-11-03 14:38:27     WARN    cvel::SubMS::convertGridPars+        which is 488319 Hz
+</pre>
+<p>which I've fixed by setting the output width to be 0.5 MHz, just a simple round
+number greater than the input even accounting for shift.  Unfortunately, this
+seems to have produced a dramatically larger output MS, which cannot be
+correct.... ahhh, it turns out that was temporary, once regridding was complete,
+it turned small again.</p>
+
+  </div><!-- /.entry-content -->
+</section>
+
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</section>
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  var disqus_identifier = '/cvel-errors.html';
+  var disqus_url = 'https://keflavich.github.io/blog/cvel-errors.html';
+  var disqus_title = 'CVEL errors';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - simulation</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2016/08/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-synthetic-observations.html">CASA synthetic observations</a>
+              </li>
+              <li class="post">
+                  2016/04/26
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-simulated-imaging-now-ftmachine-is-whining.html">CASA simulated imaging: now FTMachine is whining</a>
+              </li>
+              <li class="post">
+                  2016/04/24
+                  <br>
+                  <a href="https://keflavich.github.io/blog/more-casa-simulation-debugging.html">More CASA simulation & debugging</a>
+              </li>
+              <li class="post">
+                  2011/08/10
+                  <br>
+                  <a href="https://keflavich.github.io/blog/spatial-transfer-function-vs-npca.html">Spatial Transfer Function vs. nPCA</a>
+              </li>
+              <li class="post">
+                  2011/08/05
+                  <br>
+                  <a href="https://keflavich.github.io/blog/spatial-transfer-functions-revisit-4.html">Spatial Transfer Functions, revisit 4</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/spatial-transfer-functions.html" rel="bookmark" title="Permalink to Spatial Transfer Functions">
+                    Spatial Transfer Functions</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-13T18:54:00-06:00"> 2011/07/13 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The majority of the past week has been dedicated to debugging; it looks
+like cross-scanned simulations finally work.
+The plot below is a derivation of the spatial transfer function for a
+number of different intrinsic sky power-law power spectra.</p>
+<img alt="" src="http://2.bp.blogspot.com/-JyAPg0u9uQ8/Th3kuQh1fpI/AAAAAAAAGRs/pP7o3n9_wds/s320/Experiment10_AverageRecoveryFunction.png" />
+<p>Justifying the above plot is essential.
+First, the very steep power-laws [-3 in the example below] show a
+recovery fraction &gt;1. This is simply because their S/N was inadequate -
+the output power spectrum is nearly flat, but at a level higher than the
+sky.</p>
+<img alt="" src="http://4.bp.blogspot.com/-JPBjsLDfP5M/Th3lw5n1xTI/AAAAAAAAGR0/aDeOmMv5s8w/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky00_seed00_peak010.00_nosmooth_compare.png" />
+<img alt="" src="http://3.bp.blogspot.com/-LOCDmoLCcZs/Th3lxfnKVzI/AAAAAAAAGR8/9NCM3OroGoM/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky00_seed00_peak010.00_nosmooth_psds.png" />
+<p>Second, the most plausible power-laws [-1.5 in the example below] show
+pretty good recovery (90-95% over the relevant range):</p>
+<img alt="" src="http://1.bp.blogspot.com/-MTZ8WGl3ZRc/Th3mMkvv2II/AAAAAAAAGSE/0OO4Te39fPI/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky03_seed00_peak010.00_nosmooth_compare.png" />
+<img alt="" src="http://2.bp.blogspot.com/-5IeTZW-ZTAw/Th3mNHPC8gI/AAAAAAAAGSM/WhIWClGWqbo/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky03_seed00_peak010.00_nosmooth_psds.png" />
+<img alt="" src="http://4.bp.blogspot.com/-O6ofm7GaxUI/Th3mNgf29AI/AAAAAAAAGSU/VzQ7aL-yd_E/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky03_seed00_peak010.00_nosmooth_stf.png" />
+<p>There are some &quot;white&quot; power losses, particularly in the flatter
+power-spectra. My best guess is that this has something to do with the
+relative scales being offset from a mean of 1, but so far all tests to
+show that that is the cause have in fact shown no problems at all. What
+else could cause a scale-independent power loss?
+Also, the flat power spectrum (and inverted) aren't quite flat because I
+impose a &quot;galactic scale height&quot; on them. Should I stop doing that?</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/measuring-preferred-angles-in-the-herschel-data-on-larger-scales.html" rel="bookmark" title="Permalink to Measuring preferred angles in the Herschel data on larger scales">
+                    Measuring preferred angles in the Herschel data on larger scales</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-06-07T22:09:00-06:00"> 2011/06/07 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>This is something of a repeat of yesterday's exercise, but for Herschel
+data on larger scales, where filamentation is expected (at different
+angles?) on a different scale than the Galactic plane.
+First example: L030 500 microns</p>
+<img alt="" src="http://1.bp.blogspot.com/-wtocYOxuJGo/Te6boI6cE7I/AAAAAAAAGNU/f9h0MXIPNh8/s320/bin_l30_plw_PSD.png" />
+<img alt="" src="http://4.bp.blogspot.com/-HlNCVZYyly4/Te6bob1mWLI/AAAAAAAAGNc/Jq6MTJnVyWE/s320/bin_l30_plw_azprofile.png" />
+<p>There is evidently a preferred direction that is correlated down to the
+resolution of the map, though the preference is smallest at the smallest
+scales. This may simply be a statement that there are more sources along
+the galactic plane, though, since there really isn't any particularly
+obvious filamentation in the image.</p>
+<img alt="" src="http://4.bp.blogspot.com/-LfWovOR8nBk/Te6bpM-PNTI/AAAAAAAAGNk/T9il85L34p0/s320/bin_l59_plw_PSD.png" />
+<img alt="" src="http://4.bp.blogspot.com/-1_7ezH0S6tk/Te6bpokBuYI/AAAAAAAAGNs/AQL0U86N4gw/s320/bin_l59_plw_azprofile.png" />
+<p>In L59, on the other hand, there is at most a very weak preference
+except at the largest scales corresponding to the Galactic Plane. This
+is somewhat interesting because there IS obvious filamentation in the
+L59 image, but it does not have a preferred direction. Unfortunately, it
+is not obvious whether or where filamentation shows up in fourier space
+if it does not have a preferred direction. There is no excess at any
+spatial scale that I can pick out.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/hunting-for-preferred-directions.html" rel="bookmark" title="Permalink to Hunting for preferred directions">
+                    Hunting for preferred directions</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-06-06T03:58:00-06:00"> 2011/06/06 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In our last group meeting, we discussed simulations using filamentary
+structures. I've been trying to determine how best to generate
+random/artificial filamentary structures in images. The first step in
+that direction is coming up with a way to measure asymmetries and
+therefore preferred directions within a real map. In order to do this,
+I've had to develop a number of new tools in agpy for azimuthally binned
+radial profiles and radially-averaged azimuthal profiles
+(<a class="reference external" href="http://code.google.com/p/agpy/source/browse/trunk/agpy/radialprofile.py">radialprofile.py</a>).
+Examining real maps is necessary because a simple sinusoidal dependence
+of the power introduces filamentation along the same directions at ALL
+scales, which is not obviously (or in some cases, obviously not) the
+correct solution. Filaments are observed on large scales, but sometimes
+there can be 'kinks' in opposite directions on small scales.
+So, the map I picked to examine was one with the most flagrantly obvious
+filamentary structure in it: the Motte DR 21 MAMBO map. It was also a
+choice of convenience because I already had the data on my laptop....</p>
+<img alt="" src="http://3.bp.blogspot.com/-ULjqyt_ofEI/TexIAK9ohhI/AAAAAAAAGM0/eCEys_tFOTA/s320/MAMBOmap.png" />
+<p>The preferred direction is quite obvious in this map: there is a long
+filament going up and down the map. Therefore, the DC component should
+be substantially higher in one direction than the other.</p>
+<img alt="" src="http://1.bp.blogspot.com/-X7TY9wPUL7Y/TexIAZ7hH_I/AAAAAAAAGM8/IEkgX500_Os/s320/MAMBOpsd.png" />
+<p>In the power-spectral-density image, it is quite clear that there is a
+preferred direction, though it is not obvious that the fourier transform
+is rotated 90 degrees from the image. My fourier intuition somewhat
+fails me here.... I realize that a broad, smooth profile in real space
+should be narrow and highly peaked in fourier space, but I don't fully
+understand why it effectively spreads out in the perpendicular
+direction, which I have confirmed that it does with a simple experiment.
+I also don't know what the Shah function is, but it implies a periodic
+dip in the image at every 1/5th of the image, or every 50 pixels.</p>
+<img alt="" src="http://2.bp.blogspot.com/-l4qWlj1G42k/TexIAufhjSI/AAAAAAAAGNE/UqagczdWzwA/s320/MAMBOpowerspectra.png" />
+<p>These are the power spectra averaged over different angles as labeled.
+-15 corresponds to -15 to +15, 15 corresponds to 15 to 45, etc. The
+highly peaked 75-105 power spectrum shows the large-scale filamentary
+profile. I think the difference in the DC component is actually an
+artifact of the azimuthal binning process: each pixel can only be
+assigned one angle, so the DC value isn't included in all of them...
+I'll need to find a workaround for that because it's quite deceptive.</p>
+<img alt="" src="http://4.bp.blogspot.com/-qEWk2rRrwNI/TexIBKn59FI/AAAAAAAAGNM/MXdsiKagpW4/s320/MAMBOazspectra.png" />
+<p>The more interesting way to view the data - and perhaps to analyze maps
+- is to take <em>radial</em> averages in some range of spatial scales and plot
+the azimuthal dependence. There is a clear sinusoid at large scales. The
+legend shows &quot;spatial frequency&quot; in 1/pixel units. The distribution
+becomes more even with angle and even changes preferred direction at
+smaller scales (higher frequencies).
+Next step is testing different approaches. I think an added,
+steeper-power-law component would probably be the best way to start.
+Another suggestion, courtesy Bruce Elmegreen, is to attempt this sort of
+asymmetric power law sampling in 3 dimensions (with only 1 or 2
+dimensions asymmetric) and then projecting down onto two dimensions.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/recovery-as-a-function-of-bolometer-noise-part-2.html" rel="bookmark" title="Permalink to Recovery as a function of bolometer noise part 2">
+                    Recovery as a function of bolometer noise part 2</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-05-27T23:49:00-06:00"> 2011/05/27 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In the Experiment 7 simulations I was running, I observed greater noise
+than expected, causing me to question the results of the <a class="reference external" href="http://bolocam.blogspot.com/2011/05/recovery-as-function-of-bolometer-noise.html">previous
+post</a>. I therefore ran Experiment 8, which is the same as Experiment 6
+from that post with a larger (320x320) map with a larger step size. The
+noise recovery remains linear, but the scaling is quite different - a
+factor of ~4 instead of ~12. The step size is the most likely culprit,
+since an 8x larger step size should result in sqrt(8)~2.8 worse noise
+per pixel.</p>
+<img alt="" src="http://1.bp.blogspot.com/-ubZ-9LXWmXQ/TeAdFoOUcZI/AAAAAAAAGMY/bSSwM2JuLyA/s320/exp8_measurednoise_vs_bolonoiseRMS.png" />
+<p>There are some curious / worrisome artifacts that turn up and are
+evident in the recovery fraction plot. For the low-noise cases, the
+middle bolometers get totally flagged out because they are over-weighted
+(by orders of magnitude).</p>
+<img alt="" src="http://3.bp.blogspot.com/-0KKwo1wB6aI/TeAdFz6pTiI/AAAAAAAAGMg/yHGsx8j7WMM/s320/exp8_recovery_vs_bolonoiseRMS.png" />
+<p>So I'm forced to explore via pyflagger. I will almost certainly need to
+re-run all experiments after making a change to how weights are
+computed.
+Well, it turns out the problem is that those 28 bolos are scaled to
+zero, even though there is nothing obvious (or even suggestive) in their
+timestream plots. This is only true when varyrelscale is off. Apparently
+varying the relative scales leads to a different problem.
+AHA! The noise is so low that the relative scales are SO well correlated
+that the signal is enough to cause problems! A plausible solution is
+therefore no change to the pipeline, but to add minimal (nominal) noise
+to the relative scales to increase the MAD so that the others don't get
+flagged out.
+So I added a 1% variation, which prevented flagging at the scale stage,
+but there are still some disturbing artifacts in the map:</p>
+<img alt="" src="http://4.bp.blogspot.com/-TX2_8PsUgdM/TeA4Iu9T5FI/AAAAAAAAGMo/vfEjTGcSBp0/s320/psf_ds1_reconv_arrang45_atmotest_noise%252B1.0E-03_amp1.0E%252B00_compare.png" />
+<p>Unfortunately, this problem requires further examination in detail. Exp
+9/10 should probably be gaussians and airys on larger step-size maps,
+but the solution will require something else, possibly even a change in
+the pipeline. On the plus side, I think I can re-run experiment 7 with a
+factor of 4 instead of 12 scaling for the noise and expect it to work.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/recovery-as-a-function-of-bolometer-noise.html" rel="bookmark" title="Permalink to Recovery as a function of bolometer noise">
+                    Recovery as a function of bolometer noise</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-05-26T18:47:00-06:00"> 2011/05/26 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>One clear simulation result comes from varying the amplitude of the
+gaussian noise added to each bolometer's timestream for a fixed
+atmosphere amplitude. The atmosphere amplitude sets the <em>mean</em> value of
+the atmosphere timestream.
+Increased bolometer noise results in decreased recovery of the outer
+rings of the PSF. This is demonstrated in that the peak amplitudes
+remain constant (as long as they are still recovered) while the aperture
+sums (in 100&quot; radius apertures) decrease.
+The simulations were run on a logarithmic spacing from 1e-3 to 1e0. The
+1e0 point is missing because the peak flux wasn't recovered by the
+gaussian fitter. The model maps don't recover the source at all for this
+run, which is worrisome, since it means there is no iterative process
+There is a minor concern that some simulations over-recover the peak at
+high noise, but the effect is at a &lt;1% level so not very worrisome.</p>
+<img alt="" src="http://1.bp.blogspot.com/-H0j13RdCays/Td6QrP78qWI/AAAAAAAAGMI/X-74WUEgYFE/s320/exp6_recovery_vs_bolonoiseRMS.png" />
+<p>From the same set of simulations, I derive the pixel RMS of the map (the
+noise level) derived from a give individual bolometer noise. The
+theoretical expectation would be
+Measured Noise = Input Noise / N(bolometers)
+<em>if</em> the pixel sampling and the timestream sampling were the same (i.e.
+there were exactly sqrt(nbolos) hits per pixel). This is not exactly the
+case, and there are potential additional sources of noise. Nonetheless,
+the naive theory appears to be good enough in this simulation:</p>
+<img alt="" src="http://3.bp.blogspot.com/-ar8f4tdXUkQ/Td6fecs1WoI/AAAAAAAAGMQ/f_PwoxFp4Fo/s320/exp6_measurednoise_vs_bolonoiseRMS.png" />
+<p>You can ignore the green/blue points in this plot; they just show that
+the std. dev. around the source is dominated by the source.
+Additionally, there is a noise floor, probably set by an inability to
+model the point source when the S/N gets to be ~500, preventing
+convergence of the iterator at a level better than 0.2%.
+In short, though, I'm going to use 1/sqrt(nbolos) to determine the
+appropriate input noise level in the astro simulations.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/astrophysical-signal-modeling.html" rel="bookmark" title="Permalink to Astrophysical Signal Modeling">
+                    Astrophysical Signal Modeling</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-05-24T17:39:00-06:00"> 2011/05/24 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Here we finally get into the meat of the simulations. The goal is to
+develop realistic - but arbitrary - astrophysical models to run through
+simulations.
+The first step is to figure out what a realistic sky looks like. To this
+end, I use the HiGal SDP fields, looking only at their power spectra.
+They are well represented by a power law with α = 3 (shown in the dashed
+black line below).</p>
+<img alt="" src="http://2.bp.blogspot.com/-50R2lfaIGrY/TdvZi5tl5VI/AAAAAAAAGLQ/w45OC9dk3Rg/s320/sdp_psds_powerlaw.png" />
+<p>Therefore, I've attempted to randomly sample from a similar power law
+distribution using the following IDL code:</p>
+<p><tt class="docutils literal">dimsize = 512&nbsp;&nbsp;&nbsp; realpower = realpowers[ii]&nbsp;&nbsp;&nbsp; imagpower = imagpowers[ii]&nbsp;&nbsp;&nbsp; imagscale = imagscales[ii]&nbsp;&nbsp;&nbsp; peakamp = 1.0&nbsp;&nbsp;&nbsp; noise = 0.03&nbsp;&nbsp;&nbsp; smoothscale = 2.0&nbsp;&nbsp;&nbsp; smoothkernel = <span class="pre">psf_gaussian(npix=512,ndim=2,fwhm=31.2/7.2/2.0,/normalize)</span>&nbsp;&nbsp;&nbsp; sigma_gp = 128.0 ; <span class="pre">sigma-width</span> of the Galactic Plane (can get more accurate value from Cara's paper)&nbsp;&nbsp;&nbsp; xx = findgen(dimsize) #&nbsp; replicate(1.0,dimsize)&nbsp;&nbsp;&nbsp; yy = findgen(dimsize) ## replicate(1.0,dimsize)&nbsp;&nbsp;&nbsp; rr = sqrt( <span class="pre">(xx-255.5)^2</span> + <span class="pre">(yy-255.5)^2</span> )&nbsp;&nbsp;&nbsp; realpart = (rr^realpower) * <span class="pre">randomn(seed1,[dimsize,dimsize])</span>&nbsp;&nbsp;&nbsp; imagpart = <span class="pre">((rr*imagscale)^imagpower)</span> * <span class="pre">randomn(seed2,[dimsize,dimsize])*complex(0,1)</span>&nbsp;&nbsp;&nbsp;&nbsp; fakesky = abs(fft(shift(realpart + <span class="pre">imagpart,0,0),1))</span>&nbsp;&nbsp;&nbsp; expweight = <span class="pre">exp(-(yy-255.5)^2/(2.0*sigma_gp^2))</span> ; most power is in the inner plane&nbsp;&nbsp;&nbsp; fakesky *= peakamp/max(fakesky)&nbsp;&nbsp;&nbsp; fakesky_sm = convolve(fakesky,smoothkernel)&nbsp;&nbsp;&nbsp; fakesky_sm = fakesky_sm*expweight&nbsp;&nbsp;&nbsp; fakesky_sm += <span class="pre">randomn(seed3,[dimsize,dimsize])</span> * noise</tt></p>
+<p>Since Power is the fourier-transform squared, I'm using a power-law of
+α=1.5 for the &quot;real&quot; part of the sampling. The imaginary part follows a
+shallower slope to reduce the amount of power in large structures, which
+didn't look quite right (but maybe I should leave both slopes the
+same?). With both the same, and without the imaginary part down-scaled,
+the structure appears too &quot;cloudy&quot; and not &quot;clumpy&quot; enough. But back to
+that later...</p>
+<p>The peak amplitude is set by re-scaling the map. Ideally, we'd like to
+see this set by a point source, since that is true in most fields.
+The noise level should not be included in simulations, but should be
+used to show the difference between pipeline-leftover noise and gaussian
+noise on the sky. i.e., what structures disappear when you just add
+noise, and what structures are removed by the pipeline.</p>
+<p>The PSF is simply to smooth out signals that are removed by the
+telescope beam. We can replace this with a &quot;real&quot; PSF if and when we've
+come up with a believable one.</p>
+<p>The noise is added after the smoothing because it should be on a pixel
+scale rather than a beam scale.</p>
+<p>Here are some example realizations with different power laws:</p>
+<img alt="" src="http://3.bp.blogspot.com/-vCy9Lx2RjWw/Tdvs_PO1u6I/AAAAAAAAGLw/cc7cIupQu0U/s320/exp7_fakesky_sm_realP-1.0_imagP-1.0_imagS01.0_seednum02.png" />
+<img alt="" src="http://4.bp.blogspot.com/-qpgg2U41r6U/Tdvs_RPxARI/AAAAAAAAGL4/v5exzhhqDew/s320/exp7_fakesky_sm_realP-1.5_imagP-1.5_imagS01.0_seednum02.png" />
+<img alt="" src="http://3.bp.blogspot.com/-2kUqO9aE8zM/Tdvs_maHaCI/AAAAAAAAGMA/u5bDCfiVuH0/s320/exp7_fakesky_sm_realP-2.0_imagP-2.0_imagS01.0_seednum02.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/psf-modeling.html" rel="bookmark" title="Permalink to PSF modeling">
+                    PSF modeling</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-05-22T01:19:00-06:00"> 2011/05/22 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>There haven't been many posts recently because I've primarily been
+writing up old results into the v2 paper.
+The Airy and Gaussian simulations with and without atmosphere seem to
+have yielded their results. There is a ~5% loss when mapping Airy-disk
+point sources. This is fine as long as it's quantified; it just means
+that when calibrating we need to know whether extended sources are
+similarly truncated. If all sources lose 5% in the pipeline, there will
+be no net offset.
+However, the Airy is not necessarily representative of the CSO's PSF.
+In order to come up with a more reasonable representation of the PSF,
+I've attempted to fit the *measured* PSF (from James' paper) with an
+Airy disk. The first sidelobe has a lot more amplitude and is closer to
+the peak than in an Airy disk. It is also asymmetric, but I'm ignoring
+that for the moment.
+To better represent the first sidelobe, I've fitted a modified Airy
+function. The &quot;modification&quot; is to fit two Airy functions, one to the
+peak and one to the rest. This is accomplished by setting everything
+outside the first null to zero in the first function, and everything
+inside the first null to zero in the second. The centers are the same,
+but the amplitudes and widths are independent.</p>
+<img alt="" src="http://3.bp.blogspot.com/-Vd8eey7FX4Q/TdhiEsk-FhI/AAAAAAAAGLA/ekzBJL8oNoE/s320/airy_modified_comparison.png" />
+<p>The above image shows the best fit Airy and modified Airy, both in log
+scale on an identical grid. The modeled PSF was then put through the
+pipeline to see it recovers the pipeline-derived PSF. The radial profile
+results are below, but note that this is only one particular realization
+of the simulation + pipeline.</p>
+<img alt="" src="http://2.bp.blogspot.com/-sxL-QjhRxUE/TdhidbXuAKI/AAAAAAAAGLI/NX9LdWqu4nM/s320/PSF_fit_plot_pipelinecompare.png" />
+<p>Note that the model matches the first sidelobe in the &quot;observed&quot; PSF
+pretty well, but both before and after pipeline processing, overpredicts
+the second sidelobe.
+There are a few &quot;action items&quot; remaining for this task:</p>
+<ol class="arabic simple">
+<li>Re-derive the &quot;observed&quot; PSF using V2. Does it vary with epoch?
+Source?</li>
+<li>Find a model that better recovers the observed PSF</li>
+</ol>
+<p>Any thoughts on better models to use? Does this seem like a good idea at
+all?</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/azimuthal-averages.html" rel="bookmark" title="Permalink to Azimuthal Averages">
+                    Azimuthal Averages</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-04-27T19:45:00-06:00"> 2011/04/27 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>We noted in discussion yesterday that the aperture sum in the (nearly
+perfectly recovered) is lower than expected even for a gaussian fit of
+an airy. A Gaussian approximation to an Airy should recover 93.5% of the
+flux; 6.5% of the power is in the sidelobes of an Airy disk. We recover
+about 86-88% of the flux in the input point-source map, or about 5-7%
+short, despite matching the peak to within 2-3%. This discrepancy is
+partly - but not completely - explained by a slight negative bowl
+effect: the Gaussian fit has a higher total flux than the aperture sum.
+Using the gaussian fit value, the recovery is about 90%. A mere 3%
+missing flux is not too much of a problem - it could still be that the
+gaussian is uniformly reduced by bowl effects, or perhaps that some flux
+is not reincorporated into the map (at a very low level) because it is
+correlated enough to be PCA-cleaned.
+In the figure, the top panel is the radial profile of the ds1 data
+(black), the input data (red), and their gaussian fits (see legend). The
+circles on the labeled images show the FWHM of the fitted gaussian,
+indicating a good fit. The apertures used for summation are NOT
+displayed. The sum aperture has a radius of 90&quot; (6.25 pixels) and the
+&quot;Noise Aperture&quot; has the same area as the sum aperture.</p>
+<img alt="" src="http://1.bp.blogspot.com/-nvXzUBHvsmE/TbhaQabluMI/AAAAAAAAGKc/Ks16AZ70fe0/s320/exp2_amp1.0E%252B01_map20_ds1inputcompare_point.png" />
+<p>If we redo the analysis with a smaller aperture, the recovery is better:
+95% in the central 45&quot;. However, now the airy ring cannot account for
+any lost flux, so it still looks like there's a 5% loss intrinsic in the
+pipeline.</p>
+<img alt="" src="http://2.bp.blogspot.com/-mqisozGUA2c/Tbhx5wk04WI/AAAAAAAAGKk/AIxGRnDMZBM/s320/exp2_amp1.0E%252B01_map20_ds1inputcompare_point.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/sampling-causes-problems-rd-2.html" rel="bookmark" title="Permalink to Sampling Causes Problems: Rd 2">
+                    Sampling Causes Problems: Rd 2</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-04-19T17:39:00-06:00"> 2011/04/19 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Proof that a well-sampled timestream / gaussian is recovered better than
+a poorly sampled one:</p>
+<img alt="" src="http://3.bp.blogspot.com/-PVt1suBQt3s/Ta3EQqypzAI/AAAAAAAAGG4/ap-3_SKjigI/s320/airy_test_superres_ds1_smallpix_sn100timestream012_plots_16_bolo12.png" />
+<img alt="" src="http://1.bp.blogspot.com/-HMr4DXKBVMY/Ta3GE49GmcI/AAAAAAAAGHA/ULLRUq_IWn8/s320/airy_test_superres_ds1_sn100timestream012_plots_20_bolo12.png" />
+<img alt="" src="http://3.bp.blogspot.com/-ujL_h0j-Gms/Ta3GWwcEttI/AAAAAAAAGHI/4uVLXXXhtqc/s320/airy_test_superres_ds1_smallpix_sn100_compare.png" />
+<img alt="" src="http://4.bp.blogspot.com/-r98h73qcMKY/Ta3GXBKAT3I/AAAAAAAAGHQ/k3y8j427TC0/s320/airy_test_superres_ds1_sn100_compare.png" />
+<p>These aren't really the most convincing, since the flux loss is only
+1-8% depending on how you count. The atmosphere-included ones have
+larger flux loss, which is important to understand... WHY does the added
+noise INCREASE the flux loss?
+Ugh, unfortunately, there is a perfect counter-example. The first image
+shows a timestream in which the input map is sampled by 7.2&quot; pixels,
+which is just shy of nyquist sampling the 1-sigma width of the gaussian
+(but is fine for the FWHM of the gaussian). The second shows 3.6&quot;
+sampling of the same. No improvement. The third, very surprisingly,
+shows significant improvement - but this was an experiment in which the
+relative scales were allowed to vary.</p>
+<img alt="" src="http://4.bp.blogspot.com/-NIwHLJT2SOw/Ta3IAGQA4HI/AAAAAAAAGHY/N3Oju7RHhRE/s320/airy_test_ds1_reconv_arrang45_atmotest_amp1.0E-01timestream011_plots_20_bolo07.png" />
+<img alt="" src="http://4.bp.blogspot.com/-Qo8-kSCFMCc/Ta3IATO7P1I/AAAAAAAAGHg/Jx9ufNhabiE/s320/airy_test_ds1_reconv_arrang45_atmotest_smallpix_amp1.0E-01timestream011_plots_20_bolo07.png" />
+<img alt="" src="http://3.bp.blogspot.com/-6PlqmOsDRFY/Ta3IA00cfBI/AAAAAAAAGHo/t5b2jddw5Lw/s320/airy_test_ds1_reconv_arrang45_atmotest_varyrelscale_amp1.0E-01timestream011_plots_20_bolo07.png" />
+<p>The first two each had one high-weight bolometer rejected, the last had
+12 high-weight bolos rejected. So that's problably the problem....</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/aperture-photometry-on-herschel-based-simulation.html" rel="bookmark" title="Permalink to Aperture Photometry on Herschel-based simulation">
+                    Aperture Photometry on Herschel-based simulation</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2010-06-08T18:15:00-06:00"> 2010/06/08 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TA6IGulWZrI/AAAAAAAAFvU/MHMBrTgxxnU/s200/ApertureCompare_Source00.png" />
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TA6IHwUnzhI/AAAAAAAAFvc/6xv7rKG9Ao4/s200/ApertureCompare_Source01.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TA6IIrbLWVI/AAAAAAAAFvk/mVRxd8bCY0w/s200/ApertureCompare_Source02.png" />
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TA6IJQBhEoI/AAAAAAAAFvs/VhnsSNbs75A/s200/ApertureCompare_Source03.png" />
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TA6IKP3X_SI/AAAAAAAAFv0/LCXAGTyp_yE/s200/ApertureCompare_Source04.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TA6ILDl55sI/AAAAAAAAFv8/jFfTmYof1yQ/s200/ApertureCompare_Source05.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TA6IL9QhTmI/AAAAAAAAFwE/TAIwnefrPlE/s200/ApertureCompare_Source06.png" />
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TA6IM_9TaaI/AAAAAAAAFwM/0YpADED3SlE/s200/ApertureCompare_Source07.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TA6IOYETGbI/AAAAAAAAFwU/aq5OYcifDc8/s200/ApertureCompare_Source08.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TA6IPFzIniI/AAAAAAAAFwc/omOacZgjFuc/s200/ApertureCompare_Source09.png" />
+<p>Aperture Photometry on isolated and not-so-isolated sources in the
+Herschel-based BGPS simulation using the L=111 field for the &quot;noise&quot;.
+Depending on the aperture, our flux recovery can be really really low.
+The images should give an idea of the S/N.&nbsp; Background subtraction means
+subtracting the median of the image.... it works frighteningly well in
+most cases.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+            <a href="https://keflavich.github.io/blog/tag/simulation.html">&laquo;</a>
+    Page 2 / 3
+        <a href="https://keflavich.github.io/blog/tag/simulation3.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

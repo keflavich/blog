@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - googlepost</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2012/12/26
+                  <br>
+                  <a href="https://keflavich.github.io/blog/catalog-vs-image-shift-a-possible-solution-to-the-atlasgal-issue.html">Catalog vs Image shift? A possible solution to the ATLASGAL issue</a>
+              </li>
+              <li class="post">
+                  2012/12/22
+                  <br>
+                  <a href="https://keflavich.github.io/blog/idea-multispectral-eigenimage-decomposition.html">Idea: Multispectral Eigenimage decomposition...</a>
+              </li>
+              <li class="post">
+                  2012/12/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pointing-cross-correlation-yet-again.html">Pointing & Cross-Correlation yet again</a>
+              </li>
+              <li class="post">
+                  2012/11/21
+                  <br>
+                  <a href="https://keflavich.github.io/blog/the-peculiar-balmer-decrement-of-sn-2009ip-constraints-on-circumstellar-geometry.html">The Peculiar Balmer Decrement of SN 2009ip: Constraints on Circumstellar Geometry</a>
+              </li>
+              <li class="post">
+                  2012/11/21
+                  <br>
+                  <a href="https://keflavich.github.io/blog/galactic-h2co-densitometry-i-pilot-survey-of-ultracompact-hii-regions-and-methodology.html">Galactic H2CO Densitometry I: Pilot survey of Ultracompact HII regions and methodology</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/updates-today.html" rel="bookmark" title="Permalink to Updates today">
+                    Updates today</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-25T23:35:00-06:00"> 2008/08/25 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I updated the FITS header writing pieces of the software today, we
+should now have:
+N_PCA
+ITERNUM
+PPBEAM
+in all new maps.
+I'm mapping all of Cygnus degree-by-degree in RA/Dec and Galactic to try
+to measure offsets... possibly offsets as a function of l/b or ra/dec. I
+should really be doing this with PPSes, though.
+My priority list:</p>
+<ol class="arabic simple">
+<li>find out what's causing bulk offsets</li>
+<li>beat down noise in my pointing models by rejecting bad sources/points
+[has to be done from campus]</li>
+<li>test my personal special pointing models</li>
+<li>make maps!</li>
+<li>figure out the rest of pointing</li>
+</ol>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/iterating-to-convergence.html" rel="bookmark" title="Permalink to Iterating to Convergence">
+                    Iterating to Convergence</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-25T17:42:00-06:00"> 2008/08/25 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/SLLufcweELI/AAAAAAAADOs/5LV8RF28aUk/s400/iteratetoconvergence-0.png" />
+<p>Some sample plots of flux-vs-iteration number in the Galactic Center.
+The above is for a 13-pca-component map, and the plot is of the
+northeast peak of SGR B2. The other plots (available in postscript
+below) are of two other points in the GC, and the last one is of the
+whole of SGR B2 (it's a very large aperture).
+ps version here:
+<a class="reference external" href="http://sites.google.com/site/bolocam/pipeline/mapping/iteratetoconvergence.ps?attredirects=0">http://sites.google.com/site/bolocam/pipeline/mapping/iteratetoconvergence.ps?attredirects=0</a>
+or /scratch/adam_work/plots/iteratetoconvergence.ps</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/g343-pca-subtraction-comparison.html" rel="bookmark" title="Permalink to G34.3 PCA subtraction comparison">
+                    G34.3 PCA subtraction comparison</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-24T20:30:00-06:00"> 2008/08/24 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/SLHDrcGWxqI/AAAAAAAADOM/mVp0tqm6qjI/s400/g34.3_pca_compare.png" />
+<p>From top-left to the blue highlighted box, the 20th iteration of N pca
+components subtracted is shown. N goes from 1 to 19. The other plots are
+'ascending' and 0-pca components with median and baseline subtraction -
+ask if you want more details on those.
+19 iterations recovers a LOT of flux. I haven't generated the plots for
+flux as a function of iteration, but I have software to do that
+available.
+Things to note: at 10 iterations and higher, you start to generate
+negative bowls.
+One observation is probably independently responsible for the chunks of
+glitchy data present even in the 19 PCA component subtraction. While the
+bowls do worsen with higher number of PCA components, we also find
+fainter structure (e.g. those tongues to the southeast and northwest).</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/some-good-news-some-not-news.html" rel="bookmark" title="Permalink to Some good news, some.... not news.">
+                    Some good news, some.... not news.</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-24T20:09:00-06:00"> 2008/08/24 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've been mapping all weekend. It turns out that if you do 25 mapping
+runs that take ~1hr apiece, that takes ~25 hours. Who knew?
+Whole observation took 3965.3506 sec.
+Whole observation took 3071.1403 sec.
+Whole observation took 4205.3337 sec.
+Whole observation took 7362.5490 sec.
+Whole observation took 9313.6064 sec.
+Whole observation took 3755.2383 sec.
+Whole observation took 3755.8278 sec.
+Whole observation took 3760.7032 sec.
+Whole observation took 3758.5719 sec.
+Whole observation took 3763.1436 sec.
+Whole observation took 3766.0066 sec.
+Whole observation took 3789.5806 sec.
+Whole observation took 3760.9774 sec.
+Whole observation took 3762.7124 sec.
+Whole observation took 3763.1120 sec.
+Whole observation took 3767.1255 sec.
+Whole observation took 3766.9085 sec.
+Whole observation took 3758.5867 sec.
+Whole observation took 3760.2131 sec.
+Whole observation took 3755.8963 sec.
+Whole observation took 3759.9199 sec.
+Whole observation took 3764.4494 sec.
+Whole observation took 3766.9686 sec.
+Whole observation took 3756.5876 sec.
+The good news is that I haven't encountered any crashes. Smooth sailing
+so far.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/re-convergence-tests.html" rel="bookmark" title="Permalink to Re: Convergence Tests">
+                    Re: Convergence Tests</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-23T17:03:00-06:00"> 2008/08/23 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Made a little code to check out convergence, but frankly it's pretty
+easy to just build a mapcube and plot lines in the iteration axis. The
+code is in bgps_pipeline/postproc/compareiters.pro, and it is not a
+single program.
+Comparing deconvolution to no deconvolution, deconvolution is a lot
+better. Without it, there are much more substantial negative regions. In
+the GC, my test region, the noise-dominated areas were about the same,
+though the no-deconvolve map had a little bit more large scale
+structure. The signal-dominated regions were very nearly uniformly
+brighter. The deconvolved map was ~3 Jy brighter in SGR B2, or 4%.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/on-the-list-for-today.html" rel="bookmark" title="Permalink to On the list for today....">
+                    On the list for today....</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-23T13:42:00-06:00"> 2008/08/23 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Since my gigantic mapping run is still going, I'm going to work
+primarily on developing code for testing the maps, and determining
+important information about the mapper.
+The data paper will require an iteration-to-convergence figure, or at
+least an estimate of degree of convergence.</p>
+<ol class="arabic simple">
+<li>Need to develop code to show iteration-to-convergence<ol class="arabic">
+<li>need it for both NxNpca and ascending/descending</li>
+<li>have to use region files? make some sort of region reader?</li>
+<li>pick demonstration sources</li>
+</ol>
+</li>
+<li>Compare N<sub>pca</sub> results for bright, faint sources</li>
+<li>Compare iterating with/without deconvolution</li>
+<li>Compare median/average/baseline sky subtraction</li>
+<li>Analyze efficiency...</li>
+<li>Try to figure out what's causing huge offsets. Is it Galactic
+Coordinate mapping?</li>
+</ol>
+<pre class="literal-block">
+-bash-3.00$ less /scratch/adam_work/logs/log_082208_domemiter.log | grep WholeWhole observation took 5122.6795 sec.Whole observation took 4774.3424 sec.Whole observation took 2687.7761 sec.Whole observation took 2102.5577 sec.Whole observation took 3247.5344 sec.Whole observation took 5515.2907 sec.Whole observation took 2877.6389 sec.Whole observation took 2757.0235 sec.Whole observation took 1453.0918 sec.Whole observation took 1459.7892 sec.Whole observation took 1381.3762 sec.Whole observation took 1443.1440 sec.Whole observation took 614.39645 sec.Whole observation took 2001.6709 sec.Whole observation took 1817.1512 sec.Whole observation took 1879.1385 sec.
+</pre>
+<p>Note that the longest set there - 5515s = 1.53 hours - was 40
+iterations!</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/ten.html" rel="bookmark" title="Permalink to TEN!?!">
+                    TEN!?!</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-23T00:47:00-06:00"> 2008/08/23 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/SK9Pe1q6PaI/AAAAAAAADOE/yd0bxUMCDB4/s400/EIGHT.png" />
+<p>Look at that. Seriously? a 10' offset? That's ridiculous! There is no
+WAY our pointing models could be off by that much! Even if I got the
+signs entirely wrong, that's just not possible.
+What's going on? First theory: Galactic coordinates fail. Any other
+suggestions?</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/task-list.html" rel="bookmark" title="Permalink to Task List">
+                    Task List</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-22T00:29:00-06:00"> 2008/08/22 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>For the moment, I'm going to leave the pointing alone. This leaves us
+(me) with a very long list of things to do before the data release:</p>
+<ol class="arabic simple">
+<li>Determine ideal iterative mapping strategy for low-flux fields</li>
+<li>Determine ideal iterative mapping strategy for fields with bright
+sources</li>
+<li>Optimize at least the following:<ol class="arabic">
+<li>scan flatting (polynomial subtraction)</li>
+<li>PCA subtraction</li>
+<li>Pre-PCA sky subtraction (necessary?)</li>
+<li>Deconvolution/No deconvolution</li>
+</ol>
+</li>
+<li>GENERATE MAPS [top priority, but it can't really happen til after the
+above]</li>
+<li>Assure consistency with catalogs - e.g. Motte, SCUBA, etc.</li>
+<li>Figure out what needs to go into fits header</li>
+<li>Survive semester before comps [lowest priority]</li>
+<li>sleep [oh, right, real lowest priority]</li>
+</ol>
+<p>Sarcasm helps me survive. Almost as much as beer.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/new-pointing-models.html" rel="bookmark" title="Permalink to New pointing models">
+                    New pointing models</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-21T20:45:00-06:00"> 2008/08/21 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I decided to try to fit the pointing model as a full alt/az or ra/dec
+dependent thing using mpfitfun and a 12 (or 16) parameter model. It
+didn't work very well.
+I could fit out the alt dependence, then independently fit out the az
+dependence, and see how that goes. I think it will work brilliantly.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/got-a-sign-wrong-again.html" rel="bookmark" title="Permalink to Got a sign wrong again">
+                    Got a sign wrong again</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-21T20:40:00-06:00"> 2008/08/21 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Last night's run failed because I had a wrong sign in the pointing
+model. Do over time!</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+            <a href="https://keflavich.github.io/blog/tag/googlepost31.html">&laquo;</a>
+    Page 32 / 36
+        <a href="https://keflavich.github.io/blog/tag/googlepost33.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

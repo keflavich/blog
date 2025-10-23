@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - psf</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2021/11/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/walkthrough-of-psf-characterization.html">Walkthrough of PSF characterization</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/walkthrough-of-psf-characterization.html" rel="bookmark" title="Permalink to Walkthrough of PSF characterization">
+                    Walkthrough of PSF characterization</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2021-11-06T17:37:00-06:00"> 2021/11/06 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>For ALMA-IMF, we want to characterize the PSF shapes and the recovered
+beam sizes.</p>
+<p>We showed the beams and a few features of the PSFs, but they were only
+described tersely in the paper. This document goes through what we did
+in a little more detail</p>
+<div class="section" id="front-matter-imports">
+<h2>Front matter (imports)</h2>
+<pre class="code python literal-block">
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span><span class="w">
+</span><span class="kn">import</span> <span class="nn">pylab</span> <span class="k">as</span> <span class="nn">pl</span><span class="w">
+
+</span><span class="c1"># for display within notebook</span><span class="w">
+</span><span class="n">pl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'figure.facecolor'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'w'</span><span class="w">
+
+</span><span class="kn">from</span> <span class="nn">spectral_cube</span> <span class="kn">import</span> <span class="n">SpectralCube</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span><span class="w">
+
+</span><span class="c1"># Debuggy loading: this approach needed b/c the code isn't properly packaged</span><span class="w">
+</span><span class="kn">import</span> <span class="nn">imp</span><span class="w">
+</span><span class="kn">import</span> <span class="nn">sys</span><span class="w">
+</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'/orange/adamginsburg/ALMA_IMF/reduction/analysis'</span><span class="p">)</span><span class="w">
+</span><span class="kn">import</span> <span class="nn">imstats</span><span class="w">
+</span><span class="n">imp</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span><span class="n">imstats</span><span class="p">)</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">imstats</span> <span class="kn">import</span> <span class="n">get_psf_secondpeak</span>
+</pre>
+</div>
+<div class="section" id="n2h">
+<h2>N2H+</h2>
+<p>I chose to do this only for an N<span class="math">\(_2\)</span>H+ example; the
+N<span class="math">\(_2\)</span>H+ line cubes seem to have the worst-behaved beams in our
+samples.</p>
+<pre class="code python literal-block">
+<span class="n">basename</span> <span class="o">=</span> <span class="s1">'/orange/adamginsburg/ALMAIMF_Images/G327.29/B3/linecubes_12m/G327.29_B3_spw0_12M_n2hp'</span><span class="w">
+</span><span class="n">img</span> <span class="o">=</span> <span class="n">SpectralCube</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">basename</span><span class="si">}</span><span class="s1">.image'</span><span class="p">)</span><span class="w">
+</span><span class="n">psf</span> <span class="o">=</span> <span class="n">SpectralCube</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">basename</span><span class="si">}</span><span class="s1">.psf'</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'casa_image'</span><span class="p">)</span>
+</pre>
+<p>The code <tt class="docutils literal">get_psf_secondpeak</tt> does all of the work, we’re just going
+to talk about what gets plotted.</p>
+<pre class="code python literal-block">
+<span class="n">psffn</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">basename</span><span class="si">}</span><span class="s1">.psf'</span><span class="w">
+</span><span class="p">(</span><span class="n">psf_secondpeak</span><span class="p">,</span> <span class="n">psf_secondpeak_loc</span><span class="p">,</span> <span class="n">psf_sidelobe1_fraction</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">firstnull</span><span class="p">,</span> <span class="n">r_sidelobe</span><span class="p">,</span><span class="w">
+</span> <span class="p">(</span><span class="n">rr</span><span class="p">,</span> <span class="n">pixscale</span><span class="p">,</span> <span class="n">cutout</span><span class="p">,</span> <span class="n">beam</span><span class="p">,</span> <span class="n">fullbeam</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">bmfit_residual</span><span class="p">))</span> <span class="o">=</span> \
+        <span class="n">get_psf_secondpeak</span><span class="p">(</span><span class="n">psffn</span><span class="p">,</span> <span class="n">show_image</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">min_radial_extent</span><span class="o">=</span><span class="mf">2.5</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">,</span><span class="w">
+</span>                   <span class="n">max_radial_extent</span><span class="o">=</span><span class="mi">5</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">,</span><span class="w">
+</span>                           <span class="n">specslice</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">51</span><span class="p">),</span><span class="w">
+</span>                  <span class="p">)</span>
+</pre>
+<pre class="literal-block">
+INFO: first_sidelobe_ind=44, first_min_ind = 43 [imstats]
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_6_1.png" />
+<p>The plot is showing:</p>
+<ul class="simple">
+<li>in red contours, the 10th, 50th, and 90th percentile of the Gaussian
+synthesized beam</li>
+<li>in grayscale, the <em>residual</em> of the dirty beam minus the synthesized
+beam</li>
+<li>in green dashed (faint, outermost ellipse), the location of the first
+sidelobe peak. The first sidelobe is defined as the first peak
+outside of the first null.</li>
+<li>in blue dashed (inner ellipse), the location of the first null. This
+may not be a true null: it is the first minimum of the radial profile</li>
+</ul>
+<p>Next, we show the radial profile. The radial profile is an <em>elliptical</em>
+profile, which is why the elliptical synthesized beam has a single
+profile.</p>
+<p>The X-axis is calculated as:</p>
+<div class="math">
+\begin{equation*}
+r = \left(C^2 (x \cos \theta + y \sin \theta)^2 + (x \sin \theta - y \cos \theta)^2\right)^{1/2}
+\end{equation*}
+</div>
+<p>where <span class="math">\(C = \theta_{min} / \theta_{maj}\)</span>. So the radial axis is
+scaled to the major axis of the beam; the true beam is smaller along one
+axis than shown in these plots.</p>
+<pre class="code python literal-block">
+<span class="c1"># radial profile</span><span class="w">
+</span><span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span><span class="w">
+</span><span class="n">ax2</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="w">
+</span><span class="n">ax1</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w">
+
+
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'G327 N2H+'</span><span class="p">)</span><span class="w">
+</span><span class="n">rr_inds</span> <span class="o">=</span> <span class="n">rr</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span><span class="w">
+</span><span class="n">sorted_synth</span> <span class="o">=</span> <span class="p">(</span><span class="n">fullbeam</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">/</span><span class="n">fullbeam</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">max</span><span class="p">())[</span><span class="n">rr_inds</span><span class="p">]</span><span class="w">
+</span><span class="n">pixscale</span> <span class="o">=</span> <span class="n">pixscale</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">)</span><span class="w">
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pixscale</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="n">rr</span><span class="o">.</span><span class="n">ravel</span><span class="p">()[</span><span class="n">rr_inds</span><span class="p">],</span> <span class="n">sorted_synth</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Synth'</span><span class="p">)</span><span class="w">
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pixscale</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="n">rr</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span><span class="w">
+</span>         <span class="n">cutout</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">/</span><span class="n">cutout</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="s1">'.'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Dirty'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="w">
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">firstnull</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'b'</span><span class="p">)</span><span class="w">
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">firstnull</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span><span class="c1"># rr[view].max())</span><span class="w">
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">firstnull</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">1.4</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'$\epsilon=</span><span class="si">{</span><span class="n">epsilon</span><span class="si">:</span><span class="s1">0.2f</span><span class="si">}</span><span class="s1">$'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span><span class="w">
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">firstnull</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">1.4</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'$</span><span class="se">\\</span><span class="s1">theta_</span><span class="se">{{</span><span class="s1">maj</span><span class="se">}}</span><span class="s1">=</span><span class="si">{</span><span class="n">beam</span><span class="o">.</span><span class="n">major</span><span class="o">.</span><span class="n">value</span><span class="si">:</span><span class="s1">0.2f</span><span class="si">}</span><span class="s1">$&quot;'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span><span class="w">
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">firstnull</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">1.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'$</span><span class="se">\\</span><span class="s1">theta_</span><span class="se">{{</span><span class="s1">min</span><span class="se">}}</span><span class="s1">=</span><span class="si">{</span><span class="n">beam</span><span class="o">.</span><span class="n">minor</span><span class="o">.</span><span class="n">value</span><span class="si">:</span><span class="s1">0.2f</span><span class="si">}</span><span class="s1">$&quot;'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span><span class="w">
+
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">psf_secondpeak_loc</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">':'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'k'</span><span class="p">)</span><span class="w">
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">r_sidelobe</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">':'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'g'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">beam</span><span class="o">.</span><span class="n">major</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">beam</span><span class="o">.</span><span class="n">major</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span><span class="w">
+</span>         <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span><span class="w">
+</span>         <span class="n">color</span><span class="o">=</span><span class="s1">'k'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span><span class="w">
+
+
+</span><span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'G327 N2H+'</span><span class="p">)</span><span class="w">
+</span><span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pixscale</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="n">rr</span><span class="o">.</span><span class="n">ravel</span><span class="p">()[</span><span class="n">rr_inds</span><span class="p">],</span> <span class="n">sorted_synth</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Synth'</span><span class="p">)</span><span class="w">
+</span><span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pixscale</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="n">rr</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span><span class="w">
+</span>         <span class="n">cutout</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">/</span><span class="n">cutout</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="s1">'.'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Dirty'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="w">
+</span><span class="n">ax1</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">firstnull</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'b'</span><span class="p">)</span><span class="w">
+</span><span class="n">ax1</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">psf_secondpeak_loc</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">':'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'k'</span><span class="p">)</span><span class="w">
+</span><span class="n">ax1</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">r_sidelobe</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">':'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'g'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">firstnull</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span><span class="c1"># rr[view].max())</span><span class="w">
+</span><span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.035</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span><span class="w">
+
+</span><span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Radius along PSF (</span><span class="se">\&quot;</span><span class="s2">)&quot;</span><span class="p">)</span><span class="w">
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Radius along PSF (</span><span class="se">\&quot;</span><span class="s2">)&quot;</span><span class="p">)</span><span class="w">
+</span><span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Normalized PSF profile&quot;</span><span class="p">)</span>
+</pre>
+<pre class="literal-block">
+Text(0, 0.5, 'Normalized PSF profile')
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_9_1.png" />
+<p>The right plot is a vertical zoom-in of the left plot.</p>
+<p>The light blue line shows the synthesized beam.</p>
+<p>The orange dots are the individual pixel values from the dirty beam.</p>
+<p>The vertical dotted black line shows the peak of the residual - it’s not
+used for anything, it just highlights where the “shelf” is most
+prominent (and it is <em>very</em> prominent in this example).</p>
+<p>The blue vertical dashed line shows the location of the first null.</p>
+<p>The green vertical dotted line shows the location of the first sidelobe.</p>
+<p><span class="math">\(\epsilon\)</span> is the ratio of the integral of the synthesized beam to
+the integral of the dirty beam out to the first null. It is the
+correction factor to apply to the residuals (multiply the residuals by
+this number) to convert the residuals from Jy/dirtybeam to
+Jy/synthesizedbeam.</p>
+<p><span class="math">\(\theta_{min}\)</span> and <span class="math">\(\theta_{maj}\)</span> are the FWHM widths of the
+beam along the major and minor axes. The grey right-angle line is drawn
+at <span class="math">\(y=0.5\)</span> out to <span class="math">\(\theta = \theta_{maj}/2\)</span> (the half-width
+half-max)</p>
+</div>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script> </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

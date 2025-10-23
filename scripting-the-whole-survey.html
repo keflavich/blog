@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://keflavich.github.io/blog/scripting-the-whole-survey.html" rel="bookmark"
+         title="Permalink to Scripting the Whole Survey">Scripting the Whole Survey</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2008-09-16T00:43:00-06:00">
+      2008/09/16
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>First, discovered more fields with some sort of failure:</p>
+<pre class="literal-block">
+ls -d l[0-3][0-9][0-9] | sed 's:\(.*\):ls \1/*_map01.fits &gt; \1/\1_infile.txt:' | bashls: l004/*_map01.fits: No such file or directoryls: l017/*_map01.fits: No such file or directoryls: l025/*_map01.fits: No such file or directoryls: l108/*_map01.fits: No such file or directoryls: l135/*_map01.fits: No such file or directoryls: l136/*_map01.fits: No such file or directoryls: l137/*_map01.fits: No such file or directoryls: l138/*_map01.fits: No such file or directoryls: l192/*_map01.fits: No such file or directory
+</pre>
+<p>Also, that command was a total screwup.</p>
+<pre class="literal-block">
+ls -d l[0-3][0-9][0-9] | sed 's:\(.*\):ls /scratch/adam_work/\1/*_map01.fits &gt; \1/\1_fitslist.txt:' | bashls: /scratch/adam_work/l004/*_map01.fits: No such file or directoryls: /scratch/adam_work/l017/*_map01.fits: No such file or directorybash: line 12: l020/l020_fitslist.txt: Permission deniedls: /scratch/adam_work/l025/*_map01.fits: No such file or directoryls: /scratch/adam_work/l108/*_map01.fits: No such file or directoryls: /scratch/adam_work/l135/*_map01.fits: No such file or directoryls: /scratch/adam_work/l136/*_map01.fits: No such file or directoryls: /scratch/adam_work/l137/*_map01.fits: No such file or directoryls: /scratch/adam_work/l138/*_map01.fits: No such file or directoryls: /scratch/adam_work/l192/*_map01.fits: No such file or directory
+</pre>
+<p>Now that those files exist, it should be possible to run a set of
+super-scripts like this:
+coalign_field,'l057','070719_o29',sliced_dir='sliced_polychrome',premap=0
+coalign_field,'l351','070725_ob3'
+coalign_field,'l354','070724_o10'
+coalign_field,'l357','070724_ob3'
+coalign_field,'l000','070719_o14'
+coalign_field,'l003','070718_o16'
+coalign_field,'l006','070715_ob5'
+coalign_field,'l009','070717_ob5'
+coalign_field,'l012','070715_o10'
+coalign_field,'l015','070714_o36'
+coalign_field,'l018','070717_o10'
+coalign_field,'l021','070715_o15'
+coalign_field,'l024','070717_o15'
+coalign_field,'l027','070715_o20'
+coalign_field,'l030','070717_o20'
+coalign_field,'l033','070718_ob5',sliced_dir='sliced_polychrome'
+coalign_field,'l036','070715_o25',sliced_dir='sliced_polychrome'
+coalign_field,'l039','070717_o25',sliced_dir='sliced_polychrome'
+coalign_field,'l042','070715_o30',sliced_dir='sliced_polychrome'
+coalign_field,'l044','070718_o24',sliced_dir='sliced_polychrome'
+coalign_field,'l048','070717_o30',sliced_dir='sliced_polychrome'
+coalign_field,'l050','070718_o29',sliced_dir='sliced_polychrome'
+coalign_field,'l054','070724_o28',sliced_dir='sliced_polychrome'
+coalign_field,'l057','070719_o29',sliced_dir='sliced_polychrome'
+where premap=0 means I'm not re-mapping the whole field, the
+sliced_dir='slice_polychrome' keyword is for those fields that do not
+have a regular sliced directory.
+This kind of thing ought to be really, really helpful when mapping the
+fields whose masters are not in the field: I'll have to modify the
+'coalign_field' code to search in a different directory, though.
+Yearghhh.... last command was bad too.</p>
+<pre class="literal-block">
+ls -d l[0-3][0-9][0-9] | sed 's:\(.*\):ls /scratch/adam_work/\1/0*_map01.fits &gt; \1/\1_fitslist.txt:' | bashls: /scratch/adam_work/l004/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l017/0*_map01.fits: No such file or directorybash: line 12: l020/l020_fitslist.txt: Permission deniedls: /scratch/adam_work/l025/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l108/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l135/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l136/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l137/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l138/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l192/0*_map01.fits: No such file or directory
+</pre>
+
+  </div><!-- /.entry-content -->
+</section>
+
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</section>
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  var disqus_identifier = '/scripting-the-whole-survey.html';
+  var disqus_url = 'https://keflavich.github.io/blog/scripting-the-whole-survey.html';
+  var disqus_title = 'Scripting the Whole Survey';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

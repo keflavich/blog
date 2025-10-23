@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - Articles by Adam (keflavich@gmail.com)</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2015/10/02
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-qa2-restoration.html">ALMA QA2 restoration</a>
+              </li>
+              <li class="post">
+                  2014/06/13
+                  <br>
+                  <a href="https://keflavich.github.io/blog/azimuthal-mass-profiles.html">Azimuthal Mass Profiles</a>
+              </li>
+              <li class="post">
+                  2013/09/21
+                  <br>
+                  <a href="https://keflavich.github.io/blog/generating-a-cv-using-the-ads-labs-api.html">Generating a CV using the ADS Labs API</a>
+              </li>
+              <li class="post">
+                  2013/06/09
+                  <br>
+                  <a href="https://keflavich.github.io/blog/gps-data-analysis.html">GPS Data Analysis</a>
+              </li>
+              <li class="post">
+                  2013/06/04
+                  <br>
+                  <a href="https://keflavich.github.io/blog/hopkins-pdf-generalization.html">Hopkins PDF Generalization</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+<h2>Articles by Adam (keflavich@gmail.com)</h2>
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/finally-got-matplotlib-to-install.html" rel="bookmark" title="Permalink to finally got matplotlib to install...">
+                    finally got matplotlib to install...</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>the key is reading the readme, not just the make.osx file.</p>
+<p>These commands Just Work:
+<tt class="docutils literal">make <span class="pre">-f</span> make.osx PYVERSION=2.6 <span class="pre">PREFIX=/Users/adam/repos/mpl_dependencies/</span> fetch deps mpl_install_stdmake <span class="pre">-f</span> make.osx PYVERSION=2.7 <span class="pre">PREFIX=/Users/adam/repos/mpl_dependencies/</span> fetch deps mpl_install_std</tt></p>
+<p>while, e.g., this one:
+<tt class="docutils literal">make <span class="pre">-f</span> make.osx PYVERSION=2.6 <span class="pre">PREFIX=/Users/adam/repos/mpl_dependencies/</span> fetch deps mpl_install</tt>
+didn't. I guess because that one doesn't actually install anything.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/find-and-xargs.html" rel="bookmark" title="Permalink to find and xargs">
+                    find and xargs</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a class="reference external" href="http://www.kalamazoolinux.org/tech/find.html">pretty useful info on find and xargs</a>, e.g.
+<tt class="docutils literal">find /scratch/adam_work/ <span class="pre">-name</span> 'mmm*sav' | xargs rm</tt></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/first.html" rel="bookmark" title="Permalink to First!">
+                    First!</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>First post by <a class="reference external" href="http://casa.colorado.edu/~ginsbura/index.htm">me</a> on my own BLDG! I should transition to this address
+eventually...</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/first-paper-accepted.html" rel="bookmark" title="Permalink to First paper accepted">
+                    First paper accepted</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a class="reference external" href="http://casa.colorado.edu/~ginsbura/iras05358.htm">My Comps II paper on IRAS 05358+3543</a> was accepted by ApJ on
+Wednesday. It will show up on arxiv in a few days and I'll post the link
+then. Unfortunately, there were significant problems rendering the
+paper, so I recommend downloading my version.
+Also, working on the HISA KDA... <a class="reference external" href="http://eta.colorado.edu/cutouts/">I have a nice section of cutouts</a></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/fits-manipuation-with-imagemagick-gimp-etc.html" rel="bookmark" title="Permalink to FITS manipuation with imagemagick, gimp, etc.">
+                    FITS manipuation with imagemagick, gimp, etc.</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>It is possible to convert .fits files to .png, .jpg, etc:
+`` convert -normalize a.fits a.png ``
+To get things to come out nicely, you have to do the scaling essentially
+by hand in python/idl/iraf. DS9 is only useful for finding out what
+scaling you want to use; past that it's pretty much not useable.
+To make colors look nice in the GIMP, use solid background layers with
+your image as the alpha mask. Then put your image in with itself as an
+alpha mask so you can easily control the whiteness (saturation) of the
+color you've selected.
+I'll be blogging about this more as I prep my next entry for the NRAO
+photo contest.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/galactic-formaldehyde-densitometry-project.html" rel="bookmark" title="Permalink to Galactic Formaldehyde Densitometry Project">
+                    Galactic Formaldehyde Densitometry Project</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The Galactic Formaldehyde Densitometry Project is finally official and
+on its way. I am PI of a joint Arecibo / Green Bank Telescope project to
+survey formaldehyde, H2CO, in a sample of ~400 &quot;dust clumps&quot; in the
+Galactic Plane. The clumps represent condensations within larger
+molecular clouds that are likely to be forming stars, particularly
+massive stars and star clusters.
+Formaldehyde is uniquely useful for measuring densities of these gas
+clumps. Because of a collisional selection effect, the low-lying
+K-doublet transitions of H2CO undergo &quot;anti-inversion&quot;, which means
+their lower-energy states are overpopulated relative to the higher
+states, and it can therefore be seen in absorption against the cosmic
+microwave background. This unique property removes a key bias present in
+emission line studies in which variable excitation conditions can
+dominate the observability of a line.
+For the next few posts, I will include calibration and data reduction
+information from the observations in this survey. The Green Bank
+observations are well underway, with nearly half of the sources observed
+(though many at poor sensitivity) and the Arecibo observations have been
+approved.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/galaxy-map.html" rel="bookmark" title="Permalink to Galaxy Map">
+                    Galaxy Map</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>If you're ever interested in seeing a face-on view of the Milky Way,
+check out the <a class="reference external" href="http://www.spitzer.caltech.edu/Media/releases/ssc2008-10/index.shtml">Spitzer press release</a>. This link is very surprisingly
+hard to find on google.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/ghostscript-error.html" rel="bookmark" title="Permalink to Ghostscript error?">
+                    Ghostscript error?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><p>I've been receiving the following error when attempting to compile
+(ps2pdf) my w5 outflows paper:</p>
+<pre class="literal-block">
+Error: /rangecheck in --get--Operand stack:   pdfmark   --dict:20/25(ro)(L)--   --nostringval--   50Execution stack:   %interp_exit   .runexec2   --nostringval--   --nostringval--   --nostringval--   2   %stopped_push   --nostringval--   --nostringval--   --nostringval--   false   1   %stopped_push   1878   1   3   %oparray_pop   1877   1   3   %oparray_pop   1861   1   3   %oparray_pop   1755   1   3   %oparray_pop   --nostringval--   %errorexec_pop   .runexec2   --nostringval--   --nostringval--   --nostringval--   2   %stopped_push   --nostringval--   %finish_show   --nostringval--   --nostringval--   8   6   1   --nostringval--   (pdf_text_enum_t)   %op_show_continue   --nostringval--Dictionary stack:   --dict:1153/1684(ro)(G)--   --dict:0/20(G)--   --dict:71/200(L)--   --dict:125/300(L)--   --dict:44/200(L)--   --dict:138/224(L)--Current allocation mode is localLast OS error: 2Current file position is 267478928GPL Ghostscript 8.71: Unrecoverable error, exit code 1
+</pre>
+<p>I get the same error with Ghostscript 8.64, but on my laptop, using the
+fink version, it works. Similarly, there are errors with the postscript,
+so I'm led to believe it's an error in latex:</p>
+<pre class="literal-block">
+$ latex --versionpdfTeX 3.1415926-1.40.10-2.2 (TeX Live 2009)kpathsea version 5.0.0Copyright 2009 Peter Breitenlohner (eTeX)/Han The Thanh (pdfTeX).There is NO warranty.  Redistribution of this software iscovered by the terms of both the pdfTeX copyright andthe Lesser GNU General Public License.For more information about these matters, see the filenamed COPYING and the pdfTeX source.Primary author of pdfTeX: Peter Breitenlohner (eTeX)/Han The Thanh (pdfTeX).Compiled with libpng 1.2.39; using libpng 1.2.39Compiled with zlib 1.2.3; using zlib 1.2.3Compiled with xpdf version 3.02pl3
+</pre>
+<p>No idea what the cause is but it's time to start documenting steps and
+looking for a workaround. Compiling on the lappy isn't a good option.</p>
+</p> </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/gildas-class.html" rel="bookmark" title="Permalink to Gildas CLASS">
+                    Gildas CLASS</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>It's absurdly difficult to find help on GILDAS Class, probably because
+you can't google &quot;class&quot; and most people probably don't label every
+piece of code with &quot;GILDAS class&quot;.
+Anyway, here are some scripts that I refer back to often:
+<tt class="docutils literal">file in August2009BGPS.datfile out August2009fits.dat multipleon error &quot;file out August2009fits.dat&quot;say &quot;READ IN FILES&quot;define character sourcelist*10[300]accept sourcelist /column observed_sources.txton error &quot;continue&quot;get 1001set window <span class="pre">-100</span> 160set mask <span class="pre">-400</span> <span class="pre">-100</span> 160 400set mode x <span class="pre">-400</span> 400set align velocityfor i 1 to 161&nbsp;&nbsp;&nbsp; say &quot;Working on SOURCE &quot;'i'&nbsp;&nbsp;&nbsp; find /source 'sourcelist[i]' /telescope &quot;CSO 4GHZ IF1&quot; /offset 0 0 /quality 5&nbsp;&nbsp;&nbsp; average&nbsp;&nbsp;&nbsp; on error &quot;&#64;avplot2 'sourcelist[i]' 'i'; next&quot;&nbsp;&nbsp;&nbsp; base 3&nbsp;&nbsp;&nbsp; line 0&nbsp;&nbsp;&nbsp; min&nbsp;&nbsp;&nbsp; plot&nbsp;&nbsp;&nbsp; vis&nbsp;&nbsp;&nbsp; write i!&nbsp;&nbsp;&nbsp; on error &quot;continue&quot;next</tt>
+and
+<tt class="docutils literal">file in <span class="pre">araya-2004.clsfinddefine</span> character filename*20for i 1 to 20&nbsp;&nbsp;&nbsp;&nbsp; say &quot;Working on source &quot;'i'&nbsp;&nbsp;&nbsp; get next&nbsp;&nbsp;&nbsp; let filename <span class="pre">&quot;araya-2004_&quot;'i'&quot;.fits&quot;</span>&nbsp;&nbsp;&nbsp;&nbsp; say &quot;fits write &quot;'filename'&quot; /mode spectrum&quot;&nbsp;&nbsp;&nbsp; fits write 'filename' /mode spectrumnext!file in <span class="pre">araya-2002.cls!find!define</span> character filename*20!for i 1 to 42 !&nbsp;&nbsp;&nbsp; say &quot;Working on source &quot;'i'!&nbsp;&nbsp;&nbsp; get i!&nbsp;&nbsp;&nbsp; let filename <span class="pre">&quot;araya-2002_&quot;'i'&quot;.fits&quot;</span> !&nbsp;&nbsp;&nbsp; say &quot;fits write &quot;'filename'&quot; /mode spectrum&quot;!&nbsp;&nbsp;&nbsp; fits write 'filename' /mode spectrum!next</tt></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/histogram-in-google-spreadsheet.html" rel="bookmark" title="Permalink to Histogram in Google Spreadsheet">
+                    Histogram in Google Spreadsheet</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>It's not easy to make a histogram in google spreadsheets without
+replicating data. The &quot;countif&quot; function would be great, except it only
+allows very simple criteria. However, there's a workaround:
+=count(Filter('Grades'!V2:V30,'Grades'!V2:V30&gt;0.9))
+=count(Filter('Grades'!V2:V30,'Grades'!V2:V30&lt;0.9,'Grades'!V2:V30&gt;0.8))
+The Filter() function returns an array, which can be operated on like
+any other set of cells.
+It's still not easy to make a nice-looking histogram, but the output of
+this process is at least usable.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+            <a href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom6.html">&laquo;</a>
+    Page 7 / 19
+        <a href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom8.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

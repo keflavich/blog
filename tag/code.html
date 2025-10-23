@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - code</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/api-documentation-on-agpy.html">API documentation on agpy</a>
+              </li>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/latex-vim-skim.html">LaTeX: VIM + Skim</a>
+              </li>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/montage-wrapper.html">Montage wrapper</a>
+              </li>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/nan-friendly-convolution.html">NaN-friendly convolution</a>
+              </li>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pyspeckit-an-astronomical-spectroscopic-toolkit.html">pyspeckit: an astronomical spectroscopic toolkit</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/api-documentation-on-agpy.html" rel="bookmark" title="Permalink to API documentation on agpy">
+                    API documentation on agpy</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I finally processed agpy through sphinx and made some nice html
+documentation.
+<a class="reference external" href="http://agpy.googlecode.com/svn/trunk/doc/html/agpy.html">http://agpy.googlecode.com/svn/trunk/doc/html/agpy.html</a></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/latex-vim-skim.html" rel="bookmark" title="Permalink to LaTeX: VIM + Skim">
+                    LaTeX: VIM + Skim</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a class="reference external" href="http://agpy.googlecode.com/svn/trunk/macvim-skim/macvim-skim-install.sh">macvim-skim-install.sh</a> is my install script for using MacVim.app with
+Skim.app.
+The <a class="reference external" href="http://code.google.com/p/agpy/wiki/macvimskim">agpy wiki page</a> has instructions that are probably more clear; I
+don't really like the colorscheme / layout of this blog.
+You can use <a class="reference external" href="http://mactex-wiki.tug.org/wiki/index.php/SyncTeX">synctex</a> to make an editor and viewer work together, but
+it is far from easy and far harder than it should be. Forward-search is
+pretty easy, but the latex-suite <tt class="docutils literal">\ls</tt> only works intermittently and
+is not easily customizable.
+I had to do the following:
+For VIM-&gt;Skim.app (Skim.app is necessary for any of this to work), add
+these commands to .vimrc:</p>
+<pre class="literal-block">
+&quot; Activate skimmap ,v :w&lt;CR&gt;:silent !/Applications/Skim.app/Contents/SharedSupport/displayline -r &lt;C-r&gt;=line('.')&lt;CR&gt; %&lt;.pdf %&lt;CR&gt;&lt;CR&gt;map ,p :w&lt;CR&gt;:silent !pdflatex -synctex=1 --interaction=nonstopmode %:p &lt;CR&gt;:silent !/Applications/Skim.app/Contents/SharedSupport/displayline -r &lt;C-r&gt;=line('.')&lt;CR&gt; %&lt;.pdf %&lt;CR&gt;&lt;CR&gt;map ,m :w&lt;CR&gt;:silent !make &lt;CR&gt;:silent !/Applications/Skim.app/Contents/SharedSupport/displayline -r &lt;C-r&gt;=line('.')&lt;CR&gt; %&lt;.pdf %&lt;CR&gt;&lt;CR&gt;&quot; Reactivate VIMmap ,r :w&lt;CR&gt;:silent !/Applications/Skim.app/Contents/SharedSupport/displayline -r &lt;C-r&gt;=line('.')&lt;CR&gt; %&lt;.pdf %&lt;CR&gt;:silent !osascript -e &quot;tell application \&quot;MacVim\&quot; to activate&quot; &lt;CR&gt;&lt;CR&gt;map ,t :w&lt;CR&gt;:silent !pdflatex -synctex=1 --interaction=nonstopmode %:p &lt;CR&gt;:silent !/Applications/Skim.app/Contents/SharedSupport/displayline -r &lt;C-r&gt;=line('.')&lt;CR&gt; %&lt;.pdf %&lt;CR&gt;:silent !osascript -e &quot;tell application \&quot;MacVim\&quot; to activate&quot; &lt;CR&gt;&lt;CR&gt;
+</pre>
+<p>The <tt class="docutils literal">,m</tt> command will reload the file and put your cursor where the
+text is. <tt class="docutils literal">,t</tt> will return VIM to the front afterwards.
+Going the other way (reverse-search / inverse-search) was MUCH more
+challenging. The code that does this is <a class="reference external" href="http://code.google.com/p/agpy/source/browse/trunk/macvim-skim/macvim-load-line">on agpy</a>. Reproduced here for
+posterity (I hope to update the agpy version to <a class="reference external" href="http://stackoverflow.com/questions/8839846/vim-check-if-a-file-is-open-in-current-tab-window">deal with tabs</a>). [A
+few hours later, I HAVE replaced the code. Below are the old applescript
+version, then the new, vim-based version
+<tt class="docutils literal"><span class="pre">#!/bin/bashfile=&quot;$1&quot;line=&quot;$2&quot;[</span> <span class="pre">&quot;${file:0:1}&quot;</span> == &quot;/&quot; ] || <span class="pre">file=&quot;${PWD}/$file&quot;#</span> Use Applescript to activate VIM, find file, and load it# the 'delay' command is needed to prevent command/control/shift from sticking when this# is activated (e.g., from Skim, where the command is <span class="pre">command-shift-click)##</span> key code 53 is &quot;escape&quot; to escape to command mode in VIMexec osascript <span class="pre">\-e</span> &quot;delay 0.2&quot; <span class="pre">\-e</span> &quot;tell application \&quot;MacVim\&quot; to activate&quot; <span class="pre">\-e</span> &quot;tell application \&quot;System <span class="pre">Events\&quot;&quot;</span> <span class="pre">\-e</span> &quot;&nbsp; tell process <span class="pre">\&quot;MacVim\&quot;&quot;</span> <span class="pre">\-e</span> &quot;&nbsp;&nbsp;&nbsp; key code 53 <span class="pre">&quot;\-e</span> &quot;&nbsp;&nbsp;&nbsp; keystroke <span class="pre">\&quot;:set</span> hidden\&quot; &amp; return &quot; <span class="pre">\-e</span> &quot;&nbsp;&nbsp;&nbsp; keystroke <span class="pre">\&quot;:if</span> <span class="pre">bufexists(bufname('$file'))\&quot;</span> &amp; return &quot; <span class="pre">\-e</span> &quot;&nbsp;&nbsp;&nbsp; keystroke <span class="pre">\&quot;:exe</span> <span class="pre">\\\&quot;:buffer</span> <span class="pre">\\\&quot;</span> . <span class="pre">bufnr(bufname('$file'))\&quot;</span>&nbsp; &amp; return &quot; <span class="pre">\-e</span> &quot;&nbsp;&nbsp;&nbsp; keystroke <span class="pre">\&quot;:else</span> \&quot; &amp; return &quot; <span class="pre">\-e</span> &quot;&nbsp;&nbsp;&nbsp; keystroke <span class="pre">\&quot;:echo</span> <span class="pre">\\\&quot;Could</span> not load <span class="pre">file\\\&quot;</span> \&quot; &amp; return &quot; <span class="pre">\-e</span> &quot;&nbsp;&nbsp;&nbsp; keystroke <span class="pre">\&quot;:endif\&quot;</span> &amp; return &quot; <span class="pre">\-e</span> &quot;&nbsp;&nbsp;&nbsp; keystroke <span class="pre">\&quot;:$line\&quot;</span> &amp; return &quot; <span class="pre">\-e</span> &quot;&nbsp; end tell&quot; <span class="pre">\-e</span> &quot;end tell&quot;</tt>
+New code: <a class="reference external" href="http://agpy.googlecode.com/svn/trunk/macvim-skim/macvim-load-line">download link A</a></p>
+<pre class="literal-block">
+#!/bin/bash# Install directions:# Put this file somewhere in your path and make it executable# To set up in Skim, go to Preferences:Sync# Change Preset: to Custom# Change Command: to macvim-load-line# Change Arguments: to &quot;%file&quot; %linefile=&quot;$1&quot;line=&quot;$2&quot;debug=&quot;$3&quot;echo file: $fileecho line: $lineecho debug: $debugfor server in `mvim --serverlist` do    foundfile=`mvim --servername $server --remote-expr &quot;WhichTab('$file')&quot;`    if [[ $foundfile &gt; 0 ]]    then        mvim --servername $server --remote-expr &quot;foreground()&quot;         if [[ $debug ]] ; then echo mvim --servername $server --remote-send &quot;:exec \&quot;tabnext $foundfile\&quot; &quot;; fi        mvim --servername $server --remote-send &quot;:exec \&quot;tabnext $foundfile\&quot; &quot;        if [[ $debug ]] ; then echo mvim --servername $server --remote-send &quot;:$line &quot;; fi        mvim --servername $server --remote-send &quot;:$line &quot;    fidone
+</pre>
+<p>Save that as an executable in your default path (e.g.,
+<tt class="docutils literal"><span class="pre">/usr/local/bin/macvim-load-line</span></tt>) and open Skim.app, go to
+Preferences:Sync and make the command look like this:</p>
+<img alt="" src="http://3.bp.blogspot.com/-SbMLRTNSxug/Tw8_0saPQUI/AAAAAAAAGrc/9Ab8bgH8Ej0/s320/Screen%2Bshot%2B2012-01-12%2Bat%2B1.17.09%2BPM.png" />
+<p>You need to have mvim on your path. mvim comes with MacVim.app, but is
+NOT installed by default. Install it by doing something like:
+`` cp /Users/adam/Downloads/MacVim-7_3-53/mvim /usr/local/bin/mvim ``
+You'll also need to install WhichTab.vim in your <tt class="docutils literal"><span class="pre">~/.vim/plugins/</span></tt>
+directory. It's available <a class="reference external" href="http://code.google.com/p/agpy/source/browse/trunk/macvim-skim/WhichTab.vim">here</a> (<a class="reference external" href="http://agpy.googlecode.com/svn/trunk/macvim-skim/WhichTab.vim">download link B</a>). Here's the source:</p>
+<pre class="literal-block">
+function! WhichTab(filename)    &quot; Try to determine whether file is open in any tab.      &quot; Return number of tab it's open in    let buffername = bufname(a:filename)    if buffername == &quot;&quot;        return 0    endif    let buffernumber = bufnr(buffername)    &quot; tabdo will loop through pages and leave you on the last one;    &quot; this is to make sure we don't leave the current page    let currenttab = tabpagenr()    let tab_arr = []    tabdo let tab_arr += tabpagebuflist()    &quot; return to current page    exec &quot;tabnext &quot;.currenttab    &quot; Start checking tab numbers for matches    let i = 0    for tnum in tab_arr        let i += 1        echo &quot;tnum: &quot;.tnum.&quot; buff: &quot;.buffernumber.&quot; i: &quot;.i        if tnum == buffernumber            return i        endif    endforendfunctionfunction! WhichWindow(filename)    &quot; Try to determine whether the file is open in any GVIM *window*    let serverlist = split(serverlist(),&quot;\n&quot;)    &quot;let currentserver = ????    for server in serverlist        let remotetabnum = remote_expr(server,             \&quot;WhichTab('&quot;.a:filename.&quot;')&quot;)        if remotetabnum != 0            return server        endif    endforendfunction
+</pre>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/montage-wrapper.html" rel="bookmark" title="Permalink to Montage wrapper">
+                    Montage wrapper</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>(I'm going to try to gradually shift my blogging to this one...)
+I wrote a bash wrapper for Tom Robitaille's montage wrapper to allow
+fits wildcards.
+<tt class="docutils literal"><span class="pre">#!/bin/bashorigdir=`pwd`#echo</span> $# $*if [ $# <span class="pre">-gt</span> 0 ]then&nbsp;&nbsp;&nbsp; for ii in $*&nbsp;&nbsp;&nbsp; do&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if [ <span class="pre">${ii%=*}</span> == 'header' ]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; then&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /usr/local/bin/montage/mGetHdr <span class="pre">${ii#*=}</span> mosaic.hdr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; elif [ <span class="pre">${ii%=*}</span> == 'outfile' ]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; then&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">outfile=${ii#*=}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; elif [ `echo $ii | grep =` ]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; then&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">params=&quot;$params,${ii%=*}='${ii#*=}'&quot;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; elif [ `echo $ii | grep &quot;.fits&quot;` ]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; then&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; files=( <span class="pre">${files[&#64;]}</span> $ii )&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fi&nbsp;&nbsp;&nbsp; donefiecho <span class="pre">${files[&#64;]}</span> <span class="pre">${#files}</span> if [ <span class="pre">${#files}</span> <span class="pre">-gt</span> 0 ] then&nbsp;&nbsp;&nbsp; mkdir tmp&nbsp;&nbsp;&nbsp; cp <span class="pre">${files[&#64;]}</span> tmp/&nbsp;&nbsp;&nbsp; cp mosaic.hdr tmp/&nbsp;&nbsp;&nbsp; cd tmp/fiif [ <span class="pre">-f</span> mosaic.hdr ] then&nbsp;&nbsp;&nbsp;&nbsp; echo &quot;mosaic.hdr exists, continuing&quot;&nbsp;&nbsp;&nbsp; <span class="pre">dir=`pwd`</span>&nbsp;&nbsp;&nbsp; echo python <span class="pre">-c</span> &quot;import montage; <span class="pre">montage.wrappers.mosaic('$dir','$dir/mosaic',header='$dir/mosaic.hdr'$params)&quot;</span>&nbsp;&nbsp;&nbsp; python <span class="pre">-c</span> &quot;import montage; <span class="pre">montage.wrappers.mosaic('$dir','$dir/mosaic',header='$dir/mosaic.hdr'$params)&quot;</span>&nbsp;&nbsp;&nbsp; cd $origdir&nbsp;&nbsp;&nbsp; if [ <span class="pre">-d</span> tmp ]&nbsp;&nbsp;&nbsp; then&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if [ $outfile ]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; then&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mv tmp/mosaic/mosaic.fits $outfile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mv tmp/mosaic mosaic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rm <span class="pre">-r</span> tmp&nbsp;&nbsp;&nbsp; fielse&nbsp;&nbsp;&nbsp; echo &quot;mosaic.hdr does not exist.&nbsp; Quitting.&quot;&nbsp;&nbsp;&nbsp; cd $origdirfi</tt></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/nan-friendly-convolution.html" rel="bookmark" title="Permalink to NaN-friendly convolution">
+                    NaN-friendly convolution</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>NaN-friendly convolution is important for, e.g., masked data sets in
+which you want to interpolate across the masked region.</p>
+<p>Astropy has gained this functionality with pull request 155:
+<a class="reference external" href="https://github.com/astropy/astropy/pull/155">https://github.com/astropy/astropy/pull/155</a> but this is a &quot;direct&quot; convolution parallel to IDL's 'convol'
+routine.</p>
+<p>My FFT-based version now works in N dimensions and is a little cleaner:
+<a class="reference external" href="http://code.google.com/p/agpy/source/browse/trunk/AG_fft_tools/convolve_nd.py">http://code.google.com/p/agpy/source/browse/trunk/AG_fft_tools/convolve_nd.py</a></p>
+<p>I'm still working on writing unit tests, and I'm really not sure what
+the &quot;correct&quot; behavior at the edges is for the different cases... right
+now, it seems counterintuitive to me, but the code is doing what I
+expect it to.</p>
+<p>Also, Boxcar kernels always result in shifts for me... they're never
+supposed to. This is a bug.</p>
+<p>Currently, other links to these codes:
+<a class="reference external" href="http://stackoverflow.com/questions/1100100/fft-based-2d-convolution-and-correlation-in-python/8454010#8454010">http://stackoverflow.com/questions/1100100/fft-based-2d-convolution-and-correlation-in-python/8454010#8454010</a></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/pyspeckit-an-astronomical-spectroscopic-toolkit.html" rel="bookmark" title="Permalink to pyspeckit: an astronomical spectroscopic toolkit">
+                    pyspeckit: an astronomical spectroscopic toolkit</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Jordan and I have been working on our python-based spectroscopic
+analysis tool for a while now:
+<a class="reference external" href="http://pyspeckit.bitbucket.org/">pyspeckit</a> is a pretty awesome, now functional but incomplete (and
+incompletely documented) tool.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/specanpy.html" rel="bookmark" title="Permalink to specanpy">
+                    specanpy</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a class="reference external" href="http://casa.colorado.edu/~ginsbura/index.htm">AG</a>
+There are now 2 clones of PySpecKit:
+<a class="reference external" href="https://bitbucket.org/sPecAnPy/specanpy/">sPecAnPy</a>
+<a class="reference external" href="https://bitbucket.org/keflavich/spectroscopic-toolkit-astronomy/">Spectroscopic Toolkit (Astronomy)</a></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/testing-trackbacks.html" rel="bookmark" title="Permalink to Testing trackbacks?">
+                    Testing trackbacks?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I just want to see if &quot;trackbacks&quot; work at all. I recently posted about
+<a class="reference external" href="http://buffalothedestroyer.blogspot.com/2010/07/histogram-in-google-spreadsheet.html">histograms on google spreadsheets</a>.
+While I'm at it, might as well throw up a link to <a class="reference external" href="http://code.google.com/p/agpy/">my google code
+site</a>.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

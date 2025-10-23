@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://keflavich.github.io/blog/casa-imaging-of-huge-cube.html" rel="bookmark"
+         title="Permalink to CASA imaging of huge cube">CASA imaging of huge cube</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2016-01-25T10:09:00-07:00">
+      2016/01/25
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Imaging full cubes, i.e. every channel and every pixel, from ALMA data proved
+too much for the first few machines I tried it on, so I then tried splitting
+the cubes into chunks (<a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/script_12m/scriptForImaging_fullcube.py">source</a>).</p>
+<p>For the most part, this works well, but there are some serious problems:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/casa/spectrum_with_badchunk.png" style="width: 600px;" />
+<p>Note the range from 233.8-234 GHz.  It has a continuum level way above the
+rest.  This is utter nonsense, and turns out to be due to some imaging error.
+The first image below shows a &quot;good&quot; chunk of the cube, the second image shows
+a &quot;bad&quot; chunk.</p>
+<img alt="" src="https://keflavich.github.io/blog/images/casa/w51_cube_chunk_compare_good.png" style="width: 600px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/casa/w51_cube_chunk_compare_bad.png" style="width: 600px;" />
+<p>It is clear that the second image was restore using a too-large beam, and this is verified by examining the header:</p>
+<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">badcube</span><span class="o">.</span><span class="n">beam</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">Beam</span><span class="p">:</span> <span class="n">BMAJ</span><span class="o">=</span><span class="mf">1.15963029861</span> <span class="n">arcsec</span> <span class="n">BMIN</span><span class="o">=</span><span class="mf">0.96223282814</span> <span class="n">arcsec</span> <span class="n">BPA</span><span class="o">=-</span><span class="mf">71.0310058594</span> <span class="n">deg</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">goodcube</span><span class="o">.</span><span class="n">beam</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">Beam</span><span class="p">:</span> <span class="n">BMAJ</span><span class="o">=</span><span class="mf">0.408393889665</span> <span class="n">arcsec</span> <span class="n">BMIN</span><span class="o">=</span><span class="mf">0.229679107666</span> <span class="n">arcsec</span> <span class="n">BPA</span><span class="o">=</span><span class="mf">45.966835022</span> <span class="n">deg</span>
+</pre></div>
+<p>I don't yet know what is causing this error.  When I try re-doing the clean
+with <tt class="docutils literal">tclean</tt>, I get the following message, which is a hint:</p>
+<pre class="literal-block">
+2016-01-25 09:13:04     WARN    task_tclean::SIImageStore::getPSFGaussian (file
+/var/rpmbuild/BUILD/casa-prerelease/casa-prerelease-4.5.0/code/synthesis/ImagerObjects/SIImageStore.cc,
+line 1262)      PSF is blank for[C139:P0] [C140:P0] [C141:P0] [C142:P0]
+[C143:P0] [C144:P0] [C145:P0] [C146:P0] [C147:P0] [C148:P0] [C149:P0] [C150:P0]
+[C151:P0] [C152:P0] [C153:P0] [C154:P0] [C155:P0] [C156:P0] [C157:P0] [C158:P0]
+[C159:P0] [C160:P0] [C161:P0] [C162:P0] [C163:P0] [C164:P0] [C165:P0] [C166:P0]
+[C167:P0] [C168:P0] [C169:P0] [C170:P0] [C171:P0] [C172:P0] [C173:P0] [C174:P0]
+[C175:P0] [C176:P0] [C177:P0] [C178:P0] [C179:P0] [C180:P0] [C181:P0] [C182:P0]
+[C183:P0] [C184:P0] [C185:P0] [C186:P0]
+</pre>
+<p>Apparently tclean solves this problem!  Instead of using a single beam for all
+channels, it creates a CASAMBM table in the FITS output and uses different
+beams at each channel.  There must be genuinely bad data (probably an
+atmospheric absorption line) at the specified frequencies.  At least now, that
+will come up more naturally, rather than spiking the data.</p>
+
+  </div><!-- /.entry-content -->
+</section>
+
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</section>
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  var disqus_identifier = '/casa-imaging-of-huge-cube.html';
+  var disqus_url = 'https://keflavich.github.io/blog/casa-imaging-of-huge-cube.html';
+  var disqus_title = 'CASA imaging of huge cube';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - mac</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2014/02/19
+                  <br>
+                  <a href="https://keflavich.github.io/blog/python-stack-on-mavericks.html">Python stack on Mavericks</a>
+              </li>
+              <li class="post">
+                  2013/05/13
+                  <br>
+                  <a href="https://keflavich.github.io/blog/recovering-from-startup-drive-out-of-memory.html">Recovering from "Startup drive out of memory"</a>
+              </li>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/another-attempt-to-get-64-bit-python-on-snow-leopard.html">Another attempt to get 64 bit python on Snow Leopard</a>
+              </li>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/apachephpmysql-on-snow-leopard.html">apache/php/mysql on snow leopard</a>
+              </li>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/installing-snow-leopard.html">Installing Snow Leopard</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/python-stack-on-mavericks.html" rel="bookmark" title="Permalink to Python stack on Mavericks">
+                    Python stack on Mavericks</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2014-02-19T12:02:00-07:00"> 2014/02/19 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/napattack-adamgginsburggmailcom.html">napattack (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>As you might expect from numerous blog posts and the general difficulty people
+have always experienced upgrading mac OS versions, Mavericks caused some truly
+hideous issues.</p>
+<p>The only really &quot;new&quot; issues specifically for Mavericks relate to app nap.  The
+main solution is minrk's <a class="reference external" href="https://github.com/minrk/appnope">appnope</a>.  Otherwise, command line options like
+<cite>defaults write &lt;app domain name&gt; NSAppSleepDisabled -bool YES</cite> are required
+<a class="reference external" href="http://apple.stackexchange.com/questions/121386/missing-prevent-app-nap-button-on-app">if the button is missing</a> from Mac's Get Info pane.</p>
+<p>I tried installing the <a class="reference external" href="https://store.continuum.io/cshop/anaconda/">conda</a> stack to get python running quickly.  This
+worked to an extremely limited degree: the TkAgg shipped with anaconda links to
+<a class="reference external" href="xquartz.macosforge.org">XQuartz</a>, which is highly undesirable for a number of reasons.  This meant
+that matplotlib plots showed up as X11 plots.  With the Mac OS X backend, the
+windows failed to show up in the Dock and therefore were totally unusable (though
+they did look OK).</p>
+<p>I am still using <a class="reference external" href="https://store.continuum.io/cshop/anaconda/">conda</a> to maintain multiple parallel versions of python for
+testing.  However, I went back to my typical install-from-source approach.</p>
+<p>To get the matplotlib backends to interact nicely with apple, you need to install
+them using the <cite>/Library</cite> version of python</p>
+<div class="highlight"><pre><span></span><span class="c1"># this had to happen sometime early:</span>
+$<span class="w"> </span>xcode-select<span class="w"> </span>--install
+
+$<span class="w"> </span>wget<span class="w"> </span>https://pypi.python.org/pypi/pip#downloads
+$<span class="w"> </span>tar<span class="w"> </span>-xzvf<span class="w"> </span>~/Downloads/pip-1.5.2.tar.gz
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>pip-1.5.2
+$<span class="w"> </span>/Library/Frameworks/Python.framework/Versions/2.7/bin/python<span class="w"> </span>setup.py<span class="w"> </span>install
+$<span class="w"> </span>/Library/Frameworks/Python.framework/Versions/2.7/bin/pip<span class="w"> </span>install<span class="w"> </span>virtualenv
+$<span class="w"> </span><span class="nb">cd</span>
+$<span class="w"> </span>/Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenv<span class="w"> </span>virtual-python
+</pre></div>
+<p>After this, I was surprisingly able to install everything in the python stack
+with no hitches.  Obviously, that could not possibly last.</p>
+<p>While matplotlib and numpy worked fine, scipy had problems.</p>
+<pre class="literal-block">
+ImportError: dlopen(/Users/adam/virtual-python/lib/python2.7/site-packages/scipy/integrate/_odepack.so, 2): Symbol not found: __gfortran_internal_free
+Referenced from: /Users/adam/virtual-python/lib/python2.7/site-packages/scipy/integrate/_odepack.so
+Expected in: flat namespace
+   in /Users/adam/virtual-python/lib/python2.7/site-packages/scipy/integrate/_odepack.so
+</pre>
+<p>This terrible error led me back to re-compiling scipy.  I tried installing with
+<a class="reference external" href="hpc.sourceforge.net">hpc</a> gfortran, but that didn't work at all, first apparently because of linking
+errors in numpy.  When I investigated numpy, I found that the compilers
+apparently don't work at all:</p>
+<pre class="literal-block">
+C compiler: /usr/local/bin/gcc -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -arch i386 -arch x86_64
+...
+RuntimeError: Broken toolchain: cannot link a simple C program
+</pre>
+<p>I had to give up on that, and then googling returned no results at all, which I
+thought was a bit weird.  Scipy seems to want gcc and g++ 4.2, even though
+they're years old.  I had to find those and gfortran-4.2 somehow, but the <a class="reference external" href="r.research.att.com/tools/">old
+site</a> that used to serve them seems to have lost the files!  They had an
+<a class="reference external" href="http://r.research.att.com/tools/gcc-42-5666.3-darwin11.pkg">older version</a>, though, which appears to work.  Scipy is a scary install.</p>
+<div class="section" id="problems-with-xquartz">
+<h2>Problems with XQuartz</h2>
+<p>XQuartz is not well-behaved on Mac OS X 10.9.  First, <a class="reference external" href="https://xquartz.macosforge.org/trac/ticket/661">on retina machines, it
+does not display well</a>.  Second, and much more important, it <a class="reference external" href="http://xquartz.macosforge.org/trac/ticket/797">does not work on
+external monitors</a>.  Apparently this can be worked around by turning off
+&quot;Displays have different spaces&quot;  in Mission Control, but so far that has had
+no effect for me.</p>
+</div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/recovering-from-startup-drive-out-of-memory.html" rel="bookmark" title="Permalink to Recovering from "Startup drive out of memory"">
+                    Recovering from &quot;Startup drive out of memory&quot;</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-05-13T09:26:00-06:00"> 2013/05/13 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>To continue frozen processes, you need to find all sleeping procs and restart them with <tt class="docutils literal">kill <span class="pre">-CONT</span></tt>.</p>
+<p>In principle, this command should do that:</p>
+<p><tt class="docutils literal">ps <span class="pre">-A</span> <span class="pre">-o</span> tpgid,uid,pid,state,flags | awk <span class="pre">'$1!=&quot;0&quot;</span> &amp;&amp; <span class="pre">$2==501</span> &amp;&amp; <span class="pre">$4==&quot;S&quot;</span> &amp;&amp; <span class="pre">$5!=&quot;4000410c&quot;</span> {print &quot;kill <span class="pre">-CONT</span> &quot; $3}' | bash</tt></p>
+<p>Without the flags exclusion, this failed for me on apple's VNC server:
+<tt class="docutils literal">ps <span class="pre">-A</span> <span class="pre">-o</span> tpgid,uid,pid,state,flags | awk <span class="pre">'$2==501</span> &amp;&amp; <span class="pre">$4==&quot;S&quot;</span> &amp;&amp; <span class="pre">$5!=&quot;4000410c&quot;</span> {print &quot;kill <span class="pre">-CONT</span> &quot; $3}' | bash</tt></p>
+<p>This is necessary for recovering mac processes:
+<tt class="docutils literal"><span class="pre">-A</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Display information about other users' processes, including those without controlling terminals.</tt></p>
+<p>The outputs from the <tt class="docutils literal">ps</tt> process are:</p>
+<blockquote>
+<ul class="simple">
+<li>tpgid      control terminal process group ID</li>
+<li>pid        process ID</li>
+<li>uid        effective user ID</li>
+</ul>
+</blockquote>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/another-attempt-to-get-64-bit-python-on-snow-leopard.html" rel="bookmark" title="Permalink to Another attempt to get 64 bit python on Snow Leopard">
+                    Another attempt to get 64 bit python on Snow Leopard</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Sam Skillman posted <a class="reference external" href="http://casa.colorado.edu/~skillman/research_and_codes/files/5426de84108df075adee2e9a5c23d90e-4.html">his attempt to get 64 bit python on snow leopard</a>.
+It worked, but you need to install python with --enable-framework and
+NOT --prefix and NOT --enable-universalSDK. It is 64-bit only, not
+universal: universal causes trouble.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/apachephpmysql-on-snow-leopard.html" rel="bookmark" title="Permalink to apache/php/mysql on snow leopard">
+                    apache/php/mysql on snow leopard</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a class="reference external" href="http://maestric.com/doc/mac/apache_php_mysql_snow_leopard">This post</a> helped me out</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/installing-snow-leopard.html" rel="bookmark" title="Permalink to Installing Snow Leopard">
+                    Installing Snow Leopard</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm going to attempt to install snow leopard today. This post will serve
+as a record of the difficulties I run into.
+Things to install (and ensure they are 64-bit):</p>
+<ul class="simple">
+<li>ipython</li>
+<li>numpy</li>
+<li>scipy</li>
+<li>matplotlib</li>
+<li>stsci-python</li>
+<li>starlink</li>
+<li>gfortran</li>
+<li>latex</li>
+<li>idl (check)</li>
+</ul>
+<p>Things that have happened:</p>
+<ol class="arabic simple">
+<li>Had to restart again (twice) to install additional updates</li>
+<li>My bash command line looked funny - something about bash changed, but
+I don't know what. The fix was easy: commented out some code from
+<a class="reference external" href="http://pseudogreen.org/blog/set_tab_names_in_leopard_terminal.html">http://pseudogreen.org/blog/set_tab_names_in_leopard_terminal.html</a>
+that I had been using to set the tab title</li>
+<li>My locate db broke. Needed repair: <tt class="docutils literal">sudo /usr/libexec/locate.updatedb</tt></li>
+<li>numpy svn failed to build:
+`` python setup.py buildRunning from numpy source directory.non-existing path in 'numpy/distutils': 'site.cfg'F2PY Version 2_8111numpy/core/setup_common.py:86: MismatchCAPIWarning: API mismatch detected, the C API version numbers have to be updated. Current C api version is 4, with checksum 59750b518272c8987f02d66445afd3f1, but recorded checksum for C API version 4 in codegen_dir/cversions.txt is 3d8940bf7b0d2a4e25be4338c14c3c85. If functions were added in the C API, you have to update C_API_VERSION  in numpy/core/setup_common.pyc.  MismatchCAPIWarning)blas_opt_info:  FOUND:    extra_link_args = ['-Wl,-framework', '-Wl,Accelerate']    define_macros = [('NO_ATLAS_INFO', 3)]    extra_compile_args = ['-faltivec', '-I/System/Library/Frameworks/vecLib.framework/Headers']lapack_opt_info:  FOUND:    extra_link_args = ['-Wl,-framework', '-Wl,Accelerate']    define_macros = [('NO_ATLAS_INFO', 3)]    extra_compile_args = ['-faltivec']running buildrunning config_ccunifing config_cc, config, build_clib, build_ext, build commands --compiler optionsrunning config_fcunifing config_fc, config, build_clib, build_ext, build commands --fcompiler optionsrunning build_srcbuild_srcbuilding py_modules sourcesbuilding library &quot;npymath&quot; sourcescustomize NAGFCompilerFound executable /usr/local/bin/f95customize AbsoftFCompilerCould not locate executable f90Found executable /usr/bin/f77absoft: no Fortran 90 compiler foundabsoft: no Fortran 90 compiler foundcustomize IBMFCompilerCould not locate executable xlf90Could not locate executable xlfcustomize IntelFCompilerCould not locate executable ifortCould not locate executable ifccustomize GnuFCompilerFound executable /usr/local/bin/g77gnu: no Fortran 90 compiler foundgnu: no Fortran 90 compiler foundcustomize Gnu95FCompilerFound executable /usr/local/bin/gfortrancustomize Gnu95FCompilercustomize Gnu95FCompiler using configC compiler: gcc -arch i386 -arch ppc -arch ppc64 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.5.sdk -fno-strict-aliasing -fno-common -dynamic -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypescompile options: '-Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/include -I/Library/Frameworks/Python.framework/Versions/2.6/include/python2.6 -c'gcc: _configtest.cgcc _configtest.o -o _configtestld: library not found for -lcrt1.10.5.ocollect2: ld returned 1 exit statusld: library not found for -lcrt1.10.5.ocollect2: ld returned 1 exit statusfailure.removing: _configtest.c _configtest.oTraceback (most recent call last):  File &quot;setup.py&quot;, line 210, in     setup_package()  File &quot;setup.py&quot;, line 203, in setup_package    configuration=configuration )  File &quot;/Users/adam/repos/numpy-svn/numpy/distutils/core.py&quot;, line 186, in setup    return old_setup(<strong>new_attr)  File &quot;/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/core.py&quot;, line 152, in setup    dist.run_commands()  File &quot;/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/dist.py&quot;, line 975, in run_commands    self.run_command(cmd)  File &quot;/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/dist.py&quot;, line 995, in run_command    cmd_obj.run()  File &quot;/Users/adam/repos/numpy-svn/numpy/distutils/command/build.py&quot;, line 37, in run    old_build.run(self)  File &quot;/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/command/build.py&quot;, line 134, in run    self.run_command(cmd_name)  File &quot;/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/cmd.py&quot;, line 333, in run_command    self.distribution.run_command(command)  File &quot;/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/dist.py&quot;, line 995, in run_command    cmd_obj.run()  File &quot;/Users/adam/repos/numpy-svn/numpy/distutils/command/build_src.py&quot;, line 152, in run    self.build_sources()  File &quot;/Users/adam/repos/numpy-svn/numpy/distutils/command/build_src.py&quot;, line 163, in build_sources    self.build_library_sources(*libname_info)  File &quot;/Users/adam/repos/numpy-svn/numpy/distutils/command/build_src.py&quot;, line 298, in build_library_sources    sources = self.generate_sources(sources, (lib_name, build_info))  File &quot;/Users/adam/repos/numpy-svn/numpy/distutils/command/build_src.py&quot;, line 385, in generate_sources    source = func(extension, build_dir)  File &quot;numpy/core/setup.py&quot;, line 670, in get_mathlib_info    raise RuntimeError(&quot;Broken toolchain: cannot link a simple C program&quot;)RuntimeError: Broken toolchain: cannot link a simple C program``
+**SOLUTION:</strong> Use the Mac OS X 10.6 python (/usr/bin/python). I will do this
+until I run into another problem. Numpy build successfully</li>
+<li>Build/install matplotlib - failed! Completely!</li>
+<li>Acquired gcc/gfortran from <a class="reference external" href="http://hpc.sourceforge.net/">hpc</a></li>
+<li>Followed instructions from <a class="reference external" href="http://blog.hyperjeff.net/?p=160">hyperjeff</a> on fortran install...</li>
+<li>Get rid of numpy 1.2.1:
+`` mv /System/Library/Frameworks/Python.framework/Versions/2.6/Extras/lib/python/numpy /System/Library/Frameworks/Python.framework/Versions/2.6/Extras/lib/python/.not_numpy.bak``</li>
+<li>Try to install scipy. Fail on missing umfpack, follow <a class="reference external" href="http://blog.hyperjeff.net/?p=160">hyperjeff</a>'s
+instructions (but make sure to edit the site.cfg in scipy, not just the one in
+numpy).
+Had to add the following code:
+<tt class="docutils literal">sudo cp AMD/Lib/libamd.a /System/Library/Frameworks/Python.framework/Versions/2.6/libsudo cp UMFPACK/Lib/libumfpack.a /System/Library/Frameworks/Python.framework/Versions/2.6/libsudo cp AMD/Include/amd.h /System/Library/Frameworks/Python.framework/Versions/2.6/includesudo cp UFconfig/UFconfig.h /System/Library/Frameworks/Python.framework/Versions/2.6/includesudo cp <span class="pre">UMFPACK/Include/*.h</span> /System/Library/Frameworks/Python.framework/Versions/2.6/include</tt></li>
+<li>Installed fftw from <a class="reference external" href="http://www.fftw.org/">fftw.org</a> with simple ./configure, make, sudo
+make install - no compiler opts as they killed the install</li>
+<li>Get SoundSource from <a class="reference external" href="http://www.rogueamoeba.com/freebies/">rogueamoeba</a></li>
+<li>Updated <a class="reference external" href="http://www.islayer.com/apps/istatmenus/">istatmenus</a></li>
+</ol>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/macvim-crash.html" rel="bookmark" title="Permalink to macvim crash">
+                    macvim crash</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><p>well, it finally happened.... my reliable, trusty editor crashed. That
+should be impossible. I am ready to call it quits for the week....</p>
+<pre class="literal-block">
+Process:         MacVim [650]Path:            /Applications/Vim.app/Contents/MacOS/MacVimIdentifier:      org.vim.MacVimVersion:         7.2 (49)Code Type:       X86 (Native)Parent Process:  Vim [649]Date/Time:       2010-02-25 13:12:43.001 -0700OS Version:      Mac OS X 10.6.2 (10C540)Report Version:  6Interval Since Last Report:          871676 secCrashes Since Last Report:           26Per-App Interval Since Last Report:  938504 secPer-App Crashes Since Last Report:   1Anonymous UUID:                      03159B9E-2257-4E38-8C4A-4D4DAF5641A7Exception Type:  EXC_BAD_ACCESS (SIGSEGV)Exception Codes: 0x000000000000000d, 0x0000000000000000Crashed Thread:  0  Dispatch queue: com.apple.main-threadThread 0 Crashed:  Dispatch queue: com.apple.main-thread0   com.apple.CoreFoundation       0x99119480 __CFSetCallback + 01   com.apple.CoreFoundation       0x990c78bc ___CFBasicHashFindBucket1 + 4442   com.apple.CoreFoundation       0x990cfaac CFBasicHashFindBucket + 2523   com.apple.CoreFoundation       0x990e8293 CFSetGetValue + 1314   com.apple.AppKit               0x961bae7e -[NSWindow _discardTrackingRect:] + 595   com.apple.AppKit               0x961badca -[NSView(NSInternal) _uninstallTrackingArea:] + 1236   com.apple.AppKit               0x960d2c32 -[NSView(NSInternal) _uninstallRemovedTrackingAreas] + 2937   com.apple.AppKit               0x960dac40 -[NSView(NSInternal) _updateTrackingAreas] + 6468   com.apple.CoreFoundation       0x990ea4e0 CFArrayApplyFunction + 2249   com.apple.AppKit               0x960daefb -[NSView(NSInternal) _updateTrackingAreas] + 134510  com.apple.CoreFoundation       0x990ea4e0 CFArrayApplyFunction + 22411  com.apple.AppKit               0x960daefb -[NSView(NSInternal) _updateTrackingAreas] + 134512  com.apple.CoreFoundation       0x990ea4e0 CFArrayApplyFunction + 22413  com.apple.AppKit               0x960daefb -[NSView(NSInternal) _updateTrackingAreas] + 134514  com.apple.AppKit               0x960da8db _handleInvalidCursorRectsNote + 39215  com.apple.CoreFoundation       0x99135892 __CFRunLoopDoObservers + 118616  com.apple.CoreFoundation       0x990f218d __CFRunLoopRun + 55717  com.apple.CoreFoundation       0x990f1864 CFRunLoopRunSpecific + 45218  com.apple.CoreFoundation       0x990f1691 CFRunLoopRunInMode + 9719  com.apple.HIToolbox            0x936f6f0c RunCurrentEventLoopInMode + 39220  com.apple.HIToolbox            0x936f6bff ReceiveNextEventCommon + 15821  com.apple.HIToolbox            0x936f6b48 BlockUntilNextEventMatchingListInMode + 8122  com.apple.AppKit               0x960b0ac5 _DPSNextEvent + 84723  com.apple.AppKit               0x960b0306 -[NSApplication nextEventMatchingMask:untilDate:inMode:dequeue:] + 15624  com.apple.AppKit               0x9607249f -[NSApplication run] + 82125  com.apple.AppKit               0x9606a535 NSApplicationMain + 57426  org.vim.MacVim                 0x0000238b _start + 20927  org.vim.MacVim                 0x000022b9 start + 41Thread 1:  Dispatch queue: com.apple.libdispatch-manager0   libSystem.B.dylib              0x98d0c0ea kevent + 101   libSystem.B.dylib              0x98d0c804 _dispatch_mgr_invoke + 2152   libSystem.B.dylib              0x98d0bcc3 _dispatch_queue_invoke + 1633   libSystem.B.dylib              0x98d0ba68 _dispatch_worker_thread2 + 2344   libSystem.B.dylib              0x98d0b4f1 _pthread_wqthread + 3905   libSystem.B.dylib              0x98d0b336 start_wqthread + 30Thread 2:0   libSystem.B.dylib              0x98ce58da mach_msg_trap + 101   libSystem.B.dylib              0x98ce6047 mach_msg + 682   com.apple.CoreFoundation       0x990f277f __CFRunLoopRun + 20793   com.apple.CoreFoundation       0x990f1864 CFRunLoopRunSpecific + 4524   com.apple.CoreFoundation       0x990f1691 CFRunLoopRunInMode + 975   com.apple.Foundation           0x91b24430 +[NSURLConnection(NSURLConnectionReallyInternal) _resourceLoadLoop:] + 3296   com.apple.Foundation           0x91aeb8d8 -[NSThread main] + 457   com.apple.Foundation           0x91aeb888 __NSThread__main__ + 14998   libSystem.B.dylib              0x98d12fbd _pthread_start + 3459   libSystem.B.dylib              0x98d12e42 thread_start + 34Thread 3:0   libSystem.B.dylib              0x98d04856 select$DARWIN_EXTSN + 101   com.apple.CoreFoundation       0x99131ddd __CFSocketManager + 10852   libSystem.B.dylib              0x98d12fbd _pthread_start + 3453   libSystem.B.dylib              0x98d12e42 thread_start + 34Thread 4:0   libSystem.B.dylib              0x98d0b182 __workq_kernreturn + 101   libSystem.B.dylib              0x98d0b718 _pthread_wqthread + 9412   libSystem.B.dylib              0x98d0b336 start_wqthread + 30Thread 0 crashed with X86 Thread State (32-bit):  eax: 0x00515db0  ebx: 0x990c7711  ecx: 0x00516460  edx: 0xbfffcabc  edi: 0x00001041  esi: 0x00504270  ebp: 0xbfffca38  esp: 0xbfffc99c   ss: 0x0000001f  efl: 0x00010246  eip: 0x99119480   cs: 0x00000017   ds: 0x0000001f   es: 0x0000001f   fs: 0x00000000   gs: 0x00000037  cr2: 0x97a20000
+</pre>
+</p> </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/rebuilding-python-from-scratch-again.html" rel="bookmark" title="Permalink to Rebuilding python from scratch again">
+                    Rebuilding python from scratch again</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I got scipy working a week or two ago, but doing so killed matplotib's
+tkagg. So, I switched to the MacOSX backend, which worked ok until I
+realized that the interactive (connect) features of macosx failed
+miserably. This led me to try to get matplotlib working.... which broke
+with those awful &quot;symbol not found&quot; errors in ft2font.so and _path.so,
+which I've determined all have to do with linking to the wrong library
+files.
+The most worrisome part of this process was discovering that a full Time
+Machine recovery of /usr and /Library/Frameworks and /Library/Python did
+*not* restore python - it stayed dead with IDENTICAL errors. So there
+are probably additional layers of hidden links.
+The process below is based on <a class="reference external" href="http://blog.hyperjeff.net/?p=160">hyperjeff's blog post</a> but differs
+substantially based on <a class="reference external" href="http://casa.colorado.edu/~skillman/research_and_codes/files/649710e82f85745eb65a90535f0f3098-5.html">Sam Skillman's recommendations</a> and the very
+big issue I ran into that my /usr/local files appeared to be corrupted.
+After this install, my path no longer includes /usr/local/bin and /sw
+has been moved to /_sw... hopefully one of these days I'll be ballsy
+enough to delete it.</p>
+<ol class="arabic simple">
+<li>Install python 2.6.4<ol class="arabic">
+<li>Needed a clean terminal with no flags set at all. Don't know why -
+all I had set were a bunch of -arch x86_64 flags.
+<tt class="docutils literal">export <span class="pre">LD_LIBRARY_PATH=&quot;/usr/local/lib:/usr/X11/lib&quot;./configure</span> <span class="pre">--enable-framework=/Library/Frameworks</span> MACOSX_DEPLOYMENT_TARGET=10.6 make <span class="pre">-j</span> 17sudo make install</tt></li>
+<li>Reset PYTHONPATH to blank</li>
+<li>`` alias clearflags='export CFLAGS=&quot;&quot;; export CCFLAGS=&quot;&quot;; export CXXFLAGS=&quot;&quot;; export LDFLAGS=&quot;&quot;; export FFLAGS=&quot;&quot;;'``
+to make sure</li>
+</ol>
+</li>
+<li>Install FFTW
+<tt class="docutils literal">cd ~/tmpcurl <span class="pre">-O</span> <span class="pre">http://www.fftw.org/fftw-3.2.2.tar.gztar</span> xf <span class="pre">fftw-3.2.2.tar.gzcd</span> <span class="pre">fftw-3.2.2clearflags./configure</span> <span class="pre">CC=&quot;gcc</span> <span class="pre">-arch</span> x86_64&quot; <span class="pre">CXX=&quot;g++</span> <span class="pre">-arch</span> x86_64&quot; <span class="pre">CPP=&quot;gcc</span> <span class="pre">-E&quot;</span> <span class="pre">CXXCPP=&quot;g++</span> <span class="pre">-E&quot;make</span> <span class="pre">-j</span> 17sudo make install</tt></li>
+<li>Install UMFPACK
+<tt class="docutils literal">cd ~/tmpcurl <span class="pre">-O</span> <span class="pre">http://www.cise.ufl.edu/research/sparse/umfpack/current/UMFPACK.tar.gzcurl</span> <span class="pre">-O</span> <span class="pre">http://www.cise.ufl.edu/research/sparse/UFconfig/current/UFconfig.tar.gzcurl</span> <span class="pre">-O</span> <span class="pre">http://www.cise.ufl.edu/research/sparse/amd/current/AMD.tar.gztar</span> xf AMD.tar.gztar xf UFconfig.tar.gztar xf UMFPACK.tar.gzsed <span class="pre">-ibck</span> 's/F77 = f77/F77 = gfortran/' UFconfig/UFconfig.mk sed <span class="pre">-ibck</span> '299,303s/# //' UFconfig/UFconfig.mkcp UFconfig/UFconfig.h AMD/Include/cp UFconfig/UFconfig.h UMFPACK/Include/cd UMFPACKmake <span class="pre">-j</span> 17make hbmake clean</tt></li>
+<li>Install numpy<ol class="arabic">
+<li>Set environment variables
+<tt class="docutils literal">export MACOSX_DEPLOYMENT_TARGET=10.6export <span class="pre">CFLAGS=&quot;-arch</span> x86_64&quot;export <span class="pre">FFLAGS=&quot;-m64&quot;export</span> <span class="pre">LDFLAGS=&quot;-Wall</span> <span class="pre">-undefined</span> dynamic_lookup <span class="pre">-bundle</span> <span class="pre">-arch</span> x86_64&quot;export <span class="pre">PYTHONPATH=&quot;/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/&quot;echo</span> &quot;[amd]library_dirs = /Users/adam/tmp/AMD/Libinclude_dirs = /Users/adam/tmp/AMD/Includeamd_libs = amd[umfpack]library_dirs = /Users/adam/tmp/UMFPACK/Libinclude_dirs = /Users/adam/tmp/UMFPACK/Includeumfpack_libs = umfpack&quot; &gt; site.cfg</tt></li>
+<li>Setup &amp; Install
+<tt class="docutils literal">python setup.py build <span class="pre">--fcompiler=gnu95sudo</span> python setup.py install</tt></li>
+<li>Test: python -c &quot;import numpy&quot;</li>
+</ol>
+</li>
+<li>Install scipy. The important thing is to use g++-4.2 because g++-4.5
+doesn't accept the -arch flag. Also, get rid of /sw if it's on your
+computer at all.
+<tt class="docutils literal">sudo mv /System/Library/Frameworks/Python.framework/Versions/2.6/Extras/lib/python/numpy /System/Library/Frameworks/Python.framework/Versions/2.6/Extras/lib/python/numpyXcd <span class="pre">~/repos/scipy-0.7.1python</span> setup.py cleanrm <span class="pre">-rf</span> <span class="pre">buildclearflagsFFLAGS=&quot;-m64&quot;</span> <span class="pre">CFLAGS=&quot;-arch</span> x86_64 <span class="pre">-I/usr/local/include/freetype2</span> <span class="pre">-I/usr/X11/include</span> <span class="pre">-L/usr/X11/lib&quot;</span>&nbsp; <span class="pre">LDFLAGS=&quot;-Wall</span> <span class="pre">-undefined</span> dynamic_lookup <span class="pre">-bundle</span>&nbsp; <span class="pre">-lpng</span> <span class="pre">-arch</span> x86_64&quot; <span class="pre">CXX=&quot;/usr/bin/g++-4.2&quot;</span> <span class="pre">CC=&quot;/usr/bin/gcc-4.2&quot;</span> python setup.py buildpython setup.py install</tt>
+Test the install:
+<tt class="docutils literal">python <span class="pre">-c</span> &quot;import scipy, scipy.fftpack, scipy.interpolate&quot;</tt></li>
+<li><ol class="first arabic">
+<li>Install matplotlib. MAKE SURE /usr/bin/texbin is in front of
+/usr/local/bin and /sw/bin so that dvipng comes from MacTEX. I
+also ended up having to remove /usr/local/bin from my path
+completely
+<tt class="docutils literal">sudo mv /System/Library/Frameworks/Python.framework/Versions/2.6/Extras/lib/python/numpy /System/Library/Frameworks/Python.framework/Versions/2.6/Extras/lib/python/numpyXcd <span class="pre">~/repos/matplotlib-svnpython</span> setup.py cleanrm <span class="pre">-rf</span> buildclearflags</tt></li>
+<li>Do hyperjeff's recommended edits except don't use /usr/local
+because it's f'd:
+make.osx:
+<tt class="docutils literal"><span class="pre">MACOSX_DEPLOYMENT_TARGET=10.6PREFIX=/usrPYTHON=/Library/Frameworks/Python.framework/Versions/Current/bin/python##</span> You shouldn't need to configure past this point (and <span class="pre">yet…)PKG_CONFIG_PATH=&quot;${PREFIX}/lib/pkgconfig&quot;CFLAGS=&quot;-arch</span> i386 <span class="pre">-arch</span> x86_64 <span class="pre">-I${PREFIX}/include</span> <span class="pre">-I${PREFIX}/include/freetype2</span> <span class="pre">-isysroot</span> <span class="pre">/Developer/SDKs/MacOSX10.6.sdk&quot;LDFLAGS=&quot;-arch</span> i386 <span class="pre">-arch</span> x86_64 <span class="pre">-L${PREFIX}/lib</span> <span class="pre">-syslibroot,/Developer/SDKs/MacOSX10.6.sdk&quot;FFLAGS=&quot;-arch</span> i386 <span class="pre">-arch</span> x86_64&quot;</tt>
+setup.cfg:
+<tt class="docutils literal">wxagg = False</tt></li>
+<li>Do the install (different from hyperjeff b/c I don't want root)
+`` sudo make -f make.osx fetch deps make -f mpl_build mpl_installpython setup.py install``</li>
+</ol>
+</li>
+<li>Install setuptools</li>
+<li>easy_install ipython</li>
+<li>install everything else pythonically</li>
+</ol>
+</p> </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

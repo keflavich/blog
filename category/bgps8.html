@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2013/05/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/bgps-point-source-recovery-experiment-23-results.html">BGPS Point Source Recovery - Experiment 23 results</a>
+              </li>
+              <li class="post">
+                  2013/05/16
+                  <br>
+                  <a href="https://keflavich.github.io/blog/bgps-point-source-recovery.html">BGPS Point Source Recovery</a>
+              </li>
+              <li class="post">
+                  2012/12/26
+                  <br>
+                  <a href="https://keflavich.github.io/blog/catalog-vs-image-shift-a-possible-solution-to-the-atlasgal-issue.html">Catalog vs Image shift? A possible solution to the ATLASGAL issue</a>
+              </li>
+              <li class="post">
+                  2012/12/22
+                  <br>
+                  <a href="https://keflavich.github.io/blog/idea-multispectral-eigenimage-decomposition.html">Idea: Multispectral Eigenimage decomposition...</a>
+              </li>
+              <li class="post">
+                  2012/12/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pointing-cross-correlation-yet-again.html">Pointing & Cross-Correlation yet again</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+<h2>Articles in the bgps category</h2>
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/some-pretty-neat-things-about-delining.html" rel="bookmark" title="Permalink to Some pretty neat things about delining....">
+                    Some pretty neat things about delining....</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-02-03T04:50:00-07:00"> 2011/02/03 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Well, I did the work, so might as well come up with some plots...
+I created a gaussian-fitting based delining code that saves all of the
+fits in a text file! That's a lot of data to play with, and allows me to
+draw some conclusions:</p>
+<ol class="arabic simple">
+<li>For the narrow lines, the linewidth (gaussian sigma) is 0.03 Hz. For
+the wide lines, it is 0.05.</li>
+<li>The amplitudes from December 2010 are ENORMOUS compared to others!</li>
+<li>The width distributions of the two are similar, though the lines
+appear to be significantly wider in July 2009</li>
+</ol>
+<p>I've also gotten to the point that I'm satisfied with how delining with
+wing suppression works. Wing suppression is 0.4-2x quicker than fitting
+directly, depending on... not clear what exactly; it depends on epoch,
+but that could either be because there are more lines found or because
+of relative data size. Does delining have to be done on whole
+timestreams, or can it be done on a scan-by-scan basis? This is not
+entirely clear... the peaks are less suppressed when done on a
+scan-by-scan basis (presumably because the S/N is low and peaks are
+therefore not detected), but incorrect suppression (removing a line
+that's not there) is reduced. For short scans, the scan-by-scan approach
+is 10x faster; for longer scans it's ~20% faster. I think the
+scan-by-scan approach is going to be ideal.</p>
+<hr class="docutils" />
+<p>Examples from l089 (0709):
+Top row: non-fitted line suppression</p>
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUowz4zgpsI/AAAAAAAAF8E/iJd0tAbVj0U/s320/deline_10hz_wingsuppress_psds_003.png" />
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUow1IQ_Y9I/AAAAAAAAF8c/1OkISODwwPM/s320/deline_fitline_10hz_noscan_nsig0_preservephase_timestreams_003.png" />
+<p>Bottom row: fitted line suppression</p>
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUow0sTBKsI/AAAAAAAAF8U/GtL0nyvlNBw/s320/deline_fitline_10hz_noscan_nsig0_preservephase_psds_003.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUow0d-vEcI/AAAAAAAAF8M/or2gkvGxW4o/s320/deline_10hz_wingsuppress_timestreams_003.png" />
+<hr class="docutils" />
+<p>Examples from Uranus (1012, really really liney):</p>
+<p>Top row: non-fitted line suppression</p>
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUoxEvWqRwI/AAAAAAAAF8k/J6ImhPN9ZS0/s320/deline_10hz_wingsuppress_psds_003.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUoxFMLdujI/AAAAAAAAF8s/DrzWxFCdBu0/s320/deline_10hz_wingsuppress_timestreams_003.png" />
+<p>Bottom row: fitted line suppression</p>
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUoxFXYN_tI/AAAAAAAAF80/BQwv6ROSOJ4/s320/deline_fitline_10hz_noscan_nsig0_preservephase_psds_003.png" />
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUoxF_c0URI/AAAAAAAAF88/JU9_F-8HC2k/s320/deline_fitline_10hz_noscan_nsig0_preservephase_timestreams_003.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/bleh-a-whole-days-work-dedicate-to-new-delin.html" rel="bookmark" title="Permalink to Bleh, a whole day&#39;s work dedicate to new delin...">
+                    Bleh, a whole day&amp;#39;s work dedicate to new delin...</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-02-03T03:29:00-07:00"> 2011/02/03 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Bleh, a whole day's work dedicate to new delining methods and testing.
+Very unrewarding. However, there are results that I need to FINALLY
+prove and show tomorrow:
+1. amplitude suppression + phase preservation is a good alternative to
+zeroing/scrambling or replacing with noise
+2. line fitting is effective but slow
+3. Assuming a line profile and suppressing is nearly as effective as
+line fitting
+4. scan-by-scan is less effective than observation-by-observation for
+fitting (but it's not clear if that holds for other methods)</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/what-about-the-effects-on-the-map-unfortunately.html" rel="bookmark" title="Permalink to What about the effects on the map? Unfortunately,...">
+                    What about the effects on the map?  Unfortunately,...</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-02-02T02:12:00-07:00"> 2011/02/02 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>What about the effects on the map? Unfortunately, in the tests I've run,
+delining actually INCREASES the noise in the map! How is this possible?
+My only hypothesis is that PCA cleaning does an excellent job of
+removing the line noise, but when it is replaced with truly uncorrelated
+gaussian noise, the PCA cleaning no longer removes that component.
+But we don't want PCA cleaning to grab instrumental correlated noise; we
+want it to be limited to atmospheric noise. So ideally we want to
+completely remove the line noise without adding noise to the image...
+maybe the line regions should just be set to zero after all....</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/downsampling-by-a-factor-of-3-appears-not-to-be-an.html" rel="bookmark" title="Permalink to Downsampling by a factor of 3 appears not to be an...">
+                    Downsampling by a factor of 3 appears not to be an...</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-01-27T22:16:00-07:00"> 2011/01/27 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Downsampling by a factor of 3 appears not to be an option because this
+error:
+% NCDF_VARGET: Requested read is larger than data in dimension 0.
+Reducing COUNT to 615.
+% REBIN: Result dimensions must be integer factor of original dimensions
+% Execution halted at: NCDF_VARGET_SCALE 133
+/Users/adam/work/bgps_pipeline/support/ncdf_varget_scale.pro
+occurs.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/more-evidence-that-downsampling-causes-problems.html" rel="bookmark" title="Permalink to More evidence that downsampling causes problems">
+                    More evidence that downsampling causes problems</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-01-21T22:48:00-07:00"> 2011/01/21 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The captions are pretty much the same as for <a class="reference external" href="http://bolocam.blogspot.com/2011/01/downsampling-has-serious-negative.html">the previous post</a>, but
+this is a larger field and the effects are more serious.</p>
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TToMoxR5xJI/AAAAAAAAF3Q/qod6NlqiNpU/s400/orion_omc1_dstest_images.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TToMpcpYjJI/AAAAAAAAF3Y/Hp9V2KcCEgE/s400/orion_omc1_dstest_autocorrfits.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TToMpxmFurI/AAAAAAAAF3g/-JJwti4yW58/s400/orion_omc1_dstest_psds.png" />
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TToMqdKihGI/AAAAAAAAF3o/X54ObZ_AHkk/s400/orion_omc1_dstest_pixel-pixel.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/downsampling-has-serious-negative-effects-on-the-data.html" rel="bookmark" title="Permalink to Downsampling has serious negative effects on the data">
+                    Downsampling has serious negative effects on the data</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-01-20T20:16:00-07:00"> 2011/01/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Background: Downsampling is performed using Old Pipeline code called
+<tt class="docutils literal">process_ncdf</tt>. All BGPS data was downsampled by a factor of 5
+before mapping because of data size concerns. I did this 'blindly'
+(i.e., just
+accepted that I should) because James said I could.
+However, I had previously noted that the pointing files could not be
+done with
+downsampled data because the beams 'looked funny' or something along
+those
+lines; it may also have been a simple map sampling issue in which not
+all
+pixels were filled with a downsampled image.
+Anyway, I decided to go back and quantify the effects. The plots below
+are from the
+single &quot;pointing-style&quot; observation of OMC1 from 2009. The units are
+volts. 'ds1' indicates
+sampling at 0.02 seconds, 'ds5' indicates sampling every 0.1 seconds.
+The scan rate was
+120&quot;/s.</p>
+<hr class="docutils" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TTiWWSS-JVI/AAAAAAAAF24/4m2SFfwWkmA/s400/omc1_dstest_autocorrfits.png" />
+<p>The beam sizes were measured from the autocorrelation maps. However,
+because there is structure on many scales
+in this map, I had to use a rather ad-hoc method to remove the
+correlated structure. I fitted a gaussian
+to the elliptical northwest-southeast structure, removed it, then fitted
+a gaussian to the remaining circular
+thing in the center, which is approximately the beam.
+If I fit the &quot;beam&quot; gaussian with an ellipse, I get:
+Beamsize 1_1: 36.15,26.23
+Beamsize 1_5: 48.39,30.21
+With a circle:
+Beamsize 1_1: 29.51
+Beamsize 1_5: 35.31</p>
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TTiWWKeGbJI/AAAAAAAAF2w/jOEmOnDa1hw/s400/omc1_dstest_images.png" />
+<p>The ds1 and ds5 images compared.</p>
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TTiWWlzyWKI/AAAAAAAAF3A/nPCN-C0e3Jo/s400/omc1_dstest_psds.png" />
+<p>The PSDs of the two images (on identical grids). Note that ds5 loses
+power at small spatial scales, 50% at 40&quot;!</p>
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TTiWWl3j3dI/AAAAAAAAF3I/Ef3WHEv5oXU/s400/omc1_dstest_pixel-pixel.png" />
+<p>The pixel-pixel plot with a fit that shows a 10% overall flux loss
+(best-fit).</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/bgps-data-paper-published.html" rel="bookmark" title="Permalink to BGPS data paper published">
+                    BGPS data paper published</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2010-11-03T15:22:00-06:00"> 2010/11/03 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>&nbsp;*[[<a class="reference external" href="http://irsa.ipac.caltech.edu/data/BOLOCAM_GPS/bgps_methods.pdf">http://irsa.ipac.caltech.edu/data/BOLOCAM_GPS/bgps_methods.pdf</a>
+The Bolocam Galactic Plane Survey I. Survey Description and Data
+Reduction] `[`[<a class="reference external" href="http://arxiv.org/abs/1011.0691">http://arxiv.org/abs/1011.0691</a> arXiv]`]`
+&nbsp;*[[<a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJS..188..123R">http://adsabs.harvard.edu/abs/2010ApJS..188..123R</a> The Bolocam
+Galactic Plane Survey II. Catalog of the Image Data]
+`[`[<a class="reference external" href="http://arxiv.org/abs/0909.2871">http://arxiv.org/abs/0909.2871</a> arXiv]`]`
+&nbsp;*[[<a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...717.1157D">http://adsabs.harvard.edu/abs/2010ApJ...717.1157D</a> The Bolocam
+Galactic Plane Survey III. Characterizing Physical Properties of Massive
+Star-Forming Regions in the Gemini OB1 Molecular Cloud ]
+`[`[<a class="reference external" href="http://arxiv.org/abs/1005.4969">http://arxiv.org/abs/1005.4969</a> arXiv]`]`
+&nbsp;*[[<a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...721..137B">http://adsabs.harvard.edu/abs/2010ApJ...721..137B</a> The Bolocam
+Galactic Plane Survey IV: λ = 1.1 and 0.35 mm Dust Continuum Emission in
+the Galactic Center Region]</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/v20-is-to-v10-as-___-is-to-v10.html" rel="bookmark" title="Permalink to v2.0 is to v1.0 as ___ is to v1.0">
+                    v2.0 is to v1.0 as ___ is to v1.0</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2010-06-24T23:04:00-06:00"> 2010/06/24 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TCN8uqZ-xSI/AAAAAAAAFw8/TywL2w_ntIk/s320/l079_comparison.png" />
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TCN8vlKAjAI/AAAAAAAAFxE/BZE5Wlca8oU/s320/l079_comparison_psd.png" />
+<p>Apparently v2.0 recovers flux better at all scales than v1.0.&nbsp; However,
+it is noisier.&nbsp; The full comparison is available <a class="reference external" href="http://casa.colorado.edu/%7Eginsbura/bgps/v1.0_v2.0_comparison.pdf">here</a>.&nbsp; The
+trustworthy range of flux scales is 1.2-1.6ish.&nbsp; The flux is increased
+at ALL scales in most images.&nbsp; However, as was noted in comparisons with
+MAMBO, there may be curvature in the best-fit lines.&nbsp; Also, l=35 does
+not appear to scale up linearly... G34 is fainter in v2.0?
+In the low S/N fields, the PSD is more reliable than the pixel-pixel
+comparison.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/pps-comparison-completed.html" rel="bookmark" title="Permalink to PPS comparison completed">
+                    PPS comparison completed</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2010-06-24T15:24:00-06:00"> 2010/06/24 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The PPS scale factor seems to hold for many different (and ridiculous)
+aperture sizes.&nbsp; The full results are <a class="reference external" href="http://casa.colorado.edu/%7Eginsbura/bgps/pps_comparison.pdf">here.</a></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/pps-analysis-suggests-a-possible-solution-to-the-discrepancy.html" rel="bookmark" title="Permalink to PPS analysis: suggests a possible solution to the discrepancy">
+                    PPS analysis: suggests a possible solution to the discrepancy</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2010-06-21T18:17:00-06:00"> 2010/06/21 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The comparisons I mentioned in the previous post are sort of done.&nbsp; They
+are pretty suggestive of a solution to the &quot;flux recovery problem&quot; we
+think must be true.&nbsp; However, even if it is a solution, it doesn't
+really solve the problem completely.
+It looks like v1.0 should be scaled up by a factor of 1.3-1.4 (not
+1.5).&nbsp; v2.0 is consistent with the PPS sources to within 5%, and might
+even be slightly too high.
+The comparison was done by taking the flux in a 60&quot; radius aperture
+(equivalent to bolocat 120&quot; diameter apertures) and subtracting off the
+background measured in a 120&quot; radius annulus around the source.&nbsp; Without
+the background subtraction, these numbers would look very different: in
+the science fields, most of the sources sit on an extended background.
+Even though the &quot;background flux&quot; isn't recovered in the PPS fields, it
+should contribute to the source background because it is involved in the
+atmosphere subtraction (it's sort of &quot;already subtracted&quot; so you have to
+subtract from the science fields).</p>
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TB-rPT7MLdI/AAAAAAAAFws/7oWTt3FOF-M/s320/BGPS_correction_factors.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TB-rQId8G_I/AAAAAAAAFw0/NUJKQO_5zI4/s320/BGPS_correction_factor_histograms.png" />
+<p>Next step: direct comparison between v1.0 and v2.0.&nbsp; Pixel by pixel,
+aperture, and powerspectrum</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+            <a href="https://keflavich.github.io/blog/category/bgps7.html">&laquo;</a>
+    Page 8 / 20
+        <a href="https://keflavich.github.io/blog/category/bgps9.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

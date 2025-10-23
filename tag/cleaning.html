@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - cleaning</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2011/02/03
+                  <br>
+                  <a href="https://keflavich.github.io/blog/delining-and-the-cleaning-process.html">Delining and the Cleaning process</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/delining-and-the-cleaning-process.html" rel="bookmark" title="Permalink to Delining and the Cleaning process">
+                    Delining and the Cleaning process</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-02-03T19:49:00-07:00"> 2011/02/03 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>One item I forgot to mention last night was the effects of
+lines/delining on
+PCA subtraction. These should be the primary effects on the final map
+for all
+epochs except 2010, in which case the primary effect SHOULD be to reduce
+substantial noise.
+In the examples below, there are PSDs of whole timestreams (left) and
+example timestreams from single scans (right). The first thing to note
+is that
+the delined timestreams still have correlated components in the line
+region,
+but they are suppressed - their amplitudes, and therefore their sort
+order in
+the PCA removal scheme, are changed. Since PCA cleaning is by its nature
+adaptive
+(the number of components remains fixed, but the order changes), these
+effects
+can be significant and dangerous. If the line noise is more correlated,
+a PCA
+component will be dedicated to removing it instead of atmospheric
+signal.
+Below are examples from l089 (epoch 0709) first. These have less
+correlated
+line noise and are more typical of BGPS observations. The first PCA
+component,
+the average, does not change much with PCA cleaning. However it is clear
+that
+the second component changes substantially, from large-amplitude
+high-frequency
+noise to small-amplitude variations that are very likely to describe
+atmosphere.</p>
+<hr class="docutils" />
+<p>Example 1 - Zeroing out the lines:</p>
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUrs_QRBBHI/AAAAAAAAF9Y/BH4XEdrFdt0/s320/zero_pca_psds.png" />
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUrs_nWI6YI/AAAAAAAAF9g/1Dcr0zyMBvM/s320/zero_pca_timestreams.png" />
+<p>Example 2 - Fitting and removing the lines:</p>
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUrs-f7qfqI/AAAAAAAAF9I/Dt3Kk9roeW8/s320/fitline_pca_psds.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUrs-_it9CI/AAAAAAAAF9Q/06KgQOS2vNA/s320/fitline_pca_timestreams.png" />
+<p>Example 3 - Suppressing the lines with a non-fitted Gaussian:</p>
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUr_QHkPADI/AAAAAAAAF9o/n5ylgDCLKPw/s320/wingsupp_pca_psds.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUr_QnuPZfI/AAAAAAAAF9w/lt4rEB1Qlq0/s320/wingsupp_pca_timestreams.png" />
+<hr class="docutils" />
+<p>The next examples are from December 2010 observations of Uranus. In this
+case, the correlated noise component is clearly dominant.</p>
+<p>Zeroing lines:</p>
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCBUeD67I/AAAAAAAAF94/CCj9gbJOgk8/s320/zero_pca_psds.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCB4wFnSI/AAAAAAAAF-A/YgbjYlybcOc/s320/zero_pca_timestreams.png" />
+<p>Fitted lines:</p>
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCCQNHurI/AAAAAAAAF-I/a5_FQ7bqUjI/s320/fitline_pca_psds.png" />
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUsCCtO7DTI/AAAAAAAAF-Q/wKBz0UhDruE/s320/fitline_pca_timestreams.png" />
+<p>Non-fitted gaussian suppression:</p>
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUsCLgCRbmI/AAAAAAAAF-Y/WzHcr1E5q4s/s320/wingsupp_pca_psds.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCL5e9eGI/AAAAAAAAF-g/TgmNWbiJzbs/s320/wingsupp_pca_timestreams.png" />
+<hr class="docutils" />
+<p>Finally, these two are demonstrations of what you might expect to see
+for a purely noiseless images of a planet (it was constructed from a
+PSF). PCA is first:</p>
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TUsCyELAZ1I/AAAAAAAAF-o/65L-rwGFscM/s320/noiselesssim_pca_psds.png" />
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TUsCyRaYY7I/AAAAAAAAF-w/ZaRL4CPWw2E/s320/noiselesssim_pca_timestreams.png" />
+<p>A single bolometer's timestream and PSD:</p>
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TUsDgR4xcEI/AAAAAAAAF-4/udxMkuH6kio/s320/noiselesssim_deline_wingsupp_10hz_noscan_nsig0_psds_000.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TUsDgtnBPNI/AAAAAAAAF_A/weQNMCgtrtc/s320/noiselesssim_deline_wingsupp_10hz_noscan_nsig0_timestreams_000.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

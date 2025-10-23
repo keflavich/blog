@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-2.html" rel="bookmark"
+         title="Permalink to Notes from the ISM-PP conference: Day 2">Notes from the ISM-PP conference: Day 2</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2013-10-22T00:00:00-06:00">
+      2013/10/22
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <div class="section" id="collapse-of-molecular-clouds-and-the-imf-40-matthew-bate-university-of-exeter">
+<h2>Collapse of molecular clouds and the IMF 40': Matthew Bate (University of Exeter)</h2>
+<dl class="docutils">
+<dt>Analytical models predict dependence on density, mach number, etc</dt>
+<dd><ul class="first last simple">
+<li>Accretion stopping time
++ dynamics</li>
+<li>kinetic feedback, b-fields</li>
+</ul>
+</dd>
+<dt>Generating the IMF</dt>
+<dd><ul class="first last simple">
+<li>Fragmentation to produce &quot;stellar groups&quot;
++ how fragmentation proceeds is not importan</li>
+<li>Only knob that changes the IMF is the initial Jeans mass of the cloud</li>
+<li>process is always: start with jeans mass, accrete up or get ejected</li>
+<li>gets multiplicity right</li>
+<li>Thermal feedback</li>
+<li>Radiative feedback -&gt; less fragmentation, especially less disk frag</li>
+<li>radiative feedback erases dependence of IMF on initial conditions
++ fewer objects -&gt; less dynamics -&gt; less frequent ejection</li>
+<li>Bate 2012 &quot;turning point&quot; - can reproduce IMF
++ can try for a predictive theory of SF</li>
+<li>metallicity comparison
++ same IMF over 300x difference in Z</li>
+<li>Krumholz: very high temperatures suppress fragmentation, -&gt; high-mass IMF
++ outflows &quot;alleviate overheating problem&quot;</li>
+<li>B-fields increase accretion, enhance thermal feedback</li>
+<li>Q Hennebelle: What is competitive accretion?  How do you conclude that it is
+the mechanism going on in the sim?</li>
+<li>A: Competitive accretion is stopping time.</li>
+<li>Q about terms - competitive accretion governs <em>high mass</em>, but term applied
+to <em>low mass</em></li>
+<li>A: All are competing, but likelihood of losing...</li>
+<li>Q Paul Clark: Gas-Dust coupling happends at 10^5.  Are you including
+metallicity dependence of coupling?  I don't believe metallicity results.</li>
+<li>A: No.  We assume dust is always dominant.  Large scale temperatures don't
+matter.  Temperatures matter on the small, self-gravitating scales</li>
+<li>Clark: Initial cores would have been more massive.</li>
+<li>Bate: No, not determined by temperature, only by turbulence.</li>
+<li>Q Zinnecker: Competing theory of turbulent cores.  Compare them.</li>
+<li>A: Fabian Heitsch did that well yesterday.  Turbulent core model relies on
+turbulence providing isotropic pressure.</li>
+<li>Q Kruijssen: Prediction is that dynamical times vs. disk survival times.
+Boundedness of cluster? group? has big effect.  YMCs don't have top heavy.
+How do you make bottom-heavy IMFs?</li>
+<li>A: &quot;Can't believe I'm saying this...&quot; possible you can get bottom-heavy imf
+with extreme turbulence.  Mass reservoirs stripped away by high-mass flows.
+Prevents long-time accretion.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="tracing-the-fragmentation-of-omc1-north-filament-with-the-submillimeter-array-15-paula-teixera">
+<h2>Tracing the fragmentation of OMC1-north filament with the Submillimeter Array 15: Paula Teixera</h2>
+<dl class="docutils">
+<dt>with Satoko Takahashi, Luis Zapata, Paul Ho</dt>
+<dd><ul class="first last simple">
+<li>Cores detected in OMC1N NH3 filaments</li>
+<li>characteristic separation scales</li>
+<li>&quot;core pods&quot; instead of &quot;clumps&quot;</li>
+<li>OMC1N has smaller nearest-neighbor separation than OMC2/OMC3</li>
+<li>Q: Direction of B-field?</li>
+<li>A: Perpendicular to filament</li>
+<li>Q: Scales can be interpreted as two different fragmentation scales</li>
+<li>Q Falgarone: Do you include short-spacing in the maps?</li>
+<li>A: No.</li>
+<li>Q: Bias.</li>
+<li>A: not on short scales.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="filament-formation-and-star-formation-regulation-in-collapsing-molecular-clouds-15-vazquez-semadeni">
+<h2>Filament formation and star formation regulation in collapsing molecular clouds 15': Vazquez-Semadeni</h2>
+<dl class="docutils">
+<dt>Case for globally contracting molecular clouds</dt>
+<dd><ul class="first last simple">
+<li>&quot;turbulent infall&quot; rather than &quot;turbulence&quot;
++ no &quot;turbulent support&quot;</li>
+<li>&quot;turbulence is overrated&quot; ?</li>
+<li>collapse is pressureless</li>
+<li>&quot;whole thing collapsing into global potential well...&quot;</li>
+<li>velocity jumps around local potential wells</li>
+<li>&quot;two-filament appearance&quot; due to presence of wells.
++ Hacar gaussian fits yield 2 filaments (incorrectly)</li>
+<li>How address SFR too high for global collapse?
++ ionization feedback -&gt; cloud destruction
++ 10% efficient... THIS IS STILL AN ORDER OF MAGNITUDE TOO HIGH</li>
+</ul>
+</dd>
+</dl>
+<p>So are all molecular clouds gravitationally collapsing?  Why aren't they
+forming stars on a free-fall time?</p>
+<blockquote>
+<ul class="simple">
+<li>Q Keto: Your model is different.  Stars forming with accretion/flows along filaments.</li>
+<li>A: No one has implied filaments are static... no contradiction.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="the-structure-and-star-forming-fate-of-the-galactic-centre-cloud-g0-253-0-016-15-katharine-johnston">
+<h2>The structure and star-forming fate of the Galactic centre cloud G0.253+0.016 15': Katharine Johnston</h2>
+<dl class="docutils">
+<dt>Stats...</dt>
+<dd><ul class="first last simple">
+<li>hot gas, cool dust</li>
+<li>no &gt;B0 stars</li>
+<li>SCUBA+SMA image
++ column density PDF
++ plateau at low column density (could this be pixelation?)</li>
+<li>shocks in the south</li>
+<li>hint of cloud-cloud collision</li>
+<li>cloud-cloud collision comparison: Anathpindika et al 2011
++ many claims that super star clusters form from cloud-cloud collisions</li>
+<li>ring view is reversed
++ center of galaxy doesn't have to be ring, could be spirals or disk</li>
+<li>Molinari ring fails</li>
+<li>Q Xu: Single cloud... surprised you find only one cloud.</li>
+<li>A: data only cover one cloud...</li>
+<li>Q Kainulainen: Comment on low SFR.  If follow analytic formulations, care
+about relative density contrast.  Despite enormous mean density, the
+relative density contrast is low.  Not surprised by low SFR.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="laboratory-studies-of-dust-formation-and-processing-40-cornelia-jager">
+<h2>Laboratory Studies of Dust Formation and Processing 40': Cornelia Jäger</h2>
+<dl class="docutils">
+<dt>There are many types of dust</dt>
+<dd><ul class="first last simple">
+<li>&quot;The ISM is the most dangerous place for dust.&quot;</li>
+<li>49um band of Forsterite</li>
+<li>69um band of crystalline forsterite
++ these can be used as a dust thermometer</li>
+<li>beta-T anticorrelation
++ SiO2 absorption changes strongly with temperature
++ crystalline material has no beta-T, but amorphous DOES have a beta-T</li>
+<li>generation of fullerenes in the lab at T&gt;3500K</li>
+<li>dust growth</li>
+<li>Helium droplet experiment
++ &quot;helium droplet beam&quot;
++ superfluid helium shot through a &quot;pickup oven&quot; at 0.4 K
++ forms SiO clusters
++ &quot;barrierless&quot; reactions</li>
+<li>laser evaporation of particles, condense on a substrate</li>
+<li>ion-induced processing</li>
+<li>irradiated silicates lead to iron inclusion</li>
+<li>Q: Beta/temperature.  Observations... beta is effective beta, non-constant
+temperature is problematic.  Observed temperatures are much smaller.</li>
+<li>A: Yes, there is still dependence at low temperature, but weaker.</li>
+<li>Q: Are there any features in the mm that we can use to distinguish the species in the submm?</li>
+<li>A: not yet.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="combining-experimental-techniques-for-comprehensive-astrophysical-case-studies-15-holger-kreckel-mpik-heidelberg">
+<h2>Combining experimental techniques for comprehensive astrophysical case studies 15': Holger Kreckel (MPIK, Heidelberg)</h2>
+<dl class="docutils">
+<dt>Gas phase chemistry</dt>
+<dd><ul class="first last simple">
+<li>terminate branches with recombination with free electrons</li>
+<li>Cryogenic Storage Ring
++ electrostatic field
++ strong vacuum, low (10K) temperature</li>
+<li>C- beam driven electrically, dissociate electron with a laser
++ &quot;Don't normally need 2 kW continuous lasers except for death stars.&quot;</li>
+<li>studying cosmic ray ionization rate
++ CR ionization is missing some rate coefficients</li>
+<li>Q Glover: Why only go to 40K?</li>
+<li>A: Divergence of beam limits temperature</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="laboratory-studies-on-electron-collisions-of-atomic-and-molecular-ions-15-andreas-wolf-mpik-heidelberg">
+<h2>Laboratory studies on electron collisions of atomic and molecular ions 15': Andreas Wolf (MPIK, Heidelberg)</h2>
+<dl class="docutils">
+<dt>HD formation</dt>
+<dd><ul class="first last simple">
+<li>need cooled vacuum chamber to match ISM conditions</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="chemical-processes-in-the-ism-gas-and-molecules-30-simon-glover-zah-ita-university-of-heidelberg">
+<h2>Chemical processes in the ISM: Gas and molecules 30': Simon Glover (ZAH/ITA University of Heidelberg)</h2>
+<p>Noble gas molecule in ISM: ArH+ in SNR
+Why are molecular clouds cool?</p>
+<blockquote>
+<ul class="simple">
+<li>Molecular clouds are cool because of dust shielding, NOT CO cooling
++ C+, CI are just as efficient as CO
++ CO allows you to cool from 20 to 10K at n~10^2-10^3</li>
+<li>production of high-density material drives CO formation</li>
+</ul>
+</blockquote>
+<dl class="docutils">
+<dt>Chemistry as a tracer of physical conditions in the ISM</dt>
+<dd><ul class="first last simple">
+<li>CR rate measurement tool: H3+ -&gt; CR rate
++ <em>if</em> you can measure C+
++ diffuse sightlines have values &gt;&gt; &quot;canonical dark cloud value&quot; = 10^-17</li>
+<li>HF: most evil substance imaginable - seep through skin, melt bones
++ exothermic: most fluorine lands in HF
++ depleted in dense gas</li>
+<li>CH+ puzzler: formation slow, destruction fast
++ overabundant by 3-4 orders of magnitude</li>
+<li>Isotopologue chemistry for CO
++ Fractionation: O prefers to be in 13CO.  Can convert 12CO-&gt;13CO
++ photodissociation: less self shielding in 13CO, 13CO-&gt;12CO</li>
+<li>Uncertainties:
++ Need good rate coefficients
++ Chemistry not in steady state: memory effects
++ PDR modeling done with GCs treated as slabs</li>
+<li>Q: Are there molecules for which the uncertainties are likely small enough <em>now</em>?</li>
+<li>A: H2 cooling doesn't play a significant role in the thermal balance of the cloud</li>
+<li>Q: Matthew Bate: Can observers use H2 (HF?) to deal with dark gas?</li>
+<li>A: Not clear yet.</li>
+<li>Q: Deuteration important?  Influence... things?</li>
+<li>A: Timer for core collapse</li>
+<li>Q Edith Falgarone: Disagree.  We know C-shocks are heating gas to few
+hundred K, contributes to C+ emission.  Need additional heating source.
+Balance not between ionization...?</li>
+<li>A: Depends on assumptions of photoelectric heating efficiency.  We find
+shock dissipation not important in dense stuff.  H2 may be important in
+diffuse gas.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="chemical-processes-in-the-ism-dust-30-speaker-thomas-henning-mpia-heidelberg">
+<h2>Chemical processes in the ISM: Dust 30' Speaker: Thomas Henning (MPIA Heidelberg)</h2>
+<p>Small particles heat the gas
+Formation/destruction balance</p>
+<blockquote>
+<ul class="simple">
+<li>AGB star dust formation not efficient enough to balance dust destruction</li>
+<li>NIR extinction law: Fritz et al 2011 towards GC
++ dust towards GC is different</li>
+<li>Particles in mol clds grow to few microns at most</li>
+</ul>
+</blockquote>
+<dl class="docutils">
+<dt>Why is there dust in the ISM?</dt>
+<dd><ul class="first last simple">
+<li>Cold ISM formation?</li>
+<li>Or core-collapse SNe?
++ Formation agrees with predictions, destruction too much...</li>
+<li>Low-temperature dust formation?
++ works for SiO2 in the lab</li>
+</ul>
+</dd>
+<dt>Grain models:</dt>
+<dd><ul class="first last simple">
+<li>composite grains with different size distributions</li>
+<li>mixture of graphitic and silicate grains...</li>
+<li>Q: SNe still not enough for other galaxies.</li>
+<li>A: Our galaxy needs 0.5 per SNe.  More of a problem for low metallicity.</li>
+<li>Q Falgarone: ???</li>
+<li>Q Zinnecker: Dusty wolf-rayet stars.  Also dust factories?</li>
+<li>A: Not in normal environments.  O-stars may be a solution for high-Z galaxies.</li>
+<li>Q: How much oxygen in dust?</li>
+<li>A: More in silicate.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="galactic-dust-as-seen-by-planck-15-marta-alves">
+<h2>Galactic dust as seen by Planck 15': Marta Alves</h2>
+<dl class="docutils">
+<dt>All-sky dust temperature map</dt>
+<dd><ul class="first last simple">
+<li>outer galaxy cold, inner galaxy warmish</li>
+<li>increase of dust temperature towards poles</li>
+<li>dust opacity anticorrelated with temperature
++ not correlated with luminosity</li>
+<li>Planck extinction maps</li>
+<li>Flattening of SED at mm wavelengths</li>
+<li>Q Rahul: Have you accounted for degeneracies in fits?</li>
+<li>A: Beta map was observed at low-resolution, then did a second run of the fit to extrapolate down to high resolution</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="formation-signatures-and-carbon-budget-of-molecular-clouds-15-henrik-beuther">
+<h2>Formation signatures and carbon budget of molecular clouds 15': Henrik Beuther</h2>
+<dl class="docutils">
+<dt>Signatures for cloud formation</dt>
+<dd><ul class="first last simple">
+<li>CI, CO, C+ observations of 4 IRDCs</li>
+<li>G11.11 IRDC
++ ionized lines very narrow</li>
+<li>[CII]/[CI]/CO = 1/5/70
++ ionized carbon measurement unknown</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="svitlana-zhukovska">
+<h2>Svitlana Zhukovska</h2>
+<blockquote>
+<ul class="simple">
+<li>Q Zinnecker: Gas to dust ratio varies from dense to diffuse gas (Meixner LMC).</li>
+<li>A: Yes,there is dependence</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="dependence-of-star-formation-on-ism-properties-40-adam-leroy-nrao-charlottesville">
+<h2>Dependence of star formation on ISM properties 40': Adam Leroy (NRAO Charlottesville)</h2>
+<dl class="docutils">
+<dt>&quot;Two Bottleneck&quot; view</dt>
+<dd><ul class="first last simple">
+<li>Atomic Gas -&gt; Molecular Gas -&gt; Dense Gas</li>
+<li>cloud formation is the first regulating step</li>
+<li>more molecular = more star forming</li>
+<li>IR/CO vs HCN/CO... weakly correlated</li>
+<li>HCN/IR approximately constant over wide range of scales</li>
+<li>factor of 2 scatter in SFE</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="sarah-ragan">
+<h2>Sarah Ragan</h2>
+<blockquote>
+<ul class="simple">
+<li>Q Semadeni: different surface density -&gt; different evolutionary stages?
+Scaling law depends on how you define objects</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="amy-stutzki">
+<h2>Amy Stutzki</h2>
+<blockquote>
+<ul class="simple">
+<li>Q Semadeni: Higher lum implies higher SFR?</li>
+<li>A: lum higher, but maybe that means shorter accretion time.</li>
+</ul>
+</blockquote>
+</div>
+
+  </div><!-- /.entry-content -->
+</section>
+
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</section>
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  var disqus_identifier = '/notes-from-the-ism-pp-conference-day-2.html';
+  var disqus_url = 'https://keflavich.github.io/blog/notes-from-the-ism-pp-conference-day-2.html';
+  var disqus_title = 'Notes from the ISM-PP conference: Day 2';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

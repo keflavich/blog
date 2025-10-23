@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://keflavich.github.io/blog/v1-vs-v2-calibration-curves.html" rel="bookmark"
+         title="Permalink to V1 vs V2: Calibration Curves">V1 vs V2: Calibration Curves</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2011-08-25T17:09:00-06:00">
+      2011/08/25
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Why did we find a factor ~1.8 in <a class="reference external" href="http://bolocam.blogspot.com/2011/08/bolocat-v1-v2-comparison.html">the previous post</a>? Well, for
+starters we used a calibration curve that was based off of 'masking' and
+other tricky techniques.
+The calibration curves below are the first ever produced
+self-consistently, i.e. using the EXACT same pipeline with the EXACT
+same parameters as the science data. No hacks were needed to produce
+these<a class="reference external" href="#asterisk&quot;">*</a>. The recovered Volts/Jy are substantially higher than
+BGPSv1 and ALSO higher than the curve used about a year ago in an
+attempt to explain the v1 flux discrepancy.
+Remember that a higher calibration curve means a LOWER recovered flux. I
+haven't finished the check, but odds are pretty good that applying these
+self-consistent cal curves will reduce the v2 data to be about 1.5.</p>
+<img alt="" src="http://4.bp.blogspot.com/-PRU4LQ5f-C4/TlZ9wpeFBeI/AAAAAAAAGb8/jKdJHtIqV40/s320/planet_dcfluxes_05_defaults_ds2_v2.0_13pca_map20.png" />
+<img alt="" src="http://3.bp.blogspot.com/-AIzsETyl69g/TlZ9w50DjBI/AAAAAAAAGcE/h5ggKhH3dO4/s320/planet_dcfluxes_06_defaults_ds2_v2.0_13pca_map20.png" />
+<img alt="" src="http://4.bp.blogspot.com/-BNWD4QQ21Ac/TlZ9xZ5eTkI/AAAAAAAAGcM/QOVbum2jXIo/s320/planet_dcfluxes_07_defaults_ds2_v2.0_13pca_map20.png" />
+<img alt="" src="http://2.bp.blogspot.com/-OucWo74b8VY/TlZ9yFIJYQI/AAAAAAAAGcU/IBMs5YLMlYU/s320/planet_dcfluxes_09_defaults_ds2_v2.0_13pca_map20.png" />
+<p>While no hacks were needed to produce these plots, there were abundant
+problems. There are far fewer data points than there should be. The
+problems are manifold, but mostly have to do with the PCA scaling (I
+think).
+In some cases, the first scan in an observation was wildly variable.
+There looked to be an exponential or similar decay (as has been observed
+in scan turnarounds) at the observation start that took ~3 scans to
+decay to bring all of the bolometers onto a scaleable curve. This is a
+HUGE problem, because the assumption that the dominant signal is
+atmosphere is badly violated in this situation - the signal becomes
+electronics-dominated. The first PCA component is then an ugly
+step-function. With these first scans flagged out, the whole problem
+goes away, but that's a painful manual process. Automating it MAY be
+possible, but also risky.
+In other cases, particularly September 4th 2007, the atmosphere appeared
+to be negligible! While the atmospheric optical depth probably was not,
+if it was extraordinarily stable over the course of ~10 minutes, again
+we experience severe problems. A stable atmosphere means no atmospheric
+variation, which means that ACBOLOS is just noise (plus Uranus signal).
+Ironically, this is very bad for calibration - it means there is no
+common signal on which we can calibrate the bolos' relative
+sensitivities. This problem doesn't seem to affect science data,
+probably because there's no such thing as 45-minute stable atmosphere
+(especially when you're following rising/setting sources). If I REALLY
+need that data, I could snag the relative scalings from a science field
+and apply them to the cal data... honestly that's not a bad idea in
+general... hmm... Well, we'll explore that later if I have time, that
+will take days to implement.</p>
+
+  </div><!-- /.entry-content -->
+</section>
+
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</section>
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  var disqus_identifier = '/v1-vs-v2-calibration-curves.html';
+  var disqus_url = 'https://keflavich.github.io/blog/v1-vs-v2-calibration-curves.html';
+  var disqus_title = 'V1 vs V2: Calibration Curves';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

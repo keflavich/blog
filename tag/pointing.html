@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - pointing</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2012/12/26
+                  <br>
+                  <a href="https://keflavich.github.io/blog/catalog-vs-image-shift-a-possible-solution-to-the-atlasgal-issue.html">Catalog vs Image shift? A possible solution to the ATLASGAL issue</a>
+              </li>
+              <li class="post">
+                  2012/12/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pointing-cross-correlation-yet-again.html">Pointing & Cross-Correlation yet again</a>
+              </li>
+              <li class="post">
+                  2012/09/08
+                  <br>
+                  <a href="https://keflavich.github.io/blog/cross-correlation-offsets-revisited.html">Cross-Correlation Offsets Revisited</a>
+              </li>
+              <li class="post">
+                  2012/05/23
+                  <br>
+                  <a href="https://keflavich.github.io/blog/bgps-v2-pointing.html">BGPS V2 pointing</a>
+              </li>
+              <li class="post">
+                  2008/12/09
+                  <br>
+                  <a href="https://keflavich.github.io/blog/l111-observation-notes.html">L111 observation notes</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/catalog-vs-image-shift-a-possible-solution-to-the-atlasgal-issue.html" rel="bookmark" title="Permalink to Catalog vs Image shift? A possible solution to the ATLASGAL issue">
+                    Catalog vs Image shift?  A possible solution to the ATLASGAL issue</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-12-26T23:02:00-07:00"> 2012/12/26 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In the <a class="reference external" href="http://bolocam.blogspot.com/2012/12/pointing-cross-correlation-yet-again.html">previous post</a>, I came up with a final plot showing the
+pointing offset was, on average, not significant, even in the ATLASGAL
+overlap zone.
+So why did the ATLASGAL group infer a net pointing offset?
+The problem is probably one or two fields with a slight pointing offset,
+but a huge number of source. &nbsp;l=1 has an offset of the right sign and is
+the single most source-rich degree in the survey, with 368 sources.</p>
+<img alt="" src="http://2.bp.blogspot.com/-ONF7C_v8rNk/UNpmXIEe6HI/AAAAAAAAHUI/kdf3pmUKyE0/s320/l001_catalog_image_compare.png" />
+<p>This figure shows the v1 vs v2 source locations in grey, their average
+and standard deviation in green, and the cross-correlation offset in
+red. &nbsp;The plot is somewhat difficult to interpret, but it appears that
+the v1 point sources are systematically more shifted to negative
+longitudes than v2, and the point sources more than the maps themselves.
+&nbsp;There may have been some reason sources were systematically selected at
+more negative longitudes in the v1 catalog; around Sgr B2 there's a lot
+of structure that had to be decomposed somehow but was not necessarily
+&quot;source&quot;.
+One thing to note is the reversal in left-right (in pixel space) vs the
+positive/negativeness in longitude. &nbsp;The above plot is correct (negative
+longitudes, as shown on the plot, are &quot;right&quot; in images), but most of my
+other plots have the X-axis flipped.
+In the end, after spending two weeks hammering my head against this, I
+find no clear evidence for an offset &nbsp;between the BGPS and Herschel or
+v1/v2 data overall or in the ATLASGAL fields. &nbsp;In any individual field,
+that statement is not necessarily true.
+Despite the strong statistical evidence, it is really hard to be really
+sure about sub-pixel offsets, since the &quot;model&quot; image is never perfect.
+&nbsp;I think we can safely state the ~1/2 pixel offsets (~3&quot;) but I just
+don't feel confident about numbers below that range for ALL fields.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/pointing-cross-correlation-yet-again.html" rel="bookmark" title="Permalink to Pointing & Cross-Correlation yet again">
+                    Pointing &amp; Cross-Correlation yet again</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-12-15T03:21:00-07:00"> 2012/12/15 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Prompted in part by a <a class="reference external" href="http://arxiv.org/abs/1211.0741">recent ATLASGAL paper</a>&nbsp;identifying pointing
+offsets of about 3&quot; in the BGPS, we revisit the BGPS pointing.
+The ATLASGAL team compared the source locations in their catalog to
+source locations in the Bolocam catalog by doing &quot;nearest-match&quot;
+searches within a 40&quot; radius (see their Figure 8, reproduced here)</p>
+<img alt="" src="http://1.bp.blogspot.com/-UJVCzHbaDCI/UMYpeAoulVI/AAAAAAAAHR4/cy5SIqL_HFQ/s320/ATLASGALvsBolocam.png" />
+<p>Their comparison was over the range -10 &lt; l &lt; 21, so it only covered a
+small fraction of the BGPS. &nbsp;It covered 13 fields with independent
+pointing solutions, so it's possible that they have actually discovered
+an offset only in some of our fields.</p>
+<p>The catalog comparison, while interesting, is potentially quite flawed.
+&nbsp;There's no guarantee that a source extraction algorithm will measure
+source centers accurately when a &quot;source&quot; is just a local overdensity on
+a complex background. &nbsp;Using source comparison will also lead to a bias
+towards the most source-rich fields, e.g. l000 and l001, so an offset in
+one of those fields would drastically affect the catalog offset.</p>
+<p>There is a better way to compare pointing between two images that are
+expected to be (nearly) identical. &nbsp;It is well-known that
+cross-correlation is an effective technique for determining the offsets
+between two identical images; I'll briefly summarize some of the
+literature here.</p>
+<p><a class="reference external" href="http://adsabs.harvard.edu/abs/2005A%26A...443..357G">Gratadour et al 2005</a>&nbsp;used a maximum likelihood estimator approach to
+determine the &quot;best-fit&quot; offset between two images. &nbsp;This approach is
+comparable to <a class="reference external" href="http://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=5&amp;cad=rja&amp;ved=0CF0QFjAE&amp;url=http%3A%2F%2Fwww.optics.rochester.edu%2Fworkgroups%2Ffienup%2FPUBLICATIONS%2FMGS_OL08_EffRegistration.pdf&amp;ei=rC3GUJC9CcSA2AX3wYCIAg&amp;usg=AFQjCNHdUm0v8qYzNbvrqFRqByR_3svlSA&amp;sig2=GQztgkfvoQzAzQ7kzCJU2w">Guizar et al (2008)</a>, who <a class="reference external" href="http://www.mathworks.com/matlabcentral/fileexchange/18401-efficient-subpixel-image-registration-by-cross-correlation">implemented</a> a fast solution
+for (highly) sub-pixel image registration in matlab. &nbsp;In order for the
+image registration to be fast, it must operate in fourier space, but to
+get sub-pixel registration in fourier space, you need to either pad
+(which is slow, and increases memory use drastically) or fit some
+functional form around the peak of the cross-correlation image. &nbsp;The
+alternative approach implemented by Guizar utilizes the <a class="reference external" href="http://en.wikipedia.org/wiki/Fourier_transform#Basic_properties">Fourier scaling
+theorem</a>&nbsp;to create a zoomed-in image of the peak pixel, which allows
+you to get much higher precision for a much lower computational cost.
+My innovation is to use the minimum $\chi^2$ estimator to determine the
+goodness of fit and therefore error bars on the best-fit offset.</p>
+<p>Because the $\chi^2$ value for each offset is simply determined by
+sums and multiplication ($\chi^2 = \sum
+\frac{x_i-\mu_x}{\sigma_{x_i}^2}$), we can compute each term that
+goes in to the $\chi^2$ value independently with fourier transforms,
+then create goodness-of-fit contours around the $\chi^2$ minimum. &nbsp;The
+statistical requirement for this approach to make sense is that the
+errors on the data are gaussian distributed, which is an assumption we
+inevitably make for astronomical images. &nbsp;I believe there is also a
+requirement that the errors are independent, which may be more difficult
+to satisfy, but in the Bolocam images it is satisfied, especially when
+multiple independent observations are combined.</p>
+<p>Strictly, this approach can only be used when the model data have the
+same multiplicative scale as the fitted data. &nbsp;The peak will never be
+wrong using this method, but the errors could be incorrect if the model
+and data are multiplicatively offset. &nbsp;In principle, this can be
+resolved in the future using a <a class="reference external" href="http://en.wikipedia.org/wiki/Mellin_transform">Mellin transform</a>&nbsp;[see <a class="reference external" href="http://ecocodespace.wordpress.com/category/matlab/image-matching/fourier-mellin-transform/">this site</a>&nbsp;or
+<a class="reference external" href="http://www.mathworks.com/matlabcentral/fileexchange/authors/7667">this</a> for
+a matlab approach and <a class="reference external" href="http://www.fresnel.fr/perso/derrode/publi/Cviu01.pdf">this</a> for an academic paper
+on it].</p>
+<p>This is the approach I have implemented
+at&nbsp; <a class="reference external" href="http://image-registration.rtfd.org/">image-registration.rtfd.org</a>. &nbsp;I used simulated test cases to
+demonstrate that it is, indeed, effective and accurate. &nbsp;I used this
+method to measure the offsets between the v2 data and the v1 data (which
+should, in principle, be the same as the offsets between ATLASGAL and
+v1) and the v2 vs Herschel Hi-Gal data (which should be zero).
+There are actually a few methods implemented in image-registration, and
+I compared those. &nbsp;There's a &quot;dft&quot; and a &quot;$\chi^2$&quot; approach, which are
+the same (except $\chi^2$ includes realistic errors), a method where a
+2D gaussian is fit to the peak of the cross-correlation image, and a
+method where a 2nd-order Taylor expansion is performed around the peak
+of the cross-correlation image. &nbsp;The latter two are <em>biased</em>. &nbsp;An
+example comparison plot looks like this:</p>
+<img alt="" src="http://1.bp.blogspot.com/-LtA6owJr_vc/UMZBLK394HI/AAAAAAAAHSI/tR4F0BnFSVs/s320/l000_catalog_image_compare_chi2contours.png" />
+<p>The grey dots are catalog centroid positions offsets measured between v1
+and v2. &nbsp;The green cross represents the mean and standard deviation of
+the grey points. &nbsp;The other data points, as labeled, show the offsets
+between the l000 images in v1 and v2 as measured by the method shown.
+They all have errorbars plotted, but the errorbars are generally smaller
+than the points. &nbsp;The dark spot seen behind the purple point shows the
+$\chi^2$ contours out to 8-$\sigma$: the error in the offset is tiny,
+sub-arcsecond. &nbsp;In this case, the offsets nearly agree:</p>
+<p>l000 catalog dx: &nbsp;-0.31 +/- 0.68 &nbsp; dy: 1.48 +/- 0.64</p>
+<p>l000 $\chi^2$ dx: &nbsp; 1.74 +/- 0.03 &nbsp;dy: 1.41 +/- 0.03</p>
+<p>This field agreed nicely between v1 and v2.</p>
+<p>The comparison to Hi-Gal is perhaps more important; HiGal's pointing is
+calibrated based on multi-wavelength observations, some of which include
+actual stars. &nbsp;It's a space-based mission, so its pointing is more
+stable. &nbsp;And finally, being a space mission, there's a large dedicated
+team instead of a single, part-time individual working on the data.
+Our offsets from Hi-Gal are pretty small in general, though not
+trivially small.</p>
+<img alt="" src="http://1.bp.blogspot.com/-JyMtqE536LY/UMaEqOYBRxI/AAAAAAAAHSY/85nEo6rEc9k/s320/Offsets_XYplot.png" />
+<p>And it turns out, the region that overlaps with ATLASGAL had more
+serious pointing errors than the rest of the survey:</p>
+<img alt="" src="http://2.bp.blogspot.com/-iXI7TUl1y9I/UMaHHXwN2oI/AAAAAAAAHSg/z3g51NHD0zk/s320/Offsets_XYplot_ATLASGALoverlap.png" />
+<p>(note: both of the above plots are missing L=359 because I forgot it.
+&nbsp;Fixing that now...)</p>
+<p>The clearest problem field is l=15, with a longitude offset of -6&quot;
+between v2 and HiGal.... that's not the question, though. &nbsp;Somehow I've
+lost the code that did the v1-HiGal offsets; I'll have to re-write that
+tomorrow and let it run...</p>
+<p>Update 12/13: &nbsp;I've spent the last couple days clearing up some issues
+with the offsets. &nbsp;The error bars should be MUCH smaller than in the
+above plots. &nbsp;The means are pretty similar, though.
+Short story: the offsets between v1 and Hi-Gal are greater in the
+ATLASGAL overlap regions than elsewhere, and in the right general
+direction, but not quite as serious as they claimed. &nbsp;In v2, the
+ATLASGAL overlap fields and the rest of the survey have the same mean
+offsets, and those offsets are small (-0.5&quot; in l, -1&quot; in b).
+The problem now is the table. &nbsp;If everything made sense,
+(v1-v2)+(v2-higal)+(higal-v1) = 0. &nbsp;But that clearly isn't the case,
+which implies an error in the method, which sucks since I'm claiming
+this method is superior to alternatives. &nbsp;It's possible that I'm
+actually underestimating the errors against Hi-Gal - that can be fixed
+relatively easily - but the magnitude of the error won't affect the
+centroid measurements. &nbsp;So I probably need to investigate one case very
+carefully. &nbsp;l050 is a big problem case, with vector sums &gt;1 pixel in
+both directions. &nbsp;That will be my next line of investigation.
+The approach will be:
+-crop identical fields within l050 from v1, v2, herschel
+-perform pointing comparison between them
+-check that vector sum &lt; sum of errors
+I think - and hope - the trouble is just that I'm using inconsistent
+sub-fields to compare Herschel with the two different Bolocam versions,
+which is possible because of the way I selected these sub-fields. &nbsp;I'll
+do more careful cropping, and probably re-do this analysis
+degree-by-degree (with $512^2$ fields, in the hope that it speeds up the
+FTs).
+Update 12/14:
+I've now cropped identical sections in each of the survey, 1 square
+degree (512 pixels) each - which is great for speed. &nbsp;As a sidenote, a
+little line profiling revealed that the make_cross_plots
+&nbsp;code was the slow point in the process, and it is dominated by savefig
+calls, not ffts.
+I've run a careful examination of self consistency on the l=0 field,
+with positive results: the offsets agree to well within the errorbars
+(though there is some residual error at the 0.5&quot; level).</p>
+<img alt="" src="http://1.bp.blogspot.com/--3Q9h0Q1jA4/UMuUjQ33dCI/AAAAAAAAHS4/zSD3H26r5dA/s320/circular_selfconsistency.png" />
+<p>However, a similar inspection of l=50 resulted in a major failure:</p>
+<img alt="" src="http://2.bp.blogspot.com/-wlwvC26eTEk/UMuYZHU179I/AAAAAAAAHTI/Csf3mBSdbGI/s320/circular_selfconsistency.png" />
+<p>In this case, the problem is caused by W51 being exactly on the field
+edge, leading to huge cross-correlation power at dx=0, but spread over a
+large y range. &nbsp;My first thought is to try to downweight the edges,
+which can be achieved by &quot;zero-padding&quot; the noise image, but with high
+values instead of zero... or alternatively, by setting the edge region
+to zero smoothly.</p>
+<p>OK, first thought: Bad idea. &nbsp;Increasing the noise along the edges
+drastically increases the small-shift autocorrelation for the noise,
+which in turn ends up ruling out the small shifts as a fit possibility.
+&nbsp;I don't think this really makes sense mathematically, but each step
+does. &nbsp;Why would increasing the noise along the edges make the $\chi^2$
+fit worse?</p>
+<p>This revealed a serious bug in the code that, luckily, only affected
+non-uniform error maps. &nbsp;Basically, I had decomposed the $\chi^2$
+equation wrong (which is as bad as it sounds).</p>
+<p>That total mess has been resolved now. &nbsp;The image edges are downweighted
+with a gaussian of 12 pixels, error=100 outside and weight=0 outside
+(with weight^2 inside... best to just view the source if you really want
+to know the details). &nbsp;The new versions of the above diagrams:</p>
+<img alt="" src="http://4.bp.blogspot.com/-mjPyO7LkbGc/UMuxVgSxwZI/AAAAAAAAHTY/ilRnJRaAiOQ/s320/circular_selfconsistency.png" />
+<img alt="" src="http://3.bp.blogspot.com/-rMiHxucSQuo/UMuxZSH63fI/AAAAAAAAHTg/W_IzmhcFCzo/s320/circular_selfconsistency.png" />
+<p>Less than spectacular for l=50, but acceptable given the errors, which
+are indeed significantly larger, as you might expect given the lower
+total signal in l=50. Now I need to re-run the fits on every field.</p>
+<p>OK, cool, last thing accomplished today (...by 8pm): offset comparison
+by square degree for all fields. &nbsp;Again, I don't reproduce the magnitude
+of the ATLASGAL-measured offsets, but the ATLASGAL fields are, on
+average, more offset in longitude (to the negative) than the overall
+average.</p>
+<p>Curiously, for both v1 and v2, there appears to be a -1.5 deg shift in
+latitude from Hi-Gal.</p>
+<p>The vector sums are mostly sub-arcsecond, with most exceptions at l&gt;50.
+&nbsp;l=59,64, and 65 are particularly bad - but l=50 isn't so bad. &nbsp;So I
+should do the &quot;deep&quot; examination of one or two of those fields... who
+knows what new errors I'll turn up?</p>
+<p>Here's the new v1-ATLASGAL offset plot:</p>
+<img alt="" src="http://3.bp.blogspot.com/-iv_FsACT958/UMvsyr90haI/AAAAAAAAHTw/g56hcK6hMCw/s320/Offsets_XYplot_v1-Hi-Gal_ATLASGALoverlap.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/cross-correlation-offsets-revisited.html" rel="bookmark" title="Permalink to Cross-Correlation Offsets Revisited">
+                    Cross-Correlation Offsets Revisited</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-08T08:06:00-06:00"> 2012/09/08 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Since last time (<a class="reference external" href="http://bolocam.blogspot.com/2009/03/43-relative-alignment-and-mosaicing.html">Taylor Expansion &amp; Cross
+Correlation</a><a class="reference external" href="http://bolocam.blogspot.com/2012/03/new-coalignment-code.html">,</a><a class="reference external" href="http://bolocam.blogspot.com/2012/03/new-coalignment-code.html">Coalignment Code</a>), I have attempted to re-do the
+cross-correlation with an added component: error estimates.
+It turns out, there is a better method than the Taylor-expansion around
+the cross-correlation peak. &nbsp;Fourier upsampling can be used to
+efficiently determine precise sub-pixel offsets (<a class="reference external" href="http://www.mathworks.com/matlabcentral/fileexchange/18401-efficient-subpixel-image-registration-by-cross-correlation/content/html/efficient_subpixel_registration.html">matlab version</a>,
+<a class="reference external" href="http://people.web.psi.ch/guizar_m/main/">Manuel Guizar, author</a>, <a class="reference external" href="http://www.opticsinfobase.org/view_article.cfm?gotourl=http%3A%2F%2Fwww%2Eopticsinfobase%2Eorg%2FDirectPDFAccess%2F6C566DF3-B5C5-B342-97F01180999C7632_148843%2Fol-33-2-156%2Epdf%3Fda%3D1%26id%3D148843%26seq%3D0%26mobile%3Dno&amp;org=University%20of%20Colorado%20at%20Boulder%20Library">refereed article</a>).
+However, in the published methods just cited, there is no way to
+determine the error - those algorithms are designed to measure offsets
+between identical images corrupted by noise but still strongly dominated
+by signal.
+We're more interested in the case where individual pixels may well be
+noise-dominated, but the overall signal in the map is still large.
+So, I've developed a python translation of the above codes and then
+some.
+<a class="reference external" href="https://github.com/keflavich/image_registration">Image Registration on github</a>
+The docstrings are pretty solid, but there is no overall documentation.
+However, there's a pretty good demo of the simulation AND fitting code
+here:
+<a class="reference external" href="https://github.com/keflavich/image_registration/blob/master/doc/CrossCorrelationSimulation.pdf?raw=true">Tests and Examples</a>
+The results for the Bolocam data are here (only applied to v2-Herschel
+offsets):</p>
+<img alt="" src="http://2.bp.blogspot.com/-PMJx-wX23w8/UErt7G3PqfI/AAAAAAAAHOQ/-5xD6ReBRGs/s320/Offsets_XYplot.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/bgps-v2-pointing.html" rel="bookmark" title="Permalink to BGPS V2 pointing">
+                    BGPS V2 pointing</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-05-23T23:59:00-06:00"> 2012/05/23 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>BGPS V2.0 pointing offsets relative to V1 and Herschel:</p>
+<img alt="" src="http://4.bp.blogspot.com/-41YC6GZJR-0/T715bELMplI/AAAAAAAAHE0/Fzk41wW8ysM/s320/Offsets_CDF.png" />
+<p>Cumulative Distribution Function of the total offsets.</p>
+<img alt="" src="http://2.bp.blogspot.com/-9zPWRdGI0jY/T715bmcgVnI/AAAAAAAAHFA/K0XKvlJdO_8/s320/Offsets_Histogram.png" />
+<p>Histograms of the total offsets.</p>
+<img alt="" src="http://2.bp.blogspot.com/-3hkzLY1D4KY/T715b0VfMxI/AAAAAAAAHFM/DDBXKCGu8ng/s320/Offsets_XYplot.png" />
+<p>X-offsets vs Y-offsets (X and Y are GLON and GLAT). The ellipses are
+centered at the mean of the X/Y offsets and have major and minor axes
+corresponding to the standard deviations.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/l111-observation-notes.html" rel="bookmark" title="Permalink to L111 observation notes">
+                    L111 observation notes</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-12-09T11:40:00-07:00"> 2008/12/09 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/SJZ5AakkcMI/AAAAAAAADL4/BV6bqAe26oc/s320/l111_sep05_noptgmdl_fixedoffset.jpg" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/SJZ5ArDzBhI/AAAAAAAADMA/Qa6nxqshl7Y/s320/l111_sep05_rawcsoptg.jpg" />
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/SJZ5Avg041I/AAAAAAAADMI/flj9idr7F54/s320/l111_sep05_ptgapplied.jpg" />
+<p>In L111, the failures noted in the <a class="reference external" href="http://bolocam.blogspot.com/2008/08/pointing-model-failure.html">previous post</a> are specific to
+September 2005. By comparing the pointing model images to the &quot;raw cso
+pointing&quot; and &quot;no pointing model&quot; (the latter still have FAZO/FZAO
+applied, all that has been done to them is aberration/nutation and
+precession correction) it appears that the Sep 05 model is simply wrong.
+I haven't had time to check on W3/4/5 and L033, but presumably they have
+a similar issue. W3/4/5 includes late July 07 and September 06. L033
+includes July 05, June 06, and July 07. I will need to generate pointing
+plots for September 05 and 06, and probably regenerate June 06. I have
+the rest and I think Meredith's models are fine for those dates - they
+certainly don't create recognizable errors in the maps.
+It is possible that my pointing_model.pro has some pointing models (the
+problematic ones) entered incorrectly. It would be nice to get those
+double-checked.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/pointing-model-failure.html" rel="bookmark" title="Permalink to Pointing model failure">
+                    Pointing model failure</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-12-09T11:40:00-07:00"> 2008/12/09 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/SJXjh0a_cRI/AAAAAAAADBM/J3qzKAdvAE8/s320/l033_pointingmodel_failure.jpg" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/SJXjiJuyDoI/AAAAAAAADBU/mVcnF0BNdFM/s320/l111_pointingmodel_failure.jpeg" />
+<p>I attempted to map L111, L033, and W3/4/5 with the pointing model
+corrections applied. That was a failure. Two images are attached to
+illustrate the problem - relative pointing is clearly not correct
+(middle of L33, bottom left of L111).
+So.... possibilities:</p>
+<ol class="arabic simple">
+<li>Pointing models are incorrect</li>
+<li>Pointing model signs have been misinterpreted (don't think this one
+is possible based on other graphs)</li>
+<li>Uhh... ideas?</li>
+</ol>
+<p>Next step, I'll use the individual maps with no ptg mdl and find out
+what the offsets should be....</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/pointing-model-success.html" rel="bookmark" title="Permalink to Pointing model success">
+                    Pointing model success</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-09-02T15:11:00-06:00"> 2008/09/02 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>/scratch/adam_work/plots/models_myptgmdl_0707.ps
+Look at the left plots in #1 and #4, and ignore the red lines. The RMS
+is 4.87 in alt, 3.51 in az, using all pointing observations in 0707
+(i.e. not splitting it into part1/part2 or refining heavily). Total is
+6.003&quot;, not bad.
+I'm calling it quits on pointing refinement for the moment; I'm
+satisfied using Meredith's pointing models to get science maps
+co-aligned, then we'll use my model on the PPSes to get the pointing to
+maximum precision.
+Also, in the galactic center, the mapping works happily now. No more
+silly problems with that.
+It's time for a real Next Step. I think that means mapping nearly
+everything. Well, here goes!</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/confirmed-error-in-lb-mapping.html" rel="bookmark" title="Permalink to Confirmed error in L/B mapping">
+                    Confirmed error in L/B mapping</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-28T01:32:00-06:00"> 2008/08/28 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've used my simulated data and confirmed that there is in fact an error
+in the l/b mapping, but I haven't tracked it down yet. Stay tuned.
+Update: Something is not self-consistent in prepare_map. I've tried a
+variety of different things without success yet.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/updates-today.html" rel="bookmark" title="Permalink to Updates today">
+                    Updates today</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-25T23:35:00-06:00"> 2008/08/25 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I updated the FITS header writing pieces of the software today, we
+should now have:
+N_PCA
+ITERNUM
+PPBEAM
+in all new maps.
+I'm mapping all of Cygnus degree-by-degree in RA/Dec and Galactic to try
+to measure offsets... possibly offsets as a function of l/b or ra/dec. I
+should really be doing this with PPSes, though.
+My priority list:</p>
+<ol class="arabic simple">
+<li>find out what's causing bulk offsets</li>
+<li>beat down noise in my pointing models by rejecting bad sources/points
+[has to be done from campus]</li>
+<li>test my personal special pointing models</li>
+<li>make maps!</li>
+<li>figure out the rest of pointing</li>
+</ol>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/ten.html" rel="bookmark" title="Permalink to TEN!?!">
+                    TEN!?!</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-23T00:47:00-06:00"> 2008/08/23 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/SK9Pe1q6PaI/AAAAAAAADOE/yd0bxUMCDB4/s400/EIGHT.png" />
+<p>Look at that. Seriously? a 10' offset? That's ridiculous! There is no
+WAY our pointing models could be off by that much! Even if I got the
+signs entirely wrong, that's just not possible.
+What's going on? First theory: Galactic coordinates fail. Any other
+suggestions?</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 3
+        <a href="https://keflavich.github.io/blog/tag/pointing2.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

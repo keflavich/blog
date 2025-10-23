@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://keflavich.github.io/blog/confetti-artifacts-in-clean.html" rel="bookmark"
+         title="Permalink to Confetti artifacts in clean">Confetti artifacts in clean</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2021-10-15T10:21:00-06:00">
+      2021/10/15
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>We have noted a “confetti” problem in some of the ALMA-IMF cube images.
+It is called confetti because <em>one</em> of its manifestations is individual
+bright pixels in the model image.</p>
+<p>This notebook shows where confetti is - and is not a problem.</p>
+<p><a class="reference external" href="https://github.com/ALMA-IMF/notebooks/blob/master/ConfettiQA.ipynb">https://github.com/ALMA-IMF/notebooks/blob/master/ConfettiQA.ipynb</a></p>
+<div class="section" id="preliminaries-skip-this">
+<h2>Preliminaries: skip this</h2>
+<pre class="code python literal-block">
+<span class="kn">from</span> <span class="nn">spectral_cube</span> <span class="kn">import</span> <span class="n">SpectralCube</span><span class="w">
+</span><span class="kn">import</span> <span class="nn">warnings</span><span class="w">
+</span><span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">'ignore'</span><span class="p">)</span>
+</pre>
+<pre class="code python literal-block">
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span><span class="w">
+</span><span class="kn">import</span> <span class="nn">pylab</span> <span class="k">as</span> <span class="nn">pl</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">astropy.visualization</span> <span class="kn">import</span> <span class="n">simple_norm</span>
+</pre>
+<pre class="code python literal-block">
+<span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+</pre>
+</div>
+<div class="section" id="g008-67-continuum">
+<h2>G008.67 Continuum</h2>
+<p>This is the G008.67 continuum image in Band 3.</p>
+<p>It has “confetti” pieces in the model image, but there is no problem: no
+artificial point sources are introduced.</p>
+<pre class="code python literal-block">
+<span class="n">contmodel</span> <span class="o">=</span> <span class="n">SpectralCube</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">'/orange/adamginsburg/ALMA_IMF/2017.1.01355.L/imaging_results/G008.67_B3_uid___A001_X1296_X1c1_continuum_merged_12M_robust-0.5_selfcal5_finaliter.model.tt0'</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'casa_image'</span><span class="p">)</span><span class="w">
+</span><span class="n">contimage</span> <span class="o">=</span> <span class="n">SpectralCube</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">'/orange/adamginsburg/ALMA_IMF/2017.1.01355.L/imaging_results/G008.67_B3_uid___A001_X1296_X1c1_continuum_merged_12M_robust-0.5_selfcal5_finaliter.image.tt0'</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'casa_image'</span><span class="p">)</span><span class="w">
+</span><span class="n">contresid</span> <span class="o">=</span> <span class="n">SpectralCube</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">'/orange/adamginsburg/ALMA_IMF/2017.1.01355.L/imaging_results/G008.67_B3_uid___A001_X1296_X1c1_continuum_merged_12M_robust-0.5_selfcal5_finaliter.residual.tt0'</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'casa_image'</span><span class="p">)</span>
+</pre>
+<pre class="code python literal-block">
+<span class="c1"># zoom in</span><span class="w">
+</span><span class="n">contslc</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">950</span><span class="p">,</span><span class="mi">1050</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">1900</span><span class="p">,</span><span class="mi">2050</span><span class="p">))</span>
+</pre>
+<pre class="code python literal-block">
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span><span class="w">
+</span><span class="n">pl</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">contmodel</span><span class="p">[</span><span class="n">contslc</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">simple_norm</span><span class="p">(</span><span class="n">contmodel</span><span class="p">[</span><span class="n">contslc</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">max_percent</span><span class="o">=</span><span class="mf">99.995</span><span class="p">,</span> <span class="n">stretch</span><span class="o">=</span><span class="s1">'asinh'</span><span class="p">),</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">'none'</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">'lower'</span><span class="p">)</span><span class="w">
+</span><span class="n">_</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">)</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_8_0.png" />
+<pre class="code python literal-block">
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span><span class="w">
+</span><span class="n">im</span> <span class="o">=</span> <span class="n">contimage</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">contslc</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span><span class="o">.</span><span class="n">value</span><span class="w">
+</span><span class="n">pl</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">simple_norm</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">stretch</span><span class="o">=</span><span class="s1">'log'</span><span class="p">,</span> <span class="n">max_percent</span><span class="o">=</span><span class="mf">99.995</span><span class="p">),</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">'none'</span><span class="p">,</span>  <span class="n">origin</span><span class="o">=</span><span class="s1">'lower'</span><span class="p">)</span><span class="w">
+</span><span class="n">_</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_9_0.png" />
+<pre class="code python literal-block">
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span><span class="w">
+</span><span class="n">im</span> <span class="o">=</span> <span class="n">contresid</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">contslc</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span><span class="o">.</span><span class="n">value</span><span class="w">
+</span><span class="n">pl</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">simple_norm</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">stretch</span><span class="o">=</span><span class="s1">'linear'</span><span class="p">),</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">'none'</span><span class="p">,</span>  <span class="n">origin</span><span class="o">=</span><span class="s1">'lower'</span><span class="p">)</span><span class="w">
+</span><span class="n">_</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Residual&quot;</span><span class="p">)</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_10_0.png" />
+<div class="section" id="g008-67-cube">
+<h3>G008.67 Cube</h3>
+<p>The G008.67 cube <em>does</em> have a problem!</p>
+<pre class="code python literal-block">
+<span class="n">cube</span> <span class="o">=</span> <span class="n">SpectralCube</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">'/orange/adamginsburg/ALMA_IMF/2017.1.01355.L/imaging_results/G008.67_B3_spw0_12M_n2hp.image'</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'casa_image'</span><span class="p">)</span><span class="o">.</span><span class="n">with_spectral_unit</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">,</span> <span class="n">velocity_convention</span><span class="o">=</span><span class="s1">'radio'</span><span class="p">)</span><span class="w">
+</span><span class="n">resid</span> <span class="o">=</span> <span class="n">SpectralCube</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">'/orange/adamginsburg/ALMA_IMF/2017.1.01355.L/imaging_results/G008.67_B3_spw0_12M_n2hp.residual'</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'casa_image'</span><span class="p">)</span><span class="o">.</span><span class="n">with_spectral_unit</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">,</span> <span class="n">velocity_convention</span><span class="o">=</span><span class="s1">'radio'</span><span class="p">)</span><span class="w">
+</span><span class="n">model</span> <span class="o">=</span> <span class="n">SpectralCube</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">'/orange/adamginsburg/ALMA_IMF/2017.1.01355.L/imaging_results/G008.67_B3_spw0_12M_n2hp.model'</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'casa_image'</span><span class="p">)</span><span class="o">.</span><span class="n">with_spectral_unit</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">,</span> <span class="n">velocity_convention</span><span class="o">=</span><span class="s1">'radio'</span><span class="p">)</span>
+</pre>
+<pre class="code python literal-block">
+<span class="n">xslc</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">1620</span><span class="p">,</span><span class="mi">1654</span><span class="p">)</span><span class="w">
+</span><span class="n">yslc</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">709</span><span class="p">,</span><span class="mi">743</span><span class="p">)</span><span class="w">
+</span><span class="n">cubeslice</span> <span class="o">=</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span> <span class="n">yslc</span><span class="p">,</span> <span class="n">xslc</span><span class="p">)</span><span class="w">
+</span><span class="n">cube1slice</span> <span class="o">=</span> <span class="p">(</span><span class="mi">98</span><span class="p">,</span> <span class="n">yslc</span><span class="p">,</span> <span class="n">xslc</span><span class="p">)</span>
+</pre>
+</div>
+</div>
+<div class="section" id="confetti-a-false-point-source">
+<h2>Confetti: a false (?) point source</h2>
+<p>In the image below, we see a new source introduced in the 35.140 km/s
+panel.</p>
+<p>There is no comparable source in either of the adjacent panels!</p>
+<p>That means either there is a genuinely pointlike source with linewidth
+much narrower than 0.77 km/s, or this source is fake.</p>
+<pre class="code python literal-block">
+<span class="n">specpix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">94</span><span class="p">,</span><span class="mi">94</span><span class="o">+</span><span class="mi">9</span><span class="p">)</span><span class="w">
+</span><span class="n">panels</span> <span class="o">=</span> <span class="n">cube</span><span class="p">[</span><span class="n">cubeslice</span><span class="p">]</span><span class="o">.</span><span class="n">plot_channel_maps</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">specpix</span><span class="p">,</span> <span class="n">fig_smallest_dim_inches</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">simple_norm</span><span class="p">(</span><span class="n">cube</span><span class="p">[</span><span class="n">cube1slice</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_15_0.png" />
+<p>It is caused by one hot (bright) pixel surrounded by many faint pixels</p>
+<pre class="code python literal-block">
+<span class="n">panels</span> <span class="o">=</span> <span class="n">model</span><span class="p">[</span><span class="n">cubeslice</span><span class="p">]</span><span class="o">.</span><span class="n">plot_channel_maps</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">specpix</span><span class="p">,</span> <span class="n">fig_smallest_dim_inches</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">simple_norm</span><span class="p">(</span><span class="n">model</span><span class="p">[</span><span class="n">cube1slice</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">stretch</span><span class="o">=</span><span class="s1">'log'</span><span class="p">,</span> <span class="n">max_percent</span><span class="o">=</span><span class="mf">99.93</span><span class="p">))</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_17_0.png" />
+<p>There is no sign of it in the residual - it is apparently canceled out
+between positive and negative components added to the model</p>
+<pre class="code python literal-block">
+<span class="n">panels</span> <span class="o">=</span> <span class="n">resid</span><span class="p">[</span><span class="n">cubeslice</span><span class="p">]</span><span class="o">.</span><span class="n">plot_channel_maps</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">specpix</span><span class="p">,</span> <span class="n">fig_smallest_dim_inches</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_19_0.png" />
+<p>The manifestation in the spectra is a very sharp peak at just one pixel.</p>
+<pre class="code python literal-block">
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span><span class="w">
+</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="o">=</span><span class="mi">1638</span><span class="p">,</span><span class="mi">725</span><span class="w">
+</span><span class="n">cube</span><span class="p">[:,</span><span class="n">yy</span><span class="p">,</span><span class="n">xx</span><span class="p">]</span><span class="o">.</span><span class="n">quicklook</span><span class="p">()</span><span class="w">
+</span><span class="n">resid</span><span class="p">[:,</span><span class="n">yy</span><span class="p">,</span><span class="n">xx</span><span class="p">]</span><span class="o">.</span><span class="n">quicklook</span><span class="p">()</span><span class="w">
+</span><span class="n">modspec</span> <span class="o">=</span> <span class="n">model</span><span class="p">[:,</span><span class="n">yy</span><span class="p">,</span><span class="n">xx</span><span class="p">]</span><span class="w">
+</span><span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cube</span><span class="o">.</span><span class="n">spectral_axis</span><span class="p">,</span> <span class="n">modspec</span><span class="o">*</span><span class="n">cube</span><span class="o">.</span><span class="n">pixels_per_beam</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'model'</span><span class="p">)</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_21_1.png" />
+<p>Pixels to either side look fine</p>
+<pre class="code python literal-block">
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">14</span><span class="p">))</span><span class="w">
+</span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="w">
+</span><span class="k">for</span> <span class="n">dx</span> <span class="ow">in</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span><span class="w">
+</span>    <span class="k">for</span> <span class="n">dy</span> <span class="ow">in</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span><span class="w">
+</span>        <span class="n">ax</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">ii</span><span class="p">)</span><span class="w">
+</span>        <span class="n">ii</span> <span class="o">+=</span><span class="mi">1</span><span class="w">
+</span>        <span class="n">cube</span><span class="p">[:,</span><span class="n">yy</span><span class="o">+</span><span class="n">dy</span><span class="p">,</span><span class="n">xx</span><span class="o">+</span><span class="n">dx</span><span class="p">]</span><span class="o">.</span><span class="n">quicklook</span><span class="p">()</span><span class="w">
+</span>        <span class="n">resid</span><span class="p">[:,</span><span class="n">yy</span><span class="o">+</span><span class="n">dy</span><span class="p">,</span><span class="n">xx</span><span class="o">+</span><span class="n">dx</span><span class="p">]</span><span class="o">.</span><span class="n">quicklook</span><span class="p">()</span><span class="w">
+</span>        <span class="n">modspec</span> <span class="o">=</span> <span class="n">model</span><span class="p">[:,</span><span class="n">yy</span><span class="o">+</span><span class="n">dy</span><span class="p">,</span><span class="n">xx</span><span class="o">+</span><span class="n">dx</span><span class="p">]</span><span class="w">
+</span>        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cube</span><span class="o">.</span><span class="n">spectral_axis</span><span class="p">,</span> <span class="n">modspec</span><span class="o">*</span><span class="n">cube</span><span class="o">.</span><span class="n">pixels_per_beam</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'model'</span><span class="p">)</span><span class="w">
+</span>        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dx=</span><span class="si">{</span><span class="n">dx</span><span class="si">}</span><span class="s2"> dy=</span><span class="si">{</span><span class="n">dy</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_23_0.png" />
+<div class="section" id="when-is-confetti-not-a-problem">
+<h3>When is confetti <em>not</em> a problem?</h3>
+<p>Here is an example you might think is “confetti”, but is a <em>real</em> source</p>
+<pre class="code python literal-block">
+<span class="n">xc</span><span class="p">,</span> <span class="n">yc</span> <span class="o">=</span> <span class="mi">1812</span><span class="p">,</span> <span class="mi">905</span><span class="w">
+</span><span class="n">xslc</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">xc</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span><span class="n">xc</span><span class="o">+</span><span class="mi">12</span><span class="p">)</span><span class="w">
+</span><span class="n">yslc</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">yc</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span><span class="n">yc</span><span class="o">+</span><span class="mi">12</span><span class="p">)</span><span class="w">
+</span><span class="n">cubeslice</span> <span class="o">=</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="mi">94</span><span class="p">,</span><span class="mi">94</span><span class="o">+</span><span class="mi">9</span><span class="p">),</span> <span class="n">yslc</span><span class="p">,</span> <span class="n">xslc</span><span class="p">)</span><span class="w">
+</span><span class="n">cube1slice</span> <span class="o">=</span> <span class="p">(</span><span class="mi">94</span><span class="p">,</span> <span class="n">yslc</span><span class="p">,</span> <span class="n">xslc</span><span class="p">)</span>
+</pre>
+<pre class="code python literal-block">
+<span class="n">specpix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="w">
+</span><span class="n">panels</span> <span class="o">=</span> <span class="n">cube</span><span class="p">[</span><span class="n">cubeslice</span><span class="p">]</span><span class="o">.</span><span class="n">plot_channel_maps</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">specpix</span><span class="p">,</span> <span class="n">fig_smallest_dim_inches</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">simple_norm</span><span class="p">(</span><span class="n">cube</span><span class="p">[</span><span class="n">cube1slice</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">min_cut</span><span class="o">=</span><span class="n">cube</span><span class="p">[</span><span class="n">cubeslice</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">max_cut</span><span class="o">=</span><span class="n">cube</span><span class="p">[</span><span class="n">cubeslice</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">stretch</span><span class="o">=</span><span class="s1">'linear'</span><span class="p">))</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_26_0.png" />
+<pre class="code python literal-block">
+<span class="n">panels</span> <span class="o">=</span> <span class="n">model</span><span class="p">[</span><span class="n">cubeslice</span><span class="p">]</span><span class="o">.</span><span class="n">plot_channel_maps</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">specpix</span><span class="p">,</span> <span class="n">fig_smallest_dim_inches</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">simple_norm</span><span class="p">(</span><span class="n">model</span><span class="p">[</span><span class="n">cube1slice</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">stretch</span><span class="o">=</span><span class="s1">'asinh'</span><span class="p">,</span> <span class="n">max_percent</span><span class="o">=</span><span class="mf">99.9</span><span class="p">,</span> <span class="n">min_cut</span><span class="o">=</span><span class="n">model</span><span class="p">[</span><span class="n">cubeslice</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">max_cut</span><span class="o">=</span><span class="n">model</span><span class="p">[</span><span class="n">cubeslice</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="p">))</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_27_0.png" />
+<pre class="code python literal-block">
+<span class="n">panels</span> <span class="o">=</span> <span class="n">resid</span><span class="p">[</span><span class="n">cubeslice</span><span class="p">]</span><span class="o">.</span><span class="n">plot_channel_maps</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">specpix</span><span class="p">,</span> <span class="n">fig_smallest_dim_inches</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_28_0.png" />
+<pre class="code python literal-block">
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">14</span><span class="p">))</span><span class="w">
+</span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="w">
+</span><span class="k">for</span> <span class="n">dx</span> <span class="ow">in</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span><span class="w">
+</span>    <span class="k">for</span> <span class="n">dy</span> <span class="ow">in</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span><span class="w">
+</span>        <span class="n">ax</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">ii</span><span class="p">)</span><span class="w">
+</span>        <span class="n">ii</span> <span class="o">+=</span><span class="mi">1</span><span class="w">
+</span>        <span class="n">cube</span><span class="p">[:,</span><span class="n">yc</span><span class="o">+</span><span class="n">dy</span><span class="p">,</span><span class="n">xc</span><span class="o">+</span><span class="n">dx</span><span class="p">]</span><span class="o">.</span><span class="n">quicklook</span><span class="p">()</span><span class="w">
+</span>        <span class="n">resid</span><span class="p">[:,</span><span class="n">yc</span><span class="o">+</span><span class="n">dy</span><span class="p">,</span><span class="n">xc</span><span class="o">+</span><span class="n">dx</span><span class="p">]</span><span class="o">.</span><span class="n">quicklook</span><span class="p">()</span><span class="w">
+</span>        <span class="n">modspec</span> <span class="o">=</span> <span class="n">model</span><span class="p">[:,</span><span class="n">yc</span><span class="o">+</span><span class="n">dy</span><span class="p">,</span><span class="n">xc</span><span class="o">+</span><span class="n">dx</span><span class="p">]</span><span class="w">
+</span>        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cube</span><span class="o">.</span><span class="n">spectral_axis</span><span class="p">,</span> <span class="n">modspec</span><span class="o">*</span><span class="n">cube</span><span class="o">.</span><span class="n">pixels_per_beam</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'model'</span><span class="p">)</span><span class="w">
+</span>        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dx=</span><span class="si">{</span><span class="n">dx</span><span class="si">}</span><span class="s2"> dy=</span><span class="si">{</span><span class="n">dy</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_29_0.png" />
+</div>
+<div class="section" id="conclusion">
+<h3>Conclusion</h3>
+<p>“Confetti” is a problem, but it is not trivial to find in the model data
+alone. It exhibits no features in the residual.</p>
+<p>Key features to look out for are:</p>
+<ul class="simple">
+<li>Narrow-line features (single channel)</li>
+<li>Extremely bright pointlike peaks in the model (note that this is
+<em>not</em> independent evidence of a problem! All point sources occupy
+single pixels in the model image by definition!)</li>
+<li>Bright pointlike peaks sitting on top of slightly extended negative
+backgrounds in the model (this is how the model is “canceled out” in
+the residual)</li>
+</ul>
+</div>
+</div>
+
+  </div><!-- /.entry-content -->
+</section>
+
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</section>
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  var disqus_identifier = '/confetti-artifacts-in-clean.html';
+  var disqus_url = 'https://keflavich.github.io/blog/confetti-artifacts-in-clean.html';
+  var disqus_title = 'Confetti artifacts in clean';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

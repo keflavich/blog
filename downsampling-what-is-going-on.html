@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://keflavich.github.io/blog/downsampling-what-is-going-on.html" rel="bookmark"
+         title="Permalink to Downsampling - what is going on?">Downsampling - what is going on?</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2011-02-11T04:19:00-07:00">
+      2011/02/11
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>The downsampling failure I <a class="reference external" href="http://bolocam.blogspot.com/2011/01/downsampling-has-serious-negative.html">noted</a> <a class="reference external" href="http://bolocam.blogspot.com/2011/01/more-evidence-that-downsampling-causes.html">previously</a> appears to be
+illusory. It may be that the offset noted only holds for single-frame
+images, in which there may be many blank pixels. It is possible - though
+not certain - that the ds1 images were significantly higher than ds5
+because more noise-only pixels were included with higher outliers; i.e.,
+ds1 high-outlier noise was being compared to ds5 noise that was lower
+amplitude.</p>
+<p>What led to these conclusions? First, I was getting inconsistent results
+looking at Uranus in particular - ds5 appeared to have higher fluxes
+than ds1. This was inconsistent with <a class="reference external" href="http://bolocam.blogspot.com/2011/01/downsampling-has-serious-negative.html">earlier results</a> on OMC1. Partly,
+this is because I switched from my <a class="reference external" href="http://4.bp.blogspot.com/_lsgW26mWZnU/TTiWWl3j3dI/AAAAAAAAF3I/Ef3WHEv5oXU/s1600/omc1_dstest_pixel-pixel.png">hacked-together plots</a> to the much
+more refined <a class="reference external" href="http://code.google.com/p/bgpspipeline/source/browse/bgps_pipeline/plotting/compare_images.py">compare_images</a> script, which demonstrated the effect of
+changing the cutoff of the comparison.</p>
+<p>Also, I added in a Pearson Correlation Coefficient computation. Given a
+single data set with the only difference being downsampling, the data
+should be perfectly correlated even if there is a flux offset
+(correlation should be 1, but the best fit slope should not be). It was
+an indication of a problem when I started seeing correlation
+coefficients &lt;0.90 for data that had already been sigma-cut; that means
+that noise was being included in the correlation computations.</p>
+<p>Therefore, the approach needed is to cut out the high pixels that are on
+map edges. This I accomplished by adding an 'aperture' capability to the
+compare_images code (for Uranus) and cropping using montage and a
+wcs-based box for Orion.</p>
+<p>The results... are ambiguous. Wow. In some sub-fields - within the same
+co-added map - the agreement is near-perfect.</p>
+<img alt="" src="http://1.bp.blogspot.com/-i20j3FEx758/TVR-PbQl7lI/AAAAAAAAGAY/imgMqceS9n8/s1600/v2.0_dl_omc_b_OMC4_ds1ds5_compare.png" />
+<p>In others, ds1 is clearly &gt; ds5.</p>
+<img alt="" src="http://4.bp.blogspot.com/-JsRH_ZQilWM/TVR-Os6vBSI/AAAAAAAAGAQ/JRR6Trm-weo/s1600/v2.0_dl_omc_b_OMC2_ds1ds5_compare.png" />
+<p>What's going on? ds1 does look uniformly more smooth.
+Note that the <em>disagreement</em> is nearly scale-free:</p>
+<p>OK, so given the conclusion in Orion that ds1&gt;=ds5, what's the deal with
+Uranus?</p>
+<img alt="" src="http://3.bp.blogspot.com/-AosJ1vzcYSs/TVSZjIZ81fI/AAAAAAAAGAk/qVGeaJtkbPA/s320/101208_o10_ds1ds5_compare.png" />
+<p>The first two comparisons are for 1x1° observations; in both cases ds1 &lt;
+ds5, but by 6% and 24% respectively! The image of Uranus looks much
+better (because of lack of parallel lines) in the second, more extreme
+case. In both cases, the ds5 excess is nearly scale-free (not shown).</p>
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TVSZki9k9OI/AAAAAAAAGA0/t9LOGHOAL7Q/s320/101208_o10_ds1ds5_compare.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TVSZj1pglLI/AAAAAAAAGAs/-4153NoAQQ0/s320/101208_o11_ds1ds5_compare.png" />
+<p>The 3x1s are also highly discrepant. #12 shows nearly perfect agreement,
+albeit with high dispersion (low correlation) because of pixel-to-pixel
+variations around the peak. #13 is the only observation with a huge DS1
+excess. It also demonstrates very poor correlation. It looks like the
+telescope got bumped for the ds5 data (which is not actually possible;
+recall they're the same data set). What happened here? Maybe a glitch
+that went unflagged (mad_flagger is off by default for individual
+scans)?</p>
+<img alt="" src="http://3.bp.blogspot.com/-9gwzGfDBCEk/TVSZllWeBxI/AAAAAAAAGA8/x3mg5RbMScs/s320/101208_o12_ds1ds5_compare.png" />
+<img alt="" src="http://3.bp.blogspot.com/-9gwzGfDBCEk/TVSZllWeBxI/AAAAAAAAGA8/x3mg5RbMScs/s320/101208_o13_ds1ds5_compare.png" />
+<p>In observations 4 and 5, we're looking at a 40-50% excess in ds5! What
+the heck? There really is no clear explanation for this.</p>
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TVSaYfZx0WI/AAAAAAAAGBE/cWbbBQCJOvk/s320/101208_ob4_ds1ds5_compare.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TVSaZM27sqI/AAAAAAAAGBM/XR-6pttUcBo/s320/101208_ob5_ds1ds5_compare.png" />
+<p>But... what? Magically, they come into perfect agreement when the scan
+axis nearly lines up with the coordinate axis! Or, is this just an
+effect of the worse weather on night 2?</p>
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TVSaaP6ISNI/AAAAAAAAGBU/PvN5aFOxBAQ/s320/101209_ob5_ds1ds5_compare.png" />
+<p>Next thing to try: masked source map comparison. Unfortunately, masking
+royally screwed up the long scans - probably because the initial polysub
+didn't work. And masking in the individual point source maps did
+nothing... so that pretty much rules out atmospheric oversubtraction,
+doesn't it?
+What else could be causing this offset? 0pca looks the same as 13pca,
+give or take, so it's not the atmospheric subtraction. Could the
+downsampling result in an offset in the bolo-scaling? Where else in the
+process could things go wrong? Tomorrow, need to investigate .sav files
+with pyflagger...</p>
+
+  </div><!-- /.entry-content -->
+</section>
+
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</section>
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  var disqus_identifier = '/downsampling-what-is-going-on.html';
+  var disqus_url = 'https://keflavich.github.io/blog/downsampling-what-is-going-on.html';
+  var disqus_title = 'Downsampling - what is going on?';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

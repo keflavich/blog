@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://keflavich.github.io/blog/port-vs-fink.html" rel="bookmark"
+         title="Permalink to Port vs Fink">Port vs Fink</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2012-09-20T20:02:00-06:00">
+      2012/09/20
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Port failed to install:
+<tt class="docutils literal"><span class="pre">adam-macbook</span> ~$ sudo port install <span class="pre">py25-matplotlib---&gt;</span>&nbsp; Building <span class="pre">py25-hashlib</span> with target <span class="pre">build---&gt;</span>&nbsp; Staging <span class="pre">py25-hashlib</span> into <span class="pre">destroot---&gt;</span>&nbsp; Installing <span class="pre">py25-hashlib</span> <span class="pre">2.5.2_0---&gt;</span>&nbsp; Activating <span class="pre">py25-hashlib</span> <span class="pre">2.5.2_0---&gt;</span>&nbsp; Cleaning <span class="pre">py25-hashlib---&gt;</span>&nbsp; Fetching <span class="pre">py25-zlib---&gt;</span>&nbsp; Verifying checksum(s) for <span class="pre">py25-zlib---&gt;</span>&nbsp; Extracting <span class="pre">py25-zlib---&gt;</span>&nbsp; Configuring <span class="pre">py25-zlib---&gt;</span>&nbsp; Building <span class="pre">py25-zlib</span> with target <span class="pre">build---&gt;</span>&nbsp; Staging <span class="pre">py25-zlib</span> into <span class="pre">destroot---&gt;</span>&nbsp; Installing <span class="pre">py25-zlib</span> <span class="pre">2.5.2_0---&gt;</span>&nbsp; Activating <span class="pre">py25-zlib</span> <span class="pre">2.5.2_0---&gt;</span>&nbsp; Cleaning <span class="pre">py25-zlib---&gt;</span>&nbsp; Fetching <span class="pre">py25-setuptools---&gt;</span>&nbsp; Attempting to fetch <span class="pre">setuptools-0.6c8.tar.gz</span> from <span class="pre">http://cheeseshop.python.org/packages/source/s/setuptools/---&gt;</span>&nbsp; Verifying checksum(s) for <span class="pre">py25-setuptools---&gt;</span>&nbsp; Extracting <span class="pre">py25-setuptools---&gt;</span>&nbsp; Applying patches to <span class="pre">py25-setuptools---&gt;</span>&nbsp; Configuring <span class="pre">py25-setuptools---&gt;</span>&nbsp; Building <span class="pre">py25-setuptools</span> with target <span class="pre">build---&gt;</span>&nbsp; Staging <span class="pre">py25-setuptools</span> into <span class="pre">destroot---&gt;</span>&nbsp; Installing <span class="pre">py25-setuptools</span> <span class="pre">0.6c8_2---&gt;</span>&nbsp; Activating <span class="pre">py25-setuptools</span> <span class="pre">0.6c8_2---&gt;</span>&nbsp; Cleaning <span class="pre">py25-setuptools---&gt;</span>&nbsp; Fetching <span class="pre">py25-tz---&gt;</span>&nbsp; Attempting to fetch <span class="pre">pytz-2007k.tar.bz2</span> from <span class="pre">http://cheeseshop.python.org/packages/source/p/pytz/---&gt;</span>&nbsp; Verifying checksum(s) for <span class="pre">py25-tz---&gt;</span>&nbsp; Extracting <span class="pre">py25-tz---&gt;</span>&nbsp; Configuring <span class="pre">py25-tz---&gt;</span>&nbsp; Building <span class="pre">py25-tz</span> with target <span class="pre">build---&gt;</span>&nbsp; Staging <span class="pre">py25-tz</span> into <span class="pre">destroot---&gt;</span>&nbsp; Installing <span class="pre">py25-tz</span> <span class="pre">2007k_0---&gt;</span>&nbsp; Activating <span class="pre">py25-tz</span> <span class="pre">2007k_0---&gt;</span>&nbsp; Cleaning <span class="pre">py25-tz---&gt;</span>&nbsp; Fetching <span class="pre">py25-dateutil---&gt;</span>&nbsp; Attempting to fetch <span class="pre">python-dateutil-1.4.1.tar.gz</span> from <span class="pre">http://labix.org/download/python-dateutil---&gt;</span>&nbsp; Verifying checksum(s) for <span class="pre">py25-dateutil---&gt;</span>&nbsp; Extracting <span class="pre">py25-dateutil---&gt;</span>&nbsp; Configuring <span class="pre">py25-dateutil---&gt;</span>&nbsp; Building <span class="pre">py25-dateutil</span> with target <span class="pre">build---&gt;</span>&nbsp; Staging <span class="pre">py25-dateutil</span> into <span class="pre">destroot---&gt;</span>&nbsp; Installing <span class="pre">py25-dateutil</span> <span class="pre">1.4.1_0---&gt;</span>&nbsp; Activating <span class="pre">py25-dateutil</span> <span class="pre">1.4.1_0---&gt;</span>&nbsp; Cleaning <span class="pre">py25-dateutil---&gt;</span>&nbsp; Fetching <span class="pre">fftw-3---&gt;</span>&nbsp; Attempting to fetch <span class="pre">fftw-3.1.3.tar.gz</span> from <span class="pre">http://www.fftw.org/---&gt;</span>&nbsp; Verifying checksum(s) for <span class="pre">fftw-3---&gt;</span>&nbsp; Extracting <span class="pre">fftw-3---&gt;</span>&nbsp; Configuring <span class="pre">fftw-3---&gt;</span>&nbsp; Building <span class="pre">fftw-3</span> with target <span class="pre">all---&gt;</span>&nbsp; Staging <span class="pre">fftw-3</span> into <span class="pre">destroot---&gt;</span>&nbsp; Installing <span class="pre">fftw-3</span> <span class="pre">3.1.3_0---&gt;</span>&nbsp; Activating <span class="pre">fftw-3</span> <span class="pre">3.1.3_0---&gt;</span>&nbsp; Cleaning <span class="pre">fftw-3---&gt;</span>&nbsp; Fetching <span class="pre">py25-nose---&gt;</span>&nbsp; Attempting to fetch <span class="pre">nose-0.10.4.tar.gz</span> from <span class="pre">http://somethingaboutorange.com/mrl/projects/nose/---&gt;</span>&nbsp; Verifying checksum(s) for <span class="pre">py25-nose---&gt;</span>&nbsp; Extracting <span class="pre">py25-nose---&gt;</span>&nbsp; Configuring <span class="pre">py25-nose---&gt;</span>&nbsp; Building <span class="pre">py25-nose</span> with target <span class="pre">build---&gt;</span>&nbsp; Staging <span class="pre">py25-nose</span> into <span class="pre">destroot---&gt;</span>&nbsp; Installing <span class="pre">py25-nose</span> <span class="pre">0.10.4_0---&gt;</span>&nbsp; Activating <span class="pre">py25-nose</span> <span class="pre">0.10.4_0---&gt;</span>&nbsp; Cleaning <span class="pre">py25-nose---&gt;</span>&nbsp; Fetching <span class="pre">py25-numpy---&gt;</span>&nbsp; Attempting to fetch <span class="pre">numpy-1.2.0.tar.gz</span> from <span class="pre">http://downloads.sourceforge.net/numpy---&gt;</span>&nbsp; Verifying checksum(s) for <span class="pre">py25-numpy---&gt;</span>&nbsp; Extracting <span class="pre">py25-numpy---&gt;</span>&nbsp; Applying patches to <span class="pre">py25-numpy---&gt;</span>&nbsp; Configuring <span class="pre">py25-numpy---&gt;</span>&nbsp; Building <span class="pre">py25-numpy</span> with target buildError: Target org.macports.build returned: shell command &quot; cd <span class="pre">&quot;/opt/local/var/macports/build/_opt_local_var_macports_sources_rsync.macports.org_release_ports_python_py25-numpy/work/numpy-1.2.0&quot;</span> &amp;&amp; /opt/local/bin/python2.5 setup.py build &quot; returned error 1Command output:&nbsp;&nbsp;&nbsp;&nbsp; setup_package()&nbsp; File &quot;setup.py&quot;, line 89, in setup_package&nbsp;&nbsp;&nbsp; configuration=configuration )&nbsp; File <span class="pre">&quot;/opt/local/var/macports/build/_opt_local_var_macports_sources_rsync.macports.org_release_ports_python_py25-numpy/work/numpy-1.2.0/numpy/distutils/core.py&quot;,</span> line 184, in setup&nbsp;&nbsp;&nbsp; return <span class="pre">old_setup(**new_attr)</span>&nbsp; File &quot;/opt/local/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/distutils/core.py&quot;, line 151, in setup&nbsp;&nbsp;&nbsp; dist.run_commands()&nbsp; File &quot;/opt/local/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/distutils/dist.py&quot;, line 974, in run_commands&nbsp;&nbsp;&nbsp; self.run_command(cmd)&nbsp; File &quot;/opt/local/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/distutils/dist.py&quot;, line 994, in run_command&nbsp;&nbsp;&nbsp; cmd_obj.run()&nbsp; File <span class="pre">&quot;/opt/local/var/macports/build/_opt_local_var_macports_sources_rsync.macports.org_release_ports_python_py25-numpy/work/numpy-1.2.0/numpy/distutils/command/build.py&quot;,</span> line 37, in run&nbsp;&nbsp;&nbsp; old_build.run(self)&nbsp; File &quot;/opt/local/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/distutils/command/build.py&quot;, line 112, in run&nbsp;&nbsp;&nbsp; self.run_command(cmd_name)&nbsp; File &quot;/opt/local/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/distutils/cmd.py&quot;, line 333, in run_command&nbsp;&nbsp;&nbsp; self.distribution.run_command(command)&nbsp; File &quot;/opt/local/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/distutils/dist.py&quot;, line 994, in run_command&nbsp;&nbsp;&nbsp; cmd_obj.run()&nbsp; File <span class="pre">&quot;/opt/local/var/macports/build/_opt_local_var_macports_sources_rsync.macports.org_release_ports_python_py25-numpy/work/numpy-1.2.0/numpy/distutils/command/build_src.py&quot;,</span> line 130, in run&nbsp;&nbsp;&nbsp; self.build_sources()&nbsp; File <span class="pre">&quot;/opt/local/var/macports/build/_opt_local_var_macports_sources_rsync.macports.org_release_ports_python_py25-numpy/work/numpy-1.2.0/numpy/distutils/command/build_src.py&quot;,</span> line 147, in build_sources&nbsp;&nbsp;&nbsp; self.build_extension_sources(ext)&nbsp; File <span class="pre">&quot;/opt/local/var/macports/build/_opt_local_var_macports_sources_rsync.macports.org_release_ports_python_py25-numpy/work/numpy-1.2.0/numpy/distutils/command/build_src.py&quot;,</span> line 250, in build_extension_sources&nbsp;&nbsp;&nbsp; sources = self.generate_sources(sources, ext)&nbsp; File <span class="pre">&quot;/opt/local/var/macports/build/_opt_local_var_macports_sources_rsync.macports.org_release_ports_python_py25-numpy/work/numpy-1.2.0/numpy/distutils/command/build_src.py&quot;,</span> line 307, in generate_sources&nbsp;&nbsp;&nbsp; source = func(extension, build_dir)&nbsp; File &quot;numpy/core/setup.py&quot;, line 87, in generate_config_h&nbsp;&nbsp;&nbsp; raise <span class="pre">SystemError,&quot;Failed</span> to test configuration. &quot;\SystemError: Failed to test configuration. See previous error messages for more information.Error: The following dependencies failed to build: <span class="pre">py25-numpy</span> <span class="pre">py25-tkinter</span> tcl tkError: Status 1 encountered during processing.</tt>
+I don't want to deal with it so I'm just using Fink.</p>
+
+  </div><!-- /.entry-content -->
+</section>
+
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</section>
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  var disqus_identifier = '/port-vs-fink.html';
+  var disqus_url = 'https://keflavich.github.io/blog/port-vs-fink.html';
+  var disqus_title = 'Port vs Fink';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

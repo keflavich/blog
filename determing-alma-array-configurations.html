@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://keflavich.github.io/blog/determing-alma-array-configurations.html" rel="bookmark"
+         title="Permalink to Determing ALMA Array Configurations">Determing ALMA Array Configurations</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2021-04-27T08:51:00-06:00">
+      2021/04/27
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>ALMA's named array configurations are not accessible through CASA.
+They are available from <a class="reference external" href="https://almascience.eso.org/observing/observing-configuration-schedule/prior-cycle-observing-and-configuration-schedule">https://almascience.eso.org/observing/observing-configuration-schedule/prior-cycle-observing-and-configuration-schedule</a></p>
+<p>This snippet will let you grab the tables and create a mapping from date to array config name.</p>
+<p>However, it's a HUGE waste of time, because these data are stored directly in the MS!</p>
+<p>This is the right way:</p>
+<pre class="code python literal-block">
+<span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">vis</span><span class="o">+</span><span class="s1">'/ASDM_EXECBLOCK'</span><span class="p">)</span><span class="w">
+</span><span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s1">'configName'</span><span class="p">)</span><span class="w">
+</span><span class="c1"># array(['C43-3'], dtype='&lt;U16')</span>
+</pre>
+<p>This is the hacky, reconstructed from the website, bad way:</p>
+<pre class="code python literal-block">
+<span class="kn">import</span> <span class="nn">requests</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">astropy.table</span> <span class="kn">import</span> <span class="n">Table</span><span class="p">,</span> <span class="n">vstack</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">ascii</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">astropy.time</span> <span class="kn">import</span> <span class="n">Time</span><span class="w">
+
+</span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://almascience.eso.org/observing/observing-configuration-schedule/prior-cycle-observing-and-configuration-schedule&quot;</span><span class="w">
+
+</span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="w">
+</span><span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span><span class="w">
+</span><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span><span class="w">
+</span><span class="n">tables</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">'table'</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;grid listing&quot;</span><span class="p">)</span><span class="w">
+
+</span><span class="k">def</span> <span class="nf">clean_lines</span><span class="p">(</span><span class="n">soup</span><span class="p">,</span> <span class="n">badrows</span><span class="o">=</span><span class="p">[</span><span class="s1">'Long Baseline Campaign'</span><span class="p">,</span><span class="w">
+</span>                               <span class="s1">'February Maintenance Period'</span><span class="p">,</span><span class="w">
+</span>                               <span class="s1">'End of Cycle'</span><span class="p">,</span><span class="w">
+</span>                               <span class="s1">'Engineering/Software'</span><span class="p">,</span><span class="w">
+</span>                               <span class="s1">'Engineering/Software Time'</span><span class="p">,</span><span class="w">
+</span>                                   <span class="p">]):</span><span class="w">
+</span>    <span class="k">for</span> <span class="n">tr</span> <span class="ow">in</span> <span class="n">soup</span><span class="p">(</span><span class="s1">'tr'</span><span class="p">):</span><span class="w">
+</span>        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">bad</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">tr</span><span class="p">)</span> <span class="k">for</span> <span class="n">bad</span> <span class="ow">in</span> <span class="n">badrows</span><span class="p">):</span><span class="w">
+</span>             <span class="n">_</span><span class="o">=</span><span class="n">tr</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span><span class="w">
+</span>    <span class="k">return</span> <span class="n">soup</span><span class="w">
+
+</span><span class="n">tables</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">'table'</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;grid listing&quot;</span><span class="p">)</span><span class="w">
+</span><span class="n">tables</span> <span class="o">=</span> <span class="p">[</span><span class="n">ascii</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">clean_lines</span><span class="p">(</span><span class="n">tbl</span><span class="p">)),</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'html'</span><span class="p">)</span> <span class="k">for</span> <span class="n">tbl</span> <span class="ow">in</span> <span class="n">tables</span><span class="p">]</span><span class="w">
+</span><span class="n">tables</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">tables</span><span class="p">[</span><span class="mi">3</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="w">
+</span><span class="n">tables</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s1">'Block'</span><span class="p">]</span> <span class="o">=</span> <span class="n">tables</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s1">'Block'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'int'</span><span class="p">)</span><span class="w">
+</span><span class="n">tables</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s1">'maximumrecoverablescale2(&quot;)'</span><span class="p">]</span> <span class="o">=</span> <span class="n">tables</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s1">'maximumrecoverablescale2(&quot;)'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'str'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">stacked</span> <span class="o">=</span> <span class="n">vstack</span><span class="p">(</span><span class="n">tables</span><span class="p">)</span><span class="w">
+</span><span class="n">start_times</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">stacked</span><span class="p">[</span><span class="s1">'Start date'</span><span class="p">])</span><span class="w">
+</span><span class="n">end_times</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">stacked</span><span class="p">[</span><span class="s1">'End date'</span><span class="p">])</span>
+</pre>
+<p>Then, say you have a list of measurement sets <tt class="docutils literal">mses</tt>, you can look up the
+array configuration for each date and field.  The choice of <tt class="docutils literal">fields[0]</tt> here
+only makes sense if your data had a single target; it's a bad choice if there
+are multiple targets in a scheduling block:</p>
+<pre class="code python literal-block">
+<span class="kn">import</span> <span class="nn">json</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">casatools</span> <span class="kn">import</span> <span class="n">msmetadata</span><span class="w">
+</span><span class="n">msmd</span> <span class="o">=</span> <span class="n">msmetadata</span><span class="p">()</span><span class="w">
+
+</span><span class="n">results</span> <span class="o">=</span> <span class="p">{}</span><span class="w">
+
+</span><span class="k">for</span> <span class="n">vis</span> <span class="ow">in</span> <span class="n">mses</span><span class="p">:</span><span class="w">
+</span>    <span class="n">msmd</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">mses</span><span class="p">)</span><span class="w">
+</span>    <span class="n">obstime</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">msmd</span><span class="o">.</span><span class="n">timerangeforobs</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="s1">'begin'</span><span class="p">][</span><span class="s1">'m0'</span><span class="p">][</span><span class="s1">'value'</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'mjd'</span><span class="p">)</span><span class="w">
+</span>    <span class="n">fieldnames</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">msmd</span><span class="o">.</span><span class="n">fieldnames</span><span class="p">())</span><span class="w">
+</span>    <span class="n">fields</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">fieldnames</span><span class="p">[</span><span class="n">msmd</span><span class="o">.</span><span class="n">fieldsforintent</span><span class="p">(</span><span class="s1">'OBSERVE_TARGET#ON_SOURCE'</span><span class="p">)])</span><span class="w">
+</span>    <span class="n">msmd</span><span class="o">.</span><span class="n">close</span><span class="p">()</span><span class="w">
+
+</span>    <span class="n">array_config</span> <span class="o">=</span> <span class="n">stacked</span><span class="p">[(</span><span class="n">obstime</span> <span class="o">&gt;</span> <span class="n">start_times</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">obstime</span> <span class="o">&lt;</span> <span class="n">end_times</span><span class="p">)][</span><span class="s1">'Approx</span><span class="se">\xa0</span><span class="s1">Config.'</span><span class="p">]</span><span class="w">
+</span>    <span class="k">if</span> <span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span><span class="w">
+</span>        <span class="n">results</span><span class="p">[</span><span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">obstime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">'</span><span class="p">)]</span> <span class="o">=</span> <span class="n">array_config</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w">
+</span>    <span class="k">else</span><span class="p">:</span><span class="w">
+</span>        <span class="n">results</span><span class="p">[</span><span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span><span class="n">obstime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">'</span><span class="p">):</span> <span class="n">array_config</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span><span class="w">
+
+</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'array_configurations.json'</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span><span class="w">
+</span>    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">fh</span><span class="p">)</span>
+</pre>
+
+  </div><!-- /.entry-content -->
+</section>
+
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</section>
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  var disqus_identifier = '/determing-alma-array-configurations.html';
+  var disqus_url = 'https://keflavich.github.io/blog/determing-alma-array-configurations.html';
+  var disqus_title = 'Determing ALMA Array Configurations';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

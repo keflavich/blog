@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://keflavich.github.io/blog/python-64-bit-on-mac-os-x-106-snow-leopard.html" rel="bookmark"
+         title="Permalink to Python 64-bit on Mac OS X 10.6 Snow Leopard">Python 64-bit on Mac OS X 10.6 Snow Leopard</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2012-09-20T20:02:00-06:00">
+      2012/09/20
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>After <a class="reference external" href="http://buffalothedestroyer.blogspot.com/2010/02/installing-snow-leopard.html">yesterday's disastrous attempt</a> to install various python
+packages, I started from scratch. First, I got rid of all of my python
+frameworks (backed up but removed from the path). Then, I compiled
+python 2.7 from scratch:</p>
+<p>I got some help from
+<a class="reference external" href="http://blog.mahmoudimus.com/2009/12/python-2-6-4-and-twisted-9-on-os-x-10-6-snow-leopard/">http://blog.mahmoudimus.com/2009/12/python-2-6-4-and-twisted-9-on-os-x-10-6-snow-leopard/</a>
+<tt class="docutils literal">./configure <span class="pre">--enable-framework</span> <span class="pre">--enable-universalsdk=/Developer/SDKs/MacOSX10.6.sdk</span> MACOSX_DEPLOYMENT_TARGET=10.6 <span class="pre">--with-universal-archs=intel</span> <span class="pre">-with-readline-dir=/usr/localmake</span> <span class="pre">-j</span> 17make <span class="pre">-j</span> 17 test</tt>
+<tt class="docutils literal">make</tt> results:</p>
+<pre class="literal-block">
+Python build finished, but the necessary bits to build these modules were
+not found:
+    _bsddb
+    dl
+    gdbm
+    imageop
+    linuxaudiodev
+    ossaudiodev
+    spwd
+    sunaudiodev
+To find the necessary bits, look in setup.py in detect_modules() for the
+module's name.
+</pre>
+<p>I'm not concerned about these - I don't use any of them and I assume I
+need to install some other packages to get them to work.
+During make test, I had two failures that resulted in &quot;python crash&quot;
+pop-up boxes:</p>
+<pre class="literal-block">
+test_subprocess.
+this bit of output is from a test of stdout in a different process ....
+this bit of output is from a test of stdout in a different process ...
+test_sunaudiodev
+</pre>
+<p>Then, I got some malloc errors:</p>
+<pre class="literal-block">
+test_ioTesting large file ops skipped on darwin.It requires 2147483648
+bytes and a long time.Use 'regrtest.py -u largefile test_io' to run
+it.Testing large file ops skipped on darwin.It requires 2147483648 bytes
+and a long time.Use 'regrtest.py -u largefile test_io' to run
+it.python.exe(22914,0x7fff70d3ebe0) malloc: ***
+mmap(size=9223372036854775808) failed (error code=12)*** error: can't
+allocate region*** set a breakpoint in malloc_error_break to
+debugpython.exe(22914,0x7fff70d3ebe0) malloc: ***
+mmap(size=9223372036854775808) failed (error code=12)*** error: can't
+allocate region*** set a breakpoint in malloc_error_break to
+debugpython.exe(22914,0x7fff70d3ebe0) malloc: ***
+mmap(size=9223372036854775808) failed (error code=12)*** error: can't
+allocate region*** set a breakpoint in malloc_error_break to
+debugtest_ioctl
+</pre>
+
+  </div><!-- /.entry-content -->
+</section>
+
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</section>
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  var disqus_identifier = '/python-64-bit-on-mac-os-x-106-snow-leopard.html';
+  var disqus_url = 'https://keflavich.github.io/blog/python-64-bit-on-mac-os-x-106-snow-leopard.html';
+  var disqus_title = 'Python 64-bit on Mac OS X 10.6 Snow Leopard';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

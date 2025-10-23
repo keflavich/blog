@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - postscript</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/extracting-figures-from-papers.html">Extracting figures from papers</a>
+              </li>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/ghostscript-error.html">Ghostscript error?</a>
+              </li>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/how-do-i-print-a-multi-page-postscript.html">How do I print a multi-page postscript?</a>
+              </li>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/merging-postscripts.html">Merging postscripts</a>
+              </li>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/postscript-to-pdf-conversion.html">Postscript to PDF conversion</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/extracting-figures-from-papers.html" rel="bookmark" title="Permalink to Extracting figures from papers">
+                    Extracting figures from papers</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I want to automatically extract figures from papers, but of course most
+papers come in .pdf, not .ps form...
+This site has a great tool for extracting figures from .ps papers:
+<a class="reference external" href="http://www-hermes.desy.de/notes/extras/postscript.html">http://www-hermes.desy.de/notes/extras/postscript.html</a>
+If anyone can tell me how to do the same thing for .pdfs (automatically
+extract figures from pdfs) I'd appreciate it.
+Update 12/13/08: One solution is listed at
+<a class="reference external" href="http://ubuntuforums.org/showthread.php?t=884002">http://ubuntuforums.org/showthread.php?t=884002</a>: use pdfimages, part
+of the xpdf package.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/ghostscript-error.html" rel="bookmark" title="Permalink to Ghostscript error?">
+                    Ghostscript error?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><p>I've been receiving the following error when attempting to compile
+(ps2pdf) my w5 outflows paper:</p>
+<pre class="literal-block">
+Error: /rangecheck in --get--Operand stack:   pdfmark   --dict:20/25(ro)(L)--   --nostringval--   50Execution stack:   %interp_exit   .runexec2   --nostringval--   --nostringval--   --nostringval--   2   %stopped_push   --nostringval--   --nostringval--   --nostringval--   false   1   %stopped_push   1878   1   3   %oparray_pop   1877   1   3   %oparray_pop   1861   1   3   %oparray_pop   1755   1   3   %oparray_pop   --nostringval--   %errorexec_pop   .runexec2   --nostringval--   --nostringval--   --nostringval--   2   %stopped_push   --nostringval--   %finish_show   --nostringval--   --nostringval--   8   6   1   --nostringval--   (pdf_text_enum_t)   %op_show_continue   --nostringval--Dictionary stack:   --dict:1153/1684(ro)(G)--   --dict:0/20(G)--   --dict:71/200(L)--   --dict:125/300(L)--   --dict:44/200(L)--   --dict:138/224(L)--Current allocation mode is localLast OS error: 2Current file position is 267478928GPL Ghostscript 8.71: Unrecoverable error, exit code 1
+</pre>
+<p>I get the same error with Ghostscript 8.64, but on my laptop, using the
+fink version, it works. Similarly, there are errors with the postscript,
+so I'm led to believe it's an error in latex:</p>
+<pre class="literal-block">
+$ latex --versionpdfTeX 3.1415926-1.40.10-2.2 (TeX Live 2009)kpathsea version 5.0.0Copyright 2009 Peter Breitenlohner (eTeX)/Han The Thanh (pdfTeX).There is NO warranty.  Redistribution of this software iscovered by the terms of both the pdfTeX copyright andthe Lesser GNU General Public License.For more information about these matters, see the filenamed COPYING and the pdfTeX source.Primary author of pdfTeX: Peter Breitenlohner (eTeX)/Han The Thanh (pdfTeX).Compiled with libpng 1.2.39; using libpng 1.2.39Compiled with zlib 1.2.3; using zlib 1.2.3Compiled with xpdf version 3.02pl3
+</pre>
+<p>No idea what the cause is but it's time to start documenting steps and
+looking for a workaround. Compiling on the lappy isn't a good option.</p>
+</p> </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/how-do-i-print-a-multi-page-postscript.html" rel="bookmark" title="Permalink to How do I print a multi-page postscript?">
+                    How do I print a multi-page postscript?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I want to print a multi-page postscript duplexed and, if possible, two
+per page. pstopng, pstopdf, and the variants failed me horribly by
+making postscripts that don't fit the bounding box at all. Any ideas?
+So far the best I've come up with is switching gnuplot's output to pdf,
+which is a workaround rather than a solution, but is useful nonetheless:
+<tt class="docutils literal">set terminal pdf enhanced dashed</tt></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/merging-postscripts.html" rel="bookmark" title="Permalink to Merging postscripts">
+                    Merging postscripts</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>This is essential and really difficult to find answers to, but this guy
+gave it:
+<a class="reference external" href="http://ludo.qix.it/archive/2005/08/merge-postscript-files.html">http://ludo.qix.it/archive/2005/08/merge-postscript-files.html</a>
+The keywords I would have liked to see:
+<a class="reference external" href="http://ludo.qix.it/archive/2005/08/merge-postscript-files.html">&quot;merge postscripts into multi-page document&quot;</a>
+or <a class="reference external" href="http://ludo.qix.it/archive/2005/08/merge-postscript-files.html">&quot;combine postscript multiple page&quot;</a>
+e.g.
+<tt class="docutils literal">gs <span class="pre">-sDEVICE=pswrite</span> <span class="pre">-sOutputFile=output.ps</span> <span class="pre">-dNOPAUSE</span> <span class="pre">-dBATCH</span> file1.ps file2.ps file3.psorgs <span class="pre">-sDEVICE=pswrite</span> <span class="pre">-sOutputFile=05358spectra.ps</span> <span class="pre">-dNOPAUSE</span> <span class="pre">-dEPSFitPage</span> <span class="pre">-dBATCH</span> `ls <span class="pre">05358_*.eps`(the</span> added option is to make sure the .eps isn't cropped)</tt></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/postscript-to-pdf-conversion.html" rel="bookmark" title="Permalink to Postscript to PDF conversion">
+                    Postscript to PDF conversion</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><tt class="docutils literal">ls *.ps | sed <span class="pre">'s/\(.*\).ps/ps2pdf</span> \1.ps \1.pdf/' | bash</tt>
+because it's impossible to view multiple postscripts in a single
+window.... how annoying.
+Corollary:
+<tt class="docutils literal">ls *.pdf | sed <span class="pre">'s/\(.*\).pdf/pdf2jpeg</span> \1.pdf \1.jpg/' | bash</tt></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/ps2pdf-keep-resolution-crop-to-bounding-box.html" rel="bookmark" title="Permalink to ps2pdf keep resolution, crop to bounding box">
+                    ps2pdf keep resolution, crop to bounding box</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>``  ps2pdf -dEPSCrop -dAutoRotatePages=/None -dAutoFilterColorImages=false -dColorImageFilter=/FlateEncode -dUseFlateCompression=true l007_displaycrop.ps ``
+ref: <a class="reference external" href="http://groups.google.com/group/comp.lang.postscript/browse_thread/thread/c7570a90f8b96848?ie=UTF-8&amp;q=ps2pdf+image+quality#62fe763939a66789">this post</a></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/pstopng.html" rel="bookmark" title="Permalink to pstopng">
+                    pstopng</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Following <a class="reference external" href="http://studio.imagemagick.org/discourse-server/viewtopic.php?f=1&amp;t=8545&amp;start=0">this thread</a> and my need to convert IDL .ps files to .pngs
+so that I can view them in Mac Preview without having to go through an
+(often failed) conversion process led to a few discoveries.
+First, it is challenging to get ImageMagick's convert to make an opaque
+background for the .ps file without seriously degrading the resolution.
+This can be accomplished by passing <em>both</em> the <tt class="docutils literal"><span class="pre">-alpha</span> Off</tt> and the
+`` -density 300`` simultaneously. This is slow, though, and
+recommendations to speed it up using the
+<tt class="docutils literal"><span class="pre">-limit</span> area 4096 <span class="pre">-limit</span> memory 4096</tt> tags actually made it slower!
+However, the thread pointed out that ghostscript can do the conversion
+directly:
+<tt class="docutils literal">gs <span class="pre">-dBATCH</span> <span class="pre">-sDEVICE=png16m</span> <span class="pre">-r300</span> <span class="pre">-dEPSCrop</span> <span class="pre">-dNOPAUSE</span> <span class="pre">-sOutputFile=XXX.png</span> XXX.ps</tt>
+<tt class="docutils literal"><span class="pre">-sDEVICE</span></tt> sets the output to png, <tt class="docutils literal"><span class="pre">-r300</span></tt> tag sets the density to
+be 300 pixels/inch, <tt class="docutils literal"><span class="pre">-dEPSCrop</span></tt> is necessary to get the right sized
+image out (otherwise it defaults to a portrait 8.5x11), and
+`` -dBATCH `` prevents the gs command line from activating after the
+command is executed. I'm not sure if <tt class="docutils literal"><span class="pre">-dNOPAUSE</span></tt> is necessary, but
+apparently if you don't activate it you have to do something after every
+page is processed.
+My code to do batch ps-to-png conversion is available at
+<a class="reference external" href="http://code.google.com/p/agpy/source/browse/trunk/agpy/pstopng">http://code.google.com/p/agpy/source/browse/trunk/agpy/pstopng</a>.
+Timing demonstrations (units are seconds, R is 'real' or clock time, 'U'
+is user time, and 'S' is system time):
+<tt class="docutils literal">/usr/local/bin/convert <span class="pre">-density</span> 300 <span class="pre">-alpha</span> Off deline_zero_10hz_timestreams_003.ps deline_zero_10hz_timestreams_003.png TIMING: R: 3.126&nbsp; U: 2.948&nbsp; S: 0.084/usr/local/bin/convert <span class="pre">-limit</span> area 4096 <span class="pre">-limit</span> memory 4096 <span class="pre">-density</span> 300 <span class="pre">-alpha</span> Off deline_zero_10hz_timestreams_003.ps deline_zero_10hz_timestreams_003.png TIMING: R: 3.800&nbsp; U: 2.970&nbsp; S: 0.161gs <span class="pre">-dBATCH</span> <span class="pre">-sDEVICE=png16m</span> <span class="pre">-r300</span> <span class="pre">-dEPSCrop</span> <span class="pre">-dNOPAUSE</span> <span class="pre">-sOutputFile=deline_zero_10hz_timestreams_003.png</span> deline_zero_10hz_timestreams_003.psTIMING: R: 0.801&nbsp; U: 0.781&nbsp; S: 0.017</tt></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/self-cal-with-evla-data.html" rel="bookmark" title="Permalink to Self-cal with EVLA data">
+                    Self-cal with EVLA data</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-01-07T08:14:00-07:00"> 2016/01/07 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm trying to self-calibrate my A+C array C-band data on W51, since we're in a
+clearly dynamic-range-limited regime.  I've never had any luck with self-cal,
+though.  The images <em>always</em> get worse, and I still don't really understand
+why.</p>
+<p>This is a clue, though:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/selfcal_phasecal_vs_time.png" style="width: 600px;" />
+<p>For many of the antennae, especially those in C array, self-calibration results
+in phase plots that look nice, with corrections confined to +/-30 degrees as
+you would hope and expect.</p>
+<p>These plots show that some antennae are going through dozens or hundreds of
+phase wraps.  That is obviously unacceptable and incorrect: the original images
+actually looked pretty good, so it is obvious (to me, at least) that there
+should be <em>no</em> phase wrapping in the self-cal.  I'm surprised at this, since
+each of these points should have S/N &gt; 3 and there is a lot of consistency in
+these large phase shifts.</p>
+<p>My suspicion is still that the clean process has failed.  I have been trying
+multiscale clean, since the emission is completely dominated by extended
+components.  However, even if I set smallscalebias to different values, there
+are essentially no pointlike components being added to the clean model.  This
+is wrong!  There are genuine point sources.  So I still suspect that this is a
+modeling problem and the phase wraps are being caused by bad models.</p>
+<p>I'm trying again with smaller pixels in the hope that a better match between
+the beam size and the pixel size will produce a better model.  The only other
+thing I can think to try is increasing the solint, but given the high S/N
+already present, I doubt that's an important factor.</p>
+<p>Smaller pixels didn't help, <em>but</em> forcing clean to include point-source
+components by performing a second round of clean with <tt class="docutils literal"><span class="pre">multiscale=[]</span></tt> worked!
+The solutions are MUCH more reasonable (no more phase wrap every integration),
+and selfcal no longer diverges.  I also increased the solution interval to 30s
+since it seems that the phase change timescale is significantly longer than
+an integration.  I increased the S/N cutoff to 5 too.</p>
+<p>There are still some &quot;noisy&quot; phases, even in the 3rd iteration:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/selfcal_phasecal_vs_time_3rditer.png" style="width: 600px;" />
+<p>I think more iterations may be necessary, but I will also increase the S/N
+threshold to 6 and solint to 60s to see if that helps.</p>
+<p>RMS improvements are evident but not spectacular:</p>
+<pre class="literal-block">
+SPW4 Iteration 0: RMS=1.003e-04
+SPW4 Iteration 1: RMS=6.009e-05
+SPW4 Iteration 2: RMS=6.698e-05
+SPW4 Iteration 3: RMS=7.061e-05
+</pre>
+<p>The bump in the last one is because I forgot to add a point clean for the last
+iteration.</p>
+<p>Perhaps not unfortunately, it looks like the improvements in image quality are
+tiny when self-cal is added.  The only real hope now is that self-cal on all
+bands will result in an artifact-free final combined image.</p>
+<p>On the &quot;noisy&quot; phases, now that it looks like there are decent solutions, it
+may actually be worth keeping the flags generated by applycal.  &lt;10% of the
+data is being flagged out, which is negligible, and it probably is genuinely
+bad (or signal-free, anyway) in that case.</p>
+<p>EDIT: Looks better... or at least different... now:</p>
+<pre class="literal-block">
+SPW4 Iteration 0: RMS=1.003e-04
+SPW4 Iteration 1: RMS=5.962e-05
+SPW4 Iteration 2: RMS=6.817e-05
+SPW4 Iteration 3: RMS=6.775e-05
+</pre>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/publications-from-2014.html" rel="bookmark" title="Permalink to Publications from 2014">
+                    Publications from 2014</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-01-01T22:48:00-07:00"> 2016/01/01 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Summary of publications from 2014 (just c&amp;p'd from my bibdesk):</p>
+<dt class="Key" id="Bally2014b">Bally2014b<dt />
+<dd class="Pub">
+    <span class="Title">Outflows, Dusty Cores, and a Burst of Star Formation in the North America and Pelican Nebulae</span><br />
+    <span class="Author">J. Bally and A. Ginsburg and R. Probst and B. Reipurth and Y. L. Shirley and G. S. Stringfellow</span><br />
+    <span class="Journal">\aj</span>&nbsp;
+    <span class="Volume">148</span>&nbsp;
+    <span class="Pages">120</span>&nbsp;
+    (<span class="Date">2014</span>)<br />
+<remoteURLs>
+    <span class="URL"><a href=""></a></span><br />
+</remoteURLs>
+<dd /><dt class="Key" id="Bally2014a">Bally2014a<dt />
+<dd class="Pub">
+    <span class="Title">Absorption Filaments toward the Massive Clump G0.253+0.016</span><br />
+    <span class="Author">J. Bally and J. M. Rathborne and S. N. Longmore and J. M. Jackson and J. F. Alves and E. Bressert and Y. Contreras and J. B. Foster and G. Garay and A. Ginsburg and K. G. Johnston and J. M. D. Kruijssen and L. Testi and A. J. Walsh</span><br />
+    <span class="Journal">\apj</span>&nbsp;
+    <span class="Volume">795</span>&nbsp;
+    <span class="Pages">28</span>&nbsp;
+    (<span class="Date">2014</span>)<br />
+<remoteURLs>
+    <span class="URL"><a href=""></a></span><br />
+</remoteURLs>
+<dd /><dt class="Key" id="Ginsburg2014a">Ginsburg2014a<dt />
+<dd class="Pub">
+    <span class="Title">The dense gas mass fraction in the W51 cloud and its protoclusters</span><br />
+    <span class="Author">A. Ginsburg and J. Bally and C. Battersby and A. Youngblood and J. Darling and E. Rosolowsky and H. Arce and M. L. Santos</span><br />
+    <span class="Journal"></span>&nbsp;
+    <span class="Volume"></span>&nbsp;
+    <span class="Pages"></span>&nbsp;
+    (<span class="Date">2014</span>)<br />
+<remoteURLs>
+    <span class="URL"><a href=""></a></span><br />
+</remoteURLs>
+<dd /><dt class="Key" id="Battersby2014b">Battersby2014b<dt />
+<dd class="Pub">
+    <span class="Title">The Onset of Massive Star Formation: The Evolution of Temperature and Density Structure in an Infrared Dark Cloud</span><br />
+    <span class="Author">C. Battersby and A. Ginsburg and J. Bally and S. Longmore and M. Dunham and J. Darling</span><br />
+    <span class="Journal">\apj</span>&nbsp;
+    <span class="Volume">787</span>&nbsp;
+    <span class="Pages">113</span>&nbsp;
+    (<span class="Date">2014</span>)<br />
+<remoteURLs>
+    <span class="URL"><a href=""></a></span><br />
+</remoteURLs>
+<dd /><dt class="Key" id="Battersby2014a">Battersby2014a<dt />
+<dd class="Pub">
+    <span class="Title">The Comparison of Physical Properties Derived from Gas and Dust in a Massive Star-forming Region</span><br />
+    <span class="Author">C. Battersby and J. Bally and M. Dunham and A. Ginsburg and S. Longmore and J. Darling</span><br />
+    <span class="Journal">\apj</span>&nbsp;
+    <span class="Volume">786</span>&nbsp;
+    <span class="Pages">116</span>&nbsp;
+    (<span class="Date">2014</span>)<br />
+<remoteURLs>
+    <span class="URL"><a href=""></a></span><br />
+</remoteURLs>
+<dd /> </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/publications-from-2015.html" rel="bookmark" title="Permalink to Publications from 2015">
+                    Publications from 2015</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-01-01T22:48:00-07:00"> 2016/01/01 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Summary of publications from 2015 (just c&amp;p'd from my bibdesk):</p>
+<dt class="Key" id="Ginsburg2015b">Ginsburg2015b<dt />
+<dd class="Pub">
+    <span class="Title">High-mass star-forming cloud G0.38+0.04 in the Galactic center dust ridge contains H$_2$CO and SiO masers</span><br />
+    <span class="Author">A. Ginsburg and A. Walsh and C. Henkel and P. A. Jones and M. Cunningham and J. Kauffmann and T. Pillai and E. A. C. Mills and J. Ott and J. M. D. Kruijssen and K. M. Menten and C. Battersby and J. Rathborne and Y. Contreras and S. Longmore and D. Walker and J. Dawson and J. A. P. Lopez</span><br />
+    <span class="Journal">\aap</span>&nbsp;
+    <span class="Volume">584</span>&nbsp;
+    <span class="Pages">L7</span>&nbsp;
+    (<span class="Date">2015</span>)<br />
+<remoteURLs>
+    <span class="URL"><a href=""></a></span><br />
+</remoteURLs>
+<dd /><dt class="Key" id="Colombo2015a">Colombo2015a<dt />
+<dd class="Pub">
+    <span class="Title">Graph-based interpretation of the molecular interstellar medium segmentation</span><br />
+    <span class="Author">D. Colombo and E. Rosolowsky and A. Ginsburg and A. Duarte-Cabral and A. Hughes</span><br />
+    <span class="Journal">\mnras</span>&nbsp;
+    <span class="Volume">454</span>&nbsp;
+    <span class="Pages">2067-2091</span>&nbsp;
+    (<span class="Date">2015</span>)<br />
+<remoteURLs>
+    <span class="URL"><a href=""></a></span><br />
+</remoteURLs>
+<dd /><dt class="Key" id="Weilbacher2015a">Weilbacher2015a<dt />
+<dd class="Pub">
+    <span class="Title">A MUSE map of the central Orion Nebula (M 42)</span><br />
+    <span class="Author">P. M. Weilbacher and A. Monreal-Ibero and W. Kollatschny and A. Ginsburg and A. F. McLeod and S. Kamann and C. Sandin and R. Palsa and L. Wisotzki and R. Bacon and F. Selman and J. Brinchmann and J. Caruana and A. Kelz and T. Martinsson and A. Pécontal-Rousset and J. Richard and M. Wendt</span><br />
+    <span class="Journal">\aap</span>&nbsp;
+    <span class="Volume">582</span>&nbsp;
+    <span class="Pages">A114</span>&nbsp;
+    (<span class="Date">2015</span>)<br />
+<remoteURLs>
+    <span class="URL"><a href=""></a></span><br />
+</remoteURLs>
+<dd /><dt class="Key" id="Isella2015a">Isella2015a<dt />
+<dd class="Pub">
+    <span class="Title">Next Generation Very Large Array Memo No. 6, Science Working Group 1: The Cradle of Life</span><br />
+    <span class="Author">A. Isella and C. H. Hull and A. Moullet and R. Galván-Madrid and D. Johnstone and L. Ricci and J. Tobin and L. Testi and M. Beltran and J. Lazio and A. Siemion and H. Liu and F. Du and K. Öberg and T. Bergin and P. Caselli and T. Bourke and C. Carilli and L. Perez and B. Butler and I. Pater and C. Qi and M. Hofstadter and R. Moreno and D. Alexander and J. Williams and P. Goldsmith and M. Wyatt and L. Loinard and J. Francesco and D. Wilner and P. Schilke and A. Ginsburg and Á. Sánchez-Monge and Q. Zhang and H. Beuther</span><br />
+    <span class="Journal"></span>&nbsp;
+    <span class="Volume"></span>&nbsp;
+    <span class="Pages"></span>&nbsp;
+    (<span class="Date">2015</span>)<br />
+<remoteURLs>
+    <span class="URL"><a href=""></a></span><br />
+</remoteURLs>
+<dd /><dt class="Key" id="Colombo2015b">Colombo2015b<dt />
+<dd class="Pub">
+    <span class="Title">The road toward a full, high resolution Molecular Cloud catalog of the Galaxy</span><br />
+    <span class="Author">D. Colombo and E. Rosolowsky and A. Ginsburg and A. Duarte-Cabral and A. Hughes</span><br />
+    <span class="Journal"></span>&nbsp;
+    <span class="Volume"></span>&nbsp;
+    <span class="Pages"></span>&nbsp;
+    (<span class="Date">2015</span>)<br />
+<remoteURLs>
+    <span class="URL"><a href=""></a></span><br />
+</remoteURLs>
+<dd /><dt class="Key" id="Ginsburg2015c">Ginsburg2015c<dt />
+<dd class="Pub">
+    <span class="Title">Detecting Stars at the Galactic Centre via Synchrotron Emission</span><br />
+    <span class="Author">I. Ginsburg and X. Wang and A. Loeb and O. Cohen</span><br />
+    <span class="Journal">ArXiv e-prints</span>&nbsp;
+    <span class="Volume"></span>&nbsp;
+    <span class="Pages"></span>&nbsp;
+    (<span class="Date">2015</span>)<br />
+<remoteURLs>
+    <span class="URL"><a href=""></a></span><br />
+</remoteURLs>
+<dd /><dt class="Key" id="Wang2015a">Wang2015a<dt />
+<dd class="Pub">
+    <span class="Title">Large-scale filaments associated with Milky Way spiral arms</span><br />
+    <span class="Author">K. Wang and L. Testi and A. Ginsburg and C. M. Walmsley and S. Molinari and E. Schisano</span><br />
+    <span class="Journal">\mnras</span>&nbsp;
+    <span class="Volume">450</span>&nbsp;
+    <span class="Pages">4043-4049</span>&nbsp;
+    (<span class="Date">2015</span>)<br />
+<remoteURLs>
+    <span class="URL"><a href=""></a></span><br />
+</remoteURLs>
+<dd /><dt class="Key" id="Bally2015a">Bally2015a<dt />
+<dd class="Pub">
+    <span class="Title">The Orion fingers: Near-IR adaptive optics imaging of an explosive protostellar outflow</span><br />
+    <span class="Author">J. Bally and A. Ginsburg and D. Silvia and A. Youngblood</span><br />
+    <span class="Journal">\aap</span>&nbsp;
+    <span class="Volume">579</span>&nbsp;
+    <span class="Pages">A130</span>&nbsp;
+    (<span class="Date">2015</span>)<br />
+<remoteURLs>
+    <span class="URL"><a href=""></a></span><br />
+</remoteURLs>
+<dd /><dt class="Key" id="McLeod2015a">McLeod2015a<dt />
+<dd class="Pub">
+    <span class="Title">The Pillars of Creation revisited with MUSE: gas kinematics and high-mass stellar feedback traced by optical spectroscopy</span><br />
+    <span class="Author">A. F. McLeod and J. E. Dale and A. Ginsburg and B. Ercolano and M. Gritschneder and S. Ramsay and L. Testi</span><br />
+    <span class="Journal">\mnras</span>&nbsp;
+    <span class="Volume">450</span>&nbsp;
+    <span class="Pages">1057-1076</span>&nbsp;
+    (<span class="Date">2015</span>)<br />
+<remoteURLs>
+    <span class="URL"><a href=""></a></span><br />
+</remoteURLs>
+<dd /><dt class="Key" id="Ellsworth-Bowers2015a">Ellsworth-Bowers2015a<dt />
+<dd class="Pub">
+    <span class="Title">The Bolocam Galactic Plane Survey. XIII. Physical Properties and Mass Functions of Dense Molecular Cloud Structures</span><br />
+    <span class="Author">T. P. Ellsworth-Bowers and J. Glenn and A. Riley and E. Rosolowsky and A. Ginsburg and N. J. Evans, II and J. Bally and C. Battersby and Y. L. Shirley and M. Merello</span><br />
+    <span class="Journal">\apj</span>&nbsp;
+    <span class="Volume">805</span>&nbsp;
+    <span class="Pages">157</span>&nbsp;
+    (<span class="Date">2015</span>)<br />
+<remoteURLs>
+    <span class="URL"><a href=""></a></span><br />
+</remoteURLs>
+<dd /><dt class="Key" id="Merello2015a">Merello2015a<dt />
+<dd class="Pub">
+    <span class="Title">The Bolocam Galactic Plane Survey. XI. Temperatures and Substructure of Galactic Clumps Based On 350 $\mu$M Observations</span><br />
+    <span class="Author">M. Merello and N. J. Evans, II and Y. L. Shirley and E. Rosolowsky and A. Ginsburg and J. Bally and C. Battersby and M. M. Dunham</span><br />
+    <span class="Journal">\apjs</span>&nbsp;
+    <span class="Volume">218</span>&nbsp;
+    <span class="Pages">1</span>&nbsp;
+    (<span class="Date">2015</span>)<br />
+<remoteURLs>
+    <span class="URL"><a href=""></a></span><br />
+</remoteURLs>
+<dd /><dt class="Key" id="Thompson2015c">Thompson2015c<dt />
+<dd class="Pub">
+    <span class="Title">The ionised,radical and molecular Milky Way: spectroscopic surveys with the SKA</span><br />
+    <span class="Author">M. Thompson and H. Beuther and C. Dickinson and J. Mottram and P. Klaassen and A. Ginsburg and S. Longmore and A. Remijan and K. M. Menten</span><br />
+    <span class="Journal">Advancing Astrophysics with the Square Kilometre Array (AASKA14)</span>&nbsp;
+    <span class="Volume"></span>&nbsp;
+    <span class="Pages">126</span>&nbsp;
+    (<span class="Date">2015</span>)<br />
+<remoteURLs>
+    <span class="URL"><a href=""></a></span><br />
+</remoteURLs>
+<dd /><dt class="Key" id="Ellsworth-Bowers2015b">Ellsworth-Bowers2015b<dt />
+<dd class="Pub">
+    <span class="Title">The Bolocam Galactic Plane Survey. XII. Distance Catalog Expansion Using Kinematic Isolation of Dense Molecular Cloud Structures with $^13$CO(1-0)</span><br />
+    <span class="Author">T. P. Ellsworth-Bowers and E. Rosolowsky and J. Glenn and A. Ginsburg and N. J. Evans, II and C. Battersby and Y. L. Shirley and B. Svoboda</span><br />
+    <span class="Journal">\apj</span>&nbsp;
+    <span class="Volume">799</span>&nbsp;
+    <span class="Pages">29</span>&nbsp;
+    (<span class="Date">2015</span>)<br />
+<remoteURLs>
+    <span class="URL"><a href=""></a></span><br />
+</remoteURLs>
+<dd /><dt class="Key" id="Ginsburg2015a">Ginsburg2015a<dt />
+<dd class="Pub">
+    <span class="Title">The dense gas mass fraction in the W51 cloud and its protoclusters</span><br />
+    <span class="Author">A. Ginsburg and J. Bally and C. Battersby and A. Youngblood and J. Darling and E. Rosolowsky and H. Arce and M. E. Lebrón Santos</span><br />
+    <span class="Journal">\aap</span>&nbsp;
+    <span class="Volume">573</span>&nbsp;
+    <span class="Pages">A106</span>&nbsp;
+    (<span class="Date">2015</span>)<br />
+<remoteURLs>
+    <span class="URL"><a href=""></a></span><br />
+</remoteURLs>
+<dd /> </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/fft-comparisons-in-python.html" rel="bookmark" title="Permalink to FFT comparisons in python">
+                    FFT comparisons in python</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-12-07T11:24:00-07:00"> 2015/12/07 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm trying to figure out which ffts are fastest, best, etc.</p>
+<p>First, it is difficult to get fftw3 + pyfftw installed into python.</p>
+<p>For pyfftw to install, you need to <a class="reference external" href="http://www.fftw.org/doc/Installation-on-Unix.html">enable floats and every specific type</a> when compiling <a class="reference external" href="http://www.fftw.org/">fftw3</a> (thanks to <a class="reference external" href="http://linuxtoolkit.blogspot.de/2010/04/cant-find-fftw3f-library-when.html">linux toolkits blog</a>).
+Apparently you can't have <tt class="docutils literal"><span class="pre">--enable-long-double</span></tt> and <tt class="docutils literal"><span class="pre">--enable-float</span></tt> simultaneously,
+but pyfftw requires both, so you have to install twice or thrice?  Nope, four
+times!!  Also, <a class="reference external" href="https://github.com/hgomersall/pyFFTW/issues/16#issuecomment-19422752">my own post</a>
+indicates that I should install to a different path to avoid weird conflicts
+with other libraries.</p>
+<pre class="literal-block">
+./configure --enable-threads --enable-openmp --enable-mpi --enable-shared \
+            --enable-fortran --enable-avx \
+            CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
+make -j 4
+sudo make install
+
+./configure --enable-float --enable-threads --enable-openmp --enable-mpi --enable-shared \
+            --enable-fortran --enable-avx \
+            CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
+make -j 4
+sudo make install
+
+# quad precision is not supported in mpi
+./configure --enable-quad-precision --enable-threads --enable-openmp --enable-shared \
+            --enable-fortran --enable-avx \
+             CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
+make -j 4
+sudo make install
+
+./configure --enable-long-double --enable-threads --enable-openmp --enable-mpi --enable-shared \
+            --enable-fortran --enable-avx \
+             CFLAGS=&quot;-O3 -fno-common -fomit-frame-pointer -fstrict-aliasing&quot;
+make -j 4
+sudo make install
+</pre>
+<p>Onto speed test comparisons:</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="https://gist.github.com/mperrin/5763120">Marshal Perrin's</a></li>
+<li><a class="reference external" href="https://gist.github.com/keflavich/5797994">my fork</a></li>
+<li><a class="reference external" href="http://code.google.com/p/agpy/source/browse/trunk/tests/test_ffts.py">speed tests on agpy</a></li>
+<li><a class="reference external" href="https://github.com/astropy/astropy/pull/4374">profiling convolve_fft with different parameters</a></li>
+</ul>
+</blockquote>
+<p>If you want to use <tt class="docutils literal">fftw3</tt> with astropy's <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.convolution.convolve_fft.html#astropy.convolution.convolve_fft">convolve_fft</a>,
+use <a class="reference external" href="https://code.google.com/p/agpy/source/browse/trunk/AG_fft_tools/convolve_nd.py?r=479#8">this example</a>.</p>
+<p>Onto some comparisons from <a class="reference external" href="https://github.com/astropy/astropy/pull/4374">astropy issue 4374</a>:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/time_vs_mem.png" style="width: 600px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/psfTfftT.png" style="width: 600px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/psfTfftF.png" style="width: 600px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/psfFfftT.png" style="width: 600px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/psfFfftF.png" style="width: 600px;" />
+<p><a class="reference external" href="https://gist.github.com/6a2d338830efdc02959a">Notebook containing comparisons between FFT and FFTW</a></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/separating-line-from-continuum-in-casa-data.html" rel="bookmark" title="Permalink to Separating Line from Continuum in CASA data">
+                    Separating Line from Continuum in CASA data</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-11-04T15:57:00-07:00"> 2015/11/04 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm continuing to try to separate the line forest from the continuum data in my
+W51 cube.  Some approaches 'kinda work', some don't.</p>
+<p>The iterative approach suggested in the <a class="reference external" href="|static|cvel_w51_fail.rst">previous post</a> <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/630c60e7e57ea7b57877d66b15860b26419a5552/script_12m/uvcontsub_test.py">works reasonably well</a>,
+but results in oversubtraction of the continuum, even with
+a few iterations.  Note that this approach requires <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/630c60e7e57ea7b57877d66b15860b26419a5552/script_12m/uvcontsub_test.py#L17">copying columns between ms
+files using the table toolkit</a>.</p>
+<img alt="Oversubtracted spectrum" src="https://keflavich.github.io/blog/images/w51/oversubtracted_spectrum.png" style="width: 400px;" />
+<p>Another approach I wanted to try was to image the whole cube, take the minimum
+value along the spectral axis, and subtract that.  This would avoid the
+oversubtraction issue by force.  However, <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/c58e4fdf755f85b163d1684cc7383ef31d6a1669/script_12m/mincontsub.py">this</a>
+leads to failures in the <cite>ft</cite> task:</p>
+<pre class="literal-block">
+CASA &lt;85&gt;: ft(vis='w51_test_small_imcont.ms', model='test_continuum_min.image', usescratch=True, nterms=1)
+2015-11-04 15:01:29 WARN    ft::FTMachine::initMaps No overlap in frequency between image channels and selected data found for this FTMachine
+2015-11-04 15:01:29 WARN    ft::FTMachine::initMaps+         Check your data selection and image parameters if you end up with a blank image
+</pre>
+<p>which I don't understand.  I had to <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/c58e4fdf755f85b163d1684cc7383ef31d6a1669/script_12m/mincontsub.py#L22">hack the header</a>
+just to get ft to load the file at all, and apparently my hack wasn't good enough.
+It's really unclear to me now how to load a model from a FITS file.</p>
+<p>The next approach is to load the whole continuum-subtracted cube into a model,
+subtract THAT, then make a continuum image, then subtract that, then maybe
+we have line and continuum?  Maybe?  I suspect this approach will require
+some sort of cube masking.</p>
+<p>Unfortunately, ft is again the problem:</p>
+<pre class="literal-block">
+2015-11-04 15:09:08 SEVERE  ft::imager::ft() (file /Users/rpmbuild/gradle/workdir/casaautobuild/release-4_5/code/synthesis/MeasurementEquations/Imager.cc, line 4488)       Exception: (/Users/rpmbuild/gradle/workdir/casaautobuild/release-4_5/darwin/include/casacore/lattices/Lattices/Lattice.tcc : 299) Failed AlwaysAssert shapeIn.isEqual (shapeOut)
+</pre>
+<p>Followup in early 2017: a cube-based approach is generally more successful.
+See Sanchez-Monge in prep and the related <a class="reference external" href="https://github.com/radio-astro-tools/statcont">statcont</a> software package.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/cvel-errors.html" rel="bookmark" title="Permalink to CVEL errors">
+                    CVEL errors</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-11-02T20:50:00-07:00"> 2015/11/02 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm trying to get a good image of the W51 main sources that have line forests.
+MFS clean does a pretty good job, but is very limited in dynamic range
+presumably because the spectral lines manifest as amplitude errors.</p>
+<p>I tried splitting the data to merge my two spectral windows using <cite>cvel</cite>
+(<a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/4c29c8dc763e3f994279d50db72b9a0dfc2a35b7/script_12m/split_for_localtests.py#L8">code</a>),
+but I see thousands of errors like this:</p>
+<pre class="literal-block">
+2015-11-02 19:52:15     WARN    SubMS::combineSpws()    Averaging failed for the following channel/correllation pairs from output row 44432 up to 44459. Corresponding visibilities will be flagged:
+2015-11-02 19:52:15     WARN    SubMS::combineSpws()+   (60, 0) (60, 1) (1804, 0) (1804, 1) (1998, 0) (1998, 1)
+</pre>
+<p>and when I image the cube, there is a jump at one channel that occurs because
+the resolution suddenly changes either because SPW3 (the lo-res SPW) is not
+included or because the hi-res one suddenly is.</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/cvel_jump.png" style="width: 400px;" />
+<p>It doesn't look like there's any obvious workaround at the moment, but I'll
+probably try sending another helpdesk ticket about this.</p>
+<p>My best idea for getting a decent continuum out now is something like this:</p>
+<blockquote>
+<ul class="simple">
+<li>image the whole cube in frequency</li>
+<li>determine channels that can approximate the bright continuum</li>
+<li>use those to uvcontsub the data</li>
+<li>image the uvcontsub'd cube</li>
+<li>uvsub the imaged spectral line cube from the original data</li>
+<li>re-image the now-continuum-only cube using mfs</li>
+</ul>
+</blockquote>
+<p>EDIT: Dirk replied to the helpdesk ticket, suggesting:</p>
+<pre class="literal-block">
+Concerning cvel: try to process one SPW at a time. Otherwise cvel will
+_combine_ the SPWs and if they are not observed at the same time, this will
+lead to problems.
+</pre>
+<p>So I've now <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/2d15ce46f9ecd75d70ab7ac4ee8f91b272139d9e/script_12m/split_for_localtests.py#L8">split the cvel into two commands</a>.
+I also added <cite>outframe='bary'</cite> because otherwise it's not obvious that the
+frequency command is doing anything
+sensible or useful.  That's actually probably why I was getting non-overlapping
+segments before - it tried converting to barycentric, but maybe too late in the
+process (i.e., it tried selecting in topo, then converting to bary for output).
+I also added a phasecenter, because it was automatically selecting pointing 24
+as the phasecenter for cvel before.</p>
+<p>This led to a new error:</p>
+<pre class="literal-block">
+2015-11-03 14:38:27     WARN    cvel::SubMS::convertGridPars     *** Requested new channel width is smaller than smallest original channel width
+2015-11-03 14:38:27     WARN    cvel::SubMS::convertGridPars+        which is 488319 Hz
+</pre>
+<p>which I've fixed by setting the output width to be 0.5 MHz, just a simple round
+number greater than the input even accounting for shift.  Unfortunately, this
+seems to have produced a dramatically larger output MS, which cannot be
+correct.... ahhh, it turns out that was temporary, once regridding was complete,
+it turned small again.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/casa-clean-errors-related-to-channels.html" rel="bookmark" title="Permalink to CASA clean errors related to channels">
+                    CASA clean errors related to channels</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-10-28T16:51:00-06:00"> 2015/10/28 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>When cleaning my ALMA data, especially when trying to <a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m/scriptForImaging.py#L120">image the full cube (all
+channels)</a>
+when there are multiple SBs
+with slightly different frequencies, I see this error frequently:</p>
+<blockquote>
+No valid data, skip CLEANing this channel</blockquote>
+<p>It seems that the channel really is being skipped in many cases.  In the Sgr B2
+cube, this wasn't a problem because I unintentionally cleaned only one of the
+observations.  For the W51 and Orion data, I tried to <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/script_12m/scriptForImaging_fullcube.py">include all of the data</a>,
+but that is causing problems.  Perhaps CASA does not work at all when 'channel'
+is specified and the channels aren't aligned?  Or maybe it only accepts channels
+when all channels exist?</p>
+<p>I've now redone the 'full cube' imaging to separately image the two SBs in W51.
+I'll see if that works...</p>
+<p>Nope, the resulting error is much worse:</p>
+<pre class="literal-block">
+Log:
+2015-10-28 15:49:01     INFO    imager::clean() Fitted beam used in restoration: 1.07809 by 0.913862 (arcsec) at pa -63.3899 (deg)
+2015-10-28 15:49:01     INFO    imager::iClean()        Restoring Image(s) with the clean-beam
+2015-10-28 15:49:02     SEVERE  clean::::       An error occurred running task clean.
+
+Terminal:
+*** Error ***  The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2015-10-28 15:49:02     SEVERE  clean::::       An error occurred running task clean.
+</pre>
+<p>This is an indication of a major underlying python bug.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/pyspeckit-is-py3-compatible.html" rel="bookmark" title="Permalink to pyspeckit is py3-compatible">
+                    pyspeckit is py3-compatible</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-10-28T10:28:00-06:00"> 2015/10/28 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>With PR <a class="reference external" href="https://github.com/pyspeckit/pyspeckit/pull/110">#110</a> and <a class="reference external" href="https://github.com/pyspeckit/pyspeckit/pull/111">#111</a>, pyspeckit is now (apparently)
+fully python3-compatible.  The test suite passes, but that's not a guarantee
+that I've caught all bugs in the translation.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/self-calibration-of-sgr-b2-mosaic.html" rel="bookmark" title="Permalink to Self-calibration of Sgr B2 Mosaic">
+                    Self-calibration of Sgr B2 Mosaic</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-10-14T14:30:00-06:00"> 2015/10/14 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The Sgr B2 ALMA data from project 2013.1.00269.S has imaging problems around
+the brightest sources, especially Sgr B2 M.
+Crystal Brogan &amp; Todd Hunter gave some useful advice, essentially the following:</p>
+<blockquote>
+<ul class="simple">
+<li>the line forest is causing trouble, so line-containing regions of the spectrum
+must be excluded when mapping</li>
+<li>there is some nasty curvature in the spectral baseline that needs to be removed
+probably by flagging out some of the data</li>
+<li>Self-calibration is needed to exceed a dynamic range ~100</li>
+</ul>
+</blockquote>
+<p>Todd developed a <cite>fitcontinuum.py</cite> script to address the first point, but I ended up
+doing this custom (<a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m/test_split_spw1.py">script</a>) because of the problem introduced by the second point.</p>
+<p>To exclude the lines, I had to use <em>frequency-based</em> selection, not channel based, because my
+spectral windows from different dates were offset by 10 MHz.  The approach to use in CASA is
+ugly: you flag the line-containing data, then split (and in splitting, average) the continuum
+into another MS.  From there, a phase-only selfcal is straigtforward (<a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m/selfcal_spw1_center.py">script</a>).</p>
+<img alt="" src="https://keflavich.github.io/blog/images/sgrb2/selfcal_compare.png" style="width: 800px;" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/sensitivity-plots-using-astroquery-nrao-tool.html" rel="bookmark" title="Permalink to Sensitivity Plots using astroquery NRAO tool">
+                    Sensitivity Plots using astroquery NRAO tool</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-10-09T14:00:00-06:00"> 2015/10/09 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I wanted to see what the approximate depth achieved by (repeated)
+VLA observations of a few sources was, at least theoretically.
+This is relatively easy to do:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<span class="kn">from</span> <span class="nn">astroquery.nrao</span> <span class="kn">import</span> <span class="n">Nrao</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">Nrao</span><span class="p">()</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">coordinates</span><span class="o">=</span><span class="n">coordinates</span><span class="o">.</span><span class="n">SkyCoord</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="s1">&#39;Sgr B2(M)&#39;</span><span class="p">),</span>
+                      <span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcmin</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">pylab</span> <span class="k">as</span> <span class="nn">pl</span>
+
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;Observing Freq&#39;</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;TOS&#39;</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Observed Frequency (GHz)&quot;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Time-on-Source (s)&quot;</span><span class="p">)</span>
+
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;Observing Freq&#39;</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;TOS&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;Bandwidth&#39;</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Observed Frequency (GHz)&quot;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Relative depth (Hz s)&quot;</span><span class="p">)</span>
+</pre></div>
+<img alt="" src="https://keflavich.github.io/blog/images/TOS_vs_freq.png" style="width: 800px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/depth_vs_freq.png" style="width: 800px;" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+            <a href="https://keflavich.github.io/blog/index5.html">&laquo;</a>
+    Page 6 / 51
+        <a href="https://keflavich.github.io/blog/index7.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

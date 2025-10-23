@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://keflavich.github.io/blog/regrid-an-image-or-cube-using-casa.html" rel="bookmark"
+         title="Permalink to Regrid an image (or cube) using CASA">Regrid an image (or cube) using CASA</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2013-12-18T17:52:00-07:00">
+      2013/12/18
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg <adam.g.ginsburg@gmail.com></a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>In order to regrid an image, you need some target reprojection.  The simplest way to acquire such a reprojection
+is by extracting it from another image, e.g. a <a class="reference external" href="casaguides.nrao.edu/index.php?title=FITStoImage">FITS image</a></p>
+<p>(I use <cite>&gt;&gt;&gt;</cite> to indicate the <cite>CASA &lt;#&gt;:</cite> prompt here because it allows you to copy &amp; paste the code into CASA)</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">header</span> <span class="o">=</span> <span class="n">imregrid</span><span class="p">(</span><span class="n">imagename</span><span class="o">=</span><span class="s1">&#39;file.image&#39;</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s1">&#39;get&#39;</span><span class="p">)</span>
+</pre></div>
+<p>This header will be a python dictionary with two keys, <cite>csys</cite>, which specifies
+the coordinate system, and <cite>shap</cite>, which gives the shape.</p>
+<p>If you want to write up your own FITS header and you don't have a FITS file
+with those exact coordinates, you can use the <a class="reference external" href="https://github.com/keflavich/casa_tools/blob/master/casa_tools/header_to_template.py#L11">header_to_template</a> convenience
+tool in <a class="reference external" href="https://github.com/keflavich/casa_tools">casa_tools</a>.</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">casa_tools</span> <span class="kn">import</span> <span class="n">header_to_template</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">fits_header</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">Header</span><span class="o">.</span><span class="n">fromtextfile</span><span class="p">(</span><span class="s1">&#39;my_header.hdr&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">header</span> <span class="o">=</span> <span class="n">header_to_template</span><span class="p">(</span><span class="n">fits_header</span><span class="p">)</span>
+</pre></div>
+<p>In order to regrid the file, you then need to pass in the image name and template to imregrid.</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">imregrid</span><span class="p">(</span><span class="n">imagename</span><span class="o">=</span><span class="s1">&#39;file.image&#39;</span><span class="p">,</span>
+<span class="o">...</span>          <span class="n">template</span><span class="o">=</span><span class="n">header</span><span class="p">,</span>
+<span class="o">...</span>          <span class="n">output</span><span class="o">=</span><span class="s1">&#39;file_regrid.image&#39;</span><span class="p">)</span>
+</pre></div>
+<p>If your input image's header did not include a 'telescope' keyword, CASA will complain:</p>
+<blockquote>
+2013-12-18 16:46:33 SEVERE  imregrid::ImageRegrid::regrid (file /opt/casa/release-4_1_0-release-1/darwin64/include/casacore/images/Images/ImageRegrid.tcc, line 118)        Cannot find the observatory name UNKNOWN in the CASA</blockquote>
+<p>You can add the keyword to the header yourself:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">imhead</span><span class="p">(</span><span class="s1">&#39;file.image&#39;</span><span class="p">,</span>
+<span class="o">...</span>        <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;put&#39;</span><span class="p">,</span>
+<span class="o">...</span>        <span class="n">hdkey</span><span class="o">=</span><span class="s1">&#39;telescope&#39;</span><span class="p">,</span>
+<span class="o">...</span>        <span class="n">hdvalue</span><span class="o">=</span><span class="s1">&#39;Arecibo&#39;</span><span class="p">)</span>
+</pre></div>
+<div class="section" id="references">
+<h2>References</h2>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://www.eso.org/projects/alma/arc/tw/pub/External/EUARCCASATutorialJan2012/ImageAnalysis-CASA.pdf">Sebastian Muller's presentation</a> (page 16)</li>
+<li><a class="reference external" href="http://casa.nrao.edu/docs/casaref/image.regrid.html">imregrid docs</a></li>
+</ul>
+</blockquote>
+</div>
+
+  </div><!-- /.entry-content -->
+</section>
+
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</section>
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  var disqus_identifier = '/regrid-an-image-or-cube-using-casa.html';
+  var disqus_url = 'https://keflavich.github.io/blog/regrid-an-image-or-cube-using-casa.html';
+  var disqus_title = 'Regrid an image (or cube) using CASA';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

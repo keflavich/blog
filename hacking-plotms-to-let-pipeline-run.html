@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://keflavich.github.io/blog/hacking-plotms-to-let-pipeline-run.html" rel="bookmark"
+         title="Permalink to Hacking plotms to let pipeline run">Hacking plotms to let pipeline run</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2022-04-11T08:02:00-06:00">
+      2022/04/11
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>For the ACES project, I'm re-running the ALMA pipeline using MPI.</p>
+<p>However, this results in all runs crashing with the following error:</p>
+<div class="highlight"><pre><span></span>2022-04-06 04:22:43 INFO: Executing plotms(vis=&#39;uid___A002_Xf512ae_X2626.ms&#39;, xaxis=&#39;azimuth&#39;, yaxis=&#39;elevation&#39;, spw=&#39;25:0~0,27:0~0,29:0~0,31:0~0,33:0~0,35:0~0&#39;, antenna=&#39;0&amp;&amp;*&#39;, avgchannel=&#39;9000&#39;, avgtime=&#39;10&#39;, coloraxis=&#39;field&#39;, customflaggedsymbol=True, flaggedsymbolshape=&#39;autoscaling&#39;, title=&#39;Elevation vs Azimuth for uid___A002_Xf512ae_X2626.ms&#39;, plotfile=&#39;azel.png&#39;, showgui=False, clearplots=True)
+fuse: failed to exec fusermount: No such file or directory
+
+Cannot mount AppImage, please check your FUSE setup.
+You might still be able to extract the contents of this AppImage
+if you run it with the --appimage-extract option.
+See https://github.com/AppImage/AppImageKit/wiki/FUSE
+for more information
+open dir error: No such file or directory
+</pre></div>
+<p>This fails even if I set the global APPIMAGE_EXTRACT_AND_RUN as <a class="reference external" href="https://docs.appimage.org/user-guide/troubleshooting/fuse.html#extract-and-run-type-2-appimages">directed</a>
+on the appimage.org docs.</p>
+<p>This indicates that the appimage is older than the environmental variable.</p>
+<p>Running the full command &quot;works&quot;:
+<tt class="docutils literal"><span class="pre">/orange/adamginsburg/casa/casa-6.2.1-7-pipeline-2021.2.0.128/lib/py/lib/python3.6/site-packages/casaplotms/__bin__/casaplotms-x86_64.AppImage</span> <span class="pre">--appimage-extract</span></tt>
+but <tt class="docutils literal"><span class="pre">--appimage-extract-and-run</span></tt> gives <tt class="docutils literal"><span class="pre">--appimage-extract-and-run</span> is not yet implemented in version <span class="pre">continuous-1-g6f3138f</span></tt></p>
+<p>So to run plotms, we need to use the <tt class="docutils literal">AppRun</tt> executable in the extracted <tt class="docutils literal"><span class="pre">squashfs-root</span></tt> directory.</p>
+<p>My original hack was to just tell plotms not to run at all, which I accomplished by editing the
+<tt class="docutils literal">plotmstool.py</tt> file (<tt class="docutils literal"><span class="pre">lib/py/lib/python3.6/site-packages/casaplotms/private/plotmstool.py</span></tt>) to
+just skip the <tt class="docutils literal">__launch</tt> command:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">__launch</span><span class="p">(</span> <span class="n">uri</span><span class="o">=</span><span class="kc">None</span> <span class="p">):</span>
+    <span class="k">return</span>
+</pre></div>
+<p>However, in writing this post, I've changed to instead modifying the <tt class="docutils literal">app_path</tt> to this:</p>
+<div class="highlight"><pre><span></span><span class="n">app_path</span> <span class="o">=</span> <span class="s2">&quot;/tmp/casaplotms/squashfs-root/AppRun&quot;</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">__os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">app_path</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Did not find extracted path </span><span class="si">{</span><span class="n">app_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">app_path</span> <span class="o">=</span> <span class="n">__os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="n">__os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span> <span class="n">__os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">__os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span><span class="s2">&quot;..&quot;</span><span class="p">)</span> <span class="p">),</span> <span class="s1">&#39;__bin__/casaplotms-x86_64.AppImage&#39;</span><span class="p">)</span>
+</pre></div>
+<p>I haven't tried it but I'm slightly hopeful.</p>
+
+  </div><!-- /.entry-content -->
+</section>
+
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</section>
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  var disqus_identifier = '/hacking-plotms-to-let-pipeline-run.html';
+  var disqus_url = 'https://keflavich.github.io/blog/hacking-plotms-to-let-pipeline-run.html';
+  var disqus_title = 'Hacking plotms to let pipeline run';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

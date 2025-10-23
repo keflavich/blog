@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - googlepost</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2012/12/26
+                  <br>
+                  <a href="https://keflavich.github.io/blog/catalog-vs-image-shift-a-possible-solution-to-the-atlasgal-issue.html">Catalog vs Image shift? A possible solution to the ATLASGAL issue</a>
+              </li>
+              <li class="post">
+                  2012/12/22
+                  <br>
+                  <a href="https://keflavich.github.io/blog/idea-multispectral-eigenimage-decomposition.html">Idea: Multispectral Eigenimage decomposition...</a>
+              </li>
+              <li class="post">
+                  2012/12/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pointing-cross-correlation-yet-again.html">Pointing & Cross-Correlation yet again</a>
+              </li>
+              <li class="post">
+                  2012/11/21
+                  <br>
+                  <a href="https://keflavich.github.io/blog/the-peculiar-balmer-decrement-of-sn-2009ip-constraints-on-circumstellar-geometry.html">The Peculiar Balmer Decrement of SN 2009ip: Constraints on Circumstellar Geometry</a>
+              </li>
+              <li class="post">
+                  2012/11/21
+                  <br>
+                  <a href="https://keflavich.github.io/blog/galactic-h2co-densitometry-i-pilot-survey-of-ultracompact-hii-regions-and-methodology.html">Galactic H2CO Densitometry I: Pilot survey of Ultracompact HII regions and methodology</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/mac-terminal-stuff.html" rel="bookmark" title="Permalink to Mac terminal stuff">
+                    Mac terminal stuff</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>xterm-color has some annoying features when SSHing to other compys,
+including 'top' not functioning properly. The error I receive:
+<tt class="docutils literal">top: no termcap entry for a <span class="pre">`xterm-color'</span> terminal</tt>
+The solution:
+<a class="reference external" href="http://www.macosxhints.com/article.php?story=20031031185759986">From MacOSXhints</a>, in bash just add <tt class="docutils literal">export <span class="pre">TERM=&quot;vt100&quot;</span></tt> to your
+<tt class="docutils literal">.profile</tt> file.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/macvim-crash.html" rel="bookmark" title="Permalink to macvim crash">
+                    macvim crash</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><p>well, it finally happened.... my reliable, trusty editor crashed. That
+should be impossible. I am ready to call it quits for the week....</p>
+<pre class="literal-block">
+Process:         MacVim [650]Path:            /Applications/Vim.app/Contents/MacOS/MacVimIdentifier:      org.vim.MacVimVersion:         7.2 (49)Code Type:       X86 (Native)Parent Process:  Vim [649]Date/Time:       2010-02-25 13:12:43.001 -0700OS Version:      Mac OS X 10.6.2 (10C540)Report Version:  6Interval Since Last Report:          871676 secCrashes Since Last Report:           26Per-App Interval Since Last Report:  938504 secPer-App Crashes Since Last Report:   1Anonymous UUID:                      03159B9E-2257-4E38-8C4A-4D4DAF5641A7Exception Type:  EXC_BAD_ACCESS (SIGSEGV)Exception Codes: 0x000000000000000d, 0x0000000000000000Crashed Thread:  0  Dispatch queue: com.apple.main-threadThread 0 Crashed:  Dispatch queue: com.apple.main-thread0   com.apple.CoreFoundation       0x99119480 __CFSetCallback + 01   com.apple.CoreFoundation       0x990c78bc ___CFBasicHashFindBucket1 + 4442   com.apple.CoreFoundation       0x990cfaac CFBasicHashFindBucket + 2523   com.apple.CoreFoundation       0x990e8293 CFSetGetValue + 1314   com.apple.AppKit               0x961bae7e -[NSWindow _discardTrackingRect:] + 595   com.apple.AppKit               0x961badca -[NSView(NSInternal) _uninstallTrackingArea:] + 1236   com.apple.AppKit               0x960d2c32 -[NSView(NSInternal) _uninstallRemovedTrackingAreas] + 2937   com.apple.AppKit               0x960dac40 -[NSView(NSInternal) _updateTrackingAreas] + 6468   com.apple.CoreFoundation       0x990ea4e0 CFArrayApplyFunction + 2249   com.apple.AppKit               0x960daefb -[NSView(NSInternal) _updateTrackingAreas] + 134510  com.apple.CoreFoundation       0x990ea4e0 CFArrayApplyFunction + 22411  com.apple.AppKit               0x960daefb -[NSView(NSInternal) _updateTrackingAreas] + 134512  com.apple.CoreFoundation       0x990ea4e0 CFArrayApplyFunction + 22413  com.apple.AppKit               0x960daefb -[NSView(NSInternal) _updateTrackingAreas] + 134514  com.apple.AppKit               0x960da8db _handleInvalidCursorRectsNote + 39215  com.apple.CoreFoundation       0x99135892 __CFRunLoopDoObservers + 118616  com.apple.CoreFoundation       0x990f218d __CFRunLoopRun + 55717  com.apple.CoreFoundation       0x990f1864 CFRunLoopRunSpecific + 45218  com.apple.CoreFoundation       0x990f1691 CFRunLoopRunInMode + 9719  com.apple.HIToolbox            0x936f6f0c RunCurrentEventLoopInMode + 39220  com.apple.HIToolbox            0x936f6bff ReceiveNextEventCommon + 15821  com.apple.HIToolbox            0x936f6b48 BlockUntilNextEventMatchingListInMode + 8122  com.apple.AppKit               0x960b0ac5 _DPSNextEvent + 84723  com.apple.AppKit               0x960b0306 -[NSApplication nextEventMatchingMask:untilDate:inMode:dequeue:] + 15624  com.apple.AppKit               0x9607249f -[NSApplication run] + 82125  com.apple.AppKit               0x9606a535 NSApplicationMain + 57426  org.vim.MacVim                 0x0000238b _start + 20927  org.vim.MacVim                 0x000022b9 start + 41Thread 1:  Dispatch queue: com.apple.libdispatch-manager0   libSystem.B.dylib              0x98d0c0ea kevent + 101   libSystem.B.dylib              0x98d0c804 _dispatch_mgr_invoke + 2152   libSystem.B.dylib              0x98d0bcc3 _dispatch_queue_invoke + 1633   libSystem.B.dylib              0x98d0ba68 _dispatch_worker_thread2 + 2344   libSystem.B.dylib              0x98d0b4f1 _pthread_wqthread + 3905   libSystem.B.dylib              0x98d0b336 start_wqthread + 30Thread 2:0   libSystem.B.dylib              0x98ce58da mach_msg_trap + 101   libSystem.B.dylib              0x98ce6047 mach_msg + 682   com.apple.CoreFoundation       0x990f277f __CFRunLoopRun + 20793   com.apple.CoreFoundation       0x990f1864 CFRunLoopRunSpecific + 4524   com.apple.CoreFoundation       0x990f1691 CFRunLoopRunInMode + 975   com.apple.Foundation           0x91b24430 +[NSURLConnection(NSURLConnectionReallyInternal) _resourceLoadLoop:] + 3296   com.apple.Foundation           0x91aeb8d8 -[NSThread main] + 457   com.apple.Foundation           0x91aeb888 __NSThread__main__ + 14998   libSystem.B.dylib              0x98d12fbd _pthread_start + 3459   libSystem.B.dylib              0x98d12e42 thread_start + 34Thread 3:0   libSystem.B.dylib              0x98d04856 select$DARWIN_EXTSN + 101   com.apple.CoreFoundation       0x99131ddd __CFSocketManager + 10852   libSystem.B.dylib              0x98d12fbd _pthread_start + 3453   libSystem.B.dylib              0x98d12e42 thread_start + 34Thread 4:0   libSystem.B.dylib              0x98d0b182 __workq_kernreturn + 101   libSystem.B.dylib              0x98d0b718 _pthread_wqthread + 9412   libSystem.B.dylib              0x98d0b336 start_wqthread + 30Thread 0 crashed with X86 Thread State (32-bit):  eax: 0x00515db0  ebx: 0x990c7711  ecx: 0x00516460  edx: 0xbfffcabc  edi: 0x00001041  esi: 0x00504270  ebp: 0xbfffca38  esp: 0xbfffc99c   ss: 0x0000001f  efl: 0x00010246  eip: 0x99119480   cs: 0x00000017   ds: 0x0000001f   es: 0x0000001f   fs: 0x00000000   gs: 0x00000037  cr2: 0x97a20000
+</pre>
+</p> </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/major-mac-problems.html" rel="bookmark" title="Permalink to Major mac problems">
+                    Major mac problems</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The errors are, in short:</p>
+<ul class="simple">
+<li>Browser stops responding / starts returning &quot;page not found&quot;
+(indicating a failure of mDNSResponder)</li>
+<li>killing mDNSResponder sometimes brings browser back, but more often
+leads to a partial system freeze (some windows don't respond, can't
+switch between windows except by clicking)</li>
+<li>/var/log/system.log gets flooded with &quot;too many files open&quot; errors.</li>
+<li>somewhere in here the Dock fails</li>
+<li>killing Google Chrome and/or the Dock fails; the process never halts
+(even kill -9 + kill -s SIGCHLD)</li>
+<li>usually one or two crash reports pop up, at least one of which is for
+crash_reporter</li>
+<li>system.log stops getting flooded, but the browser and Dock never
+recover</li>
+</ul>
+<p>The only message in system.log that gives me any hint about what might
+be happening is occasionally a freeze was resolved at the same time as
+this message: Jun 22 19:02:09 eta Quicksilver[93771]: Multiple Scans
+Attempted but it doesn't seem to change the situation if quicksilver is
+open or not. Google has nothing on this issue, either, except for the
+quicksilver source code, so evidently it has not caused problems for
+other people system.log was also being flooded with this message:</p>
+<pre class="literal-block">
+Jun 23 08:57:19 eta postfix/master[99954]: fatal: open /dev/null: Bad file descriptorJun 23 08:57:20 eta com.apple.launchd[1] (org.postfix.master[99954]): Exited with exit code: 1Jun 23 08:57:20 eta com.apple.launchd[1] (org.postfix.master): Throttling respawn: Will start in 9 seconds
+</pre>
+<p>so I disabled my postman:</p>
+<pre class="literal-block">
+Jun 23 08:57:27 eta sudo[99955]: adam : TTY=ttys006 ; PWD=/Users/adam/proposals/alma ; USER=root ; COMMAND=/bin/launchctl unload -w /System/Library/LaunchDaemons/org.postfix.master.plist
+</pre>
+<p>These errors:</p>
+<pre class="literal-block">
+Jun 23 09:06:40 eta Dock[99877]: kCGErrorIllegalArgument: CGSSetWindowTransformAtPlacement: Singular matrix [nan 0.000 0.000 nan]Jun 23 09:06:40 eta com.apple.Dock.agent[99877]: Thu Jun 23 09:06:40 eta.colorado.edu Dock[99877] : kCGErrorIllegalArgument: CGSSetWindowTransformAtPlacement: Singular matrix [nan 0.000 0.000 nan]
+</pre>
+<p>are correlated with opening Chrome windows and/or Chrome's
+crash_inspector</p>
+<pre class="literal-block">
+Jun 23 09:06:09 eta [0x0-0x69e69e].com.google.Chrome[99995]: [99995:24579:485131152128125:ERROR:shared_memory_posix.cc(164)] Creating shared memory in /var/folders/ni/ni+DtdqFGMeSMH13AvkNkU+++TI/-Tmp-/.com.google.chrome.sHcu6r failed: Too many open files in system
+</pre>
+<p>This is the problem that really gets me... I think it's
+crash_inspector's fault.
+But there's definitely more going on here than just Chrome. Trying to
+change default browsers (by opening Safari and opening Preferences) led
+to a partial Dock crash (?!) in which I can alt-tab but can't see the
+Dock. Not clear at all what's going on.... argh.</p>
+</p> </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/make-pdfs-open-with-the-thumbnails-window-open.html" rel="bookmark" title="Permalink to Make PDFs open with the thumbnails window open">
+                    Make PDFs open with the thumbnails window open</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Neat trick I picked up from here:
+<a class="reference external" href="http://www.ghostscript.com/~ghostgum/pdftips.htm">http://www.ghostscript.com/~ghostgum/pdftips.htm</a>
+Add this code:
+``  special{! /pdfmark               [/View [/XYZ null null 1]  % unspecified x and y offset, 100% zoom               /Page 1               /PageMode /UseThumbs % /UseNone /UserOutlines /UseThumbs /FullScreen              /DOCVIEW pdfmark               }``
+to a LaTeX document (probably near the top) and when you ps2pdf it, it
+will open the PDF with the thumbnail bar open. This is very useful for
+proofreading after you latex a file. Of course, xdvi also works well for
+this, but xdvi is VERY unstable on the Mac. At least adobe, being a
+native Mac program, doesn't crash as often.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/making-a-postscript-plot-of-a-gigantic-fits-image.html" rel="bookmark" title="Permalink to Making a postscript plot of a gigantic fits image">
+                    Making a postscript plot of a gigantic fits image</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>``    map = readfits('MOSAIC.fits',hdr)    crpix1 = sxpar(hdr,'CRPIX1')    crpix2 = sxpar(hdr,'CRPIX2')    crval1 = sxpar(hdr,'CRVAL1')    crval2 = sxpar(hdr,'CRVAL2')    cd1_1 = sxpar(hdr,'CD1_1')    cd2_2 = sxpar(hdr,'CD2_2')       x = lindgen(n_e(map[<em>,0]))    y = lindgen(n_e(map[0,</em>]))    l = (x-crpix1)*cd1_1+crval1-360    b = (y-crpix2)*cd2_2+crval2    imdisp,map,/axis,xrange=[max(l),min(l)],yrange=[min(b),max(b)],range=[-1,8]``
+This code makes use of <a class="reference external" href="http://cimss.ssec.wisc.edu/~gumley/idl/imdisp.pro">imdisp.pro</a>.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/marc-pounds-toolbox.html" rel="bookmark" title="Permalink to Marc Pound's toolbox">
+                    Marc Pound's toolbox</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>This is neat:
+<a class="reference external" href="http://dustem.astro.umd.edu/pdrt/quickmodels.html">Line Ratio as a function of density, incident flux from Marc Pound</a>.
+Sadly, straight CO 3-2 intensity isn't included, but perhaps I can
+create that myself.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/mathematica.html" rel="bookmark" title="Permalink to mathematica">
+                    mathematica</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>//. and /. use 'rules' of the form {x-&gt;y} for substitutions
+how do you make the layout of a page look nice? How do you change line
+spacing?</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/mathematica-series-expansions.html" rel="bookmark" title="Permalink to Mathematica & Series expansions">
+                    Mathematica &amp; Series expansions</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Mathematica does something stupid and incomprehensible (to me) with
+their series expansions. For no clear reason, it makes the
+O[x]<sup>n</sup> uneditable, and adds a bunch of formatting things that
+prevent you from copying &amp; pasting the expression and then solving for a
+variable. Argh. While this is repairable using the &quot;show expression&quot;
+tool (Shift-Apple-E), it's a pain and &quot;show expression&quot; is not meant to
+be human readable.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/matplotlib-64-bit-installs-never-work.html" rel="bookmark" title="Permalink to matplotlib 64 bit installs never work">
+                    matplotlib 64 bit installs never work</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>a clue as to why:
+functional ft2font.so:
+<tt class="docutils literal">$ otool <span class="pre">-L</span> <span class="pre">/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/matplotlib/ft2font.so</span> <span class="pre">/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/matplotlib/ft2font.so:</span> /usr/local/lib/libfreetype.6.dylib (compatibility version 10.0.0, current version 10.22.0) /usr/lib/libz.1.dylib (compatibility version 1.0.0, current version 1.2.3) <span class="pre">/usr/local/lib/libstdc++.6.dylib</span> (compatibility version 7.0.0, current version 7.14.0) /usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 125.2.11)</tt>
+nonfunctional ft2font.so:
+<tt class="docutils literal">$ otool <span class="pre">-L</span> <span class="pre">/Users/adam/repos/yt/yt-i386/lib/python2.7/site-packages/matplotlib/ft2font.so/Users/adam/repos/yt/yt-i386/lib/python2.7/site-packages/matplotlib/ft2font.so:</span> <span class="pre">/Users/adam/repos/yt/yt-i386/lib/libfreetype.6.dylib</span> (compatibility version 13.0.0, current version 13.2.0) <span class="pre">/Users/adam/repos/yt/yt-i386//lib/libz.1.dylib</span> (compatibility version 1.0.0, current version 1.2.3) <span class="pre">/usr/local/lib/libstdc++.6.dylib</span> (compatibility version 7.0.0, current version 7.14.0) /usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 125.2.11) /usr/local/lib/libgcc_s.1.dylib (compatibility version 1.0.0, current version 1.0.0)</tt>
+The culprit is the difference between those two (maybe?):
+<tt class="docutils literal">$ file /usr/local/lib/libgcc_s.1.dylib/usr/local/lib/libgcc_s.1.dylib: <span class="pre">Mach-O</span> universal binary with 4 architectures/usr/local/lib/libgcc_s.1.dylib (for architecture i386): <span class="pre">Mach-O</span> dynamically linked shared library i386/usr/local/lib/libgcc_s.1.dylib (for architecture x86_64): <span class="pre">Mach-O</span> <span class="pre">64-bit</span> dynamically linked shared library x86_64/usr/local/lib/libgcc_s.1.dylib (for architecture ppc): <span class="pre">Mach-O</span> dynamically linked shared library ppc/usr/local/lib/libgcc_s.1.dylib (for architecture ppc64): <span class="pre">Mach-O</span> <span class="pre">64-bit</span> dynamically linked shared library ppc64$ otool <span class="pre">-L</span> /usr/local/lib/libgcc_s.1.dylib/usr/local/lib/libgcc_s.1.dylib: /usr/local/lib/libgcc_s.1.dylib (compatibility version 1.0.0, current version 1.0.0) /usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 88.3.9)</tt></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/mercurial-behave-like-svn.html" rel="bookmark" title="Permalink to Mercurial - behave like SVN?">
+                    Mercurial - behave like SVN?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm trying to use hooks to make mercurial behave like svn when
+committing. I like the idea that I can commit changes to my cloned repo
+while I'm away from the internet, but I never want that behavior when I
+do have internet access. Therefore, I want to attempt to pull before
+updating and attempt to push after committing. Every time. I have been
+consistently very unhappy with the <tt class="docutils literal">hg merge</tt> command.
+<tt class="docutils literal">[hooks]precommit = hg pull; hg uppostcommit= hg <span class="pre">pushpost-pull</span> = hg up</tt>
+However, this doesn't work. precommit freezes with the error
+<tt class="docutils literal">waiting for lock on working directory of [dir] held by [procnum]</tt>
+and pre-commit results in other errors:
+<tt class="docutils literal">running hook <span class="pre">pre-commit:</span> hg pull; hg uppulling from [source]searching for changesno changes foundrunning hook <span class="pre">post-pull:</span> hg upabort: outstanding uncommitted mergeswarning: <span class="pre">post-pull</span> hook exited with status 255abort: outstanding uncommitted mergeswarning: <span class="pre">pre-commit</span> hook exited with status 255</tt>
+<a class="reference external" href="http://casa.colorado.edu/~ginsbura/index.htm">AG</a></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+            <a href="https://keflavich.github.io/blog/tag/googlepost8.html">&laquo;</a>
+    Page 9 / 36
+        <a href="https://keflavich.github.io/blog/tag/googlepost10.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

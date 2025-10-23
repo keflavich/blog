@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - uv combination</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2016/06/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/single-dish-interferometer-combination-experiments.html">Single Dish - Interferometer Combination Experiments</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/single-dish-interferometer-combination-experiments.html" rel="bookmark" title="Permalink to Single Dish - Interferometer Combination Experiments">
+                    Single Dish - Interferometer Combination Experiments</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-06-01T11:17:00-06:00"> 2016/06/01 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I spent 3 days in Köln with Alvaro Sanchez-Mongé, Peter Schilke, Fanyi Meng,
+and Anika Schmiedeke working on Sgr B2 data and specifically on trying to
+combine the single dish (total power) data with my merged ACA+12m data from
+ALMA program 2013.1.00269.S.</p>
+<p>tl;dr: feathering appears to work fine, and many other methods work equally
+well (assuming they can be implemented, which is uniformly harder).  Negative
+bowls persisting after feathering are an indication of a problem with the input
+data.</p>
+<div class="section" id="feathering">
+<h2>Feathering</h2>
+<p>Fourier space combination of the single-dish and interferometric data is by
+far the most straightforward to implement and the fastest.  However, in the HC3N
+data, it left strong negative bowls, which should not be possible.</p>
+<p>On the Einstein image, the image quality from feathering was not great, but
+there were no negative bowls left.  The dynamic range is lower in the Einstein
+data, but this still hints that there is a problem with the HC3N images.  We're
+investigating the possibility that the 7m data are improperly calibrated or
+weighted.</p>
+</div>
+<div class="section" id="miriad">
+<h2>Miriad</h2>
+<p>We never managed to create UV data from the single dish data because of complaints about
+the pointing information.</p>
+</div>
+<div class="section" id="cleaning-with-a-single-dish-image-as-an-input-model">
+<h2>Cleaning with a single dish image as an input model</h2>
+<p>We attempted to clean the data using the single dish image as an input model.</p>
+<p>On the real data, this failed with both tclean and clean.  With <tt class="docutils literal">tclean</tt>, there
+was no error message, it just hung indefinitely.
+With <tt class="docutils literal">clean</tt>, the error message is:</p>
+<pre class="literal-block">
+*** Error ***  LatticeExprNode - coordinates of operands mismatch
+Scanned so far: modelos_0 + __temp_model2
+
+2016-06-01 10:35:05     SEVERE  clean::::       An error occurred running task clean.
+</pre>
+<p>Changing CDELT to 1 GHz, which solved a previous issue, had no effect here.</p>
+<p>It turns out <tt class="docutils literal">tclean</tt> will fail silently if it doesn't find the
+<tt class="docutils literal">startmodel</tt>, which has to be specified as an image <em>prefix</em> for version
+&lt;=4.6, and the image has to exist as a <tt class="docutils literal">.model</tt> file.  For higher versions, 4.6+,
+the model can be directly referenced (as in clean).  Eventually, tclean seems to have
+completed, though the results indicate that it does not treat the units as I expected;
+the total power data seems to be over-weighted by a factor of 10^3+, probably by the ratio
+of the beam areas:</p>
+<img alt="" src="http://i.imgur.com/8dW7t8I.png" style="width: 600px;" />
+<p>For the simulated images (einstein), we get the error:</p>
+<pre class="literal-block">
+2016-06-01 10:55:11 SEVERE  SynthesisImager::defineImage (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/ImagerObjects/SynthesisImager.cc, line 668)    Error in adding Mapper : Error in createImStore : ::operator!= (const IPosition&amp;, const IPosition&amp;) - left and right operand do not conform
+2016-06-01 10:55:11 SEVERE  tclean::task_tclean::   Exception from task_tclean : 2016-06-01 10:55:11        SEVERE  SynthesisImager::defineImage (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/ImagerObjects/SynthesisImager.cc, line 668)    Error in adding Mapper : Error in createImStore : ::operator!= (const IPosition&amp;, const IPosition&amp;) - left and right operand do not conform
+</pre>
+<p>This is probably an issue with regridding.  <tt class="docutils literal">imregrid</tt> doesn't like our data:</p>
+<pre class="literal-block">
+2016-06-01 11:00:41 SEVERE  imregrid::image::regrid Exception Reported: Exception: The number of pixel axes in the output shape and Coordinate System must be the same. Shape has size 4. Output coordinate system has 3 axes.
+2016-06-01 11:00:41 SEVERE  imregrid::image::regrid+        ... thrown by SPIIF casa::ImageRegridder::_regrid() const at File: /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/imageanalysis/ImageAnalysis/ImageRegridder.cc, line: 138
+</pre>
+<p>Adding a frequency axis to the FITS data (which was missing before...) seems to
+have fixed this error for the Einstein data, but not for the real HC3N data.</p>
+<!-- (this is now incorporated in an above paragraph) -->
+<!-- tclean appears to use the wrong units for the input model, treating that model -->
+<!-- very differently than ``clean`` does.  This error may be limited to CASA <= -->
+<!-- 4.5, since the tclean documentation regarding models changed substantially from -->
+<!-- 4.5 to 4.6. -->
+</div>
+<div class="section" id="linear-combination-in-image-space">
+<h2>Linear Combination in Image Space</h2>
+<p>Linear combination of the single dish and interferometer data in image space,
+followed by image-space deconvolution, has been used successfully on HI data.
+In principle, this is very straightforward, except for the need for
+deconvolution.  CASA now has an image-space deconvolution program
+(<tt class="docutils literal">deconvolve</tt>), so I was able to implement this approach.  However, the
+deconvolver seems to only work on the inner 1/4 of the image in each dimension,
+which left incomplete images that were difficult to compare.  Additionally,
+CASA does not (obviously) carry the appropriate machinery for computing the
+residual image and adding the convolved model back to the residual image.
+Still, this is a promising route forward as it is computationally relatively
+cheap and mostly easy to implement.</p>
+<p>Linear combination is partly implemented now using the CASA <tt class="docutils literal">deconvolve</tt> task;
+it hasn't been generalized but you can see the outline / single working case at
+<a class="reference external" href="https://github.com/radio-astro-tools/uvcombine/blob/master/uvcombine/realspace_combine.py">this link</a>.</p>
+<!-- this is how you include images -->
+<!-- .. image:: |static|/images/psfFfftF.png -->
+<!-- :width: 600px -->
+</div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

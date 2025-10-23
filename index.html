@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html" rel="bookmark" title="Permalink to Pushing to a pull request">
+                    Pushing to a pull request</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2025-03-15T00:00:00-06:00"> 2025/03/15 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>A very common workflow in open source development is for someone to open a pull request onto your (or the upstream) repository from their fork, and then if &quot;Maintainers are allowed to edit this pull request.&quot; is checked, you want to edit their PR.</p>
+<p>This is a pain in the ass if you try to use any documented command line tools.  Github docs tell you how to check out the PR, but not how to push it back - all of the online docs I found, and both chatGPT and Claude, require that you add the PR's fork as a remote.   That's stupid.</p>
+<p>The better way is:</p>
+<div class="highlight"><pre><span></span>git<span class="w"> </span>fetch<span class="w"> </span>origin<span class="w"> </span>pull/&lt;PULL_REQUEST_NUMBER&gt;/head:&lt;LOCAL_BRANCH_NAME&gt;
+<span class="c1"># ... make edits ...</span>
+git<span class="w"> </span>commit<span class="w"> </span>-am<span class="w"> </span><span class="s1">&#39;I edited the PR&#39;</span>
+git<span class="w"> </span>push<span class="w"> </span>git@github.com:&lt;contributor-name&gt;/&lt;repo-name&gt;.git<span class="w"> </span>&lt;LOCAL_BRANCH_NAME&gt;:&lt;REMOTE_BRANCH_NAME&gt;
+</pre></div>
+<p>so, for example, we tried this on my CV from <tt class="docutils literal">alissapajer</tt>:</p>
+<div class="highlight"><pre><span></span>git<span class="w"> </span>fetch<span class="w"> </span>origin<span class="w"> </span>pull/1/head:alissapajer-patch-1
+git<span class="w"> </span>checkout<span class="w"> </span>alissapajer-patch-1
+git<span class="w"> </span>commit<span class="w"> </span>-am<span class="w"> </span><span class="s1">&#39;blah&#39;</span>
+git<span class="w"> </span>push<span class="w"> </span>git@github.com:alissapajer/keflavich-cv.git<span class="w"> </span>HEAD:alissapajer-patch-1
+</pre></div>
+<p>(<cite>HEAD</cite> works here b/c I was still on that branch)</p>
+<p>It would also work, and be more explicit, to use the remote name:</p>
+<div class="highlight"><pre><span></span>git<span class="w"> </span>fetch<span class="w"> </span>git@github.com:alissapajer/keflavich-cv.git<span class="w"> </span>alissapajer-patch-1
+</pre></div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html" rel="bookmark" title="Permalink to Editing metadata in measurement sets">
+                    Editing metadata in measurement sets</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2023-08-11T15:34:00-06:00"> 2023/08/11 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I needed to update the position of VLA phase calibrator <a class="reference external" href="http://simbad.u-strasbg.fr/simbad/sim-id?Ident=%402384864&amp;Name=QSO%20J1744-3116&amp;submit=submit">J1744-3116</a> in my measurement sets.  The VLA coordinate is:</p>
+<blockquote>
+<tt class="docutils literal">17:33:02.705790 <span class="pre">-13.04.49.54823</span> J2000</tt></blockquote>
+<p>while the ALMA coordinate is</p>
+<blockquote>
+<tt class="docutils literal">17:44:23.578227 <span class="pre">-31.16.36.29204</span> ICRS</tt></blockquote>
+<p>and the SIMBAD coordinate is</p>
+<blockquote>
+<tt class="docutils literal">17 44 23.57824 <span class="pre">-31</span> 16 36.2943 ICRS</tt></blockquote>
+<p>These are separated by a significant amount:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span><span class="p">,</span> <span class="n">coordinates</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">vla_coord</span> <span class="o">=</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">SkyCoord</span><span class="p">(</span><span class="s2">&quot;17:33:02.705790 -13:04:49.54823&quot;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">),</span> <span class="n">frame</span><span class="o">=</span><span class="s1">&#39;fk5&#39;</span><span class="p">)</span>
+<span class="n">alma_coord</span> <span class="o">=</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">SkyCoord</span><span class="p">(</span><span class="s2">&quot;17:44:23.578227 -31:16:36.29204&quot;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">),</span> <span class="n">frame</span><span class="o">=</span><span class="s1">&#39;icrs&#39;</span><span class="p">)</span>
+<span class="n">simbad_coord</span> <span class="o">=</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">SkyCoord</span><span class="p">(</span><span class="s1">&#39;17 44 23.57824 -31 16 36.2943&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">),</span> <span class="n">frame</span><span class="o">=</span><span class="s1">&#39;icrs&#39;</span><span class="p">)</span>
+
+<span class="n">alma_coord</span><span class="o">.</span><span class="n">separation</span><span class="p">(</span><span class="n">vla_coord</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">)</span>
+<span class="c1"># &lt;Angle 0.28848595 arcsec&gt;</span>
+
+<span class="n">simbad_coord</span><span class="o">.</span><span class="n">separation</span><span class="p">(</span><span class="n">vla_coord</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">)</span>
+<span class="c1"># &lt;Angle 0.29071513 arcsec&gt;</span>
+
+<span class="n">simbad_coord</span><span class="o">.</span><span class="n">separation</span><span class="p">(</span><span class="n">alma_coord</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">)</span>
+<span class="c1"># &lt;Angle 0.00226614 arcsec&gt;</span>
+</pre></div>
+<p>This is caused by a typo in the VLA calibrator catalog (Lorant Sjouwerman, private communication).</p>
+<p>To fix it:</p>
+<div class="highlight"><pre><span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;22A-020.sb41257746.eb41788351.59700.31502699074/22A-020.sb41257746.eb41788351.59700.31502699074.ms/FIELD&#39;</span><span class="p">)</span>
+
+<span class="c1"># get the existing PHASE_DIR.  Shape is [coordinates, ?, sourceID]</span>
+<span class="n">phasedir</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s1">&#39;PHASE_DIR&#39;</span><span class="p">)</span>
+<span class="c1"># figure out which row contains the to-be-modified source</span>
+<span class="n">rownr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s1">&#39;NAME&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;J1744-3116&#39;</span><span class="p">)</span>
+<span class="c1"># modify the phasedir.  CASA expects coordinates to be wrapped at 180 deg</span>
+<span class="n">phasedir</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">rownr</span><span class="p">]</span> <span class="o">=</span> <span class="n">simbad_coord</span><span class="o">.</span><span class="n">fk5</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">wrap_at</span><span class="p">(</span><span class="mi">180</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span><span class="o">.</span><span class="n">rad</span><span class="p">,</span> <span class="n">simbad_coord</span><span class="o">.</span><span class="n">fk5</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">rad</span>
+
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="n">shutil</span><span class="o">.</span><span class="n">copytree</span><span class="p">(</span><span class="s1">&#39;22A-020.sb41257746.eb41788351.59700.31502699074/22A-020.sb41257746.eb41788351.59700.31502699074.ms/FIELD&#39;</span><span class="p">,</span> <span class="s1">&#39;22A-020.sb41257746.eb41788351.59700.31502699074/22A-020.sb41257746.eb41788351.59700.31502699074.ms/FIELD.backup&#39;</span><span class="p">)</span>
+<span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;22A-020.sb41257746.eb41788351.59700.31502699074/22A-020.sb41257746.eb41788351.59700.31502699074.ms/FIELD&#39;</span><span class="p">,</span> <span class="n">nomodify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">tb</span><span class="o">.</span><span class="n">putcol</span><span class="p">(</span><span class="n">columnname</span><span class="o">=</span><span class="s1">&#39;PHASE_DIR&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">phasedir</span><span class="p">)</span>
+<span class="n">tb</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+<span class="n">tb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+<p>Put all together:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span><span class="p">,</span> <span class="n">coordinates</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">simbad_coord</span> <span class="o">=</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">SkyCoord</span><span class="p">(</span><span class="s1">&#39;17 44 23.57824 -31 16 36.2943&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">),</span> <span class="n">frame</span><span class="o">=</span><span class="s1">&#39;icrs&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">glob</span><span class="o">,</span> <span class="nn">shutil</span>
+<span class="k">for</span> <span class="n">vis</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*/*.ms&quot;</span><span class="p">):</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copytree</span><span class="p">(</span><span class="n">vis</span><span class="o">+</span><span class="s2">&quot;/FIELD&quot;</span><span class="p">,</span> <span class="n">vis</span><span class="o">+</span><span class="s2">&quot;/FIELD.backup&quot;</span><span class="p">)</span>
+    <span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">vis</span><span class="o">+</span><span class="s2">&quot;/FIELD&quot;</span><span class="p">)</span>
+    <span class="n">phasedir</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s1">&#39;PHASE_DIR&#39;</span><span class="p">)</span>
+    <span class="n">rownr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s1">&#39;NAME&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;J1744-3116&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">rownr</span> <span class="o">!=</span> <span class="mi">0</span>
+    <span class="n">phasedir</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">rownr</span><span class="p">]</span> <span class="o">=</span> <span class="n">simbad_coord</span><span class="o">.</span><span class="n">fk5</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">wrap_at</span><span class="p">(</span><span class="mi">180</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span><span class="o">.</span><span class="n">rad</span><span class="p">,</span> <span class="n">simbad_coord</span><span class="o">.</span><span class="n">fk5</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">rad</span>
+    <span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">vis</span><span class="o">+</span><span class="s2">&quot;/FIELD&quot;</span><span class="p">,</span> <span class="n">nomodify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">tb</span><span class="o">.</span><span class="n">putcol</span><span class="p">(</span><span class="n">columnname</span><span class="o">=</span><span class="s1">&#39;PHASE_DIR&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">phasedir</span><span class="p">)</span>
+    <span class="n">tb</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+    <span class="n">tb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html" rel="bookmark" title="Permalink to CASA MPI debugging cont'd">
+                    CASA MPI debugging cont'd</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2022-05-06T09:08:00-06:00"> 2022/05/06 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I continue to try to get MPI to run to completion.</p>
+<p>Using casa-6.5.0-9-py3.8, the latest error on the W51 B3 mosaic (biggest in ALMA-IMF, approximately):
+2022-05-03 06:36:06     SEVERE  MPICommandServer::command_request_handler_service::CubeMajorCycleAlgorithm::task::MPIServer-2 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 137)      Exception (std): ArrayBase::validateConformance shape [3] differs from [4]</p>
+<p>This leads to a lot of frozen nodes:
+2022-05-03 19:29:17     SEVERE  MPIMonitorClient::monitor_status_service::MPIMonitorClient::monitor_status_service::casa        Ping status response from server 1 not received in the last 420s. Setting its status to 'timeout'</p>
+<p>This happens during the MakePSF stage.</p>
+<p>On G333.60 B6, which is smaller, the first exception I see is:
+2022-05-05 17:31:47     SEVERE  MPIMonitorClient::monitor_status_service::MPIMonitorClient::monitor_status_service::casa        Ping status response from server 4 not received in the last 85s. Setting its status to 'timeout'
+but... it looks like the clean actually finished!</p>
+<p>This is an odd one that happened during a major cycle, I think:</p>
+<p>2022-05-13 17:47:25     WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-19 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336)        Exception for chan range [144, 151] ---   Setting masked pixels to zero for input startmodel : Er
+ror (Resource deadlock avoided) when acquiring lock on /blue/adamginsburg/adamginsburg/almaimf/workdir/G328.25_B6_spw4_12M_spw4.contcube.model/table.lock</p>
+<p>This one resulted in the residual and image being identical past some point in the spectrum, i.e., it gave up partway through writing to disk.  There was NO CASA error!  Just a miserable segfault</p>
+<p>[c0711a-s25:60411] <strong>* Process received signal *</strong>
+[c0711a-s25:60411] Signal: Segmentation fault (11)
+[c0711a-s25:60411] Signal code: Address not mapped (1)
+[c0711a-s25:60411] Failing at address: 0x2d867e04f000</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html" rel="bookmark" title="Permalink to CO2 Monitoring at Conferences: Update in 2022">
+                    CO2 Monitoring at Conferences: Update in 2022</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2022-05-01T09:15:00-06:00"> 2022/05/01 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I started monitoring CO2 levels at conferences a couple years back, and now
+that we're having in-person conferences again, I'm doing more monitoring.</p>
+<p>The last I attended was <a class="reference external" href="https://www2.mpia-hd.mpg.de/homes/stein/EPoS/2022/epos2022.php">EPOS 2022</a>, which is
+probably my favorite recurring conference because of its venue, size, and schedule.
+There is time to talk to everyone you want to about all topics.</p>
+<p>I gave a <a class="reference external" href="https://keflavich.github.io/talks/EPOS_2022.html">talk</a> on the
+small disks in Orion.</p>
+<p>The monitoring results are here:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/EPOS2022.png" style="width: 600px;" />
+<p>I missed day 1 because I forgot the USB cable in my room, then I had some
+electrical connection problems day 2 (the USB-C port on my computer is...
+finnicky).  But besides that, you can see clear trends on day 1 and part of
+day 2 where the CO2 was rapidly rising to uncomfortable levels.</p>
+<p>The blue zones are the scheduled breaks.  During the breaks, the room was
+almost totally empty and we usually opened the doors and windows.</p>
+<p>I shared the day 2 data with the conference organizers and they then
+prioritized opening the windows.  There was one period I think we opted
+not to because it started snowing for a few minutes.</p>
+<p>On the last day, I'm not sure why the CO2 didn't go down during the break - it
+may be that windows were open only one one side of the room, so there was only
+diffusion, not flow.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html" rel="bookmark" title="Permalink to ALMA Cycle 9 corrupted zip fix">
+                    ALMA Cycle 9 corrupted zip fix</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2022-04-14T09:18:00-06:00"> 2022/04/14 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>If you encounter a bug like this:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/ALMAC9ZipBug.png" style="width: 600px;" />
+<p>&quot;XML (syntax or validity) error&quot; because you hit issue <a class="reference external" href="https://almascience.eso.org/documents-and-tools/cycle9/known-issues">C1_032</a>,
+the fix is really easy:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">zipfile</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># not strictly necessary, but important if you want to avoid filling your directory with files</span>
+<span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">&#39;recovery&#39;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">&#39;recovery&#39;</span><span class="p">)</span>
+
+<span class="c1"># replace with your AOT file name</span>
+<span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="s1">&#39;../corrupted.aot&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">aot</span><span class="p">:</span>
+    <span class="c1"># this will extract all the files into the current directory</span>
+    <span class="n">aot</span><span class="o">.</span><span class="n">extractall</span><span class="p">()</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="n">aot</span><span class="o">.</span><span class="n">filelist</span>
+
+<span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="s1">&#39;../recovered.aot&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">aot</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">fh</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+        <span class="n">aot</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fh</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+<p>At least, this worked on the one case where I got bitten.</p>
+<p>This fix is based on <a class="reference external" href="https://github.com/low-sky/alma_proposal_tools">Erik Rosolowsky's ALMA proposal tools</a></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/hacking-plotms-to-let-pipeline-run.html" rel="bookmark" title="Permalink to Hacking plotms to let pipeline run">
+                    Hacking plotms to let pipeline run</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2022-04-11T08:02:00-06:00"> 2022/04/11 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>For the ACES project, I'm re-running the ALMA pipeline using MPI.</p>
+<p>However, this results in all runs crashing with the following error:</p>
+<div class="highlight"><pre><span></span>2022-04-06 04:22:43 INFO: Executing plotms(vis=&#39;uid___A002_Xf512ae_X2626.ms&#39;, xaxis=&#39;azimuth&#39;, yaxis=&#39;elevation&#39;, spw=&#39;25:0~0,27:0~0,29:0~0,31:0~0,33:0~0,35:0~0&#39;, antenna=&#39;0&amp;&amp;*&#39;, avgchannel=&#39;9000&#39;, avgtime=&#39;10&#39;, coloraxis=&#39;field&#39;, customflaggedsymbol=True, flaggedsymbolshape=&#39;autoscaling&#39;, title=&#39;Elevation vs Azimuth for uid___A002_Xf512ae_X2626.ms&#39;, plotfile=&#39;azel.png&#39;, showgui=False, clearplots=True)
+fuse: failed to exec fusermount: No such file or directory
+
+Cannot mount AppImage, please check your FUSE setup.
+You might still be able to extract the contents of this AppImage
+if you run it with the --appimage-extract option.
+See https://github.com/AppImage/AppImageKit/wiki/FUSE
+for more information
+open dir error: No such file or directory
+</pre></div>
+<p>This fails even if I set the global APPIMAGE_EXTRACT_AND_RUN as <a class="reference external" href="https://docs.appimage.org/user-guide/troubleshooting/fuse.html#extract-and-run-type-2-appimages">directed</a>
+on the appimage.org docs.</p>
+<p>This indicates that the appimage is older than the environmental variable.</p>
+<p>Running the full command &quot;works&quot;:
+<tt class="docutils literal"><span class="pre">/orange/adamginsburg/casa/casa-6.2.1-7-pipeline-2021.2.0.128/lib/py/lib/python3.6/site-packages/casaplotms/__bin__/casaplotms-x86_64.AppImage</span> <span class="pre">--appimage-extract</span></tt>
+but <tt class="docutils literal"><span class="pre">--appimage-extract-and-run</span></tt> gives <tt class="docutils literal"><span class="pre">--appimage-extract-and-run</span> is not yet implemented in version <span class="pre">continuous-1-g6f3138f</span></tt></p>
+<p>So to run plotms, we need to use the <tt class="docutils literal">AppRun</tt> executable in the extracted <tt class="docutils literal"><span class="pre">squashfs-root</span></tt> directory.</p>
+<p>My original hack was to just tell plotms not to run at all, which I accomplished by editing the
+<tt class="docutils literal">plotmstool.py</tt> file (<tt class="docutils literal"><span class="pre">lib/py/lib/python3.6/site-packages/casaplotms/private/plotmstool.py</span></tt>) to
+just skip the <tt class="docutils literal">__launch</tt> command:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">__launch</span><span class="p">(</span> <span class="n">uri</span><span class="o">=</span><span class="kc">None</span> <span class="p">):</span>
+    <span class="k">return</span>
+</pre></div>
+<p>However, in writing this post, I've changed to instead modifying the <tt class="docutils literal">app_path</tt> to this:</p>
+<div class="highlight"><pre><span></span><span class="n">app_path</span> <span class="o">=</span> <span class="s2">&quot;/tmp/casaplotms/squashfs-root/AppRun&quot;</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">__os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">app_path</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Did not find extracted path </span><span class="si">{</span><span class="n">app_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">app_path</span> <span class="o">=</span> <span class="n">__os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="n">__os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span> <span class="n">__os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">__os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span><span class="s2">&quot;..&quot;</span><span class="p">)</span> <span class="p">),</span> <span class="s1">&#39;__bin__/casaplotms-x86_64.AppImage&#39;</span><span class="p">)</span>
+</pre></div>
+<p>I haven't tried it but I'm slightly hopeful.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/astronomical-software-development-career.html" rel="bookmark" title="Permalink to Astronomical Software Development & Career">
+                    Astronomical Software Development &amp; Career</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2022-03-19T13:04:00-06:00"> 2022/03/19 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I recently visited the <a class="reference external" href="https://www.astro.umd.edu/">University of Maryland</a>
+to give a <a class="reference external" href="https://www.astro.umd.edu/events/colloquia/colloquium/cal.0316.html">colloquium</a>
+(<a class="reference external" href="https://keflavich.github.io/talks/colloquium_Mar2022_UMD.html">slides here</a>).
+This was my first in-person colloquium as faculty because of COVID.</p>
+<p>I had a great meeting with the grad students over lunch, and they asked several good
+questions.  I've thought over some of them a little more and wanted to fill out my answers.
+I'll paraphrase two questions:</p>
+<p>&quot;How do you balance coding work with other research work?&quot;</p>
+<p>My answer was essentially, &quot;All of my coding work is research work - I don't write
+code that doesn't contribute to my research.&quot;  That is broadly true, but not exclusively
+so, and there are some exceptions.</p>
+<p>All of the coding work I have done has been either to enable my research, support
+someone else's research, enable my research career, or (in theory) make my life easier.</p>
+<p>The research stuff is mostly obvious - my work on and with data reduction software
+(see all the CASA-tagged blog posts here, all development on radio-astro-tools, etc),
+pyspeckit, and most of astroquery.  On the astroquery side, a lot of my research work
+wasn't directly going to papers, but was instead to dig through the archives to see
+if data were available, or if I needed to obtain new data.  It was then useful
+for supporting observing proposal writing.</p>
+<p>The &quot;enable my research career&quot; component included a lot of side-work on things
+that aren't directly research, but are research-adjacent.  These projects
+included building tools to deploy my papers to github (which was a bit
+obsoleted by overleaf), automatically <a class="reference external" href="https://github.com/keflavich/cv/blob/master/update_journals.py">updating reference lists</a> (it turns
+out I often cite 5-10 arXiv papers in an article, but by publication time, I
+need to update them to official journal article citations), assemble lists of
+coauthors, <a class="reference external" href="https://github.com/keflavich/cv/blob/master/add_citations.py">add citation counts to the CV</a>, writing this
+blog, etc.</p>
+<p>The exceptions are some of the 'pure service' coding.  This necessarily had to
+be the lowest priority most of the time, but this is still career-motivated.
+Some of the contributions I've made to astropy &amp; other open-source projects are
+just to improve their code bases, either with bugfixes, added features, or
+things to improve robustness.  Most of my contributions were directly motivated
+by need, of course - either there was something basic missing, or I was the
+expert in that particular subtopic.  A good example is the <a class="reference external" href="https://docs.astropy.org/en/stable/api/astropy.units.brightness_temperature.html">J-to-K equivalency</a>;
+it wasn't directly research-motivated, but was something I found myself needing
+in day-to-day work.</p>
+<p>The 'pure service' coding also entails maintaining projects.  There is still a
+selfish motivation here: if the code is maintained (if other people are using
+iti and finding bugs), it is more likely to be functional when I need it next.
+But, most of this work isn't triggered by my own needs, but by others.
+The astropy Moore grant now funds some of this work, which helps ensure that
+I'm motivated to continue the maintenance - but I was doing a lot of this work
+as a postdoc long before I could be directly paid for it.</p>
+<p>&quot;How do you avoid being typecast as a coder?&quot;</p>
+<p>This question came from students who got to be known in their research
+collaborations as &quot;good at coding&quot;.  My answer was basically, &quot;learn to say
+no&quot;, but there's more nuance to add.</p>
+<p>First, there are some solid career paths to follow by being the science coder
+in a group.  Many observatory jobs, for example, would prioritize this coding
+experience.  There are a lot of positions in observatory jobs at places
+like STSCI, NRAO, NOAO, etc. that value this sort of skill over many others.
+So if you want to pursue one of these paths, or an industry path, because
+you &lt;i&gt; enjoy &lt;/i&gt; the coding, then great!  Do it!</p>
+<p>If you really enjoy the coding, you'll get to do a lot more of it in a job
+focused on software development than in an R1 research job.</p>
+<p>That said, if you are interested in pursuing an R1 faculty job, you need to
+strike a more careful balance.  It's fine if you're the coder in the group -
+that can land you a coauthorship on a lot of papers, which is a good thing!
+However, first and foremost, you need to publish your own (first-author)
+papers, which means prioritizing your work over collaborative work.  Ideally,
+you'd just do both - that's what's expected of faculty members (faculty members
+can't choose to prioritize teaching or research, really - they have to do well
+at both, which often means just putting in more hours).  But if you're faced
+with the choice, a few first-author papers are more important than many
+co-author papers.</p>
+<p>The way I struck the balance was to focus entirely on research papers during my
+grad school career, but still do a lot of software support work on the side - I
+put in more time, but it was all stuff that was useful both for me and for
+collaborators.  Later, in my second postdoc, I started publishing code-only
+papers; I would advise grad students to do this sooner, though.  Since AAS
+journals now accept code papers, if you want coding to be a big part of your
+research portfolio, it's a good idea to have a refereed paper on a piece of
+software.  Note that some of the most highly-cited papers in astronomy are code
+papers, like the DAOPHOT, SEXTRACTOR, and astropy papers.</p>
+<p>Last bit of advice closing this out: Avoid GUI development.  That way lays madness.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/my-blog-is-now-deployed-with-gh-actions.html" rel="bookmark" title="Permalink to My blog is now deployed with gh-actions">
+                    My blog is now deployed with gh-actions</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2022-02-23T20:21:00-07:00"> 2022/02/23 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>This is mostly a test post to prove it.</p>
+<p>I'm now using this gh-deployment script:
+<a class="reference external" href="https://github.com/keflavich/gh-pages-pelican-action">https://github.com/keflavich/gh-pages-pelican-action</a> (forked from <a class="reference external" href="https://github.com/nelsonjchen/gh-pages-pelican-action">https://github.com/nelsonjchen/gh-pages-pelican-action</a>)
+in conjunction with gh-actions.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/casa-mpi-errors-continued-in-early-2022.html" rel="bookmark" title="Permalink to CASA MPI Errors continued in early 2022">
+                    CASA MPI Errors continued in early 2022</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2022-01-23T07:54:00-07:00"> 2022/01/23 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Running 7m+12m combination, the following errors show up:</p>
+<pre class="code literal-block">
+Exception: Error in making PSF : Invalid Table operation: Rows cannot be removed from table /blue/adamginsburg/adamginsburg/almaimf/workdir/G333.60_spw5_12M_B6/IMAGING_WEIGHT_1390794_230801956263_230804885819_bwtaper_0_interp_1; its storage managers do not support it
+</pre>
+<p>This turns up several times repeatedly:</p>
+<pre class="code literal-block">
+G333.60_B6_fullcube_7M12M_5_15827045.log:2022-01-21 18:05:38  WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-25 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336)      Exception for chan range [496, 499] ---   Error in making PSF : Interpolate1D::operator() data has repeated x values
+G333.60_B6_fullcube_7M12M_5_15868985.log:2022-01-22 00:01:20  WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-19 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336)      Exception for chan range [496, 499] ---   Error in making PSF : Invalid Table operation: Rows cannot be removed from table /blue/adamginsburg/adamginsburg/almaimf/workdir/G333.60_spw5_12M_B6/IMAGING_WEIGHT_1390794_230801956263_230804885819_bwtaper_0_interp_1; its storage managers do not support it
+G333.60_B6_fullcube_7M12M_5_15891690.log:2022-01-22 14:37:39  WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-23 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336)      Exception for chan range [496, 499] ---   Error in making PSF : Invalid Table operation: Rows cannot be removed from table /blue/adamginsburg/adamginsburg/almaimf/workdir/G333.60_spw5_12M_B6/IMAGING_WEIGHT_1390794_230801956263_230804885819_bwtaper_0_interp_1; its storage managers do not support it
+G333.60_B6_fullcube_7M12M_5_15914880.log:2022-01-23 02:21:24  WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-25 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336)      Exception for chan range [496, 499] ---   Error in making PSF : Invalid Table operation: Rows cannot be removed from table /blue/adamginsburg/adamginsburg/almaimf/workdir/G333.60_spw5_12M_B6/IMAGING_WEIGHT_1390794_230801956263_230804885819_bwtaper_0_interp_1; its storage managers do not support it
+</pre>
+<p>Looks like it's always the same few channels failing.</p>
+<p>Errors like this one:</p>
+<pre class="code literal-block">
+WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-17 (file src/
+code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336)        Exception for chan range [1152, 1153] ---   Programmer error: sumwt disk image is non existant
+</pre>
+<p>are probably cauased by deleting the .sumwt file in the middle of a tclean run -
+so that is genuine &quot;user error&quot; (I was deleting the sumwt, psf, and weight
+files occasionally b/c they are the 'leftovers' when a tclean run fails for
+bad reasons)</p>
+<p>There are some others that don't have obvious explanations:</p>
+<pre class="code literal-block">
+casa_log_line_G010.62_B3_fullcube_7M12M_1_2022-01-21_08_17_16.log:2022-01-21 15:29:42   WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-15 (file src/ code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336)        Exception for chan range [534, 535] ---   FilebufIO::readBlock - incorrect number of bytes read for file /blue/adamginsburg/adamgins burg/almaimf/workdir/G010.62_B3_spw1_7M12M_spw1.sumwt/table.f0
+casa_log_line_G010.62_B3_fullcube_7M12M_1_2022-01-21_08_17_16.log:2022-01-21 17:07:41   WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-31 (file src/ code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336)        Exception for chan range [1596, 1597] ---   FilebufIO::readBlock - incorrect number of bytes read for file /blue/adamginsburg/adamgi nsburg/almaimf/workdir/G010.62_B3_spw1_7M12M_spw1.sumwt/table.f0
+</pre>
+<p>and this:</p>
+<pre class="code literal-block">
+casa_log_line_G333.60_B6_fullcube_7M12M_5_2022-01-21_08_17_16.log:2022-01-21 18:05:38   WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-25 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336)        Exception for chan range [496, 499] ---   Error in making PSF : Interpolate1D::operator() data has repeated x values
+</pre>
+<p>This is an old one that remains unsolved:</p>
+<pre class="code literal-block">
+casa_log_line_G338.93_B3_fullcube_7M12M_1_2022-01-22_20_25_52.log:2022-01-23 04:59:57   WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-8 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336) Exception for chan range [2049, 2049] ---   Error in making PSF : A nasty Visbuffer2 error occured...wait
+</pre>
+<p>Got this real nice one after the .image was created:</p>
+<pre class="code literal-block">
+*** Error in `/blue/adamginsburg/adamginsburg/casa/casa-6.4.3-4/lib/py/bin/python3': malloc(): smallbin double linked list corrupted: 0x00002af7a40d8000 ***
+======= Backtrace: =========
+/lib64/libc.so.6(+0x7f804)[0x2af73aa03804]
+/lib64/libc.so.6(+0x82f40)[0x2af73aa06f40]
+/lib64/libc.so.6(__libc_malloc+0x4c)[0x2af73aa09b1c]
+/apps/compilers/gcc/9.3.0/lib64/libstdc++.so.6(_Znwm+0x15)[0x2af751076395]
+</pre>
+<p>That happened in the middle of major cycle 1, so the data were probably fine, but I'm just going to restart it</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/casa-errors-encountered-while-imaging-lb-data.html" rel="bookmark" title="Permalink to CASA Errors encountered while imaging LB data">
+                    CASA Errors encountered while imaging LB data</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2021-12-08T09:37:00-07:00"> 2021/12/08 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm trying to reduce some new data from ALMA's longest baselines (C10, B6).</p>
+<p>There are several exciting errors:</p>
+<ol class="arabic simple">
+<li>The lines were all flagged out.  Thankfully, there is a <tt class="docutils literal">calibrated_final.ms.backup</tt>
+file that does not have the lines flagged out.  <tt class="docutils literal">flagmanager</tt> was unable to restore
+the flags.  The flagging comes from the manual flagging done by the QA2 reducer,
+which was used to make the continuum image.  That's fine, but the unflagging step
+didn't work.  The uvcontsub data, as a result, contain no line data.  ?????</li>
+<li>I can't image the full cube because of errors like this:</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">08</span><span class="p">:</span><span class="mi">07</span><span class="p">:</span><span class="mi">34</span>     <span class="n">INFO</span>    <span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">defineImage</span>         <span class="n">Shape</span> <span class="p">:</span> <span class="p">[</span><span class="mi">9600</span><span class="p">,</span> <span class="mi">9600</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1920</span><span class="p">]</span><span class="n">Spectral</span> <span class="p">:</span> <span class="p">[</span><span class="mf">2.31563e+11</span><span class="p">]</span> <span class="n">at</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">with</span> <span class="n">increment</span> <span class="p">[</span><span class="mi">976510</span><span class="p">]</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">08</span><span class="p">:</span><span class="mi">07</span><span class="p">:</span><span class="mi">34</span>     <span class="n">INFO</span>    <span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">defineImage</span>         <span class="n">Set</span> <span class="n">Gridding</span> <span class="n">options</span> <span class="k">for</span> <span class="p">[</span><span class="n">S255IR</span><span class="o">-</span><span class="n">SMA1_sci</span><span class="o">.</span><span class="n">spw1</span><span class="o">.</span><span class="n">cube</span><span class="o">.</span><span class="n">I</span><span class="o">.</span><span class="n">manual</span><span class="p">]</span> <span class="k">with</span> <span class="n">ftmachine</span> <span class="p">:</span> <span class="n">gridft</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">08</span><span class="p">:</span><span class="mi">07</span><span class="p">:</span><span class="mi">34</span>     <span class="n">INFO</span>    <span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">nSubCubeFitInMemory</span> <span class="n">Required</span> <span class="n">memory</span><span class="p">:</span> <span class="mf">5.468e+05</span> <span class="n">GB</span><span class="o">.</span> <span class="n">Available</span> <span class="n">mem</span><span class="o">.</span><span class="p">:</span> <span class="mf">166.3</span> <span class="n">GB</span> <span class="p">(</span><span class="n">rc</span><span class="p">,</span> <span class="n">mem</span><span class="o">.</span> <span class="n">fraction</span><span class="p">:</span> <span class="mi">70</span><span class="o">%</span><span class="p">,</span> <span class="n">memory</span><span class="p">:</span> <span class="o">-</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">Subcubes</span><span class="p">:</span> <span class="mf">1920.</span> <span class="n">Processes</span> <span class="n">on</span> <span class="n">node</span><span class="p">:</span> <span class="mf">64.</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">08</span><span class="p">:</span><span class="mi">07</span><span class="p">:</span><span class="mi">34</span>     <span class="n">INFO</span>    <span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">weight</span><span class="p">()</span>    <span class="n">Set</span> <span class="n">imaging</span> <span class="n">weights</span> <span class="p">:</span> <span class="n">Briggs</span> <span class="n">weighting</span><span class="p">:</span> <span class="n">sidelobes</span> <span class="n">will</span> <span class="n">be</span> <span class="n">suppressed</span> <span class="n">over</span> <span class="n">full</span> <span class="n">image</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">08</span><span class="p">:</span><span class="mi">07</span><span class="p">:</span><span class="mi">34</span>     <span class="n">INFO</span>    <span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">weight</span><span class="p">()</span>    <span class="n">Doing</span> <span class="n">spectral</span> <span class="n">cube</span> <span class="n">Briggs</span> <span class="n">weighting</span> <span class="n">formula</span> <span class="o">--</span>  <span class="n">norm</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">08</span><span class="p">:</span><span class="mi">07</span><span class="p">:</span><span class="mi">34</span>     <span class="n">INFO</span>    <span class="n">task_tclean</span><span class="p">::</span><span class="n">SynthesisDeconvolver</span><span class="p">::</span><span class="n">setupDeconvolution</span>   <span class="n">Set</span> <span class="n">Deconvolution</span> <span class="n">Options</span> <span class="k">for</span> <span class="p">[</span><span class="n">S255IR</span><span class="o">-</span><span class="n">SMA1_sci</span><span class="o">.</span><span class="n">spw1</span><span class="o">.</span><span class="n">cube</span><span class="o">.</span><span class="n">I</span><span class="o">.</span><span class="n">manual</span><span class="p">]</span> <span class="p">:</span> <span class="n">hogbom</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">08</span><span class="p">:</span><span class="mi">07</span><span class="p">:</span><span class="mi">34</span>     <span class="n">WARN</span>    <span class="n">tclean</span><span class="p">::::</span><span class="n">casa</span>  <span class="n">Memory</span> <span class="n">available</span> <span class="mi">187904819</span> <span class="n">kB</span> <span class="ow">is</span> <span class="n">very</span> <span class="n">close</span> <span class="n">to</span> <span class="n">amount</span> <span class="n">of</span> <span class="n">required</span> <span class="n">memory</span> <span class="mi">3982754512</span> <span class="n">kB</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">08</span><span class="p">:</span><span class="mi">07</span><span class="p">:</span><span class="mi">34</span>     <span class="n">INFO</span>    <span class="n">task_tclean</span><span class="p">::</span><span class="n">SynthesisImager</span><span class="p">::</span><span class="n">makePSF</span>   <span class="o">-----------------------------------------------------------</span> <span class="n">Make</span> <span class="n">PSF</span> <span class="o">---------------------------------------------</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">08</span><span class="p">:</span><span class="mi">07</span><span class="p">:</span><span class="mi">34</span>     <span class="n">INFO</span>    <span class="n">task_tclean</span><span class="p">::</span><span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">nSubCubeFitInMemory</span>    <span class="n">Required</span> <span class="n">memory</span><span class="p">:</span> <span class="mf">5.468e+05</span> <span class="n">GB</span><span class="o">.</span> <span class="n">Available</span> <span class="n">mem</span><span class="o">.</span><span class="p">:</span> <span class="mf">166.3</span> <span class="n">GB</span> <span class="p">(</span><span class="n">rc</span><span class="p">,</span> <span class="n">mem</span><span class="o">.</span> <span class="n">fraction</span><span class="p">:</span> <span class="mi">70</span><span class="o">%</span><span class="p">,</span> <span class="n">memory</span><span class="p">:</span> <span class="o">-</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">Subcubes</span><span class="p">:</span> <span class="mf">1920.</span> <span class="n">Processes</span> <span class="n">on</span> <span class="n">node</span><span class="p">:</span> <span class="mf">64.</span>
+</pre></div>
+<p>Well, there's no error there, but the PSF maker can't handle making even a
+single frame.  It had no trouble making a 9600x9600 MTMFS image for the
+continuum, though, so it's pretty unclear to me why the cube is getting
+OOM-killed.  My best guess is that the 64 processes are too much for CASA to
+handle, and I need to run with fewer to &quot;trick&quot; it into not using up that much
+memory at once.   Maybe I just need to make the PSFs in serial mode.  I don't
+want to wait around to make the cubes, let alone clean them, in serial mode.</p>
+<ol class="arabic simple" start="3">
+<li>Parallel failed with this:</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">14</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">19</span>     <span class="n">INFO</span>    <span class="n">tclean</span><span class="p">::::</span><span class="n">casa</span>  <span class="c1">##########################################</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">14</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">19</span>     <span class="n">INFO</span>    <span class="n">tclean</span><span class="p">::::</span><span class="n">casa</span>  <span class="c1">##### Begin Task: tclean             #####</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">14</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">19</span>     <span class="n">INFO</span>    <span class="n">tclean</span><span class="p">::::</span><span class="n">casa</span>  <span class="n">tclean</span><span class="p">(</span> <span class="n">vis</span><span class="o">=</span><span class="s1">&#39;calibrated_final.ms&#39;</span><span class="p">,</span> <span class="n">selectdata</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;S255IR-SMA1&#39;</span><span class="p">,</span> <span class="n">spw</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">timerange</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">uvrange</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">antenna</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">scan</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">observation</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">intent</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">datacolumn</span><span class="o">=</span><span class="s1">&#39;corrected&#39;</span><span class="p">,</span> <span class="n">imagename</span><span class="o">=</span><span class="s1">&#39;S255IR-SMA1_sci.spw1.cube.I.zoom.manual&#39;</span><span class="p">,</span> <span class="n">imsize</span><span class="o">=</span><span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">],</span> <span class="n">cell</span><span class="o">=</span><span class="s1">&#39;0.0042arcsec&#39;</span><span class="p">,</span> <span class="n">phasecenter</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">stokes</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;SIN&#39;</span><span class="p">,</span> <span class="n">startmodel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">specmode</span><span class="o">=</span><span class="s1">&#39;cube&#39;</span><span class="p">,</span> <span class="n">reffreq</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">nchan</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">outframe</span><span class="o">=</span><span class="s1">&#39;lsrk&#39;</span><span class="p">,</span> <span class="n">veltype</span><span class="o">=</span><span class="s1">&#39;radio&#39;</span><span class="p">,</span> <span class="n">restfreq</span><span class="o">=</span><span class="p">[],</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">perchanweightdensity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">gridder</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">,</span> <span class="n">facets</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">psfphasecenter</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">wprojplanes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vptable</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">mosweight</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">aterm</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">psterm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">wbawp</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">conjbeams</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cfcache</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">usepointing</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">computepastep</span><span class="o">=</span><span class="mf">360.0</span><span class="p">,</span> <span class="n">rotatepastep</span><span class="o">=</span><span class="mf">360.0</span><span class="p">,</span> <span class="n">pointingoffsetsigdev</span><span class="o">=</span><span class="p">[],</span> <span class="n">pblimit</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">normtype</span><span class="o">=</span><span class="s1">&#39;flatnoise&#39;</span><span class="p">,</span> <span class="n">deconvolver</span><span class="o">=</span><span class="s1">&#39;hogbom&#39;</span><span class="p">,</span> <span class="n">scales</span><span class="o">=</span><span class="p">[],</span> <span class="n">nterms</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">smallscalebias</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">restoration</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">restoringbeam</span><span class="o">=</span><span class="p">[],</span> <span class="n">pbcor</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">outlierfile</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">weighting</span><span class="o">=</span><span class="s1">&#39;briggs&#39;</span><span class="p">,</span> <span class="n">robust</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="s1">&#39;1.0Jy&#39;</span><span class="p">,</span> <span class="n">npixels</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">uvtaper</span><span class="o">=</span><span class="p">[],</span> <span class="n">niter</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">gain</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="s1">&#39;10mJy&#39;</span><span class="p">,</span> <span class="n">nsigma</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">cycleniter</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">cyclefactor</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">minpsffraction</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">maxpsffraction</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">usemask</span><span class="o">=</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">pbmask</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">sidelobethreshold</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">noisethreshold</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">lownoisethreshold</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">negativethreshold</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">smoothfactor</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">minbeamfrac</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">cutthreshold</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">growiterations</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span> <span class="n">dogrowprune</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">minpercentchange</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fastnoise</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">restart</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">savemodel</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">calcres</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">calcpsf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">psfcutoff</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="kc">True</span> <span class="p">)</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">14</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">19</span>     <span class="n">INFO</span>    <span class="n">tclean</span><span class="p">::::</span><span class="n">casa</span>  <span class="n">Verifying</span> <span class="n">Input</span> <span class="n">Parameters</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">14</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">19</span>     <span class="n">INFO</span>    <span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">selectData</span>  <span class="n">MS</span> <span class="p">:</span> <span class="n">calibrated_final</span><span class="o">.</span><span class="n">ms</span> <span class="o">|</span> <span class="n">Selecting</span> <span class="n">on</span> <span class="n">fields</span> <span class="p">:</span> <span class="n">S255IR</span><span class="o">-</span><span class="n">SMA1</span> <span class="o">|</span> <span class="n">Selecting</span> <span class="n">on</span> <span class="n">spw</span> <span class="p">:</span><span class="mi">1</span> <span class="o">|</span> <span class="p">[</span><span class="n">Opened</span> <span class="ow">in</span> <span class="n">readonly</span> <span class="n">mode</span><span class="p">]</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">14</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">19</span>     <span class="n">INFO</span>    <span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">selectData</span>    <span class="n">NRows</span> <span class="n">selected</span> <span class="p">:</span> <span class="mi">0</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">14</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">19</span>     <span class="n">SEVERE</span>  <span class="n">tclean</span><span class="p">::::</span><span class="n">casa</span>  <span class="n">Task</span> <span class="n">tclean</span> <span class="n">raised</span> <span class="n">an</span> <span class="n">exception</span> <span class="n">of</span> <span class="k">class</span> <span class="nc">RuntimeError</span> <span class="k">with</span> <span class="n">the</span> <span class="n">following</span> <span class="n">message</span><span class="p">:</span> <span class="n">Parallel</span> <span class="n">transport</span> <span class="n">layer</span> <span class="ow">not</span> <span class="n">initialized</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">14</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">19</span>     <span class="n">INFO</span>    <span class="n">tclean</span><span class="p">::::</span><span class="n">casa</span>  <span class="n">Task</span> <span class="n">tclean</span> <span class="n">complete</span><span class="o">.</span> <span class="n">Start</span> <span class="n">time</span><span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">09</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mf">19.103483</span> <span class="n">End</span> <span class="n">time</span><span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">09</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mf">19.314353</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">14</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">19</span>     <span class="n">INFO</span>    <span class="n">tclean</span><span class="p">::::</span><span class="n">casa</span>  <span class="c1">##### End Task: tclean               #####</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">14</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">19</span>     <span class="n">INFO</span>    <span class="n">tclean</span><span class="p">::::</span><span class="n">casa</span>  <span class="c1">##########################################</span>
+</pre></div>
+<p>I'm guessing this is a bad error message and the real error is that the data
+selection failed.  Probably when I copied over the <tt class="docutils literal">continuum_final.ms.backup</tt>
+file, it uses the original numbering (spw 25, 27, etc.) instead of the new
+numbering.  I guess the renumbering is cased by <tt class="docutils literal">uvcontsub</tt>, which I'm now
+skipping because it may have broken my data and because I'd rather image the
+continuum.  That proved correct; the error message above just means that I
+selected a nonexistent SPW.</p>
+<div class="section" id="flagged-out-lines">
+<h2>Flagged Out Lines</h2>
+<p>After re-copying over the calibrated MS and confirming that <cite>no</cite> lines were flagged out,
+I re-imaged... and the lines are again missing.</p>
+<div class="highlight"><pre><span></span><span class="c1"># show the flags graphically</span>
+<span class="n">flagdata</span><span class="p">(</span><span class="n">vis</span><span class="o">=</span><span class="s1">&#39;calibrated_final.ms&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;summary&#39;</span><span class="p">,</span> <span class="n">spwchan</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+</pre></div>
+<img alt="Flag data plot showing evidence of the flagged-out lines" src="https://keflavich.github.io/blog/images/flagdataplot.png" style="width: 600px;" />
+<p>The flags are coming from tclean, which makes no sense.</p>
+<p>There are messages like these:</p>
+<pre class="literal-block">
+2021-12-08 15:27:19     WARN    MPICommandServer::command_request_handler_service::SIImageStore::getPSFGaussian::MPIServer-51 (file src/code/synthesis/ImagerObjects/SIImageStore.cc, line 2037)        PSF is blank for[C9:P0] [C10:P0] [C11:P0] [C12:P0] [C13:P0] [C14:P0] [C15:P0] [C16:P0] [C17:P0] [C23:P0] [C24:P0] [C25:P0] [C26:P0]
+</pre>
+<p>scattered throughout the PSF making.</p>
+<p>The PSF spectrum ends up like this:</p>
+<img alt="PSF vs frequency showing flagged out channels" src="https://keflavich.github.io/blog/images/PSF_vs_Frq.png" style="width: 600px;" />
+<p>Channels are totally flagged out.  But in the data, they are not:</p>
+<img alt="The data not flagged out" src="https://keflavich.github.io/blog/images/notflagged_data.png" style="width: 600px;" />
+<p>Running the <tt class="docutils literal">tclean</tt> without parallel, i.e. with <tt class="docutils literal">parallel=False</tt>, resulted
+in a smooth, unbroken PSF.</p>
+<p>So, if we dig back into what happened in the parallel tclean....</p>
+<div class="highlight"><pre><span></span><span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">12</span>     <span class="n">INFO</span>    <span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">selectData</span>    <span class="n">NRows</span> <span class="n">selected</span> <span class="p">:</span> <span class="mi">848700</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">15</span>     <span class="n">INFO</span>    <span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">defineImage</span>         <span class="n">Define</span> <span class="n">image</span> <span class="n">coordinates</span> <span class="k">for</span> <span class="p">[</span><span class="n">S255IR</span><span class="o">-</span><span class="n">SMA1_sci</span><span class="o">.</span><span class="n">spw0</span><span class="o">.</span><span class="n">cube</span><span class="o">.</span><span class="n">I</span><span class="o">.</span><span class="n">zoom</span><span class="o">.</span><span class="n">manual</span><span class="p">]</span> <span class="p">:</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">16</span>     <span class="n">INFO</span>    <span class="n">MSTransformRegridder</span><span class="p">::</span><span class="n">calcChanFreqs</span>      <span class="n">phaseCenter</span><span class="o">=</span><span class="s1">&#39;Direction: [-0.0535075, 0.949606, 0.308847]&#39;</span>  <span class="n">Channels</span> <span class="n">equidistant</span> <span class="ow">in</span> <span class="n">freq</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">16</span>     <span class="n">INFO</span>    <span class="n">MSTransformRegridder</span><span class="p">::</span><span class="n">calcChanFreqs</span><span class="o">+</span>     <span class="n">Central</span> <span class="n">frequency</span> <span class="p">(</span><span class="ow">in</span> <span class="n">output</span> <span class="n">frame</span><span class="p">)</span> <span class="o">=</span> <span class="mf">2.345e+11</span> <span class="n">Hz</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">16</span>     <span class="n">INFO</span>    <span class="n">MSTransformRegridder</span><span class="p">::</span><span class="n">calcChanFreqs</span><span class="o">+</span>     <span class="n">Width</span> <span class="n">of</span> <span class="n">central</span> <span class="n">channel</span> <span class="p">(</span><span class="ow">in</span> <span class="n">output</span> <span class="n">frame</span><span class="p">)</span> <span class="o">=</span> <span class="mi">976510</span> <span class="n">Hz</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">16</span>     <span class="n">INFO</span>    <span class="n">MSTransformRegridder</span><span class="p">::</span><span class="n">calcChanFreqs</span><span class="o">+</span>     <span class="n">Number</span> <span class="n">of</span> <span class="n">channels</span> <span class="o">=</span> <span class="mi">1920</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">16</span>     <span class="n">INFO</span>    <span class="n">MSTransformRegridder</span><span class="p">::</span><span class="n">calcChanFreqs</span><span class="o">+</span>     <span class="n">Total</span> <span class="n">width</span> <span class="n">of</span> <span class="n">SPW</span> <span class="p">(</span><span class="ow">in</span> <span class="n">output</span> <span class="n">frame</span><span class="p">)</span> <span class="o">=</span> <span class="mf">1.8749e+09</span> <span class="n">Hz</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">16</span>     <span class="n">INFO</span>    <span class="n">MSTransformRegridder</span><span class="p">::</span><span class="n">calcChanFreqs</span><span class="o">+</span>     <span class="n">Lower</span> <span class="n">edge</span> <span class="o">=</span> <span class="mf">2.33563e+11</span> <span class="n">Hz</span><span class="p">,</span> <span class="n">upper</span> <span class="n">edge</span> <span class="o">=</span> <span class="mf">2.35437e+11</span> <span class="n">Hz</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">16</span>     <span class="n">INFO</span>    <span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">defineImage</span>         <span class="n">Impars</span> <span class="p">:</span> <span class="n">start</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">16</span>     <span class="n">INFO</span>    <span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">defineImage</span>         <span class="n">Shape</span> <span class="p">:</span> <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1920</span><span class="p">]</span><span class="n">Spectral</span> <span class="p">:</span> <span class="p">[</span><span class="mf">2.33563e+11</span><span class="p">]</span> <span class="n">at</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">with</span> <span class="n">increment</span> <span class="p">[</span><span class="mi">976510</span><span class="p">]</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">16</span>     <span class="n">INFO</span>    <span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">defineImage</span>         <span class="n">Set</span> <span class="n">Gridding</span> <span class="n">options</span> <span class="k">for</span> <span class="p">[</span><span class="n">S255IR</span><span class="o">-</span><span class="n">SMA1_sci</span><span class="o">.</span><span class="n">spw0</span><span class="o">.</span><span class="n">cube</span><span class="o">.</span><span class="n">I</span><span class="o">.</span><span class="n">zoom</span><span class="o">.</span><span class="n">manual</span><span class="p">]</span> <span class="k">with</span> <span class="n">ftmachine</span> <span class="p">:</span> <span class="n">gridft</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">16</span>     <span class="n">INFO</span>    <span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">nSubCubeFitInMemory</span> <span class="n">Required</span> <span class="n">memory</span><span class="p">:</span> <span class="mi">1483</span> <span class="n">GB</span><span class="o">.</span> <span class="n">Available</span> <span class="n">mem</span><span class="o">.</span><span class="p">:</span> <span class="mf">173.6</span> <span class="n">GB</span> <span class="p">(</span><span class="n">rc</span><span class="p">,</span> <span class="n">mem</span><span class="o">.</span> <span class="n">fraction</span><span class="p">:</span> <span class="mi">70</span><span class="o">%</span><span class="p">,</span> <span class="n">memory</span><span class="p">:</span> <span class="o">-</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">Subcubes</span><span class="p">:</span> <span class="mf">9.</span> <span class="n">Processes</span> <span class="n">on</span> <span class="n">node</span><span class="p">:</span> <span class="mf">64.</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">16</span>     <span class="n">INFO</span>    <span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">weight</span><span class="p">()</span>    <span class="n">Set</span> <span class="n">imaging</span> <span class="n">weights</span> <span class="p">:</span> <span class="n">Briggs</span> <span class="n">weighting</span><span class="p">:</span> <span class="n">sidelobes</span> <span class="n">will</span> <span class="n">be</span> <span class="n">suppressed</span> <span class="n">over</span> <span class="n">full</span> <span class="n">image</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">16</span>     <span class="n">INFO</span>    <span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">weight</span><span class="p">()</span>    <span class="n">Doing</span> <span class="n">spectral</span> <span class="n">cube</span> <span class="n">Briggs</span> <span class="n">weighting</span> <span class="n">formula</span> <span class="o">--</span>  <span class="n">norm</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">16</span>     <span class="n">INFO</span>    <span class="n">task_tclean</span><span class="p">::</span><span class="n">SynthesisDeconvolver</span><span class="p">::</span><span class="n">setupDeconvolution</span>   <span class="n">Set</span> <span class="n">Deconvolution</span> <span class="n">Options</span> <span class="k">for</span> <span class="p">[</span><span class="n">S255IR</span><span class="o">-</span><span class="n">SMA1_sci</span><span class="o">.</span><span class="n">spw0</span><span class="o">.</span><span class="n">cube</span><span class="o">.</span><span class="n">I</span><span class="o">.</span><span class="n">zoom</span><span class="o">.</span><span class="n">manual</span><span class="p">]</span> <span class="p">:</span> <span class="n">hogbom</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">17</span>     <span class="n">INFO</span>    <span class="n">task_tclean</span><span class="p">::</span><span class="n">SynthesisImager</span><span class="p">::</span><span class="n">makePSF</span>   <span class="o">-----------------------------------------------------------</span> <span class="n">Make</span> <span class="n">PSF</span> <span class="o">---------------------------------------------</span>
+
+<span class="o">...</span> <span class="n">a</span> <span class="n">bunch</span> <span class="n">of</span> <span class="n">stuff</span> <span class="o">...</span>
+
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">11</span>     <span class="n">INFO</span>    <span class="n">MPICommandServer</span><span class="p">::</span><span class="n">command_request_handler_service</span><span class="p">::</span><span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">makePrimaryBeam</span><span class="p">::</span><span class="n">MPIServer</span><span class="o">-</span><span class="mi">54</span>    <span class="n">vi2</span> <span class="p">:</span> <span class="n">Evaluating</span> <span class="n">Primary</span> <span class="n">Beam</span> <span class="n">model</span> <span class="n">onto</span> <span class="n">image</span> <span class="n">grid</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">12</span>     <span class="n">INFO</span>    <span class="n">MPICommandServer</span><span class="p">::</span><span class="n">command_request_handler_service</span><span class="p">::</span><span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">makePrimaryBeam</span><span class="p">::</span><span class="n">MPIServer</span><span class="o">-</span><span class="mi">38</span>    <span class="n">vi2</span> <span class="p">:</span> <span class="n">Evaluating</span> <span class="n">Primary</span> <span class="n">Beam</span> <span class="n">model</span> <span class="n">onto</span> <span class="n">image</span> <span class="n">grid</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">13</span>     <span class="n">INFO</span>    <span class="n">MPICommandServer</span><span class="p">::</span><span class="n">command_request_handler_service</span><span class="p">::</span><span class="n">SIImageStore</span><span class="p">::</span><span class="n">calcSensitivity</span><span class="p">::</span><span class="n">MPIServer</span><span class="o">-</span><span class="mi">54</span>  <span class="p">[</span><span class="n">S255IR</span><span class="o">-</span><span class="n">SMA1_sci</span><span class="o">.</span><span class="n">spw0</span><span class="o">.</span><span class="n">cube</span><span class="o">.</span><span class="n">I</span><span class="o">.</span><span class="n">zoom</span><span class="o">.</span><span class="n">manual</span><span class="p">]</span> <span class="n">Theoretical</span> <span class="n">sensitivity</span> <span class="p">(</span><span class="n">Jy</span><span class="o">/</span><span class="n">bm</span><span class="p">):</span><span class="n">c0</span><span class="p">:</span><span class="n">none</span> <span class="n">c1</span><span class="p">:</span><span class="n">none</span> <span class="n">c2</span><span class="p">:</span><span class="n">none</span> <span class="n">c3</span><span class="p">:</span><span class="n">none</span> <span class="n">c4</span><span class="p">:</span><span class="n">none</span> <span class="n">c5</span><span class="p">:</span><span class="n">none</span> <span class="n">c6</span><span class="p">:</span><span class="n">none</span> <span class="n">c7</span><span class="p">:</span><span class="n">none</span> <span class="n">c8</span><span class="p">:</span><span class="n">none</span> <span class="n">c9</span><span class="p">:</span><span class="n">none</span> <span class="n">c10</span><span class="p">:</span><span class="n">none</span> <span class="n">c11</span><span class="p">:</span><span class="n">none</span> <span class="n">c12</span><span class="p">:</span><span class="n">none</span> <span class="n">c13</span><span class="p">:</span><span class="mf">0.00121258</span> <span class="n">c14</span><span class="p">:</span><span class="mf">0.00121257</span> <span class="n">c15</span><span class="p">:</span><span class="mf">0.00121255</span> <span class="n">c16</span><span class="p">:</span><span class="n">none</span> <span class="n">c17</span><span class="p">:</span><span class="n">none</span> <span class="n">c18</span><span class="p">:</span><span class="n">none</span> <span class="n">c19</span><span class="p">:</span><span class="n">none</span> <span class="n">c20</span><span class="p">:</span><span class="n">none</span> <span class="n">c21</span><span class="p">:</span><span class="n">none</span> <span class="n">c22</span><span class="p">:</span><span class="n">none</span> <span class="n">c23</span><span class="p">:</span><span class="n">none</span> <span class="n">c24</span><span class="p">:</span><span class="n">none</span> <span class="n">c25</span><span class="p">:</span><span class="n">none</span> <span class="n">c26</span><span class="p">:</span><span class="mf">0.00121253</span> <span class="n">c27</span><span class="p">:</span><span class="mf">0.00121253</span> <span class="n">c28</span><span class="p">:</span><span class="mf">0.00121252</span> <span class="n">c29</span><span class="p">:</span><span class="mf">0.00121251</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">13</span>     <span class="n">WARN</span>    <span class="n">MPICommandServer</span><span class="p">::</span><span class="n">command_request_handler_service</span><span class="p">::</span><span class="n">SIImageStore</span><span class="p">::</span><span class="n">getPSFGaussian</span><span class="p">::</span><span class="n">MPIServer</span><span class="o">-</span><span class="mi">54</span> <span class="p">(</span><span class="n">file</span> <span class="n">src</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">synthesis</span><span class="o">/</span><span class="n">ImagerObjects</span><span class="o">/</span><span class="n">SIImageStore</span><span class="o">.</span><span class="n">cc</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2037</span><span class="p">)</span>        <span class="n">PSF</span> <span class="ow">is</span> <span class="n">blank</span> <span class="k">for</span><span class="p">[</span><span class="n">C0</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span> <span class="p">[</span><span class="n">C1</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span> <span class="p">[</span><span class="n">C2</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span> <span class="p">[</span><span class="n">C3</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span> <span class="p">[</span><span class="n">C4</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span> <span class="p">[</span><span class="n">C5</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span> <span class="p">[</span><span class="n">C6</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span> <span class="p">[</span><span class="n">C7</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span> <span class="p">[</span><span class="n">C8</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span> <span class="p">[</span><span class="n">C9</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span> <span class="p">[</span><span class="n">C10</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span> <span class="p">[</span><span class="n">C11</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span> <span class="p">[</span><span class="n">C12</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span> <span class="p">[</span><span class="n">C16</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span> <span class="p">[</span><span class="n">C17</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span> <span class="p">[</span><span class="n">C18</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span> <span class="p">[</span><span class="n">C19</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span> <span class="p">[</span><span class="n">C20</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span> <span class="p">[</span><span class="n">C21</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span> <span class="p">[</span><span class="n">C22</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span> <span class="p">[</span><span class="n">C23</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span> <span class="p">[</span><span class="n">C24</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span> <span class="p">[</span><span class="n">C25</span><span class="p">:</span><span class="n">P0</span><span class="p">]</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">13</span>     <span class="n">INFO</span>    <span class="n">MPICommandServer</span><span class="p">::</span><span class="n">command_request_handler_service</span><span class="p">::</span><span class="n">SIImageStore</span><span class="p">::</span><span class="n">getPSFGaussian</span><span class="p">::</span><span class="n">MPIServer</span><span class="o">-</span><span class="mi">54</span>   <span class="n">Time</span> <span class="n">to</span> <span class="n">fit</span> <span class="n">Gaussian</span> <span class="n">to</span> <span class="n">PSF</span> <span class="mf">0.12</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">13</span>     <span class="n">INFO</span>    <span class="n">MPICommandServer</span><span class="p">::</span><span class="n">command_request_handler_service</span><span class="p">::</span><span class="n">SIImageStore</span><span class="p">::</span><span class="n">printBeamSet</span><span class="p">::</span><span class="n">MPIServer</span><span class="o">-</span><span class="mi">54</span>     <span class="n">Restoring</span> <span class="n">Beams</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">13</span>     <span class="n">INFO</span>    <span class="n">MPICommandServer</span><span class="p">::</span><span class="n">command_request_handler_service</span><span class="p">::</span><span class="n">SIImageStore</span><span class="p">::</span><span class="n">printBeamSet</span><span class="p">::</span><span class="n">MPIServer</span><span class="o">-</span><span class="mi">54</span> <span class="o">+</span>   <span class="n">Pol</span>   <span class="n">Type</span> <span class="n">Chan</span>         <span class="n">Freq</span>     <span class="n">Vel</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">13</span>     <span class="n">INFO</span>    <span class="n">MPICommandServer</span><span class="p">::</span><span class="n">command_request_handler_service</span><span class="p">::</span><span class="n">SIImageStore</span><span class="p">::</span><span class="n">printBeamSet</span><span class="p">::</span><span class="n">MPIServer</span><span class="o">-</span><span class="mi">54</span> <span class="o">+</span>     <span class="n">I</span>    <span class="n">Max</span>    <span class="mi">0</span> <span class="mf">2.351450e+11</span> <span class="o">-</span><span class="mf">824.59</span>    <span class="mf">0.0254</span> <span class="n">arcsec</span> <span class="n">x</span>    <span class="mf">0.0197</span> <span class="n">arcsec</span> <span class="n">pa</span><span class="o">=</span> <span class="o">-</span><span class="mf">6.8506</span> <span class="n">deg</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">13</span>     <span class="n">INFO</span>    <span class="n">MPICommandServer</span><span class="p">::</span><span class="n">command_request_handler_service</span><span class="p">::</span><span class="n">SIImageStore</span><span class="p">::</span><span class="n">printBeamSet</span><span class="p">::</span><span class="n">MPIServer</span><span class="o">-</span><span class="mi">54</span> <span class="o">+</span>     <span class="n">I</span>    <span class="n">Min</span>    <span class="mi">1</span> <span class="mf">2.351460e+11</span> <span class="o">-</span><span class="mf">825.84</span>    <span class="mf">0.0000</span> <span class="n">arcsec</span> <span class="n">x</span>    <span class="mf">0.0000</span> <span class="n">arcsec</span> <span class="n">pa</span><span class="o">=</span>  <span class="mf">0.0000</span> <span class="n">deg</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="mi">15</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">13</span>     <span class="n">INFO</span>    <span class="n">MPICommandServer</span><span class="p">::</span><span class="n">command_request_handler_service</span><span class="p">::</span><span class="n">SIImageStore</span><span class="p">::</span><span class="n">printBeamSet</span><span class="p">::</span><span class="n">MPIServer</span><span class="o">-</span><span class="mi">54</span> <span class="o">+</span>     <span class="n">I</span> <span class="n">Median</span>    <span class="mi">9</span> <span class="mf">2.351538e+11</span> <span class="o">-</span><span class="mf">835.82</span>    <span class="mf">0.0254</span> <span class="n">arcsec</span> <span class="n">x</span>    <span class="mf">0.0197</span> <span class="n">arcsec</span> <span class="n">pa</span><span class="o">=</span> <span class="o">-</span><span class="mf">6.8506</span> <span class="n">deg</span>
+</pre></div>
+<p>These blank psfs are <cite>wrong</cite>, there are no flagged data in this data set (no flagged channels).
+Something about the parallel version of clean is reading the data wrong.</p>
+<div class="section" id="solution">
+<h3>Solution</h3>
+<p>I finally solved this by manually unflagging the channels.  Thanks to Brian
+Svoboda for helping with the antenna selection syntax.</p>
+<div class="highlight"><pre><span></span><span class="n">flagdata</span><span class="p">(</span><span class="n">linevis</span><span class="p">,</span> <span class="n">spw</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">orig_spw</span><span class="p">),</span> <span class="n">antenna</span><span class="o">=</span><span class="s1">&#39;*&amp;*&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;unflag&#39;</span><span class="p">)</span>
+</pre></div>
+<p>I don't understand why flagdata was showing the channels as being unflagged,
+as they were clearly flagged in all data sets (original &amp; backup).
+I don't understand _when_ they were flagged, either, as it seems they were
+flagged even before continuum imaging was done.</p>
+</div>
+</div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 51
+        <a href="https://keflavich.github.io/blog/index2.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

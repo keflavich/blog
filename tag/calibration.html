@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - calibration</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2011/12/02
+                  <br>
+                  <a href="https://keflavich.github.io/blog/calibration-as-good-as-its-gonna-get.html">Calibration: As good as it's gonna get</a>
+              </li>
+              <li class="post">
+                  2011/11/16
+                  <br>
+                  <a href="https://keflavich.github.io/blog/calibration-offsets-revisited.html">Calibration Offsets Revisited</a>
+              </li>
+              <li class="post">
+                  2011/08/26
+                  <br>
+                  <a href="https://keflavich.github.io/blog/final-calibration-curves-yeah-sure.html">Final calibration curves (yeah... sure)</a>
+              </li>
+              <li class="post">
+                  2011/08/25
+                  <br>
+                  <a href="https://keflavich.github.io/blog/v1-vs-v2-calibration-curves.html">V1 vs V2: Calibration Curves</a>
+              </li>
+              <li class="post">
+                  2011/03/30
+                  <br>
+                  <a href="https://keflavich.github.io/blog/progress-but-still-ds1-ds5-issues.html">Progress, but still ds1-ds5 issues</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/calibration-as-good-as-its-gonna-get.html" rel="bookmark" title="Permalink to Calibration: As good as it's gonna get">
+                    Calibration: As good as it's gonna get</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-12-02T23:25:00-07:00"> 2011/12/02 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://2.bp.blogspot.com/-JLIm1-8V9pc/TtlaRJP2EoI/AAAAAAAAGoA/-gwCmjybJxs/s320/newmottecygx2_bgps_iram_comp_linefits_cross.png" />
+<img alt="" src="http://1.bp.blogspot.com/-FkotaRfI_hk/TtlaR5VW_PI/AAAAAAAAGoM/Hd9yvKq66lU/s320/newmottecygx2_bgpsv2_iram_comp_linefits_cross.png" />
+<img alt="" src="http://4.bp.blogspot.com/-9xlFisqEq38/TtlaSXvv3ZI/AAAAAAAAGoY/uWvlhTeriuY/s320/newmottecygx2_bgps_iram_comp_linefits_cross_dr21.png" />
+<img alt="" src="http://4.bp.blogspot.com/-MGx4yVQpxfU/TtlaS9OB3AI/AAAAAAAAGok/aMz1NHI2G9k/s320/newmottecygx2_bgpsv2_iram_comp_linefits_cross_dr21.png" />
+<p>BGPS vs BGPSv2 in Cyg X</p>
+<img alt="" src="http://1.bp.blogspot.com/-JMPVYUkw0nc/Ttla0-Fqn9I/AAAAAAAAGow/9c0IhC4_qlg/s320/newirdc1_bgps_iram_comp_linefits_cross.png" />
+<img alt="" src="http://4.bp.blogspot.com/-knIt9Yw8FJU/Ttla1XeTfmI/AAAAAAAAGo8/d4bNvhfPf6U/s320/newirdc1_bgpsv2_iram_comp_linefits_cross.png" />
+<p>BGPS vs BGPSv2 in IRDC1 (Rathborne)</p>
+<img alt="" src="http://3.bp.blogspot.com/-Uw9lPIsA758/TtlbgMzryZI/AAAAAAAAGpI/3OcrHYS-8KA/s320/testregl44_bgps_s1200_comp_linefits_1.png" />
+<img alt="" src="http://2.bp.blogspot.com/-ikkojUChsfY/Ttlbg4BnvJI/AAAAAAAAGpU/-SrRpX1GvMw/s320/testregl44_bgpsv2_s1200_comp_linefits_1.png" />
+<img alt="" src="http://1.bp.blogspot.com/-G6PzOBzHmtc/TtlbhbgsEQI/AAAAAAAAGpg/1K630s21FpQ/s320/testregl44_bgps_s1200_comp_linefits_2.png" />
+<img alt="" src="http://3.bp.blogspot.com/-NEnpDAiVatM/Ttlbh7_cTdI/AAAAAAAAGps/FDDMbzdHbBw/s320/testregl44_bgpsv2_s1200_comp_linefits_2.png" />
+<p>BGPS vs BGPSv2 in l=44 (comparison is SIMBA, not MAMBO)</p>
+<img alt="" src="http://1.bp.blogspot.com/-J27n1Y5t4Ug/TtleWSaYxoI/AAAAAAAAGp4/LuPMX5Iv8E0/s320/l44_regions.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/calibration-offsets-revisited.html" rel="bookmark" title="Permalink to Calibration Offsets Revisited">
+                    Calibration Offsets Revisited</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-11-16T01:05:00-07:00"> 2011/11/16 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The agreement with Motte et al 2007 is now perfect with a vertical
+ADDITIVE offset instead of the annoying multiplicative offset. An
+additive offset can trivially be accounted for by a spatial transfer
+function. As is evident in the difference images, the MAMBO data appears
+to sit on a plateau.</p>
+<img alt="" src="http://2.bp.blogspot.com/-dCeUkoHiAPs/TrwYlSZ2I6I/AAAAAAAAGj8/2FpasBudxPc/s320/newtestregl44_bgps_s1200_comp_linefits_point.png" />
+<img alt="" src="http://2.bp.blogspot.com/-XWWisYSwoiw/TrwYl-E4uQI/AAAAAAAAGkI/Gu5MxohyxZY/s320/newtestregl44_bgpsv2_s1200_comp_linefits_point.png" />
+<img alt="" src="http://3.bp.blogspot.com/-flBRCavDJKM/TrwYmZLzifI/AAAAAAAAGkU/D7K7-aG_ZZE/s320/testregl44_bgps_s1200_comp_origimages_scales1200peak_1.png" />
+<img alt="" src="http://3.bp.blogspot.com/-0i_9U9v37Wc/TrwYm3Ctx4I/AAAAAAAAGkg/xj1xWYI4eLo/s320/testregl44_bgpsv2_s1200_comp_origimages_scales1200peak_1.png" />
+<img alt="" src="http://4.bp.blogspot.com/-Wnys8tmpdnI/TsMFsi04CZI/AAAAAAAAGlc/sXKhoMMDRUM/s320/newirdc1_bgps_iram_comp_linefits_cross.png" />
+<img alt="" src="http://4.bp.blogspot.com/-XWRv2iQr_yM/TsMFtHzCWUI/AAAAAAAAGlo/MVvzvsJEv8s/s320/irdc1_bgps_iram_comp_origimages_scaleirampeak.png" />
+<img alt="" src="http://1.bp.blogspot.com/-2VT-44snbic/TsMFthQNCzI/AAAAAAAAGl0/XJmjYJWlT0A/s320/newirdc1_bgpsv2_iram_comp_linefits_cross.png" />
+<img alt="" src="http://4.bp.blogspot.com/-76VOl5ASlas/TsMFuS2tU7I/AAAAAAAAGmA/1GY0DwzsToo/s320/irdc1_bgpsv2_iram_comp_origimages_scaleirampeak.png" />
+<p>Cygnus X:
+BGPSV1:</p>
+<img alt="" src="http://3.bp.blogspot.com/-Ul21t0ucmOs/TsMGdaRI50I/AAAAAAAAGmM/UhJ_mCKRZ4A/s320/newmottecygx2_bgps_iram_comp_linefits_cross.png" />
+<img alt="" src="http://1.bp.blogspot.com/-d_XSGb63vtk/TsMGd7cMs1I/AAAAAAAAGmY/MTL7mFfH9_I/s320/newmottecygx2_bgps_iram_comp_linefits_cross_2.png" />
+<img alt="" src="http://1.bp.blogspot.com/-CKArUxnvfXc/TsMGeY4yP7I/AAAAAAAAGmk/iaRcDy28-8w/s320/newmottecygx2_bgps_iram_comp_linefits_cross_3.png" />
+<img alt="" src="http://4.bp.blogspot.com/-cNgOGbIFhzc/TsMGe3d7kZI/AAAAAAAAGmw/kn3Y0M18flM/s320/newmottecygx2_bgps_iram_comp_linefits_cross_dr21.png" />
+<p>BGPSV2:</p>
+<img alt="" src="http://4.bp.blogspot.com/-cIZHQxLW7t0/TsMGrpLUTcI/AAAAAAAAGm8/PJfhh_Z1Y44/s320/newmottecygx2_bgpsv2_iram_comp_linefits_cross.png" />
+<img alt="" src="http://4.bp.blogspot.com/-55051oTEK34/TsMGrzJL3eI/AAAAAAAAGnI/pd468xeLBxQ/s320/newmottecygx2_bgpsv2_iram_comp_linefits_cross_2.png" />
+<img alt="" src="http://4.bp.blogspot.com/-f2BTCfMG5Ao/TsMGsTy98yI/AAAAAAAAGnU/6m30n1cgwgQ/s320/newmottecygx2_bgpsv2_iram_comp_linefits_cross_3.png" />
+<img alt="" src="http://1.bp.blogspot.com/-ND8KA8OqHpc/TsMGs5pAo0I/AAAAAAAAGng/kkucv9xfINk/s320/newmottecygx2_bgpsv2_iram_comp_linefits_cross_dr21.png" />
+<img alt="" src="http://4.bp.blogspot.com/-8ovlXgU6EIU/TsMMT0wfZ-I/AAAAAAAAGns/dq5Es6kDmE0/s320/sections.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/final-calibration-curves-yeah-sure.html" rel="bookmark" title="Permalink to Final calibration curves (yeah... sure)">
+                    Final calibration curves (yeah... sure)</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-08-26T17:26:00-06:00"> 2011/08/26 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've finished rederiving the calibration curves self-consistently. These
+will now be applied to the data....</p>
+<img alt="" src="http://4.bp.blogspot.com/-Px-hpKGeiK0/TlfXKrZw3mI/AAAAAAAAGcc/mJH4Yes9K1I/s320/planet_dcfluxes_05_v2.0_13pca_ds2_defaults_map20.png" />
+<img alt="" src="http://1.bp.blogspot.com/-n2uTCyFEiqQ/TlfXLCd3twI/AAAAAAAAGck/iDls4F3YpKs/s320/planet_dcfluxes_06_v2.0_13pca_ds2_defaults_map20.png" />
+<img alt="" src="http://3.bp.blogspot.com/-361ND0Pcic0/TlfXLiczcRI/AAAAAAAAGcs/_RnBjVjrsGY/s320/planet_dcfluxes_07_v2.0_13pca_ds2_defaults_map20.png" />
+<img alt="" src="http://1.bp.blogspot.com/-Ui00rWxnoiE/TlfXL-jQw_I/AAAAAAAAGc0/9WZG7srlDok/s320/planet_dcfluxes_09_v2.0_13pca_ds2_defaults_map20.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/v1-vs-v2-calibration-curves.html" rel="bookmark" title="Permalink to V1 vs V2: Calibration Curves">
+                    V1 vs V2: Calibration Curves</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-08-25T17:09:00-06:00"> 2011/08/25 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Why did we find a factor ~1.8 in <a class="reference external" href="http://bolocam.blogspot.com/2011/08/bolocat-v1-v2-comparison.html">the previous post</a>? Well, for
+starters we used a calibration curve that was based off of 'masking' and
+other tricky techniques.
+The calibration curves below are the first ever produced
+self-consistently, i.e. using the EXACT same pipeline with the EXACT
+same parameters as the science data. No hacks were needed to produce
+these<a class="reference external" href="#asterisk&quot;">*</a>. The recovered Volts/Jy are substantially higher than
+BGPSv1 and ALSO higher than the curve used about a year ago in an
+attempt to explain the v1 flux discrepancy.
+Remember that a higher calibration curve means a LOWER recovered flux. I
+haven't finished the check, but odds are pretty good that applying these
+self-consistent cal curves will reduce the v2 data to be about 1.5.</p>
+<img alt="" src="http://4.bp.blogspot.com/-PRU4LQ5f-C4/TlZ9wpeFBeI/AAAAAAAAGb8/jKdJHtIqV40/s320/planet_dcfluxes_05_defaults_ds2_v2.0_13pca_map20.png" />
+<img alt="" src="http://3.bp.blogspot.com/-AIzsETyl69g/TlZ9w50DjBI/AAAAAAAAGcE/h5ggKhH3dO4/s320/planet_dcfluxes_06_defaults_ds2_v2.0_13pca_map20.png" />
+<img alt="" src="http://4.bp.blogspot.com/-BNWD4QQ21Ac/TlZ9xZ5eTkI/AAAAAAAAGcM/QOVbum2jXIo/s320/planet_dcfluxes_07_defaults_ds2_v2.0_13pca_map20.png" />
+<img alt="" src="http://2.bp.blogspot.com/-OucWo74b8VY/TlZ9yFIJYQI/AAAAAAAAGcU/IBMs5YLMlYU/s320/planet_dcfluxes_09_defaults_ds2_v2.0_13pca_map20.png" />
+<p>While no hacks were needed to produce these plots, there were abundant
+problems. There are far fewer data points than there should be. The
+problems are manifold, but mostly have to do with the PCA scaling (I
+think).
+In some cases, the first scan in an observation was wildly variable.
+There looked to be an exponential or similar decay (as has been observed
+in scan turnarounds) at the observation start that took ~3 scans to
+decay to bring all of the bolometers onto a scaleable curve. This is a
+HUGE problem, because the assumption that the dominant signal is
+atmosphere is badly violated in this situation - the signal becomes
+electronics-dominated. The first PCA component is then an ugly
+step-function. With these first scans flagged out, the whole problem
+goes away, but that's a painful manual process. Automating it MAY be
+possible, but also risky.
+In other cases, particularly September 4th 2007, the atmosphere appeared
+to be negligible! While the atmospheric optical depth probably was not,
+if it was extraordinarily stable over the course of ~10 minutes, again
+we experience severe problems. A stable atmosphere means no atmospheric
+variation, which means that ACBOLOS is just noise (plus Uranus signal).
+Ironically, this is very bad for calibration - it means there is no
+common signal on which we can calibrate the bolos' relative
+sensitivities. This problem doesn't seem to affect science data,
+probably because there's no such thing as 45-minute stable atmosphere
+(especially when you're following rising/setting sources). If I REALLY
+need that data, I could snag the relative scalings from a science field
+and apply them to the cal data... honestly that's not a bad idea in
+general... hmm... Well, we'll explore that later if I have time, that
+will take days to implement.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/progress-but-still-ds1-ds5-issues.html" rel="bookmark" title="Permalink to Progress, but still ds1-ds5 issues">
+                    Progress, but still ds1-ds5 issues</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-03-30T02:47:00-06:00"> 2011/03/30 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>ds1 and ds5 agree pretty well with the recent upgrades to delining and
+deconvolution. However, there are still counterexamples, e.g.
+101208_o13, in which ds5 &lt; ds1:</p>
+<img alt="" src="http://4.bp.blogspot.com/-fIJHF_x5mBI/TZI0cryJfbI/AAAAAAAAGDI/GsNfLRGNZAk/s200/101208_o13_raw_ds1.nc_indiv13pca.png" />
+<img alt="" src="http://2.bp.blogspot.com/-QRhiz8W9RDc/TZI0dGUR4UI/AAAAAAAAGDQ/WC8eLQd6_Z0/s200/101208_o13_raw_ds5.nc_indiv13pca.png" />
+<p>The 'fitted' values agree better than the 'measured' values now that
+NANs are treated properly.
+Spent a few hours today trying to figure out if weighting can explain
+the difference between ds1 and ds5; it appears to make up for most of it
+so I'm doing some more experiments. Why is there so much parameter
+space? Why can't weighting just work? It doesn't....
+also wasted a few hours trying to write a python drizzling algorithm,
+which unfortunately is impossible so I had to resort to an inefficient
+for loop.
+Finally got some minor results. It really looks like there is a trend
+pushing up the recovered flux (i.e. higher volts/Jy) for ds5 over ds1.
+There is a discrepancy between map types for ds1 but not for ds5, which
+is actually backwards from what I would have expected, since ds1 will
+get better-sampled maps.</p>
+<img alt="" src="http://2.bp.blogspot.com/-ARaSL7ZdDmc/TZKRcE01DnI/AAAAAAAAGDY/YMZRpRo53Hw/s320/uranus_dcfluxes_dec2010_nomask_ds1_13pca_fits_map10.png" />
+<img alt="" src="http://3.bp.blogspot.com/-pWtggp0vSP4/TZKRcwZ_SrI/AAAAAAAAGDg/IqVHQSprkL8/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png" />
+<p>Luckily, the difference between peak fitting and &quot;measuring&quot; results in
+very small (insignificant) changes to the calibration curve (recall
+fitting is direct gaussian fitting; 'measuring' is using the
+gaussian-fit width and total flux in an ellipse to infer a peak assuming
+a point source):</p>
+<img alt="" src="http://2.bp.blogspot.com/-E-FDTTj-4Ik/TZKVyUA8zBI/AAAAAAAAGDo/9NGubgLWBvo/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png" />
+<img alt="" src="http://3.bp.blogspot.com/-GdyxFnmwQ7g/TZKVykSg57I/AAAAAAAAGDw/PPVXtfAxW0s/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_map10.png" />
+<p>Since this work has all been done for the 'bootstrapping' observations
+that are supposed to tell us if different map sizes are compatible, I
+have included the map sizes in the diagrams now. However, to really
+understand the ds1/ds5 difference, there are much better data sets,
+which I'm now reprocessing using the new and improved methods.
+(the Whole BGPS is also processing with the new methods in the
+background, though since the methods are being updated live there may be
+more changes and it will have to be re-run.... initial looks at W5 are
+BAD but L030 is GOOD (bordering on amazing))</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/careful-comparison-of-ds1-and-ds5.html" rel="bookmark" title="Permalink to Careful comparison of ds1 and ds5">
+                    Careful comparison of ds1 and ds5</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-03-29T15:23:00-06:00"> 2011/03/29 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I looked very closely at the timestream and maps of 101208_o11 and had
+a pretty hard time figuring out why the data were different, but it
+looked like the data really did differ on a point-by-point basis
+(according to pyflagger). The only conclusion I was able to draw is that
+the scaling must be off. I realized that the scaling was being done
+before delining. I moved scaling from readall_pc to premap, and it
+brought at least this one source into agreement. Time to run ds1-ds5
+comparisons again!
+(this means that ds1 data MUST have deline run on it, but ds5 data
+doesn't really need it)
+Here are examples of ds1 and ds5 timestreams, with and without scaling,
+and ds1 with and without delining:</p>
+<img alt="" src="http://4.bp.blogspot.com/-KR_NYG31_O0/TZECtBAgqFI/AAAAAAAAGCg/1jC9Ys2r9Iw/s200/101208_o11_ds5_uranus_indivtesttimestream011_plots_20_bolo02.png" />
+<img alt="" src="http://3.bp.blogspot.com/-HbK-hAXjSDs/TZECtUNe8AI/AAAAAAAAGCo/i4fsH12Iw8Y/s200/101208_o11_ds1_uranus_indivtest_delinetimestream011_plots_20_bolo02.png" />
+<img alt="" src="http://3.bp.blogspot.com/-edXLnDrrt5o/TZECt0No8oI/AAAAAAAAGCw/QjHg1ScBHG0/s200/101208_o11_ds1_uranus_indivtesttimestream011_plots_20_bolo02.png" />
+<img alt="" src="http://1.bp.blogspot.com/-4NIxFxEQ1jU/TZECuDJ1fVI/AAAAAAAAGC4/tGE5tDH_168/s200/101208_o11_ds1_uranus_indivtest_deline_noscaleacbtimestream011_plots_20_bolo02.png" />
+<img alt="" src="http://2.bp.blogspot.com/-DfIepZXXCFc/TZECuhm8lwI/AAAAAAAAGDA/Awp60ZuPGps/s200/101208_o11_ds5_uranus_indivtest_noscaleacbtimestream011_plots_20_bolo02.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/trying-to-bootstrap.html" rel="bookmark" title="Permalink to Trying to bootstrap">
+                    Trying to bootstrap</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-03-28T02:01:00-06:00"> 2011/03/28 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've concluded, based on previous posts
+<a class="reference external" href="http://bolocam.blogspot.com/2011/02/downsampling-why-is-dec-2010-different.html">http://bolocam.blogspot.com/2011/02/downsampling-why-is-dec-2010-different.html</a>,
+<a class="reference external" href="http://bolocam.blogspot.com/2011/03/revisiting-calibration-yet-again.html">http://bolocam.blogspot.com/2011/03/revisiting-calibration-yet-again.html</a>,
+and
+<a class="reference external" href="http://bolocam.blogspot.com/2011/03/workaround-for-individual-maps.html">http://bolocam.blogspot.com/2011/03/workaround-for-individual-maps.html</a>,
+that ds5 is a problem primarily for undersampled images, i.e. those
+taken in the normal mapping mode. This makes bootstrapping a bit tricky.</p>
+<p>There are two options:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>Map Uranus and AFGL 4029 both in Volts and figure out what flux density
+AFGL 4029 must have to lie on that curve</li>
+<li>Map Uranus and compute a calibration curve, apply that calibration curve
+to AFGL 4029, and then compare derived flux densities.</li>
+</ol>
+</blockquote>
+<p>Both have the major problem that the individual AFGL 4029 maps will
+forcibly be undersampled if I use ds5 data (which is normally OK,
+according to the first paragraph). In the second case, it is possible to
+co-add the images and get around the under-sampling issue, while in the
+first case it is not because of the dependence on total loading
+(MEANDC).</p>
+<p>The real problem is that the whole goal of these observations was to
+compare the different observing methods and see if they agree (1x1, 3x1,
+pointing, etc.) since the pointing-style observations were used to
+calibrate the others. But if the 1x1s are just straight-up unreliable,
+how can we do the comparison? I think the co-added AFGL 4029 is the only
+option, but then how do I test if it's correct? It would be really nice
+to have AFGL 4029 observed with both scan types...</p>
+<p>Alright, onto the data. After last week's fix of the bad bolos, I really
+hope ds1 and ds5 agree. However, first glance at the cal curves says
+they don't. ds1 and ds2 agree, but ds5 is different.</p>
+<p>After checking them out with
+<tt class="docutils literal">ds9 <span class="pre">*ds[15]*13pca*_map10.fits</span> <span class="pre">-scale</span> limits <span class="pre">-1</span> 1000 <span class="pre">-log</span> <span class="pre">-cmap</span> hsv <span class="pre">-match</span> colorbars <span class="pre">-match</span> scales <span class="pre">-match</span> frames wcs &amp;</tt>,
+it appears that the _mask_ data is all... wrong, somehow. That's OK, I
+want to discard the mask data anyway, so I'm happy to NOT spend time
+debugging it.</p>
+<p>Even after careful examination showing that the fits look good - and
+noting that the fluxes look pretty much the same - the calibration
+curves still look rather different. Unfortunately I had to spend 3 hours
+debugging IDL plotting commands; I want to show the fits each time and
+save them as postscripts. What does &quot;xyouts&quot; with &quot;/device,/normal&quot; do?
+I thought that should plot x,y text at the coordinates specified in the
+plot window... but no, that is JUST /normalize.</p>
+<p>Anyway, realized that centroid_map treated NANs as zero. Added ERR
+keyword (with a reasonable estimate of the error) in centroid_map to
+ignore NANs. It looks like improper treatment of NANs is responsible for
+a lot of the scatter seen in the calibration plots.</p>
+<p>There is a substantial difference between the &quot;fitted&quot; peak and the
+&quot;measured&quot; peak (the latter computed by taking the sum of the pixels
+divided by the area of the fitted gaussian). It looks like the
+&quot;measured&quot; version is more robust, at first glance. However,
+unfortunately, for 101208_o11, the difference between ds1 and ds5
+exists in both quantities. I will have to examine timestreams now...
+ARGH.</p>
+<p>Well, the timestreams show... that indeed the model is lower in ds1, but
+not why. The &quot;remainder&quot; (new_astro; the stuff that never gets
+incorporated into the model but DOES get incorporated into the map)
+appears to be the same in both. Similarly, there is little to no flux in
+the PCA atmosphere, so it's not simply being cleaned out. Where is the
+flux going or coming from?</p>
+<img alt="" src="http://3.bp.blogspot.com/-6lqGwWn650Q/TY_rgZKA9QI/AAAAAAAAGCI/Iq9O5mnmhl8/s320/101208_o11_ds1_uranus_indivtest_delinetimestream011_plots_20_bolo02.png" />
+<img alt="" src="http://1.bp.blogspot.com/-7uBbEU1tAqM/TY_rgg6Jq9I/AAAAAAAAGCQ/iaGhOSb6gtQ/s320/101208_o11_ds5_uranus_indivtesttimestream011_plots_20_bolo02.png" />
+<img alt="" src="http://1.bp.blogspot.com/-YKdZcNOjm7Q/TY_rg6tcvhI/AAAAAAAAGCY/fr4l8j-v4xI/s320/101208_o11_ds1_uranus_indivtesttimestream011_plots_20_bolo02.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/revisiting-calibration-yet-again.html" rel="bookmark" title="Permalink to Revisiting calibration yet again">
+                    Revisiting calibration yet again</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-03-23T00:22:00-06:00"> 2011/03/23 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The recent hiatus for paper revisions has, unfortunately, come to an
+end.
+Re-examining my work, I did quite a lot but encountered many dead-ends.
+First, we would very much like to use an *identical* reduction process
+on both the calibration data and the science data. That way, we could
+feel very confident that the reduction process isn't introducing any
+weird artifacts.
+Unfortunately, I discovered early on that using ds5 data, 13 pca
+components, and n&gt;1 iterations resulted in strange shape and flux
+conservation failures. These errors do NOT occur in co-added maps; they
+are unique to single-observation scans (though I don't recollect whether
+2 scans is enough or if you need more).
+I spent many hours banging my head against this problem and have never
+gotten a satisfactory solution. But perhaps it's time to approach it
+again. The map00 images look MUCH rounder and generally better than the
+map10 images.
+So, the problem I need to examine is the iterative process. Why does it
+fail for single images? Is it something about the noise properties?
+model00 looks fine... what gets put into the timestream? Examining
+timestreams is a terrible and horrendous process... but what else can I
+do?
+The next step will be to examine the timestreams of a particular
+observation. I think a good choice is 101208_ob7; the next observation,
+101208_ob8 was a large-area map and it looks fine (i.e., it improves
+with iteration). So I can start looking at the effects of polysub,
+iteration, etc. on this particular source.
+Of course, the stupid trick with the pipeline - every time - is that
+&quot;fixing&quot; a problem for one source has a nasty tendency to break it for
+all other sources. That's why there are so many flags that can be passed
+around. Still, this is the approach I have to take...</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/downsampling-has-serious-negative-effects-on-the-data.html" rel="bookmark" title="Permalink to Downsampling has serious negative effects on the data">
+                    Downsampling has serious negative effects on the data</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-01-20T20:16:00-07:00"> 2011/01/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Background: Downsampling is performed using Old Pipeline code called
+<tt class="docutils literal">process_ncdf</tt>. All BGPS data was downsampled by a factor of 5
+before mapping because of data size concerns. I did this 'blindly'
+(i.e., just
+accepted that I should) because James said I could.
+However, I had previously noted that the pointing files could not be
+done with
+downsampled data because the beams 'looked funny' or something along
+those
+lines; it may also have been a simple map sampling issue in which not
+all
+pixels were filled with a downsampled image.
+Anyway, I decided to go back and quantify the effects. The plots below
+are from the
+single &quot;pointing-style&quot; observation of OMC1 from 2009. The units are
+volts. 'ds1' indicates
+sampling at 0.02 seconds, 'ds5' indicates sampling every 0.1 seconds.
+The scan rate was
+120&quot;/s.</p>
+<hr class="docutils" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TTiWWSS-JVI/AAAAAAAAF24/4m2SFfwWkmA/s400/omc1_dstest_autocorrfits.png" />
+<p>The beam sizes were measured from the autocorrelation maps. However,
+because there is structure on many scales
+in this map, I had to use a rather ad-hoc method to remove the
+correlated structure. I fitted a gaussian
+to the elliptical northwest-southeast structure, removed it, then fitted
+a gaussian to the remaining circular
+thing in the center, which is approximately the beam.
+If I fit the &quot;beam&quot; gaussian with an ellipse, I get:
+Beamsize 1_1: 36.15,26.23
+Beamsize 1_5: 48.39,30.21
+With a circle:
+Beamsize 1_1: 29.51
+Beamsize 1_5: 35.31</p>
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/TTiWWKeGbJI/AAAAAAAAF2w/jOEmOnDa1hw/s400/omc1_dstest_images.png" />
+<p>The ds1 and ds5 images compared.</p>
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TTiWWlzyWKI/AAAAAAAAF3A/nPCN-C0e3Jo/s400/omc1_dstest_psds.png" />
+<p>The PSDs of the two images (on identical grids). Note that ds5 loses
+power at small spatial scales, 50% at 40&quot;!</p>
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/TTiWWl3j3dI/AAAAAAAAF3I/Ef3WHEv5oXU/s400/omc1_dstest_pixel-pixel.png" />
+<p>The pixel-pixel plot with a fit that shows a 10% overall flux loss
+(best-fit).</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/pps-analysis.html" rel="bookmark" title="Permalink to PPS analysis">
+                    PPS analysis</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2010-06-16T18:06:00-06:00"> 2010/06/16 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've started looking at PPS fields to see if I can glean any additional
+information about the &quot;flux discrepancy&quot; from them.&nbsp; However, the
+results are, as usual, unenlightening.
+There is no consistent increase in flux when 3 PCA components are used
+instead of 13 PCA components - very plausibly an indication that 13 PCA
+is not too much to subtract because it's only atmosphere.&nbsp; Similarly,
+there is no obvious benefit to using a quadratic sky estimator instead
+of a PCA estimator.
+I'm using aperture photometry (without background subtraction) on
+identical fields to perform these comparisons.&nbsp; I've selected
+(arbitrarily) the l357pps source as my comparison source.&nbsp; The next step
+(ongoing) is to compare to the co-added maps and crosshatched
+large-scale maps of the same field.
+(next step) PPS &lt; single cross-hatched large-scale observation pair &lt;
+13PCA full combined map &lt; 3PCA full combined map.
+Unfortunately, this result implies that the small maps under-recover
+flux, which suggests that the large maps are too bright, which is the
+opposite of what we expect.&nbsp; Additionally, lower noise -&gt; more flux
+recovered?
+When background subtraction is included, the 3PCA and 13PCA fluxes match
+nearly perfectly.
+Despite the failure of this test (PPS &lt; full field), I will do a
+systematic comparison of PPS sources with 0PCA + masking to the large
+fields in the hopes that doing so can provide a legitimate estimate of
+the &quot;scale factor&quot; from treating small and large fields differently.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 2
+        <a href="https://keflavich.github.io/blog/tag/calibration2.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

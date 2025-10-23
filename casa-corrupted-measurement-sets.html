@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://keflavich.github.io/blog/casa-corrupted-measurement-sets.html" rel="bookmark"
+         title="Permalink to CASA corrupted measurement sets">CASA corrupted measurement sets</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2019-07-23T13:11:00-06:00">
+      2019/07/23
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Over the weekend, I had a huge quantity of ALMA data get corrupted. The
+corruption appears to have been caused by an incorrectly-mounted lustre system
+that had &quot;flock&quot; disabled.  When they re-mounted the filesystem, every
+measurement set I had touched was unreadable.</p>
+<p>Corrupted data sets had messages like this when opened with <tt class="docutils literal">msmd.open</tt>:</p>
+<pre class="literal-block">
+RuntimeError: Exception: Illegal DATA_DESC_ID value 30 found in main table. /lustre/cv/projects/ALMA_IMF/2017.1.01355.L/science_goal.uid___A001_X1296_X211/group.uid___A001_X1296_X212/member.uid___A001_X1296_X217/calibrated/uid___A002_Xcbdb2a_X6e67.ms.split.cal/DATA_DESCRIPTION only has 0 rows (IDs).
+... thrown by void casa::MSChecker::checkReferentialIntegrity() const at File: ../../msvis/MSVis/MSChecker.cc, line: 78
+</pre>
+<p>The solution was to replace all of the <tt class="docutils literal">table.dat</tt> files in the
+<tt class="docutils literal">DATA_DESCRIPTION</tt>, <tt class="docutils literal">POLARIZATION</tt>, <tt class="docutils literal">STATE</tt>, and <tt class="docutils literal">PROCESSOR</tt> folders
+with &quot;backups&quot; from the parent measurement set.  Luckily, all of my data were
+split from other measurement sets that still existed, and they were split with
+<tt class="docutils literal">reindex=False</tt>, which meant that these tables were actually usable.  There's
+no guarantee they would be in general.</p>
+<p>My fix script is this:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getdata</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">ii</span><span class="p">:(</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">)</span> <span class="k">for</span> <span class="n">ii</span><span class="p">,(</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span> <span class="k">if</span> <span class="n">xx</span><span class="o">!=</span><span class="n">yy</span><span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">fix_bad_mses</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">dirpath</span><span class="p">,</span> <span class="n">dirnames</span><span class="p">,</span> <span class="n">filenames</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">dirnames</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">fn</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span> <span class="o">==</span> <span class="s2">&quot;.split.cal&quot;</span><span class="p">:</span>
+                <span class="n">ffn</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span>
+                <span class="n">workingfn</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="s1">&#39;working&#39;</span><span class="p">,</span> <span class="n">fn</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">])</span>
+
+                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">workingfn</span><span class="p">):</span>
+                    <span class="c1">#print(&quot;Working on files {0} and {1}&quot;.format(ffn, workingfn))</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">ffn</span><span class="p">)</span>
+
+                    <span class="k">for</span> <span class="n">dn</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;POLARIZATION&#39;</span><span class="p">,</span> <span class="s1">&#39;PROCESSOR&#39;</span><span class="p">,</span> <span class="s1">&#39;DATA_DESCRIPTION&#39;</span><span class="p">,</span> <span class="s1">&#39;STATE&#39;</span><span class="p">]:</span>
+                        <span class="n">tbpth1</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ffn</span><span class="p">,</span> <span class="n">dn</span><span class="p">,</span> <span class="s1">&#39;table.dat&#39;</span><span class="p">)</span>
+                        <span class="n">tbpth2</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workingfn</span><span class="p">,</span> <span class="n">dn</span><span class="p">,</span> <span class="s1">&#39;table.dat&#39;</span><span class="p">)</span>
+
+                        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">tbpth1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">tbpth2</span><span class="p">):</span>
+                            <span class="n">d1</span> <span class="o">=</span> <span class="n">getdata</span><span class="p">(</span><span class="n">tbpth1</span><span class="p">)</span>
+                            <span class="n">d2</span> <span class="o">=</span> <span class="n">getdata</span><span class="p">(</span><span class="n">tbpth2</span><span class="p">)</span>
+                            <span class="n">delta</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">)</span>
+                            <span class="c1">#print(&quot;Diff from {0} to {1} is {2}&quot;.format(tbpth1, tbpth2, delta))</span>
+
+                            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">delta</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;FIXING: Diff for </span><span class="si">{0}</span><span class="s2"> is </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dn</span><span class="p">,</span> <span class="n">delta</span><span class="p">))</span>
+                                <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">tbpth1</span><span class="p">,</span> <span class="n">tbpth1</span><span class="o">+</span><span class="s2">&quot;.bck&quot;</span><span class="p">)</span>
+                                <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">tbpth2</span><span class="p">,</span> <span class="n">tbpth1</span><span class="p">)</span>
+</pre></div>
+<p>which spewed out a bunch of messages like this:</p>
+<pre class="literal-block">
+FIXING: Diff for POLARIZATION is {24: ('\x00', '\x01'), 1059: ('\x00', '\x01')}
+FIXING: Diff for PROCESSOR is {24: ('\x00', '\x03'), 1078: ('\x00', '\x03')}
+FIXING: Diff for DATA_DESCRIPTION is {24: ('\x00', '\x18'), 772: ('\x00', '\x18')}
+FIXING: Diff for STATE is {24: ('\x00', '\x1d'), 1699: ('\x00', '\x1d')}
+</pre>
+<p>showing that for each bad file, two bytes were flipped.  I don't know how or why.  Notably, though,
+the byte flips that corrupted the data did <em>not</em> change the file modification date - somehow CASA
+hid this operation from the filesystem.</p>
+
+  </div><!-- /.entry-content -->
+</section>
+
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</section>
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  var disqus_identifier = '/casa-corrupted-measurement-sets.html';
+  var disqus_url = 'https://keflavich.github.io/blog/casa-corrupted-measurement-sets.html';
+  var disqus_title = 'CASA corrupted measurement sets';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

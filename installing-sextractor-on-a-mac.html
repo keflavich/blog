@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://keflavich.github.io/blog/installing-sextractor-on-a-mac.html" rel="bookmark"
+         title="Permalink to Installing sextractor on a mac?">Installing sextractor on a mac?</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2013-02-27T18:02:00-07:00">
+      2013/02/27
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Attempting to install sextractor.</p>
+<p>First, tried following these instructions:</p>
+<p><a class="reference external" href="http://henrysmac.org/blog/2012/8/17/install-sextractor-on-os-x-lion.html">http://henrysmac.org/blog/2012/8/17/install-sextractor-on-os-x-lion.html</a></p>
+<p>Then found out that mac's tar doesn't work properly (see this note: <a class="reference external" href="http://math-atlas.sourceforge.net/atlas_install/node60.html">http://math-atlas.sourceforge.net/atlas_install/node60.html</a>)</p>
+<p>Fixed that with:</p>
+<div class="highlight"><pre><span></span>wget<span class="w"> </span>ftp://gnu.mirror.iweb.com/gnu/tar/tar-latest.tar.gz
+<span class="nb">cd</span><span class="w"> </span>~/repos/
+tar<span class="w"> </span>-xzvf<span class="w"> </span>~/Downloads/tar-latest.tar.gz<span class="w"> </span><span class="c1"># ironically</span>
+<span class="nb">cd</span><span class="w"> </span>tar-1.26/
+./configure
+make
+make<span class="w"> </span>install<span class="w"> </span><span class="c1"># fails</span>
+sudo<span class="w"> </span>make<span class="w"> </span>install
+<span class="nb">hash</span><span class="w"> </span>-r
+</pre></div>
+<p>OK, try the instructions again:</p>
+<div class="highlight"><pre><span></span><span class="c1"># first command may not work... visit that link if so</span>
+wget<span class="w"> </span>https://sourceforge.net/projects/math-atlas/files/latest/download?source<span class="o">=</span>files
+mkdir<span class="w"> </span>~/repos/ATLAS3.10
+<span class="nb">cd</span><span class="w"> </span>~/repos/ATLAS3.10
+tar<span class="w"> </span>-xf<span class="w"> </span>~/Downloads/atlas3.10.1.tar<span class="w"> </span>-C<span class="w"> </span>./<span class="w"> </span>--strip-components<span class="w"> </span><span class="m">1</span>
+mkdir<span class="w"> </span>build/
+<span class="nb">cd</span><span class="w"> </span>build/
+../configure<span class="w"> </span>-b<span class="w"> </span><span class="m">64</span><span class="w"> </span>--shared<span class="w"> </span>--prefix<span class="o">=</span>/usr/local/lib/atlas<span class="w"> </span>--with-netlib-lapack-tarfile<span class="o">=</span>/Users/adam/Downloads/lapack-3.4.2.tar
+make<span class="w"> </span>build
+</pre></div>
+<p>Died with errors:</p>
+<pre class="literal-block">
+ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_dMBJBmm.o
+    ATL_dIBNBmm.o ATL_dIBJBmm.o ATL_dgemm.o ATL_dGetNB.o ATL_dGetNCNB.o
+    ATL_dgemmNN.o ATL_dgemmNT.o ATL_dgemmTN.o ATL_dgemmTT.o ATL_dNCmmIJK.o
+    ATL_dNCmmJIK.o ATL_dNCmmIJK_c.o ATL_dNCmmJIK_c.o ATL_daliased_gemm.o
+    ATL_dAgemmNN.o ATL_dAgemmNT.o ATL_dAgemmTN.o ATL_dAgemmTT.o ATL_dmmJIK.o
+    ATL_dmmIJK.o ATL_dmmJKI.o ATL_dmmK.o ATL_dmmBPP.o ATL_dmmJITcp.o
+    ATL_dcol2blk_aX.o ATL_drow2blkT_aX.o ATL_dcol2blk_a1.o ATL_drow2blkT_a1.o
+    ATL_dputblk_bX.o ATL_dputblk_b1.o ATL_dputblk_bn1.o ATL_dputblk_b0.o
+ar: fatal error in /usr/bin/ranlib
+make[4]: *** [dlib.grd] Error 1
+make[3]: *** [dlib] Error 2
+make[2]: *** [IBuildPtlibs] Error 2
+   DONE  STAGE 4-2-1 at 23:09
+
+
+   BEGIN STAGE 4-3-0: LAPACK TUNING at 23:09
+
+
+      BEGIN STAGE 4-3-1: dLAPACK TUNING at 23:09
+make -f Makefile IBuildPtlibs 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/LIBPTBUILD.LOG
+if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_dGetNB_geqrf.h&quot; ]; then \
+           echo &quot;Arch Defaults allow us to skip tuning&quot; ; \
+        else \
+        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_dGetNB_geqrf.h ; \
+        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_dGetNB_geqrf.h \
+               /Users/adam/repos/ATLAS3.10/build/include/atlas_dGetNB_geqrf.h ; \
+        fi
+Arch Defaults allow us to skip tuning
+if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_dtGetNB_geqrf.h&quot; ]; then \
+           echo &quot;Arch Defaults allow us to skip threaded tuning&quot; ; \
+        elif [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_pthreads.h&quot; ]; then \
+        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_dtGetNB_geqrf.h ; \
+        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_dtGetNB_geqrf.h \
+               /Users/adam/repos/ATLAS3.10/build/include/atlas_dtGetNB_geqrf.h ; \
+        fi
+Arch Defaults allow us to skip threaded tuning
+      DONE  STAGE 4-3-1 at 23:09
+
+
+      BEGIN STAGE 4-3-2: sLAPACK TUNING at 23:09
+make -f Makefile ILATune pre=d 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/dLATUNE.LOG
+if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_sGetNB_geqrf.h&quot; ]; then \
+           echo &quot;Arch Defaults allow us to skip tuning&quot; ; \
+        else \
+        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_sGetNB_geqrf.h ; \
+        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_sGetNB_geqrf.h \
+               /Users/adam/repos/ATLAS3.10/build/include/atlas_sGetNB_geqrf.h ; \
+        fi
+Arch Defaults allow us to skip tuning
+if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_stGetNB_geqrf.h&quot; ]; then \
+           echo &quot;Arch Defaults allow us to skip threaded tuning&quot; ; \
+        elif [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_pthreads.h&quot; ]; then \
+        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_stGetNB_geqrf.h ; \
+        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_stGetNB_geqrf.h \
+               /Users/adam/repos/ATLAS3.10/build/include/atlas_stGetNB_geqrf.h ; \
+        fi
+Arch Defaults allow us to skip threaded tuning
+      DONE  STAGE 4-3-2 at 23:09
+
+
+      BEGIN STAGE 4-3-3: zLAPACK TUNING at 23:09
+make -f Makefile ILATune pre=s 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/sLATUNE.LOG
+if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_zGetNB_geqrf.h&quot; ]; then \
+           echo &quot;Arch Defaults allow us to skip tuning&quot; ; \
+        else \
+        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_zGetNB_geqrf.h ; \
+        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_zGetNB_geqrf.h \
+               /Users/adam/repos/ATLAS3.10/build/include/atlas_zGetNB_geqrf.h ; \
+        fi
+Arch Defaults allow us to skip tuning
+if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_ztGetNB_geqrf.h&quot; ]; then \
+           echo &quot;Arch Defaults allow us to skip threaded tuning&quot; ; \
+        elif [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_pthreads.h&quot; ]; then \
+        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_ztGetNB_geqrf.h ; \
+        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_ztGetNB_geqrf.h \
+               /Users/adam/repos/ATLAS3.10/build/include/atlas_ztGetNB_geqrf.h ; \
+        fi
+Arch Defaults allow us to skip threaded tuning
+      DONE  STAGE 4-3-3 at 23:09
+
+
+      BEGIN STAGE 4-3-4: cLAPACK TUNING at 23:09
+make -f Makefile ILATune pre=z 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/zLATUNE.LOG
+if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_cGetNB_geqrf.h&quot; ]; then \
+           echo &quot;Arch Defaults allow us to skip tuning&quot; ; \
+        else \
+        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_cGetNB_geqrf.h ; \
+        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_cGetNB_geqrf.h \
+               /Users/adam/repos/ATLAS3.10/build/include/atlas_cGetNB_geqrf.h ; \
+        fi
+Arch Defaults allow us to skip tuning
+if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_ctGetNB_geqrf.h&quot; ]; then \
+           echo &quot;Arch Defaults allow us to skip threaded tuning&quot; ; \
+        elif [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_pthreads.h&quot; ]; then \
+        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_ctGetNB_geqrf.h ; \
+        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_ctGetNB_geqrf.h \
+               /Users/adam/repos/ATLAS3.10/build/include/atlas_ctGetNB_geqrf.h ; \
+        fi
+Arch Defaults allow us to skip threaded tuning
+      DONE  STAGE 4-3-4 at 23:09
+   DONE  STAGE 4-3-0 at 23:09
+DONE  STAGE 4-0-0 at 23:09
+
+
+BEGIN STAGE 5-0-0: FINAL LIBRARY UPDATE at 23:09
+
+
+   BEGIN STAGE 5-1-0: FINAL STATIC LIBRARY UPDATE at 23:09
+make -f Makefile IBuildLibs IBuildPtlibs0 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/LIBUPDATE.LOG
+cd /Users/adam/repos/ATLAS3.10/build/src/auxil ; make lib
+make[3]: Nothing to be done for `lib'.
+cd /Users/adam/repos/ATLAS3.10/build/src/blas/gemm ; make lib
+make auxillib dcleanuplib dusergemm
+cd /Users/adam/repos/ATLAS3.10/build/src/auxil ; make lib
+make[5]: Nothing to be done for `lib'.
+cd KERNEL ; make -f dMakefile dlib
+make[5]: Nothing to be done for `dlib'.
+make[4]: Nothing to be done for `dusergemm'.
+make -j 4 dlib.grd
+ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_dMBJBmm.o
+    ATL_dIBNBmm.o ATL_dIBJBmm.o ATL_dgemm.o ATL_dGetNB.o ATL_dGetNCNB.o
+    ATL_dgemmNN.o ATL_dgemmNT.o ATL_dgemmTN.o ATL_dgemmTT.o ATL_dNCmmIJK.o
+    ATL_dNCmmJIK.o ATL_dNCmmIJK_c.o ATL_dNCmmJIK_c.o ATL_daliased_gemm.o
+    ATL_dAgemmNN.o ATL_dAgemmNT.o ATL_dAgemmTN.o ATL_dAgemmTT.o ATL_dmmJIK.o
+    ATL_dmmIJK.o ATL_dmmJKI.o ATL_dmmK.o ATL_dmmBPP.o ATL_dmmJITcp.o
+    ATL_dcol2blk_aX.o ATL_drow2blkT_aX.o ATL_dcol2blk_a1.o ATL_drow2blkT_a1.o
+    ATL_dputblk_bX.o ATL_dputblk_b1.o ATL_dputblk_bn1.o ATL_dputblk_b0.o
+ar: fatal error in /usr/bin/ranlib
+make[4]: *** [dlib.grd] Error 1
+make[3]: *** [dlib] Error 2
+make[2]: *** [IBuildLibs] Error 2
+   DONE  STAGE 5-1-0 at 23:09
+
+
+   BEGIN STAGE 5-2-0: DYNAMIC/SHARED LIBRARY UPDATE at 23:09
+make -f Makefile IBuildDyLibs 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/LIBDYBUILD.LOG
+cd /Users/adam/repos/ATLAS3.10/build ; make dylibs
+cd lib ; make shared_all
+make dylib
+rm -rf RCW_tMp ; mkdir RCW_tMp
+cd RCW_tMp ; ar x ../liblapack.a
+ar: ../liblapack.a: No such file or directory
+make[5]: *** [dylib] Error 1
+make[4]: *** [shared_all] Error 2
+make[3]: *** [dylibs] Error 2
+make[2]: *** [IBuildDyLibs] Error 2
+   DONE  STAGE 5-2-0 at 23:09
+
+
+
+
+ATLAS install complete.  Examine
+ATLAS/bin/&lt;arch&gt;/INSTALL_LOG/SUMMARY.LOG for details.
+make clean
+rm -rf *.dSYM
+rm -f *.o x* config?.out *core*
+
+
+
+make check
+
+Died with errors:
+
+ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_sMBJBmm.o
+    ATL_sIBNBmm.o ATL_sIBJBmm.o ATL_sgemm.o ATL_sGetNB.o ATL_sGetNCNB.o
+    ATL_sgemmNN.o ATL_sgemmNT.o ATL_sgemmTN.o ATL_sgemmTT.o ATL_sNCmmIJK.o
+    ATL_sNCmmJIK.o ATL_sNCmmIJK_c.o ATL_sNCmmJIK_c.o ATL_saliased_gemm.o
+    ATL_sAgemmNN.o ATL_sAgemmNT.o ATL_sAgemmTN.o ATL_sAgemmTT.o ATL_smmJIK.o
+    ATL_smmIJK.o ATL_smmJKI.o ATL_smmK.o ATL_smmBPP.o ATL_smmJITcp.o
+    ATL_scol2blk_aX.o ATL_srow2blkT_aX.o ATL_scol2blk_a1.o ATL_srow2blkT_a1.o
+    ATL_sputblk_bX.o ATL_sputblk_b1.o ATL_sputblk_bn1.o ATL_sputblk_b0.o
+ranlib /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a
+touch slib.grd
+cd /Users/adam/repos/ATLAS3.10/build/src/blas/level3 ; make slib
+( cd kernel; make slib )
+make -j 4 slib.grd
+make[6]: `slib.grd' is up to date.
+make sl3ref
+cd /Users/adam/repos/ATLAS3.10/build/src/blas/reference/level3 ; make slib
+make[7]: Nothing to be done for `slib'.
+( cd rblas;  make slib )
+make[5]: Nothing to be done for `slib'.
+cd ../pklevel3 ; make slib
+cd gpmm ; make slib
+make -j 4 slib.grd
+make[7]: `slib.grd' is up to date.
+cd sprk ; make slib
+make -j 4 slib.grd
+make[7]: `slib.grd' is up to date.
+make -j 4 sblas3.grd
+ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_ssymm.o ATL_ssyr2k.o ATL_ssyrk.o ATL_strmm.o ATL_strsm.o
+ar: fatal error in /usr/bin/ranlib
+make[5]: *** [sblas3.grd] Error 1
+make[4]: *** [sblas3] Error 2
+make[3]: *** [sl3lib] Error 2
+make[2]: *** [sanity_test] Error 2
+make[1]: *** [sanity_test] Error 2
+make: *** [test] Error 2
+</pre>
+<p>Gave up after discovering this is an unsolved (and probably intrinsically unsolveable) problem:
+<a class="reference external" href="http://fink.9193.n7.nabble.com/Atlas-STAGE-2-3-2-CacheEdge-DETECTION-error-td26004.html">http://fink.9193.n7.nabble.com/Atlas-STAGE-2-3-2-CacheEdge-DETECTION-error-td26004.html</a></p>
+<p>maybe try this:
+<a class="reference external" href="http://okomestudio.net/biboroku/?p=824">http://okomestudio.net/biboroku/?p=824</a></p>
+<p>nope, same thing</p>
+<p>Tried switching from gcc-4.6 to gcc-4.2 (the latter should have been the default anyway).
+Even when I renamed gcc-4.6 to dontuse_gcc-4.6, specified CC=/usr/bin/gcc, still found gcc-4.6!</p>
+<p>So I moved /usr/local/bin/gcc-4.6 to /usr/local/bin/dontuse/.gcc-4.6
+Ridiculous.</p>
+<p>Then tried what the site actually said, and used the hpc binaries:</p>
+<pre class="literal-block">
+wget http://prdownloads.sourceforge.net/hpc/gfortran-lion.tar.gz?download
+wget http://prdownloads.sourceforge.net/hpc/gcc-lion.tar.gz?download
+mkdir ~/repos/hpc
+tar -xzf ~/Downloads/gcc-lion.tar.gz -C ~/repos/hpc/ --strip-components 2
+tar -xzf ~/Downloads/gfortran-lion.tar.gz -C ~/repos/hpc/ --strip-components 2
+
+CC=/Users/adam/repos/hpc/bin/gcc PATH=/Users/adam/repos/hpc/bin:$PATH
+    ../configure -b 64 --shared --prefix=/usr/local/lib/atlas
+    --with-netlib-lapack-tarfile=/Users/adam/Downloads/lapack-3.4.2.tar
+
+
+ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_dMBJBmm.o
+    ATL_dIBNBmm.o ATL_dIBJBmm.o ATL_dgemm.o ATL_dGetNB.o ATL_dGetNCNB.o
+    ATL_dgemmNN.o ATL_dgemmNT.o ATL_dgemmTN.o ATL_dgemmTT.o ATL_dNCmmIJK.o
+    ATL_dNCmmJIK.o ATL_dNCmmIJK_c.o ATL_dNCmmJIK_c.o ATL_daliased_gemm.o
+    ATL_dAgemmNN.o ATL_dAgemmNT.o ATL_dAgemmTN.o ATL_dAgemmTT.o ATL_dmmJIK.o
+    ATL_dmmIJK.o ATL_dmmJKI.o ATL_dmmK.o ATL_dmmBPP.o ATL_dmmJITcp.o
+    ATL_dcol2blk_aX.o ATL_drow2blkT_aX.o ATL_dcol2blk_a1.o ATL_drow2blkT_a1.o
+    ATL_dputblk_bX.o ATL_dputblk_b1.o ATL_dputblk_bn1.o ATL_dputblk_b0.o
+ar: fatal error in /usr/bin/ranlib
+make[4]: *** [dlib.grd] Error 1
+make[3]: *** [dlib] Error 2
+make[2]: *** [IBuildPtlibs] Error 2
+   DONE  STAGE 4-2-1 at 18:09
+
+
+   BEGIN STAGE 4-3-0: LAPACK TUNING at 18:09
+
+
+      BEGIN STAGE 4-3-1: dLAPACK TUNING at 18:09
+make -f Makefile IBuildPtlibs 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/LIBPTBUILD.LOG
+if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_dGetNB_geqrf.h&quot; ]; then \
+           echo &quot;Arch Defaults allow us to skip tuning&quot; ; \
+        else \
+        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_dGetNB_geqrf.h ; \
+        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_dGetNB_geqrf.h \
+               /Users/adam/repos/ATLAS3.10/build/include/atlas_dGetNB_geqrf.h ; \
+        fi
+Arch Defaults allow us to skip tuning
+if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_dtGetNB_geqrf.h&quot; ]; then \
+           echo &quot;Arch Defaults allow us to skip threaded tuning&quot; ; \
+        elif [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_pthreads.h&quot; ]; then \
+        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_dtGetNB_geqrf.h ; \
+        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_dtGetNB_geqrf.h \
+               /Users/adam/repos/ATLAS3.10/build/include/atlas_dtGetNB_geqrf.h ; \
+        fi
+Arch Defaults allow us to skip threaded tuning
+      DONE  STAGE 4-3-1 at 18:09
+
+
+      BEGIN STAGE 4-3-2: sLAPACK TUNING at 18:09
+make -f Makefile ILATune pre=d 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/dLATUNE.LOG
+if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_sGetNB_geqrf.h&quot; ]; then \
+           echo &quot;Arch Defaults allow us to skip tuning&quot; ; \
+        else \
+        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_sGetNB_geqrf.h ; \
+        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_sGetNB_geqrf.h \
+               /Users/adam/repos/ATLAS3.10/build/include/atlas_sGetNB_geqrf.h ; \
+        fi
+Arch Defaults allow us to skip tuning
+if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_stGetNB_geqrf.h&quot; ]; then \
+           echo &quot;Arch Defaults allow us to skip threaded tuning&quot; ; \
+        elif [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_pthreads.h&quot; ]; then \
+        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_stGetNB_geqrf.h ; \
+        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_stGetNB_geqrf.h \
+               /Users/adam/repos/ATLAS3.10/build/include/atlas_stGetNB_geqrf.h ; \
+        fi
+Arch Defaults allow us to skip threaded tuning
+      DONE  STAGE 4-3-2 at 18:09
+
+
+      BEGIN STAGE 4-3-3: zLAPACK TUNING at 18:09
+make -f Makefile ILATune pre=s 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/sLATUNE.LOG
+if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_zGetNB_geqrf.h&quot; ]; then \
+           echo &quot;Arch Defaults allow us to skip tuning&quot; ; \
+        else \
+        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_zGetNB_geqrf.h ; \
+        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_zGetNB_geqrf.h \
+               /Users/adam/repos/ATLAS3.10/build/include/atlas_zGetNB_geqrf.h ; \
+        fi
+Arch Defaults allow us to skip tuning
+if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_ztGetNB_geqrf.h&quot; ]; then \
+           echo &quot;Arch Defaults allow us to skip threaded tuning&quot; ; \
+        elif [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_pthreads.h&quot; ]; then \
+        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_ztGetNB_geqrf.h ; \
+        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_ztGetNB_geqrf.h \
+               /Users/adam/repos/ATLAS3.10/build/include/atlas_ztGetNB_geqrf.h ; \
+        fi
+Arch Defaults allow us to skip threaded tuning
+      DONE  STAGE 4-3-3 at 18:09
+
+
+      BEGIN STAGE 4-3-4: cLAPACK TUNING at 18:09
+make -f Makefile ILATune pre=z 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/zLATUNE.LOG
+if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_cGetNB_geqrf.h&quot; ]; then \
+           echo &quot;Arch Defaults allow us to skip tuning&quot; ; \
+        else \
+        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_cGetNB_geqrf.h ; \
+        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_cGetNB_geqrf.h \
+               /Users/adam/repos/ATLAS3.10/build/include/atlas_cGetNB_geqrf.h ; \
+        fi
+Arch Defaults allow us to skip tuning
+if [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_ctGetNB_geqrf.h&quot; ]; then \
+           echo &quot;Arch Defaults allow us to skip threaded tuning&quot; ; \
+        elif [ -s &quot;/Users/adam/repos/ATLAS3.10/build/include/atlas_pthreads.h&quot; ]; then \
+        cd /Users/adam/repos/ATLAS3.10/build/tune/lapack ; make res/ATL_ctGetNB_geqrf.h ; \
+        cp /Users/adam/repos/ATLAS3.10/build/tune/lapack/res/ATL_ctGetNB_geqrf.h \
+               /Users/adam/repos/ATLAS3.10/build/include/atlas_ctGetNB_geqrf.h ; \
+        fi
+Arch Defaults allow us to skip threaded tuning
+      DONE  STAGE 4-3-4 at 18:09
+   DONE  STAGE 4-3-0 at 18:09
+DONE  STAGE 4-0-0 at 18:09
+
+
+BEGIN STAGE 5-0-0: FINAL LIBRARY UPDATE at 18:09
+
+
+   BEGIN STAGE 5-1-0: FINAL STATIC LIBRARY UPDATE at 18:09
+make -f Makefile IBuildLibs IBuildPtlibs0 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/LIBUPDATE.LOG
+cd /Users/adam/repos/ATLAS3.10/build/src/auxil ; make lib
+make[3]: Nothing to be done for `lib'.
+cd /Users/adam/repos/ATLAS3.10/build/src/blas/gemm ; make lib
+make auxillib dcleanuplib dusergemm
+cd /Users/adam/repos/ATLAS3.10/build/src/auxil ; make lib
+make[5]: Nothing to be done for `lib'.
+cd KERNEL ; make -f dMakefile dlib
+make[5]: Nothing to be done for `dlib'.
+make[4]: Nothing to be done for `dusergemm'.
+make -j 4 dlib.grd
+ar r /Users/adam/repos/ATLAS3.10/build/lib/libatlas.a ATL_dMBJBmm.o
+    ATL_dIBNBmm.o ATL_dIBJBmm.o ATL_dgemm.o ATL_dGetNB.o ATL_dGetNCNB.o
+    ATL_dgemmNN.o ATL_dgemmNT.o ATL_dgemmTN.o ATL_dgemmTT.o ATL_dNCmmIJK.o
+    ATL_dNCmmJIK.o ATL_dNCmmIJK_c.o ATL_dNCmmJIK_c.o ATL_daliased_gemm.o
+    ATL_dAgemmNN.o ATL_dAgemmNT.o ATL_dAgemmTN.o ATL_dAgemmTT.o ATL_dmmJIK.o
+    ATL_dmmIJK.o ATL_dmmJKI.o ATL_dmmK.o ATL_dmmBPP.o ATL_dmmJITcp.o
+    ATL_dcol2blk_aX.o ATL_drow2blkT_aX.o ATL_dcol2blk_a1.o ATL_drow2blkT_a1.o
+    ATL_dputblk_bX.o ATL_dputblk_b1.o ATL_dputblk_bn1.o ATL_dputblk_b0.o
+ar: fatal error in /usr/bin/ranlib
+make[4]: *** [dlib.grd] Error 1
+make[3]: *** [dlib] Error 2
+make[2]: *** [IBuildLibs] Error 2
+   DONE  STAGE 5-1-0 at 18:09
+
+
+   BEGIN STAGE 5-2-0: DYNAMIC/SHARED LIBRARY UPDATE at 18:09
+make -f Makefile IBuildDyLibs 2&gt;&amp;1 | ./xatlas_tee INSTALL_LOG/LIBDYBUILD.LOG
+cd /Users/adam/repos/ATLAS3.10/build ; make dylibs
+cd lib ; make shared_all
+make dylib
+rm -rf RCW_tMp ; mkdir RCW_tMp
+cd RCW_tMp ; ar x ../liblapack.a
+ar: ../liblapack.a: No such file or directory
+make[5]: *** [dylib] Error 1
+make[4]: *** [shared_all] Error 2
+make[3]: *** [dylibs] Error 2
+make[2]: *** [IBuildDyLibs] Error 2
+   DONE  STAGE 5-2-0 at 18:09
+
+
+
+
+ATLAS install complete.  Examine
+ATLAS/bin/&lt;arch&gt;/INSTALL_LOG/SUMMARY.LOG for details.
+make clean
+rm -rf *.dSYM
+rm -f *.o x* config?.out *core*
+</pre>
+<p>This is the next step, if I ever get there:</p>
+<pre class="literal-block">
+wget http://www.astromatic.net/download/sextractor/sextractor-2.8.6.tar.gz
+tar -xzvf ~/Downloads/sextractor-2.8.6.tar.gz
+</pre>
+
+  </div><!-- /.entry-content -->
+</section>
+
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</section>
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  var disqus_identifier = '/installing-sextractor-on-a-mac.html';
+  var disqus_url = 'https://keflavich.github.io/blog/installing-sextractor-on-a-mac.html';
+  var disqus_title = 'Installing sextractor on a mac?';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

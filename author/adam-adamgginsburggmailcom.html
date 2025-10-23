@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - Articles by Adam (adam.g.ginsburg@gmail.com)</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2015/05/07
+                  <br>
+                  <a href="https://keflavich.github.io/blog/my-python-ipython-vim-debugging-workflow.html">My python + ipython + vim debugging workflow</a>
+              </li>
+              <li class="post">
+                  2012/12/26
+                  <br>
+                  <a href="https://keflavich.github.io/blog/catalog-vs-image-shift-a-possible-solution-to-the-atlasgal-issue.html">Catalog vs Image shift? A possible solution to the ATLASGAL issue</a>
+              </li>
+              <li class="post">
+                  2012/12/22
+                  <br>
+                  <a href="https://keflavich.github.io/blog/idea-multispectral-eigenimage-decomposition.html">Idea: Multispectral Eigenimage decomposition...</a>
+              </li>
+              <li class="post">
+                  2012/12/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pointing-cross-correlation-yet-again.html">Pointing & Cross-Correlation yet again</a>
+              </li>
+              <li class="post">
+                  2012/09/08
+                  <br>
+                  <a href="https://keflavich.github.io/blog/cross-correlation-offsets-revisited.html">Cross-Correlation Offsets Revisited</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+<h2>Articles by Adam (adam.g.ginsburg@gmail.com)</h2>
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/my-python-ipython-vim-debugging-workflow.html" rel="bookmark" title="Permalink to My python + ipython + vim debugging workflow">
+                    My python + ipython + vim debugging workflow</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-05-07T12:00:00-06:00"> 2015/05/07 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>My <a class="reference external" href="http://www.eso.org/~eemselle/CV.html">boss</a> asked a great question at our first weekly <a class="reference external" href="https://github.com/ESO-python/ESOPythonTutorials">ESO-python tutorial</a>
+session: What does a good ipython debugging workflow look like?</p>
+<p>The one advantage I had found in IDL was that <em>everything</em> is a script, which
+means that <em>everything</em> can be debugged in the same way: add a stop statement
+at the relevant line of code.  Of course, that debugging model breaks apart
+badly once you start writing complex programs and using things like common
+blocks.</p>
+<p>In ipython, there is a beautiful debugger that is far more feature-rich than
+the IDL equivalent.  It can be activated simply:</p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pdb</span>
+</pre></div>
+<p>will toggle the interactive ipython debugger.  Then, if you run into a code
+crash, you will be dumped out at an <cite>ipdb&gt;</cite> prompt, with access to a
+fully-functional python prompt in the local namespace / environment of the
+crash point.  You can also move up and down the function hierarchy with the <tt class="docutils literal">u</tt>
+and <tt class="docutils literal">d</tt> commands.</p>
+<p>The existence of the ipdb debugger suggests a natural approach for those
+familiar with IDL debugging: simply add a <tt class="docutils literal">raise</tt> statement wherever you would
+normally have put a <tt class="docutils literal">stop</tt> statement.  There are a few key differences,
+however: in IDL, you could just <tt class="docutils literal">.continue</tt> to run the rest of the code as if
+no stop occurred; in python the same is not possible with the default ipdb.</p>
+<p>However, the <a class="reference external" href="https://pypi.python.org/pypi/ipdb">ipdb</a> package allows the insertion of breakpoints just like in IDL:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ipdb</span><span class="p">;</span> <span class="n">ipdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
+</pre></div>
+<p>From within one of these breakpoints, the <tt class="docutils literal">.continue</tt> command will continue on
+to the next breakpoint, as you might expect.  The <tt class="docutils literal">n</tt> and <tt class="docutils literal">s</tt> commands will go
+to the next line in the code, while <tt class="docutils literal">s</tt> will allow you to drop into called functions (how?)</p>
+<p><a class="reference external" href="http://scipy-lectures.github.io/advanced/debugging/#using-the-python-debugger">Postmortem debugging</a> is also awesome.  If you have run a command and gotten a traceback,
+you can retroactively enter the debugger:</p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">debug</span>
+</pre></div>
+<p>but as with the normal traceback debugger, one cannot <tt class="docutils literal">continue</tt> afterward.</p>
+<div class="section" id="reloading-code">
+<h2>Reloading Code</h2>
+<p>Python code is typically distributed in packages managed with a <tt class="docutils literal">setup.py</tt>
+script.  These are the most convenient way to install, use, and distribute
+code, but they are not ideal for debugging.</p>
+<p>When debugging a normal script, something you could run by invoking</p>
+<div class="highlight"><pre><span></span>python<span class="w"> </span>myfile.py
+</pre></div>
+<p>or</p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">run</span> <span class="n">myfile</span><span class="o">.</span><span class="n">py</span>
+<span class="c1"># in the local namespace</span>
+<span class="o">%</span><span class="n">run</span> <span class="o">-</span><span class="n">i</span> <span class="n">myfile</span><span class="o">.</span><span class="n">py</span>
+<span class="c1"># with the python debugger active:</span>
+<span class="o">%</span><span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="n">myfile</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+<p>can easily be debugged by running it line-by-line.  The <a class="reference external" href="http://ipython.org/ipython-doc/dev/interactive/tutorial.html#running-and-editing">documentation</a>
+can be accessed via the <tt class="docutils literal">%magic</tt> command.</p>
+<p>For debugging &quot;compiled&quot; packages, though, more thought is needed.</p>
+<p>If you are working on your own package, you can use <a class="reference external" href="https://pythonhosted.org/setuptools/setuptools.html#develop-deploy-the-project-source-in-development-mode">setuptools</a> to enable the
+<tt class="docutils literal">python setup.py develop</tt> command, which installs a symbolic link to the
+source code directory - meaning any changes you make are immediately reflected
+in the python source path.  This does <em>not</em> mean that any changes are
+recognized in the local python environment, though!</p>
+<p>If you are in an active <tt class="docutils literal">ipython</tt> session, you need to <tt class="docutils literal">reload</tt> packages to
+see their results.  As far as I know, you can <em>never</em> &quot;reload&quot; the source code
+underlying an already-instantiated class, so you have to remake any class
+instances you want to examine.</p>
+<p>The <tt class="docutils literal">reload</tt> command is tricky to use.  You will only see changes to the source code
+if you import the exact package in which the code is stored.  For example, if you have a file structure like this:</p>
+<div class="highlight"><pre><span></span>mypackage/
+<span class="w">    </span>__init__.py
+<span class="w">    </span>core.py
+</pre></div>
+<p>and you do <tt class="docutils literal">reload(mypackage)</tt>, that will effectively reload only the source
+code in <tt class="docutils literal">__init__.py</tt>.  If the code you want to use is called <tt class="docutils literal">myfunction</tt>
+and it lives in <tt class="docutils literal">core.py</tt>, you can reload that source code by doing
+<tt class="docutils literal">reload(mypackage.core)</tt>.  Reloading <tt class="docutils literal">mypackage</tt> may have no effect.  So
+the key for developing packages is finding the right module to reload!</p>
+<p>IPython has a <a class="reference external" href="http://ipython.org/ipython-doc/dev/interactive/reference.html#dreload">deepreload package</a>
+intended to recursively reload functions; it may work but I had trouble in the
+past.</p>
+</div>
+<div class="section" id="tests">
+<h2>Tests</h2>
+<p>It's generally much better to have a test suite enabled with unit tests for
+each component of your code.  This is the approach adopted by most open-source
+projects and many industrial code developers.</p>
+<p>Tests are invoked with the command <tt class="docutils literal">py.test</tt> with a variety of command
+options.  Among my favorites are <tt class="docutils literal">py.test <span class="pre">--tb=short</span></tt>, which gives a much
+less verbose traceback, <tt class="docutils literal">py.test <span class="pre">--pastebin=failed</span></tt>, which posts any failure
+results to pastebin for easy sharing, <tt class="docutils literal">py.test <span class="pre">-p</span> packagename</tt> (or <tt class="docutils literal">python
+setup.py test <span class="pre">-P</span> packagename</tt> in astropy) to select tests for a specific
+package.  A great deal more options can be found in the <a class="reference external" href="http://pytest.org/latest/">pytest docs</a>.</p>
+<p>A test suite, if properly constructed, can also be run from with in ipython:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">astroquery</span>
+<span class="n">astroquery</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s1">&#39;eso&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="postscript">
+<h2>Postscript</h2>
+<p>Some useful related links:</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://stackoverflow.com/questions/1623039/python-debugging-tips">http://stackoverflow.com/questions/1623039/python-debugging-tips</a></li>
+<li><a class="reference external" href="https://pypi.python.org/pypi/pudb">https://pypi.python.org/pypi/pudb</a></li>
+</ul>
+</blockquote>
+<!-- great picture: http://commons.wikimedia.org/wiki/File:Richard_Hook_and_Eric_Emsellem_at_the_ESO_50th_Anniversary_Gala_Event.jpg -->
+</div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/catalog-vs-image-shift-a-possible-solution-to-the-atlasgal-issue.html" rel="bookmark" title="Permalink to Catalog vs Image shift? A possible solution to the ATLASGAL issue">
+                    Catalog vs Image shift?  A possible solution to the ATLASGAL issue</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-12-26T23:02:00-07:00"> 2012/12/26 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In the <a class="reference external" href="http://bolocam.blogspot.com/2012/12/pointing-cross-correlation-yet-again.html">previous post</a>, I came up with a final plot showing the
+pointing offset was, on average, not significant, even in the ATLASGAL
+overlap zone.
+So why did the ATLASGAL group infer a net pointing offset?
+The problem is probably one or two fields with a slight pointing offset,
+but a huge number of source. &nbsp;l=1 has an offset of the right sign and is
+the single most source-rich degree in the survey, with 368 sources.</p>
+<img alt="" src="http://2.bp.blogspot.com/-ONF7C_v8rNk/UNpmXIEe6HI/AAAAAAAAHUI/kdf3pmUKyE0/s320/l001_catalog_image_compare.png" />
+<p>This figure shows the v1 vs v2 source locations in grey, their average
+and standard deviation in green, and the cross-correlation offset in
+red. &nbsp;The plot is somewhat difficult to interpret, but it appears that
+the v1 point sources are systematically more shifted to negative
+longitudes than v2, and the point sources more than the maps themselves.
+&nbsp;There may have been some reason sources were systematically selected at
+more negative longitudes in the v1 catalog; around Sgr B2 there's a lot
+of structure that had to be decomposed somehow but was not necessarily
+&quot;source&quot;.
+One thing to note is the reversal in left-right (in pixel space) vs the
+positive/negativeness in longitude. &nbsp;The above plot is correct (negative
+longitudes, as shown on the plot, are &quot;right&quot; in images), but most of my
+other plots have the X-axis flipped.
+In the end, after spending two weeks hammering my head against this, I
+find no clear evidence for an offset &nbsp;between the BGPS and Herschel or
+v1/v2 data overall or in the ATLASGAL fields. &nbsp;In any individual field,
+that statement is not necessarily true.
+Despite the strong statistical evidence, it is really hard to be really
+sure about sub-pixel offsets, since the &quot;model&quot; image is never perfect.
+&nbsp;I think we can safely state the ~1/2 pixel offsets (~3&quot;) but I just
+don't feel confident about numbers below that range for ALL fields.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/idea-multispectral-eigenimage-decomposition.html" rel="bookmark" title="Permalink to Idea: Multispectral Eigenimage decomposition...">
+                    Idea: Multispectral Eigenimage decomposition...</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-12-22T02:53:00-07:00"> 2012/12/22 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Can use BGPS + HiGal to look for correlated (thermal) components and
+decorrelated (free-free) components. &nbsp;Obviously needs to be tried in GC
+first.
+Also, need to figure out a method to mitigate negative bowls in
+unsharp-masking for herschel-bolocam comparison</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/pointing-cross-correlation-yet-again.html" rel="bookmark" title="Permalink to Pointing & Cross-Correlation yet again">
+                    Pointing &amp; Cross-Correlation yet again</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-12-15T03:21:00-07:00"> 2012/12/15 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Prompted in part by a <a class="reference external" href="http://arxiv.org/abs/1211.0741">recent ATLASGAL paper</a>&nbsp;identifying pointing
+offsets of about 3&quot; in the BGPS, we revisit the BGPS pointing.
+The ATLASGAL team compared the source locations in their catalog to
+source locations in the Bolocam catalog by doing &quot;nearest-match&quot;
+searches within a 40&quot; radius (see their Figure 8, reproduced here)</p>
+<img alt="" src="http://1.bp.blogspot.com/-UJVCzHbaDCI/UMYpeAoulVI/AAAAAAAAHR4/cy5SIqL_HFQ/s320/ATLASGALvsBolocam.png" />
+<p>Their comparison was over the range -10 &lt; l &lt; 21, so it only covered a
+small fraction of the BGPS. &nbsp;It covered 13 fields with independent
+pointing solutions, so it's possible that they have actually discovered
+an offset only in some of our fields.</p>
+<p>The catalog comparison, while interesting, is potentially quite flawed.
+&nbsp;There's no guarantee that a source extraction algorithm will measure
+source centers accurately when a &quot;source&quot; is just a local overdensity on
+a complex background. &nbsp;Using source comparison will also lead to a bias
+towards the most source-rich fields, e.g. l000 and l001, so an offset in
+one of those fields would drastically affect the catalog offset.</p>
+<p>There is a better way to compare pointing between two images that are
+expected to be (nearly) identical. &nbsp;It is well-known that
+cross-correlation is an effective technique for determining the offsets
+between two identical images; I'll briefly summarize some of the
+literature here.</p>
+<p><a class="reference external" href="http://adsabs.harvard.edu/abs/2005A%26A...443..357G">Gratadour et al 2005</a>&nbsp;used a maximum likelihood estimator approach to
+determine the &quot;best-fit&quot; offset between two images. &nbsp;This approach is
+comparable to <a class="reference external" href="http://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=5&amp;cad=rja&amp;ved=0CF0QFjAE&amp;url=http%3A%2F%2Fwww.optics.rochester.edu%2Fworkgroups%2Ffienup%2FPUBLICATIONS%2FMGS_OL08_EffRegistration.pdf&amp;ei=rC3GUJC9CcSA2AX3wYCIAg&amp;usg=AFQjCNHdUm0v8qYzNbvrqFRqByR_3svlSA&amp;sig2=GQztgkfvoQzAzQ7kzCJU2w">Guizar et al (2008)</a>, who <a class="reference external" href="http://www.mathworks.com/matlabcentral/fileexchange/18401-efficient-subpixel-image-registration-by-cross-correlation">implemented</a> a fast solution
+for (highly) sub-pixel image registration in matlab. &nbsp;In order for the
+image registration to be fast, it must operate in fourier space, but to
+get sub-pixel registration in fourier space, you need to either pad
+(which is slow, and increases memory use drastically) or fit some
+functional form around the peak of the cross-correlation image. &nbsp;The
+alternative approach implemented by Guizar utilizes the <a class="reference external" href="http://en.wikipedia.org/wiki/Fourier_transform#Basic_properties">Fourier scaling
+theorem</a>&nbsp;to create a zoomed-in image of the peak pixel, which allows
+you to get much higher precision for a much lower computational cost.
+My innovation is to use the minimum $\chi^2$ estimator to determine the
+goodness of fit and therefore error bars on the best-fit offset.</p>
+<p>Because the $\chi^2$ value for each offset is simply determined by
+sums and multiplication ($\chi^2 = \sum
+\frac{x_i-\mu_x}{\sigma_{x_i}^2}$), we can compute each term that
+goes in to the $\chi^2$ value independently with fourier transforms,
+then create goodness-of-fit contours around the $\chi^2$ minimum. &nbsp;The
+statistical requirement for this approach to make sense is that the
+errors on the data are gaussian distributed, which is an assumption we
+inevitably make for astronomical images. &nbsp;I believe there is also a
+requirement that the errors are independent, which may be more difficult
+to satisfy, but in the Bolocam images it is satisfied, especially when
+multiple independent observations are combined.</p>
+<p>Strictly, this approach can only be used when the model data have the
+same multiplicative scale as the fitted data. &nbsp;The peak will never be
+wrong using this method, but the errors could be incorrect if the model
+and data are multiplicatively offset. &nbsp;In principle, this can be
+resolved in the future using a <a class="reference external" href="http://en.wikipedia.org/wiki/Mellin_transform">Mellin transform</a>&nbsp;[see <a class="reference external" href="http://ecocodespace.wordpress.com/category/matlab/image-matching/fourier-mellin-transform/">this site</a>&nbsp;or
+<a class="reference external" href="http://www.mathworks.com/matlabcentral/fileexchange/authors/7667">this</a> for
+a matlab approach and <a class="reference external" href="http://www.fresnel.fr/perso/derrode/publi/Cviu01.pdf">this</a> for an academic paper
+on it].</p>
+<p>This is the approach I have implemented
+at&nbsp; <a class="reference external" href="http://image-registration.rtfd.org/">image-registration.rtfd.org</a>. &nbsp;I used simulated test cases to
+demonstrate that it is, indeed, effective and accurate. &nbsp;I used this
+method to measure the offsets between the v2 data and the v1 data (which
+should, in principle, be the same as the offsets between ATLASGAL and
+v1) and the v2 vs Herschel Hi-Gal data (which should be zero).
+There are actually a few methods implemented in image-registration, and
+I compared those. &nbsp;There's a &quot;dft&quot; and a &quot;$\chi^2$&quot; approach, which are
+the same (except $\chi^2$ includes realistic errors), a method where a
+2D gaussian is fit to the peak of the cross-correlation image, and a
+method where a 2nd-order Taylor expansion is performed around the peak
+of the cross-correlation image. &nbsp;The latter two are <em>biased</em>. &nbsp;An
+example comparison plot looks like this:</p>
+<img alt="" src="http://1.bp.blogspot.com/-LtA6owJr_vc/UMZBLK394HI/AAAAAAAAHSI/tR4F0BnFSVs/s320/l000_catalog_image_compare_chi2contours.png" />
+<p>The grey dots are catalog centroid positions offsets measured between v1
+and v2. &nbsp;The green cross represents the mean and standard deviation of
+the grey points. &nbsp;The other data points, as labeled, show the offsets
+between the l000 images in v1 and v2 as measured by the method shown.
+They all have errorbars plotted, but the errorbars are generally smaller
+than the points. &nbsp;The dark spot seen behind the purple point shows the
+$\chi^2$ contours out to 8-$\sigma$: the error in the offset is tiny,
+sub-arcsecond. &nbsp;In this case, the offsets nearly agree:</p>
+<p>l000 catalog dx: &nbsp;-0.31 +/- 0.68 &nbsp; dy: 1.48 +/- 0.64</p>
+<p>l000 $\chi^2$ dx: &nbsp; 1.74 +/- 0.03 &nbsp;dy: 1.41 +/- 0.03</p>
+<p>This field agreed nicely between v1 and v2.</p>
+<p>The comparison to Hi-Gal is perhaps more important; HiGal's pointing is
+calibrated based on multi-wavelength observations, some of which include
+actual stars. &nbsp;It's a space-based mission, so its pointing is more
+stable. &nbsp;And finally, being a space mission, there's a large dedicated
+team instead of a single, part-time individual working on the data.
+Our offsets from Hi-Gal are pretty small in general, though not
+trivially small.</p>
+<img alt="" src="http://1.bp.blogspot.com/-JyMtqE536LY/UMaEqOYBRxI/AAAAAAAAHSY/85nEo6rEc9k/s320/Offsets_XYplot.png" />
+<p>And it turns out, the region that overlaps with ATLASGAL had more
+serious pointing errors than the rest of the survey:</p>
+<img alt="" src="http://2.bp.blogspot.com/-iXI7TUl1y9I/UMaHHXwN2oI/AAAAAAAAHSg/z3g51NHD0zk/s320/Offsets_XYplot_ATLASGALoverlap.png" />
+<p>(note: both of the above plots are missing L=359 because I forgot it.
+&nbsp;Fixing that now...)</p>
+<p>The clearest problem field is l=15, with a longitude offset of -6&quot;
+between v2 and HiGal.... that's not the question, though. &nbsp;Somehow I've
+lost the code that did the v1-HiGal offsets; I'll have to re-write that
+tomorrow and let it run...</p>
+<p>Update 12/13: &nbsp;I've spent the last couple days clearing up some issues
+with the offsets. &nbsp;The error bars should be MUCH smaller than in the
+above plots. &nbsp;The means are pretty similar, though.
+Short story: the offsets between v1 and Hi-Gal are greater in the
+ATLASGAL overlap regions than elsewhere, and in the right general
+direction, but not quite as serious as they claimed. &nbsp;In v2, the
+ATLASGAL overlap fields and the rest of the survey have the same mean
+offsets, and those offsets are small (-0.5&quot; in l, -1&quot; in b).
+The problem now is the table. &nbsp;If everything made sense,
+(v1-v2)+(v2-higal)+(higal-v1) = 0. &nbsp;But that clearly isn't the case,
+which implies an error in the method, which sucks since I'm claiming
+this method is superior to alternatives. &nbsp;It's possible that I'm
+actually underestimating the errors against Hi-Gal - that can be fixed
+relatively easily - but the magnitude of the error won't affect the
+centroid measurements. &nbsp;So I probably need to investigate one case very
+carefully. &nbsp;l050 is a big problem case, with vector sums &gt;1 pixel in
+both directions. &nbsp;That will be my next line of investigation.
+The approach will be:
+-crop identical fields within l050 from v1, v2, herschel
+-perform pointing comparison between them
+-check that vector sum &lt; sum of errors
+I think - and hope - the trouble is just that I'm using inconsistent
+sub-fields to compare Herschel with the two different Bolocam versions,
+which is possible because of the way I selected these sub-fields. &nbsp;I'll
+do more careful cropping, and probably re-do this analysis
+degree-by-degree (with $512^2$ fields, in the hope that it speeds up the
+FTs).
+Update 12/14:
+I've now cropped identical sections in each of the survey, 1 square
+degree (512 pixels) each - which is great for speed. &nbsp;As a sidenote, a
+little line profiling revealed that the make_cross_plots
+&nbsp;code was the slow point in the process, and it is dominated by savefig
+calls, not ffts.
+I've run a careful examination of self consistency on the l=0 field,
+with positive results: the offsets agree to well within the errorbars
+(though there is some residual error at the 0.5&quot; level).</p>
+<img alt="" src="http://1.bp.blogspot.com/--3Q9h0Q1jA4/UMuUjQ33dCI/AAAAAAAAHS4/zSD3H26r5dA/s320/circular_selfconsistency.png" />
+<p>However, a similar inspection of l=50 resulted in a major failure:</p>
+<img alt="" src="http://2.bp.blogspot.com/-wlwvC26eTEk/UMuYZHU179I/AAAAAAAAHTI/Csf3mBSdbGI/s320/circular_selfconsistency.png" />
+<p>In this case, the problem is caused by W51 being exactly on the field
+edge, leading to huge cross-correlation power at dx=0, but spread over a
+large y range. &nbsp;My first thought is to try to downweight the edges,
+which can be achieved by &quot;zero-padding&quot; the noise image, but with high
+values instead of zero... or alternatively, by setting the edge region
+to zero smoothly.</p>
+<p>OK, first thought: Bad idea. &nbsp;Increasing the noise along the edges
+drastically increases the small-shift autocorrelation for the noise,
+which in turn ends up ruling out the small shifts as a fit possibility.
+&nbsp;I don't think this really makes sense mathematically, but each step
+does. &nbsp;Why would increasing the noise along the edges make the $\chi^2$
+fit worse?</p>
+<p>This revealed a serious bug in the code that, luckily, only affected
+non-uniform error maps. &nbsp;Basically, I had decomposed the $\chi^2$
+equation wrong (which is as bad as it sounds).</p>
+<p>That total mess has been resolved now. &nbsp;The image edges are downweighted
+with a gaussian of 12 pixels, error=100 outside and weight=0 outside
+(with weight^2 inside... best to just view the source if you really want
+to know the details). &nbsp;The new versions of the above diagrams:</p>
+<img alt="" src="http://4.bp.blogspot.com/-mjPyO7LkbGc/UMuxVgSxwZI/AAAAAAAAHTY/ilRnJRaAiOQ/s320/circular_selfconsistency.png" />
+<img alt="" src="http://3.bp.blogspot.com/-rMiHxucSQuo/UMuxZSH63fI/AAAAAAAAHTg/W_IzmhcFCzo/s320/circular_selfconsistency.png" />
+<p>Less than spectacular for l=50, but acceptable given the errors, which
+are indeed significantly larger, as you might expect given the lower
+total signal in l=50. Now I need to re-run the fits on every field.</p>
+<p>OK, cool, last thing accomplished today (...by 8pm): offset comparison
+by square degree for all fields. &nbsp;Again, I don't reproduce the magnitude
+of the ATLASGAL-measured offsets, but the ATLASGAL fields are, on
+average, more offset in longitude (to the negative) than the overall
+average.</p>
+<p>Curiously, for both v1 and v2, there appears to be a -1.5 deg shift in
+latitude from Hi-Gal.</p>
+<p>The vector sums are mostly sub-arcsecond, with most exceptions at l&gt;50.
+&nbsp;l=59,64, and 65 are particularly bad - but l=50 isn't so bad. &nbsp;So I
+should do the &quot;deep&quot; examination of one or two of those fields... who
+knows what new errors I'll turn up?</p>
+<p>Here's the new v1-ATLASGAL offset plot:</p>
+<img alt="" src="http://3.bp.blogspot.com/-iv_FsACT958/UMvsyr90haI/AAAAAAAAHTw/g56hcK6hMCw/s320/Offsets_XYplot_v1-Hi-Gal_ATLASGALoverlap.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/cross-correlation-offsets-revisited.html" rel="bookmark" title="Permalink to Cross-Correlation Offsets Revisited">
+                    Cross-Correlation Offsets Revisited</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-08T08:06:00-06:00"> 2012/09/08 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Since last time (<a class="reference external" href="http://bolocam.blogspot.com/2009/03/43-relative-alignment-and-mosaicing.html">Taylor Expansion &amp; Cross
+Correlation</a><a class="reference external" href="http://bolocam.blogspot.com/2012/03/new-coalignment-code.html">,</a><a class="reference external" href="http://bolocam.blogspot.com/2012/03/new-coalignment-code.html">Coalignment Code</a>), I have attempted to re-do the
+cross-correlation with an added component: error estimates.
+It turns out, there is a better method than the Taylor-expansion around
+the cross-correlation peak. &nbsp;Fourier upsampling can be used to
+efficiently determine precise sub-pixel offsets (<a class="reference external" href="http://www.mathworks.com/matlabcentral/fileexchange/18401-efficient-subpixel-image-registration-by-cross-correlation/content/html/efficient_subpixel_registration.html">matlab version</a>,
+<a class="reference external" href="http://people.web.psi.ch/guizar_m/main/">Manuel Guizar, author</a>, <a class="reference external" href="http://www.opticsinfobase.org/view_article.cfm?gotourl=http%3A%2F%2Fwww%2Eopticsinfobase%2Eorg%2FDirectPDFAccess%2F6C566DF3-B5C5-B342-97F01180999C7632_148843%2Fol-33-2-156%2Epdf%3Fda%3D1%26id%3D148843%26seq%3D0%26mobile%3Dno&amp;org=University%20of%20Colorado%20at%20Boulder%20Library">refereed article</a>).
+However, in the published methods just cited, there is no way to
+determine the error - those algorithms are designed to measure offsets
+between identical images corrupted by noise but still strongly dominated
+by signal.
+We're more interested in the case where individual pixels may well be
+noise-dominated, but the overall signal in the map is still large.
+So, I've developed a python translation of the above codes and then
+some.
+<a class="reference external" href="https://github.com/keflavich/image_registration">Image Registration on github</a>
+The docstrings are pretty solid, but there is no overall documentation.
+However, there's a pretty good demo of the simulation AND fitting code
+here:
+<a class="reference external" href="https://github.com/keflavich/image_registration/blob/master/doc/CrossCorrelationSimulation.pdf?raw=true">Tests and Examples</a>
+The results for the Bolocam data are here (only applied to v2-Herschel
+offsets):</p>
+<img alt="" src="http://2.bp.blogspot.com/-PMJx-wX23w8/UErt7G3PqfI/AAAAAAAAHOQ/-5xD6ReBRGs/s320/Offsets_XYplot.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/how-does-bolocam-data-improve-greybody-fits.html" rel="bookmark" title="Permalink to How does Bolocam data improve greybody fits?">
+                    How does Bolocam data improve greybody fits?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-06-23T09:11:00-06:00"> 2012/06/23 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://3.bp.blogspot.com/-c_JUkbALzlE/T-WIDgFQgpI/AAAAAAAAHM0/wQIBvsgQtQU/s320/longwav500_sn10_Herschelsn50_bb_test.png" />
+<img alt="" src="http://1.bp.blogspot.com/-CZHBZFtEpC8/T-WIExxu5uI/AAAAAAAAHM8/wxR_0xFujm8/s320/longwav500_sn20_Herschelsn50_bb_test.png" />
+<img alt="" src="http://3.bp.blogspot.com/-58ayoSrqcjU/T-WIF4NEwHI/AAAAAAAAHNA/ivNPdPGm5iY/s320/longwav500_sn5_Herschelsn50_bb_test.png" />
+<p>Long wavelength data can be very useful for constraining the value of
+beta in a greybody fit.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/bolocat-v1-vs-v2.html" rel="bookmark" title="Permalink to Bolocat V1 vs V2">
+                    Bolocat V1 vs V2</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-05-24T17:59:00-06:00"> 2012/05/24 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've done some very extensive comparison of v1 and v2. The plots below
+are included in the current BGPS draft, but I'll go into more excessive
+detail here. ALL plots below show Version 1 fluxes versus Version 2
+fluxes using Bolocat V1 apertures. This means there are only two
+possible effects in play:</p>
+<ol class="arabic simple">
+<li>Different fluxes in the v1 and v2 maps</li>
+<li>Pointing (spatial) offsets between the v1 and v2 maps
+[see&nbsp;<a class="reference external" href="http://bolocam.blogspot.com/2012/05/bgps-v2-pointing.html">http://bolocam.blogspot.com/2012/05/bgps-v2-pointing.html</a>]</li>
+</ol>
+<p>Therefore, the plots below are just different ways of visualizing the
+same information. This holds true despite the fact that different
+&quot;correction factors&quot; appear in different plots.</p>
+<img alt="" src="http://3.bp.blogspot.com/-gGL8rEcNr20/T75tzRC4dJI/AAAAAAAAHHM/A8KeWkBtfmc/s320/total_ratiohistograms.png" />
+<p>Ratios of v2 fluxes to v1 fluxes in the listed apertures. The curves
+represent best-fit gaussian distributions to the data after excluding
+outliers using a <a class="reference external" href="http://scikit-learn.org/dev/modules/generated/sklearn.covariance.MinCovDet.html">minimum covariance determinant</a> method</p>
+<p>v1 vs v2 with a background subtracted around the source equal to the source
+area (this was not reported in Bolocat v1, but is a tool Erik implemented so I
+used it)</p>
+<p>v1 vs v2 in 40&quot; apertures, as stated. &nbsp;There are y=x and y=1.5x lines plotted:
+these are NOT fits to the data! &nbsp;The green line is a Total Least Squares linear
+fit to the data weighted by the measured errors.</p>
+<p>Source Mask &quot;aperture&quot;:</p>
+<img alt="" src="http://1.bp.blogspot.com/-YS2Jtvz4Yy0/T75pixKkYsI/AAAAAAAAHFs/iEJHrsKsBk0/s320/total_v1v2_sourcemask_bg_fit_compare.png" />
+<img alt="" src="http://1.bp.blogspot.com/-g-ZbEUUWEpY/T75pjj26FeI/AAAAAAAAHGE/rtdSRgoMQpo/s320/total_v1v2_sourcemask_fit_compare.png" />
+<p>Same as above, but the best fit slope is steeper. The best explanation
+for the steeper slope (i.e., v2 &gt; 1.5(v1)) is that more extended flux is
+recovered in v2 around bright sources, therefore in the larger source
+masks, there is greater flux than would be recovered if a simple 1.5x
+corrective factor was applied.
+80&quot; apertures</p>
+<img alt="" src="http://2.bp.blogspot.com/-WKtlvnFbUF4/T75piyh8tVI/AAAAAAAAHF4/FROq508X6pU/s320/total_v1v2_80arcsec_fit_compare.png" />
+<img alt="" src="http://1.bp.blogspot.com/-EHGNHIarslc/T75yqG_AmFI/AAAAAAAAHJg/ToAicG9ynmk/s320/total_v1v2_80_nobgarcsec_fit_compare.png" />
+<p>Same for 120&quot; apertures:</p>
+<img alt="" src="http://1.bp.blogspot.com/-ymBFW1Y5OhY/T75piwFYrJI/AAAAAAAAHFw/07ujRFCd_Ts/s320/total_v1v2_120arcsec_fit_compare.png" />
+<img alt="" src="http://3.bp.blogspot.com/-PMkvtoJKNVs/T75yqPe16PI/AAAAAAAAHJk/QF041ok8yQ0/s320/total_v1v2_120_nobgarcsec_fit_compare.png" />
+<p>For all 3 of the 40, 80 and 120&quot; apertures both, the 1.5x correction
+factor is nearly perfect (agrees to &lt;5%). &nbsp;The background subtraction
+seems to have different effects depending on aperture size. &nbsp;I welcome
+Erik to comment on this, but I do not think it is particularly
+important.
+The figures below require some explanation. &nbsp;NONE of the circular
+apertures use background subtraction in this comparison (i.e., compare
+to the RIGHT column above).
+These figures are histograms of the flux ratio within a given aperture
+as a function of flux in the v1 aperture. &nbsp;From bottom to top, the flux
+in the v1 aperture goes from 0.1 to 10 Jy. &nbsp;The X-axis shows the ratio
+of the v2 flux to the v1 flux. &nbsp;The black dots with error bars represent
+the best-fit gaussian distribution to each flux bin. &nbsp;The colorbar shows
+the log of the number of sources; the most in any bin is about
+10<sup>2.5</sup> ~ 300.
+In short, there is some sign that the ratio of v2/v1 flux varies with v1
+flux. &nbsp;This effect could be seen in the figures above since a linear fit
+is imperfect. &nbsp;The effect is not very strong. &nbsp;Again, I believe the
+explanation here is the changed spatial transfer function in v2.</p>
+<img alt="" src="http://3.bp.blogspot.com/-bfrjMd2veR0/T75pzxm5_xI/AAAAAAAAHGs/SQ1LDR8_EoM/s320/ratio_twodhist_40.png" />
+<img alt="" src="http://4.bp.blogspot.com/-unXyfhsIL1g/T75pkN6kWkI/AAAAAAAAHGQ/axiiWsEMO0M/s320/ratio_twodhist_80.png" />
+<img alt="" src="http://2.bp.blogspot.com/-kJEMLqkaQak/T75pkNu78XI/AAAAAAAAHGM/Dh2T4m0cD-8/s320/ratio_twodhist_120.png" />
+<img alt="" src="http://4.bp.blogspot.com/-ExDpIxfHO74/T75pkjjeKAI/AAAAAAAAHGk/pU3mE5uzcgM/s320/ratio_twodhist_sourcemask_nobg.png" />
+<img alt="" src="http://3.bp.blogspot.com/-Pru74WRl-Hg/T75pkOL1YWI/AAAAAAAAHGU/qtrMl-w59SA/s320/ratio_twodhist_sourcemask.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/bgps-v2-pointing.html" rel="bookmark" title="Permalink to BGPS V2 pointing">
+                    BGPS V2 pointing</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-05-23T23:59:00-06:00"> 2012/05/23 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>BGPS V2.0 pointing offsets relative to V1 and Herschel:</p>
+<img alt="" src="http://4.bp.blogspot.com/-41YC6GZJR-0/T715bELMplI/AAAAAAAAHE0/Fzk41wW8ysM/s320/Offsets_CDF.png" />
+<p>Cumulative Distribution Function of the total offsets.</p>
+<img alt="" src="http://2.bp.blogspot.com/-9zPWRdGI0jY/T715bmcgVnI/AAAAAAAAHFA/K0XKvlJdO_8/s320/Offsets_Histogram.png" />
+<p>Histograms of the total offsets.</p>
+<img alt="" src="http://2.bp.blogspot.com/-3hkzLY1D4KY/T715b0VfMxI/AAAAAAAAHFM/DDBXKCGu8ng/s320/Offsets_XYplot.png" />
+<p>X-offsets vs Y-offsets (X and Y are GLON and GLAT). The ellipses are
+centered at the mean of the X/Y offsets and have major and minor axes
+corresponding to the standard deviations.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/getting-rid-of-haloes.html" rel="bookmark" title="Permalink to Getting rid of haloes">
+                    Getting rid of haloes</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-03-31T00:28:00-06:00"> 2012/03/31 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Haloes are when images look like this:</p>
+<img alt="" src="http://1.bp.blogspot.com/-Hwwiewo9FyU/T3Yhs6TpYcI/AAAAAAAAG0k/uKSTBCn95FY/s320/Screen%2Bshot%2B2012-03-30%2Bat%2B3.09.54%2BPM.png" />
+<p>instead of this, as they should:</p>
+<img alt="" src="http://4.bp.blogspot.com/-t5jVccq9Dtc/T3Yhs-hcY5I/AAAAAAAAG0s/EZ4x0zdSgxw/s320/Screen%2Bshot%2B2012-03-30%2Bat%2B3.09.58%2BPM.png" />
+<p>Things to try:</p>
+<ol class="arabic simple">
+<li>Pass <tt class="docutils literal">/return_deconv</tt> to deconv_map</li>
+<li>Pass <tt class="docutils literal">/linear</tt> to deconv_map</li>
+<li>Disable deconvolve - deconvolve=0</li>
+</ol>
+<p>In l123 &amp; l169, at least, <tt class="docutils literal">/return_deconv</tt> worked</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/new-coalignment-code.html" rel="bookmark" title="Permalink to New coalignment code">
+                    New coalignment code</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-03-20T15:06:00-06:00"> 2012/03/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>pixshift has been giving me issues for a long, long time. It finally
+came to a head, though, when nothing I did could make l001 &quot;work&quot;. It
+turns out, when you do cross-correlation analysis, you're really only
+interested in the most correlated pixel, NOT the junk around it - the
+junk around it only provides a second-order correction.
+Well, <a class="reference external" href="http://solarmuri.ssl.berkeley.edu/~welsch/public/software/cross_cor_taylor.pro">cross_cor_taylor.pro</a>, a tool from the solar physics
+community, does exactly that. And it works far, far better than my
+hacked-together pixshift code. A lesson I should always take to heart:
+don't rewrite code if it's out there. Of course, if I'd known it was out
+there, I wouldn't have rewritten it....</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 20
+        <a href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom2.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

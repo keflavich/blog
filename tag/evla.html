@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - evla</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2016/01/07
+                  <br>
+                  <a href="https://keflavich.github.io/blog/self-cal-with-evla-data.html">Self-cal with EVLA data</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/self-cal-with-evla-data.html" rel="bookmark" title="Permalink to Self-cal with EVLA data">
+                    Self-cal with EVLA data</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-01-07T08:14:00-07:00"> 2016/01/07 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm trying to self-calibrate my A+C array C-band data on W51, since we're in a
+clearly dynamic-range-limited regime.  I've never had any luck with self-cal,
+though.  The images <em>always</em> get worse, and I still don't really understand
+why.</p>
+<p>This is a clue, though:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/selfcal_phasecal_vs_time.png" style="width: 600px;" />
+<p>For many of the antennae, especially those in C array, self-calibration results
+in phase plots that look nice, with corrections confined to +/-30 degrees as
+you would hope and expect.</p>
+<p>These plots show that some antennae are going through dozens or hundreds of
+phase wraps.  That is obviously unacceptable and incorrect: the original images
+actually looked pretty good, so it is obvious (to me, at least) that there
+should be <em>no</em> phase wrapping in the self-cal.  I'm surprised at this, since
+each of these points should have S/N &gt; 3 and there is a lot of consistency in
+these large phase shifts.</p>
+<p>My suspicion is still that the clean process has failed.  I have been trying
+multiscale clean, since the emission is completely dominated by extended
+components.  However, even if I set smallscalebias to different values, there
+are essentially no pointlike components being added to the clean model.  This
+is wrong!  There are genuine point sources.  So I still suspect that this is a
+modeling problem and the phase wraps are being caused by bad models.</p>
+<p>I'm trying again with smaller pixels in the hope that a better match between
+the beam size and the pixel size will produce a better model.  The only other
+thing I can think to try is increasing the solint, but given the high S/N
+already present, I doubt that's an important factor.</p>
+<p>Smaller pixels didn't help, <em>but</em> forcing clean to include point-source
+components by performing a second round of clean with <tt class="docutils literal"><span class="pre">multiscale=[]</span></tt> worked!
+The solutions are MUCH more reasonable (no more phase wrap every integration),
+and selfcal no longer diverges.  I also increased the solution interval to 30s
+since it seems that the phase change timescale is significantly longer than
+an integration.  I increased the S/N cutoff to 5 too.</p>
+<p>There are still some &quot;noisy&quot; phases, even in the 3rd iteration:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/selfcal_phasecal_vs_time_3rditer.png" style="width: 600px;" />
+<p>I think more iterations may be necessary, but I will also increase the S/N
+threshold to 6 and solint to 60s to see if that helps.</p>
+<p>RMS improvements are evident but not spectacular:</p>
+<pre class="literal-block">
+SPW4 Iteration 0: RMS=1.003e-04
+SPW4 Iteration 1: RMS=6.009e-05
+SPW4 Iteration 2: RMS=6.698e-05
+SPW4 Iteration 3: RMS=7.061e-05
+</pre>
+<p>The bump in the last one is because I forgot to add a point clean for the last
+iteration.</p>
+<p>Perhaps not unfortunately, it looks like the improvements in image quality are
+tiny when self-cal is added.  The only real hope now is that self-cal on all
+bands will result in an artifact-free final combined image.</p>
+<p>On the &quot;noisy&quot; phases, now that it looks like there are decent solutions, it
+may actually be worth keeping the flags generated by applycal.  &lt;10% of the
+data is being flagged out, which is negligible, and it probably is genuinely
+bad (or signal-free, anyway) in that case.</p>
+<p>EDIT: Looks better... or at least different... now:</p>
+<pre class="literal-block">
+SPW4 Iteration 0: RMS=1.003e-04
+SPW4 Iteration 1: RMS=5.962e-05
+SPW4 Iteration 2: RMS=6.817e-05
+SPW4 Iteration 3: RMS=6.775e-05
+</pre>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/alma-qa2-restoration.html" rel="bookmark" title="Permalink to ALMA QA2 restoration">
+                    ALMA QA2 restoration</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-10-02T09:00:00-06:00"> 2015/10/02 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In case you ever encounter this error about a missing <cite>Source.xml</cite> file:</p>
+<pre class="literal-block">
+IOError: [Errno 2] No such file or directory: '/diskb/aginsbur/orion/2013.1.00546.S/science_goal.uid___A001_X122_X35c/group.uid___A001_X122_X35d/member.uid___A001_X122_X35e/calibrated/working/uid___A002_X960614_X39db.ms/Source.xml'
+WARNING: Failure executing file: &lt;scriptForPI.py&gt;
+</pre>
+<p>the solution is this ticket: <a class="reference external" href="https://help.almascience.org/index.php?/Knowledgebase/Article/View/266/5/what-should-i-do-if-scriptforpi-aborts-at-the-importasdm-step-with-error">https://help.almascience.org/index.php?/Knowledgebase/Article/View/266/5/what-should-i-do-if-scriptforpi-aborts-at-the-importasdm-step-with-error</a></p>
+<p>So my solution:</p>
+<pre class="literal-block">
+orion /diskb/aginsbur/atca master$ mv /diskb/aginsbur/casa/casapy-42.2.30986-pipe-1-64b/lib64/libxml2.so.2 /diskb/aginsbur/casa/casapy-42.2.30986-pipe-1-64b/lib64/origlibxml2.so.2
+orion /diskb/aginsbur/atca master$ locate libxml2.so.2
+/diskb/aginsbur/casa/casapy-42.2.30986-pipe-1-64b/lib64/libxml2.so.2
+/diskb/aginsbur/casa/casapy-42.2.30986-pipe-1-64b/lib64/libxml2.so.2.6.26
+/home/aginsbur/anaconda/lib/libxml2.so.2
+/home/aginsbur/anaconda/lib/libxml2.so.2.9.2
+/home/aginsbur/anaconda/pkgs/libxml2-2.9.2-0/lib/libxml2.so.2
+/home/aginsbur/anaconda/pkgs/libxml2-2.9.2-0/lib/libxml2.so.2.9.2
+/opt/anaconda/lib/libxml2.so.2
+/opt/anaconda/lib/libxml2.so.2.9.2
+/opt/anaconda/pkgs/libxml2-2.9.2-0/lib/libxml2.so.2
+/opt/anaconda/pkgs/libxml2-2.9.2-0/lib/libxml2.so.2.9.2
+/usr/lib64/libxml2.so.2
+/usr/lib64/libxml2.so.2.9.1
+orion /diskb/aginsbur/atca master$ ln -sf /usr/lib64/libxml2.so.2 /diskb/aginsbur/casa/casapy-42.2.30986-pipe-1-64b/lib64/libxml2.so.2
+</pre>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/export-to-fits-with-miriad.html" rel="bookmark" title="Permalink to Export to FITS with MIRIAD">
+                    Export to FITS with MIRIAD</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-09-15T15:30:00-06:00"> 2015/09/15 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>To convert from MIRIAD map files to FITS, use:</p>
+<pre class="literal-block">
+miriad% fits in=h2comos1.clr out=h2comos1.fits op=xyout
+</pre>
+<p>(see <a class="reference external" href="converting-gildas-class-data-cubes-lmv-files-to-fits.rst">the CLASS conversion post</a>)</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/installing-miriad.html" rel="bookmark" title="Permalink to Installing Miriad">
+                    Installing Miriad</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-09-14T00:00:00-06:00"> 2015/09/14 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>From Andrew Walsh, a script to install MIRIAD:</p>
+<div class="highlight"><pre><span></span>wget<span class="w"> </span>ftp://ftp.atnf.csiro.au/pub/software/miriad/miriad-common.tar.bz2
+wget<span class="w"> </span>ftp://ftp.atnf.csiro.au/pub/software/miriad/miriad-linux64.tar.bz2
+bzcat<span class="w"> </span>miriad-common.tar.bz2<span class="w"> </span><span class="p">|</span><span class="w"> </span>tar<span class="w"> </span>xvf<span class="w"> </span>-
+bzcat<span class="w"> </span>miriad-linux64.tar.bz2<span class="w">  </span><span class="p">|</span><span class="w"> </span>tar<span class="w"> </span>xvf<span class="w"> </span>-
+<span class="nb">cd</span><span class="w"> </span>miriad
+<span class="nb">export</span><span class="w"> </span><span class="nv">MIR</span><span class="o">=</span><span class="nv">$PWD</span>
+<span class="c1"># define the MIR variable in your bashrc</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export MIR=</span><span class="nv">$MIR</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+sed<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;s,@MIRROOT@,</span><span class="nv">$MIR</span><span class="s2">,&quot;</span><span class="w"> </span>scripts/MIRRC.in<span class="w"> </span>&gt;<span class="w"> </span>MIRRC
+sed<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;s,@MIRROOT@,</span><span class="nv">$MIR</span><span class="s2">,&quot;</span><span class="w"> </span>scripts/MIRRC.sh.in<span class="w"> </span>&gt;<span class="w"> </span>MIRRC.sh
+chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>MIRRC*
+
+<span class="c1"># Put these into .bashrc, or call them each time you want to run MIRIAD</span>
+.<span class="w"> </span><span class="nv">$MIR</span>/MIRRC.sh
+<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$MIRBIN</span>
+</pre></div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/my-python-ipython-vim-debugging-workflow.html" rel="bookmark" title="Permalink to My python + ipython + vim debugging workflow">
+                    My python + ipython + vim debugging workflow</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-05-07T12:00:00-06:00"> 2015/05/07 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>My <a class="reference external" href="http://www.eso.org/~eemselle/CV.html">boss</a> asked a great question at our first weekly <a class="reference external" href="https://github.com/ESO-python/ESOPythonTutorials">ESO-python tutorial</a>
+session: What does a good ipython debugging workflow look like?</p>
+<p>The one advantage I had found in IDL was that <em>everything</em> is a script, which
+means that <em>everything</em> can be debugged in the same way: add a stop statement
+at the relevant line of code.  Of course, that debugging model breaks apart
+badly once you start writing complex programs and using things like common
+blocks.</p>
+<p>In ipython, there is a beautiful debugger that is far more feature-rich than
+the IDL equivalent.  It can be activated simply:</p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pdb</span>
+</pre></div>
+<p>will toggle the interactive ipython debugger.  Then, if you run into a code
+crash, you will be dumped out at an <cite>ipdb&gt;</cite> prompt, with access to a
+fully-functional python prompt in the local namespace / environment of the
+crash point.  You can also move up and down the function hierarchy with the <tt class="docutils literal">u</tt>
+and <tt class="docutils literal">d</tt> commands.</p>
+<p>The existence of the ipdb debugger suggests a natural approach for those
+familiar with IDL debugging: simply add a <tt class="docutils literal">raise</tt> statement wherever you would
+normally have put a <tt class="docutils literal">stop</tt> statement.  There are a few key differences,
+however: in IDL, you could just <tt class="docutils literal">.continue</tt> to run the rest of the code as if
+no stop occurred; in python the same is not possible with the default ipdb.</p>
+<p>However, the <a class="reference external" href="https://pypi.python.org/pypi/ipdb">ipdb</a> package allows the insertion of breakpoints just like in IDL:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ipdb</span><span class="p">;</span> <span class="n">ipdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
+</pre></div>
+<p>From within one of these breakpoints, the <tt class="docutils literal">.continue</tt> command will continue on
+to the next breakpoint, as you might expect.  The <tt class="docutils literal">n</tt> and <tt class="docutils literal">s</tt> commands will go
+to the next line in the code, while <tt class="docutils literal">s</tt> will allow you to drop into called functions (how?)</p>
+<p><a class="reference external" href="http://scipy-lectures.github.io/advanced/debugging/#using-the-python-debugger">Postmortem debugging</a> is also awesome.  If you have run a command and gotten a traceback,
+you can retroactively enter the debugger:</p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">debug</span>
+</pre></div>
+<p>but as with the normal traceback debugger, one cannot <tt class="docutils literal">continue</tt> afterward.</p>
+<div class="section" id="reloading-code">
+<h2>Reloading Code</h2>
+<p>Python code is typically distributed in packages managed with a <tt class="docutils literal">setup.py</tt>
+script.  These are the most convenient way to install, use, and distribute
+code, but they are not ideal for debugging.</p>
+<p>When debugging a normal script, something you could run by invoking</p>
+<div class="highlight"><pre><span></span>python<span class="w"> </span>myfile.py
+</pre></div>
+<p>or</p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">run</span> <span class="n">myfile</span><span class="o">.</span><span class="n">py</span>
+<span class="c1"># in the local namespace</span>
+<span class="o">%</span><span class="n">run</span> <span class="o">-</span><span class="n">i</span> <span class="n">myfile</span><span class="o">.</span><span class="n">py</span>
+<span class="c1"># with the python debugger active:</span>
+<span class="o">%</span><span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="n">myfile</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+<p>can easily be debugged by running it line-by-line.  The <a class="reference external" href="http://ipython.org/ipython-doc/dev/interactive/tutorial.html#running-and-editing">documentation</a>
+can be accessed via the <tt class="docutils literal">%magic</tt> command.</p>
+<p>For debugging &quot;compiled&quot; packages, though, more thought is needed.</p>
+<p>If you are working on your own package, you can use <a class="reference external" href="https://pythonhosted.org/setuptools/setuptools.html#develop-deploy-the-project-source-in-development-mode">setuptools</a> to enable the
+<tt class="docutils literal">python setup.py develop</tt> command, which installs a symbolic link to the
+source code directory - meaning any changes you make are immediately reflected
+in the python source path.  This does <em>not</em> mean that any changes are
+recognized in the local python environment, though!</p>
+<p>If you are in an active <tt class="docutils literal">ipython</tt> session, you need to <tt class="docutils literal">reload</tt> packages to
+see their results.  As far as I know, you can <em>never</em> &quot;reload&quot; the source code
+underlying an already-instantiated class, so you have to remake any class
+instances you want to examine.</p>
+<p>The <tt class="docutils literal">reload</tt> command is tricky to use.  You will only see changes to the source code
+if you import the exact package in which the code is stored.  For example, if you have a file structure like this:</p>
+<div class="highlight"><pre><span></span>mypackage/
+<span class="w">    </span>__init__.py
+<span class="w">    </span>core.py
+</pre></div>
+<p>and you do <tt class="docutils literal">reload(mypackage)</tt>, that will effectively reload only the source
+code in <tt class="docutils literal">__init__.py</tt>.  If the code you want to use is called <tt class="docutils literal">myfunction</tt>
+and it lives in <tt class="docutils literal">core.py</tt>, you can reload that source code by doing
+<tt class="docutils literal">reload(mypackage.core)</tt>.  Reloading <tt class="docutils literal">mypackage</tt> may have no effect.  So
+the key for developing packages is finding the right module to reload!</p>
+<p>IPython has a <a class="reference external" href="http://ipython.org/ipython-doc/dev/interactive/reference.html#dreload">deepreload package</a>
+intended to recursively reload functions; it may work but I had trouble in the
+past.</p>
+</div>
+<div class="section" id="tests">
+<h2>Tests</h2>
+<p>It's generally much better to have a test suite enabled with unit tests for
+each component of your code.  This is the approach adopted by most open-source
+projects and many industrial code developers.</p>
+<p>Tests are invoked with the command <tt class="docutils literal">py.test</tt> with a variety of command
+options.  Among my favorites are <tt class="docutils literal">py.test <span class="pre">--tb=short</span></tt>, which gives a much
+less verbose traceback, <tt class="docutils literal">py.test <span class="pre">--pastebin=failed</span></tt>, which posts any failure
+results to pastebin for easy sharing, <tt class="docutils literal">py.test <span class="pre">-p</span> packagename</tt> (or <tt class="docutils literal">python
+setup.py test <span class="pre">-P</span> packagename</tt> in astropy) to select tests for a specific
+package.  A great deal more options can be found in the <a class="reference external" href="http://pytest.org/latest/">pytest docs</a>.</p>
+<p>A test suite, if properly constructed, can also be run from with in ipython:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">astroquery</span>
+<span class="n">astroquery</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s1">&#39;eso&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="postscript">
+<h2>Postscript</h2>
+<p>Some useful related links:</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://stackoverflow.com/questions/1623039/python-debugging-tips">http://stackoverflow.com/questions/1623039/python-debugging-tips</a></li>
+<li><a class="reference external" href="https://pypi.python.org/pypi/pudb">https://pypi.python.org/pypi/pudb</a></li>
+</ul>
+</blockquote>
+<!-- great picture: http://commons.wikimedia.org/wiki/File:Richard_Hook_and_Eric_Emsellem_at_the_ESO_50th_Anniversary_Gala_Event.jpg -->
+</div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/installing-astrometrynet-in-november-2014.html" rel="bookmark" title="Permalink to Installing astrometry.net in November 2014">
+                    Installing astrometry.net in November 2014</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2014-11-26T09:57:00-07:00"> 2014/11/26 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam.html">Adam</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Installing astrometry.net is all about navigating dependency hell.</p>
+<p>Requirements:</p>
+<blockquote>
+<ul class="simple">
+<li>libpng</li>
+<li>libtiff</li>
+<li>libjpeg</li>
+<li>netpbm (requires above 3)</li>
+</ul>
+</blockquote>
+<p>To install netpbm, a recent version - NOT the stable version - is required,
+which means navigating throught 3-4 layers of links including a sourceforge
+build-my-tarball link.</p>
+<p>To compile astrometry.net-0.50:</p>
+<blockquote>
+ARCH_FLAGS=&quot;&quot; make -j 8</blockquote>
+<p>To compile cairo, I had to install pixman (no problem) the setup a PKG_CONFIG_PATH:</p>
+<blockquote>
+PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./configure</blockquote>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/azimuthal-mass-profiles.html" rel="bookmark" title="Permalink to Azimuthal Mass Profiles">
+                    Azimuthal Mass Profiles</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2014-06-13T09:00:00-06:00"> 2014/06/13 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Can we characterize &quot;hub&quot; clumps vs &quot;filament&quot; clumps by examining their
+azimuthal column density profile?  Filaments would have two-peaked structures,
+hubs many-peaked, and spherically symmetric &quot;isolated&quot; clumps would be
+peakless.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/python-stack-on-mavericks.html" rel="bookmark" title="Permalink to Python stack on Mavericks">
+                    Python stack on Mavericks</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2014-02-19T12:02:00-07:00"> 2014/02/19 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/napattack-adamgginsburggmailcom.html">napattack (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>As you might expect from numerous blog posts and the general difficulty people
+have always experienced upgrading mac OS versions, Mavericks caused some truly
+hideous issues.</p>
+<p>The only really &quot;new&quot; issues specifically for Mavericks relate to app nap.  The
+main solution is minrk's <a class="reference external" href="https://github.com/minrk/appnope">appnope</a>.  Otherwise, command line options like
+<cite>defaults write &lt;app domain name&gt; NSAppSleepDisabled -bool YES</cite> are required
+<a class="reference external" href="http://apple.stackexchange.com/questions/121386/missing-prevent-app-nap-button-on-app">if the button is missing</a> from Mac's Get Info pane.</p>
+<p>I tried installing the <a class="reference external" href="https://store.continuum.io/cshop/anaconda/">conda</a> stack to get python running quickly.  This
+worked to an extremely limited degree: the TkAgg shipped with anaconda links to
+<a class="reference external" href="xquartz.macosforge.org">XQuartz</a>, which is highly undesirable for a number of reasons.  This meant
+that matplotlib plots showed up as X11 plots.  With the Mac OS X backend, the
+windows failed to show up in the Dock and therefore were totally unusable (though
+they did look OK).</p>
+<p>I am still using <a class="reference external" href="https://store.continuum.io/cshop/anaconda/">conda</a> to maintain multiple parallel versions of python for
+testing.  However, I went back to my typical install-from-source approach.</p>
+<p>To get the matplotlib backends to interact nicely with apple, you need to install
+them using the <cite>/Library</cite> version of python</p>
+<div class="highlight"><pre><span></span><span class="c1"># this had to happen sometime early:</span>
+$<span class="w"> </span>xcode-select<span class="w"> </span>--install
+
+$<span class="w"> </span>wget<span class="w"> </span>https://pypi.python.org/pypi/pip#downloads
+$<span class="w"> </span>tar<span class="w"> </span>-xzvf<span class="w"> </span>~/Downloads/pip-1.5.2.tar.gz
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>pip-1.5.2
+$<span class="w"> </span>/Library/Frameworks/Python.framework/Versions/2.7/bin/python<span class="w"> </span>setup.py<span class="w"> </span>install
+$<span class="w"> </span>/Library/Frameworks/Python.framework/Versions/2.7/bin/pip<span class="w"> </span>install<span class="w"> </span>virtualenv
+$<span class="w"> </span><span class="nb">cd</span>
+$<span class="w"> </span>/Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenv<span class="w"> </span>virtual-python
+</pre></div>
+<p>After this, I was surprisingly able to install everything in the python stack
+with no hitches.  Obviously, that could not possibly last.</p>
+<p>While matplotlib and numpy worked fine, scipy had problems.</p>
+<pre class="literal-block">
+ImportError: dlopen(/Users/adam/virtual-python/lib/python2.7/site-packages/scipy/integrate/_odepack.so, 2): Symbol not found: __gfortran_internal_free
+Referenced from: /Users/adam/virtual-python/lib/python2.7/site-packages/scipy/integrate/_odepack.so
+Expected in: flat namespace
+   in /Users/adam/virtual-python/lib/python2.7/site-packages/scipy/integrate/_odepack.so
+</pre>
+<p>This terrible error led me back to re-compiling scipy.  I tried installing with
+<a class="reference external" href="hpc.sourceforge.net">hpc</a> gfortran, but that didn't work at all, first apparently because of linking
+errors in numpy.  When I investigated numpy, I found that the compilers
+apparently don't work at all:</p>
+<pre class="literal-block">
+C compiler: /usr/local/bin/gcc -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -arch i386 -arch x86_64
+...
+RuntimeError: Broken toolchain: cannot link a simple C program
+</pre>
+<p>I had to give up on that, and then googling returned no results at all, which I
+thought was a bit weird.  Scipy seems to want gcc and g++ 4.2, even though
+they're years old.  I had to find those and gfortran-4.2 somehow, but the <a class="reference external" href="r.research.att.com/tools/">old
+site</a> that used to serve them seems to have lost the files!  They had an
+<a class="reference external" href="http://r.research.att.com/tools/gcc-42-5666.3-darwin11.pkg">older version</a>, though, which appears to work.  Scipy is a scary install.</p>
+<div class="section" id="problems-with-xquartz">
+<h2>Problems with XQuartz</h2>
+<p>XQuartz is not well-behaved on Mac OS X 10.9.  First, <a class="reference external" href="https://xquartz.macosforge.org/trac/ticket/661">on retina machines, it
+does not display well</a>.  Second, and much more important, it <a class="reference external" href="http://xquartz.macosforge.org/trac/ticket/797">does not work on
+external monitors</a>.  Apparently this can be worked around by turning off
+&quot;Displays have different spaces&quot;  in Mission Control, but so far that has had
+no effect for me.</p>
+</div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/w51-mapping-flagging-bad-data.html" rel="bookmark" title="Permalink to W51 Mapping: Flagging bad data">
+                    W51 Mapping: Flagging bad data</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2014-01-16T00:00:00-07:00"> 2014/01/16 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In the process of creating W51 data cubes from the GBT mapping data (project
+GBT 10B/019), I've had to deal with a lot of bad data.</p>
+<p>Some of the bad data comes from misbehaving electronics.  All I can say is that
+they were misbehaving, not how or why - the data from one polarizaiton simply
+disagrees with the other polarization and feeds spontaneously and for no
+apparent reason.</p>
+<p>I've implemented a waterfall diagnostic plot to help examine the data, it is in
+my <a class="reference external" href="https://github.com/keflavich/mpl_plot_templates">mpl_plot_templates</a> repository: <a class="reference external" href="https://github.com/keflavich/mpl_plot_templates/blob/master/mpl_plot_templates/imdiagnostics.py">imdiagnostics.py</a>.</p>
+<p>A good waterfall looks something like this:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/Session17_111to186_D37_F2_data_scrubbed_flagged.png" style="width: 800px;" />
+<p>The line plots show the average and standard deviation along each axis; the
+right side effectively shows timestream continuum data while the top plots show
+a time-averaged spectrum.  This plot is good in that there are clearly signals
+detected as the scan crosses continuum sources and there is a strong Helium
+Alpha line detected in the average (though there's no way to read that it's
+Helium fromt he data as presented).
+Notably, the noise correlates with the continuum brightness - this is expected;
+higher TSYS leads to higher noise.</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/Session22_10to41_D37_F2_data_scrubbed_flagged.png" style="width: 800px;" />
+<p>This is an example of a data set with some extremely irritating artifacts.
+There are apparent absorption lines throughout the spectrum: they are not real.
+This is a particularly irritating problem because I had resolved it once in the
+not-too-distant past, but I can't figure out how!!  Most likely, I just removed
+the data from the maps, but that SHOULD be in the code history (git) and is not.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/regrid-an-image-or-cube-using-casa.html" rel="bookmark" title="Permalink to Regrid an image (or cube) using CASA">
+                    Regrid an image (or cube) using CASA</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-12-18T17:52:00-07:00"> 2013/12/18 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg <adam.g.ginsburg@gmail.com></a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In order to regrid an image, you need some target reprojection.  The simplest way to acquire such a reprojection
+is by extracting it from another image, e.g. a <a class="reference external" href="casaguides.nrao.edu/index.php?title=FITStoImage">FITS image</a></p>
+<p>(I use <cite>&gt;&gt;&gt;</cite> to indicate the <cite>CASA &lt;#&gt;:</cite> prompt here because it allows you to copy &amp; paste the code into CASA)</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">header</span> <span class="o">=</span> <span class="n">imregrid</span><span class="p">(</span><span class="n">imagename</span><span class="o">=</span><span class="s1">&#39;file.image&#39;</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s1">&#39;get&#39;</span><span class="p">)</span>
+</pre></div>
+<p>This header will be a python dictionary with two keys, <cite>csys</cite>, which specifies
+the coordinate system, and <cite>shap</cite>, which gives the shape.</p>
+<p>If you want to write up your own FITS header and you don't have a FITS file
+with those exact coordinates, you can use the <a class="reference external" href="https://github.com/keflavich/casa_tools/blob/master/casa_tools/header_to_template.py#L11">header_to_template</a> convenience
+tool in <a class="reference external" href="https://github.com/keflavich/casa_tools">casa_tools</a>.</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">casa_tools</span> <span class="kn">import</span> <span class="n">header_to_template</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">fits_header</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">Header</span><span class="o">.</span><span class="n">fromtextfile</span><span class="p">(</span><span class="s1">&#39;my_header.hdr&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">header</span> <span class="o">=</span> <span class="n">header_to_template</span><span class="p">(</span><span class="n">fits_header</span><span class="p">)</span>
+</pre></div>
+<p>In order to regrid the file, you then need to pass in the image name and template to imregrid.</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">imregrid</span><span class="p">(</span><span class="n">imagename</span><span class="o">=</span><span class="s1">&#39;file.image&#39;</span><span class="p">,</span>
+<span class="o">...</span>          <span class="n">template</span><span class="o">=</span><span class="n">header</span><span class="p">,</span>
+<span class="o">...</span>          <span class="n">output</span><span class="o">=</span><span class="s1">&#39;file_regrid.image&#39;</span><span class="p">)</span>
+</pre></div>
+<p>If your input image's header did not include a 'telescope' keyword, CASA will complain:</p>
+<blockquote>
+2013-12-18 16:46:33 SEVERE  imregrid::ImageRegrid::regrid (file /opt/casa/release-4_1_0-release-1/darwin64/include/casacore/images/Images/ImageRegrid.tcc, line 118)        Cannot find the observatory name UNKNOWN in the CASA</blockquote>
+<p>You can add the keyword to the header yourself:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">imhead</span><span class="p">(</span><span class="s1">&#39;file.image&#39;</span><span class="p">,</span>
+<span class="o">...</span>        <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;put&#39;</span><span class="p">,</span>
+<span class="o">...</span>        <span class="n">hdkey</span><span class="o">=</span><span class="s1">&#39;telescope&#39;</span><span class="p">,</span>
+<span class="o">...</span>        <span class="n">hdvalue</span><span class="o">=</span><span class="s1">&#39;Arecibo&#39;</span><span class="p">)</span>
+</pre></div>
+<div class="section" id="references">
+<h2>References</h2>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://www.eso.org/projects/alma/arc/tw/pub/External/EUARCCASATutorialJan2012/ImageAnalysis-CASA.pdf">Sebastian Muller's presentation</a> (page 16)</li>
+<li><a class="reference external" href="http://casa.nrao.edu/docs/casaref/image.regrid.html">imregrid docs</a></li>
+</ul>
+</blockquote>
+</div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/converting-a-fits-cube-to-a-casa-image.html" rel="bookmark" title="Permalink to Converting a FITS cube to a CASA Image">
+                    Converting a FITS cube to a CASA Image</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-12-18T15:15:00-07:00"> 2013/12/18 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg <adam.g.ginsburg@gmail.com></a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>If you want to perform analysis on a FITS file in CASA, you first need to
+import it into <cite>.image</cite> format.</p>
+<blockquote>
+importfits('file.fits','file.image')</blockquote>
+<p>If this works, great!  You can move on.  CASA will treat NaN values in an image
+as 'masked'.</p>
+<div class="section" id="dealing-with-errors">
+<h2>Dealing with Errors</h2>
+<p>There may be issues with FITS headers.  CASA respects a large number of header
+keys (<a class="reference external" href="http://www.eso.org/projects/alma/arc/tw/pub/External/EUARCCASATutorialJan2012/ImageAnalysis-CASA.pdf">reference</a>).</p>
+<p>There are many ways to edit a FITS header.  One of the most straightforward to
+use is <a class="reference external" href="http://tdc-www.harvard.edu/wcstools/edhead.html">edhead</a>.  Otherwise, one can use CASA's <a class="reference external" href="http://casaguides.nrao.edu/index.php?title=Imhead">imhead</a></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="14%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>CASA Keyword</td>
+<td>FITS keyword</td>
+<td>Description</td>
+</tr>
+<tr><td>beammaj</td>
+<td>BMAJ</td>
+<td>Major&nbsp;axis&nbsp;of&nbsp;the&nbsp;clean&nbsp;beam</td>
+</tr>
+<tr><td>beammin</td>
+<td>BMIN</td>
+<td>Minor&nbsp;axis&nbsp;of&nbsp;the&nbsp;clean&nbsp;beam</td>
+</tr>
+<tr><td>beampa</td>
+<td>BPA</td>
+<td>Position&nbsp;angle&nbsp;of&nbsp;the&nbsp;clean&nbsp;beam</td>
+</tr>
+<tr><td>bunit</td>
+<td>BUNIT</td>
+<td>Brightness&nbsp;unit&nbsp;(K,&nbsp;Jy/beam,&nbsp;etc)</td>
+</tr>
+<tr><td>cdeltn</td>
+<td>CDELTn</td>
+<td>Pixel&nbsp;size,&nbsp;nth&nbsp;axis&nbsp;&nbsp;(max&nbsp;n&nbsp;is&nbsp;4)</td>
+</tr>
+<tr><td>crpixn</td>
+<td>CRPIXn</td>
+<td>Pixel&nbsp;coordinate&nbsp;of&nbsp;reference&nbsp;point,&nbsp;nth&nbsp;axis</td>
+</tr>
+<tr><td>crvaln</td>
+<td>CRVALn</td>
+<td>Pixel&nbsp;location&nbsp;of&nbsp;reference&nbsp;point,&nbsp;nth&nbsp;axis</td>
+</tr>
+<tr><td>ctypen</td>
+<td>CTYPEn</td>
+<td>Axis&nbsp;name,&nbsp;nth&nbsp;axis.  For FITS, this includes the projection</td>
+</tr>
+<tr><td>cunitn</td>
+<td>CUNITn</td>
+<td>Pixel&nbsp;units,&nbsp;nth&nbsp;axis</td>
+</tr>
+<tr><td>datamax</td>
+<td>DATAMAX</td>
+<td>Maximum&nbsp;pixel&nbsp;value&nbsp;in&nbsp;image</td>
+</tr>
+<tr><td>datamin</td>
+<td>DATAMIN</td>
+<td>Minimum&nbsp;pixel&nbsp;value&nbsp;in&nbsp;image</td>
+</tr>
+<tr><td>date-obs</td>
+<td>DATE-OBS</td>
+<td>Date&nbsp;of&nbsp;the&nbsp;observation</td>
+</tr>
+<tr><td>equinox</td>
+<td>EQUINOX</td>
+<td>Reference&nbsp;frame&nbsp;for&nbsp;directional&nbsp;coordinates</td>
+</tr>
+<tr><td>imtype</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Image&nbsp;type:&nbsp;intensity,</td>
+</tr>
+<tr><td>minpos</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Position&nbsp;of&nbsp;the&nbsp;minimum&nbsp;value&nbsp;(world&nbsp;unit)</td>
+</tr>
+<tr><td>minpixpos</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Same&nbsp;in&nbsp;pixel&nbsp;(array)</td>
+</tr>
+<tr><td>maxpos</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Position&nbsp;of&nbsp;the&nbsp;maximum&nbsp;value&nbsp;(world&nbsp;unit)</td>
+</tr>
+<tr><td>maxpixpos</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Same&nbsp;in&nbsp;pixel&nbsp;(array)</td>
+</tr>
+<tr><td>object</td>
+<td>OBJECT</td>
+<td>Source&nbsp;name</td>
+</tr>
+<tr><td>observer</td>
+<td>OBSERVER</td>
+<td>Observer&nbsp;name</td>
+</tr>
+<tr><td>projection</td>
+<td>CTYPEn</td>
+<td>Image&nbsp;projection&nbsp;('SIN','TAN',&nbsp;or&nbsp;'ZEA')</td>
+</tr>
+<tr><td>reffreqtype</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Reference&nbsp;frame&nbsp;for&nbsp;the&nbsp;spectral&nbsp;coordinates</td>
+</tr>
+<tr><td>restfreq</td>
+<td>RESTFREQ</td>
+<td>Rest&nbsp;Frequency</td>
+</tr>
+<tr><td>shape</td>
+<td>NAXISn</td>
+<td>Number&nbsp;of&nbsp;pixels&nbsp;along&nbsp;each&nbsp;axis</td>
+</tr>
+<tr><td>telescope</td>
+<td>TELESCOP</td>
+<td>Telescope&nbsp;name</td>
+</tr>
+</tbody>
+</table>
+<p>What does it mean if you get this sort of error?</p>
+<blockquote>
+CASA &lt;1&gt;: importfits('file.fits','file.image')
+2013-12-18 13:06:18     WARN    importfits::FITSCoordinateUtil::fromFITSHeader  The wcs function failures are too severe to continue ...
+2013-12-18 13:06:18     WARN    importfits::ImageFITSConverterImpl::FITSToImage (file /var/rpmbuild/BUILD/casapy-stable/casapy-stable-42.0.26945/casacore/images/Images/ImageFITSConverter.tcc, line 71)       No proper coordinate system defined in FITS file. Using dummy linear system instead.</blockquote>
+<p>First, go to the <cite>casapy-yyyymmdd-hhmmss.log</cite> file and look at the errors.</p>
+<blockquote>
+2013-12-18 13:06:18     INFO    importfits::FITSCoordinateUtil::fromFITSHeader  celfix incurred the error Inconsistent or unrecognized coordinate axis types
+2013-12-18 13:06:18     INFO    importfits::FITSCoordinateUtil::fromFITSHeader  spcfix incurred the error Inconsistent or unrecognized coordinate axis types
+2013-12-18 13:06:18     INFO    importfits::FITSCoordinateUtil::fromFITSHeader  cylfix incurred the error Inconsistent or unrecognized coordinate axis types</blockquote>
+<p>In my case, the error turned out to be that <cite>CTYPE3</cite> was set to <cite>RADI-LSR</cite>,
+while it should be <cite>VELO-LSR</cite> to be recognized by the CASA system.  The
+velocity convention is, unfortunately, lost.</p>
+</div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+            <a href="https://keflavich.github.io/blog/index6.html">&laquo;</a>
+    Page 7 / 51
+        <a href="https://keflavich.github.io/blog/index8.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

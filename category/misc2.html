@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+<h2>Articles in the misc category</h2>
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/casa-reading-incorrect-number-of-bytes-wmpi.html" rel="bookmark" title="Permalink to CASA reading incorrect number of bytes w/MPI">
+                    CASA reading incorrect number of bytes w/MPI</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2021-12-02T08:15:00-07:00"> 2021/12/02 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Running big MPI runs again, I encounter errors like these one:</p>
+<pre class="literal-block">
+2021-12-02 07:02:26      WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-25 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336)        Exception for chan range [1434, 1445] ---   FilebufIO::readBlock - incorr
+ect number of bytes read for file /blue/adamginsburg/adamginsburg/almaimf/workdir/G327.29_B6_spw7_12M_spw7.sumwt/table.f0
+##################################
+#############################
+Exception: FilebufIO::readBlock - incorrect number of bytes read for file /blue/adamginsburg/adamginsburg/almaimf/workdir/G327.29_B6_spw7_12M_spw7.sumwt/table.f0
+
+
+2021-12-02 06:03:53        WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-13 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336)        Exception for chan range [550, 560] ---   FilebufIO::readBlock - incorrect number
+ of bytes read for file /blue/adamginsburg/adamginsburg/almaimf/workdir/G327.29_B6_spw4_12M_spw4.sumwt/table.f0
+##################################
+#############################
+Exception: FilebufIO::readBlock - incorrect number of bytes read for file /blue/adamginsburg/adamginsburg/almaimf/workdir/G327.29_B6_spw4_12M_spw4.sumwt/table.f0
+
+2021-12-02 04:57:21 WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-9 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336) Exception for chan range [1563, 1574] ---   FilebufIO::readBlock
+- incorrect number of bytes read for file /blue/adamginsburg/adamginsburg/almaimf/workdir/G327.29_B6_spw0_12M_spw0.sumwt/table.f0
+##################################
+#############################
+Exception: FilebufIO::readBlock - incorrect number of bytes read for file /blue/adamginsburg/adamginsburg/almaimf/workdir/G327.29_B6_spw0_12M_spw0.sumwt/table.f0
+</pre>
+<p>This is only quasi-repeatable.  For spw4, it happened after the 8th Major Cycle
+the first time, then the 6th Major Cycle the second time.  By repeating the
+cleans over and over, I was able to eventually get the results to converge.
+It looks like these crashes are sporadic but don't affect the data.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/casa-table-locking-with-mpi.html" rel="bookmark" title="Permalink to CASA table locking with MPI">
+                    CASA table locking with MPI</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2021-11-11T15:53:00-07:00"> 2021/11/11 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>A bunch of CASA MPI runs have race conditioned themselves into a corner, apparently:</p>
+<div class="highlight"><pre><span></span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">07</span> <span class="mi">23</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">10</span>     <span class="n">WARN</span>    <span class="n">MPICommandServer</span><span class="p">::</span><span class="n">command_request_handler_service</span><span class="p">::</span><span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">CubeMajorCycle</span><span class="p">::</span><span class="n">MPIServer</span><span class="o">-</span><span class="mi">5</span> <span class="p">(</span><span class="n">file</span> <span class="n">src</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">synthesis</span><span class="o">/</span><span class="n">ImagerObjects</span><span class="o">/</span><span class="n">CubeMajorCycleAlgorithm</span><span class="o">.</span><span class="n">cc</span><span class="p">,</span> <span class="n">line</span> <span class="mi">336</span><span class="p">)</span> <span class="ne">Exception</span> <span class="k">for</span> <span class="n">chan</span> <span class="nb">range</span> <span class="p">[</span><span class="mi">104</span><span class="p">,</span> <span class="mi">129</span><span class="p">]</span> <span class="o">---</span>   <span class="n">Setting</span> <span class="n">masked</span> <span class="n">pixels</span> <span class="n">to</span> <span class="n">zero</span> <span class="k">for</span> <span class="nb">input</span> <span class="n">startmodel</span> <span class="p">:</span> <span class="n">Error</span> <span class="p">(</span><span class="n">Resource</span> <span class="n">deadlock</span> <span class="n">avoided</span><span class="p">)</span> <span class="n">when</span> <span class="n">acquiring</span> <span class="n">lock</span> <span class="n">on</span> <span class="o">/</span><span class="n">blue</span><span class="o">/</span><span class="n">adamginsburg</span><span class="o">/</span><span class="n">adamginsburg</span><span class="o">/</span><span class="n">almaimf</span><span class="o">/</span><span class="n">workdir</span><span class="o">/</span><span class="n">G351</span><span class="mf">.77</span><span class="n">_B6_spw1_12M_sio</span><span class="o">.</span><span class="n">contcube</span><span class="o">.</span><span class="n">model</span><span class="o">/</span><span class="n">table</span><span class="o">.</span><span class="n">lock</span>
+<span class="c1">##################################</span>
+<span class="c1">#############################</span>
+<span class="ne">Exception</span><span class="p">:</span> <span class="n">Setting</span> <span class="n">masked</span> <span class="n">pixels</span> <span class="n">to</span> <span class="n">zero</span> <span class="k">for</span> <span class="nb">input</span> <span class="n">startmodel</span> <span class="p">:</span> <span class="n">Error</span> <span class="p">(</span><span class="n">Resource</span> <span class="n">deadlock</span> <span class="n">avoided</span><span class="p">)</span> <span class="n">when</span> <span class="n">acquiring</span> <span class="n">lock</span> <span class="n">on</span> <span class="o">/</span><span class="n">blue</span><span class="o">/</span><span class="n">adamginsburg</span><span class="o">/</span><span class="n">adamginsburg</span><span class="o">/</span><span class="n">almaimf</span><span class="o">/</span><span class="n">workdir</span><span class="o">/</span><span class="n">G351</span><span class="mf">.77</span><span class="n">_B6_spw1_12M_sio</span><span class="o">.</span><span class="n">contcube</span><span class="o">.</span><span class="n">model</span><span class="o">/</span><span class="n">table</span><span class="o">.</span><span class="n">lock</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">07</span> <span class="mi">23</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">10</span>     <span class="n">WARN</span>    <span class="n">MPICommandServer</span><span class="p">::</span><span class="n">command_request_handler_service</span><span class="p">::</span><span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">CubeMajorCycle</span><span class="p">::</span><span class="n">MPIServer</span><span class="o">-</span><span class="mi">10</span> <span class="p">(</span><span class="n">file</span> <span class="n">src</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">synthesis</span><span class="o">/</span><span class="n">ImagerObjects</span><span class="o">/</span><span class="n">CubeMajorCycleAlgorithm</span><span class="o">.</span><span class="n">cc</span><span class="p">,</span> <span class="n">line</span> <span class="mi">336</span><span class="p">)</span>        <span class="ne">Exception</span> <span class="k">for</span> <span class="n">chan</span> <span class="nb">range</span> <span class="p">[</span><span class="mi">234</span><span class="p">,</span> <span class="mi">258</span><span class="p">]</span> <span class="o">---</span>   <span class="n">Setting</span> <span class="n">masked</span> <span class="n">pixels</span> <span class="n">to</span> <span class="n">zero</span> <span class="k">for</span> <span class="nb">input</span> <span class="n">startmodel</span> <span class="p">:</span> <span class="n">Error</span> <span class="p">(</span><span class="n">Resource</span> <span class="n">deadlock</span> <span class="n">avoided</span><span class="p">)</span> <span class="n">when</span> <span class="n">acquiring</span> <span class="n">lock</span> <span class="n">on</span> <span class="o">/</span><span class="n">blue</span><span class="o">/</span><span class="n">adamginsburg</span><span class="o">/</span><span class="n">adamginsburg</span><span class="o">/</span><span class="n">almaimf</span><span class="o">/</span><span class="n">workdir</span><span class="o">/</span><span class="n">G351</span><span class="mf">.77</span><span class="n">_B6_spw1_12M_sio</span><span class="o">.</span><span class="n">contcube</span><span class="o">.</span><span class="n">model</span><span class="o">/</span><span class="n">table</span><span class="o">.</span><span class="n">lock</span>
+<span class="c1">##################################</span>
+<span class="c1">#############################</span>
+<span class="ne">Exception</span><span class="p">:</span> <span class="n">Setting</span> <span class="n">masked</span> <span class="n">pixels</span> <span class="n">to</span> <span class="n">zero</span> <span class="k">for</span> <span class="nb">input</span> <span class="n">startmodel</span> <span class="p">:</span> <span class="n">Error</span> <span class="p">(</span><span class="n">Resource</span> <span class="n">deadlock</span> <span class="n">avoided</span><span class="p">)</span> <span class="n">when</span> <span class="n">acquiring</span> <span class="n">lock</span> <span class="n">on</span> <span class="o">/</span><span class="n">blue</span><span class="o">/</span><span class="n">adamginsburg</span><span class="o">/</span><span class="n">adamginsburg</span><span class="o">/</span><span class="n">almaimf</span><span class="o">/</span><span class="n">workdir</span><span class="o">/</span><span class="n">G351</span><span class="mf">.77</span><span class="n">_B6_spw1_12M_sio</span><span class="o">.</span><span class="n">contcube</span><span class="o">.</span><span class="n">model</span><span class="o">/</span><span class="n">table</span><span class="o">.</span><span class="n">lock</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">07</span> <span class="mi">23</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">10</span>     <span class="n">WARN</span>    <span class="n">MPICommandServer</span><span class="p">::</span><span class="n">command_request_handler_service</span><span class="p">::</span><span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">CubeMajorCycle</span><span class="p">::</span><span class="n">MPIServer</span><span class="o">-</span><span class="mi">9</span> <span class="p">(</span><span class="n">file</span> <span class="n">src</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">synthesis</span><span class="o">/</span><span class="n">ImagerObjects</span><span class="o">/</span><span class="n">CubeMajorCycleAlgorithm</span><span class="o">.</span><span class="n">cc</span><span class="p">,</span> <span class="n">line</span> <span class="mi">336</span><span class="p">)</span> <span class="ne">Exception</span> <span class="k">for</span> <span class="n">chan</span> <span class="nb">range</span> <span class="p">[</span><span class="mi">208</span><span class="p">,</span> <span class="mi">233</span><span class="p">]</span> <span class="o">---</span>   <span class="n">Setting</span> <span class="n">masked</span> <span class="n">pixels</span> <span class="n">to</span> <span class="n">zero</span> <span class="k">for</span> <span class="nb">input</span> <span class="n">startmodel</span> <span class="p">:</span> <span class="n">Error</span> <span class="p">(</span><span class="n">Resource</span> <span class="n">deadlock</span> <span class="n">avoided</span><span class="p">)</span> <span class="n">when</span> <span class="n">acquiring</span> <span class="n">lock</span> <span class="n">on</span> <span class="o">/</span><span class="n">blue</span><span class="o">/</span><span class="n">adamginsburg</span><span class="o">/</span><span class="n">adamginsburg</span><span class="o">/</span><span class="n">almaimf</span><span class="o">/</span><span class="n">workdir</span><span class="o">/</span><span class="n">G351</span><span class="mf">.77</span><span class="n">_B6_spw1_12M_sio</span><span class="o">.</span><span class="n">contcube</span><span class="o">.</span><span class="n">model</span><span class="o">/</span><span class="n">table</span><span class="o">.</span><span class="n">lock</span>
+<span class="c1">##################################</span>
+<span class="c1">#############################</span>
+<span class="ne">Exception</span><span class="p">:</span> <span class="n">Setting</span> <span class="n">masked</span> <span class="n">pixels</span> <span class="n">to</span> <span class="n">zero</span> <span class="k">for</span> <span class="nb">input</span> <span class="n">startmodel</span> <span class="p">:</span> <span class="n">Error</span> <span class="p">(</span><span class="n">Resource</span> <span class="n">deadlock</span> <span class="n">avoided</span><span class="p">)</span> <span class="n">when</span> <span class="n">acquiring</span> <span class="n">lock</span> <span class="n">on</span> <span class="o">/</span><span class="n">blue</span><span class="o">/</span><span class="n">adamginsburg</span><span class="o">/</span><span class="n">adamginsburg</span><span class="o">/</span><span class="n">almaimf</span><span class="o">/</span><span class="n">workdir</span><span class="o">/</span><span class="n">G351</span><span class="mf">.77</span><span class="n">_B6_spw1_12M_sio</span><span class="o">.</span><span class="n">contcube</span><span class="o">.</span><span class="n">model</span><span class="o">/</span><span class="n">table</span><span class="o">.</span><span class="n">lock</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">07</span> <span class="mi">23</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">10</span>     <span class="n">WARN</span>    <span class="n">MPICommandServer</span><span class="p">::</span><span class="n">command_request_handler_service</span><span class="p">::</span><span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">CubeMajorCycle</span><span class="p">::</span><span class="n">MPIServer</span><span class="o">-</span><span class="mi">2</span> <span class="p">(</span><span class="n">file</span> <span class="n">src</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">synthesis</span><span class="o">/</span><span class="n">ImagerObjects</span><span class="o">/</span><span class="n">CubeMajorCycleAlgorithm</span><span class="o">.</span><span class="n">cc</span><span class="p">,</span> <span class="n">line</span> <span class="mi">336</span><span class="p">)</span> <span class="ne">Exception</span> <span class="k">for</span> <span class="n">chan</span> <span class="nb">range</span> <span class="p">[</span><span class="mi">26</span><span class="p">,</span> <span class="mi">51</span><span class="p">]</span> <span class="o">---</span>   <span class="n">Setting</span> <span class="n">masked</span> <span class="n">pixels</span> <span class="n">to</span> <span class="n">zero</span> <span class="k">for</span> <span class="nb">input</span> <span class="n">startmodel</span> <span class="p">:</span> <span class="n">Error</span> <span class="p">(</span><span class="n">Resource</span> <span class="n">deadlock</span> <span class="n">avoided</span><span class="p">)</span> <span class="n">when</span> <span class="n">acquiring</span> <span class="n">lock</span> <span class="n">on</span> <span class="o">/</span><span class="n">blue</span><span class="o">/</span><span class="n">adamginsburg</span><span class="o">/</span><span class="n">adamginsburg</span><span class="o">/</span><span class="n">almaimf</span><span class="o">/</span><span class="n">workdir</span><span class="o">/</span><span class="n">G351</span><span class="mf">.77</span><span class="n">_B6_spw1_12M_sio</span><span class="o">.</span><span class="n">contcube</span><span class="o">.</span><span class="n">model</span><span class="o">/</span><span class="n">table</span><span class="o">.</span><span class="n">lock</span>
+<span class="c1">##################################</span>
+<span class="c1">#############################</span>
+<span class="ne">Exception</span><span class="p">:</span> <span class="n">Setting</span> <span class="n">masked</span> <span class="n">pixels</span> <span class="n">to</span> <span class="n">zero</span> <span class="k">for</span> <span class="nb">input</span> <span class="n">startmodel</span> <span class="p">:</span> <span class="n">Error</span> <span class="p">(</span><span class="n">Resource</span> <span class="n">deadlock</span> <span class="n">avoided</span><span class="p">)</span> <span class="n">when</span> <span class="n">acquiring</span> <span class="n">lock</span> <span class="n">on</span> <span class="o">/</span><span class="n">blue</span><span class="o">/</span><span class="n">adamginsburg</span><span class="o">/</span><span class="n">adamginsburg</span><span class="o">/</span><span class="n">almaimf</span><span class="o">/</span><span class="n">workdir</span><span class="o">/</span><span class="n">G351</span><span class="mf">.77</span><span class="n">_B6_spw1_12M_sio</span><span class="o">.</span><span class="n">contcube</span><span class="o">.</span><span class="n">model</span><span class="o">/</span><span class="n">table</span><span class="o">.</span><span class="n">lock</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">07</span> <span class="mi">23</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">10</span>     <span class="n">WARN</span>    <span class="n">MPICommandServer</span><span class="p">::</span><span class="n">command_request_handler_service</span><span class="p">::</span><span class="n">SynthesisImagerVi2</span><span class="p">::</span><span class="n">CubeMajorCycle</span><span class="p">::</span><span class="n">MPIServer</span><span class="o">-</span><span class="mi">15</span> <span class="p">(</span><span class="n">file</span> <span class="n">src</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">synthesis</span><span class="o">/</span><span class="n">ImagerObjects</span><span class="o">/</span><span class="n">CubeMajorCycleAlgorithm</span><span class="o">.</span><span class="n">cc</span><span class="p">,</span> <span class="n">line</span> <span class="mi">336</span><span class="p">)</span>        <span class="ne">Exception</span> <span class="k">for</span> <span class="n">chan</span> <span class="nb">range</span> <span class="p">[</span><span class="mi">359</span><span class="p">,</span> <span class="mi">383</span><span class="p">]</span> <span class="o">---</span>   <span class="n">Setting</span> <span class="n">masked</span> <span class="n">pixels</span> <span class="n">to</span> <span class="n">zero</span> <span class="k">for</span> <span class="nb">input</span> <span class="n">startmodel</span> <span class="p">:</span> <span class="n">Error</span> <span class="p">(</span><span class="n">Resource</span> <span class="n">deadlock</span> <span class="n">avoided</span><span class="p">)</span> <span class="n">when</span> <span class="n">acquiring</span> <span class="n">lock</span> <span class="n">on</span> <span class="o">/</span><span class="n">blue</span><span class="o">/</span><span class="n">adamginsburg</span><span class="o">/</span><span class="n">adamginsburg</span><span class="o">/</span><span class="n">almaimf</span><span class="o">/</span><span class="n">workdir</span><span class="o">/</span><span class="n">G351</span><span class="mf">.77</span><span class="n">_B6_spw1_12M_sio</span><span class="o">.</span><span class="n">contcube</span><span class="o">.</span><span class="n">model</span><span class="o">/</span><span class="n">table</span><span class="o">.</span><span class="n">lock</span>
+<span class="c1">##################################</span>
+<span class="c1">#############################</span>
+<span class="ne">Exception</span><span class="p">:</span> <span class="n">Setting</span> <span class="n">masked</span> <span class="n">pixels</span> <span class="n">to</span> <span class="n">zero</span> <span class="k">for</span> <span class="nb">input</span> <span class="n">startmodel</span> <span class="p">:</span> <span class="n">Error</span> <span class="p">(</span><span class="n">Resource</span> <span class="n">deadlock</span> <span class="n">avoided</span><span class="p">)</span> <span class="n">when</span> <span class="n">acquiring</span> <span class="n">lock</span> <span class="n">on</span> <span class="o">/</span><span class="n">blue</span><span class="o">/</span><span class="n">adamginsburg</span><span class="o">/</span><span class="n">adamginsburg</span><span class="o">/</span><span class="n">almaimf</span><span class="o">/</span><span class="n">workdir</span><span class="o">/</span><span class="n">G351</span><span class="mf">.77</span><span class="n">_B6_spw1_12M_sio</span><span class="o">.</span><span class="n">contcube</span><span class="o">.</span><span class="n">model</span><span class="o">/</span><span class="n">table</span><span class="o">.</span><span class="n">lock</span>
+</pre></div>
+<p>This shows up in ~10 runs that I started around the same time, but I don't usually see it.</p>
+<p>This looks like a serious bug having to do with using a startmodel: there is a line earlier copying the startmodel to the model:</p>
+<pre class="literal-block">
+2021-11-07 23:27:44     INFO    SIImageStore::setModelImageOne  Copying input model /blue/adamginsburg/adamginsburg/almaimf/workdir//G351.77_B6_spw1_12M_sio.contcube.model to /blue/adamginsburg/adamginsburg/almaimf/workdir/G351.77_B6_spw1_12M_sio.model
+</pre>
+<p>but MPI seems to have gotten mixed up and is sill trying to write to the contcube.model</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/casa-doesnt-like-varyingresolutionspectralcubes.html" rel="bookmark" title="Permalink to CASA doesn't like VaryingResolutionSpectralCubes">
+                    CASA doesn't like VaryingResolutionSpectralCubes</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2021-11-09T19:53:00-07:00"> 2021/11/09 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I get this from trying to run <tt class="docutils literal">makemask</tt>:</p>
+<div class="highlight"><pre><span></span> <span class="n">makemask</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;copy&#39;</span><span class="p">,</span>
+         <span class="n">inpimage</span><span class="o">=</span><span class="n">lineimagename</span><span class="o">+</span><span class="s2">&quot;.image&quot;</span><span class="p">,</span>
+         <span class="n">inpmask</span><span class="o">=</span><span class="n">lineimagename</span><span class="o">+</span><span class="s2">&quot;.image:mask0&quot;</span><span class="p">,</span>
+         <span class="n">output</span><span class="o">=</span><span class="n">lineimagename</span><span class="o">+</span><span class="s2">&quot;.mask&quot;</span><span class="p">)</span>
+
+ <span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">02</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">10</span>     <span class="n">INFO</span>    <span class="n">makemask</span><span class="p">::::</span><span class="n">casa</span>        <span class="c1">##########################################</span>
+ <span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">02</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">10</span>     <span class="n">INFO</span>    <span class="n">makemask</span><span class="p">::::</span><span class="n">casa</span>        <span class="c1">##### Begin Task: makemask           #####</span>
+ <span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">02</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">10</span>     <span class="n">INFO</span>    <span class="n">makemask</span><span class="p">::::</span><span class="n">casa</span>        <span class="n">makemask</span><span class="p">(</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;copy&#39;</span><span class="p">,</span> <span class="n">inpimage</span><span class="o">=</span><span class="s1">&#39;/blue/adamginsburg/adamginsburg/almaimf/workdir/G353.41_B6_spw5_12M_spw5.image&#39;</span><span class="p">,</span> <span class="n">inpmask</span><span class="o">=</span><span class="s1">&#39;/blue/adamginsburg/adamginsburg/almaimf/workdir/G353.41_B6_spw5_12M_spw5.image:mask0&#39;</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s1">&#39;/blue/adamginsburg/adamginsburg/almaimf/workdir/G353.41_B6_spw5_12M_spw5.mask&#39;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inpfreqs</span><span class="o">=</span><span class="p">[],</span> <span class="n">outfreqs</span><span class="o">=</span><span class="p">[]</span> <span class="p">)</span>
+ <span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">02</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">11</span>     <span class="n">INFO</span>    <span class="n">makemask</span><span class="p">::</span><span class="n">ImageFactory</span><span class="p">::</span><span class="n">createImage</span>     <span class="n">Created</span> <span class="n">Paged</span> <span class="n">image</span> <span class="s1">&#39;__tmp_outputmask_22199&#39;</span> <span class="n">of</span> <span class="n">shape</span> <span class="p">[</span><span class="mi">1080</span><span class="p">,</span> <span class="mi">900</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">480</span><span class="p">]</span> <span class="k">with</span> <span class="nb">float</span> <span class="n">valued</span> <span class="n">pixels</span><span class="o">.</span>
+ <span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">02</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">11</span>     <span class="n">INFO</span>    <span class="n">makemask</span><span class="p">::::</span><span class="n">casa</span>        <span class="n">Summing</span> <span class="nb">all</span> <span class="n">T</span><span class="o">/</span><span class="n">F</span> <span class="n">mask</span> <span class="ow">in</span> <span class="n">inpmask</span> <span class="ow">and</span> <span class="n">normalized</span> <span class="n">to</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">mask</span>
+ <span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">02</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">51</span>     <span class="n">SEVERE</span>  <span class="n">image</span><span class="p">::</span><span class="n">regrid</span>   <span class="ne">Exception</span> <span class="n">Reported</span><span class="p">:</span> <span class="ne">Exception</span><span class="p">:</span> <span class="n">An</span> <span class="n">image</span> <span class="k">with</span> <span class="n">multiple</span> <span class="n">beams</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">regridded</span> <span class="n">along</span> <span class="n">the</span> <span class="n">spectral</span> <span class="n">axis</span><span class="o">.</span> <span class="n">You</span> <span class="n">may</span> <span class="n">wish</span> <span class="n">to</span> <span class="n">convolve</span> <span class="nb">all</span> <span class="n">channels</span> <span class="n">to</span> <span class="n">a</span> <span class="n">common</span> <span class="n">resolution</span> <span class="ow">and</span> <span class="n">retry</span><span class="o">.</span>
+ <span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">02</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">51</span>     <span class="n">SEVERE</span>  <span class="n">image</span><span class="p">::</span><span class="n">regrid</span><span class="o">+</span>  <span class="o">...</span> <span class="n">thrown</span> <span class="n">by</span> <span class="n">std</span><span class="p">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">casa6core</span><span class="p">::</span><span class="n">ImageInterface</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">casa</span><span class="p">::</span><span class="n">ImageRegridder</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">::</span><span class="n">regrid</span><span class="p">()</span> <span class="n">const</span> <span class="p">[</span><span class="k">with</span> <span class="n">T</span> <span class="o">=</span> <span class="nb">float</span><span class="p">]</span> <span class="n">at</span> <span class="n">File</span><span class="p">:</span> <span class="n">src</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">imageanalysis</span><span class="o">/</span><span class="n">ImageAnalysis</span><span class="o">/</span><span class="n">ImageRegridder</span><span class="o">.</span><span class="n">tcc</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="mi">102</span>
+ <span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">02</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">52</span>     <span class="n">INFO</span>            <span class="n">deleted</span> <span class="n">table</span> <span class="o">/</span><span class="n">blue</span><span class="o">/</span><span class="n">adamginsburg</span><span class="o">/</span><span class="n">adamginsburg</span><span class="o">/</span><span class="n">almaimf</span><span class="o">/</span><span class="n">workdir</span><span class="o">/</span><span class="n">G353</span><span class="mf">.41</span><span class="n">_spw5_12M_B6</span><span class="o">/</span><span class="n">_tmp_copy___tmp_frominmask_22199</span>
+ <span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">02</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">56</span>     <span class="n">SEVERE</span>  <span class="n">image</span><span class="p">::</span><span class="n">calc</span> <span class="p">(</span><span class="n">file</span> <span class="n">src</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span><span class="n">image</span><span class="o">/</span><span class="n">image_cmpt</span><span class="o">.</span><span class="n">cc</span><span class="p">,</span> <span class="n">line</span> <span class="mi">553</span><span class="p">)</span>      <span class="ne">Exception</span> <span class="n">Reported</span><span class="p">:</span> <span class="n">ImageExprParse</span><span class="p">:</span> <span class="s1">&#39;__tmp_fromTFmask_22199&#39;</span> <span class="ow">is</span> <span class="n">an</span> <span class="n">unknown</span> <span class="n">lattice</span> <span class="ow">or</span> <span class="n">image</span> <span class="ow">or</span> <span class="n">it</span> <span class="ow">is</span> <span class="n">an</span> <span class="n">unqualified</span> <span class="n">region</span>
+ <span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">02</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">56</span>     <span class="n">SEVERE</span>  <span class="n">image</span><span class="p">::</span><span class="n">calc</span> <span class="p">(</span><span class="n">file</span> <span class="n">src</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span><span class="n">image</span><span class="o">/</span><span class="n">image_cmpt</span><span class="o">.</span><span class="n">cc</span><span class="p">,</span> <span class="n">line</span> <span class="mi">553</span><span class="p">)</span><span class="o">+</span>     <span class="n">Scanned</span> <span class="n">so</span> <span class="n">far</span><span class="p">:</span> <span class="n">iif</span> <span class="p">(</span><span class="s2">&quot;__tmp_fromTFmask_22199&quot;</span>
+ <span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">02</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">56</span>     <span class="n">SEVERE</span>  <span class="n">makemask</span><span class="p">::::</span><span class="n">casa</span>        <span class="n">Task</span> <span class="n">makemask</span> <span class="n">raised</span> <span class="n">an</span> <span class="n">exception</span> <span class="n">of</span> <span class="k">class</span> <span class="nc">RuntimeError</span> <span class="k">with</span> <span class="n">the</span> <span class="n">following</span> <span class="n">message</span><span class="p">:</span> <span class="o">***</span> <span class="n">Error</span> <span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="ow">in</span> <span class="n">mode</span> <span class="n">copy</span><span class="p">:</span> <span class="o">***</span> <span class="n">ImageExprParse</span><span class="p">:</span> <span class="s1">&#39;__tmp_fromTFmask_22199&#39;</span> <span class="ow">is</span> <span class="n">an</span> <span class="n">unknown</span> <span class="n">lattice</span> <span class="ow">or</span> <span class="n">image</span> <span class="ow">or</span> <span class="n">it</span> <span class="ow">is</span> <span class="n">an</span> <span class="n">unqualified</span> <span class="n">region</span>
+ <span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">02</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">56</span>     <span class="n">SEVERE</span>  <span class="n">makemask</span><span class="p">::::</span><span class="n">casa</span><span class="o">+</span>       <span class="n">Scanned</span> <span class="n">so</span> <span class="n">far</span><span class="p">:</span> <span class="n">iif</span> <span class="p">(</span><span class="s2">&quot;__tmp_fromTFmask_22199&quot;</span>
+ <span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">02</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">56</span>     <span class="n">INFO</span>    <span class="n">makemask</span><span class="p">::::</span><span class="n">casa</span>        <span class="n">Task</span> <span class="n">makemask</span> <span class="n">complete</span><span class="o">.</span> <span class="n">Start</span> <span class="n">time</span><span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">08</span> <span class="mi">21</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mf">09.614534</span> <span class="n">End</span> <span class="n">time</span><span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">08</span> <span class="mi">21</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mf">56.399654</span>
+ <span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">02</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">56</span>     <span class="n">INFO</span>    <span class="n">makemask</span><span class="p">::::</span><span class="n">casa</span>        <span class="c1">##### End Task: makemask             #####</span>
+ <span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">02</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">56</span>     <span class="n">INFO</span>    <span class="n">makemask</span><span class="p">::::</span><span class="n">casa</span>        <span class="c1">##########################################</span>
+
+
+<span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">02</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">51</span>     <span class="n">SEVERE</span>  <span class="n">image</span><span class="p">::</span><span class="n">regrid</span>   <span class="ne">Exception</span> <span class="n">Reported</span><span class="p">:</span> <span class="ne">Exception</span><span class="p">:</span> <span class="n">An</span> <span class="n">image</span> <span class="k">with</span> <span class="n">multiple</span> <span class="n">beams</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">regridded</span> <span class="n">along</span> <span class="n">the</span> <span class="n">spectral</span> <span class="n">axis</span><span class="o">.</span> <span class="n">You</span> <span class="n">may</span> <span class="n">wish</span> <span class="n">to</span> <span class="n">convolve</span> <span class="nb">all</span> <span class="n">channels</span> <span class="n">to</span> <span class="n">a</span> <span class="n">common</span>
+ <span class="n">resolution</span> <span class="ow">and</span> <span class="n">retry</span><span class="o">.</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">02</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">51</span>     <span class="n">SEVERE</span>  <span class="n">image</span><span class="p">::</span><span class="n">regrid</span><span class="o">+</span>  <span class="o">...</span> <span class="n">thrown</span> <span class="n">by</span> <span class="n">std</span><span class="p">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">casa6core</span><span class="p">::</span><span class="n">ImageInterface</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">casa</span><span class="p">::</span><span class="n">ImageRegridder</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">::</span><span class="n">regrid</span><span class="p">()</span> <span class="n">const</span> <span class="p">[</span><span class="k">with</span> <span class="n">T</span> <span class="o">=</span> <span class="nb">float</span><span class="p">]</span> <span class="n">at</span> <span class="n">File</span><span class="p">:</span> <span class="n">src</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">imageanalysis</span><span class="o">/</span><span class="n">Imag</span>
+<span class="n">eAnalysis</span><span class="o">/</span><span class="n">ImageRegridder</span><span class="o">.</span><span class="n">tcc</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="mi">102</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">02</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">56</span>     <span class="n">SEVERE</span>  <span class="n">image</span><span class="p">::</span><span class="n">calc</span> <span class="p">(</span><span class="n">file</span> <span class="n">src</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span><span class="n">image</span><span class="o">/</span><span class="n">image_cmpt</span><span class="o">.</span><span class="n">cc</span><span class="p">,</span> <span class="n">line</span> <span class="mi">553</span><span class="p">)</span>      <span class="ne">Exception</span> <span class="n">Reported</span><span class="p">:</span> <span class="n">ImageExprParse</span><span class="p">:</span> <span class="s1">&#39;__tmp_fromTFmask_22199&#39;</span> <span class="ow">is</span> <span class="n">an</span> <span class="n">unknown</span> <span class="n">lattice</span> <span class="ow">or</span> <span class="n">image</span> <span class="ow">or</span> <span class="n">it</span> <span class="ow">is</span> <span class="n">an</span> <span class="n">un</span>
+<span class="n">qualified</span> <span class="n">region</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">02</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">56</span>     <span class="n">SEVERE</span>  <span class="n">image</span><span class="p">::</span><span class="n">calc</span> <span class="p">(</span><span class="n">file</span> <span class="n">src</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span><span class="n">image</span><span class="o">/</span><span class="n">image_cmpt</span><span class="o">.</span><span class="n">cc</span><span class="p">,</span> <span class="n">line</span> <span class="mi">553</span><span class="p">)</span><span class="o">+</span>     <span class="n">Scanned</span> <span class="n">so</span> <span class="n">far</span><span class="p">:</span> <span class="n">iif</span> <span class="p">(</span><span class="s2">&quot;__tmp_fromTFmask_22199&quot;</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">02</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">56</span>     <span class="n">SEVERE</span>  <span class="n">makemask</span><span class="p">::::</span><span class="n">casa</span>        <span class="n">Task</span> <span class="n">makemask</span> <span class="n">raised</span> <span class="n">an</span> <span class="n">exception</span> <span class="n">of</span> <span class="k">class</span> <span class="nc">RuntimeError</span> <span class="k">with</span> <span class="n">the</span> <span class="n">following</span> <span class="n">message</span><span class="p">:</span> <span class="o">***</span> <span class="n">Error</span> <span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="ow">in</span> <span class="n">mode</span> <span class="n">copy</span><span class="p">:</span> <span class="o">***</span> <span class="n">ImageExprParse</span><span class="p">:</span> <span class="s1">&#39;__tmp_fromTF</span>
+<span class="n">mask_22199</span><span class="s1">&#39; is an unknown lattice or image or it is an unqualified region</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">02</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">56</span>     <span class="n">SEVERE</span>  <span class="n">makemask</span><span class="p">::::</span><span class="n">casa</span><span class="o">+</span>       <span class="n">Scanned</span> <span class="n">so</span> <span class="n">far</span><span class="p">:</span> <span class="n">iif</span> <span class="p">(</span><span class="s2">&quot;__tmp_fromTFmask_22199&quot;</span>
+</pre></div>
+<p>I'm pretty sure the complaint is caused by the top line: there are multiple
+beams in the image.  This is _absurd_, though, because the <cite>makemask</cite> command
+should not care at all about beams, there is no spectral regridding happening.</p>
+<p>This might be new to CASA 6.4, not sure.</p>
+<p>EDIT 2021-11-11 15:51:
+The workaround is easy and maybe better:</p>
+<div class="highlight"><pre><span></span><span class="n">ia</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">lineimagename</span><span class="o">+</span><span class="s2">&quot;.image&quot;</span><span class="p">)</span>
+<span class="n">shape</span> <span class="o">=</span> <span class="n">ia</span><span class="o">.</span><span class="n">shape</span><span class="p">()</span>
+<span class="n">csys</span> <span class="o">=</span> <span class="n">ia</span><span class="o">.</span><span class="n">coordsys</span><span class="p">()</span><span class="o">.</span><span class="n">torecord</span><span class="p">()</span>
+<span class="n">ia</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">ia</span><span class="o">.</span><span class="n">fromshape</span><span class="p">(</span><span class="n">outfile</span><span class="o">=</span><span class="n">lineimagename</span><span class="o">+</span><span class="s2">&quot;.mask&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span> <span class="n">csys</span><span class="o">=</span><span class="n">csys</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+</pre></div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/walkthrough-of-psf-characterization.html" rel="bookmark" title="Permalink to Walkthrough of PSF characterization">
+                    Walkthrough of PSF characterization</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2021-11-06T17:37:00-06:00"> 2021/11/06 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>For ALMA-IMF, we want to characterize the PSF shapes and the recovered
+beam sizes.</p>
+<p>We showed the beams and a few features of the PSFs, but they were only
+described tersely in the paper. This document goes through what we did
+in a little more detail</p>
+<div class="section" id="front-matter-imports">
+<h2>Front matter (imports)</h2>
+<pre class="code python literal-block">
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span><span class="w">
+</span><span class="kn">import</span> <span class="nn">pylab</span> <span class="k">as</span> <span class="nn">pl</span><span class="w">
+
+</span><span class="c1"># for display within notebook</span><span class="w">
+</span><span class="n">pl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'figure.facecolor'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'w'</span><span class="w">
+
+</span><span class="kn">from</span> <span class="nn">spectral_cube</span> <span class="kn">import</span> <span class="n">SpectralCube</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span><span class="w">
+
+</span><span class="c1"># Debuggy loading: this approach needed b/c the code isn't properly packaged</span><span class="w">
+</span><span class="kn">import</span> <span class="nn">imp</span><span class="w">
+</span><span class="kn">import</span> <span class="nn">sys</span><span class="w">
+</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'/orange/adamginsburg/ALMA_IMF/reduction/analysis'</span><span class="p">)</span><span class="w">
+</span><span class="kn">import</span> <span class="nn">imstats</span><span class="w">
+</span><span class="n">imp</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span><span class="n">imstats</span><span class="p">)</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">imstats</span> <span class="kn">import</span> <span class="n">get_psf_secondpeak</span>
+</pre>
+</div>
+<div class="section" id="n2h">
+<h2>N2H+</h2>
+<p>I chose to do this only for an N<span class="math">\(_2\)</span>H+ example; the
+N<span class="math">\(_2\)</span>H+ line cubes seem to have the worst-behaved beams in our
+samples.</p>
+<pre class="code python literal-block">
+<span class="n">basename</span> <span class="o">=</span> <span class="s1">'/orange/adamginsburg/ALMAIMF_Images/G327.29/B3/linecubes_12m/G327.29_B3_spw0_12M_n2hp'</span><span class="w">
+</span><span class="n">img</span> <span class="o">=</span> <span class="n">SpectralCube</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">basename</span><span class="si">}</span><span class="s1">.image'</span><span class="p">)</span><span class="w">
+</span><span class="n">psf</span> <span class="o">=</span> <span class="n">SpectralCube</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">basename</span><span class="si">}</span><span class="s1">.psf'</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'casa_image'</span><span class="p">)</span>
+</pre>
+<p>The code <tt class="docutils literal">get_psf_secondpeak</tt> does all of the work, we’re just going
+to talk about what gets plotted.</p>
+<pre class="code python literal-block">
+<span class="n">psffn</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">basename</span><span class="si">}</span><span class="s1">.psf'</span><span class="w">
+</span><span class="p">(</span><span class="n">psf_secondpeak</span><span class="p">,</span> <span class="n">psf_secondpeak_loc</span><span class="p">,</span> <span class="n">psf_sidelobe1_fraction</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">firstnull</span><span class="p">,</span> <span class="n">r_sidelobe</span><span class="p">,</span><span class="w">
+</span> <span class="p">(</span><span class="n">rr</span><span class="p">,</span> <span class="n">pixscale</span><span class="p">,</span> <span class="n">cutout</span><span class="p">,</span> <span class="n">beam</span><span class="p">,</span> <span class="n">fullbeam</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">bmfit_residual</span><span class="p">))</span> <span class="o">=</span> \
+        <span class="n">get_psf_secondpeak</span><span class="p">(</span><span class="n">psffn</span><span class="p">,</span> <span class="n">show_image</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">min_radial_extent</span><span class="o">=</span><span class="mf">2.5</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">,</span><span class="w">
+</span>                   <span class="n">max_radial_extent</span><span class="o">=</span><span class="mi">5</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">,</span><span class="w">
+</span>                           <span class="n">specslice</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">51</span><span class="p">),</span><span class="w">
+</span>                  <span class="p">)</span>
+</pre>
+<pre class="literal-block">
+INFO: first_sidelobe_ind=44, first_min_ind = 43 [imstats]
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_6_1.png" />
+<p>The plot is showing:</p>
+<ul class="simple">
+<li>in red contours, the 10th, 50th, and 90th percentile of the Gaussian
+synthesized beam</li>
+<li>in grayscale, the <em>residual</em> of the dirty beam minus the synthesized
+beam</li>
+<li>in green dashed (faint, outermost ellipse), the location of the first
+sidelobe peak. The first sidelobe is defined as the first peak
+outside of the first null.</li>
+<li>in blue dashed (inner ellipse), the location of the first null. This
+may not be a true null: it is the first minimum of the radial profile</li>
+</ul>
+<p>Next, we show the radial profile. The radial profile is an <em>elliptical</em>
+profile, which is why the elliptical synthesized beam has a single
+profile.</p>
+<p>The X-axis is calculated as:</p>
+<div class="math">
+\begin{equation*}
+r = \left(C^2 (x \cos \theta + y \sin \theta)^2 + (x \sin \theta - y \cos \theta)^2\right)^{1/2}
+\end{equation*}
+</div>
+<p>where <span class="math">\(C = \theta_{min} / \theta_{maj}\)</span>. So the radial axis is
+scaled to the major axis of the beam; the true beam is smaller along one
+axis than shown in these plots.</p>
+<pre class="code python literal-block">
+<span class="c1"># radial profile</span><span class="w">
+</span><span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span><span class="w">
+</span><span class="n">ax2</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="w">
+</span><span class="n">ax1</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w">
+
+
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'G327 N2H+'</span><span class="p">)</span><span class="w">
+</span><span class="n">rr_inds</span> <span class="o">=</span> <span class="n">rr</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span><span class="w">
+</span><span class="n">sorted_synth</span> <span class="o">=</span> <span class="p">(</span><span class="n">fullbeam</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">/</span><span class="n">fullbeam</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">max</span><span class="p">())[</span><span class="n">rr_inds</span><span class="p">]</span><span class="w">
+</span><span class="n">pixscale</span> <span class="o">=</span> <span class="n">pixscale</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">)</span><span class="w">
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pixscale</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="n">rr</span><span class="o">.</span><span class="n">ravel</span><span class="p">()[</span><span class="n">rr_inds</span><span class="p">],</span> <span class="n">sorted_synth</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Synth'</span><span class="p">)</span><span class="w">
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pixscale</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="n">rr</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span><span class="w">
+</span>         <span class="n">cutout</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">/</span><span class="n">cutout</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="s1">'.'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Dirty'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="w">
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">firstnull</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'b'</span><span class="p">)</span><span class="w">
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">firstnull</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span><span class="c1"># rr[view].max())</span><span class="w">
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">firstnull</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">1.4</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'$\epsilon=</span><span class="si">{</span><span class="n">epsilon</span><span class="si">:</span><span class="s1">0.2f</span><span class="si">}</span><span class="s1">$'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span><span class="w">
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">firstnull</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">1.4</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'$</span><span class="se">\\</span><span class="s1">theta_</span><span class="se">{{</span><span class="s1">maj</span><span class="se">}}</span><span class="s1">=</span><span class="si">{</span><span class="n">beam</span><span class="o">.</span><span class="n">major</span><span class="o">.</span><span class="n">value</span><span class="si">:</span><span class="s1">0.2f</span><span class="si">}</span><span class="s1">$&quot;'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span><span class="w">
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">firstnull</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">1.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'$</span><span class="se">\\</span><span class="s1">theta_</span><span class="se">{{</span><span class="s1">min</span><span class="se">}}</span><span class="s1">=</span><span class="si">{</span><span class="n">beam</span><span class="o">.</span><span class="n">minor</span><span class="o">.</span><span class="n">value</span><span class="si">:</span><span class="s1">0.2f</span><span class="si">}</span><span class="s1">$&quot;'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span><span class="w">
+
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">psf_secondpeak_loc</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">':'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'k'</span><span class="p">)</span><span class="w">
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">r_sidelobe</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">':'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'g'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">beam</span><span class="o">.</span><span class="n">major</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">beam</span><span class="o">.</span><span class="n">major</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span><span class="w">
+</span>         <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span><span class="w">
+</span>         <span class="n">color</span><span class="o">=</span><span class="s1">'k'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span><span class="w">
+
+
+</span><span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'G327 N2H+'</span><span class="p">)</span><span class="w">
+</span><span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pixscale</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="n">rr</span><span class="o">.</span><span class="n">ravel</span><span class="p">()[</span><span class="n">rr_inds</span><span class="p">],</span> <span class="n">sorted_synth</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Synth'</span><span class="p">)</span><span class="w">
+</span><span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pixscale</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="n">rr</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span><span class="w">
+</span>         <span class="n">cutout</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">/</span><span class="n">cutout</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="s1">'.'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Dirty'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="w">
+</span><span class="n">ax1</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">firstnull</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'b'</span><span class="p">)</span><span class="w">
+</span><span class="n">ax1</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">psf_secondpeak_loc</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">':'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'k'</span><span class="p">)</span><span class="w">
+</span><span class="n">ax1</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">r_sidelobe</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">':'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'g'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">firstnull</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span><span class="c1"># rr[view].max())</span><span class="w">
+</span><span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.035</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span><span class="w">
+
+</span><span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Radius along PSF (</span><span class="se">\&quot;</span><span class="s2">)&quot;</span><span class="p">)</span><span class="w">
+</span><span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Radius along PSF (</span><span class="se">\&quot;</span><span class="s2">)&quot;</span><span class="p">)</span><span class="w">
+</span><span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Normalized PSF profile&quot;</span><span class="p">)</span>
+</pre>
+<pre class="literal-block">
+Text(0, 0.5, 'Normalized PSF profile')
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_9_1.png" />
+<p>The right plot is a vertical zoom-in of the left plot.</p>
+<p>The light blue line shows the synthesized beam.</p>
+<p>The orange dots are the individual pixel values from the dirty beam.</p>
+<p>The vertical dotted black line shows the peak of the residual - it’s not
+used for anything, it just highlights where the “shelf” is most
+prominent (and it is <em>very</em> prominent in this example).</p>
+<p>The blue vertical dashed line shows the location of the first null.</p>
+<p>The green vertical dotted line shows the location of the first sidelobe.</p>
+<p><span class="math">\(\epsilon\)</span> is the ratio of the integral of the synthesized beam to
+the integral of the dirty beam out to the first null. It is the
+correction factor to apply to the residuals (multiply the residuals by
+this number) to convert the residuals from Jy/dirtybeam to
+Jy/synthesizedbeam.</p>
+<p><span class="math">\(\theta_{min}\)</span> and <span class="math">\(\theta_{maj}\)</span> are the FWHM widths of the
+beam along the major and minor axes. The grey right-angle line is drawn
+at <span class="math">\(y=0.5\)</span> out to <span class="math">\(\theta = \theta_{maj}/2\)</span> (the half-width
+half-max)</p>
+</div>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script> </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/casa-mpi-problems.html" rel="bookmark" title="Permalink to CASA MPI problems">
+                    CASA MPI problems</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2021-10-17T20:40:00-06:00"> 2021/10/17 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>There are several CASA MPI errors I encounter regularly.</p>
+<pre class="code literal-block">
+2021-10-17 15:56:06     SEVERE  task_tclean::SynthesisImagerVi2::runCubeGridding (file src/code/synthesis/ImagerObjects/SynthesisImagerVi2.cc, line 1579)       remainder rank 7 failed
+master 1 init 1
+2021-10-17 15:59:21     SEVERE  tclean::::casa  Task tclean raised an exception of class RuntimeError with the following message: Error in making PSF : One or more  of the cube section failed in de/grid
+ding. Return values for the sections: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+ Traceback (most recent call last):
+   File &quot;/blue/adamginsburg/adamginsburg/casa/casa-6.4.0-12/lib/py/lib/python3.6/site-packages/casashell/private/init_system.py&quot;, line 238, in __evprop__
+     exec(stmt)
+   File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;
+   File &quot;/blue/adamginsburg/adamginsburg/casa/casa-6.4.0-12/lib/py/lib/python3.6/site-packages/casashell/private/init_system.py&quot;, line 175, in execfile
+     newglob = run_path( filename, init_globals=globals )
+   File &quot;/blue/adamginsburg/adamginsburg/casa/casa-6.4.0-12/lib/py/lib/python3.6/runpy.py&quot;, line 263, in run_path
+     pkg_name=pkg_name, script_name=fname)
+   File &quot;/blue/adamginsburg/adamginsburg/casa/casa-6.4.0-12/lib/py/lib/python3.6/runpy.py&quot;, line 96, in _run_module_code
+     mod_name, mod_spec, pkg_name, script_name)
+   File &quot;/blue/adamginsburg/adamginsburg/casa/casa-6.4.0-12/lib/py/lib/python3.6/runpy.py&quot;, line 85, in _run_code
+     exec(code, run_globals)
+   File &quot;/orange/adamginsburg/ALMA_IMF/reduction/reduction/line_imaging.py&quot;, line 935, in &lt;module&gt;
+     **impars
+   File &quot;/blue/adamginsburg/adamginsburg/casa/casa-6.4.0-12/lib/py/lib/python3.6/site-packages/casatasks/tclean.py&quot;, line 1660, in __call__
+     task_result = _tclean_t( _pc.document['vis'], _pc.document['selectdata'], _pc.document['field'], _pc.document['spw'], _pc.document['timerange'], _pc.document['uvrange'], _pc.document['antenna'], _pc.document['scan'], _pc.document['observation'], _pc.document['intent'], _pc.document['datacolumn'], _pc.document['imagename'], _pc.document['imsize'], _pc.document['cell'], _pc.document['phasecenter'], _pc.document['stokes'], _pc.document['projection'], _pc.document['startmodel'], _pc.document['specmode'], _pc.document['reffreq'], _pc.document['nchan'], _pc.document['start'], _pc.document['width'], _pc.document['outframe'], _pc.document['veltype'], _pc.document['restfreq'], _pc.document['interpolation'], _pc.document['perchanweightdensity'], _pc.document['gridder'], _pc.document['facets'], _pc.document['psfphasecenter'], _pc.document['wprojplanes'], _pc.document['vptable'], _pc.document['mosweight'], _pc.document['aterm'], _pc.document['psterm'], _pc.document['wbawp'], _pc.document['conjbeams'], _pc.document['cfcache'], _pc.document['usepointing'], _pc.document['computepastep'], _pc.document['rotatepastep'], _pc.document['pointingoffsetsigdev'], _pc.document['pblimit'], _pc.document['normtype'], _pc.document['deconvolver'], _pc.document['scales'], _pc.document['nterms'], _pc.document['smallscalebias'], _pc.document['restoration'], _pc.document['restoringbeam'], _pc.document['pbcor'], _pc.document['outlierfile'], _pc.document['weighting'], _pc.document['robust'], _pc.document['noise'], _pc.document['npixels'], _pc.document['uvtaper'], _pc.document['niter'], _pc.document['gain'], _pc.document['threshold'], _pc.document['nsigma'], _pc.document['cycleniter'], _pc.document['cyclefactor'], _pc.document['minpsffraction'], _pc.document['maxpsffraction'], _pc.document['interactive'], _pc.document['usemask'], _pc.document['mask'], _pc.document['pbmask'], _pc.document['sidelobethreshold'], _pc.document['noisethreshold'], _pc.document['lownoisethreshold'], _pc.document['negativethreshold'], _pc.document['smoothfactor'], _pc.document['minbeamfrac'], _pc.document['cutthreshold'], _pc.document['growiterations'], _pc.document['dogrowprune'], _pc.document['minpercentchange'], _pc.document['verbose'], _pc.document['fastnoise'], _pc.document['restart'], _pc.document['savemodel'], _pc.document['calcres'], _pc.document['calcpsf'], _pc.document['psfcutoff'], _pc.document['parallel'] )
+   File &quot;/blue/adamginsburg/adamginsburg/casa/casa-6.4.0-12/lib/py/lib/python3.6/site-packages/casatasks/private/task_tclean.py&quot;, line 364, in tclean
+     imager.makePSF()
+   File &quot;/blue/adamginsburg/adamginsburg/casa/casa-6.4.0-12/lib/py/lib/python3.6/site-packages/casatasks/private/imagerhelpers/imager_base.py&quot;, line 344, in makePSF
+     self.makePSFCore()
+   File &quot;/blue/adamginsburg/adamginsburg/casa/casa-6.4.0-12/lib/py/lib/python3.6/site-packages/casatasks/private/imagerhelpers/imager_base.py&quot;, line 496, in makePSFCore
+     self.SItool.makepsf()
+   File &quot;/blue/adamginsburg/adamginsburg/casa/casa-6.4.0-12/lib/py/lib/python3.6/site-packages/casatools/synthesisimager.py&quot;, line 70, in makepsf
+     return self._swigobj.makepsf()
+   File &quot;/blue/adamginsburg/adamginsburg/casa/casa-6.4.0-12/lib/py/lib/python3.6/site-packages/casatools/__casac__/synthesisimager.py&quot;, line 322, in makepsf
+     return _synthesisimager.synthesisimager_makepsf(self)
+ RuntimeError: Error in making PSF : One or more  of the cube section failed in de/gridding. Return values for the sections: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+</pre>
+<p>That one appears to be caused by:</p>
+<pre class="code literal-block">
+2021-10-17 15:53:34     WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-7 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line
+ A) Exception for chan range [1921, 1924] ---   Error in making PSF : Interpolate1D::operator() data has repeated x values
+##################################
+#############################
+Exception: Error in making PSF : Interpolate1D::operator() data has repeated x values
+</pre>
+<p>This happened after a lot of apparently successful cleaning, as an .image was created.  However, the failure caused
+CASA to exit.</p>
+<p>This tclean command:</p>
+<pre class="code literal-block">
+2021-10-17 15:19:43     INFO    tclean::::casa  tclean( vis='/blue/adamginsburg/adamginsburg/almaimf/workdir/G008.67_B3_spw2_12M.concat.ms', selectdata=True, field='G008.67', spw='', timerange='', uvrange='', antenna='', scan='', observation='', intent='', datacolumn='corrected', imagename='/blue/adamginsburg/adamginsburg/almaimf/workdir/G008.67_B3_spw2_12M_spw2', imsize=[2880, 2250], cell=['0.08arcsec', '0.08arcsec'], phasecenter='ICRS 271.5877979623041deg -21.620789662367244deg', stokes='I', projection='SIN', startmodel='', specmode='cube', reffreq='', nchan=-1, start='', width='', outframe='LSRK', veltype='radio', restfreq=[], interpolation='linear', perchanweightdensity=True, gridder='mosaic', facets=1, psfphasecenter='', wprojplanes=1, vptable='', mosweight=True, aterm=True, psterm=False, wbawp=True, conjbeams=False, cfcache='', usepointing=False, computepastep=360.0, rotatepastep=360.0, pointingoffsetsigdev=[], pblimit=0.05, normtype='flatnoise', deconvolver='multiscale', scales=[0, 4, 8, 16, 32], nterms=2, smallscalebias=0.5, restoration=True, restoringbeam='', pbcor=False, outlierfile='', weighting='briggsbwtaper', robust=0.0, noise='1.0Jy', npixels=0, uvtaper=[''], niter=5000000, gain=0.1, threshold='0.0168Jy', nsigma=0.0, cycleniter=-1, cyclefactor=2.0, minpsffraction=0.05, maxpsffraction=0.8, interactive=0, usemask='user', mask='', pbmask=0.1, sidelobethreshold=3.0, noisethreshold=5.0, lownoisethreshold=1.5, negativethreshold=0.0, smoothfactor=1.0, minbeamfrac=0.3, cutthreshold=0.01, growiterations=75, dogrowprune=True, minpercentchange=-1.0, verbose=False, fastnoise=True, restart=True, savemodel='none', calcres=False, calcpsf=True, psfcutoff=0.35, parallel=True )
+</pre>
+<p>using concatenated data caused the failure.  It was run as an MPI job with 32 cores and 128 GB RAM.
+The same issue recurred for the next MS (spw3), but not for spw0 or spw1 - yet, they're still running.</p>
+<p>This: &quot;Exception for chan range [1921, 1924] ---   Error in making PSF : Interpolate1D::operator() data has repeated x values&quot; suggests to me that there's
+a problem with the gridder thinking there are more channels than there actually are; <tt class="docutils literal">tclean</tt>'s behavior is not consistent between operating on concatenated
+data sets and on lists of data sets.  This issue may be a manifestation of tclean misunderstanding the grid when operating with MPI enabled.
+This could also prove not to be an MPI error, but one that is only encountered if MPI is enabled b/c MPI gets to channel 1921 while non-MPI never gets
+there before the job is canceled for time.</p>
+<p>W51 spw2 had similar:</p>
+<pre class="code literal-block">
+WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-21 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336)        Exception for chan range [1269, 1277] ---   FilebufIO::readBlock - incorrect number of bytes read for file /blue/adamginsburg/adamginsburg/almaimf/workdir/W51-E_B3_spw2_12M_spw2.sumwt/table.f0
+Exception: FilebufIO::readBlock - incorrect number of bytes read for file /blue/adamginsburg/adamginsburg/almaimf/workdir/W51-E_B3_spw2_12M_spw2.sumwt/table.f0
+WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-9 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336) Exception for chan range [1314, 1322] ---   FilebufIO::readBlock - incorrect number of bytes read for file /blue/adamginsburg/adamginsburg/almaimf/workdir/W51-E_B3_spw2_12M_spw2.sumwt/table.f0
+Exception: FilebufIO::readBlock - incorrect number of bytes read for file /blue/adamginsburg/adamginsburg/almaimf/workdir/W51-E_B3_spw2_12M_spw2.sumwt/table.f0
+</pre>
+<p>I have not found solutions to any of these; the workaround appears to be just to not use MPI.</p>
+<p>EDIT: here's another one</p>
+<pre class="code literal-block">
+2021-10-22 22:36:53     WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-2 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336) Exception for chan range [55, 109] ---   Setting masked pixels to zero for input startmodel : Error (Resource deadlock avoided) when acquiring lock on /blue/adamginsburg/adamginsburg/almaimf/workdir/G327.29_B6_spw1_12M_sio.contcube.model/table.lock
+##################################
+#############################
+Exception: Setting masked pixels to zero for input startmodel : Error (Resource deadlock avoided) when acquiring lock on /blue/adamginsburg/adamginsburg/almaimf/workdir/G327.29_B6_spw1_12M_sio.contcube.model/table.lock
+2021-10-22 22:36:54     WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-4 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336) Exception for chan range [165, 219] ---   Setting masked pixels to zero for input startmodel : Error (Resource deadlock avoided) when acquiring lock on /blue/adamginsburg/adamginsburg/almaimf/workdir/G327.29_B6_spw1_12M_sio.contcube.model/table.lock
+##################################
+#############################
+Exception: Setting masked pixels to zero for input startmodel : Error (Resource deadlock avoided) when acquiring lock on /blue/adamginsburg/adamginsburg/almaimf/workdir/G327.29_B6_spw1_12M_sio.contcube.model/table.lock
+2021-10-22 22:36:57     WARN    MPICommandServer::command_request_handler_service::SynthesisImagerVi2::CubeMajorCycle::MPIServer-1 (file src/code/synthesis/ImagerObjects/CubeMajorCycleAlgorithm.cc, line 336) Exception for chan range [0, 54] ---   Setting masked pixels to zero for input startmodel : Error (Resource deadlock avoided) when acquiring lock on /blue/adamginsburg/adamginsburg/almaimf/workdir/G327.29_B6_spw1_12M_sio.contcube.model/table.lock
+##################################
+#############################
+Exception: Setting masked pixels to zero for input startmodel : Error (Resource deadlock avoided) when acquiring lock on /blue/adamginsburg/adamginsburg/almaimf/workdir/G327.29_B6_spw1_12M_sio.contcube.model/table.lock
+</pre>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/confetti-artifacts-in-clean.html" rel="bookmark" title="Permalink to Confetti artifacts in clean">
+                    Confetti artifacts in clean</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2021-10-15T10:21:00-06:00"> 2021/10/15 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>We have noted a “confetti” problem in some of the ALMA-IMF cube images.
+It is called confetti because <em>one</em> of its manifestations is individual
+bright pixels in the model image.</p>
+<p>This notebook shows where confetti is - and is not a problem.</p>
+<p><a class="reference external" href="https://github.com/ALMA-IMF/notebooks/blob/master/ConfettiQA.ipynb">https://github.com/ALMA-IMF/notebooks/blob/master/ConfettiQA.ipynb</a></p>
+<div class="section" id="preliminaries-skip-this">
+<h2>Preliminaries: skip this</h2>
+<pre class="code python literal-block">
+<span class="kn">from</span> <span class="nn">spectral_cube</span> <span class="kn">import</span> <span class="n">SpectralCube</span><span class="w">
+</span><span class="kn">import</span> <span class="nn">warnings</span><span class="w">
+</span><span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">'ignore'</span><span class="p">)</span>
+</pre>
+<pre class="code python literal-block">
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span><span class="w">
+</span><span class="kn">import</span> <span class="nn">pylab</span> <span class="k">as</span> <span class="nn">pl</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">astropy.visualization</span> <span class="kn">import</span> <span class="n">simple_norm</span>
+</pre>
+<pre class="code python literal-block">
+<span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+</pre>
+</div>
+<div class="section" id="g008-67-continuum">
+<h2>G008.67 Continuum</h2>
+<p>This is the G008.67 continuum image in Band 3.</p>
+<p>It has “confetti” pieces in the model image, but there is no problem: no
+artificial point sources are introduced.</p>
+<pre class="code python literal-block">
+<span class="n">contmodel</span> <span class="o">=</span> <span class="n">SpectralCube</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">'/orange/adamginsburg/ALMA_IMF/2017.1.01355.L/imaging_results/G008.67_B3_uid___A001_X1296_X1c1_continuum_merged_12M_robust-0.5_selfcal5_finaliter.model.tt0'</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'casa_image'</span><span class="p">)</span><span class="w">
+</span><span class="n">contimage</span> <span class="o">=</span> <span class="n">SpectralCube</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">'/orange/adamginsburg/ALMA_IMF/2017.1.01355.L/imaging_results/G008.67_B3_uid___A001_X1296_X1c1_continuum_merged_12M_robust-0.5_selfcal5_finaliter.image.tt0'</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'casa_image'</span><span class="p">)</span><span class="w">
+</span><span class="n">contresid</span> <span class="o">=</span> <span class="n">SpectralCube</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">'/orange/adamginsburg/ALMA_IMF/2017.1.01355.L/imaging_results/G008.67_B3_uid___A001_X1296_X1c1_continuum_merged_12M_robust-0.5_selfcal5_finaliter.residual.tt0'</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'casa_image'</span><span class="p">)</span>
+</pre>
+<pre class="code python literal-block">
+<span class="c1"># zoom in</span><span class="w">
+</span><span class="n">contslc</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">950</span><span class="p">,</span><span class="mi">1050</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">1900</span><span class="p">,</span><span class="mi">2050</span><span class="p">))</span>
+</pre>
+<pre class="code python literal-block">
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span><span class="w">
+</span><span class="n">pl</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">contmodel</span><span class="p">[</span><span class="n">contslc</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">simple_norm</span><span class="p">(</span><span class="n">contmodel</span><span class="p">[</span><span class="n">contslc</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">max_percent</span><span class="o">=</span><span class="mf">99.995</span><span class="p">,</span> <span class="n">stretch</span><span class="o">=</span><span class="s1">'asinh'</span><span class="p">),</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">'none'</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">'lower'</span><span class="p">)</span><span class="w">
+</span><span class="n">_</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">)</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_8_0.png" />
+<pre class="code python literal-block">
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span><span class="w">
+</span><span class="n">im</span> <span class="o">=</span> <span class="n">contimage</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">contslc</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span><span class="o">.</span><span class="n">value</span><span class="w">
+</span><span class="n">pl</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">simple_norm</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">stretch</span><span class="o">=</span><span class="s1">'log'</span><span class="p">,</span> <span class="n">max_percent</span><span class="o">=</span><span class="mf">99.995</span><span class="p">),</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">'none'</span><span class="p">,</span>  <span class="n">origin</span><span class="o">=</span><span class="s1">'lower'</span><span class="p">)</span><span class="w">
+</span><span class="n">_</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_9_0.png" />
+<pre class="code python literal-block">
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span><span class="w">
+</span><span class="n">im</span> <span class="o">=</span> <span class="n">contresid</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">contslc</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span><span class="o">.</span><span class="n">value</span><span class="w">
+</span><span class="n">pl</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">simple_norm</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">stretch</span><span class="o">=</span><span class="s1">'linear'</span><span class="p">),</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">'none'</span><span class="p">,</span>  <span class="n">origin</span><span class="o">=</span><span class="s1">'lower'</span><span class="p">)</span><span class="w">
+</span><span class="n">_</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Residual&quot;</span><span class="p">)</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_10_0.png" />
+<div class="section" id="g008-67-cube">
+<h3>G008.67 Cube</h3>
+<p>The G008.67 cube <em>does</em> have a problem!</p>
+<pre class="code python literal-block">
+<span class="n">cube</span> <span class="o">=</span> <span class="n">SpectralCube</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">'/orange/adamginsburg/ALMA_IMF/2017.1.01355.L/imaging_results/G008.67_B3_spw0_12M_n2hp.image'</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'casa_image'</span><span class="p">)</span><span class="o">.</span><span class="n">with_spectral_unit</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">,</span> <span class="n">velocity_convention</span><span class="o">=</span><span class="s1">'radio'</span><span class="p">)</span><span class="w">
+</span><span class="n">resid</span> <span class="o">=</span> <span class="n">SpectralCube</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">'/orange/adamginsburg/ALMA_IMF/2017.1.01355.L/imaging_results/G008.67_B3_spw0_12M_n2hp.residual'</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'casa_image'</span><span class="p">)</span><span class="o">.</span><span class="n">with_spectral_unit</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">,</span> <span class="n">velocity_convention</span><span class="o">=</span><span class="s1">'radio'</span><span class="p">)</span><span class="w">
+</span><span class="n">model</span> <span class="o">=</span> <span class="n">SpectralCube</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">'/orange/adamginsburg/ALMA_IMF/2017.1.01355.L/imaging_results/G008.67_B3_spw0_12M_n2hp.model'</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'casa_image'</span><span class="p">)</span><span class="o">.</span><span class="n">with_spectral_unit</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">,</span> <span class="n">velocity_convention</span><span class="o">=</span><span class="s1">'radio'</span><span class="p">)</span>
+</pre>
+<pre class="code python literal-block">
+<span class="n">xslc</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">1620</span><span class="p">,</span><span class="mi">1654</span><span class="p">)</span><span class="w">
+</span><span class="n">yslc</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">709</span><span class="p">,</span><span class="mi">743</span><span class="p">)</span><span class="w">
+</span><span class="n">cubeslice</span> <span class="o">=</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span> <span class="n">yslc</span><span class="p">,</span> <span class="n">xslc</span><span class="p">)</span><span class="w">
+</span><span class="n">cube1slice</span> <span class="o">=</span> <span class="p">(</span><span class="mi">98</span><span class="p">,</span> <span class="n">yslc</span><span class="p">,</span> <span class="n">xslc</span><span class="p">)</span>
+</pre>
+</div>
+</div>
+<div class="section" id="confetti-a-false-point-source">
+<h2>Confetti: a false (?) point source</h2>
+<p>In the image below, we see a new source introduced in the 35.140 km/s
+panel.</p>
+<p>There is no comparable source in either of the adjacent panels!</p>
+<p>That means either there is a genuinely pointlike source with linewidth
+much narrower than 0.77 km/s, or this source is fake.</p>
+<pre class="code python literal-block">
+<span class="n">specpix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">94</span><span class="p">,</span><span class="mi">94</span><span class="o">+</span><span class="mi">9</span><span class="p">)</span><span class="w">
+</span><span class="n">panels</span> <span class="o">=</span> <span class="n">cube</span><span class="p">[</span><span class="n">cubeslice</span><span class="p">]</span><span class="o">.</span><span class="n">plot_channel_maps</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">specpix</span><span class="p">,</span> <span class="n">fig_smallest_dim_inches</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">simple_norm</span><span class="p">(</span><span class="n">cube</span><span class="p">[</span><span class="n">cube1slice</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_15_0.png" />
+<p>It is caused by one hot (bright) pixel surrounded by many faint pixels</p>
+<pre class="code python literal-block">
+<span class="n">panels</span> <span class="o">=</span> <span class="n">model</span><span class="p">[</span><span class="n">cubeslice</span><span class="p">]</span><span class="o">.</span><span class="n">plot_channel_maps</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">specpix</span><span class="p">,</span> <span class="n">fig_smallest_dim_inches</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">simple_norm</span><span class="p">(</span><span class="n">model</span><span class="p">[</span><span class="n">cube1slice</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">stretch</span><span class="o">=</span><span class="s1">'log'</span><span class="p">,</span> <span class="n">max_percent</span><span class="o">=</span><span class="mf">99.93</span><span class="p">))</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_17_0.png" />
+<p>There is no sign of it in the residual - it is apparently canceled out
+between positive and negative components added to the model</p>
+<pre class="code python literal-block">
+<span class="n">panels</span> <span class="o">=</span> <span class="n">resid</span><span class="p">[</span><span class="n">cubeslice</span><span class="p">]</span><span class="o">.</span><span class="n">plot_channel_maps</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">specpix</span><span class="p">,</span> <span class="n">fig_smallest_dim_inches</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_19_0.png" />
+<p>The manifestation in the spectra is a very sharp peak at just one pixel.</p>
+<pre class="code python literal-block">
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span><span class="w">
+</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="o">=</span><span class="mi">1638</span><span class="p">,</span><span class="mi">725</span><span class="w">
+</span><span class="n">cube</span><span class="p">[:,</span><span class="n">yy</span><span class="p">,</span><span class="n">xx</span><span class="p">]</span><span class="o">.</span><span class="n">quicklook</span><span class="p">()</span><span class="w">
+</span><span class="n">resid</span><span class="p">[:,</span><span class="n">yy</span><span class="p">,</span><span class="n">xx</span><span class="p">]</span><span class="o">.</span><span class="n">quicklook</span><span class="p">()</span><span class="w">
+</span><span class="n">modspec</span> <span class="o">=</span> <span class="n">model</span><span class="p">[:,</span><span class="n">yy</span><span class="p">,</span><span class="n">xx</span><span class="p">]</span><span class="w">
+</span><span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cube</span><span class="o">.</span><span class="n">spectral_axis</span><span class="p">,</span> <span class="n">modspec</span><span class="o">*</span><span class="n">cube</span><span class="o">.</span><span class="n">pixels_per_beam</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'model'</span><span class="p">)</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_21_1.png" />
+<p>Pixels to either side look fine</p>
+<pre class="code python literal-block">
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">14</span><span class="p">))</span><span class="w">
+</span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="w">
+</span><span class="k">for</span> <span class="n">dx</span> <span class="ow">in</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span><span class="w">
+</span>    <span class="k">for</span> <span class="n">dy</span> <span class="ow">in</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span><span class="w">
+</span>        <span class="n">ax</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">ii</span><span class="p">)</span><span class="w">
+</span>        <span class="n">ii</span> <span class="o">+=</span><span class="mi">1</span><span class="w">
+</span>        <span class="n">cube</span><span class="p">[:,</span><span class="n">yy</span><span class="o">+</span><span class="n">dy</span><span class="p">,</span><span class="n">xx</span><span class="o">+</span><span class="n">dx</span><span class="p">]</span><span class="o">.</span><span class="n">quicklook</span><span class="p">()</span><span class="w">
+</span>        <span class="n">resid</span><span class="p">[:,</span><span class="n">yy</span><span class="o">+</span><span class="n">dy</span><span class="p">,</span><span class="n">xx</span><span class="o">+</span><span class="n">dx</span><span class="p">]</span><span class="o">.</span><span class="n">quicklook</span><span class="p">()</span><span class="w">
+</span>        <span class="n">modspec</span> <span class="o">=</span> <span class="n">model</span><span class="p">[:,</span><span class="n">yy</span><span class="o">+</span><span class="n">dy</span><span class="p">,</span><span class="n">xx</span><span class="o">+</span><span class="n">dx</span><span class="p">]</span><span class="w">
+</span>        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cube</span><span class="o">.</span><span class="n">spectral_axis</span><span class="p">,</span> <span class="n">modspec</span><span class="o">*</span><span class="n">cube</span><span class="o">.</span><span class="n">pixels_per_beam</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'model'</span><span class="p">)</span><span class="w">
+</span>        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dx=</span><span class="si">{</span><span class="n">dx</span><span class="si">}</span><span class="s2"> dy=</span><span class="si">{</span><span class="n">dy</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_23_0.png" />
+<div class="section" id="when-is-confetti-not-a-problem">
+<h3>When is confetti <em>not</em> a problem?</h3>
+<p>Here is an example you might think is “confetti”, but is a <em>real</em> source</p>
+<pre class="code python literal-block">
+<span class="n">xc</span><span class="p">,</span> <span class="n">yc</span> <span class="o">=</span> <span class="mi">1812</span><span class="p">,</span> <span class="mi">905</span><span class="w">
+</span><span class="n">xslc</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">xc</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span><span class="n">xc</span><span class="o">+</span><span class="mi">12</span><span class="p">)</span><span class="w">
+</span><span class="n">yslc</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">yc</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span><span class="n">yc</span><span class="o">+</span><span class="mi">12</span><span class="p">)</span><span class="w">
+</span><span class="n">cubeslice</span> <span class="o">=</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="mi">94</span><span class="p">,</span><span class="mi">94</span><span class="o">+</span><span class="mi">9</span><span class="p">),</span> <span class="n">yslc</span><span class="p">,</span> <span class="n">xslc</span><span class="p">)</span><span class="w">
+</span><span class="n">cube1slice</span> <span class="o">=</span> <span class="p">(</span><span class="mi">94</span><span class="p">,</span> <span class="n">yslc</span><span class="p">,</span> <span class="n">xslc</span><span class="p">)</span>
+</pre>
+<pre class="code python literal-block">
+<span class="n">specpix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="w">
+</span><span class="n">panels</span> <span class="o">=</span> <span class="n">cube</span><span class="p">[</span><span class="n">cubeslice</span><span class="p">]</span><span class="o">.</span><span class="n">plot_channel_maps</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">specpix</span><span class="p">,</span> <span class="n">fig_smallest_dim_inches</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">simple_norm</span><span class="p">(</span><span class="n">cube</span><span class="p">[</span><span class="n">cube1slice</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">min_cut</span><span class="o">=</span><span class="n">cube</span><span class="p">[</span><span class="n">cubeslice</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">max_cut</span><span class="o">=</span><span class="n">cube</span><span class="p">[</span><span class="n">cubeslice</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">stretch</span><span class="o">=</span><span class="s1">'linear'</span><span class="p">))</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_26_0.png" />
+<pre class="code python literal-block">
+<span class="n">panels</span> <span class="o">=</span> <span class="n">model</span><span class="p">[</span><span class="n">cubeslice</span><span class="p">]</span><span class="o">.</span><span class="n">plot_channel_maps</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">specpix</span><span class="p">,</span> <span class="n">fig_smallest_dim_inches</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">simple_norm</span><span class="p">(</span><span class="n">model</span><span class="p">[</span><span class="n">cube1slice</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">stretch</span><span class="o">=</span><span class="s1">'asinh'</span><span class="p">,</span> <span class="n">max_percent</span><span class="o">=</span><span class="mf">99.9</span><span class="p">,</span> <span class="n">min_cut</span><span class="o">=</span><span class="n">model</span><span class="p">[</span><span class="n">cubeslice</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">max_cut</span><span class="o">=</span><span class="n">model</span><span class="p">[</span><span class="n">cubeslice</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="p">))</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_27_0.png" />
+<pre class="code python literal-block">
+<span class="n">panels</span> <span class="o">=</span> <span class="n">resid</span><span class="p">[</span><span class="n">cubeslice</span><span class="p">]</span><span class="o">.</span><span class="n">plot_channel_maps</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">specpix</span><span class="p">,</span> <span class="n">fig_smallest_dim_inches</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_28_0.png" />
+<pre class="code python literal-block">
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">14</span><span class="p">))</span><span class="w">
+</span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="w">
+</span><span class="k">for</span> <span class="n">dx</span> <span class="ow">in</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span><span class="w">
+</span>    <span class="k">for</span> <span class="n">dy</span> <span class="ow">in</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span><span class="w">
+</span>        <span class="n">ax</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">ii</span><span class="p">)</span><span class="w">
+</span>        <span class="n">ii</span> <span class="o">+=</span><span class="mi">1</span><span class="w">
+</span>        <span class="n">cube</span><span class="p">[:,</span><span class="n">yc</span><span class="o">+</span><span class="n">dy</span><span class="p">,</span><span class="n">xc</span><span class="o">+</span><span class="n">dx</span><span class="p">]</span><span class="o">.</span><span class="n">quicklook</span><span class="p">()</span><span class="w">
+</span>        <span class="n">resid</span><span class="p">[:,</span><span class="n">yc</span><span class="o">+</span><span class="n">dy</span><span class="p">,</span><span class="n">xc</span><span class="o">+</span><span class="n">dx</span><span class="p">]</span><span class="o">.</span><span class="n">quicklook</span><span class="p">()</span><span class="w">
+</span>        <span class="n">modspec</span> <span class="o">=</span> <span class="n">model</span><span class="p">[:,</span><span class="n">yc</span><span class="o">+</span><span class="n">dy</span><span class="p">,</span><span class="n">xc</span><span class="o">+</span><span class="n">dx</span><span class="p">]</span><span class="w">
+</span>        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cube</span><span class="o">.</span><span class="n">spectral_axis</span><span class="p">,</span> <span class="n">modspec</span><span class="o">*</span><span class="n">cube</span><span class="o">.</span><span class="n">pixels_per_beam</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'model'</span><span class="p">)</span><span class="w">
+</span>        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dx=</span><span class="si">{</span><span class="n">dx</span><span class="si">}</span><span class="s2"> dy=</span><span class="si">{</span><span class="n">dy</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/output_29_0.png" />
+</div>
+<div class="section" id="conclusion">
+<h3>Conclusion</h3>
+<p>“Confetti” is a problem, but it is not trivial to find in the model data
+alone. It exhibits no features in the residual.</p>
+<p>Key features to look out for are:</p>
+<ul class="simple">
+<li>Narrow-line features (single channel)</li>
+<li>Extremely bright pointlike peaks in the model (note that this is
+<em>not</em> independent evidence of a problem! All point sources occupy
+single pixels in the model image by definition!)</li>
+<li>Bright pointlike peaks sitting on top of slightly extended negative
+backgrounds in the model (this is how the model is “canceled out” in
+the residual)</li>
+</ul>
+</div>
+</div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/casas-plotms-in-a-notebook.html" rel="bookmark" title="Permalink to casa's plotms in a notebook">
+                    casa's plotms in a notebook</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2021-06-14T12:30:00-06:00"> 2021/06/14 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>CASA's plotms requires an X11 frontend to work properly, so you either need to run it with xvfb or
+with X.</p>
+<p>I want to just make UV data plots in jupyter notebooks.</p>
+<p>This is harder than it sounds, particularly for concatenated data sets.</p>
+<p>First step is that you need to assemble the metadata:</p>
+<div class="highlight"><pre><span></span><span class="n">msmd</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">scvis</span><span class="p">)</span>
+<span class="n">scsum</span> <span class="o">=</span> <span class="n">msmd</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<span class="n">msmd</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+<p>The resulting <tt class="docutils literal">scsum</tt> is a nested dictionary containing a ton of information.
+We need only some of it.</p>
+<p>To get out some flattened information, such as the &quot;data description IDs&quot; associated
+with data that are actually in my concatenated MS (in my case, 8 of 11 observation blocks
+in the metadata are not present in the data), this tool gets and flattens the resulting
+information:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">walk_summary</span><span class="p">(</span><span class="n">summary</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">summary</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">summary</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">summary</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">walk_summary</span><span class="p">(</span><span class="n">summary</span><span class="p">[</span><span class="n">kk</span><span class="p">],</span> <span class="n">key</span><span class="p">)</span> <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">summary</span><span class="p">]</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">result</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">])</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="n">result</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">result</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span><span class="ne">TypeError</span><span class="p">):</span>
+            <span class="k">return</span>
+</pre></div>
+<p>Then we grab the usable observation and data description IDs:</p>
+<div class="highlight"><pre><span></span><span class="n">obsids</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">scsum</span> <span class="k">if</span> <span class="s1">&#39;observationID&#39;</span> <span class="ow">in</span> <span class="n">key</span> <span class="ow">and</span> <span class="n">scsum</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">!=</span> <span class="p">{}]</span>
+<span class="n">ddids</span> <span class="o">=</span> <span class="n">walk_summary</span><span class="p">(</span><span class="n">scsum</span><span class="p">,</span> <span class="s1">&#39;data description IDs&#39;</span><span class="p">)</span>
+</pre></div>
+<p>Now we have to load the actual data.  I needed to create new versions of the <tt class="docutils literal">mstool</tt> each time
+because I was getting weird errors where <tt class="docutils literal">ms.close()</tt> followed by <tt class="docutils literal">ms.open(fn)</tt> was not properly
+resetting, which resulted in <tt class="docutils literal">ms.getdata</tt> returning the same data for two different MSes - BAD!</p>
+<div class="highlight"><pre><span></span><span class="n">ms6</span> <span class="o">=</span> <span class="n">mstool</span><span class="p">()</span>
+<span class="n">ms6</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">scvis</span><span class="p">)</span>
+<span class="n">scdata_all</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">ddid</span> <span class="ow">in</span> <span class="n">ddids</span><span class="p">:</span>
+    <span class="n">ms6</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">ddid</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ms6</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">ddid</span><span class="p">)</span>
+    <span class="n">scdata_all</span><span class="p">[</span><span class="n">ddid</span><span class="p">]</span> <span class="o">=</span> <span class="n">ms6</span><span class="o">.</span><span class="n">getdata</span><span class="p">([</span><span class="s1">&#39;amplitude&#39;</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">,</span> <span class="s1">&#39;uvdist&#39;</span><span class="p">,</span> <span class="s1">&#39;axis_info&#39;</span><span class="p">,</span> <span class="s1">&#39;flag&#39;</span><span class="p">,</span> <span class="s1">&#39;corrected_amplitude&#39;</span><span class="p">],</span> <span class="n">ifraxis</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ms6</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+<p>Then plotting is a hassle, but at least is not insane - it's just normal array manipulation:</p>
+<div class="highlight"><pre><span></span><span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">cycle</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;axes.prop_cycle&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">by_key</span><span class="p">()[</span><span class="s2">&quot;color&quot;</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">scdata_all</span><span class="p">:</span> <span class="c1"># the keys are SPW numbers from the multi-MS file</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="n">scdata_all</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span>
+    <span class="n">uvd</span> <span class="o">=</span> <span class="n">scdata_all</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;uvdist&#39;</span><span class="p">]</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">uvd</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">weight</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">uvd</span><span class="o">.</span><span class="n">size</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="n">colors</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;UV Distance (m)&quot;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Weight&quot;</span><span class="p">)</span>
+</pre></div>
+<p>That is basically equivalent to <tt class="docutils literal">plotms(vis, <span class="pre">xaxis='uvdist',</span> <span class="pre">yaxis='weight',</span> <span class="pre">coloraxis='spw')</span></tt>.  It's just slightly more flexible, since
+you can also make waterfall plots, etc.</p>
+<p>Selecting along various axes, like antenna, gets tricky.  You'd rather not go back to <tt class="docutils literal">ms.getdata</tt> because it is _slow_.</p>
+<p>The &quot;identifying baselines&quot; step that you can do in plotms can be achieved through normal boolean array selection, with a result that's somewhat easier to read than CASA's logger:</p>
+<div class="highlight"><pre><span></span><span class="n">highwt</span> <span class="o">=</span> <span class="p">(</span><span class="n">scdata_all</span><span class="p">[</span><span class="mi">56</span><span class="p">][</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1e5</span><span class="p">)</span>
+<span class="n">scdata_all</span><span class="p">[</span><span class="mi">56</span><span class="p">][</span><span class="s1">&#39;axis_info&#39;</span><span class="p">][</span><span class="s1">&#39;ifr_axis&#39;</span><span class="p">][</span><span class="s1">&#39;ifr_name&#39;</span><span class="p">][</span><span class="n">highwt</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">))]</span>
+<span class="c1"># array([&#39;DA41-DV12&#39;, &#39;DA42-DV12&#39;, &#39;DA43-DV12&#39;, &#39;DA44-DV12&#39;, &#39;DA45-DV12&#39;,</span>
+<span class="c1">#  &#39;DA46-DV12&#39;, &#39;DA47-DV12&#39;, &#39;DA48-DV12&#39;, &#39;DA49-DV12&#39;, &#39;DA50-DV12&#39;,</span>
+<span class="c1">#  &#39;DA51-DV12&#39;, &#39;DA52-DV12&#39;, &#39;DA53-DV12&#39;, &#39;DA54-DV12&#39;, &#39;DA55-DV12&#39;,</span>
+<span class="c1">#  &#39;DA56-DV12&#39;, &#39;DA57-DV12&#39;, &#39;DA58-DV12&#39;, &#39;DA60-DV12&#39;, &#39;DA61-DV12&#39;,</span>
+<span class="c1">#  &#39;DA62-DV12&#39;, &#39;DA63-DV12&#39;, &#39;DA64-DV12&#39;, &#39;DA65-DV12&#39;, &#39;DV01-DV12&#39;,</span>
+<span class="c1">#  &#39;DV02-DV12&#39;, &#39;DV03-DV12&#39;, &#39;DV04-DV12&#39;, &#39;DV05-DV12&#39;, &#39;DV06-DV12&#39;,</span>
+<span class="c1">#  &#39;DV07-DV12&#39;, &#39;DV08-DV12&#39;, &#39;DV09-DV12&#39;, &#39;DV10-DV12&#39;, &#39;DV11-DV12&#39;,</span>
+<span class="c1">#  &#39;DV12-DV14&#39;, &#39;DV12-DV16&#39;, &#39;DV12-DV17&#39;, &#39;DV12-DV19&#39;, &#39;DV12-DV20&#39;,</span>
+<span class="c1">#  &#39;DV12-DV21&#39;, &#39;DV12-DV22&#39;, &#39;DV12-DV23&#39;, &#39;DV12-DV24&#39;, &#39;DV12-DV25&#39;],</span>
+<span class="c1"># dtype=&#39;&lt;U16&#39;)</span>
+</pre></div>
+<p>in this case, the output shows that DV12 is clearly the antenna that's overweighted.</p>
+<p>Handling flags is tricky.  The 'weight' array has shape <tt class="docutils literal">[2,nbaseline,ntime]</tt>, but I don't know if that 2 refers to frequency
+or polarization, since I have two of each and there is no information about this in the <tt class="docutils literal">axis_info</tt> dictionary.  So... I'm
+doing the conservative thing and ignoring any row of frequency or polarization if _any_ of the data are flagged.</p>
+<div class="highlight"><pre><span></span><span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">cycle</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;axes.prop_cycle&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">by_key</span><span class="p">()[</span><span class="s2">&quot;color&quot;</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">scdata_all</span><span class="p">:</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="n">scdata_all</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span>
+    <span class="n">uvd</span> <span class="o">=</span> <span class="n">scdata_all</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;uvdist&#39;</span><span class="p">]</span>
+    <span class="n">flag</span> <span class="o">=</span> <span class="n">scdata_all</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;flag&#39;</span><span class="p">]</span>
+    <span class="n">okflag</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">uvd</span><span class="p">[</span><span class="n">okflag</span><span class="p">],</span> <span class="n">weight</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">uvd</span><span class="o">.</span><span class="n">size</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="n">okflag</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="p">:],</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="n">colors</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">_</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;UV Distance (m)&quot;</span><span class="p">)</span>
+<span class="n">_</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Weight&quot;</span><span class="p">)</span>
+</pre></div>
+<p>And, indeed, doing this revealed that the super-high-weight antenna was already flagged out.</p>
+<p>This has been a demo of how to do some stuff with CASA to replicate plotms</p>
+<div class="section" id="errors">
+<h2>Errors</h2>
+<p>Along the way, I hit a ton of errors I didn't understand, so I need a record of what they mean.</p>
+<div class="section" id="data-shape-varies-selecting-first-data-desc-id-only">
+<h3>&quot;Data shape varies, selecting first data desc id only&quot;</h3>
+<p>This is the worst.  It means that you have a multi-ms file (mms) that has been produced by <tt class="docutils literal">concat</tt>.  It is therefore doing something <em>explicitly wrong</em> and returning only the first data description ID.</p>
+<p>Data description IDs are super counterintuitive.  They refer, afaict, to SPW numbers.  If you have an MMS with unmerged SPWs (same frequency, but you didn't merge them because of tolerances or something),
+each SPW will correspond to a single observation ID.</p>
+<p>The solution is to explicitly <tt class="docutils literal">ms.selectinit</tt>, i.e.:</p>
+<div class="highlight"><pre><span></span><span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">datadescid</span><span class="p">)</span> <span class="c1"># note: &quot;reset=True&quot; appears to _override_ the selection</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="c1"># use this as needed</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">getdata</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+<p>but <tt class="docutils literal">datadescid</tt> is _not_ the observation ID.  It's just... some number you need to get from the metadata.</p>
+</div>
+<div class="section" id="mismatched-data-shapes-when-comparing-two-mses">
+<h3>Mismatched data shapes when comparing two MSes</h3>
+<p>I got into this whole thing because I wanted to compare the data in two MSes to determine where we went wrong (we did go wrong).</p>
+<p>Unfortunately, somewhere along the way, the autocorrelations got dropped.  I don't know how it happened because I never did it
+(but I wish I had earlier), but that means that now the data shapes are mismatched.</p>
+<p>The solution was to use <tt class="docutils literal">ms.select</tt> and explicitly downselect to the baselines from MS #1 in MS #2 using MS #1's <tt class="docutils literal">axis_info</tt>: <tt class="docutils literal">{'ifr_number': <span class="pre">scdata['axis_info']['ifr_axis']['ifr_number']}</span></tt>:</p>
+<div class="highlight"><pre><span></span><span class="n">ms3</span> <span class="o">=</span> <span class="n">mstool</span><span class="p">()</span>
+<span class="n">ms3</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">newvis</span><span class="p">)</span>
+<span class="n">ms3</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span> <span class="c1"># 80? what the hell kind of datadescid is that?!</span>
+<span class="n">ms3</span><span class="o">.</span><span class="n">select</span><span class="p">({</span><span class="s1">&#39;ifr_number&#39;</span><span class="p">:</span> <span class="n">scdata</span><span class="p">[</span><span class="s1">&#39;axis_info&#39;</span><span class="p">][</span><span class="s1">&#39;ifr_axis&#39;</span><span class="p">][</span><span class="s1">&#39;ifr_number&#39;</span><span class="p">]})</span>
+<span class="n">newdata</span> <span class="o">=</span> <span class="n">ms3</span><span class="o">.</span><span class="n">getdata</span><span class="p">([</span><span class="s1">&#39;amplitude&#39;</span><span class="p">,</span> <span class="s1">&#39;uvdist&#39;</span><span class="p">,</span> <span class="s1">&#39;axis_info&#39;</span><span class="p">,</span> <span class="s1">&#39;corrected_amplitude&#39;</span><span class="p">],</span> <span class="n">ifraxis</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ms3</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">newdata</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+<p>That downselected the baselines to match the baselines present in <tt class="docutils literal">scdata</tt>, which was MS 1.</p>
+</div>
+<div class="section" id="the-wrong-data-are-showing-up-when-i-open-a-new-ms">
+<h3>The wrong data are showing up when I open a new MS</h3>
+<p>I was comparing several MSes, and sometimes the data looked the same for MSes I was <em>dead certain</em> were different.
+I was right, and the problem was apparently reusing the ms tool.</p>
+<p>I didn't show the import statement above, but it was this:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">casatools</span> <span class="kn">import</span> <span class="n">ms</span><span class="p">,</span> <span class="n">msmetadata</span>
+<span class="n">mstool</span> <span class="o">=</span> <span class="n">ms</span>
+<span class="n">ms</span> <span class="o">=</span> <span class="n">ms</span><span class="p">()</span>
+<span class="n">msmd</span> <span class="o">=</span> <span class="n">msmetadata</span><span class="p">()</span>
+</pre></div>
+<p>If I tried to reuse <tt class="docutils literal">ms</tt> as normal, like so:</p>
+<div class="highlight"><pre><span></span><span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">vis1</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">data1</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">getdata</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">vis2</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">data2</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">getdata</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+<p>then I can't say exactly what <tt class="docutils literal">data1</tt> and <tt class="docutils literal">data2</tt> are, but they weren't the same.</p>
+<p>So, instead, I created a new <tt class="docutils literal">mstool</tt> instance each time:</p>
+<div class="highlight"><pre><span></span><span class="n">ms</span> <span class="o">=</span> <span class="n">mstool</span><span class="p">()</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">vis1</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">data1</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">getdata</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">ms</span> <span class="o">=</span> <span class="n">mstool</span><span class="p">()</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">vis2</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">data2</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">getdata</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="put-all-together">
+<h2>Put all together...</h2>
+<p>Here's some code to loop over a list of MSes and plot both amp and weight vs. uvdist for the field W43-MM3.</p>
+<p>Of course this crashed immediately because it exceeded the available memory.</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">vis</span> <span class="ow">in</span> <span class="n">mses</span><span class="p">:</span>
+    <span class="n">msmd</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+    <span class="n">vissum</span> <span class="o">=</span> <span class="n">msmd</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+    <span class="n">msmd</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">vobsids</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">vissum</span> <span class="k">if</span> <span class="s1">&#39;observationID&#39;</span> <span class="ow">in</span> <span class="n">key</span> <span class="ow">and</span> <span class="n">vissum</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">!=</span> <span class="p">{}]</span>
+    <span class="n">vddids</span> <span class="o">=</span> <span class="n">walk_summary</span><span class="p">(</span><span class="n">vissum</span><span class="p">,</span> <span class="s1">&#39;data description IDs&#39;</span><span class="p">)</span>
+    <span class="n">fids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">vissum</span><span class="p">[</span><span class="s1">&#39;fields&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;W43-MM3&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;obsids: </span><span class="si">{</span><span class="n">vobsids</span><span class="si">}</span><span class="s2">, ddids: </span><span class="si">{</span><span class="n">vddids</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">ms</span> <span class="o">=</span> <span class="n">mstool</span><span class="p">()</span>
+    <span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+    <span class="n">msdata_all</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">ddid</span> <span class="ow">in</span> <span class="n">vddids</span><span class="p">:</span>
+        <span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">ddid</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">ddid</span><span class="p">)</span>
+        <span class="n">ms</span><span class="o">.</span><span class="n">select</span><span class="p">({</span><span class="s1">&#39;field_id&#39;</span><span class="p">:</span> <span class="n">fids</span><span class="p">})</span>
+        <span class="n">msdata_all</span><span class="p">[</span><span class="n">ddid</span><span class="p">]</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">getdata</span><span class="p">([</span><span class="s1">&#39;amplitude&#39;</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">,</span> <span class="s1">&#39;uvdist&#39;</span><span class="p">,</span> <span class="s1">&#39;axis_info&#39;</span><span class="p">,</span> <span class="s1">&#39;flag&#39;</span><span class="p">,</span> <span class="s1">&#39;corrected_amplitude&#39;</span><span class="p">],</span> <span class="n">ifraxis</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ms</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">colors</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">cycle</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;axes.prop_cycle&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">by_key</span><span class="p">()[</span><span class="s2">&quot;color&quot;</span><span class="p">])</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">msdata_all</span><span class="p">:</span>
+        <span class="n">weight</span> <span class="o">=</span> <span class="n">msdata_all</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span>
+        <span class="n">uvd</span> <span class="o">=</span> <span class="n">msdata_all</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;uvdist&#39;</span><span class="p">]</span>
+        <span class="n">flag</span> <span class="o">=</span> <span class="n">msdata_all</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;flag&#39;</span><span class="p">]</span>
+        <span class="n">okflag</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">uvd</span><span class="p">[</span><span class="n">okflag</span><span class="p">],</span> <span class="n">weight</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">uvd</span><span class="o">.</span><span class="n">size</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="n">okflag</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="p">:],</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="n">colors</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+    <span class="n">_</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;UV Distance (m)&quot;</span><span class="p">)</span>
+    <span class="n">_</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Weight&quot;</span><span class="p">)</span>
+
+    <span class="n">colors</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">cycle</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;axes.prop_cycle&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">by_key</span><span class="p">()[</span><span class="s2">&quot;color&quot;</span><span class="p">])</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">msdata_all</span><span class="p">:</span>
+        <span class="n">amp</span> <span class="o">=</span> <span class="n">msdata_all</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;amplitude&#39;</span><span class="p">]</span>
+        <span class="n">uvd</span> <span class="o">=</span> <span class="n">msdata_all</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;uvdist&#39;</span><span class="p">]</span>
+        <span class="n">flag</span> <span class="o">=</span> <span class="n">msdata_all</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;flag&#39;</span><span class="p">]</span>
+        <span class="n">okflag</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">uvd</span><span class="p">[</span><span class="n">okflag</span><span class="p">],</span> <span class="n">amp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">amp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">amp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">uvd</span><span class="o">.</span><span class="n">size</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="n">okflag</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="p">:],</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="n">colors</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+    <span class="n">_</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;UV Distance (m)&quot;</span><span class="p">)</span>
+    <span class="n">_</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/reading-a-getsf-catalog.html" rel="bookmark" title="Permalink to Reading a getsf catalog">
+                    Reading a getsf catalog</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2021-05-15T21:23:00-06:00"> 2021/05/15 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>To read a <a class="reference external" href="http://irfu.cea.fr/Pisp/alexander.menshchikov/#method">getsf</a> catalog, you can do:</p>
+<pre class="code python literal-block">
+<span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">ascii</span><span class="w">
+</span><span class="n">cat</span> <span class="o">=</span> <span class="n">ascii</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">'getsf.cat'</span><span class="p">,</span> <span class="n">data_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'commented_header'</span><span class="p">,</span> <span class="n">header_start</span><span class="o">=</span><span class="mi">110</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span>\<span class="s2">&quot;!</span><span class="se">\&quot;</span><span class="s2">)</span>
+</pre>
+<p>though <tt class="docutils literal">header_start</tt> may be different; I've seen 110 and 120 at least.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/determing-alma-array-configurations.html" rel="bookmark" title="Permalink to Determing ALMA Array Configurations">
+                    Determing ALMA Array Configurations</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2021-04-27T08:51:00-06:00"> 2021/04/27 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>ALMA's named array configurations are not accessible through CASA.
+They are available from <a class="reference external" href="https://almascience.eso.org/observing/observing-configuration-schedule/prior-cycle-observing-and-configuration-schedule">https://almascience.eso.org/observing/observing-configuration-schedule/prior-cycle-observing-and-configuration-schedule</a></p>
+<p>This snippet will let you grab the tables and create a mapping from date to array config name.</p>
+<p>However, it's a HUGE waste of time, because these data are stored directly in the MS!</p>
+<p>This is the right way:</p>
+<pre class="code python literal-block">
+<span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">vis</span><span class="o">+</span><span class="s1">'/ASDM_EXECBLOCK'</span><span class="p">)</span><span class="w">
+</span><span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s1">'configName'</span><span class="p">)</span><span class="w">
+</span><span class="c1"># array(['C43-3'], dtype='&lt;U16')</span>
+</pre>
+<p>This is the hacky, reconstructed from the website, bad way:</p>
+<pre class="code python literal-block">
+<span class="kn">import</span> <span class="nn">requests</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">astropy.table</span> <span class="kn">import</span> <span class="n">Table</span><span class="p">,</span> <span class="n">vstack</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">ascii</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">astropy.time</span> <span class="kn">import</span> <span class="n">Time</span><span class="w">
+
+</span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://almascience.eso.org/observing/observing-configuration-schedule/prior-cycle-observing-and-configuration-schedule&quot;</span><span class="w">
+
+</span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="w">
+</span><span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span><span class="w">
+</span><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span><span class="w">
+</span><span class="n">tables</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">'table'</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;grid listing&quot;</span><span class="p">)</span><span class="w">
+
+</span><span class="k">def</span> <span class="nf">clean_lines</span><span class="p">(</span><span class="n">soup</span><span class="p">,</span> <span class="n">badrows</span><span class="o">=</span><span class="p">[</span><span class="s1">'Long Baseline Campaign'</span><span class="p">,</span><span class="w">
+</span>                               <span class="s1">'February Maintenance Period'</span><span class="p">,</span><span class="w">
+</span>                               <span class="s1">'End of Cycle'</span><span class="p">,</span><span class="w">
+</span>                               <span class="s1">'Engineering/Software'</span><span class="p">,</span><span class="w">
+</span>                               <span class="s1">'Engineering/Software Time'</span><span class="p">,</span><span class="w">
+</span>                                   <span class="p">]):</span><span class="w">
+</span>    <span class="k">for</span> <span class="n">tr</span> <span class="ow">in</span> <span class="n">soup</span><span class="p">(</span><span class="s1">'tr'</span><span class="p">):</span><span class="w">
+</span>        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">bad</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">tr</span><span class="p">)</span> <span class="k">for</span> <span class="n">bad</span> <span class="ow">in</span> <span class="n">badrows</span><span class="p">):</span><span class="w">
+</span>             <span class="n">_</span><span class="o">=</span><span class="n">tr</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span><span class="w">
+</span>    <span class="k">return</span> <span class="n">soup</span><span class="w">
+
+</span><span class="n">tables</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">'table'</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;grid listing&quot;</span><span class="p">)</span><span class="w">
+</span><span class="n">tables</span> <span class="o">=</span> <span class="p">[</span><span class="n">ascii</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">clean_lines</span><span class="p">(</span><span class="n">tbl</span><span class="p">)),</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'html'</span><span class="p">)</span> <span class="k">for</span> <span class="n">tbl</span> <span class="ow">in</span> <span class="n">tables</span><span class="p">]</span><span class="w">
+</span><span class="n">tables</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">tables</span><span class="p">[</span><span class="mi">3</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="w">
+</span><span class="n">tables</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s1">'Block'</span><span class="p">]</span> <span class="o">=</span> <span class="n">tables</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s1">'Block'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'int'</span><span class="p">)</span><span class="w">
+</span><span class="n">tables</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s1">'maximumrecoverablescale2(&quot;)'</span><span class="p">]</span> <span class="o">=</span> <span class="n">tables</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s1">'maximumrecoverablescale2(&quot;)'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'str'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">stacked</span> <span class="o">=</span> <span class="n">vstack</span><span class="p">(</span><span class="n">tables</span><span class="p">)</span><span class="w">
+</span><span class="n">start_times</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">stacked</span><span class="p">[</span><span class="s1">'Start date'</span><span class="p">])</span><span class="w">
+</span><span class="n">end_times</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">stacked</span><span class="p">[</span><span class="s1">'End date'</span><span class="p">])</span>
+</pre>
+<p>Then, say you have a list of measurement sets <tt class="docutils literal">mses</tt>, you can look up the
+array configuration for each date and field.  The choice of <tt class="docutils literal">fields[0]</tt> here
+only makes sense if your data had a single target; it's a bad choice if there
+are multiple targets in a scheduling block:</p>
+<pre class="code python literal-block">
+<span class="kn">import</span> <span class="nn">json</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">casatools</span> <span class="kn">import</span> <span class="n">msmetadata</span><span class="w">
+</span><span class="n">msmd</span> <span class="o">=</span> <span class="n">msmetadata</span><span class="p">()</span><span class="w">
+
+</span><span class="n">results</span> <span class="o">=</span> <span class="p">{}</span><span class="w">
+
+</span><span class="k">for</span> <span class="n">vis</span> <span class="ow">in</span> <span class="n">mses</span><span class="p">:</span><span class="w">
+</span>    <span class="n">msmd</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">mses</span><span class="p">)</span><span class="w">
+</span>    <span class="n">obstime</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">msmd</span><span class="o">.</span><span class="n">timerangeforobs</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="s1">'begin'</span><span class="p">][</span><span class="s1">'m0'</span><span class="p">][</span><span class="s1">'value'</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'mjd'</span><span class="p">)</span><span class="w">
+</span>    <span class="n">fieldnames</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">msmd</span><span class="o">.</span><span class="n">fieldnames</span><span class="p">())</span><span class="w">
+</span>    <span class="n">fields</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">fieldnames</span><span class="p">[</span><span class="n">msmd</span><span class="o">.</span><span class="n">fieldsforintent</span><span class="p">(</span><span class="s1">'OBSERVE_TARGET#ON_SOURCE'</span><span class="p">)])</span><span class="w">
+</span>    <span class="n">msmd</span><span class="o">.</span><span class="n">close</span><span class="p">()</span><span class="w">
+
+</span>    <span class="n">array_config</span> <span class="o">=</span> <span class="n">stacked</span><span class="p">[(</span><span class="n">obstime</span> <span class="o">&gt;</span> <span class="n">start_times</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">obstime</span> <span class="o">&lt;</span> <span class="n">end_times</span><span class="p">)][</span><span class="s1">'Approx</span><span class="se">\xa0</span><span class="s1">Config.'</span><span class="p">]</span><span class="w">
+</span>    <span class="k">if</span> <span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span><span class="w">
+</span>        <span class="n">results</span><span class="p">[</span><span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">obstime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">'</span><span class="p">)]</span> <span class="o">=</span> <span class="n">array_config</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w">
+</span>    <span class="k">else</span><span class="p">:</span><span class="w">
+</span>        <span class="n">results</span><span class="p">[</span><span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span><span class="n">obstime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">'</span><span class="p">):</span> <span class="n">array_config</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span><span class="w">
+
+</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'array_configurations.json'</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span><span class="w">
+</span>    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">fh</span><span class="p">)</span>
+</pre>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/casa-logfiles-tclean-from-pysynthesisimager.html" rel="bookmark" title="Permalink to CASA: Logfiles & tclean from pysynthesisimager">
+                    CASA: Logfiles &amp; tclean from pysynthesisimager</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2020-05-09T14:59:00-06:00"> 2020/05/09 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>A few brief notes I don't want to forget, so I'm posting them here:</p>
+<p>The name of the log file being used by the currently active CASA session is in <tt class="docutils literal">casalog.logfile()</tt>.</p>
+<p>I'm trying to get the pysynthesisimager version of tclean to work.  This is, in
+theory, &quot;exactly the same thing as tclean&quot;, except you (the user) have the
+ability to control individual steps.  The process is documented in the <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-task-list/task_tclean/examples">tclean documentation
+under examples</a>.</p>
+<p>However, it is not a one-to-one mapping.  <tt class="docutils literal">tclean</tt> is not implemented using the exact script quoted
+in the examples.  The differences are the variety that shouldn't matter but inevitably do.</p>
+<p>I'm working on a translation of <tt class="docutils literal">tclean</tt>'s input parameters to
+<tt class="docutils literal">pysynthesisimager</tt>'s, but it's not complete:
+<a class="reference external" href="https://gist.github.com/keflavich/a9953c88cbe098b5e9bb4bdac6485f09">https://gist.github.com/keflavich/a9953c88cbe098b5e9bb4bdac6485f09</a></p>
+<p>That was dumb anyway, because
+<a class="reference external" href="https://github.com/radio-astro/casa/blob/master/gcwrap/python/scripts/task_tclean.py">https://github.com/radio-astro/casa/blob/master/gcwrap/python/scripts/task_tclean.py</a>
+does everything I really needed.</p>
+<p>My version saves the image, residual, and model at each major cycle.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+            <a href="https://keflavich.github.io/blog/category/misc.html">&laquo;</a>
+    Page 2 / 25
+        <a href="https://keflavich.github.io/blog/category/misc3.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

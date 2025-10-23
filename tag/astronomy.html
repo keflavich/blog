@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - astronomy</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2012/10/05
+                  <br>
+                  <a href="https://keflavich.github.io/blog/using-guider-images-to-achieve-arcsecond-pointing-accuracy.html">Using Guider images to achieve ~arcsecond pointing accuracy</a>
+              </li>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/6-on-astro-ph-today.html">#6 on Astro-ph today</a>
+              </li>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/acquiring-dss-images.html">Acquiring DSS images</a>
+              </li>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/astro-better-post.html">astro-better post</a>
+              </li>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/awk-sexagesimal-to-decimal-conversion.html">Awk sexagesimal to decimal conversion</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/using-guider-images-to-achieve-arcsecond-pointing-accuracy.html" rel="bookmark" title="Permalink to Using Guider images to achieve ~arcsecond pointing accuracy">
+                    Using Guider images to achieve ~arcsecond pointing accuracy</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-10-05T14:46:00-06:00"> 2012/10/05 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <div dir="ltr" style="text-align: left;"><p>One of the challenges of observing in the near-IR / optical is field
+identification. In the case of the Apache Point Observatory 3.5m, the
+&quot;raw&quot; pointing - i.e., if you enter a coordinate and press &quot;slew&quot; - is
+usually good to within ~1 arcminute. However, once you're on the target
+field, it's up to you as the observer to identify the exact location
+within the 5x5' field to observe.
+This proves quite challenging in crowded fields, especially with
+rotation. It is far more difficult, though, in sparse fields when your
+target is a faint emission line feature - there will be no corresponding
+light in your guider image. But you still want ~arcsecond pointing
+accuracy.
+I think this can be achieved by using the astrometry.net source
+recognition and field identification tools, but highly constrained to be
+within ~10' of the target field. The WCS coordinates would then be
+applied to the guider image, and the target location identified and
+translated into a telescope pointing offset.
+This technique is probably not needed for most spectroscopic
+observations (e.g., of bright point sources). However, for
+slit-scan-mapping or observations of faint point sources, this approach
+provides the opportunity to do fast-switching with a bright calibration
+star so that telluric correction can be provided on a short (~5-10
+minute) timescale, as is needed for truly accurate calibration.</p>
+</div></p> </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/6-on-astro-ph-today.html" rel="bookmark" title="Permalink to #6 on Astro-ph today">
+                    #6 on Astro-ph today</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a class="reference external" href="http://arxiv.org/abs/0910.2990">IRAS 05358 on astro-ph</a>. Check out <a class="reference external" href="http://casa.colorado.edu/~ginsbura/iras05358.htm">my page on the region</a> too.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/acquiring-dss-images.html" rel="bookmark" title="Permalink to Acquiring DSS images">
+                    Acquiring DSS images</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>This is the way to get DSS images:
+<a class="reference external" href="http://archive.eso.org/cms/tools-documentation/the-eso-st-ecf-digitized-sky-survey-application">ESO's batch downloader</a></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/astro-better-post.html" rel="bookmark" title="Permalink to astro-better post">
+                    astro-better post</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I <a class="reference external" href="http://www.astrobetter.com/analysis/better-ways-to-make-large-image-mosiacs/">contributed to a post</a> on <a class="reference external" href="http://www.astrobetter.com/">Astro Better</a> asking about mosaicing
+software.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/awk-sexagesimal-to-decimal-conversion.html" rel="bookmark" title="Permalink to Awk sexagesimal to decimal conversion">
+                    Awk sexagesimal to decimal conversion</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In VIM I often need to convert columns of RA/Dec from Sexagesimal into
+Decimal format.
+<tt class="docutils literal">%!awk '{ra = <span class="pre">($2+$3/60+$4/3600)*15;</span> dec = <span class="pre">$6+$7/60+$8/3600;</span> print <span class="pre">$1,&quot;ra=&quot;,ra,&quot;,</span>&nbsp; dec=&nbsp; <span class="pre">&quot;,$5,dec}'</span></tt>
+The far more irritating inverse operation:
+`` %!awk '{h=($2/15); h=h-(h%1);  m=($2-h*15)/15*60; m=m-(m%1); s=($2-h*15-m*15/60)/15*3600; d=-($3-$3%1); am=(-$3-d)*60; am=am-(am%1); as=(-$3-d-am/60)*3600; printf &quot;%s  %02i:%02i:%02.2f,  -%02i:%02i:%02.2f   %s  %s  %sn&quot; , $1,h,m,s,d,am,as,$4,$5,$6}'   ``</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/evla-information.html" rel="bookmark" title="Permalink to EVLA information">
+                    EVLA information</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>It has been really hard to find EVLA information like beam size, largest
+angular scale, sensitivity, etc. on the VLA pages because all of the
+google searches point to old VLA information. The most useful and recent
+<a class="reference external" href="http://evlaguides.nrao.edu/index.php?title=Category:Status">EVLA information on beam size and largest angular scale is here</a></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/first-paper-accepted.html" rel="bookmark" title="Permalink to First paper accepted">
+                    First paper accepted</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a class="reference external" href="http://casa.colorado.edu/~ginsbura/iras05358.htm">My Comps II paper on IRAS 05358+3543</a> was accepted by ApJ on
+Wednesday. It will show up on arxiv in a few days and I'll post the link
+then. Unfortunately, there were significant problems rendering the
+paper, so I recommend downloading my version.
+Also, working on the HISA KDA... <a class="reference external" href="http://eta.colorado.edu/cutouts/">I have a nice section of cutouts</a></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/galaxy-map.html" rel="bookmark" title="Permalink to Galaxy Map">
+                    Galaxy Map</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>If you're ever interested in seeing a face-on view of the Milky Way,
+check out the <a class="reference external" href="http://www.spitzer.caltech.edu/Media/releases/ssc2008-10/index.shtml">Spitzer press release</a>. This link is very surprisingly
+hard to find on google.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/idl-to-python.html" rel="bookmark" title="Permalink to IDL-to-Python">
+                    IDL-to-Python</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>astrobetter started up an <a class="reference external" href="http://www.astrobetter.com/wiki/tiki-index.php?page=Python+Switchers+Guide">idl-to-python guide</a> on their wiki.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/lunar-occultation-hi-res-measurements.html" rel="bookmark" title="Permalink to Lunar Occultation Hi-Res measurements">
+                    Lunar Occultation Hi-Res measurements</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The folks at the VLT have come up with a means of achieving extremely
+high resolution from the ground: Observe when the moon occults a source
+and how long the occultation takes. Sweet.
+This was applied in the galactic center first, of course:
+<a class="reference external" href="http://arxiv.org/abs/0807.2646">Observations of binaries in GC</a>
+<a class="reference external" href="http://arxiv.org/abs/0807.2650">Additional observations in GC</a></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 3
+        <a href="https://keflavich.github.io/blog/tag/astronomy2.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

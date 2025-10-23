@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://keflavich.github.io/blog/bolocat-v1-vs-v2.html" rel="bookmark"
+         title="Permalink to Bolocat V1 vs V2">Bolocat V1 vs V2</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2012-05-24T17:59:00-06:00">
+      2012/05/24
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>I've done some very extensive comparison of v1 and v2. The plots below
+are included in the current BGPS draft, but I'll go into more excessive
+detail here. ALL plots below show Version 1 fluxes versus Version 2
+fluxes using Bolocat V1 apertures. This means there are only two
+possible effects in play:</p>
+<ol class="arabic simple">
+<li>Different fluxes in the v1 and v2 maps</li>
+<li>Pointing (spatial) offsets between the v1 and v2 maps
+[see&nbsp;<a class="reference external" href="http://bolocam.blogspot.com/2012/05/bgps-v2-pointing.html">http://bolocam.blogspot.com/2012/05/bgps-v2-pointing.html</a>]</li>
+</ol>
+<p>Therefore, the plots below are just different ways of visualizing the
+same information. This holds true despite the fact that different
+&quot;correction factors&quot; appear in different plots.</p>
+<img alt="" src="http://3.bp.blogspot.com/-gGL8rEcNr20/T75tzRC4dJI/AAAAAAAAHHM/A8KeWkBtfmc/s320/total_ratiohistograms.png" />
+<p>Ratios of v2 fluxes to v1 fluxes in the listed apertures. The curves
+represent best-fit gaussian distributions to the data after excluding
+outliers using a <a class="reference external" href="http://scikit-learn.org/dev/modules/generated/sklearn.covariance.MinCovDet.html">minimum covariance determinant</a> method</p>
+<p>v1 vs v2 with a background subtracted around the source equal to the source
+area (this was not reported in Bolocat v1, but is a tool Erik implemented so I
+used it)</p>
+<p>v1 vs v2 in 40&quot; apertures, as stated. &nbsp;There are y=x and y=1.5x lines plotted:
+these are NOT fits to the data! &nbsp;The green line is a Total Least Squares linear
+fit to the data weighted by the measured errors.</p>
+<p>Source Mask &quot;aperture&quot;:</p>
+<img alt="" src="http://1.bp.blogspot.com/-YS2Jtvz4Yy0/T75pixKkYsI/AAAAAAAAHFs/iEJHrsKsBk0/s320/total_v1v2_sourcemask_bg_fit_compare.png" />
+<img alt="" src="http://1.bp.blogspot.com/-g-ZbEUUWEpY/T75pjj26FeI/AAAAAAAAHGE/rtdSRgoMQpo/s320/total_v1v2_sourcemask_fit_compare.png" />
+<p>Same as above, but the best fit slope is steeper. The best explanation
+for the steeper slope (i.e., v2 &gt; 1.5(v1)) is that more extended flux is
+recovered in v2 around bright sources, therefore in the larger source
+masks, there is greater flux than would be recovered if a simple 1.5x
+corrective factor was applied.
+80&quot; apertures</p>
+<img alt="" src="http://2.bp.blogspot.com/-WKtlvnFbUF4/T75piyh8tVI/AAAAAAAAHF4/FROq508X6pU/s320/total_v1v2_80arcsec_fit_compare.png" />
+<img alt="" src="http://1.bp.blogspot.com/-EHGNHIarslc/T75yqG_AmFI/AAAAAAAAHJg/ToAicG9ynmk/s320/total_v1v2_80_nobgarcsec_fit_compare.png" />
+<p>Same for 120&quot; apertures:</p>
+<img alt="" src="http://1.bp.blogspot.com/-ymBFW1Y5OhY/T75piwFYrJI/AAAAAAAAHFw/07ujRFCd_Ts/s320/total_v1v2_120arcsec_fit_compare.png" />
+<img alt="" src="http://3.bp.blogspot.com/-PMkvtoJKNVs/T75yqPe16PI/AAAAAAAAHJk/QF041ok8yQ0/s320/total_v1v2_120_nobgarcsec_fit_compare.png" />
+<p>For all 3 of the 40, 80 and 120&quot; apertures both, the 1.5x correction
+factor is nearly perfect (agrees to &lt;5%). &nbsp;The background subtraction
+seems to have different effects depending on aperture size. &nbsp;I welcome
+Erik to comment on this, but I do not think it is particularly
+important.
+The figures below require some explanation. &nbsp;NONE of the circular
+apertures use background subtraction in this comparison (i.e., compare
+to the RIGHT column above).
+These figures are histograms of the flux ratio within a given aperture
+as a function of flux in the v1 aperture. &nbsp;From bottom to top, the flux
+in the v1 aperture goes from 0.1 to 10 Jy. &nbsp;The X-axis shows the ratio
+of the v2 flux to the v1 flux. &nbsp;The black dots with error bars represent
+the best-fit gaussian distribution to each flux bin. &nbsp;The colorbar shows
+the log of the number of sources; the most in any bin is about
+10<sup>2.5</sup> ~ 300.
+In short, there is some sign that the ratio of v2/v1 flux varies with v1
+flux. &nbsp;This effect could be seen in the figures above since a linear fit
+is imperfect. &nbsp;The effect is not very strong. &nbsp;Again, I believe the
+explanation here is the changed spatial transfer function in v2.</p>
+<img alt="" src="http://3.bp.blogspot.com/-bfrjMd2veR0/T75pzxm5_xI/AAAAAAAAHGs/SQ1LDR8_EoM/s320/ratio_twodhist_40.png" />
+<img alt="" src="http://4.bp.blogspot.com/-unXyfhsIL1g/T75pkN6kWkI/AAAAAAAAHGQ/axiiWsEMO0M/s320/ratio_twodhist_80.png" />
+<img alt="" src="http://2.bp.blogspot.com/-kJEMLqkaQak/T75pkNu78XI/AAAAAAAAHGM/Dh2T4m0cD-8/s320/ratio_twodhist_120.png" />
+<img alt="" src="http://4.bp.blogspot.com/-ExDpIxfHO74/T75pkjjeKAI/AAAAAAAAHGk/pU3mE5uzcgM/s320/ratio_twodhist_sourcemask_nobg.png" />
+<img alt="" src="http://3.bp.blogspot.com/-Pru74WRl-Hg/T75pkOL1YWI/AAAAAAAAHGU/qtrMl-w59SA/s320/ratio_twodhist_sourcemask.png" />
+
+  </div><!-- /.entry-content -->
+</section>
+
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</section>
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  var disqus_identifier = '/bolocat-v1-vs-v2.html';
+  var disqus_url = 'https://keflavich.github.io/blog/bolocat-v1-vs-v2.html';
+  var disqus_title = 'Bolocat V1 vs V2';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

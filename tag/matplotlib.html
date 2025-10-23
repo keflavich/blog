@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - matplotlib</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/filled-step-plots-in-matplotlib.html">Filled step plots in matplotlib</a>
+              </li>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/finally-got-matplotlib-to-install.html">finally got matplotlib to install...</a>
+              </li>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/logarithmic-colormap-other-colormap-in-matplotlib.html">Logarithmic Colormap / Other Colormap in Matplotlib</a>
+              </li>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/matplotlib-64-bit-installs-never-work.html">matplotlib 64 bit installs never work</a>
+              </li>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/usetex-failure-in-latex-documents.html">usetex failure in latex documents</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/filled-step-plots-in-matplotlib.html" rel="bookmark" title="Permalink to Filled step plots in matplotlib">
+                    Filled step plots in matplotlib</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><p>It's not possible to do a simple filled step plot in matplotlib using
+default
+commands. Workaround:</p>
+<pre class="literal-block">
+def steppify(arr,isX=False,interval=0):    &quot;&quot;&quot;    Converts an array to double-length for step plotting    &quot;&quot;&quot;    if isX and interval==0:        interval = abs(arr[1]-arr[0]) / 2.0        newarr = array(zip(arr-interval,arr+interval)).ravel()        return newarrplot(xx,yy,linestyle='steps-mid',color='b',linewidth=1.5)fill_between(steppify(xx[x1:x2],isX=True),    steppify(yy[x1:x2])*0,    steppify(yy[x1:x2]),    facecolor='b',alpha=0.2)
+</pre>
+</p> </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/finally-got-matplotlib-to-install.html" rel="bookmark" title="Permalink to finally got matplotlib to install...">
+                    finally got matplotlib to install...</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>the key is reading the readme, not just the make.osx file.</p>
+<p>These commands Just Work:
+<tt class="docutils literal">make <span class="pre">-f</span> make.osx PYVERSION=2.6 <span class="pre">PREFIX=/Users/adam/repos/mpl_dependencies/</span> fetch deps mpl_install_stdmake <span class="pre">-f</span> make.osx PYVERSION=2.7 <span class="pre">PREFIX=/Users/adam/repos/mpl_dependencies/</span> fetch deps mpl_install_std</tt></p>
+<p>while, e.g., this one:
+<tt class="docutils literal">make <span class="pre">-f</span> make.osx PYVERSION=2.6 <span class="pre">PREFIX=/Users/adam/repos/mpl_dependencies/</span> fetch deps mpl_install</tt>
+didn't. I guess because that one doesn't actually install anything.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/logarithmic-colormap-other-colormap-in-matplotlib.html" rel="bookmark" title="Permalink to Logarithmic Colormap / Other Colormap in Matplotlib">
+                    Logarithmic Colormap / Other Colormap in Matplotlib</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>This is kind of a pain to find out:
+<tt class="docutils literal">from matplotlib.colors import LogNormim = <span class="pre">imshow(....</span> <span class="pre">cmap=...</span> , norm=LogNorm(vmin=clevs[0], <span class="pre">vmax=clevs[-1]))</span> ``
+It also works for contours, and can be particularly useful if you only
+want to display contours at a few levels, but you want the colormap to
+start at a different point. e.g.:
+<span class="pre">``contour(xx,levels=[2,3,4,5,6,7,8,9,10],norm=matplotlib.colors.Normalize(vmin=0,vmax=10))</span></tt>
+will start at light blue instead of dark blue in the default colormap</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/matplotlib-64-bit-installs-never-work.html" rel="bookmark" title="Permalink to matplotlib 64 bit installs never work">
+                    matplotlib 64 bit installs never work</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>a clue as to why:
+functional ft2font.so:
+<tt class="docutils literal">$ otool <span class="pre">-L</span> <span class="pre">/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/matplotlib/ft2font.so</span> <span class="pre">/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/matplotlib/ft2font.so:</span> /usr/local/lib/libfreetype.6.dylib (compatibility version 10.0.0, current version 10.22.0) /usr/lib/libz.1.dylib (compatibility version 1.0.0, current version 1.2.3) <span class="pre">/usr/local/lib/libstdc++.6.dylib</span> (compatibility version 7.0.0, current version 7.14.0) /usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 125.2.11)</tt>
+nonfunctional ft2font.so:
+<tt class="docutils literal">$ otool <span class="pre">-L</span> <span class="pre">/Users/adam/repos/yt/yt-i386/lib/python2.7/site-packages/matplotlib/ft2font.so/Users/adam/repos/yt/yt-i386/lib/python2.7/site-packages/matplotlib/ft2font.so:</span> <span class="pre">/Users/adam/repos/yt/yt-i386/lib/libfreetype.6.dylib</span> (compatibility version 13.0.0, current version 13.2.0) <span class="pre">/Users/adam/repos/yt/yt-i386//lib/libz.1.dylib</span> (compatibility version 1.0.0, current version 1.2.3) <span class="pre">/usr/local/lib/libstdc++.6.dylib</span> (compatibility version 7.0.0, current version 7.14.0) /usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 125.2.11) /usr/local/lib/libgcc_s.1.dylib (compatibility version 1.0.0, current version 1.0.0)</tt>
+The culprit is the difference between those two (maybe?):
+<tt class="docutils literal">$ file /usr/local/lib/libgcc_s.1.dylib/usr/local/lib/libgcc_s.1.dylib: <span class="pre">Mach-O</span> universal binary with 4 architectures/usr/local/lib/libgcc_s.1.dylib (for architecture i386): <span class="pre">Mach-O</span> dynamically linked shared library i386/usr/local/lib/libgcc_s.1.dylib (for architecture x86_64): <span class="pre">Mach-O</span> <span class="pre">64-bit</span> dynamically linked shared library x86_64/usr/local/lib/libgcc_s.1.dylib (for architecture ppc): <span class="pre">Mach-O</span> dynamically linked shared library ppc/usr/local/lib/libgcc_s.1.dylib (for architecture ppc64): <span class="pre">Mach-O</span> <span class="pre">64-bit</span> dynamically linked shared library ppc64$ otool <span class="pre">-L</span> /usr/local/lib/libgcc_s.1.dylib/usr/local/lib/libgcc_s.1.dylib: /usr/local/lib/libgcc_s.1.dylib (compatibility version 1.0.0, current version 1.0.0) /usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 88.3.9)</tt></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/usetex-failure-in-latex-documents.html" rel="bookmark" title="Permalink to usetex failure in latex documents">
+                    usetex failure in latex documents</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>When I use matplotlib's internal tex (rcParams['text.useTex']=False),
+the postscript files generated cause errors that look like this when you
+try to ps2pdf them:
+<tt class="docutils literal">ps2pdf h2co_pilot.psError: /rangecheck in <span class="pre">--get--Operand</span> stack:&nbsp;&nbsp; <span class="pre">--dict:20/25(ro)(L)--</span>&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; 71Execution stack:&nbsp;&nbsp; %interp_exit&nbsp;&nbsp; .runexec2&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; 2&nbsp;&nbsp; %stopped_push&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; false&nbsp;&nbsp; 1&nbsp;&nbsp; %stopped_push&nbsp;&nbsp; 1862&nbsp;&nbsp; 1&nbsp;&nbsp; 3&nbsp;&nbsp; %oparray_pop&nbsp;&nbsp; 1861&nbsp;&nbsp; 1&nbsp;&nbsp; 3&nbsp;&nbsp; %oparray_pop&nbsp;&nbsp; 1845&nbsp;&nbsp; 1&nbsp;&nbsp; 3&nbsp;&nbsp; %oparray_pop&nbsp;&nbsp; 1739&nbsp;&nbsp; 1&nbsp;&nbsp; 3&nbsp;&nbsp; %oparray_pop&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; %errorexec_pop&nbsp;&nbsp; .runexec2&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; 2&nbsp;&nbsp; %stopped_push&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; %finish_show&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; 9&nbsp;&nbsp; 6&nbsp;&nbsp; 0&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; (pdf_text_enum_t)&nbsp;&nbsp; %op_show_continue&nbsp;&nbsp; <span class="pre">--nostringval--Dictionary</span> stack:&nbsp;&nbsp; <span class="pre">--dict:1147/1684(ro)(G)--</span>&nbsp;&nbsp; <span class="pre">--dict:0/20(G)--</span>&nbsp;&nbsp; <span class="pre">--dict:70/200(L)--</span>&nbsp;&nbsp; <span class="pre">--dict:116/300(L)--</span>&nbsp;&nbsp; <span class="pre">--dict:44/200(L)--</span>&nbsp;&nbsp; <span class="pre">--dict:25/42(L)--Current</span> allocation mode is localLast OS error: 2Current file position is 791626GPL Ghostscript 8.64: Unrecoverable error, exit code 1make: *** [h2co_pilot.pdf] Error 1</tt>
+They will not open in MacOS's Preview.app either.
+Solution: Make figures with rcParams['text.useTex'] = True</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

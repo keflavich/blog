@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - alignment</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2012/09/08
+                  <br>
+                  <a href="https://keflavich.github.io/blog/cross-correlation-offsets-revisited.html">Cross-Correlation Offsets Revisited</a>
+              </li>
+              <li class="post">
+                  2009/01/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/uh.html">Uh?</a>
+              </li>
+              <li class="post">
+                  2008/09/16
+                  <br>
+                  <a href="https://keflavich.github.io/blog/scripting-the-whole-survey.html">Scripting the Whole Survey</a>
+              </li>
+              <li class="post">
+                  2008/09/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alignment-success-stories.html">Alignment success stories</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/cross-correlation-offsets-revisited.html" rel="bookmark" title="Permalink to Cross-Correlation Offsets Revisited">
+                    Cross-Correlation Offsets Revisited</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-08T08:06:00-06:00"> 2012/09/08 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Since last time (<a class="reference external" href="http://bolocam.blogspot.com/2009/03/43-relative-alignment-and-mosaicing.html">Taylor Expansion &amp; Cross
+Correlation</a><a class="reference external" href="http://bolocam.blogspot.com/2012/03/new-coalignment-code.html">,</a><a class="reference external" href="http://bolocam.blogspot.com/2012/03/new-coalignment-code.html">Coalignment Code</a>), I have attempted to re-do the
+cross-correlation with an added component: error estimates.
+It turns out, there is a better method than the Taylor-expansion around
+the cross-correlation peak. &nbsp;Fourier upsampling can be used to
+efficiently determine precise sub-pixel offsets (<a class="reference external" href="http://www.mathworks.com/matlabcentral/fileexchange/18401-efficient-subpixel-image-registration-by-cross-correlation/content/html/efficient_subpixel_registration.html">matlab version</a>,
+<a class="reference external" href="http://people.web.psi.ch/guizar_m/main/">Manuel Guizar, author</a>, <a class="reference external" href="http://www.opticsinfobase.org/view_article.cfm?gotourl=http%3A%2F%2Fwww%2Eopticsinfobase%2Eorg%2FDirectPDFAccess%2F6C566DF3-B5C5-B342-97F01180999C7632_148843%2Fol-33-2-156%2Epdf%3Fda%3D1%26id%3D148843%26seq%3D0%26mobile%3Dno&amp;org=University%20of%20Colorado%20at%20Boulder%20Library">refereed article</a>).
+However, in the published methods just cited, there is no way to
+determine the error - those algorithms are designed to measure offsets
+between identical images corrupted by noise but still strongly dominated
+by signal.
+We're more interested in the case where individual pixels may well be
+noise-dominated, but the overall signal in the map is still large.
+So, I've developed a python translation of the above codes and then
+some.
+<a class="reference external" href="https://github.com/keflavich/image_registration">Image Registration on github</a>
+The docstrings are pretty solid, but there is no overall documentation.
+However, there's a pretty good demo of the simulation AND fitting code
+here:
+<a class="reference external" href="https://github.com/keflavich/image_registration/blob/master/doc/CrossCorrelationSimulation.pdf?raw=true">Tests and Examples</a>
+The results for the Bolocam data are here (only applied to v2-Herschel
+offsets):</p>
+<img alt="" src="http://2.bp.blogspot.com/-PMJx-wX23w8/UErt7G3PqfI/AAAAAAAAHOQ/-5xD6ReBRGs/s320/Offsets_XYplot.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/uh.html" rel="bookmark" title="Permalink to Uh?">
+                    Uh?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-01-15T18:22:00-07:00"> 2009/01/15 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm not sure the error reported yesterday is reproducible.
+Tonight, I started a complete re-mapping of the entire survey. The new
+mapping will include beam-smoothed maps and more complete header
+parameters.
+I need to re-check the L111 mapping. It looks like the region with NGC
+7538 in it did alright, but the southeast region didn't do so well. The
+combined maps are probably better than in any previous iteration,
+though.
+Tomorrow's tests will include L024 presumably.
+It's time to get to work on this stuff. There is definitely a reasonably
+efficient way to go through all of this stuff; the most difficult part
+is post-facto error checking.
+Here are some awk commands I found useful (the \'s are because of VI):
+`` awk '{printf( $0); if ($2 != 0){ printf(&quot; %4i%4i&quot;,$4-443,$5-207) }; if($4!=0){printf(&quot; %4i,%4i&quot;,$2-272,$3-742)}; printf(&quot;n&quot;) }' align/l111_fitslist_shiftfind.txt``
+<tt class="docutils literal">awk '{print <span class="pre">$6,$7}'</span> align/l111_fitslist_shiftfind.txt &gt; align/shifts_all_lb.txt</tt>
+One important point: I had to add a parameter to the header file to say
+whether the current pointing model was used or not. It matters when
+applying the offsets. Note that since I'm using the pointing model to
+make all the individual maps, we actually have to stick with this
+current set of pointing models for all coaligned maps.
+The current models:</p>
+<pre class="literal-block">
+#   Definition of coefficientts:#   start/end mjd are the start/end modified Julian date of a given pointing model#   the 'a' coefficients are for the AZIMUTH OFFSET, the b coefficients are for the ZENITH ANGLE OFFSET#   a0/b0 are constants (e.g. the mean)#   [ab][12] are the 1st and 2nd coefficients of Azimuth.  They have been fiated to zero for most of#   the past year or three.#   [ab][34] are the 1st and 2nd coefficients of Zenith Angle.#   A 'pointing model' is therefore something like this:#   azoff = a0 + a3*alt + a4*alt^2#   altoff = b0 + b3*alt + b4*alt^2##   It is important that the start_mjd/end_mjd be in ascending order##   WARNING: LATER THAN JULY 2007 DEFAULTS TO JULY 2007 WHICH WILL PROBABLY RESULT IN ERRORS!#   I don't have a September 2007 model yet.##   start_mjd      end_mjd               a0              a1            a2              a3             a4                 b0             b1             b2             b3                b4       realdate      53522.5      53582.5       -9.2413685             0.0           0.0   -0.0066354359  -0.0015110883          7.0392221            0.0            0.0   -0.053635657    -0.00047042481       20050601      53614.5      53643.5        84.969583             0.0           0.0      -2.4339154    0.016300937          126.00164            0.0            0.0     -2.4424431       0.015455417       20050901      53887.5      53947.5        9.5305281             0.0           0.0    -0.053191181  -0.0029300592         0.13425019            0.0            0.0     0.48160040     -0.0092814256       20060601      53979.5      54008.5       -98.980381             0.0           0.0      0.65354164   -0.012414466          52.841380            0.0            0.0      1.6705743      -0.020893018       20060901      54101.5      54252.5       -99.078392             0.0           0.0        0.105270   -0.005943491          86.896333            0.0            0.0     0.54257415      -0.011919129       20070101      54252.5      54288         -103.03831             0.0           0.0      0.20972540  -0.0060336987          100.74491            0.0            0.0   0.0099012827     -0.0033331895       20070601#      54288        54313         -99.078392             0.0           0.0      0.10527000  -0.0059434911          86.896333            0.0            0.0     0.54257415      -0.011919129       20070707      54288        54313         -98.803883             0.0           0.0      0.11810246  -0.0051207995          91.720516            0.0            0.0     0.18953269      -0.0078189793       20070707      54313        54500         -99.078392             0.0           0.0      0.10527000  -0.0059434911          86.896333            0.0            0.0     0.54257415      -0.011919129       20070707mjd2date,53522.5 ,y,m,d &amp; print,y,m,dmjd2date,53614.5 ,y,m,d &amp; print,y,m,dmjd2date,53887.5 ,y,m,d &amp; print,y,m,dmjd2date,53979.5 ,y,m,d &amp; print,y,m,dmjd2date,54101.5 ,y,m,d &amp; print,y,m,dmjd2date,54252.5 ,y,m,d &amp; print,y,m,dmjd2date,54288   ,y,m,d &amp; print,y,m,d
+</pre>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/scripting-the-whole-survey.html" rel="bookmark" title="Permalink to Scripting the Whole Survey">
+                    Scripting the Whole Survey</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-09-16T00:43:00-06:00"> 2008/09/16 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>First, discovered more fields with some sort of failure:</p>
+<pre class="literal-block">
+ls -d l[0-3][0-9][0-9] | sed 's:\(.*\):ls \1/*_map01.fits &gt; \1/\1_infile.txt:' | bashls: l004/*_map01.fits: No such file or directoryls: l017/*_map01.fits: No such file or directoryls: l025/*_map01.fits: No such file or directoryls: l108/*_map01.fits: No such file or directoryls: l135/*_map01.fits: No such file or directoryls: l136/*_map01.fits: No such file or directoryls: l137/*_map01.fits: No such file or directoryls: l138/*_map01.fits: No such file or directoryls: l192/*_map01.fits: No such file or directory
+</pre>
+<p>Also, that command was a total screwup.</p>
+<pre class="literal-block">
+ls -d l[0-3][0-9][0-9] | sed 's:\(.*\):ls /scratch/adam_work/\1/*_map01.fits &gt; \1/\1_fitslist.txt:' | bashls: /scratch/adam_work/l004/*_map01.fits: No such file or directoryls: /scratch/adam_work/l017/*_map01.fits: No such file or directorybash: line 12: l020/l020_fitslist.txt: Permission deniedls: /scratch/adam_work/l025/*_map01.fits: No such file or directoryls: /scratch/adam_work/l108/*_map01.fits: No such file or directoryls: /scratch/adam_work/l135/*_map01.fits: No such file or directoryls: /scratch/adam_work/l136/*_map01.fits: No such file or directoryls: /scratch/adam_work/l137/*_map01.fits: No such file or directoryls: /scratch/adam_work/l138/*_map01.fits: No such file or directoryls: /scratch/adam_work/l192/*_map01.fits: No such file or directory
+</pre>
+<p>Now that those files exist, it should be possible to run a set of
+super-scripts like this:
+coalign_field,'l057','070719_o29',sliced_dir='sliced_polychrome',premap=0
+coalign_field,'l351','070725_ob3'
+coalign_field,'l354','070724_o10'
+coalign_field,'l357','070724_ob3'
+coalign_field,'l000','070719_o14'
+coalign_field,'l003','070718_o16'
+coalign_field,'l006','070715_ob5'
+coalign_field,'l009','070717_ob5'
+coalign_field,'l012','070715_o10'
+coalign_field,'l015','070714_o36'
+coalign_field,'l018','070717_o10'
+coalign_field,'l021','070715_o15'
+coalign_field,'l024','070717_o15'
+coalign_field,'l027','070715_o20'
+coalign_field,'l030','070717_o20'
+coalign_field,'l033','070718_ob5',sliced_dir='sliced_polychrome'
+coalign_field,'l036','070715_o25',sliced_dir='sliced_polychrome'
+coalign_field,'l039','070717_o25',sliced_dir='sliced_polychrome'
+coalign_field,'l042','070715_o30',sliced_dir='sliced_polychrome'
+coalign_field,'l044','070718_o24',sliced_dir='sliced_polychrome'
+coalign_field,'l048','070717_o30',sliced_dir='sliced_polychrome'
+coalign_field,'l050','070718_o29',sliced_dir='sliced_polychrome'
+coalign_field,'l054','070724_o28',sliced_dir='sliced_polychrome'
+coalign_field,'l057','070719_o29',sliced_dir='sliced_polychrome'
+where premap=0 means I'm not re-mapping the whole field, the
+sliced_dir='slice_polychrome' keyword is for those fields that do not
+have a regular sliced directory.
+This kind of thing ought to be really, really helpful when mapping the
+fields whose masters are not in the field: I'll have to modify the
+'coalign_field' code to search in a different directory, though.
+Yearghhh.... last command was bad too.</p>
+<pre class="literal-block">
+ls -d l[0-3][0-9][0-9] | sed 's:\(.*\):ls /scratch/adam_work/\1/0*_map01.fits &gt; \1/\1_fitslist.txt:' | bashls: /scratch/adam_work/l004/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l017/0*_map01.fits: No such file or directorybash: line 12: l020/l020_fitslist.txt: Permission deniedls: /scratch/adam_work/l025/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l108/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l135/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l136/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l137/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l138/0*_map01.fits: No such file or directoryls: /scratch/adam_work/l192/0*_map01.fits: No such file or directory
+</pre>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/alignment-success-stories.html" rel="bookmark" title="Permalink to Alignment success stories">
+                    Alignment success stories</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-09-15T04:33:00-06:00"> 2008/09/15 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/SM3ki00LXOI/AAAAAAAADYA/5izD0hrve40/s400/l111_align_success.jpg" />
+<img alt="" src="http://4.bp.blogspot.com/_lsgW26mWZnU/SM3krUz_JTI/AAAAAAAADYI/uzayPOqbiss/s400/l024_align_success.jpg" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/SM3krkSjAGI/AAAAAAAADYQ/ZOoWxknrDDA/s400/l024_align_failure.jpg" />
+<p>Two success stories, one failure story.</p>
+<p>Successes: L111, L024. On the left is the aligned map, on the right the
+unaligned map.</p>
+<p>Failure: L024. What's going on here? Is it an issue of that noisy
+observation, or the fact that we're using a 5x1 (I think?) as a
+reference?</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

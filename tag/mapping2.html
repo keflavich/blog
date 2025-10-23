@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - mapping</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2012/03/31
+                  <br>
+                  <a href="https://keflavich.github.io/blog/getting-rid-of-haloes.html">Getting rid of haloes</a>
+              </li>
+              <li class="post">
+                  2011/03/24
+                  <br>
+                  <a href="https://keflavich.github.io/blog/a-workaround-for-individual-maps.html">A workaround for individual maps?</a>
+              </li>
+              <li class="post">
+                  2011/02/07
+                  <br>
+                  <a href="https://keflavich.github.io/blog/making-maps-faster.html">Making maps faster</a>
+              </li>
+              <li class="post">
+                  2011/02/03
+                  <br>
+                  <a href="https://keflavich.github.io/blog/delining-maps.html">Delining - Maps</a>
+              </li>
+              <li class="post">
+                  2011/01/21
+                  <br>
+                  <a href="https://keflavich.github.io/blog/more-evidence-that-downsampling-causes-problems.html">More evidence that downsampling causes problems</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/new-mapping-procedure.html" rel="bookmark" title="Permalink to New mapping procedure">
+                    New mapping procedure</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-01-15T18:21:00-07:00"> 2009/01/15 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I cut down the number of maps made by the pipeline from 80 to 30 by
+merging regions with severe overlap. I don't think this will result in
+any net change in efficiency of the mapping process because a few of the
+maps will go over to swap, but it will reduce the amount of overlap /
+noisy edges and make debugging simpler. It should also reduce hard drive
+usage once I decide that I'm satisfied with the results and remove the
+old (v0.6) redundant data.
+As part of this process, the reference fields for coalignment have been
+re-set to the v0.6.2 coadds + some (crappy) mosaics from v0.6.2 so that
+we no longer need to rely on 3x1's for the alignment.
+See /data/bgps/releases/v0.7/readme.txt for details (reproduced below)
+Created 01/14/09
+Version 0.7 does not exist yet. This is the 'release notes' indicating
+what will change
+-Overlapping redundant fields will be eliminated
+Mapping of field name to area covered, followed by number of
+observations
+included:
+gemob1: l189-l192 11 - 2 = 9
+w5: l135-l138 46 = 46
+l133: l133-l134 34 - 1 = 33
+l111: l110-l111 88 = 88
+l086: l085-l086 17 = 17
+l082: l080-l084 33 = 33
+l077: l075-l080 43 - 1 = 42
+l072: l070-l074 10 - 2 = 8
+l065: l059-l069 19 = 19
+l055: l053-l058 10 - 1 = 9
+l050: l048-l052 19 = 19
+l045: l043-l047 20 - 4 = 16
+l040: l038-l042 33 - 4 = 27
+l035: l034-l037 53 = 53
+l032: l031-l033 61 = 61
+l030: l030 61 - 3 = 58
+l029: l028-l029 53 - 4 = 49
+l024: l021-l027 29 = 29
+l018: l015-l021 29 - 3 = 26
+l012: l011-l014 7 = 7
+l009: l008-l010 11 = 11
+l006: l005-l007 15 - 1 = 14
+l003: l002-l004 25 - 1 = 24
+l001: l001 20 = 20
+l000: l000 23 - 1 = 23
+l359: l359 14 = 14
+l357: l356-l358 9 - 1 = 8
+l354: l353-l355 3 = 3
+l351: l350-l352 9 = 9</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/gem-ob1.html" rel="bookmark" title="Permalink to Gem OB1">
+                    Gem OB1</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-01-14T23:49:00-07:00"> 2009/01/14 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>With Miranda's help, I discovered some serious errors in Gem OB1 and
+fixed them.</p>
+<ol class="arabic simple">
+<li>L189 was using L134 data for no apparent reason</li>
+<li>many September 2007 observations have the WRONG rotation angle in
+place in array_params! Unfortunately it's not clear yet which ones
+suffer from this problem: I need a list of when rotangle was/was not
+used, and it looks like it'll be a pain to fix the problem.</li>
+<li>GemOB1link wasn't mapped, it will be now.</li>
+</ol>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/pointing-model-failure.html" rel="bookmark" title="Permalink to Pointing model failure">
+                    Pointing model failure</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-12-09T11:40:00-07:00"> 2008/12/09 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/SJXjh0a_cRI/AAAAAAAADBM/J3qzKAdvAE8/s320/l033_pointingmodel_failure.jpg" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/SJXjiJuyDoI/AAAAAAAADBU/mVcnF0BNdFM/s320/l111_pointingmodel_failure.jpeg" />
+<p>I attempted to map L111, L033, and W3/4/5 with the pointing model
+corrections applied. That was a failure. Two images are attached to
+illustrate the problem - relative pointing is clearly not correct
+(middle of L33, bottom left of L111).
+So.... possibilities:</p>
+<ol class="arabic simple">
+<li>Pointing models are incorrect</li>
+<li>Pointing model signs have been misinterpreted (don't think this one
+is possible based on other graphs)</li>
+<li>Uhh... ideas?</li>
+</ol>
+<p>Next step, I'll use the individual maps with no ptg mdl and find out
+what the offsets should be....</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/deconvolution-vs-not.html" rel="bookmark" title="Permalink to Deconvolution vs. Not">
+                    Deconvolution vs. Not</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-28T19:39:00-07:00"> 2008/11/28 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've done some by-eye comparisons of deconvolutions vs no deconvolution.
+The no-deconvolution clearly does better on the bright sources: probably
+the deconvolved beam size is a little bit different from (larger?
+smaller?) the actual source size. Deconvolution does better in putting
+noise from noisy regions into the noisemap and keeping it out of the
+astromap.
+Both might be useful - the deconvolved maps may end up being prettier,
+but the no-deconvolve maps will probably have more reliable fluxes.
+This all probably relies on testing / simulation.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/version-06-begun.html" rel="bookmark" title="Permalink to Version 0.6 begun">
+                    Version 0.6 begun</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-19T04:52:00-07:00"> 2008/11/19 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I started on (what I hope will be) v0.6 tonight.
+New things:
+-Sigma-rejection flagging in the spatial domain
+-Inverse-variance weighting</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/median-drizzling.html" rel="bookmark" title="Permalink to Median drizzling">
+                    Median drizzling</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-18T16:11:00-07:00"> 2008/11/18 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a class="reference external" href="http://groups.google.com/group/comp.lang.idl-pvwave/browse_thread/thread/762770933591238d">http://groups.google.com/group/comp.lang.idl-pvwave/browse_thread/thread/762770933591238d</a>
+Someone going by the name 'wox' introduced me to a spectacularly simple
+drizzling algorithm for medianing. It will be a little less efficient
+because it can't take advantage of some 'partial sum' tricks that the
+average can, but it will median over ALL data points, which is an
+advantage.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/new-to-do-list-updated-things.html" rel="bookmark" title="Permalink to New to-do list, updated things....">
+                    New to-do list, updated things....</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-10-15T12:57:00-06:00"> 2008/10/15 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><tt class="docutils literal">do_maptests.pro</tt> is running a bunch of different mapping parameters
+(pca components, deconvolution, etc.) on l000, l002, l003, l033, l083.
+We'll then run bolocat on it and look for the following:
+-number of sources found
+-flux in sources found as a function of n_pca
+-size of sources as function of n_pca
+-BADNESS, e.g. blurring / unremoved atmosphere / oversubtracted sources
+<tt class="docutils literal">bolocat2reg</tt> makes a region file out of a bolocat catalog. I'd like
+to make a separate ds9 region file that includes the actual pointing
+error + the centroiding error rather than just the elliptical fit to a
+given source; that will be more useful for finder charts.
+My current goal is to get a nice set of images I can combine to release
+as a poster to Jason Glenn's student who is making pretty posters for
+publicity purposes; probably to promote CCAT. Umm.... I blame the late
+hour for the alliteration.
+That goal also means I've been using an IRAF task to do some mosaicing
+(easier than writing the IDL code AGAIN):
+<tt class="docutils literal">mscstack l001_5pca_map09.fits,l002_5pca_map09.fits,l000_5pca_map09.fits,l359_5pca_map09.fits,l003_5pca_map09.fits&nbsp; GCCOMBINE_5pca.fits <span class="pre">lthresh=-1l001_13pca_map09_scuba_aligned.fits,l002_13pca_map09_scuba_aligned.fits,l000_13pca_map09_scuba_aligned.fits,l359_13pca_map09_scuba_aligned.fits,l003_13pca_map09_scuba_aligned.fits</span>&nbsp; GCCOMBINE.fits <span class="pre">lthresh=-1mscstack</span> l029_13pca_map09_scuba_aligned.fits,l030_13pca_map09_scuba_aligned.fits,l031_13pca_map09_scuba_aligned.fits,l032_13pca_map09_scuba_aligned.fits,l033_13pca_map09_scuba_aligned.fits,l034_13pca_map09_scuba_aligned.fits L33COMBINE.fits <span class="pre">lthresh=-1</span> hsig=5 lsig=5</tt></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/outer-galaxy-fields-done.html" rel="bookmark" title="Permalink to outer galaxy fields done">
+                    outer galaxy fields done</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-10-13T14:47:00-06:00"> 2008/10/13 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>they're small files
+<tt class="docutils literal"><span class="pre">logs/log_101008_coalign.log:/scratch/adam_work/l059/l059_13pca</span> took 286.08181 <span class="pre">sec.logs/log_101008_coalign.log:/scratch/adam_work/l062/l062_13pca</span> took 390.88015 <span class="pre">sec.logs/log_101008_coalign.log:/scratch/adam_work/l065/l065_13pca</span> took 296.88441 <span class="pre">sec.logs/log_101008_coalign.log:/scratch/adam_work/l068/l068_13pca</span> took 1136.2623 <span class="pre">sec.logs/log_101008_coalign.log:/scratch/adam_work/l071/l071_13pca</span> took 899.41245 <span class="pre">sec.logs/log_101208_coalign.log:/scratch/adam_work/l189p5/l189p5_13pca</span> took 375.06840 <span class="pre">sec.logs/log_101208_coalign.log:/scratch/adam_work/l192/l192_13pca</span> took 403.81112 <span class="pre">sec.logs/log_101208_coalign.log:/scratch/adam_work/l060/l060_13pca</span> took 90.815500 <span class="pre">sec.logs/log_101208_coalign.log:/scratch/adam_work/l069/l069_13pca</span> took 160.17454 sec.</tt></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/maps-with-problems.html" rel="bookmark" title="Permalink to Maps with problems">
+                    Maps with problems</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-09-17T14:46:00-06:00"> 2008/09/17 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>l002: fuzzy stuff - bad sky sub?
+l033: misalignment
+l004: possible misalignment? Pattern recognition fails me here
+l354: misalignment</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/mapping-update.html" rel="bookmark" title="Permalink to Mapping update">
+                    Mapping update</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-09-16T20:38:00-06:00"> 2008/09/16 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I made a lot of mistakes in my script, so progress is about 12 computer
+hours behind what it should be.
+These maps are done:</p>
+<pre class="literal-block">
+/scratch/adam_work/l003/l003_13pca_map09.fits/scratch/adam_work/l006/l006_13pca_map09.fits/scratch/adam_work/l009/l009_13pca_map09.fits/scratch/adam_work/l018/l018_13pca_map09.fits/scratch/adam_work/l021/l021_13pca_map09.fits/scratch/adam_work/l024/l024_13pca_map09.fits/scratch/adam_work/l027/l027_13pca_map09.fits/scratch/adam_work/l030/l030_13pca_map09.fits/scratch/adam_work/l033/l033_13pca_map09.fits/scratch/adam_work/l036/l036_13pca_map09.fits/scratch/adam_work/l039/l039_13pca_map09.fits/scratch/adam_work/l042/l042_13pca_map09.fits/scratch/adam_work/l044/l044_13pca_map09.fits/scratch/adam_work/l048/l048_13pca_map09.fits/scratch/adam_work/l050/l050_13pca_map09.fits/scratch/adam_work/l054/l054_13pca_map09.fits/scratch/adam_work/l057/l057_13pca_map09.fits
+</pre>
+<p>Things I've learned so far:
+There is an observation (a master?) in L003 that should be the galactic
+center master.
+L018 has some really bad noise that needs fixing.
+The wackiness I saw in L024 seems to be gone now.
+L044 has the same noise stripes as L357.</p>
+<pre class="literal-block">
+/scratch/adam_work/l018/l018_13pca took 1118.3684 sec./scratch/adam_work/l018/l018_13pca_nooffs took 1106.6423 sec./scratch/adam_work/l021/l021_13pca took 1703.7266 sec./scratch/adam_work/l021/l021_13pca_nooffs took 1716.7393 sec./scratch/adam_work/l024/l024_13pca took 1622.3164 sec./scratch/adam_work/l024/l024_13pca_nooffs took 1672.3263 sec./scratch/adam_work/l027/l027_13pca took 1376.1939 sec./scratch/adam_work/l027/l027_13pca_nooffs took 1383.4335 sec./scratch/adam_work/l030/l030_13pca took 2487.1311 sec./scratch/adam_work/l030/l030_13pca_nooffs took 2543.1740 sec./scratch/adam_work/l036/l036_13pca took 549.76983 sec./scratch/adam_work/l036/l036_13pca_nooffs took 548.84132 sec./scratch/adam_work/l039/l039_13pca took 299.96889 sec./scratch/adam_work/l039/l039_13pca_nooffs took 299.16787 sec./scratch/adam_work/l042/l042_13pca took 366.34139 sec./scratch/adam_work/l042/l042_13pca_nooffs took 364.31475 sec./scratch/adam_work/l044/l044_13pca took 427.26923 sec./scratch/adam_work/l044/l044_13pca_nooffs took 424.42403 sec./scratch/adam_work/l048/l048_13pca took 313.86412 sec./scratch/adam_work/l048/l048_13pca_nooffs took 303.52545 sec./scratch/adam_work/l050/l050_13pca took 421.22899 sec./scratch/adam_work/l050/l050_13pca_nooffs took 477.16070 sec./scratch/adam_work/l054/l054_13pca took 315.14965 sec./scratch/adam_work/l054/l054_13pca_nooffs took 342.69137 sec.
+</pre>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+            <a href="https://keflavich.github.io/blog/tag/mapping.html">&laquo;</a>
+    Page 2 / 4
+        <a href="https://keflavich.github.io/blog/tag/mapping3.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

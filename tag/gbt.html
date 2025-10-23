@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - GBT</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2014/01/16
+                  <br>
+                  <a href="https://keflavich.github.io/blog/w51-mapping-flagging-bad-data.html">W51 Mapping: Flagging bad data</a>
+              </li>
+              <li class="post">
+                  2013/12/18
+                  <br>
+                  <a href="https://keflavich.github.io/blog/regrid-an-image-or-cube-using-casa.html">Regrid an image (or cube) using CASA</a>
+              </li>
+              <li class="post">
+                  2013/12/18
+                  <br>
+                  <a href="https://keflavich.github.io/blog/converting-a-fits-cube-to-a-casa-image.html">Converting a FITS cube to a CASA Image</a>
+              </li>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/observing-gbt-signs-of-good-bad-data.html">Observing @ GBT: Signs of good & bad data</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/w51-mapping-flagging-bad-data.html" rel="bookmark" title="Permalink to W51 Mapping: Flagging bad data">
+                    W51 Mapping: Flagging bad data</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2014-01-16T00:00:00-07:00"> 2014/01/16 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In the process of creating W51 data cubes from the GBT mapping data (project
+GBT 10B/019), I've had to deal with a lot of bad data.</p>
+<p>Some of the bad data comes from misbehaving electronics.  All I can say is that
+they were misbehaving, not how or why - the data from one polarizaiton simply
+disagrees with the other polarization and feeds spontaneously and for no
+apparent reason.</p>
+<p>I've implemented a waterfall diagnostic plot to help examine the data, it is in
+my <a class="reference external" href="https://github.com/keflavich/mpl_plot_templates">mpl_plot_templates</a> repository: <a class="reference external" href="https://github.com/keflavich/mpl_plot_templates/blob/master/mpl_plot_templates/imdiagnostics.py">imdiagnostics.py</a>.</p>
+<p>A good waterfall looks something like this:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/Session17_111to186_D37_F2_data_scrubbed_flagged.png" style="width: 800px;" />
+<p>The line plots show the average and standard deviation along each axis; the
+right side effectively shows timestream continuum data while the top plots show
+a time-averaged spectrum.  This plot is good in that there are clearly signals
+detected as the scan crosses continuum sources and there is a strong Helium
+Alpha line detected in the average (though there's no way to read that it's
+Helium fromt he data as presented).
+Notably, the noise correlates with the continuum brightness - this is expected;
+higher TSYS leads to higher noise.</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/Session22_10to41_D37_F2_data_scrubbed_flagged.png" style="width: 800px;" />
+<p>This is an example of a data set with some extremely irritating artifacts.
+There are apparent absorption lines throughout the spectrum: they are not real.
+This is a particularly irritating problem because I had resolved it once in the
+not-too-distant past, but I can't figure out how!!  Most likely, I just removed
+the data from the maps, but that SHOULD be in the code history (git) and is not.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/regrid-an-image-or-cube-using-casa.html" rel="bookmark" title="Permalink to Regrid an image (or cube) using CASA">
+                    Regrid an image (or cube) using CASA</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-12-18T17:52:00-07:00"> 2013/12/18 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg <adam.g.ginsburg@gmail.com></a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In order to regrid an image, you need some target reprojection.  The simplest way to acquire such a reprojection
+is by extracting it from another image, e.g. a <a class="reference external" href="casaguides.nrao.edu/index.php?title=FITStoImage">FITS image</a></p>
+<p>(I use <cite>&gt;&gt;&gt;</cite> to indicate the <cite>CASA &lt;#&gt;:</cite> prompt here because it allows you to copy &amp; paste the code into CASA)</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">header</span> <span class="o">=</span> <span class="n">imregrid</span><span class="p">(</span><span class="n">imagename</span><span class="o">=</span><span class="s1">&#39;file.image&#39;</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s1">&#39;get&#39;</span><span class="p">)</span>
+</pre></div>
+<p>This header will be a python dictionary with two keys, <cite>csys</cite>, which specifies
+the coordinate system, and <cite>shap</cite>, which gives the shape.</p>
+<p>If you want to write up your own FITS header and you don't have a FITS file
+with those exact coordinates, you can use the <a class="reference external" href="https://github.com/keflavich/casa_tools/blob/master/casa_tools/header_to_template.py#L11">header_to_template</a> convenience
+tool in <a class="reference external" href="https://github.com/keflavich/casa_tools">casa_tools</a>.</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">casa_tools</span> <span class="kn">import</span> <span class="n">header_to_template</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">fits_header</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">Header</span><span class="o">.</span><span class="n">fromtextfile</span><span class="p">(</span><span class="s1">&#39;my_header.hdr&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">header</span> <span class="o">=</span> <span class="n">header_to_template</span><span class="p">(</span><span class="n">fits_header</span><span class="p">)</span>
+</pre></div>
+<p>In order to regrid the file, you then need to pass in the image name and template to imregrid.</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">imregrid</span><span class="p">(</span><span class="n">imagename</span><span class="o">=</span><span class="s1">&#39;file.image&#39;</span><span class="p">,</span>
+<span class="o">...</span>          <span class="n">template</span><span class="o">=</span><span class="n">header</span><span class="p">,</span>
+<span class="o">...</span>          <span class="n">output</span><span class="o">=</span><span class="s1">&#39;file_regrid.image&#39;</span><span class="p">)</span>
+</pre></div>
+<p>If your input image's header did not include a 'telescope' keyword, CASA will complain:</p>
+<blockquote>
+2013-12-18 16:46:33 SEVERE  imregrid::ImageRegrid::regrid (file /opt/casa/release-4_1_0-release-1/darwin64/include/casacore/images/Images/ImageRegrid.tcc, line 118)        Cannot find the observatory name UNKNOWN in the CASA</blockquote>
+<p>You can add the keyword to the header yourself:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">imhead</span><span class="p">(</span><span class="s1">&#39;file.image&#39;</span><span class="p">,</span>
+<span class="o">...</span>        <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;put&#39;</span><span class="p">,</span>
+<span class="o">...</span>        <span class="n">hdkey</span><span class="o">=</span><span class="s1">&#39;telescope&#39;</span><span class="p">,</span>
+<span class="o">...</span>        <span class="n">hdvalue</span><span class="o">=</span><span class="s1">&#39;Arecibo&#39;</span><span class="p">)</span>
+</pre></div>
+<div class="section" id="references">
+<h2>References</h2>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://www.eso.org/projects/alma/arc/tw/pub/External/EUARCCASATutorialJan2012/ImageAnalysis-CASA.pdf">Sebastian Muller's presentation</a> (page 16)</li>
+<li><a class="reference external" href="http://casa.nrao.edu/docs/casaref/image.regrid.html">imregrid docs</a></li>
+</ul>
+</blockquote>
+</div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/converting-a-fits-cube-to-a-casa-image.html" rel="bookmark" title="Permalink to Converting a FITS cube to a CASA Image">
+                    Converting a FITS cube to a CASA Image</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-12-18T15:15:00-07:00"> 2013/12/18 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg <adam.g.ginsburg@gmail.com></a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>If you want to perform analysis on a FITS file in CASA, you first need to
+import it into <cite>.image</cite> format.</p>
+<blockquote>
+importfits('file.fits','file.image')</blockquote>
+<p>If this works, great!  You can move on.  CASA will treat NaN values in an image
+as 'masked'.</p>
+<div class="section" id="dealing-with-errors">
+<h2>Dealing with Errors</h2>
+<p>There may be issues with FITS headers.  CASA respects a large number of header
+keys (<a class="reference external" href="http://www.eso.org/projects/alma/arc/tw/pub/External/EUARCCASATutorialJan2012/ImageAnalysis-CASA.pdf">reference</a>).</p>
+<p>There are many ways to edit a FITS header.  One of the most straightforward to
+use is <a class="reference external" href="http://tdc-www.harvard.edu/wcstools/edhead.html">edhead</a>.  Otherwise, one can use CASA's <a class="reference external" href="http://casaguides.nrao.edu/index.php?title=Imhead">imhead</a></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="14%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>CASA Keyword</td>
+<td>FITS keyword</td>
+<td>Description</td>
+</tr>
+<tr><td>beammaj</td>
+<td>BMAJ</td>
+<td>Major&nbsp;axis&nbsp;of&nbsp;the&nbsp;clean&nbsp;beam</td>
+</tr>
+<tr><td>beammin</td>
+<td>BMIN</td>
+<td>Minor&nbsp;axis&nbsp;of&nbsp;the&nbsp;clean&nbsp;beam</td>
+</tr>
+<tr><td>beampa</td>
+<td>BPA</td>
+<td>Position&nbsp;angle&nbsp;of&nbsp;the&nbsp;clean&nbsp;beam</td>
+</tr>
+<tr><td>bunit</td>
+<td>BUNIT</td>
+<td>Brightness&nbsp;unit&nbsp;(K,&nbsp;Jy/beam,&nbsp;etc)</td>
+</tr>
+<tr><td>cdeltn</td>
+<td>CDELTn</td>
+<td>Pixel&nbsp;size,&nbsp;nth&nbsp;axis&nbsp;&nbsp;(max&nbsp;n&nbsp;is&nbsp;4)</td>
+</tr>
+<tr><td>crpixn</td>
+<td>CRPIXn</td>
+<td>Pixel&nbsp;coordinate&nbsp;of&nbsp;reference&nbsp;point,&nbsp;nth&nbsp;axis</td>
+</tr>
+<tr><td>crvaln</td>
+<td>CRVALn</td>
+<td>Pixel&nbsp;location&nbsp;of&nbsp;reference&nbsp;point,&nbsp;nth&nbsp;axis</td>
+</tr>
+<tr><td>ctypen</td>
+<td>CTYPEn</td>
+<td>Axis&nbsp;name,&nbsp;nth&nbsp;axis.  For FITS, this includes the projection</td>
+</tr>
+<tr><td>cunitn</td>
+<td>CUNITn</td>
+<td>Pixel&nbsp;units,&nbsp;nth&nbsp;axis</td>
+</tr>
+<tr><td>datamax</td>
+<td>DATAMAX</td>
+<td>Maximum&nbsp;pixel&nbsp;value&nbsp;in&nbsp;image</td>
+</tr>
+<tr><td>datamin</td>
+<td>DATAMIN</td>
+<td>Minimum&nbsp;pixel&nbsp;value&nbsp;in&nbsp;image</td>
+</tr>
+<tr><td>date-obs</td>
+<td>DATE-OBS</td>
+<td>Date&nbsp;of&nbsp;the&nbsp;observation</td>
+</tr>
+<tr><td>equinox</td>
+<td>EQUINOX</td>
+<td>Reference&nbsp;frame&nbsp;for&nbsp;directional&nbsp;coordinates</td>
+</tr>
+<tr><td>imtype</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Image&nbsp;type:&nbsp;intensity,</td>
+</tr>
+<tr><td>minpos</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Position&nbsp;of&nbsp;the&nbsp;minimum&nbsp;value&nbsp;(world&nbsp;unit)</td>
+</tr>
+<tr><td>minpixpos</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Same&nbsp;in&nbsp;pixel&nbsp;(array)</td>
+</tr>
+<tr><td>maxpos</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Position&nbsp;of&nbsp;the&nbsp;maximum&nbsp;value&nbsp;(world&nbsp;unit)</td>
+</tr>
+<tr><td>maxpixpos</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Same&nbsp;in&nbsp;pixel&nbsp;(array)</td>
+</tr>
+<tr><td>object</td>
+<td>OBJECT</td>
+<td>Source&nbsp;name</td>
+</tr>
+<tr><td>observer</td>
+<td>OBSERVER</td>
+<td>Observer&nbsp;name</td>
+</tr>
+<tr><td>projection</td>
+<td>CTYPEn</td>
+<td>Image&nbsp;projection&nbsp;('SIN','TAN',&nbsp;or&nbsp;'ZEA')</td>
+</tr>
+<tr><td>reffreqtype</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Reference&nbsp;frame&nbsp;for&nbsp;the&nbsp;spectral&nbsp;coordinates</td>
+</tr>
+<tr><td>restfreq</td>
+<td>RESTFREQ</td>
+<td>Rest&nbsp;Frequency</td>
+</tr>
+<tr><td>shape</td>
+<td>NAXISn</td>
+<td>Number&nbsp;of&nbsp;pixels&nbsp;along&nbsp;each&nbsp;axis</td>
+</tr>
+<tr><td>telescope</td>
+<td>TELESCOP</td>
+<td>Telescope&nbsp;name</td>
+</tr>
+</tbody>
+</table>
+<p>What does it mean if you get this sort of error?</p>
+<blockquote>
+CASA &lt;1&gt;: importfits('file.fits','file.image')
+2013-12-18 13:06:18     WARN    importfits::FITSCoordinateUtil::fromFITSHeader  The wcs function failures are too severe to continue ...
+2013-12-18 13:06:18     WARN    importfits::ImageFITSConverterImpl::FITSToImage (file /var/rpmbuild/BUILD/casapy-stable/casapy-stable-42.0.26945/casacore/images/Images/ImageFITSConverter.tcc, line 71)       No proper coordinate system defined in FITS file. Using dummy linear system instead.</blockquote>
+<p>First, go to the <cite>casapy-yyyymmdd-hhmmss.log</cite> file and look at the errors.</p>
+<blockquote>
+2013-12-18 13:06:18     INFO    importfits::FITSCoordinateUtil::fromFITSHeader  celfix incurred the error Inconsistent or unrecognized coordinate axis types
+2013-12-18 13:06:18     INFO    importfits::FITSCoordinateUtil::fromFITSHeader  spcfix incurred the error Inconsistent or unrecognized coordinate axis types
+2013-12-18 13:06:18     INFO    importfits::FITSCoordinateUtil::fromFITSHeader  cylfix incurred the error Inconsistent or unrecognized coordinate axis types</blockquote>
+<p>In my case, the error turned out to be that <cite>CTYPE3</cite> was set to <cite>RADI-LSR</cite>,
+while it should be <cite>VELO-LSR</cite> to be recognized by the CASA system.  The
+velocity convention is, unfortunately, lost.</p>
+</div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/observing-gbt-signs-of-good-bad-data.html" rel="bookmark" title="Permalink to Observing @ GBT: Signs of good & bad data">
+                    Observing &#64; GBT: Signs of good &amp; bad data</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>So far, all of the observations for the H<sub>2</sub>CO densitometry
+project have been performed at the Green Bank Telescope. During a 10-day
+long observing trip here, I've learned a lot about diagnosing bad data.</p>
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TGyf_Sx-Z-I/AAAAAAAAFzw/1wCgkpI11WI/s400/session92_if0_feed0_trec.png" />
+<p>This first image shows TSYS vs Airmass for good data. The high outliers
+are just sources with continuum in them - the continuum is the source of
+the extra signal, not atmosphere.&nbsp; The receiver temperature is a nice
+20.6 K, and you get about 5 K extra per airmass, suggesting a zenith
+optical depth of 0.018 assuming a round atmospheric temperature of 300K.</p>
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/TGyer8CZzVI/AAAAAAAAFzI/zoU1K0cIu7Q/s400/session04_if0_feed0_trec.png" />
+<p>In the same style plot, there is a set of observations with low system
+temperatures: that stuff is good. There is also a set with clearly
+rising system temperatures, even at constant elevation. These data are
+bad. During this observation, the &quot;blowers&quot; that are meant to keep dew
+off of the receivers failed. Dew buildup on the receiver covers lead to
+higher optical depths and therefore system temperatures.</p>
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/TGyf9RwmbRI/AAAAAAAAFzo/n0gyG81oOns/s400/session91_if0_feed0_trec.png" />
+<p>Finally, this data set was totally useless. Ku-band is not particularly
+sensitive to water in the atmosphere... but it's still not a good idea
+to observe during a rain storm.&nbsp; Note that the fitted receiver
+temperature TREC is nonsensical.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

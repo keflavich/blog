@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - simulation</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2016/08/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-synthetic-observations.html">CASA synthetic observations</a>
+              </li>
+              <li class="post">
+                  2016/04/26
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-simulated-imaging-now-ftmachine-is-whining.html">CASA simulated imaging: now FTMachine is whining</a>
+              </li>
+              <li class="post">
+                  2016/04/24
+                  <br>
+                  <a href="https://keflavich.github.io/blog/more-casa-simulation-debugging.html">More CASA simulation & debugging</a>
+              </li>
+              <li class="post">
+                  2011/08/10
+                  <br>
+                  <a href="https://keflavich.github.io/blog/spatial-transfer-function-vs-npca.html">Spatial Transfer Function vs. nPCA</a>
+              </li>
+              <li class="post">
+                  2011/08/05
+                  <br>
+                  <a href="https://keflavich.github.io/blog/spatial-transfer-functions-revisit-4.html">Spatial Transfer Functions, revisit 4</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/casa-synthetic-observations.html" rel="bookmark" title="Permalink to CASA synthetic observations">
+                    CASA synthetic observations</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-08-15T09:36:00-06:00"> 2016/08/15 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>To evaluate imaging robustness &amp; quality, it is necessary to do some sort of
+synthetic observation.  These synthetic observations can be done on real
+images, e.g. Herschel data shifted to greater distances, or on simulated data.</p>
+<p>Some examples:</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_perseus.py">https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_perseus.py</a></li>
+<li><a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_perseus_2.py">https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_perseus_2.py</a></li>
+<li><a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_aquila.py">https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/analysis/synth_imaging_aquila.py</a></li>
+</ul>
+</blockquote>
+<p>General process:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>Import file into CASA .image form (e.g., <tt class="docutils literal">importfits</tt>)</li>
+<li>Load the .ms file and replace visibilities w/fourier transform of image</li>
+<li>Clean.</li>
+</ol>
+</blockquote>
+<p>The hard part is setting up the files to be imported.</p>
+<p>For example, you can import a FITS file, which to me seems to be the most
+straightforward approach:</p>
+<pre class="literal-block">
+importfits(fitsimage=perseus_rescaled,
+           imagename=perseus_casa_image,
+           overwrite=True,
+           defaultaxes=True,#['RA---TAN','DEC--TAN','FREQUENCY','STOKES'],
+           defaultaxesvalues=['2.909234541667E+02deg',
+                              '1.451177222222E+01deg',
+                              '233.9468GHz','I'],
+           # 18&quot; = 1.22 lambda/D
+           beam=[&quot;{0}deg&quot;.format(18/3600.*distance_scaling),
+                 &quot;{0}deg&quot;.format(18/3600.*distance_scaling),
+                 &quot;0deg&quot;],
+          )
+</pre>
+<p>The beam probably matters for Jy-&gt;K, or Jy/beam-&gt;Jy conversion.  The
+<tt class="docutils literal">defaultaxesvalues</tt> should correspond to the pointing center of the
+interferometer pointing or mosaic.</p>
+<p>Next is bringing this image - which we now pray is in the correct units - into UV space.:</p>
+<pre class="literal-block">
+sm.openfromms(&quot;continuum_7m12m_noflag.ms&quot;)
+sm.setvp()
+success = sm.predict(perseus_casa_image)
+assert success
+# TODO: get these from ASDM_CALWVR and WEATHER
+success2 = sm.setnoise(mode='tsys-atm', relhum=60.0, pwv='2mm', tatmos=265.0, )
+success3 = sm.corrupt()
+sm.done()
+sm.close()
+</pre>
+<p>This snippet loads the .ms file (the visibilities), then overwrites them with
+the fourier transform of the image using <tt class="docutils literal">sm.predict</tt>.  It's not clear whether
+<tt class="docutils literal">setvp</tt> is necessary.  <tt class="docutils literal">setnoise</tt> + <tt class="docutils literal">corrupt</tt> just adds &quot;appropriate&quot;
+atmospheric noise to the visibilities.</p>
+<p>From there, you should just use the same <tt class="docutils literal">clean</tt> parameters as for the
+original data, or try to optimize <tt class="docutils literal">clean</tt> here and use these parameters on
+the real data.</p>
+<p>The result will be the 'perfect' (no phase error, no amplitude error)
+interferometric image.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/casa-simulated-imaging-now-ftmachine-is-whining.html" rel="bookmark" title="Permalink to CASA simulated imaging: now FTMachine is whining">
+                    CASA simulated imaging: now FTMachine is whining</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-04-26T15:12:00-06:00"> 2016/04/26 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a class="reference external" href="https://keflavich.github.io/blog/casa_simulation_debugging.rst">A few days ago</a>
+I apparently got my broken simulator working again.  Today, in my first
+attempt to repeat those results, I... have broken it again.:</p>
+<pre class="literal-block">
+WARN        FTMachine::initMaps     No overlap in frequency between image channels and selected data found for this FTMachine
+WARN        FTMachine::initMaps+     Check your data selection and image parameters if you end up with a blank image
+</pre>
+<p>This warning is not a simple warning, it means nothing is being done.  My
+images are empty, pure noise (which, interestingly enough, is far from
+gaussian).</p>
+<p>I have encountered these errors <cite>before
+&lt;|static|/separating_line_and_continuum.rst&gt;</cite>, but unfortunately did not
+resolve the issue.</p>
+<p>Turns out, the difference was the .ms file I used,
+<tt class="docutils literal">continuum_7m12m_noflag.ms</tt>, which works, vs the useful one,
+<tt class="docutils literal">w51_contvis_selfcal_3.ms</tt>, which doesn't.</p>
+<p>Checking out their headers, the continuum image does overlap with the
+data but the selfcal version doesn't.  Wonderful.  Now I'll bet it's only
+populating one channel at a time when I invert too...</p>
+<p>This leads me to try:</p>
+<pre class="literal-block">
+split(vis='w51_contvis_selfcal_3.ms', outputvis='simulation_continuum.ms', datacolumn='data', width=100)
+</pre>
+<p>then use (borrowed from <a class="reference external" href="https://github.com/radio-astro-tools/sandbox/blob/master/casa_7m12m_tools/weight_density_uv_plot.py">this tool</a>):</p>
+<pre class="literal-block">
+mymsmd = msmdtool()
+mymsmd.open(vis)
+
+reffreq = &quot;{value}{unit}&quot;.format(**mymsmd.reffreq(spw)['m0'])
+</pre>
+<p>to get the frequency to write into the header each time.</p>
+<p>At a glance, just changing the frequency of the FITS file to match the first
+SPW seems to work.  However, I haven't yet examined whether the other SPWs
+are populated.</p>
+<p>This assumption proved wrong.  No, it simply doesn't work.  The warnings went away,
+but the output images are empty.  Also, the noise went up, which I don't understand.</p>
+<p>Imaging just spw1 kind of worked, but resulted in an image with the wrong
+resolution by factors of many.</p>
+<p>Trying to loop over all spws failed miserably, resulting in <em>nothing</em> being done by
+predict and <em>no warning</em> being given.</p>
+<p>OK, finally, solution is to make sure CDELT is large enough to cover <em>all</em> SPWs.</p>
+<p>Another important note: Jy/beam and Jy/pixel inputs into CASA result in identical images.
+In both cases, they are wrong images: they correspond to multiplying the input data by
+factors of at least 100.  Therefore, my conclusion now is that I have to divide everything
+by some fact, which I <em>sincerely</em> hope is ppbeam, to correct the data.</p>
+<p>It looked vaguely like the divide-by-ppbeam trick worked, but my tests kept coming up funny
+because the <em>original</em> images were scaled down.  So I tried unscaling them.  Somehow,
+without changing anything about the headers, I landed on another failed predict error:</p>
+<pre class="literal-block">
+2016-04-27 19:14:42 SEVERE  Simulator::createSkyEquation() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2200)        Caught exception: (/Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc : 2266) Failed AlwaysAssert spectralIndex&gt;=0
+2016-04-27 19:14:42 SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Failed to create SkyEquation
+</pre>
+<p>Spectral Index?  I encountered this <a class="reference external" href="|static|/casa_simulating.rst">previously</a>, but didn't record any solution.
+After checking the header, it appears that my files are <em>now</em> missing axes 3 and 4.
+I didn't make any changes that should cause this; the axes are just not being added
+on importfits despite being forcibly added in the command.</p>
+<p>The problem is unfortunately not in the FITS part, but again in the CASA part.
+Re-importing the FITS file to .image without forcing <tt class="docutils literal">defaultaxes</tt> again just
+broke it.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/more-casa-simulation-debugging.html" rel="bookmark" title="Permalink to More CASA simulation & debugging">
+                    More CASA simulation &amp; debugging</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-04-24T22:57:00-06:00"> 2016/04/24 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>(this post written from snowy-ish ALMA; <a class="reference external" href="https://goo.gl/photos/z3fUkCT6VVRzt8EW6">just cloudy at the OSF though</a>)</p>
+<p>(tl; dr version: <tt class="docutils literal">sm.setvp</tt> doesn't work if you have <tt class="docutils literal"><span class="pre">TELESCOP=&quot;ALMA&quot;</span></tt> in
+your header)</p>
+<p>I'm trying to repeat an experiment very similar to
+<a class="reference external" href="|static|/casa_simulating.rst">previous</a>
+<a class="reference external" href="|static|/simulated_imaging.rst">simulation work</a>
+in order to quantify my completeness and largest angular scales
+by injecting synthetic signal into the real UV data.</p>
+<p>However, as you might expect, it doesn't work as it did last time, even
+when I (afaict) copy and paste the code directly.</p>
+<p>Here's the new error:</p>
+<pre class="literal-block">
+2016-04-25 02:57:21 SEVERE  Simulator::createSkyEquation() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2200)        Caught exception: Transformations to/from frame &quot;Undefined&quot; are not possible.
+2016-04-25 02:57:21 SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Failed to create SkyEquation
+Result of predict: False
+</pre>
+<p>It's strange because there is nothing obviously undefined.</p>
+<p>I'm comparing 2 FITS files that should behave identically.
+The good header lacks these keywords that the bad header has:</p>
+<pre class="literal-block">
+['PV2_1',
+ 'PV2_2',
+ 'OBSERVER',
+ 'DATE-OBS',
+ 'OBSRA',
+ 'OBSDEC',
+ 'OBSGEO-X',
+ 'OBSGEO-Y',
+ 'OBSGEO-Z']
+</pre>
+<p>while the good header has these and the bad lacks them:</p>
+<pre class="literal-block">
+['PC03_01',
+ 'PC04_01',
+ 'PC03_02',
+ 'PC04_02',
+ 'PC01_03',
+ 'PC02_03',
+ 'PC03_03',
+ 'PC04_03',
+ 'PC01_04',
+ 'PC02_04',
+ 'PC03_04',
+ 'PC04_04',
+ 'CREATOR',
+ 'INSTRUME',
+ 'BAND',
+ 'PROPOSAL',
+ 'PRTITLE',
+ 'OBSID001',
+ 'OBSID002',
+ 'HISTORY']
+</pre>
+<p>The only significant difference is the <tt class="docutils literal">PC</tt> values, unless CASA
+is doing something with the observatory location information.</p>
+<p>The only difference in common keywords is numerical, which seems
+very unlikely to cause this issue.</p>
+<p>I cannot discern any useful difference between these two CASA .image headers:</p>
+<pre class="literal-block">
+2016-04-25 03:08:55 INFO imhead     ##########################################
+2016-04-25 03:08:55 INFO imhead     ##### Begin Task: imhead             #####
+2016-04-25 03:08:55 INFO imhead     imhead(imagename=&quot;../perseus_synth/perseus_250_to_w51.image&quot;,mode=&quot;summary&quot;,hdkey=&quot;&quot;,hdvalue=&quot;&quot;,verbose=True)
+2016-04-25 03:08:55 INFO ImageAnalysis
+2016-04-25 03:08:55 INFO ImageAnalysis      Image name       : perseus_250_to_w51.image
+2016-04-25 03:08:55 INFO ImageAnalysis      Object name      : perseus 04
+2016-04-25 03:08:55 INFO ImageAnalysis      Image type       : PagedImage
+2016-04-25 03:08:55 INFO ImageAnalysis      Image quantity   : Intensity
+2016-04-25 03:08:55 INFO ImageAnalysis      Pixel mask(s)    : mask0
+2016-04-25 03:08:55 INFO ImageAnalysis      Region(s)        : None
+2016-04-25 03:08:55 INFO ImageAnalysis      Image units      : Jy/pixel
+2016-04-25 03:08:55 INFO ImageAnalysis      Restoring Beam   : 0.465804 arcsec, 0.465804 arcsec, 0 deg
+2016-04-25 03:08:55 INFO ImageAnalysis
+2016-04-25 03:08:55 INFO ImageAnalysis      Direction reference : J2000
+2016-04-25 03:08:55 INFO ImageAnalysis      Spectral  reference : Undefined
+2016-04-25 03:08:55 INFO ImageAnalysis      Velocity  type      : RADIO
+2016-04-25 03:08:55 INFO ImageAnalysis      Rest frequency      : 2.33947e+11 Hz
+2016-04-25 03:08:55 INFO ImageAnalysis      Telescope           : Herschel
+2016-04-25 03:08:55 INFO ImageAnalysis      Observer            : UNKNOWN
+2016-04-25 03:08:55 INFO ImageAnalysis      Date observation    : UNKNOWN
+2016-04-25 03:08:55 INFO ImageAnalysis
+2016-04-25 03:08:55 INFO ImageAnalysis      Axis Coord Type      Name             Proj Shape Tile   Coord value at pixel    Coord incr Units
+2016-04-25 03:08:55 INFO ImageAnalysis      ------------------------------------------------------------------------------------------------
+2016-04-25 03:08:55 INFO ImageAnalysis      0    0     Direction Right Ascension   TAN  2370  158  19:23:41.765  1099.00 -1.552680e-01 arcsec
+2016-04-25 03:08:55 INFO ImageAnalysis      1    0     Direction Declination       TAN  2500  250 +14.30.45.850  1552.00  1.552680e-01 arcsec
+2016-04-25 03:08:55 INFO ImageAnalysis      2    2     Spectral  Frequency                 1    1   2.33947e+11     0.00  1.000000e+09 Hz
+2016-04-25 03:08:55 INFO ImageAnalysis                           Velocity                                     0     0.00 -1.281456e+03 km/s
+2016-04-25 03:08:55 INFO ImageAnalysis      3    1     Stokes    Stokes                    1    1             I
+2016-04-25 03:08:55 INFO imhead     ##### End Task: imhead               #####
+2016-04-25 03:08:55 INFO imhead     ##########################################
+2016-04-25 03:09:07 INFO imhead
+2016-04-25 03:09:07 INFO imhead     ##########################################
+2016-04-25 03:09:07 INFO imhead     ##### Begin Task: imhead             #####
+2016-04-25 03:09:07 INFO imhead     imhead(imagename=&quot;../simulations/simimage_firsttest.image&quot;,mode=&quot;summary&quot;,hdkey=&quot;&quot;,hdvalue=&quot;&quot;,verbose=False)
+2016-04-25 03:09:07 INFO ImageAnalysis
+2016-04-25 03:09:07 INFO ImageAnalysis      Image name       : simimage_firsttest.image
+2016-04-25 03:09:07 INFO ImageAnalysis      Object name      :
+2016-04-25 03:09:07 INFO ImageAnalysis      Image type       : PagedImage
+2016-04-25 03:09:07 INFO ImageAnalysis      Image quantity   : Intensity
+2016-04-25 03:09:07 INFO ImageAnalysis      Pixel mask(s)    : None
+2016-04-25 03:09:07 INFO ImageAnalysis      Region(s)        : None
+2016-04-25 03:09:07 INFO ImageAnalysis      Image units      : Jy/beam
+2016-04-25 03:09:07 INFO ImageAnalysis      Restoring Beam   : 0.21023 arcsec, 0.192666 arcsec, 79.8538 deg
+2016-04-25 03:09:07 INFO ImageAnalysis
+2016-04-25 03:09:07 INFO ImageAnalysis      Direction reference : J2000
+2016-04-25 03:09:07 INFO ImageAnalysis      Spectral  reference : Undefined
+2016-04-25 03:09:07 INFO ImageAnalysis      Velocity  type      : RADIO
+2016-04-25 03:09:07 INFO ImageAnalysis      Rest frequency      : 2.33947e+11 Hz
+2016-04-25 03:09:07 INFO ImageAnalysis      Pointing center     :  19:23:41.629000  +14.30.42.380000
+2016-04-25 03:09:07 INFO ImageAnalysis      Telescope           : ALMA
+2016-04-25 03:09:07 INFO ImageAnalysis      Observer            : keflavich
+2016-04-25 03:09:07 INFO ImageAnalysis      Date observation    : 2015/04/23/09:47:44
+2016-04-25 03:09:07 INFO ImageAnalysis      Telescope position: [2.22514e+06m, -5.44031e+06m, -2.48103e+06m] (ITRF)
+2016-04-25 03:09:07 INFO ImageAnalysis
+2016-04-25 03:09:07 INFO ImageAnalysis      Axis Coord Type      Name             Proj Shape Tile   Coord value at pixel    Coord incr Units
+2016-04-25 03:09:07 INFO ImageAnalysis      ------------------------------------------------------------------------------------------------
+2016-04-25 03:09:07 INFO ImageAnalysis      0    0     Direction Right Ascension   TAN  3072  192  19:23:41.629  1536.00 -5.000000e-02 arcsec
+2016-04-25 03:09:07 INFO ImageAnalysis      1    0     Direction Declination       TAN  3072  192 +14.30.42.380  1536.00  5.000000e-02 arcsec
+2016-04-25 03:09:07 INFO ImageAnalysis      2    1     Stokes    Stokes                    1    1             I
+2016-04-25 03:09:07 INFO ImageAnalysis      3    2     Spectral  Frequency                 1    1   2.33947e+11     0.00  1.000000e+09 Hz
+2016-04-25 03:09:07 INFO ImageAnalysis                           Velocity                                     0     0.00 -1.281456e+03 km/s
+2016-04-25 03:09:07 INFO imhead     ##### End Task: imhead               #####
+2016-04-25 03:09:07 INFO imhead     ##########################################
+</pre>
+<p>if anything, the ALMA file includes <em>extra</em> data. Removing this data has no
+effect.</p>
+<p>The only really substantial difference left is the order of the axes, which
+is <em>not what I put in</em> for the ALMA data: it puts Stokes as 2 instead of 3
+despite the fact that <tt class="docutils literal"><span class="pre">CTYPE4='STOKES'</span></tt> and <tt class="docutils literal"><span class="pre">CTYPE3='FREQ'</span></tt>.</p>
+<p>By doing a round trip FITS-&gt;image-&gt;FITS-&gt;image, I was able to fix the order,
+but that is not the underlying problem, apparently.</p>
+<p>Could the missing pixel mask be at fault?  It doesn't jive at all with the
+error message, so I doubt it.  <tt class="docutils literal">OBSDATE</tt> is not the problem.</p>
+<p>Turns out, the error is that ALMA is the telescope.  I added the header entry:</p>
+<pre class="literal-block">
+ffile[0].header['TELESCOP'] = 'NotReal'
+</pre>
+<p>and it Just Worked.  It is approaching the end of my shift, so I think it is
+now acceptable to say &quot;what kind of !#$&#64;#$!&#64;% up #&#64;$$&#64;% is that?!&quot;.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/spatial-transfer-function-vs-npca.html" rel="bookmark" title="Permalink to Spatial Transfer Function vs. nPCA">
+                    Spatial Transfer Function vs. nPCA</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-08-10T16:29:00-06:00"> 2011/08/10 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>A demonstration that the spatial transfer function can be improved to
+~80% at ~300 arcseconds by reducing the number of PCA components
+subtracted. However, image fidelity and noise backgrounds suffer, so
+these sorts of maps are probably less ideal for point source extraction.
+Below:</p>
+<pre class="literal-block">
+0 PCA
+3 PCA
+10 PCA
+15 PCA
+</pre>
+<img alt="" src="http://1.bp.blogspot.com/-CPZck7lZils/TkKxcMIgsoI/AAAAAAAAGZg/HeZJfzaSewk/s320/exp15_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_smooth_00pca_median_psds.png" />
+<img alt="" src="http://1.bp.blogspot.com/-ew7CSdNfc3M/TkKxcZb3qDI/AAAAAAAAGZo/_mSPtt6TgG4/s320/exp15_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_smooth_03pca_psds.png" />
+<img alt="" src="http://4.bp.blogspot.com/-NG2yqqzPucM/TkKxcxoM6pI/AAAAAAAAGZw/zocHKlKAO3Q/s320/exp15_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_smooth_10pca_psds.png" />
+<img alt="" src="http://1.bp.blogspot.com/-Y_rIZ33S8QE/TkKxdOlcTAI/AAAAAAAAGZ4/J6kkz5PDasA/s320/exp15_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_smooth_15pca_psds.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/spatial-transfer-functions-revisit-4.html" rel="bookmark" title="Permalink to Spatial Transfer Functions, revisit 4">
+                    Spatial Transfer Functions, revisit 4</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-08-05T18:56:00-06:00"> 2011/08/05 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Last report was a bit of a fiasco. There were problems all over the
+place I didn't understand. I still don't but I've fixed them. My best
+guess at this point is that a pass-by-reference led to an unacceptable
+modification of an image. That doesn't even make sense - there was no
+place it could have happened - but, there you have it.
+So, going through the process step by step.
+This is the effect of smoothing an image:</p>
+<img alt="" src="http://1.bp.blogspot.com/-3TabjiWVKm4/Tjs03gqxkxI/AAAAAAAAGXk/BQOH5FvG3CM/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky02_seed00_peak010.00_SMvsNOSM_input_psds.png" />
+<img alt="" src="http://1.bp.blogspot.com/-AWglr2CHB-0/Tjs04fniKDI/AAAAAAAAGXs/MM3RCNu6x10/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky02_seed00_peak010.00_SMvsNOSM_input_compare.png" />
+<img alt="" src="http://2.bp.blogspot.com/-5yFhvF1iOeY/Tjs1ES7HeuI/AAAAAAAAGX0/T44kJArWn2o/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky02_seed00_peak010.00_SMvsNOSM_input_stf.png" />
+<p>Note from the 3rd figure that 100% recovery isn't reached until ~700
+arcseconds.
+Next question: What is happening at large spatial scales in the
+flat-spectrum simulations?</p>
+<img alt="" src="http://1.bp.blogspot.com/-Fi2EBFsPFK4/TjtLzkxRxRI/AAAAAAAAGX8/4GoYEwSaaKc/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky07_seed00_peak100.00_smooth_compare.png" />
+<img alt="" src="http://2.bp.blogspot.com/-P3TEAHevkEY/TjtL0BG8BbI/AAAAAAAAGYE/oC71ZTFTz3k/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky06_seed00_peak100.00_smooth_compare.png" />
+<img alt="" src="http://4.bp.blogspot.com/-g0m5hEHx8QY/TjtL00D3USI/AAAAAAAAGYM/687cgIORovk/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky05_seed00_peak100.00_smooth_compare.png" />
+<p>No obvious problems there.</p>
+<img alt="" src="http://3.bp.blogspot.com/-DwXSkiyw2kE/TjtNt7XadiI/AAAAAAAAGYU/trzLma37DgM/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky05_seed00_peak100.00_smooth_psds.png" />
+<img alt="" src="http://1.bp.blogspot.com/-Q9ItTP7uQDs/TjtNuILPfLI/AAAAAAAAGYc/w67japCoUpo/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky06_seed00_peak100.00_smooth_psds.png" />
+<img alt="" src="http://3.bp.blogspot.com/-mgWHY8CT3tQ/TjtNuv1jZ-I/AAAAAAAAGYk/Iddg_I2UKjo/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky07_seed00_peak100.00_smooth_psds.png" />
+<p>Hmm, no apparent problem here either, though one might ask why the two
+curves approach each other in sky05 (alpha=-0.5).
+So it appears that the reason for the bump up at low frequencies (long
+wavelengths) must be because of edge effects. After much hassle, I've
+addressed that by cropping images.
+Finally, the averaged results:</p>
+<img alt="" src="http://3.bp.blogspot.com/-26KmVHKU_QY/Tjw8VVYnkkI/AAAAAAAAGY4/-R-e3mwVwZc/s320/stfs_bestmodel_fits.png" />
+<img alt="" src="http://2.bp.blogspot.com/-lPtvV465aLg/Tjw8VhQZXXI/AAAAAAAAGZA/Rib4AX6z75E/s320/stfs_bestmodels.png" />
+<p>So we've got an Official Spatial Transfer Function.
+However, of course, we must note that there is a dependence on the
+atmosphere amplitude to source amplitude ratio: it appears that
+large-scale structure is *easier* to recover when the atmosphere is at
+higher amplitude. This makes sense: it is easier to distinguish faint
+astrophysical signal from bright atmosphere in this case. The reason I
+didn't run simulations to test this more is that the S/N ratio on small
+scales becomes poor for the low astrophysical amplitudes.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/stf-measurement-attempts-round-3.html" rel="bookmark" title="Permalink to STF measurement attempts, round 3?">
+                    STF measurement attempts, round 3?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-08-03T02:51:00-06:00"> 2011/08/03 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Below are plots of the spatial transfer function for a variety of
+simulation parameters. Each line represents the median (i.e., mean of
+the center 2 of 4) spatial transfer function of 4 realizations of the
+listed parameters.</p>
+<img alt="alt" src="http://3.bp.blogspot.com/-qAq4e3xotf8/TjJCwJb6knI/AAAAAAAAGXA/mv7hs-uKudI/s320/stfs_atmo01_peak010_smooth.png" />
+<img alt="alt" src="http://2.bp.blogspot.com/-lTKFbV1Zxno/TjJCwluvOXI/AAAAAAAAGXI/fK7qPWDF0Qw/s320/stfs_atmo10_peak010_smooth.png" />
+<img alt="alt" src="http://1.bp.blogspot.com/-HNLrsuXSrvA/TjJCwx9xEBI/AAAAAAAAGXQ/a0l3Qljyp04/s320/stfs_atmo10_peak100_smooth.png" />
+<p>A few unfortunate details are apparent:</p>
+<ol class="arabic simple">
+<li>The STF is background dependent, though not strongly</li>
+<li>The STF appears to never exceed 85%, and be more typically 75%. If
+this is not matched by point-source PSDs, an explanation for the flux
+discrepancy becomes possible</li>
+<li>The 50% recovery point is much closer in than previously stated, at
+closer to 150&quot; than 300&quot;.</li>
+</ol>
+<p>Note for comparison that the recovery fraction for point sources is much
+more nearly 1, at least in the calibrator type maps. We need to wait for
+Jared's simulations with point sources in a full size map to confirm
+this, but it seems pretty likely that the STF is different for point
+sources and extended structures.</p>
+<img alt="alt" src="http://4.bp.blogspot.com/-n0mH8DTSc80/Tji3c0tOffI/AAAAAAAAGXc/_Xd-AQMo4QU/s320/psf_ds1_reconv_arrang45_atmotest_noise%252B6.3E-04varyrelscale_amp1.0E%252B00_psds.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/examining-bolocat.html" rel="bookmark" title="Permalink to Examining bolocat">
+                    Examining bolocat</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-27T22:51:00-06:00"> 2011/07/27 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Just in case we were wondering, the V1 bolocat is completely
+inconsistent with a lognormal distribution, but is perfectly consistent
+(or... at least reasonably consistent...) with a power law distribution.</p>
+<img alt="" src="http://2.bp.blogspot.com/-kKaOXdf9hW4/TjBRmgiNmqI/AAAAAAAAGUI/4H0KJk70F_o/s320/bolocat_flux_cdf.png" />
+<img alt="" src="http://1.bp.blogspot.com/-3T9mrt5U39E/TjBRm5p7inI/AAAAAAAAGUQ/ARP6EKQDYo0/s320/bolocat_flux40_cdf.png" />
+<img alt="" src="http://4.bp.blogspot.com/-ytrgQo5XYEg/TjBRndOQqOI/AAAAAAAAGUY/9g--hpa5X0Y/s320/bolocat_flux80_cdf.png" />
+<img alt="" src="http://3.bp.blogspot.com/-TqVY1B1uGLw/TjBRnt6uLEI/AAAAAAAAGUg/FhXct0wpEio/s320/bolocat_flux120_cdf.png" />
+<p>These plots show power-law fits (red) and lognormal fits (blue) to the
+data (black). It's pretty obvious that the lognormal is a bad fit, but
+in case you're unconvinced, the ks test for the &quot;source flux&quot; has a
+probability 1.6e-7, and it is the highest likelihood by 17 orders of
+magnitude out of the 4 flux types.
+By contrast, the simulations are on average (though not uniformly) more
+consistent with lognormal than powerlaw distributions:</p>
+<img alt="" src="http://2.bp.blogspot.com/-lpOaHHV3e3Q/TjCTzm9RwFI/AAAAAAAAGWI/o57oH5SfdqE/s320/simulations_ksvalues_lognormvspowerlaw.png" />
+<p>Even in those examples where the KS test is slightly more favorable for
+the powerlaw distribution, the lognormal is a pretty good fit, and the
+failure points for the two distributions are in about the same place.
+The smoothness of the lognormal distribution is required to reproduce
+the observed distribution.</p>
+<img alt="" src="http://1.bp.blogspot.com/-8_WCGM_8AjM/TjB2tW_JZeI/AAAAAAAAGU4/SDR1guNcNq0/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky07_seed00_peak100.00_smooth_bolocat_cdf.png" />
+<p>Note that the first 4 plots are for the whole BGPS survey. What about an
+individual field? For obvious reasons, I choose l30 again.</p>
+<img alt="" src="http://1.bp.blogspot.com/-vHQoJtAe-vU/TjCIiVcRHsI/AAAAAAAAGVo/04fA4WSCnlA/s320/bolocat_flux40_L30_cdf.png" />
+<img alt="" src="http://1.bp.blogspot.com/-kIpe2v9_YpQ/TjCIimC8K2I/AAAAAAAAGVw/-o5GZ7DoLOw/s320/bolocat_flux80_L30_cdf.png" />
+<img alt="" src="http://2.bp.blogspot.com/-Shg66Vp6sUI/TjCIi2HEe4I/AAAAAAAAGV4/na0n21atNsI/s320/bolocat_flux120_L30_cdf.png" />
+<img alt="" src="http://1.bp.blogspot.com/-R2zq58aXXyI/TjCIjeTdjHI/AAAAAAAAGWA/D3xEDRAgY7M/s320/bolocat_flux_L30_cdf.png" />
+<p>This gets to be a little more interesting - apparently the &quot;source flux&quot;
+has a tendency to pick up the power-law distributed background
+structure, since it is consistent with a lognormal (but note that it is
+also consistent with a powerlaw! The ks test doesn't really say
+definitively which is better). Although the fits look bad at high flux,
+note that this is a log-log plot and therefore the difference in
+probability is rather small.
+What does this all indicate? It's not entirely clear whether individual
+fields are genuinely more lognormally-distributed or whether the number
+statistics are just worse. However, even the source flux is consistent
+with a power-law, while many realizations of the simulations are not.
+Therefore, we should perform the next logical test - add point sources
+drawn from a power-law distribution (and a log-normal distribution?) and
+see what bolocat retrieves. We can at least say now that the point
+source contribution cannot be ignored, since there is no power-law
+distribution that can reproduce the observed bolocat flux distribution.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/bolocat-examination-part-1.html" rel="bookmark" title="Permalink to Bolocat examination part 1">
+                    Bolocat examination part 1</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-18T22:59:00-06:00"> 2011/07/18 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://2.bp.blogspot.com/-RTBSwnk-CX0/TiS6VA5P39I/AAAAAAAAGT0/kB4v_Krbkm0/s320/bolocatrecovery_inputfiltered.png" />
+<p>This figure shows the flux recovery of bolocat. The Y axis shows the
+Input flux (green) and the Filtered flux (blue/cyan/purple) with a few
+different large-scale filters. The red line is the 1-1 line. Obviously,
+bolocat doesn't recover everything that was there - we removed a lot of
+flux, so recovery fractions are in the few % range. However, bolocat
+does a much better job than the simple filter at recovering positive
+fluxes. Therefore, the filter function still isn't good enough.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/testing-out-analytic-filter-functions.html" rel="bookmark" title="Permalink to Testing out analytic filter functions">
+                    Testing out analytic filter functions</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-15T03:03:00-06:00"> 2011/07/15 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've attempted to model the spatial filter function as a gaussian (or
+PSF) plus an inverse gaussian. i.e., the high-spatial-frequency
+components are smoothed with the PSF, and the low spatial frequency
+components are convolved with a (1-gaussian) high-pass filter.
+First, the mildly good news: With a 300&quot; FWHM large-scale cutoff, the
+filter PSD reasonably resembles the iterative map PSD:</p>
+<img alt="" src="http://3.bp.blogspot.com/-udANxY5rM98/Th-i7hx3qnI/AAAAAAAAGS0/kwoR30ZO5OI/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_map20filterpsds.png" />
+<p>Luckily, the double-filter goes a very long way in explaining the
+scale-free flux loss. In the following diagram, I show the effect of the
+filter compared to the input map.</p>
+<img alt="" src="http://3.bp.blogspot.com/-iZtSoQjlzJY/Th-jf6oatlI/AAAAAAAAGS8/p8ZcznsKGpI/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_filterpsds.png" />
+<p>The filter only recovers about 75% of the flux at ANY wavenumber. The
+map does slightly worse at high frequencies, which I can't explain yet.
+These show the recovery fraction of the iterative maps, a gaussian
+smoothing function with FWHM=33&quot;, and the mid-pass-filter. Map20 (no
+smooth) has a lot of additional &quot;noise power&quot; at high spatial
+frequencies; if it wasn't for the telescope filter function, we would
+apparently have pretty good high-frequency recovery. Hmph.
+Note that map20 is higher than the filter at some intermediate
+frequencies, but quite a bit lower at higher frequencies. Also note the
+moderately poor agreement between the 'smoothed' and 'smoothed (theory)'
+lines.</p>
+<img alt="" src="http://4.bp.blogspot.com/-zhxfyI_XDNY/Th-qZmsMZaI/AAAAAAAAGTE/550ocw2kFx8/s320/filterfunctions_smoothedx2.png" />
+<p>Finally, look at the comparison between map20 and fiiltered. The
+agreement is not bad for positive points; filtered is apparently
+slightly higher but that can be adjusted. The problem: the filter forces
+some structures that are negative or zero to be positive. For example,
+look at the feature at 210,300 that is negative in Map20 but positive in
+Filtered. In the real (input) map, this feature is lower than its
+surroundings - it is legitimately negative.</p>
+<img alt="" src="http://4.bp.blogspot.com/-zH98yuBL7lo/Th-tQIoKYCI/AAAAAAAAGTM/QNqslST6b2c/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_map20filtercompare.png" />
+<img alt="" src="http://2.bp.blogspot.com/-bvlju06_ySU/Th-ttpCOuhI/AAAAAAAAGTU/3zoCyl5gCIY/s320/exp12_ds2_astrosky_arrang45_atmotest_amp5.0E%252B02_sky00_seed00_peak050.00_nosmooth_filtercompare.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/masked-edge-effects.html" rel="bookmark" title="Permalink to Masked edge effects?">
+                    Masked edge effects?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-13T20:28:00-06:00"> 2011/07/13 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I raised the possibility that the ratty edges of a scan could affect the
+power spectrum measurements, leading to a scale-free power loss. This
+doesn't appear to happen... instead, the masking adds some small-scale
+power and apparently a small amount of large-scale power.</p>
+<img alt="" src="http://1.bp.blogspot.com/-y7Bh9ngi7mY/Th3_sLpN0VI/AAAAAAAAGSc/4P67rBou5HE/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B00_sky03_seed00_peak010.00_nosmooth_test_compare.png" />
+<img alt="" src="http://4.bp.blogspot.com/-cg1akcZbUek/Th3_sicaVmI/AAAAAAAAGSk/_4sALFui9kA/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B00_sky03_seed00_peak010.00_nosmooth_test_psds.png" />
+<img alt="" src="http://2.bp.blogspot.com/-y-9SbSCsPqw/Th3_tHJGc8I/AAAAAAAAGSs/suuiw8xvwpQ/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B00_sky03_seed00_peak010.00_nosmooth_test_stf.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 3
+        <a href="https://keflavich.github.io/blog/tag/simulation2.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

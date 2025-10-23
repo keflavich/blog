@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://keflavich.github.io/blog/generating-a-cv-using-the-ads-labs-api.html" rel="bookmark"
+         title="Permalink to Generating a CV using the ADS Labs API">Generating a CV using the ADS Labs API</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2013-09-21T00:00:00-06:00">
+      2013/09/21
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <ul class="simple">
+<li>[ <a class="reference external" href="https://github.com/keflavich/generate_cv">Source code related to this
+post</a> ]</li>
+<li>[ <a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/keflavich/generate_cv/master/examples/GenerateCVExample.ipynb">Notebook
+form</a>
+]</li>
+<li>[ <a class="reference external" href="http://www.adamgginsburg.com/cv.htm">CV partly generated from this
+post</a> ]</li>
+</ul>
+<p>At <a class="reference external" href="http://dotastronomy.com/">.astronomy</a> this past week, the keynote
+speaker was <a class="reference external" href="https://www.cfa.harvard.edu/~alberto/">Alberto
+Accomazzi</a>, introducing ADS
+Labs and <a class="reference external" href="http://labs.adsabs.harvard.edu/adsabs/">ADS 2.0</a>, which are
+really quite impressive.</p>
+<p>I was inspired to use ADS Labs to help me auto-generate a nicely
+formatted CV for myself. I used <a class="reference external" href="https://twitter.com/astrowizicist">Andy
+Casey's</a>
+<a class="reference external" href="https://github.com/andycasey/ads-python">ADS-python</a> as a starting
+point: he introduces a useful convention of storing your <a class="reference external" href="https://github.com/adsabs/adsabs-dev-api#signup--access">ADS API
+Key</a>:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">get_dev_key</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; A convenience function for accessing a system-wide ADS Developer&#39;s Key &quot;&quot;&quot;</span>
+
+    <span class="n">ads_dev_key_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/.ads/dev_key&#39;</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ads_dev_key_filename</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ads_dev_key_filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+            <span class="n">dev_key</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">dev_key</span>
+
+    <span class="k">if</span> <span class="s1">&#39;ADS_DEV_KEY&#39;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;ADS_DEV_KEY&#39;</span><span class="p">]</span>
+
+    <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s2">&quot;no ADS API key found in ~/.ads/dev_key&quot;</span><span class="p">)</span>
+</pre></div>
+<p>We'll use <tt class="docutils literal">requests</tt> to send the request to ADS, then <tt class="docutils literal">json</tt> to
+parse the data.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+</pre></div>
+<p>We then query the database using a keyword query (parameter <tt class="docutils literal">q</tt>)
+specifying the author. Other required parameters are the API key
+(<tt class="docutils literal">dev_key</tt>) and a filter to select only astronomy articles. The
+maximum number of rows returned in the API is 200 right now, which I
+have set (the default is 10 or 20).</p>
+<div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;http://adslabs.org/adsabs/api/search/&#39;</span><span class="p">,</span>
+                         <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;q&#39;</span><span class="p">:</span><span class="s1">&#39;author:ginsburg, a&#39;</span><span class="p">,</span>
+                                 <span class="s1">&#39;dev_key&#39;</span><span class="p">:</span><span class="n">get_dev_key</span><span class="p">(),</span>
+                                 <span class="s1">&#39;rows&#39;</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span>
+                                 <span class="s1">&#39;filter&#39;</span><span class="p">:</span><span class="s1">&#39;database:astronomy&#39;</span><span class="p">})</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">J</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="n">J</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+<pre class="literal-block">
+[u'meta', u'results']
+</pre>
+<p>The JSON 'meta' key is just metadata about the query, include the number
+of matches and execution time.</p>
+<div class="highlight"><pre><span></span><span class="n">J</span><span class="p">[</span><span class="s1">&#39;meta&#39;</span><span class="p">]</span>
+</pre></div>
+<pre class="literal-block">
+{u'api-version': u'0.1',
+ u'count': 54,
+ u'hits': 54,
+ u'qtime': 7,
+ u'query': u'author:ginsburg, a'}
+</pre>
+<p>The 'results' key includes what we're actually interested in, under
+another key 'docs'.</p>
+<div class="highlight"><pre><span></span><span class="n">J</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+<pre class="literal-block">
+[u'docs']
+</pre>
+<div class="highlight"><pre><span></span><span class="n">datalist</span> <span class="o">=</span> <span class="n">J</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;docs&#39;</span><span class="p">]</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">datalist</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">datalist</span><span class="p">)</span>
+</pre></div>
+<pre class="literal-block">
+(list, 54)
+</pre>
+<p><tt class="docutils literal">datalist</tt> is a list of the retrieved bibliographic entries.</p>
+<div class="highlight"><pre><span></span><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+<pre class="literal-block">
+[u'bibcode',
+ u'keyword',
+ u'pubdate',
+ u'bibstem',
+ u'property',
+ u'aff',
+ u'author',
+ u'citation_count',
+ u'pub',
+ u'page',
+ u'volume',
+ u'database',
+ u'doi',
+ u'year',
+ u'abstract',
+ u'title',
+ u'identifier',
+ u'issue',
+ u'id']
+</pre>
+<p>At this point, most of the remaining work is building up a nicely
+formatted output. We'll start with a web-specific example, using HTML
+unordered lists.</p>
+<p>In this example, we'll make a list item that creates a hyperlink for the
+author names and uses a reasonably standard bibliographic format:</p>
+<pre class="literal-block">
+Authors Month, Year, Journal
+Title
+</pre>
+<div class="highlight"><pre><span></span><span class="n">fmt</span> <span class="o">=</span> <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;                &#39;</span>
+<span class="sa">u</span><span class="s1">&#39;&lt;li&gt;&lt;a class=&quot;norm&quot; href=&quot;http://adsabs.harvard.edu/abs/</span><span class="si">{adsbibid}</span><span class="s1">&quot;&gt;</span><span class="si">{creator}</span><span class="s1">&lt;/a&gt;&#39;</span>
+<span class="sa">u</span><span class="s1">&#39; </span><span class="si">{month}</span><span class="s1">, &lt;b&gt;</span><span class="si">{year}</span><span class="s1">&lt;/b&gt; </span><span class="si">{journal}</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="sa">u</span><span class="s1">&#39;                &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;</span><span class="si">{titlestring}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+<p>We need to do a little data wrangling to get the individual JSON entries
+into the appropriate format:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">wrangle</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">authorname</span><span class="o">=</span><span class="s1">&#39;Ginsburg&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Create new fields from the input data to insert into the format string &quot;&quot;&quot;</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;pubdate&#39;</span><span class="p">][</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span>
+    <span class="c1"># Generally, the last identifier is the published version,</span>
+    <span class="c1"># while the first is an arXiv identifier</span>
+    <span class="c1"># (data[&#39;identifier&#39;] is a list)</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;adsbibid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;identifier&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1"># data[&#39;title&#39;] &amp; [&#39;pub&#39;] are also lists</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;titlestring&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;journal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;bibstem&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># This trick bolds my name in the list of authors</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;authors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&lt;b&gt;</span><span class="si">{}</span><span class="s1">&lt;/b&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">authorname</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">else</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">]]</span>
+    <span class="c1"># Separate names by semicolons</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;creator&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;authors&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+<p>The return from <tt class="docutils literal">wrangle</tt> is a dict with new keys that match the
+keywords in the format string. The python <tt class="docutils literal">string.format</tt> method will
+nicely ignore any extra keywords that we're uninterested in.</p>
+<div class="highlight"><pre><span></span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">wrangle</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+<pre class="literal-block">
+u'                &lt;li&gt;&lt;a class=&quot;norm&quot; href=&quot;<a class="reference external" href="http://adsabs.harvard.edu/abs/2013ApJ...773..102F">http://adsabs.harvard.edu/abs/2013ApJ...773..102F</a>&quot;&gt;Fallscheer, C.; Reid, M. A.; Di Francesco, J.; Martin, P. G.; Hill, T.; Hennemann, M.; Nguyen-Luong, Q.; Motte, F.; Men'shchikov, A.; Andrxe9, Ph.; Ward-Thompson, D.; Griffin, M.; Kirk, J.; Konyves, V.; Rygl, K. L. J.; Sadavoy, S.; Sauvage, M.; Schneider, N.; Anderson, L. D.; Benedettini, M.; Bernard, J. -P.; Bontemps, S.; &lt;b&gt;Ginsburg, A.&lt;/b&gt;; Molinari, S.; Polychroni, D.; Rivera-Ingraham, A.; Roussel, H.; Testi, L.; White, G.; Williams, J. P.; Wilson, C. D.; Wong, M.; Zavagno, A.&lt;/a&gt; 08, &lt;b&gt;2013&lt;/b&gt; ApJn                &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Herschel Reveals Massive Cold Clumps in NGCxa07538'
+</pre>
+<p>Now to show it in the notebook...</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">IPython.display</span>
+<span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">wrangle</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+</pre></div>
+<p>You can make a complete bibliography by looping over a few entries. The
+ordered list (<tt class="docutils literal">&lt;ol&gt;</tt>) tag makes a numbered list.</p>
+<div class="highlight"><pre><span></span><span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&lt;ol&gt;&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">wrangle</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="n">ii</span><span class="p">]))</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;&lt;/ol&gt;&quot;</span>
+<span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</pre></div>
+<p>If you want to make sure you only include refereed articles, use the
+'property' tag.</p>
+<div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">[</span><span class="s1">&#39;REFEREED&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;property&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span><span class="p">]</span>
+</pre></div>
+<pre class="literal-block">
+[True, False, True, False, False, False, True, True, False, False, False, False, True, True, True, False, False, True, True, False, False, True, True, True, False, False, False, False, True, False, False, True, True, True, True, True, True, False, False, False, False, False, False, True, True, False, False, False, False, False, True, False, False, True]
+</pre>
+<p>And don't forget that you can also include the citation count:</p>
+<div class="highlight"><pre><span></span><span class="nb">print</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;citation_count&#39;</span><span class="p">])</span>
+                <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span>
+                <span class="k">if</span> <span class="s1">&#39;citation_count&#39;</span> <span class="ow">in</span> <span class="n">d</span> <span class="ow">and</span> <span class="s1">&#39;REFEREED&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;property&#39;</span><span class="p">]])</span>
+</pre></div>
+<pre class="literal-block">
+Fallscheer, C. 2013: 0
+Ellsworth-Bowers, Timothy P. 2013: 2
+Smith, Nathan 2013: 0
+Harvey, Paul M. 2013: 2
+Bressert, E. 2012: 10
+Ginsburg, A. 2012: 11
+Bally, John 2012: 0
+Ginsburg, Adam 2011: 5
+Battersby, C. 2011: 22
+Schlingman, Wayne M. 2011: 17
+Ginsburg, Adam 2011: 6
+van Aarle, E. 2011: 12
+Aguirre, James E. 2011: 72
+Bally, John 2010: 36
+Battersby, Cara 2010: 30
+Yan, Chi-Hung 2010: 5
+Bally, J. 2010: 20
+Dunham, Miranda K. 2010: 27
+Rosolowsky, Erik 2010: 80
+Ginsburg, Adam G. 2009: 10
+Rubin, D. 2009: 23
+van de Steene, G. C. 2008: 4
+Golitsyn, G. S. 1985: 4
+</pre>
+<div class="section" id="wishlist">
+<h2>Wishlist</h2>
+<p>There are a few other features that would be nice to add to the CV, but
+some are not yet well-supported.</p>
+<ol class="arabic simple">
+<li>You can get the full name, but right now not the short name
+('bibstem'), of the journal</li>
+<li>The bibtex entry is important for generating tex versions of CVs.
+Currently, it is not possible to completely reproduce one, largely
+because of point #1.</li>
+</ol>
+<p>However, the ADS folks will certainly change this soon. You can find out
+if they have by querying their API settings. If the query below returns
+&quot;True&quot;, then you can access the bibstem.</p>
+<p>UPDATE 9/23/2013: Jay Luker &#64;ADS <a class="reference external" href="https://twitter.com/lbjay/status/382138570632204291">added 'bibstem' to the allowed return
+entries</a></p>
+<div class="highlight"><pre><span></span><span class="n">permissions_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;http://adslabs.org/adsabs/api/settings/&#39;</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;dev_key&#39;</span><span class="p">:</span><span class="n">get_dev_key</span><span class="p">()})</span>
+<span class="n">permissions</span> <span class="o">=</span> <span class="n">permissions_response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="s1">&#39;bibstem&#39;</span> <span class="ow">in</span> <span class="n">permissions</span><span class="p">[</span><span class="s1">&#39;allowed_fields&#39;</span><span class="p">]</span>
+</pre></div>
+<pre class="literal-block">
+True
+</pre>
+<p>In the meantime, you can get most of the way there. We'll create
+&quot;Article&quot; entries for any articles or eprints and ignore abstracts
+(e.g., conference abstracts). I don't have any books, but for others
+that might be useful.</p>
+<p>The approach we'll use is also a good way to reject unwanted articles in
+the HTML bibliography above.</p>
+<div class="highlight"><pre><span></span><span class="n">bibfmt</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;&quot;&quot;@article{{</span><span class="si">{tagname}</span><span class="s2">,</span>
+<span class="s2">abstract={{</span><span class="si">{abstract}</span><span class="s2">}},</span>
+<span class="s2">author={{</span><span class="si">{bibtexauthors}</span><span class="s2">}},</span>
+<span class="s2">month={{</span><span class="si">{month}</span><span class="s2">}},</span>
+<span class="s2">pages={{</span><span class="si">{page}</span><span class="s2">}},</span>
+<span class="s2">title={{</span><span class="si">{titlestring}</span><span class="s2">}},</span>
+<span class="s2">year={{</span><span class="si">{year}</span><span class="s2">}},</span>
+<span class="s2">volume={{</span><span class="si">{volume}</span><span class="s2">}},</span>
+<span class="s2">journal={{</span><span class="se">\\</span><span class="si">{lowercasejournal}</span><span class="s2">}}</span>
+<span class="s2">}}&quot;&quot;&quot;</span>
+</pre></div>
+<p>Of course, it's necessary to wrangle the data again for the appropriate
+author list formatting for bibtex:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">wrangleauthors</span><span class="p">(</span><span class="n">authorlist</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Fit the author list into a bibtex-friendly format.</span>
+<span class="sd">    Not the cleanest hack, since we need to allow for single-name</span>
+<span class="sd">    authors (e.g., astropy collaboration, Planck collaboration, etc.)</span>
+<span class="sd">    The triple braces are needed because TeX uses them&quot;&quot;&quot;</span>
+    <span class="n">splita</span> <span class="o">=</span> <span class="p">[[</span><span class="n">b</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)]</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">authorlist</span><span class="p">]</span>
+    <span class="n">bracketed</span> <span class="o">=</span> <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;{{</span><span class="si">{}</span><span class="s1">}}, </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="s2">&quot;~&quot;</span><span class="p">))</span>
+                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+                 <span class="k">else</span> <span class="sa">u</span><span class="s1">&#39;{{</span><span class="si">{}</span><span class="s1">}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                 <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">splita</span><span class="p">]</span>
+    <span class="k">return</span> <span class="sa">u</span><span class="s2">&quot; and &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">bracketed</span><span class="p">)</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">wrangleauthors</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;author&#39;</span><span class="p">])</span>
+</pre></div>
+<pre class="literal-block">
+u&quot;{Fallscheer}, C. and {Reid}, M.~A. and {Di Francesco}, J. and {Martin}, P.~G. and {Hill}, T. and {Hennemann}, M. and {Nguyen-Luong}, Q. and {Motte}, F. and {Men'shchikov}, A. and {Andrxe9}, Ph. and {Ward-Thompson}, D. and {Griffin}, M. and {Kirk}, J. and {Konyves}, V. and {Rygl}, K.~L.~J. and {Sadavoy}, S. and {Sauvage}, M. and {Schneider}, N. and {Anderson}, L.~D. and {Benedettini}, M. and {Bernard}, J.~-P. and {Bontemps}, S. and {Ginsburg}, A. and {Molinari}, S. and {Polychroni}, D. and {Rivera-Ingraham}, A. and {Roussel}, H. and {Testi}, L. and {White}, G. and {Williams}, J.~P. and {Wilson}, C.~D. and {Wong}, M. and {Zavagno}, A.&quot;
+</pre>
+<p>Now we can start looping through, performing checks for article status,
+and making bibentries. We'll use python's <tt class="docutils literal">dateutils.parse</tt> to turn
+month numbers into names</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dateutil.parser</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span><span class="p">:</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;bibtexauthors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wrangleauthors</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">])</span>
+
+    <span class="c1"># pubdates don&#39;t include days, and sometimes don&#39;t include months,</span>
+    <span class="c1"># so we have to be careful</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dateutil</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;pubdate&#39;</span><span class="p">][:</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%B&quot;</span><span class="p">)</span>
+                  <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;pubdate&#39;</span><span class="p">][</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;00&#39;</span>
+                  <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="c1"># To make the standard macros, e.g. \apj, \aa</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;lowercasejournal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;bibstem&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="c1"># list -&gt; string</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;titlestring&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># need to make sure there is something to put in the volume field</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;volume&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;volume&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;volume&#39;</span> <span class="ow">in</span> <span class="n">d</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="c1"># tagname is [First author&#39;s last name][year]</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;tagname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">bibdata</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s1">&#39;ARTICLE&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;property&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="s1">&#39;EPRINT&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;property&#39;</span><span class="p">]:</span>
+        <span class="n">bibdata</span> <span class="o">+=</span> <span class="n">bibfmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+</pre></div>
+<p>Now this data can be saved to a bibliography file and parsed by LaTeX.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">codecs</span> <span class="c1"># for writing unicode</span>
+
+<span class="k">with</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;mypapers.bib&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">bibdata</span><span class="p">)</span>
+</pre></div>
+<p>Future work:</p>
+<ul class="simple">
+<li>Verify the bibtex</li>
+<li>Generate the CV LaTeX and compile it</li>
+</ul>
+</div>
+
+  </div><!-- /.entry-content -->
+</section>
+
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</section>
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  var disqus_identifier = '/generating-a-cv-using-the-ads-labs-api.html';
+  var disqus_url = 'https://keflavich.github.io/blog/generating-a-cv-using-the-ads-labs-api.html';
+  var disqus_title = 'Generating a CV using the ADS Labs API';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

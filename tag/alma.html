@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - alma</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+              <li class="post">
+                  2021/04/27
+                  <br>
+                  <a href="https://keflavich.github.io/blog/determing-alma-array-configurations.html">Determing ALMA Array Configurations</a>
+              </li>
+              <li class="post">
+                  2018/10/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/feo-nondetection-in-orion.html">FeO Nondetection in Orion</a>
+              </li>
+              <li class="post">
+                  2017/12/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/the-extragalactic-view-of-w51-at-220-and-290-ghz.html">The extragalactic view of W51 at 220 and 290 GHz</a>
+              </li>
+              <li class="post">
+                  2016/04/24
+                  <br>
+                  <a href="https://keflavich.github.io/blog/more-casa-simulation-debugging.html">More CASA simulation & debugging</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html" rel="bookmark" title="Permalink to ALMA Cycle 9 corrupted zip fix">
+                    ALMA Cycle 9 corrupted zip fix</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2022-04-14T09:18:00-06:00"> 2022/04/14 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>If you encounter a bug like this:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/ALMAC9ZipBug.png" style="width: 600px;" />
+<p>&quot;XML (syntax or validity) error&quot; because you hit issue <a class="reference external" href="https://almascience.eso.org/documents-and-tools/cycle9/known-issues">C1_032</a>,
+the fix is really easy:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">zipfile</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># not strictly necessary, but important if you want to avoid filling your directory with files</span>
+<span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">&#39;recovery&#39;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">&#39;recovery&#39;</span><span class="p">)</span>
+
+<span class="c1"># replace with your AOT file name</span>
+<span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="s1">&#39;../corrupted.aot&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">aot</span><span class="p">:</span>
+    <span class="c1"># this will extract all the files into the current directory</span>
+    <span class="n">aot</span><span class="o">.</span><span class="n">extractall</span><span class="p">()</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="n">aot</span><span class="o">.</span><span class="n">filelist</span>
+
+<span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="s1">&#39;../recovered.aot&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">aot</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">fh</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+        <span class="n">aot</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fh</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+<p>At least, this worked on the one case where I got bitten.</p>
+<p>This fix is based on <a class="reference external" href="https://github.com/low-sky/alma_proposal_tools">Erik Rosolowsky's ALMA proposal tools</a></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/determing-alma-array-configurations.html" rel="bookmark" title="Permalink to Determing ALMA Array Configurations">
+                    Determing ALMA Array Configurations</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2021-04-27T08:51:00-06:00"> 2021/04/27 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>ALMA's named array configurations are not accessible through CASA.
+They are available from <a class="reference external" href="https://almascience.eso.org/observing/observing-configuration-schedule/prior-cycle-observing-and-configuration-schedule">https://almascience.eso.org/observing/observing-configuration-schedule/prior-cycle-observing-and-configuration-schedule</a></p>
+<p>This snippet will let you grab the tables and create a mapping from date to array config name.</p>
+<p>However, it's a HUGE waste of time, because these data are stored directly in the MS!</p>
+<p>This is the right way:</p>
+<pre class="code python literal-block">
+<span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">vis</span><span class="o">+</span><span class="s1">'/ASDM_EXECBLOCK'</span><span class="p">)</span><span class="w">
+</span><span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s1">'configName'</span><span class="p">)</span><span class="w">
+</span><span class="c1"># array(['C43-3'], dtype='&lt;U16')</span>
+</pre>
+<p>This is the hacky, reconstructed from the website, bad way:</p>
+<pre class="code python literal-block">
+<span class="kn">import</span> <span class="nn">requests</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">astropy.table</span> <span class="kn">import</span> <span class="n">Table</span><span class="p">,</span> <span class="n">vstack</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">ascii</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">astropy.time</span> <span class="kn">import</span> <span class="n">Time</span><span class="w">
+
+</span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://almascience.eso.org/observing/observing-configuration-schedule/prior-cycle-observing-and-configuration-schedule&quot;</span><span class="w">
+
+</span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="w">
+</span><span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span><span class="w">
+</span><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span><span class="w">
+</span><span class="n">tables</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">'table'</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;grid listing&quot;</span><span class="p">)</span><span class="w">
+
+</span><span class="k">def</span> <span class="nf">clean_lines</span><span class="p">(</span><span class="n">soup</span><span class="p">,</span> <span class="n">badrows</span><span class="o">=</span><span class="p">[</span><span class="s1">'Long Baseline Campaign'</span><span class="p">,</span><span class="w">
+</span>                               <span class="s1">'February Maintenance Period'</span><span class="p">,</span><span class="w">
+</span>                               <span class="s1">'End of Cycle'</span><span class="p">,</span><span class="w">
+</span>                               <span class="s1">'Engineering/Software'</span><span class="p">,</span><span class="w">
+</span>                               <span class="s1">'Engineering/Software Time'</span><span class="p">,</span><span class="w">
+</span>                                   <span class="p">]):</span><span class="w">
+</span>    <span class="k">for</span> <span class="n">tr</span> <span class="ow">in</span> <span class="n">soup</span><span class="p">(</span><span class="s1">'tr'</span><span class="p">):</span><span class="w">
+</span>        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">bad</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">tr</span><span class="p">)</span> <span class="k">for</span> <span class="n">bad</span> <span class="ow">in</span> <span class="n">badrows</span><span class="p">):</span><span class="w">
+</span>             <span class="n">_</span><span class="o">=</span><span class="n">tr</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span><span class="w">
+</span>    <span class="k">return</span> <span class="n">soup</span><span class="w">
+
+</span><span class="n">tables</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">'table'</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;grid listing&quot;</span><span class="p">)</span><span class="w">
+</span><span class="n">tables</span> <span class="o">=</span> <span class="p">[</span><span class="n">ascii</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">clean_lines</span><span class="p">(</span><span class="n">tbl</span><span class="p">)),</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'html'</span><span class="p">)</span> <span class="k">for</span> <span class="n">tbl</span> <span class="ow">in</span> <span class="n">tables</span><span class="p">]</span><span class="w">
+</span><span class="n">tables</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">tables</span><span class="p">[</span><span class="mi">3</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="w">
+</span><span class="n">tables</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s1">'Block'</span><span class="p">]</span> <span class="o">=</span> <span class="n">tables</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s1">'Block'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'int'</span><span class="p">)</span><span class="w">
+</span><span class="n">tables</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s1">'maximumrecoverablescale2(&quot;)'</span><span class="p">]</span> <span class="o">=</span> <span class="n">tables</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s1">'maximumrecoverablescale2(&quot;)'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'str'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">stacked</span> <span class="o">=</span> <span class="n">vstack</span><span class="p">(</span><span class="n">tables</span><span class="p">)</span><span class="w">
+</span><span class="n">start_times</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">stacked</span><span class="p">[</span><span class="s1">'Start date'</span><span class="p">])</span><span class="w">
+</span><span class="n">end_times</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">stacked</span><span class="p">[</span><span class="s1">'End date'</span><span class="p">])</span>
+</pre>
+<p>Then, say you have a list of measurement sets <tt class="docutils literal">mses</tt>, you can look up the
+array configuration for each date and field.  The choice of <tt class="docutils literal">fields[0]</tt> here
+only makes sense if your data had a single target; it's a bad choice if there
+are multiple targets in a scheduling block:</p>
+<pre class="code python literal-block">
+<span class="kn">import</span> <span class="nn">json</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">casatools</span> <span class="kn">import</span> <span class="n">msmetadata</span><span class="w">
+</span><span class="n">msmd</span> <span class="o">=</span> <span class="n">msmetadata</span><span class="p">()</span><span class="w">
+
+</span><span class="n">results</span> <span class="o">=</span> <span class="p">{}</span><span class="w">
+
+</span><span class="k">for</span> <span class="n">vis</span> <span class="ow">in</span> <span class="n">mses</span><span class="p">:</span><span class="w">
+</span>    <span class="n">msmd</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">mses</span><span class="p">)</span><span class="w">
+</span>    <span class="n">obstime</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">msmd</span><span class="o">.</span><span class="n">timerangeforobs</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="s1">'begin'</span><span class="p">][</span><span class="s1">'m0'</span><span class="p">][</span><span class="s1">'value'</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'mjd'</span><span class="p">)</span><span class="w">
+</span>    <span class="n">fieldnames</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">msmd</span><span class="o">.</span><span class="n">fieldnames</span><span class="p">())</span><span class="w">
+</span>    <span class="n">fields</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">fieldnames</span><span class="p">[</span><span class="n">msmd</span><span class="o">.</span><span class="n">fieldsforintent</span><span class="p">(</span><span class="s1">'OBSERVE_TARGET#ON_SOURCE'</span><span class="p">)])</span><span class="w">
+</span>    <span class="n">msmd</span><span class="o">.</span><span class="n">close</span><span class="p">()</span><span class="w">
+
+</span>    <span class="n">array_config</span> <span class="o">=</span> <span class="n">stacked</span><span class="p">[(</span><span class="n">obstime</span> <span class="o">&gt;</span> <span class="n">start_times</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">obstime</span> <span class="o">&lt;</span> <span class="n">end_times</span><span class="p">)][</span><span class="s1">'Approx</span><span class="se">\xa0</span><span class="s1">Config.'</span><span class="p">]</span><span class="w">
+</span>    <span class="k">if</span> <span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span><span class="w">
+</span>        <span class="n">results</span><span class="p">[</span><span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">obstime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">'</span><span class="p">)]</span> <span class="o">=</span> <span class="n">array_config</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w">
+</span>    <span class="k">else</span><span class="p">:</span><span class="w">
+</span>        <span class="n">results</span><span class="p">[</span><span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span><span class="n">obstime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">'</span><span class="p">):</span> <span class="n">array_config</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span><span class="w">
+
+</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'array_configurations.json'</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span><span class="w">
+</span>    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">fh</span><span class="p">)</span>
+</pre>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/feo-nondetection-in-orion.html" rel="bookmark" title="Permalink to FeO Nondetection in Orion">
+                    FeO Nondetection in Orion</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2018-10-14T15:09:00-06:00"> 2018/10/14 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I had a Cycle 3 ALMA program <a class="reference external" href="https://almascience.nrao.edu/observing/highest-priority-projects">2015.1.00262.S:
+Digging for rusty bullets at an explosion site</a>
+that aimed to detect <a class="reference external" href="https://en.wikipedia.org/wiki/Iron(II)_oxide">ferrous oxide, FeO</a>
+in the shocked outflows of the Orion nebula.</p>
+<p>I haven't published anything on this data set because it resulted in a fairly
+boring non-detection.  You can find the source code to retrieve and process
+the data from <a class="reference external" href="https://github.com/keflavich/FeO_2015.1.00262.S">here</a>.
+The nondetection is several orders of magnitude deeper than previous
+ones, but to demonstrate this definitively, we need to do some more modeling
+work, which my co-I's and I have decided isn't worth the time, since we're
+all flooded with very exciting new ALMA data that has interesting detections
+in it (see salts soon).</p>
+<p>In brief, we were looking at a location where we know molecules (H2, molecular
+hydrogen) and gas-phase iron (Fe II, as seen in in the [Fe II] 1.64 micron lines)
+are approximately coincident.  The most likely (and broadly accepted)
+explanation is that dust particles are being destroyed (sputtered) in the
+high-velocity ($&gt;30$ km/s, up to about $100-200$ km/s) shocks produced in an
+outflow.  Since iron in the interstellar medium mostly lives in the cores of
+dust grains, we thought it might be released in a molecular form detectable by
+ALMA before being split into an atomic, ionized form.</p>
+<p>Despite having a good location and a sensitive observation, we didn't detect
+any.  It might mean that iron is mostly in a different molecular form, or it
+might mean that when iron gets sputtered out of grains, it never goes into
+a molecular form at all, instead dissociating straight into atomic form.</p>
+<p>There are a few things that, with infinite time, I would do with this data set:</p>
+<ol class="arabic simple">
+<li>Come up with a formal upper limit on the FeO abundance.</li>
+<li>Compare the lines we did detect to the outflows and see if we can better
+constrain their physical conditions</li>
+<li>Catalog the stars and publish the catalog for comparison to other data sets.
+(actually, this is done: <a class="reference external" href="https://github.com/keflavich/FeO_2015.1.00262.S/blob/master/tables/gaussian_fit_table.ipac">this table</a>
+contains Gaussian fits to each of the stars in the continuum image (<a class="reference external" href="https://github.com/keflavich/FeO_2015.1.00262.S/blob/master/analysis/contsource_centroids.py">source</a>).)</li>
+</ol>
+<p>These figure show the apertures we used to extract spectra and search for the
+lines, then the spectra of different species for one of the apertures.  The
+background image is the H2 (orange) + FeII (cyan) + K-band (mostly white) I
+made for my <a class="reference external" href="http://adsabs.harvard.edu/abs/2015A%26A...579A.130B">2015 paper with John Bally</a>.</p>
+<img alt="" src="https://keflavich.github.io/blog/images/feo/aperture_overlays.png" style="width: 600px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/feo/BulletHeads4_alllines.png" style="width: 600px;" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/the-extragalactic-view-of-w51-at-220-and-290-ghz.html" rel="bookmark" title="Permalink to The extragalactic view of W51 at 220 and 290 GHz">
+                    The extragalactic view of W51 at 220 and 290 GHz</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2017-12-01T11:23:00-07:00"> 2017/12/01 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>These are APEX data covering 5.5' x 5.5' centered on W51 Main:
+<a class="reference external" href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/RYEANM">https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/RYEANM</a>
+These are calibrated to T_A* units.  APEX telescope efficiencies can be found
+here: <a class="reference external" href="http://www.apex-telescope.org/telescope/efficiency/">http://www.apex-telescope.org/telescope/efficiency/</a> and are approximately
+0.75 at the observed frequencies.</p>
+<p>W51 is at a distance of 5.1 kpc, so this field of view is equivalent to 8.1 pc, or 1.7&quot; at
+1 Mpc or 0.33&quot; at 5 Mpc.</p>
+<p>The linewidth is 12.7-15.2 km/s (H2CO 4-3, CO 2-1) FWHM averaged over this full field.</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/gaussfit_h2co4-3_velocity.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/gaussfit_12co2-1_velocity.png" style="width: 200px;" />
+<p>Images of the spectra, with some lines identified, are shown here (open them in
+a new tab to see the full resolution).  The baselines aren't great, but it's
+easy to fit a local linear baseline around any of the fairly narrow lines.</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/lineid_avg_W51_12CO_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/lineid_avg_W51_217GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/lineid_avg_W51_218GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/lineid_avg_W51_232GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/lineid_avg_W51_291GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/lineid_avg_W51_293GHz_merge.png" style="width: 200px;" />
+<p>The same images, but not zoomed in the y-direction.  Note that 12CO 2-1 is very
+near the edge of the band; it peaks around 20 K:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/avg_W51_12CO_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/avg_W51_217GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/avg_W51_218GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/avg_W51_232GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/avg_W51_291GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/avg_W51_293GHz_merge.png" style="width: 200px;" />
+<p>Scripts to obtain the data and process them are here:
+<a class="reference external" href="https://github.com/keflavich/W51_APEX_H2CO">https://github.com/keflavich/W51_APEX_H2CO</a></p>
+<p>See the related project by Watanabe et al looking at W51 in the 3mm band:
+<a class="reference external" href="http://adsabs.harvard.edu/abs/2017ApJ...845..116W">http://adsabs.harvard.edu/abs/2017ApJ...845..116W</a></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/more-casa-simulation-debugging.html" rel="bookmark" title="Permalink to More CASA simulation & debugging">
+                    More CASA simulation &amp; debugging</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-04-24T22:57:00-06:00"> 2016/04/24 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>(this post written from snowy-ish ALMA; <a class="reference external" href="https://goo.gl/photos/z3fUkCT6VVRzt8EW6">just cloudy at the OSF though</a>)</p>
+<p>(tl; dr version: <tt class="docutils literal">sm.setvp</tt> doesn't work if you have <tt class="docutils literal"><span class="pre">TELESCOP=&quot;ALMA&quot;</span></tt> in
+your header)</p>
+<p>I'm trying to repeat an experiment very similar to
+<a class="reference external" href="|static|/casa_simulating.rst">previous</a>
+<a class="reference external" href="|static|/simulated_imaging.rst">simulation work</a>
+in order to quantify my completeness and largest angular scales
+by injecting synthetic signal into the real UV data.</p>
+<p>However, as you might expect, it doesn't work as it did last time, even
+when I (afaict) copy and paste the code directly.</p>
+<p>Here's the new error:</p>
+<pre class="literal-block">
+2016-04-25 02:57:21 SEVERE  Simulator::createSkyEquation() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2200)        Caught exception: Transformations to/from frame &quot;Undefined&quot; are not possible.
+2016-04-25 02:57:21 SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Failed to create SkyEquation
+Result of predict: False
+</pre>
+<p>It's strange because there is nothing obviously undefined.</p>
+<p>I'm comparing 2 FITS files that should behave identically.
+The good header lacks these keywords that the bad header has:</p>
+<pre class="literal-block">
+['PV2_1',
+ 'PV2_2',
+ 'OBSERVER',
+ 'DATE-OBS',
+ 'OBSRA',
+ 'OBSDEC',
+ 'OBSGEO-X',
+ 'OBSGEO-Y',
+ 'OBSGEO-Z']
+</pre>
+<p>while the good header has these and the bad lacks them:</p>
+<pre class="literal-block">
+['PC03_01',
+ 'PC04_01',
+ 'PC03_02',
+ 'PC04_02',
+ 'PC01_03',
+ 'PC02_03',
+ 'PC03_03',
+ 'PC04_03',
+ 'PC01_04',
+ 'PC02_04',
+ 'PC03_04',
+ 'PC04_04',
+ 'CREATOR',
+ 'INSTRUME',
+ 'BAND',
+ 'PROPOSAL',
+ 'PRTITLE',
+ 'OBSID001',
+ 'OBSID002',
+ 'HISTORY']
+</pre>
+<p>The only significant difference is the <tt class="docutils literal">PC</tt> values, unless CASA
+is doing something with the observatory location information.</p>
+<p>The only difference in common keywords is numerical, which seems
+very unlikely to cause this issue.</p>
+<p>I cannot discern any useful difference between these two CASA .image headers:</p>
+<pre class="literal-block">
+2016-04-25 03:08:55 INFO imhead     ##########################################
+2016-04-25 03:08:55 INFO imhead     ##### Begin Task: imhead             #####
+2016-04-25 03:08:55 INFO imhead     imhead(imagename=&quot;../perseus_synth/perseus_250_to_w51.image&quot;,mode=&quot;summary&quot;,hdkey=&quot;&quot;,hdvalue=&quot;&quot;,verbose=True)
+2016-04-25 03:08:55 INFO ImageAnalysis
+2016-04-25 03:08:55 INFO ImageAnalysis      Image name       : perseus_250_to_w51.image
+2016-04-25 03:08:55 INFO ImageAnalysis      Object name      : perseus 04
+2016-04-25 03:08:55 INFO ImageAnalysis      Image type       : PagedImage
+2016-04-25 03:08:55 INFO ImageAnalysis      Image quantity   : Intensity
+2016-04-25 03:08:55 INFO ImageAnalysis      Pixel mask(s)    : mask0
+2016-04-25 03:08:55 INFO ImageAnalysis      Region(s)        : None
+2016-04-25 03:08:55 INFO ImageAnalysis      Image units      : Jy/pixel
+2016-04-25 03:08:55 INFO ImageAnalysis      Restoring Beam   : 0.465804 arcsec, 0.465804 arcsec, 0 deg
+2016-04-25 03:08:55 INFO ImageAnalysis
+2016-04-25 03:08:55 INFO ImageAnalysis      Direction reference : J2000
+2016-04-25 03:08:55 INFO ImageAnalysis      Spectral  reference : Undefined
+2016-04-25 03:08:55 INFO ImageAnalysis      Velocity  type      : RADIO
+2016-04-25 03:08:55 INFO ImageAnalysis      Rest frequency      : 2.33947e+11 Hz
+2016-04-25 03:08:55 INFO ImageAnalysis      Telescope           : Herschel
+2016-04-25 03:08:55 INFO ImageAnalysis      Observer            : UNKNOWN
+2016-04-25 03:08:55 INFO ImageAnalysis      Date observation    : UNKNOWN
+2016-04-25 03:08:55 INFO ImageAnalysis
+2016-04-25 03:08:55 INFO ImageAnalysis      Axis Coord Type      Name             Proj Shape Tile   Coord value at pixel    Coord incr Units
+2016-04-25 03:08:55 INFO ImageAnalysis      ------------------------------------------------------------------------------------------------
+2016-04-25 03:08:55 INFO ImageAnalysis      0    0     Direction Right Ascension   TAN  2370  158  19:23:41.765  1099.00 -1.552680e-01 arcsec
+2016-04-25 03:08:55 INFO ImageAnalysis      1    0     Direction Declination       TAN  2500  250 +14.30.45.850  1552.00  1.552680e-01 arcsec
+2016-04-25 03:08:55 INFO ImageAnalysis      2    2     Spectral  Frequency                 1    1   2.33947e+11     0.00  1.000000e+09 Hz
+2016-04-25 03:08:55 INFO ImageAnalysis                           Velocity                                     0     0.00 -1.281456e+03 km/s
+2016-04-25 03:08:55 INFO ImageAnalysis      3    1     Stokes    Stokes                    1    1             I
+2016-04-25 03:08:55 INFO imhead     ##### End Task: imhead               #####
+2016-04-25 03:08:55 INFO imhead     ##########################################
+2016-04-25 03:09:07 INFO imhead
+2016-04-25 03:09:07 INFO imhead     ##########################################
+2016-04-25 03:09:07 INFO imhead     ##### Begin Task: imhead             #####
+2016-04-25 03:09:07 INFO imhead     imhead(imagename=&quot;../simulations/simimage_firsttest.image&quot;,mode=&quot;summary&quot;,hdkey=&quot;&quot;,hdvalue=&quot;&quot;,verbose=False)
+2016-04-25 03:09:07 INFO ImageAnalysis
+2016-04-25 03:09:07 INFO ImageAnalysis      Image name       : simimage_firsttest.image
+2016-04-25 03:09:07 INFO ImageAnalysis      Object name      :
+2016-04-25 03:09:07 INFO ImageAnalysis      Image type       : PagedImage
+2016-04-25 03:09:07 INFO ImageAnalysis      Image quantity   : Intensity
+2016-04-25 03:09:07 INFO ImageAnalysis      Pixel mask(s)    : None
+2016-04-25 03:09:07 INFO ImageAnalysis      Region(s)        : None
+2016-04-25 03:09:07 INFO ImageAnalysis      Image units      : Jy/beam
+2016-04-25 03:09:07 INFO ImageAnalysis      Restoring Beam   : 0.21023 arcsec, 0.192666 arcsec, 79.8538 deg
+2016-04-25 03:09:07 INFO ImageAnalysis
+2016-04-25 03:09:07 INFO ImageAnalysis      Direction reference : J2000
+2016-04-25 03:09:07 INFO ImageAnalysis      Spectral  reference : Undefined
+2016-04-25 03:09:07 INFO ImageAnalysis      Velocity  type      : RADIO
+2016-04-25 03:09:07 INFO ImageAnalysis      Rest frequency      : 2.33947e+11 Hz
+2016-04-25 03:09:07 INFO ImageAnalysis      Pointing center     :  19:23:41.629000  +14.30.42.380000
+2016-04-25 03:09:07 INFO ImageAnalysis      Telescope           : ALMA
+2016-04-25 03:09:07 INFO ImageAnalysis      Observer            : keflavich
+2016-04-25 03:09:07 INFO ImageAnalysis      Date observation    : 2015/04/23/09:47:44
+2016-04-25 03:09:07 INFO ImageAnalysis      Telescope position: [2.22514e+06m, -5.44031e+06m, -2.48103e+06m] (ITRF)
+2016-04-25 03:09:07 INFO ImageAnalysis
+2016-04-25 03:09:07 INFO ImageAnalysis      Axis Coord Type      Name             Proj Shape Tile   Coord value at pixel    Coord incr Units
+2016-04-25 03:09:07 INFO ImageAnalysis      ------------------------------------------------------------------------------------------------
+2016-04-25 03:09:07 INFO ImageAnalysis      0    0     Direction Right Ascension   TAN  3072  192  19:23:41.629  1536.00 -5.000000e-02 arcsec
+2016-04-25 03:09:07 INFO ImageAnalysis      1    0     Direction Declination       TAN  3072  192 +14.30.42.380  1536.00  5.000000e-02 arcsec
+2016-04-25 03:09:07 INFO ImageAnalysis      2    1     Stokes    Stokes                    1    1             I
+2016-04-25 03:09:07 INFO ImageAnalysis      3    2     Spectral  Frequency                 1    1   2.33947e+11     0.00  1.000000e+09 Hz
+2016-04-25 03:09:07 INFO ImageAnalysis                           Velocity                                     0     0.00 -1.281456e+03 km/s
+2016-04-25 03:09:07 INFO imhead     ##### End Task: imhead               #####
+2016-04-25 03:09:07 INFO imhead     ##########################################
+</pre>
+<p>if anything, the ALMA file includes <em>extra</em> data. Removing this data has no
+effect.</p>
+<p>The only really substantial difference left is the order of the axes, which
+is <em>not what I put in</em> for the ALMA data: it puts Stokes as 2 instead of 3
+despite the fact that <tt class="docutils literal"><span class="pre">CTYPE4='STOKES'</span></tt> and <tt class="docutils literal"><span class="pre">CTYPE3='FREQ'</span></tt>.</p>
+<p>By doing a round trip FITS-&gt;image-&gt;FITS-&gt;image, I was able to fix the order,
+but that is not the underlying problem, apparently.</p>
+<p>Could the missing pixel mask be at fault?  It doesn't jive at all with the
+error message, so I doubt it.  <tt class="docutils literal">OBSDATE</tt> is not the problem.</p>
+<p>Turns out, the error is that ALMA is the telescope.  I added the header entry:</p>
+<pre class="literal-block">
+ffile[0].header['TELESCOP'] = 'NotReal'
+</pre>
+<p>and it Just Worked.  It is approaching the end of my shift, so I think it is
+now acceptable to say &quot;what kind of !#$&#64;#$!&#64;% up #&#64;$$&#64;% is that?!&quot;.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/simulated-observations-of-perseus-in-w51.html" rel="bookmark" title="Permalink to Simulated Observations of Perseus in W51">
+                    Simulated Observations of Perseus in W51</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-02-27T10:40:00-07:00"> 2016/02/27 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The W51 and Sgr B2 ALMA mosaics contain ~50 and ~150 pointlike sources,
+respectively.  However, they have pretty miserable high-noise regions
+such that determining completeness is a serious challenge.</p>
+<p>To determine completeness in a means comparable to other observations,
+I have therefore been using the Gould's Belt Survey Perseus data
+as an input to do synthetic observations.</p>
+<p>It turns out this is technically challenging because CASA does some
+<a class="reference external" href="|static|/casa_simulating.rst">strange things</a> when importing files.</p>
+<p>I finally got a <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/commit/b046ff5c82992ef44a1dbaac303fcc6497511142">version</a>
+working.</p>
+<p>Important details when reading in a FITS file:</p>
+<blockquote>
+<ul>
+<li><p class="first">The header <em>must</em> be fully populated with a 4-dimensional WCS.  If stokes or
+frequency are missing, CASA will choke with uninformative errors such as:</p>
+<p>2016-02-26 11:25:24  SEVERE  Simulator::createSkyEquation() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2200)        Caught exception: (/Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc : 2266) Failed AlwaysAssert spectralIndex&gt;=0
+2016-02-26 11:25:24  SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Failed to create SkyEquation</p>
+<p>and</p>
+<p>2016-02-26 11:27:36  SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Caught exception: (/Users/rpmbuild/gradle/workdir/casasources/release-4_5/casacore/coordinates/Coordinates/CoordinateSystem.cc : 793) Failed AlwaysAssert which &lt; nCoordinates() &amp;&amp; coordinates_p[which]-&gt;type() == Coordinate::STOKES</p>
+</li>
+<li><p class="first">Flux units should be in Jy/beam.  Other flux units <em>may</em> be acceptable (e.g.,
+MJy/sr, Jy/pixel), but their behavior is not entirely predictable.  I did not
+get out the expected values when I used MJy/sr as input, but I did not pursue
+further why this happened.  Using Jy/beam, and ensuring that the units were correctly
+set to Jy/beam in the file (by scaling them in the FITS image before importing),
+I got the expected results.</p>
+</li>
+<li><p class="first">CASA apparently does not read beam information from headers.  You need to include the
+beam information when doing importfits, e.g.:</p>
+<blockquote>
+<dl class="docutils">
+<dt>beam=[&quot;{0}deg&quot;.format(hdr['BMAJ']),</dt>
+<dd><p class="first last">&quot;{0}deg&quot;.format(hdr['BMIN']),
+&quot;{0}deg&quot;.format(hdr['BPA'])]</p>
+</dd>
+</dl>
+</blockquote>
+</li>
+<li><p class="first">CASA will happily read a FITS file into a <tt class="docutils literal">.image</tt> that cannot be used by
+other casa routines.  You will not get an exception until you try a later
+step.</p>
+</li>
+</ul>
+</blockquote>
+<p>Once the FITS image is read into a CASA <tt class="docutils literal">.image</tt>, <em>if</em> it has the CASA-expected
+units and dimensions, you can use <tt class="docutils literal">sm.predict</tt> to fourier transform the data
+and sample it onto the UV grid in your <tt class="docutils literal">.ms</tt> file:</p>
+<pre class="literal-block">
+sm.openfromms(&quot;file.ms&quot;)
+sm.setvp() # &quot;set voltage pattern&quot;: not clear if this is needed
+success = sm.predict(&quot;myfile.image&quot;)
+sm.done()
+sm.close()
+</pre>
+<p>This (seems to) populate the <em>data</em> column, not the model column as I had
+originally expected.  Therefore, be warned!  DO NOT DO THIS TO YOUR ORIGINAL
+DATA!  It will probably overwrite it.</p>
+<p>Once your <tt class="docutils literal">.ms</tt> file is populated, you can clean it as normal.  Some
+examples:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/casa/perseus_in_w51_imaging.png" style="width: 600px;" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/casa-simulation.html" rel="bookmark" title="Permalink to CASA Simulation">
+                    CASA Simulation</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-02-25T10:27:00-07:00"> 2016/02/25 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>More frustration with CASA:</p>
+<blockquote>
+<ul>
+<li><p class="first">If you try to load a FITS image into a CASA .image, beware that it is likely
+to have incorrect units.  Round-tripping between .image and .fits doesn't
+work well, because CASA always assumes that CDELT is in radians even when it
+is explicitly set to be degrees.</p>
+</li>
+<li><p class="first">EDIT: OK, this isn't true in all cases, but if you use <tt class="docutils literal">imhead</tt> to <tt class="docutils literal">put</tt>
+a keyword value, it will assume radians by default.  That can be overcome by explicitly setting the units:</p>
+<blockquote>
+<p>imhead(perseus_casa_image, mode='put', hdkey='CDELT1', hdvalue={'value':hdr['CDELT1'], 'unit':'deg'})</p>
+</blockquote>
+<p>I was able to produce this awkward behavior <em>without</em> imhead as well, though
+I cannot repeat that now.</p>
+</li>
+</ul>
+</blockquote>
+<p>The simulator gives this error message if I try to load an image:</p>
+<blockquote>
+<p>sm.setvp()
+sm.predict(perseus_casa_image)</p>
+<p>2016-02-25 09:26:34 SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Caught exception: TiledShape: #elements in shape and tileShape differ</p>
+</blockquote>
+<p>My best guess is that CASA doesn't understand how to handle 2D images with 3D
+headers.  However, the sensible workaround of expanding the image to 3D does
+not work.</p>
+<p>Re-importing after exporting gets yet another different image.  After
+re-importing an image that was exported to FITS, I get a new error:</p>
+<blockquote>
+Failed AlwaysAssert spectralIndex&gt;=0 2016-02-25 09:37:35</blockquote>
+<p>which is rather strange since the spectral index is a physical quantity.</p>
+<p>There is also the lovely message:</p>
+<blockquote>
+2016-02-25 09:55:27 INFO importfits No usable restoring beam information found.</blockquote>
+<p>for a header that contains these lines:</p>
+<blockquote>
+BMAJ    =   1.293900184840E-04
+BMIN    =   1.293900184840E-04
+BPA     =   0.000000000000E+00</blockquote>
+<p>The image might finally be right, but now I can't find any way to convert it to
+a model.  If I try to <tt class="docutils literal">ft</tt> the model, I get:</p>
+<blockquote>
+2016-02-25 10:54:54 SEVERE  ft::imager::ft() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Imager.cc, line 4488) Exception: (/Users/rpmbuild/gradle/workdir/casasources/release-4_5/casacore/coordinates/Coordinates/CoordinateSystem.cc : 777) Failed AlwaysAssert which &lt; nCoordinates() &amp;&amp; coordinates_p[which]-&gt;type() == Coordinate::SPECTRAL</blockquote>
+<p>which probably means that CASA doesn't know how to turn a single-band continuum
+image into a model for a multi-frequency .ms (which is all .ms's, including
+continuum, in the ALMA world).</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/retrieving-and-selecting-data-in-casa.html" rel="bookmark" title="Permalink to Retrieving and Selecting Data in CASA">
+                    Retrieving and Selecting Data in CASA</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-02-24T13:44:00-07:00"> 2016/02/24 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I learned a few important things at the 7m+12m workshop in Garching:</p>
+<ol class="arabic">
+<li><p class="first"><tt class="docutils literal">clean</tt> treats input models in Jy/beam and Jy/pixel qualitatively (not
+just quantitatively) differently.  Jy/pixel images are taken to be model
+images exactly, where Jy/beam are... somehow interpreted differently, maybe
+as clean component assemblies.  I don't know the details, but this is a
+major caution.</p>
+</li>
+<li><p class="first">The <tt class="docutils literal">tbtool</tt> is not very good for extracting data for plotting.  The flags
+are not guaranteed to be in a sane shape, which will lead to crashes if you
+try <tt class="docutils literal"><span class="pre">tb.getcolumn('FLAG')</span></tt>.  <tt class="docutils literal">ms.msselect</tt>, however, allows you access
+to most of the normal selection routines used in <tt class="docutils literal">clean</tt>, <tt class="docutils literal">split</tt>, etc.
+It is tricky, though, because <tt class="docutils literal">ms.select</tt> does <em>not</em> allow you access to
+the same selection.  Also, while <tt class="docutils literal">spw</tt>-based selection normally allows you
+to select channels, in <tt class="docutils literal">ms.msselect</tt> it does not: instead you must use
+<tt class="docutils literal">ms.selectchannel</tt>.  See <a class="reference external" href="https://github.com/radio-astro-tools/sandbox/blob/master/casa_7m12m_tools/weight_density_uv_plot.py">this example</a>.</p>
+<p>Details about the selection are at this URL, but the documentation is
+incomplete and, in places, incorrect:</p>
+<p><a class="reference external" href="http://www.aoc.nrao.edu/~sbhatnag/misc/msselection/FrequencySelection.html">http://www.aoc.nrao.edu/~sbhatnag/misc/msselection/FrequencySelection.html</a></p>
+<p>(for example, <tt class="docutils literal">chanspec</tt> is not valid in <tt class="docutils literal">msselect</tt>, or at least
+it doesn't do anything)</p>
+</li>
+</ol>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/a-tclean-vs-clean-comparison.html" rel="bookmark" title="Permalink to A tclean vs clean comparison">
+                    A tclean vs clean comparison</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-02-22T11:23:00-07:00"> 2016/02/22 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Comparing tclean to clean with the following parameters:</p>
+<pre class="literal-block">
+clean(vis=vis0, imagename=myimagebase, field=&quot;&quot;, spw='',
+      mode='mfs', outframe='LSRK', interpolation='linear',
+      imagermode='mosaic', multiscale=multiscale, interactive=False,
+      niter=1000, threshold='100mJy', imsize=imsize, minpb=0.5, cell=cell,
+      phasecenter=phasecenter, weighting='briggs', usescratch=True,
+      pbcor=True, robust=-2.0)
+
+tclean(vis=vis0, imagename=myimagebase, field=&quot;&quot;, spw='',
+       outframe='LSRK', interpolation='linear', gridder='mosaic',
+       scales=multiscale, interactive=False, niter=1000,
+       threshold='100mJy', imsize=imsize, mask='auto-pb', specmode='mfs',
+       cell=cell, phasecenter=phasecenter, weighting='briggs', robust=-2.0)
+</pre>
+<p>Note the very bad cleaning instability creeping in in the clean image:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/tclean_vs_clean_7m12m.png" style="width: 600px;" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/self-calibration-of-sgr-b2-mosaic.html" rel="bookmark" title="Permalink to Self-calibration of Sgr B2 Mosaic">
+                    Self-calibration of Sgr B2 Mosaic</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-10-14T14:30:00-06:00"> 2015/10/14 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The Sgr B2 ALMA data from project 2013.1.00269.S has imaging problems around
+the brightest sources, especially Sgr B2 M.
+Crystal Brogan &amp; Todd Hunter gave some useful advice, essentially the following:</p>
+<blockquote>
+<ul class="simple">
+<li>the line forest is causing trouble, so line-containing regions of the spectrum
+must be excluded when mapping</li>
+<li>there is some nasty curvature in the spectral baseline that needs to be removed
+probably by flagging out some of the data</li>
+<li>Self-calibration is needed to exceed a dynamic range ~100</li>
+</ul>
+</blockquote>
+<p>Todd developed a <cite>fitcontinuum.py</cite> script to address the first point, but I ended up
+doing this custom (<a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m/test_split_spw1.py">script</a>) because of the problem introduced by the second point.</p>
+<p>To exclude the lines, I had to use <em>frequency-based</em> selection, not channel based, because my
+spectral windows from different dates were offset by 10 MHz.  The approach to use in CASA is
+ugly: you flag the line-containing data, then split (and in splitting, average) the continuum
+into another MS.  From there, a phase-only selfcal is straigtforward (<a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m/selfcal_spw1_center.py">script</a>).</p>
+<img alt="" src="https://keflavich.github.io/blog/images/sgrb2/selfcal_compare.png" style="width: 800px;" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 2
+        <a href="https://keflavich.github.io/blog/tag/alma2.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

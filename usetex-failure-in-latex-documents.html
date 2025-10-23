@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://keflavich.github.io/blog/usetex-failure-in-latex-documents.html" rel="bookmark"
+         title="Permalink to usetex failure in latex documents">usetex failure in latex documents</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2012-09-20T20:02:00-06:00">
+      2012/09/20
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>When I use matplotlib's internal tex (rcParams['text.useTex']=False),
+the postscript files generated cause errors that look like this when you
+try to ps2pdf them:
+<tt class="docutils literal">ps2pdf h2co_pilot.psError: /rangecheck in <span class="pre">--get--Operand</span> stack:&nbsp;&nbsp; <span class="pre">--dict:20/25(ro)(L)--</span>&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; 71Execution stack:&nbsp;&nbsp; %interp_exit&nbsp;&nbsp; .runexec2&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; 2&nbsp;&nbsp; %stopped_push&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; false&nbsp;&nbsp; 1&nbsp;&nbsp; %stopped_push&nbsp;&nbsp; 1862&nbsp;&nbsp; 1&nbsp;&nbsp; 3&nbsp;&nbsp; %oparray_pop&nbsp;&nbsp; 1861&nbsp;&nbsp; 1&nbsp;&nbsp; 3&nbsp;&nbsp; %oparray_pop&nbsp;&nbsp; 1845&nbsp;&nbsp; 1&nbsp;&nbsp; 3&nbsp;&nbsp; %oparray_pop&nbsp;&nbsp; 1739&nbsp;&nbsp; 1&nbsp;&nbsp; 3&nbsp;&nbsp; %oparray_pop&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; %errorexec_pop&nbsp;&nbsp; .runexec2&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; 2&nbsp;&nbsp; %stopped_push&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; %finish_show&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; 9&nbsp;&nbsp; 6&nbsp;&nbsp; 0&nbsp;&nbsp; <span class="pre">--nostringval--</span>&nbsp;&nbsp; (pdf_text_enum_t)&nbsp;&nbsp; %op_show_continue&nbsp;&nbsp; <span class="pre">--nostringval--Dictionary</span> stack:&nbsp;&nbsp; <span class="pre">--dict:1147/1684(ro)(G)--</span>&nbsp;&nbsp; <span class="pre">--dict:0/20(G)--</span>&nbsp;&nbsp; <span class="pre">--dict:70/200(L)--</span>&nbsp;&nbsp; <span class="pre">--dict:116/300(L)--</span>&nbsp;&nbsp; <span class="pre">--dict:44/200(L)--</span>&nbsp;&nbsp; <span class="pre">--dict:25/42(L)--Current</span> allocation mode is localLast OS error: 2Current file position is 791626GPL Ghostscript 8.64: Unrecoverable error, exit code 1make: *** [h2co_pilot.pdf] Error 1</tt>
+They will not open in MacOS's Preview.app either.
+Solution: Make figures with rcParams['text.useTex'] = True</p>
+
+  </div><!-- /.entry-content -->
+</section>
+
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</section>
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  var disqus_identifier = '/usetex-failure-in-latex-documents.html';
+  var disqus_url = 'https://keflavich.github.io/blog/usetex-failure-in-latex-documents.html';
+  var disqus_title = 'usetex failure in latex documents';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://keflavich.github.io/blog/what-does-feather-do.html" rel="bookmark"
+         title="Permalink to What does feather do?">What does feather do?</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2016-05-26T08:29:00-06:00">
+      2016/05/26
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>This is an examination of the 'feather' task in CASA.</p>
+<p>First we have to track down what code is actually called.</p>
+<p>On mac, this is:</p>
+<blockquote>
+<ul class="simple">
+<li>/Applications/CASA.app/Contents/Resources/python/feather_cli.py -&gt; feather_cli</li>
+<li>/Applications/CASA.app/Contents/Resources/python/task_feather.py -&gt; feather</li>
+<li>/Applications/CASA.app/Contents/Resources/python/taskinit.py -&gt; imtool-&gt;imager-&gt;casac.imager-&gt;/Applications/CASA.app/Contents/Resources/python/feather_cli.py</li>
+<li><a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Imager.cc#L2257">Imager.cc</a></li>
+</ul>
+</blockquote>
+<p>Within the imager, <cite>setvp</cite> is used to do something with the primary beam.  As
+far as I can tell, this function spews a lot of text into the logger, sets
+local variables, sets one larger-scope variable <cite>BeamSquint::</cite>, then does
+<cite>destroySkyEquation();</cite>.  In short, I don't know what this does.  Probably my
+reading of the C code is incorrect and these variables are <em>not</em> local, in
+which case it is just setting a bunch of default beam parameters.</p>
+<p>Then, <cite>Imager.cc</cite> calls <a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L1211">Feather.cc</a>.</p>
+<p>Feather sets parameters based on the effective dish diameter.  It uses
+<a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L244">1.22*(speed of light)/frequency/dish_diameter</a>,
+so it is retrieving the FWHM
+assuming a Gaussian beam by default.</p>
+<p>A lovely aside: <cite>Imager.cc</cite> passes the local variable <a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Imager.cc#L2320">lowPassFilterSD</a>
+to <cite>Feather.cc</cite>, which is read in to the input boolean parameter
+<a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L244">doHiPassFilterOnSD</a>.
+That seems like a potential place for confusion.</p>
+<p>If <cite>doHiPassFilterOnSD</cite> is set <em>or</em> the effective beam diameter is set as a
+parameter, the single dish image is deconvolved with its beam using the
+GaussianDeconvolver.  This is actually disabled by default, though.</p>
+<p>The low resolution image is <a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L142">regridded</a>
+to match the high resolution image.</p>
+<p>The <a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L375">applyFeather</a>
+command seems to do the actual work.
+It starts with <a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L414">calcCWeightImage</a>,
+which sets the &quot;weight&quot; to one minus the peak-normalized fourier transform of
+the low-resolution (single-dish) beam
+<a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L427">Feather.cc line 427</a>,
+with the result stored in the variable <cite>cwImage_p</cite>.
+<a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L408">applyFeather</a> then just
+multiplies the high-resolution image by this weight.</p>
+<p>Back in the <a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L695">saveFeatheredImage</a>
+task, the single-dish data are fourier transformed, then a scaling factor, the ratio
+between the low and high beam areas, is computed.  Finally, the single-dish
+(scaled) and interferometer <a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L694">fourier-transformed</a> images are <a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L703">added</a>.</p>
+<p>Is the single-dish image weighted by the beam at all?  The single-dish image will
+be convolved with a kernel only if <a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L1235">doHighPassFilterOnSD</a> is set
+or if the effective dish diameter is set.  If the beam is the same size as the original
+beam, nothing will happen.
+In <a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/synthesis/MeasurementEquations/Feather.cc#L256">setEffectiveDishDiam</a>
+the low-resolution image is convolved with the <a class="reference external" href="https://github.com/radio-astro/casa/blob/160955adf4de4ee561cfc691904317953e08d7d6/code/components/ComponentModels/GaussianDeconvolver.cc#L34">*deconvolved*</a>
+beam.</p>
+<p>The most important note in this post is that the single-dish image is <em>not</em>
+weighted unless <cite>doHighPassFilterOnSD</cite> is set, and even then nothing will be
+done if the single-dish beam size passed as a parameter is the same as the beam
+size specified in the header.  That means only the interferometer image is
+weighted.  Maybe that is the correct behavior?  By weighting by (1-convolved
+beam), which means setting the total flux in the interferometer image to zero,
+the process is guaranteed to be flux conserving.</p>
+<!-- this is how you include images -->
+<!-- .. image:: |static|/images/psfFfftF.png -->
+<!-- :width: 600px -->
+
+  </div><!-- /.entry-content -->
+</section>
+
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</section>
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  var disqus_identifier = '/what-does-feather-do.html';
+  var disqus_url = 'https://keflavich.github.io/blog/what-does-feather-do.html';
+  var disqus_title = 'What does feather do?';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

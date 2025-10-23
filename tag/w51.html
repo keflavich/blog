@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - w51</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2018/07/08
+                  <br>
+                  <a href="https://keflavich.github.io/blog/talks-now-using-revealjs.html">Talks: Now using revealjs</a>
+              </li>
+              <li class="post">
+                  2017/12/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/the-extragalactic-view-of-w51-at-220-and-290-ghz.html">The extragalactic view of W51 at 220 and 290 GHz</a>
+              </li>
+              <li class="post">
+                  2016/01/07
+                  <br>
+                  <a href="https://keflavich.github.io/blog/self-cal-with-evla-data.html">Self-cal with EVLA data</a>
+              </li>
+              <li class="post">
+                  2014/01/16
+                  <br>
+                  <a href="https://keflavich.github.io/blog/w51-mapping-flagging-bad-data.html">W51 Mapping: Flagging bad data</a>
+              </li>
+              <li class="post">
+                  2013/12/18
+                  <br>
+                  <a href="https://keflavich.github.io/blog/regrid-an-image-or-cube-using-casa.html">Regrid an image (or cube) using CASA</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/talks-now-using-revealjs.html" rel="bookmark" title="Permalink to Talks: Now using revealjs">
+                    Talks: Now using revealjs</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2018-07-08T12:37:00-06:00"> 2018/07/08 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm attempting to wean myself off of Mac-specific technology, inspired by some
+impending hardware failures (see below), the not-falling cost of not-improving
+hardware, and the lack of budget growth.</p>
+<p>Following a suggestion from <a class="reference external" href="https://github.com/pkgw/">Peter Williams</a>, I'm
+using reveal.js based on <a class="reference external" href="https://github.com/pkgw/htmltalk">Peter's template</a>, which I have previously played with a
+little with mixed success.  The slid.es editor seems nearly fully featured as a
+replacement for keynote, but I quickly dropped it because of its
+subscription-only paid features; the cost-benefit analysis is that Keynote is
+much cheaper than slid.es for someone like me, since Keynote cost
+30 dollars one-time for ~10 years of use, while the minimum usable plan
+for slid.es is 10 dollars/month,
+or 1200 dollars over the same
+period.  If that was the tradeoff I was considering, mac+keynote would be about
+the same as linux+slid.es, since I'd be paying a few thousand dollars for the mac.</p>
+<p>I'm taking the somewhat ridiculous approach of raw HTML/CSS editing with the
+Chrome inspector as my interactive testing tool.  This is a little tedious
+because of the html tagging, but that's honestly not so bad; it lets me do the
+hard work with the keyboard instead of the mouse.  The biggest problem is the
+learning curve of css, but I look at that as skill and knowledge worth having.
+If you don't, this is probably not the approach for you.  I hope, though, that
+some day there is a slid.es-like solution that is reasonably priced.</p>
+<p>Another problem is image editing, which was pretty convenient in keynote, but
+there are plenty of other decent-to-good image editors out there, e.g., gimp,
+preview, etc.  For cropping and opacity, which are most of what you want to do,
+css works and can even be tested interactively in the browser.  But, this
+should also give more motivation to just make the figures presentation-ready in
+the code.</p>
+<p>Anyway, the talks I've created are hosted at github, and they're fully-featured:
+you should be able to just click these links and walk through the talks.</p>
+<p>My &quot;Tracing the Flow&quot; invited talk on High Mass Cluster Formation:
+<a class="reference external" href="https://keflavich.github.io/talks/HighMassClusterFormation_TracingTheFlow2018.html">https://keflavich.github.io/talks/HighMassClusterFormation_TracingTheFlow2018.html</a></p>
+<p>Some slides for a work meeting on the ALMA-IMF project, with a technical bent:
+<a class="reference external" href="https://keflavich.github.io/talks/ALMA_IMF_W51_SgrB2.html">https://keflavich.github.io/talks/ALMA_IMF_W51_SgrB2.html</a></p>
+<p>If you want the pdf version of either of these, add <tt class="docutils literal"><span class="pre">?print_pdf</span></tt> to the end
+of the URL, then use your browser to print and save to pdf.</p>
+<p>Some pictures of the impending failure.  My mac doesn't close any more, and
+the charger cable has frayed severely:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/frayed_adapter.jpg" style="width: 600px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/lappy_wont_close.jpg" style="width: 600px;" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/the-extragalactic-view-of-w51-at-220-and-290-ghz.html" rel="bookmark" title="Permalink to The extragalactic view of W51 at 220 and 290 GHz">
+                    The extragalactic view of W51 at 220 and 290 GHz</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2017-12-01T11:23:00-07:00"> 2017/12/01 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>These are APEX data covering 5.5' x 5.5' centered on W51 Main:
+<a class="reference external" href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/RYEANM">https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/RYEANM</a>
+These are calibrated to T_A* units.  APEX telescope efficiencies can be found
+here: <a class="reference external" href="http://www.apex-telescope.org/telescope/efficiency/">http://www.apex-telescope.org/telescope/efficiency/</a> and are approximately
+0.75 at the observed frequencies.</p>
+<p>W51 is at a distance of 5.1 kpc, so this field of view is equivalent to 8.1 pc, or 1.7&quot; at
+1 Mpc or 0.33&quot; at 5 Mpc.</p>
+<p>The linewidth is 12.7-15.2 km/s (H2CO 4-3, CO 2-1) FWHM averaged over this full field.</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/gaussfit_h2co4-3_velocity.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/gaussfit_12co2-1_velocity.png" style="width: 200px;" />
+<p>Images of the spectra, with some lines identified, are shown here (open them in
+a new tab to see the full resolution).  The baselines aren't great, but it's
+easy to fit a local linear baseline around any of the fairly narrow lines.</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/lineid_avg_W51_12CO_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/lineid_avg_W51_217GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/lineid_avg_W51_218GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/lineid_avg_W51_232GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/lineid_avg_W51_291GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/lineid_avg_W51_293GHz_merge.png" style="width: 200px;" />
+<p>The same images, but not zoomed in the y-direction.  Note that 12CO 2-1 is very
+near the edge of the band; it peaks around 20 K:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/avg_W51_12CO_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/avg_W51_217GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/avg_W51_218GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/avg_W51_232GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/avg_W51_291GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/avg_W51_293GHz_merge.png" style="width: 200px;" />
+<p>Scripts to obtain the data and process them are here:
+<a class="reference external" href="https://github.com/keflavich/W51_APEX_H2CO">https://github.com/keflavich/W51_APEX_H2CO</a></p>
+<p>See the related project by Watanabe et al looking at W51 in the 3mm band:
+<a class="reference external" href="http://adsabs.harvard.edu/abs/2017ApJ...845..116W">http://adsabs.harvard.edu/abs/2017ApJ...845..116W</a></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/self-cal-with-evla-data.html" rel="bookmark" title="Permalink to Self-cal with EVLA data">
+                    Self-cal with EVLA data</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-01-07T08:14:00-07:00"> 2016/01/07 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm trying to self-calibrate my A+C array C-band data on W51, since we're in a
+clearly dynamic-range-limited regime.  I've never had any luck with self-cal,
+though.  The images <em>always</em> get worse, and I still don't really understand
+why.</p>
+<p>This is a clue, though:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/selfcal_phasecal_vs_time.png" style="width: 600px;" />
+<p>For many of the antennae, especially those in C array, self-calibration results
+in phase plots that look nice, with corrections confined to +/-30 degrees as
+you would hope and expect.</p>
+<p>These plots show that some antennae are going through dozens or hundreds of
+phase wraps.  That is obviously unacceptable and incorrect: the original images
+actually looked pretty good, so it is obvious (to me, at least) that there
+should be <em>no</em> phase wrapping in the self-cal.  I'm surprised at this, since
+each of these points should have S/N &gt; 3 and there is a lot of consistency in
+these large phase shifts.</p>
+<p>My suspicion is still that the clean process has failed.  I have been trying
+multiscale clean, since the emission is completely dominated by extended
+components.  However, even if I set smallscalebias to different values, there
+are essentially no pointlike components being added to the clean model.  This
+is wrong!  There are genuine point sources.  So I still suspect that this is a
+modeling problem and the phase wraps are being caused by bad models.</p>
+<p>I'm trying again with smaller pixels in the hope that a better match between
+the beam size and the pixel size will produce a better model.  The only other
+thing I can think to try is increasing the solint, but given the high S/N
+already present, I doubt that's an important factor.</p>
+<p>Smaller pixels didn't help, <em>but</em> forcing clean to include point-source
+components by performing a second round of clean with <tt class="docutils literal"><span class="pre">multiscale=[]</span></tt> worked!
+The solutions are MUCH more reasonable (no more phase wrap every integration),
+and selfcal no longer diverges.  I also increased the solution interval to 30s
+since it seems that the phase change timescale is significantly longer than
+an integration.  I increased the S/N cutoff to 5 too.</p>
+<p>There are still some &quot;noisy&quot; phases, even in the 3rd iteration:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/selfcal_phasecal_vs_time_3rditer.png" style="width: 600px;" />
+<p>I think more iterations may be necessary, but I will also increase the S/N
+threshold to 6 and solint to 60s to see if that helps.</p>
+<p>RMS improvements are evident but not spectacular:</p>
+<pre class="literal-block">
+SPW4 Iteration 0: RMS=1.003e-04
+SPW4 Iteration 1: RMS=6.009e-05
+SPW4 Iteration 2: RMS=6.698e-05
+SPW4 Iteration 3: RMS=7.061e-05
+</pre>
+<p>The bump in the last one is because I forgot to add a point clean for the last
+iteration.</p>
+<p>Perhaps not unfortunately, it looks like the improvements in image quality are
+tiny when self-cal is added.  The only real hope now is that self-cal on all
+bands will result in an artifact-free final combined image.</p>
+<p>On the &quot;noisy&quot; phases, now that it looks like there are decent solutions, it
+may actually be worth keeping the flags generated by applycal.  &lt;10% of the
+data is being flagged out, which is negligible, and it probably is genuinely
+bad (or signal-free, anyway) in that case.</p>
+<p>EDIT: Looks better... or at least different... now:</p>
+<pre class="literal-block">
+SPW4 Iteration 0: RMS=1.003e-04
+SPW4 Iteration 1: RMS=5.962e-05
+SPW4 Iteration 2: RMS=6.817e-05
+SPW4 Iteration 3: RMS=6.775e-05
+</pre>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/w51-mapping-flagging-bad-data.html" rel="bookmark" title="Permalink to W51 Mapping: Flagging bad data">
+                    W51 Mapping: Flagging bad data</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2014-01-16T00:00:00-07:00"> 2014/01/16 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In the process of creating W51 data cubes from the GBT mapping data (project
+GBT 10B/019), I've had to deal with a lot of bad data.</p>
+<p>Some of the bad data comes from misbehaving electronics.  All I can say is that
+they were misbehaving, not how or why - the data from one polarizaiton simply
+disagrees with the other polarization and feeds spontaneously and for no
+apparent reason.</p>
+<p>I've implemented a waterfall diagnostic plot to help examine the data, it is in
+my <a class="reference external" href="https://github.com/keflavich/mpl_plot_templates">mpl_plot_templates</a> repository: <a class="reference external" href="https://github.com/keflavich/mpl_plot_templates/blob/master/mpl_plot_templates/imdiagnostics.py">imdiagnostics.py</a>.</p>
+<p>A good waterfall looks something like this:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/Session17_111to186_D37_F2_data_scrubbed_flagged.png" style="width: 800px;" />
+<p>The line plots show the average and standard deviation along each axis; the
+right side effectively shows timestream continuum data while the top plots show
+a time-averaged spectrum.  This plot is good in that there are clearly signals
+detected as the scan crosses continuum sources and there is a strong Helium
+Alpha line detected in the average (though there's no way to read that it's
+Helium fromt he data as presented).
+Notably, the noise correlates with the continuum brightness - this is expected;
+higher TSYS leads to higher noise.</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/Session22_10to41_D37_F2_data_scrubbed_flagged.png" style="width: 800px;" />
+<p>This is an example of a data set with some extremely irritating artifacts.
+There are apparent absorption lines throughout the spectrum: they are not real.
+This is a particularly irritating problem because I had resolved it once in the
+not-too-distant past, but I can't figure out how!!  Most likely, I just removed
+the data from the maps, but that SHOULD be in the code history (git) and is not.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/regrid-an-image-or-cube-using-casa.html" rel="bookmark" title="Permalink to Regrid an image (or cube) using CASA">
+                    Regrid an image (or cube) using CASA</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-12-18T17:52:00-07:00"> 2013/12/18 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg <adam.g.ginsburg@gmail.com></a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In order to regrid an image, you need some target reprojection.  The simplest way to acquire such a reprojection
+is by extracting it from another image, e.g. a <a class="reference external" href="casaguides.nrao.edu/index.php?title=FITStoImage">FITS image</a></p>
+<p>(I use <cite>&gt;&gt;&gt;</cite> to indicate the <cite>CASA &lt;#&gt;:</cite> prompt here because it allows you to copy &amp; paste the code into CASA)</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">header</span> <span class="o">=</span> <span class="n">imregrid</span><span class="p">(</span><span class="n">imagename</span><span class="o">=</span><span class="s1">&#39;file.image&#39;</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s1">&#39;get&#39;</span><span class="p">)</span>
+</pre></div>
+<p>This header will be a python dictionary with two keys, <cite>csys</cite>, which specifies
+the coordinate system, and <cite>shap</cite>, which gives the shape.</p>
+<p>If you want to write up your own FITS header and you don't have a FITS file
+with those exact coordinates, you can use the <a class="reference external" href="https://github.com/keflavich/casa_tools/blob/master/casa_tools/header_to_template.py#L11">header_to_template</a> convenience
+tool in <a class="reference external" href="https://github.com/keflavich/casa_tools">casa_tools</a>.</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">casa_tools</span> <span class="kn">import</span> <span class="n">header_to_template</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">fits_header</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">Header</span><span class="o">.</span><span class="n">fromtextfile</span><span class="p">(</span><span class="s1">&#39;my_header.hdr&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">header</span> <span class="o">=</span> <span class="n">header_to_template</span><span class="p">(</span><span class="n">fits_header</span><span class="p">)</span>
+</pre></div>
+<p>In order to regrid the file, you then need to pass in the image name and template to imregrid.</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">imregrid</span><span class="p">(</span><span class="n">imagename</span><span class="o">=</span><span class="s1">&#39;file.image&#39;</span><span class="p">,</span>
+<span class="o">...</span>          <span class="n">template</span><span class="o">=</span><span class="n">header</span><span class="p">,</span>
+<span class="o">...</span>          <span class="n">output</span><span class="o">=</span><span class="s1">&#39;file_regrid.image&#39;</span><span class="p">)</span>
+</pre></div>
+<p>If your input image's header did not include a 'telescope' keyword, CASA will complain:</p>
+<blockquote>
+2013-12-18 16:46:33 SEVERE  imregrid::ImageRegrid::regrid (file /opt/casa/release-4_1_0-release-1/darwin64/include/casacore/images/Images/ImageRegrid.tcc, line 118)        Cannot find the observatory name UNKNOWN in the CASA</blockquote>
+<p>You can add the keyword to the header yourself:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">imhead</span><span class="p">(</span><span class="s1">&#39;file.image&#39;</span><span class="p">,</span>
+<span class="o">...</span>        <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;put&#39;</span><span class="p">,</span>
+<span class="o">...</span>        <span class="n">hdkey</span><span class="o">=</span><span class="s1">&#39;telescope&#39;</span><span class="p">,</span>
+<span class="o">...</span>        <span class="n">hdvalue</span><span class="o">=</span><span class="s1">&#39;Arecibo&#39;</span><span class="p">)</span>
+</pre></div>
+<div class="section" id="references">
+<h2>References</h2>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://www.eso.org/projects/alma/arc/tw/pub/External/EUARCCASATutorialJan2012/ImageAnalysis-CASA.pdf">Sebastian Muller's presentation</a> (page 16)</li>
+<li><a class="reference external" href="http://casa.nrao.edu/docs/casaref/image.regrid.html">imregrid docs</a></li>
+</ul>
+</blockquote>
+</div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/converting-a-fits-cube-to-a-casa-image.html" rel="bookmark" title="Permalink to Converting a FITS cube to a CASA Image">
+                    Converting a FITS cube to a CASA Image</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-12-18T15:15:00-07:00"> 2013/12/18 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg <adam.g.ginsburg@gmail.com></a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>If you want to perform analysis on a FITS file in CASA, you first need to
+import it into <cite>.image</cite> format.</p>
+<blockquote>
+importfits('file.fits','file.image')</blockquote>
+<p>If this works, great!  You can move on.  CASA will treat NaN values in an image
+as 'masked'.</p>
+<div class="section" id="dealing-with-errors">
+<h2>Dealing with Errors</h2>
+<p>There may be issues with FITS headers.  CASA respects a large number of header
+keys (<a class="reference external" href="http://www.eso.org/projects/alma/arc/tw/pub/External/EUARCCASATutorialJan2012/ImageAnalysis-CASA.pdf">reference</a>).</p>
+<p>There are many ways to edit a FITS header.  One of the most straightforward to
+use is <a class="reference external" href="http://tdc-www.harvard.edu/wcstools/edhead.html">edhead</a>.  Otherwise, one can use CASA's <a class="reference external" href="http://casaguides.nrao.edu/index.php?title=Imhead">imhead</a></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="14%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>CASA Keyword</td>
+<td>FITS keyword</td>
+<td>Description</td>
+</tr>
+<tr><td>beammaj</td>
+<td>BMAJ</td>
+<td>Major&nbsp;axis&nbsp;of&nbsp;the&nbsp;clean&nbsp;beam</td>
+</tr>
+<tr><td>beammin</td>
+<td>BMIN</td>
+<td>Minor&nbsp;axis&nbsp;of&nbsp;the&nbsp;clean&nbsp;beam</td>
+</tr>
+<tr><td>beampa</td>
+<td>BPA</td>
+<td>Position&nbsp;angle&nbsp;of&nbsp;the&nbsp;clean&nbsp;beam</td>
+</tr>
+<tr><td>bunit</td>
+<td>BUNIT</td>
+<td>Brightness&nbsp;unit&nbsp;(K,&nbsp;Jy/beam,&nbsp;etc)</td>
+</tr>
+<tr><td>cdeltn</td>
+<td>CDELTn</td>
+<td>Pixel&nbsp;size,&nbsp;nth&nbsp;axis&nbsp;&nbsp;(max&nbsp;n&nbsp;is&nbsp;4)</td>
+</tr>
+<tr><td>crpixn</td>
+<td>CRPIXn</td>
+<td>Pixel&nbsp;coordinate&nbsp;of&nbsp;reference&nbsp;point,&nbsp;nth&nbsp;axis</td>
+</tr>
+<tr><td>crvaln</td>
+<td>CRVALn</td>
+<td>Pixel&nbsp;location&nbsp;of&nbsp;reference&nbsp;point,&nbsp;nth&nbsp;axis</td>
+</tr>
+<tr><td>ctypen</td>
+<td>CTYPEn</td>
+<td>Axis&nbsp;name,&nbsp;nth&nbsp;axis.  For FITS, this includes the projection</td>
+</tr>
+<tr><td>cunitn</td>
+<td>CUNITn</td>
+<td>Pixel&nbsp;units,&nbsp;nth&nbsp;axis</td>
+</tr>
+<tr><td>datamax</td>
+<td>DATAMAX</td>
+<td>Maximum&nbsp;pixel&nbsp;value&nbsp;in&nbsp;image</td>
+</tr>
+<tr><td>datamin</td>
+<td>DATAMIN</td>
+<td>Minimum&nbsp;pixel&nbsp;value&nbsp;in&nbsp;image</td>
+</tr>
+<tr><td>date-obs</td>
+<td>DATE-OBS</td>
+<td>Date&nbsp;of&nbsp;the&nbsp;observation</td>
+</tr>
+<tr><td>equinox</td>
+<td>EQUINOX</td>
+<td>Reference&nbsp;frame&nbsp;for&nbsp;directional&nbsp;coordinates</td>
+</tr>
+<tr><td>imtype</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Image&nbsp;type:&nbsp;intensity,</td>
+</tr>
+<tr><td>minpos</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Position&nbsp;of&nbsp;the&nbsp;minimum&nbsp;value&nbsp;(world&nbsp;unit)</td>
+</tr>
+<tr><td>minpixpos</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Same&nbsp;in&nbsp;pixel&nbsp;(array)</td>
+</tr>
+<tr><td>maxpos</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Position&nbsp;of&nbsp;the&nbsp;maximum&nbsp;value&nbsp;(world&nbsp;unit)</td>
+</tr>
+<tr><td>maxpixpos</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Same&nbsp;in&nbsp;pixel&nbsp;(array)</td>
+</tr>
+<tr><td>object</td>
+<td>OBJECT</td>
+<td>Source&nbsp;name</td>
+</tr>
+<tr><td>observer</td>
+<td>OBSERVER</td>
+<td>Observer&nbsp;name</td>
+</tr>
+<tr><td>projection</td>
+<td>CTYPEn</td>
+<td>Image&nbsp;projection&nbsp;('SIN','TAN',&nbsp;or&nbsp;'ZEA')</td>
+</tr>
+<tr><td>reffreqtype</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Reference&nbsp;frame&nbsp;for&nbsp;the&nbsp;spectral&nbsp;coordinates</td>
+</tr>
+<tr><td>restfreq</td>
+<td>RESTFREQ</td>
+<td>Rest&nbsp;Frequency</td>
+</tr>
+<tr><td>shape</td>
+<td>NAXISn</td>
+<td>Number&nbsp;of&nbsp;pixels&nbsp;along&nbsp;each&nbsp;axis</td>
+</tr>
+<tr><td>telescope</td>
+<td>TELESCOP</td>
+<td>Telescope&nbsp;name</td>
+</tr>
+</tbody>
+</table>
+<p>What does it mean if you get this sort of error?</p>
+<blockquote>
+CASA &lt;1&gt;: importfits('file.fits','file.image')
+2013-12-18 13:06:18     WARN    importfits::FITSCoordinateUtil::fromFITSHeader  The wcs function failures are too severe to continue ...
+2013-12-18 13:06:18     WARN    importfits::ImageFITSConverterImpl::FITSToImage (file /var/rpmbuild/BUILD/casapy-stable/casapy-stable-42.0.26945/casacore/images/Images/ImageFITSConverter.tcc, line 71)       No proper coordinate system defined in FITS file. Using dummy linear system instead.</blockquote>
+<p>First, go to the <cite>casapy-yyyymmdd-hhmmss.log</cite> file and look at the errors.</p>
+<blockquote>
+2013-12-18 13:06:18     INFO    importfits::FITSCoordinateUtil::fromFITSHeader  celfix incurred the error Inconsistent or unrecognized coordinate axis types
+2013-12-18 13:06:18     INFO    importfits::FITSCoordinateUtil::fromFITSHeader  spcfix incurred the error Inconsistent or unrecognized coordinate axis types
+2013-12-18 13:06:18     INFO    importfits::FITSCoordinateUtil::fromFITSHeader  cylfix incurred the error Inconsistent or unrecognized coordinate axis types</blockquote>
+<p>In my case, the error turned out to be that <cite>CTYPE3</cite> was set to <cite>RADI-LSR</cite>,
+while it should be <cite>VELO-LSR</cite> to be recognized by the CASA system.  The
+velocity convention is, unfortunately, lost.</p>
+</div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

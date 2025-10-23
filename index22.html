@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/latex-replace-double-quotes-with-tex-quotes.html" rel="bookmark" title="Permalink to LaTeX: replace double quotes with tex quotes">
+                    LaTeX: replace double quotes with tex quotes</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>People often make the mistake of putting &quot; in place of `` in LaTeX
+documents. To repair this, the only easy solution is something like:
+s/\(\s\)&quot;/\1``/g
+in VIM or sed.
+I've seen alternate solutions posted but they're all too complicated.
+One recommendation was to switch to XeTeX, which sounds like overkill,
+and others all stated that a complicated perl script is required. The
+latter is technically true, but why isn't such a thing readily
+available?
+Any other ideas?</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/latex-vim-skim.html" rel="bookmark" title="Permalink to LaTeX: VIM + Skim">
+                    LaTeX: VIM + Skim</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a class="reference external" href="http://agpy.googlecode.com/svn/trunk/macvim-skim/macvim-skim-install.sh">macvim-skim-install.sh</a> is my install script for using MacVim.app with
+Skim.app.
+The <a class="reference external" href="http://code.google.com/p/agpy/wiki/macvimskim">agpy wiki page</a> has instructions that are probably more clear; I
+don't really like the colorscheme / layout of this blog.
+You can use <a class="reference external" href="http://mactex-wiki.tug.org/wiki/index.php/SyncTeX">synctex</a> to make an editor and viewer work together, but
+it is far from easy and far harder than it should be. Forward-search is
+pretty easy, but the latex-suite <tt class="docutils literal">\ls</tt> only works intermittently and
+is not easily customizable.
+I had to do the following:
+For VIM-&gt;Skim.app (Skim.app is necessary for any of this to work), add
+these commands to .vimrc:</p>
+<pre class="literal-block">
+&quot; Activate skimmap ,v :w&lt;CR&gt;:silent !/Applications/Skim.app/Contents/SharedSupport/displayline -r &lt;C-r&gt;=line('.')&lt;CR&gt; %&lt;.pdf %&lt;CR&gt;&lt;CR&gt;map ,p :w&lt;CR&gt;:silent !pdflatex -synctex=1 --interaction=nonstopmode %:p &lt;CR&gt;:silent !/Applications/Skim.app/Contents/SharedSupport/displayline -r &lt;C-r&gt;=line('.')&lt;CR&gt; %&lt;.pdf %&lt;CR&gt;&lt;CR&gt;map ,m :w&lt;CR&gt;:silent !make &lt;CR&gt;:silent !/Applications/Skim.app/Contents/SharedSupport/displayline -r &lt;C-r&gt;=line('.')&lt;CR&gt; %&lt;.pdf %&lt;CR&gt;&lt;CR&gt;&quot; Reactivate VIMmap ,r :w&lt;CR&gt;:silent !/Applications/Skim.app/Contents/SharedSupport/displayline -r &lt;C-r&gt;=line('.')&lt;CR&gt; %&lt;.pdf %&lt;CR&gt;:silent !osascript -e &quot;tell application \&quot;MacVim\&quot; to activate&quot; &lt;CR&gt;&lt;CR&gt;map ,t :w&lt;CR&gt;:silent !pdflatex -synctex=1 --interaction=nonstopmode %:p &lt;CR&gt;:silent !/Applications/Skim.app/Contents/SharedSupport/displayline -r &lt;C-r&gt;=line('.')&lt;CR&gt; %&lt;.pdf %&lt;CR&gt;:silent !osascript -e &quot;tell application \&quot;MacVim\&quot; to activate&quot; &lt;CR&gt;&lt;CR&gt;
+</pre>
+<p>The <tt class="docutils literal">,m</tt> command will reload the file and put your cursor where the
+text is. <tt class="docutils literal">,t</tt> will return VIM to the front afterwards.
+Going the other way (reverse-search / inverse-search) was MUCH more
+challenging. The code that does this is <a class="reference external" href="http://code.google.com/p/agpy/source/browse/trunk/macvim-skim/macvim-load-line">on agpy</a>. Reproduced here for
+posterity (I hope to update the agpy version to <a class="reference external" href="http://stackoverflow.com/questions/8839846/vim-check-if-a-file-is-open-in-current-tab-window">deal with tabs</a>). [A
+few hours later, I HAVE replaced the code. Below are the old applescript
+version, then the new, vim-based version
+<tt class="docutils literal"><span class="pre">#!/bin/bashfile=&quot;$1&quot;line=&quot;$2&quot;[</span> <span class="pre">&quot;${file:0:1}&quot;</span> == &quot;/&quot; ] || <span class="pre">file=&quot;${PWD}/$file&quot;#</span> Use Applescript to activate VIM, find file, and load it# the 'delay' command is needed to prevent command/control/shift from sticking when this# is activated (e.g., from Skim, where the command is <span class="pre">command-shift-click)##</span> key code 53 is &quot;escape&quot; to escape to command mode in VIMexec osascript <span class="pre">\-e</span> &quot;delay 0.2&quot; <span class="pre">\-e</span> &quot;tell application \&quot;MacVim\&quot; to activate&quot; <span class="pre">\-e</span> &quot;tell application \&quot;System <span class="pre">Events\&quot;&quot;</span> <span class="pre">\-e</span> &quot;&nbsp; tell process <span class="pre">\&quot;MacVim\&quot;&quot;</span> <span class="pre">\-e</span> &quot;&nbsp;&nbsp;&nbsp; key code 53 <span class="pre">&quot;\-e</span> &quot;&nbsp;&nbsp;&nbsp; keystroke <span class="pre">\&quot;:set</span> hidden\&quot; &amp; return &quot; <span class="pre">\-e</span> &quot;&nbsp;&nbsp;&nbsp; keystroke <span class="pre">\&quot;:if</span> <span class="pre">bufexists(bufname('$file'))\&quot;</span> &amp; return &quot; <span class="pre">\-e</span> &quot;&nbsp;&nbsp;&nbsp; keystroke <span class="pre">\&quot;:exe</span> <span class="pre">\\\&quot;:buffer</span> <span class="pre">\\\&quot;</span> . <span class="pre">bufnr(bufname('$file'))\&quot;</span>&nbsp; &amp; return &quot; <span class="pre">\-e</span> &quot;&nbsp;&nbsp;&nbsp; keystroke <span class="pre">\&quot;:else</span> \&quot; &amp; return &quot; <span class="pre">\-e</span> &quot;&nbsp;&nbsp;&nbsp; keystroke <span class="pre">\&quot;:echo</span> <span class="pre">\\\&quot;Could</span> not load <span class="pre">file\\\&quot;</span> \&quot; &amp; return &quot; <span class="pre">\-e</span> &quot;&nbsp;&nbsp;&nbsp; keystroke <span class="pre">\&quot;:endif\&quot;</span> &amp; return &quot; <span class="pre">\-e</span> &quot;&nbsp;&nbsp;&nbsp; keystroke <span class="pre">\&quot;:$line\&quot;</span> &amp; return &quot; <span class="pre">\-e</span> &quot;&nbsp; end tell&quot; <span class="pre">\-e</span> &quot;end tell&quot;</tt>
+New code: <a class="reference external" href="http://agpy.googlecode.com/svn/trunk/macvim-skim/macvim-load-line">download link A</a></p>
+<pre class="literal-block">
+#!/bin/bash# Install directions:# Put this file somewhere in your path and make it executable# To set up in Skim, go to Preferences:Sync# Change Preset: to Custom# Change Command: to macvim-load-line# Change Arguments: to &quot;%file&quot; %linefile=&quot;$1&quot;line=&quot;$2&quot;debug=&quot;$3&quot;echo file: $fileecho line: $lineecho debug: $debugfor server in `mvim --serverlist` do    foundfile=`mvim --servername $server --remote-expr &quot;WhichTab('$file')&quot;`    if [[ $foundfile &gt; 0 ]]    then        mvim --servername $server --remote-expr &quot;foreground()&quot;         if [[ $debug ]] ; then echo mvim --servername $server --remote-send &quot;:exec \&quot;tabnext $foundfile\&quot; &quot;; fi        mvim --servername $server --remote-send &quot;:exec \&quot;tabnext $foundfile\&quot; &quot;        if [[ $debug ]] ; then echo mvim --servername $server --remote-send &quot;:$line &quot;; fi        mvim --servername $server --remote-send &quot;:$line &quot;    fidone
+</pre>
+<p>Save that as an executable in your default path (e.g.,
+<tt class="docutils literal"><span class="pre">/usr/local/bin/macvim-load-line</span></tt>) and open Skim.app, go to
+Preferences:Sync and make the command look like this:</p>
+<img alt="" src="http://3.bp.blogspot.com/-SbMLRTNSxug/Tw8_0saPQUI/AAAAAAAAGrc/9Ab8bgH8Ej0/s320/Screen%2Bshot%2B2012-01-12%2Bat%2B1.17.09%2BPM.png" />
+<p>You need to have mvim on your path. mvim comes with MacVim.app, but is
+NOT installed by default. Install it by doing something like:
+`` cp /Users/adam/Downloads/MacVim-7_3-53/mvim /usr/local/bin/mvim ``
+You'll also need to install WhichTab.vim in your <tt class="docutils literal"><span class="pre">~/.vim/plugins/</span></tt>
+directory. It's available <a class="reference external" href="http://code.google.com/p/agpy/source/browse/trunk/macvim-skim/WhichTab.vim">here</a> (<a class="reference external" href="http://agpy.googlecode.com/svn/trunk/macvim-skim/WhichTab.vim">download link B</a>). Here's the source:</p>
+<pre class="literal-block">
+function! WhichTab(filename)    &quot; Try to determine whether file is open in any tab.      &quot; Return number of tab it's open in    let buffername = bufname(a:filename)    if buffername == &quot;&quot;        return 0    endif    let buffernumber = bufnr(buffername)    &quot; tabdo will loop through pages and leave you on the last one;    &quot; this is to make sure we don't leave the current page    let currenttab = tabpagenr()    let tab_arr = []    tabdo let tab_arr += tabpagebuflist()    &quot; return to current page    exec &quot;tabnext &quot;.currenttab    &quot; Start checking tab numbers for matches    let i = 0    for tnum in tab_arr        let i += 1        echo &quot;tnum: &quot;.tnum.&quot; buff: &quot;.buffernumber.&quot; i: &quot;.i        if tnum == buffernumber            return i        endif    endforendfunctionfunction! WhichWindow(filename)    &quot; Try to determine whether the file is open in any GVIM *window*    let serverlist = split(serverlist(),&quot;\n&quot;)    &quot;let currentserver = ????    for server in serverlist        let remotetabnum = remote_expr(server,             \&quot;WhichTab('&quot;.a:filename.&quot;')&quot;)        if remotetabnum != 0            return server        endif    endforendfunction
+</pre>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/listing-variables-eg-idl-help-in-python.html" rel="bookmark" title="Permalink to Listing variables (e.g IDL help) in Python">
+                    Listing variables (e.g IDL help) in Python</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Again, IDL has the simple 'help' command to tell you all variables in
+your namespace. Python has the same thing, but the namespace tends to be
+cluttered with imported functions. The commands who, who_ls, and whos
+are meant for interactive use. They are a hell of a lot more useful than
+var, locals, globals, and dir.
+examples:
+<tt class="docutils literal">whos floatwhos ndarraywho modulefloat_vars = %who_ls <span class="pre">floatgrep('x',float_vars)</span></tt>
+I'm afraid I don't know how to make the last two lines into a one-liner,
+as would be desirable.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/logarithmic-colormap-other-colormap-in-matplotlib.html" rel="bookmark" title="Permalink to Logarithmic Colormap / Other Colormap in Matplotlib">
+                    Logarithmic Colormap / Other Colormap in Matplotlib</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>This is kind of a pain to find out:
+<tt class="docutils literal">from matplotlib.colors import LogNormim = <span class="pre">imshow(....</span> <span class="pre">cmap=...</span> , norm=LogNorm(vmin=clevs[0], <span class="pre">vmax=clevs[-1]))</span> ``
+It also works for contours, and can be particularly useful if you only
+want to display contours at a few levels, but you want the colormap to
+start at a different point. e.g.:
+<span class="pre">``contour(xx,levels=[2,3,4,5,6,7,8,9,10],norm=matplotlib.colors.Normalize(vmin=0,vmax=10))</span></tt>
+will start at light blue instead of dark blue in the default colormap</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/login-shell.html" rel="bookmark" title="Permalink to login shell">
+                    login shell</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>to change your default login shell, use <tt class="docutils literal">chsh</tt></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/lunar-occultation-hi-res-measurements.html" rel="bookmark" title="Permalink to Lunar Occultation Hi-Res measurements">
+                    Lunar Occultation Hi-Res measurements</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The folks at the VLT have come up with a means of achieving extremely
+high resolution from the ground: Observe when the moon occults a source
+and how long the occultation takes. Sweet.
+This was applied in the galactic center first, of course:
+<a class="reference external" href="http://arxiv.org/abs/0807.2646">Observations of binaries in GC</a>
+<a class="reference external" href="http://arxiv.org/abs/0807.2650">Additional observations in GC</a></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/mac-stuff-contd.html" rel="bookmark" title="Permalink to Mac stuff cont'd">
+                    Mac stuff cont'd</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Trying to get Apache server to run, and it's just a pain.
+I frequently forget how to update the locate database because it's
+different on macs. Marcos' Mac Singularity <a class="reference external" href="http://macsingularity.org/2004/12/17/the-locate-database/">has the instructions</a>.
+In short:
+<tt class="docutils literal">sudo /usr/libexec/locate.updatedb</tt></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/mac-terminal-stuff.html" rel="bookmark" title="Permalink to Mac terminal stuff">
+                    Mac terminal stuff</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>xterm-color has some annoying features when SSHing to other compys,
+including 'top' not functioning properly. The error I receive:
+<tt class="docutils literal">top: no termcap entry for a <span class="pre">`xterm-color'</span> terminal</tt>
+The solution:
+<a class="reference external" href="http://www.macosxhints.com/article.php?story=20031031185759986">From MacOSXhints</a>, in bash just add <tt class="docutils literal">export <span class="pre">TERM=&quot;vt100&quot;</span></tt> to your
+<tt class="docutils literal">.profile</tt> file.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/macvim-crash.html" rel="bookmark" title="Permalink to macvim crash">
+                    macvim crash</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><p>well, it finally happened.... my reliable, trusty editor crashed. That
+should be impossible. I am ready to call it quits for the week....</p>
+<pre class="literal-block">
+Process:         MacVim [650]Path:            /Applications/Vim.app/Contents/MacOS/MacVimIdentifier:      org.vim.MacVimVersion:         7.2 (49)Code Type:       X86 (Native)Parent Process:  Vim [649]Date/Time:       2010-02-25 13:12:43.001 -0700OS Version:      Mac OS X 10.6.2 (10C540)Report Version:  6Interval Since Last Report:          871676 secCrashes Since Last Report:           26Per-App Interval Since Last Report:  938504 secPer-App Crashes Since Last Report:   1Anonymous UUID:                      03159B9E-2257-4E38-8C4A-4D4DAF5641A7Exception Type:  EXC_BAD_ACCESS (SIGSEGV)Exception Codes: 0x000000000000000d, 0x0000000000000000Crashed Thread:  0  Dispatch queue: com.apple.main-threadThread 0 Crashed:  Dispatch queue: com.apple.main-thread0   com.apple.CoreFoundation       0x99119480 __CFSetCallback + 01   com.apple.CoreFoundation       0x990c78bc ___CFBasicHashFindBucket1 + 4442   com.apple.CoreFoundation       0x990cfaac CFBasicHashFindBucket + 2523   com.apple.CoreFoundation       0x990e8293 CFSetGetValue + 1314   com.apple.AppKit               0x961bae7e -[NSWindow _discardTrackingRect:] + 595   com.apple.AppKit               0x961badca -[NSView(NSInternal) _uninstallTrackingArea:] + 1236   com.apple.AppKit               0x960d2c32 -[NSView(NSInternal) _uninstallRemovedTrackingAreas] + 2937   com.apple.AppKit               0x960dac40 -[NSView(NSInternal) _updateTrackingAreas] + 6468   com.apple.CoreFoundation       0x990ea4e0 CFArrayApplyFunction + 2249   com.apple.AppKit               0x960daefb -[NSView(NSInternal) _updateTrackingAreas] + 134510  com.apple.CoreFoundation       0x990ea4e0 CFArrayApplyFunction + 22411  com.apple.AppKit               0x960daefb -[NSView(NSInternal) _updateTrackingAreas] + 134512  com.apple.CoreFoundation       0x990ea4e0 CFArrayApplyFunction + 22413  com.apple.AppKit               0x960daefb -[NSView(NSInternal) _updateTrackingAreas] + 134514  com.apple.AppKit               0x960da8db _handleInvalidCursorRectsNote + 39215  com.apple.CoreFoundation       0x99135892 __CFRunLoopDoObservers + 118616  com.apple.CoreFoundation       0x990f218d __CFRunLoopRun + 55717  com.apple.CoreFoundation       0x990f1864 CFRunLoopRunSpecific + 45218  com.apple.CoreFoundation       0x990f1691 CFRunLoopRunInMode + 9719  com.apple.HIToolbox            0x936f6f0c RunCurrentEventLoopInMode + 39220  com.apple.HIToolbox            0x936f6bff ReceiveNextEventCommon + 15821  com.apple.HIToolbox            0x936f6b48 BlockUntilNextEventMatchingListInMode + 8122  com.apple.AppKit               0x960b0ac5 _DPSNextEvent + 84723  com.apple.AppKit               0x960b0306 -[NSApplication nextEventMatchingMask:untilDate:inMode:dequeue:] + 15624  com.apple.AppKit               0x9607249f -[NSApplication run] + 82125  com.apple.AppKit               0x9606a535 NSApplicationMain + 57426  org.vim.MacVim                 0x0000238b _start + 20927  org.vim.MacVim                 0x000022b9 start + 41Thread 1:  Dispatch queue: com.apple.libdispatch-manager0   libSystem.B.dylib              0x98d0c0ea kevent + 101   libSystem.B.dylib              0x98d0c804 _dispatch_mgr_invoke + 2152   libSystem.B.dylib              0x98d0bcc3 _dispatch_queue_invoke + 1633   libSystem.B.dylib              0x98d0ba68 _dispatch_worker_thread2 + 2344   libSystem.B.dylib              0x98d0b4f1 _pthread_wqthread + 3905   libSystem.B.dylib              0x98d0b336 start_wqthread + 30Thread 2:0   libSystem.B.dylib              0x98ce58da mach_msg_trap + 101   libSystem.B.dylib              0x98ce6047 mach_msg + 682   com.apple.CoreFoundation       0x990f277f __CFRunLoopRun + 20793   com.apple.CoreFoundation       0x990f1864 CFRunLoopRunSpecific + 4524   com.apple.CoreFoundation       0x990f1691 CFRunLoopRunInMode + 975   com.apple.Foundation           0x91b24430 +[NSURLConnection(NSURLConnectionReallyInternal) _resourceLoadLoop:] + 3296   com.apple.Foundation           0x91aeb8d8 -[NSThread main] + 457   com.apple.Foundation           0x91aeb888 __NSThread__main__ + 14998   libSystem.B.dylib              0x98d12fbd _pthread_start + 3459   libSystem.B.dylib              0x98d12e42 thread_start + 34Thread 3:0   libSystem.B.dylib              0x98d04856 select$DARWIN_EXTSN + 101   com.apple.CoreFoundation       0x99131ddd __CFSocketManager + 10852   libSystem.B.dylib              0x98d12fbd _pthread_start + 3453   libSystem.B.dylib              0x98d12e42 thread_start + 34Thread 4:0   libSystem.B.dylib              0x98d0b182 __workq_kernreturn + 101   libSystem.B.dylib              0x98d0b718 _pthread_wqthread + 9412   libSystem.B.dylib              0x98d0b336 start_wqthread + 30Thread 0 crashed with X86 Thread State (32-bit):  eax: 0x00515db0  ebx: 0x990c7711  ecx: 0x00516460  edx: 0xbfffcabc  edi: 0x00001041  esi: 0x00504270  ebp: 0xbfffca38  esp: 0xbfffc99c   ss: 0x0000001f  efl: 0x00010246  eip: 0x99119480   cs: 0x00000017   ds: 0x0000001f   es: 0x0000001f   fs: 0x00000000   gs: 0x00000037  cr2: 0x97a20000
+</pre>
+</p> </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/major-mac-problems.html" rel="bookmark" title="Permalink to Major mac problems">
+                    Major mac problems</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The errors are, in short:</p>
+<ul class="simple">
+<li>Browser stops responding / starts returning &quot;page not found&quot;
+(indicating a failure of mDNSResponder)</li>
+<li>killing mDNSResponder sometimes brings browser back, but more often
+leads to a partial system freeze (some windows don't respond, can't
+switch between windows except by clicking)</li>
+<li>/var/log/system.log gets flooded with &quot;too many files open&quot; errors.</li>
+<li>somewhere in here the Dock fails</li>
+<li>killing Google Chrome and/or the Dock fails; the process never halts
+(even kill -9 + kill -s SIGCHLD)</li>
+<li>usually one or two crash reports pop up, at least one of which is for
+crash_reporter</li>
+<li>system.log stops getting flooded, but the browser and Dock never
+recover</li>
+</ul>
+<p>The only message in system.log that gives me any hint about what might
+be happening is occasionally a freeze was resolved at the same time as
+this message: Jun 22 19:02:09 eta Quicksilver[93771]: Multiple Scans
+Attempted but it doesn't seem to change the situation if quicksilver is
+open or not. Google has nothing on this issue, either, except for the
+quicksilver source code, so evidently it has not caused problems for
+other people system.log was also being flooded with this message:</p>
+<pre class="literal-block">
+Jun 23 08:57:19 eta postfix/master[99954]: fatal: open /dev/null: Bad file descriptorJun 23 08:57:20 eta com.apple.launchd[1] (org.postfix.master[99954]): Exited with exit code: 1Jun 23 08:57:20 eta com.apple.launchd[1] (org.postfix.master): Throttling respawn: Will start in 9 seconds
+</pre>
+<p>so I disabled my postman:</p>
+<pre class="literal-block">
+Jun 23 08:57:27 eta sudo[99955]: adam : TTY=ttys006 ; PWD=/Users/adam/proposals/alma ; USER=root ; COMMAND=/bin/launchctl unload -w /System/Library/LaunchDaemons/org.postfix.master.plist
+</pre>
+<p>These errors:</p>
+<pre class="literal-block">
+Jun 23 09:06:40 eta Dock[99877]: kCGErrorIllegalArgument: CGSSetWindowTransformAtPlacement: Singular matrix [nan 0.000 0.000 nan]Jun 23 09:06:40 eta com.apple.Dock.agent[99877]: Thu Jun 23 09:06:40 eta.colorado.edu Dock[99877] : kCGErrorIllegalArgument: CGSSetWindowTransformAtPlacement: Singular matrix [nan 0.000 0.000 nan]
+</pre>
+<p>are correlated with opening Chrome windows and/or Chrome's
+crash_inspector</p>
+<pre class="literal-block">
+Jun 23 09:06:09 eta [0x0-0x69e69e].com.google.Chrome[99995]: [99995:24579:485131152128125:ERROR:shared_memory_posix.cc(164)] Creating shared memory in /var/folders/ni/ni+DtdqFGMeSMH13AvkNkU+++TI/-Tmp-/.com.google.chrome.sHcu6r failed: Too many open files in system
+</pre>
+<p>This is the problem that really gets me... I think it's
+crash_inspector's fault.
+But there's definitely more going on here than just Chrome. Trying to
+change default browsers (by opening Safari and opening Preferences) led
+to a partial Dock crash (?!) in which I can alt-tab but can't see the
+Dock. Not clear at all what's going on.... argh.</p>
+</p> </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+            <a href="https://keflavich.github.io/blog/index21.html">&laquo;</a>
+    Page 22 / 51
+        <a href="https://keflavich.github.io/blog/index23.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://keflavich.github.io/blog/notes-from-the-ism-pp-conference.html" rel="bookmark"
+         title="Permalink to Notes from the ISM-PP conference">Notes from the ISM-PP conference</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2013-10-21T00:00:00-06:00">
+      2013/10/21
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <div class="section" id="the-thickness-distribution-of-interstellar-filaments-evangelia-ntormousi">
+<h2>The thickness distribution of interstellar filaments: Evangelia Ntormousi</h2>
+<p>Filament decomposition</p>
+<blockquote>
+<ul class="simple">
+<li>RAMSES MHD with/without ambipolar diffusion (AD)
++ effect of ambipolar diffusion is smoothing
++ AD builds <em>very slight</em> secondary peak</li>
+<li>Q Crutcher:  How strong B-fields?  AD driven by turbulence (or what drives it)?</li>
+<li>A: Yes, turbulence drives it.  B-fields ???</li>
+<li>Q MacLow: Alfven waves suppressed by AD, but magnetosonic go through &amp; drive small flows.
+Oishi &amp; MacLow: no break in power-spectrum at small scales. Consistent with
+small difference.</li>
+<li>A: Yes, maybe smaller scale motions.</li>
+<li>Q Keto: Keep B-fields coherent.  But don't need to keep them coherent.
+How does B-field keep filaments coherent?  Argues that they only last a
+crossing time.</li>
+<li>A: magnetic tension, resists shear.  Filaments would reexpand without
+B-fields.  We don't see observed reexpansion.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="anomalous-extinction-the-degeneracy-between-dust-composition-and-geometry-15-peter-scicluna-eso">
+<h2>Anomalous extinction: The degeneracy between dust composition and geometry 15': Peter Scicluna (ESO)</h2>
+<p>Forward scattering by dust</p>
+<blockquote>
+<ul class="simple">
+<li>direct forward scattering favored</li>
+<li>flatter extinction curve when optically thick</li>
+<li>Q Keto: Wavelength dependence of scattering?  Mostly absorption -&gt; IR reemission?</li>
+<li>A: absorption is treated.  Heating.</li>
+<li>Q Star outside scattering into LOS?</li>
+<li>A: Yes, but probably not <em>as</em> significant</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="latest-great-results-from-sofia-15-hans-zinnecker">
+<h2>Latest GREAT results from SOFIA 15': Hans Zinnecker</h2>
+<dl class="docutils">
+<dt>SOFIA summary... 1000 hrs/year</dt>
+<dd><ul class="first last simple">
+<li>Germany DLR 20% + US</li>
+</ul>
+</dd>
+<dt>GREAT results</dt>
+<dd><ul class="first simple">
+<li>M17sw C+, CO 13-12
++ CII more distributed</li>
+<li>G5.89 CO 11-10 outflow</li>
+<li>Inverse P-Cygni at NH3 1810 GHz in G34.26+0.15</li>
+<li>OH ground state absorption towards W49
++ Wiesemeyer 2012 AA 542 L7</li>
+<li>OD detected towards IRAS1629A</li>
+<li>CND in dust with SOFIA: Requenna-Torres</li>
+<li>Southern targets: NGC 3603, LMC</li>
+<li>CO &amp; C+ maps of NGC3603 (cool!)</li>
+</ul>
+<p class="last">Q Vazquez-Semadeni: What happens when plane hits turbulence?
+A: Counterweight keeps telescope pointed in the right place</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="molecular-cloud-properties-40-alvaro-hacar">
+<h2>Molecular cloud properties 40': Alvaro Hacar</h2>
+<p>Skipped</p>
+</div>
+<div class="section" id="the-structure-of-molecular-clouds-from-1000-au-to-orion-15-joao-alves">
+<h2>The structure of molecular clouds from 1000 AU to Orion 15': Joao Alves</h2>
+<dl class="docutils">
+<dt>Extinction Mapping (in Orion)</dt>
+<dd><ul class="first last">
+<li><p class="first">Stars at 2um are colorless</p>
+</li>
+<li><p class="first">Bias: not sensitive to densest part of cloud
++ NICEST accounts for background population</p>
+</li>
+<li><p class="first">PIPE: high temperatures in the low-column stuff</p>
+</li>
+<li><p class="first">Barnard 68 is a bonnor ebert - 2001 result..
++ TP role of B68!</p>
+</li>
+<li><p class="first">Most BE cores are stable (Lada 2008)
++ pressure confined</p>
+</li>
+<li><p class="first">CMF claim...
++ &quot;same thing seen by Andre 2011&quot;</p>
+</li>
+<li><p class="first">Burkert Alves 2009: merging cores</p>
+</li>
+<li><p class="first">Hacar 2013: multiple LOS velocity components along a single filament
++ friends-of-friends velocity components: subsonic
++ broad line consists of spaghetti
++ most filaments have no cores</p>
+</li>
+<li><p class="first">summary of Lada, Lombardi led papers</p>
+</li>
+<li><p class="first">Corona Australis cloud (Avles et al submitted)
++ PDF very lognormal with a tiny power-law excess
++ Kainulainen did the PDF work...</p>
+<blockquote>
+<ul class="simple">
+<li>sometimes loglog gives insight...</li>
+</ul>
+</blockquote>
+<ul class="simple">
+<li>mentioned my poster as rejecting lognormal (oops - that result changed since I wrote the abstract...)</li>
+</ul>
+</li>
+<li><p class="first">NICEST future?
++ GNICER
++ do it to other galaxies?</p>
+<blockquote>
+<ul class="simple">
+<li>nice extinction mapping in CNR of M83</li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">Bally CMZ...
++ M83 analogy?</p>
+</li>
+<li><p class="first">Q Herschel maps: larger dynamic range</p>
+</li>
+<li><p class="first">A: VLT + Spitzer -&gt; A_V ~ 100</p>
+</li>
+<li><p class="first">Q: Features in PDF are clearly associated with individual objects.  PDFs extremely useful...</p>
+</li>
+<li><p class="first">A: Still throwing away second dimension.  Justin Bieber has same PDF as Pipe Nebula.  Hat tip to Chris Beaumont</p>
+</li>
+<li><p class="first">Q Falgarone: Search for thinning of filaments?  Change of spinning?</p>
+</li>
+<li><p class="first">A: 1km/s/pc still...</p>
+</li>
+<li><p class="first">Q Vazquez-Semadeni: Is B68 inside an HII region or not?</p>
+</li>
+<li><p class="first">A: No.  Herschel data shows tail of warm dust being blown away.  Some
+external agent removed filament B68 was born in.
+External pressure is higher outside B68 than in, e.g., Taurus.</p>
+</li>
+<li><p class="first">Q Zinnecker: B68.  Structure more complex?  Niel Boch?  Not isothermal?</p>
+</li>
+<li><p class="first">A: BE are isothermal; fit cores well a lot.  BE still decent representation.</p>
+</li>
+<li><p class="first">Q Klessen: Degeneracy distribution highly degenerate.  Possible to reproduce
+from turbulence without contained sphere.</p>
+</li>
+<li><p class="first">A: No change in B68.  Long, subsonic things.</p>
+</li>
+<li><p class="first">&quot;Danger is applying one model to everything.&quot; -Klessen</p>
+</li>
+<li><p class="first">&quot;Shouldn't apply turbulence to everything.&quot; -Alves</p>
+</li>
+<li><p class="first">Keto: Non-isothermal = factor of 2?  Numerical models say doesn't strongly
+affect dynamics, still acts BE-like.</p>
+</li>
+<li><p class="first">Vasquez-Semadeni: We are taking turbulence too far!  But these are not
+stable either.</p>
+</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="herschel-view-of-mol-cld-structure-sf-nicola-schneider">
+<h2>Herschel view of mol cld structure &amp; SF: Nicola Schneider</h2>
+<dl class="docutils">
+<dt>Unscheduled talk.</dt>
+<dd><ul class="first last simple">
+<li>massive stars at junctinos of filaments</li>
+<li>DR21, Taurus
++ &quot;striations&quot; correlated with B-fields</li>
+<li>Herschel PDF goes to higher density</li>
+<li>ChamII: subtract sources, get lognormal (kinda)
++ &quot;weak&quot; slope difference in power law tails</li>
+<li>compressed shells -&gt; double-peak, broadened PDF</li>
+<li>Q Joao: 2 power laws.  Coincide with OB stars.  Could it be unaccounted for temperature increase?</li>
+<li>A:</li>
+<li>Q Kainulainen Cham II: Subtracted bound cores.</li>
+<li>A: A_V &gt; 10 is core collapse</li>
+<li>Q: in PDFs, are the pixels all independent, or does the PDF from a single bright source contribute to many bins?</li>
+<li>A: Too many pixels</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="properties-of-interstellar-filaments-observed-with-herschel-and-3d-magnetic-field-structure-derived-from-the-polarization-parameters-observed-with-planck-15-doris-arzoumanian">
+<h2>Properties of interstellar filaments observed with Herschel and 3D magnetic field structure derived from the polarization parameters observed with Planck 15': Doris Arzoumanian</h2>
+<dl class="docutils">
+<dt>Constant filament width</dt>
+<dd><ul class="first last simple">
+<li>0.1 pc</li>
+</ul>
+</dd>
+<dt>B-fields in filaments</dt>
+<dd><ul class="first last simple">
+<li>geometry of field can lead to depolarization</li>
+<li>Q Crutcher: Polarization fraction is much higher than observed in cores.  Very minor effect.</li>
+<li>A: Cores would be lower.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="magnetic-fields-in-bok-globules-15-gesa-bertrang">
+<h2>Magnetic Fields in Bok globules 15': Gesa Bertrang</h2>
+<dl class="docutils">
+<dt>Supercritical: B-fields play no role</dt>
+<dd><ul class="first last simple">
+<li>comparison of NIR and submm poln</li>
+<li>VLT/ISAAC poln</li>
+<li>Q Zinnecker: IR poln vector vs B-field.  Radiative acceleration vs B-field alignment?</li>
+<li>Q Keto: How do you know surrounding gas is associated with core?</li>
+<li>A: We don't see anything else in the images.  The globules are very isolated</li>
+</ul>
+</dd>
+</dl>
+<p>&quot;Bok Globules&quot; sounds very like &quot;Buckyballs&quot;</p>
+</div>
+<div class="section" id="effect-of-turbulence-on-the-density-statistics-of-molecular-clouds-an-observational-view-j-kainulainen">
+<h2>Effect of turbulence on the density statistics of molecular clouds: an observational view: J Kainulainen</h2>
+<dl class="docutils">
+<dt>Density structure dominated by turbulent motions</dt>
+<dd><ul class="first last simple">
+<li>Yields a lognormal function</li>
+<li>powerlaw tail from gravity</li>
+<li>assume that 2D pdf can be used to yield 3D pdf</li>
+<li>Can't use background stars at N kpc...
++ high dynamic range: 3-120x10^21 cm^-2
++ 2&quot; res</li>
+<li>avoid LOS contamination by using a column cutoff</li>
+<li>use 8 clouds to determine b</li>
+<li>&quot;First direct observation determination of b&quot;</li>
+<li>Dense gas mass fraction
++ lognormal PDF -&gt; exponential DGMF
++ IRDCs have greater &quot;fraction&quot; of high density gas</li>
+<li>COMMENT: You CAN estimate the volume density.</li>
+<li>Yes, I agree, I can do it too.</li>
+<li>Q: Vazquez-Semadeni.  Low b suggests more solenoidal than compressive.</li>
+<li>A: B-field squishes PDF.</li>
+<li>A: b-parameter drives SF.  B-field close second.</li>
+<li>Q: How do you handle projection effects?</li>
+<li>A: Not observationally, but simulations seem to show we're doing OK</li>
+<li>Q Hennebelle: Equation of state.  Higher adiabatic index leads to different PDF.</li>
+<li>A: Should repeat experiment...</li>
+<li>Q Nicola Schneider: How do you get Mach number?  I get much lower Mach
+number.  Why is there no clearly defined power-law tail?</li>
+<li>A: Mach #: line width, assume temperature, -&gt; 3D vel dispersion.</li>
+<li>A: We need quantitative comparison between Herschel &amp; extinction map.
+Depends on scale.  We could fit with power-laws.  But, looks like lognormal..</li>
+<li>A: MAYBE powerlaw tails due to gravity.  Maybe not!  Maybe young IRDCs not
+dominated by gravity.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="filamentary-structures-in-the-ism-15-rowan-smith">
+<h2>Filamentary Structures in the ISM 15: Rowan Smith</h2>
+<dl class="docutils">
+<dt>Arepo!</dt>
+<dd><ul class="first last simple">
+<li>time dependent chemistry</li>
+<li>molecular cloud factory</li>
+<li>filamentary structures generated</li>
+<li>filaments examined with DiSPERSE
++ can generate filaments with shallow profiles with or without B-fields</li>
+<li>How do 2D filaments match 3D filaments?</li>
+<li>DiSPERSE connects maxima: Cores are forced onto filaments!</li>
+<li>Question for the audience: How do you fit a filament with a gaussian?</li>
+<li>3D reasonably consistent with 2D?
++ but major degeneracy between R-flat and p</li>
+<li>Q Hennebelle: Why do you need B-fields for a shallow profile?</li>
+<li>A: You <em>don't</em> need B-fields for shallow profiles.</li>
+<li>(more conversation that was probably important but I missed it)</li>
+<li>Q: filaments embedded in hot medium, not same as mol cloud filaments</li>
+<li>Q: Xu - We found a filamentary wisp just like what you saw</li>
+<li>Q: Adam Leroy: Why did you pick a particular number for the CO?</li>
+<li>A: <em>If</em> my sensitivity to CO is a certain value, how much gas do I miss?
+Cumulative plots help avoid &quot;threshold&quot;</li>
+<li>Q Adam: Would you make this back up by filling beam with faint CO?</li>
+<li>A: Haven't looked at beam sizes yet.</li>
+<li>Q Zinnecker: How do you get H2 at such low CO values?  Such low extinction, shouldn't H2 go away?</li>
+<li>A: Very well self-shielding</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="turbulence-in-the-ism-30-fabian-heitsch">
+<h2>Turbulence in the ISM 30': Fabian Heitsch</h2>
+<dl class="docutils">
+<dt>Turbulent mixing -&gt; serious resolution issues?</dt>
+<dd><ul class="first last simple">
+<li>Fragmentation rather than support</li>
+<li>lognormals are easy to generate</li>
+</ul>
+</dd>
+<dt>How is turbulence driven? (how does it arise?)</dt>
+<dd><ul class="first last simple">
+<li>Hydrodynamic eqns -&gt; dispersive and curly components
+1. Gradients in the velocity field (shear)
+2. Angular momentum conservation term: vorticity increases when gas compressed.  Make something smaller -&gt; spin up
+3. Pressure / density misaligned -&gt; turbulence.  Thermal instability.</li>
+<li>&quot;Turbulence in the ISM is a <em>consequence</em>&quot;</li>
+</ul>
+</dd>
+<dt>Turbulence decays</dt>
+<dd><ul class="first last simple">
+<li>On a dynamical timescale?
++ lifetime can be extended somehow...</li>
+<li>Drivers?
++ Expansion of shells
++ Global graviational instability</li>
+<li>Vazquez-Semadeni simulation: gravitational collapse drives turbulence in a &quot;core&quot;</li>
+</ul>
+</dd>
+<dt>How is turbulence driven in the models?</dt>
+<dd><ul class="first last simple">
+<li>Local: Driven / fourier forcing
++ Choose amplitude in fourier space (Kolmogorov or Burgers)
++ Uniform random phase in fourier space
++ transform to real
++ apply forcing at every timestep (at constant luminosity)</li>
+<li>Large scales feed smaller scales</li>
+<li>Problems:
++ phases should be coherent (HII region shells are coherent)
++ driving is volume-filling!  (bow shocks!)
++ only makes sense if accretion timescale longer than crossing time (this is OK)
++ periodic box: uncertain jeans mass, virial parameter.</li>
+<li>Alternative: cloud formation by colliding flows.</li>
+</ul>
+</dd>
+<dt>Support vs Fragmentation</dt>
+<dd><ul class="first last simple">
+<li>assume turbulence is an extra support parameter
++ if true, one core should form 1 star instead of 100 (? this doesn't make sense to me)
++ Energy from out-&gt;in.  How does this yield support?
++ Turbulence isotropic on small scales?  Not true.  Most energy on largest scales.
++ mildly supersonic turbulence CAN support cores... M=10 doesn't</li>
+</ul>
+</dd>
+<dt>Turbulence doesn't work, so...?</dt>
+<dd><ul class="first last simple">
+<li>turbulent support is line splitting... no hair splitting</li>
+<li>turbulence REALLY leads to fragmentation</li>
+<li>Q Jouni Kainulainen: Should we (observers) stop measuring CO line widths and
+calling it turbulent energy?</li>
+<li>A: Don't stop measuring.  Turbulence support can't come from gravity-driven turbulence.</li>
+<li>Q: Assumed anisotropic turbulence.    In B-fields, turbulence could be 2D.</li>
+<li>A: Yes, but need dynamically dominant B-fields</li>
+<li>Q Phillip Girichidis: Detailed description of how to model turbulence in
+simulations.  Matters whether <em>acceleration</em> or <em>force</em>.</li>
+<li>A: We know what the difference is...</li>
+<li>A Vazquez-Semadeni: Force -&gt; acceleration depends on density.  Only get a
+lognormal when you have acceleration, <em>not</em> force.  Force -&gt; dense regions
+accelerated less -&gt; powerlaw.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="molecular-cloud-formation-in-converging-flows-30-patrick-hennebelle-sap-cea-saclay">
+<h2>Molecular cloud formation in converging flows 30': Patrick Hennebelle (SAp/CEA Saclay)</h2>
+<dl class="docutils">
+<dt>Converging flows</dt>
+<dd><ul class="first last simple">
+<li>convert WNM -&gt; CNM in &quot;converging flows&quot; (not shocks?)</li>
+<li>alternative: bistable medium..</li>
+<li>polytropic EOS -&gt; powerlaw
++ 2-phase is strongly non-lognormal
++ but they consist of two separated lognormals</li>
+<li>molecular clouds are 2-phase: HI and H2 spatially coincident</li>
+<li>Mass spectrum &quot;Higher order statistics&quot;</li>
+<li>mass-size-velocity dispersion relations &quot;consistent with larson relation&quot;
++ scatter still huge</li>
+<li>Accretion of HI is adequate in early stages
++ maybe feedback is needed in later stages?</li>
+<li>Magnetization is mass-dependent?</li>
+</ul>
+</dd>
+</dl>
+<p>SF in colliding flows?</p>
+<dl class="docutils">
+<dt>Filaments in MHD turbulence</dt>
+<dd><ul class="first last simple">
+<li>don't need converging flows to get filaments</li>
+<li>filaments from intersection of shocked sheets?
++ HD vs MHD: filaments form in HD, but they live longer in MHD</li>
+<li>filament identification: inertia matrix -&gt; eigenvectors -&gt; filament direction</li>
+<li>MHD -&gt; greater elongation
++ B-field keeps filaments more coherent
++ B-fields weaken shocks, therefore shocks are not the formation driver of filaments</li>
+<li>Q:Burkhert Coherence length scale in galaxies</li>
+<li>Vazquez-Semadeni: Colliding flows are just a representation for any style of converging flow (e.g., grav instability)</li>
+<li>Jin Koda: 500pc scale cloud formation, would expect GMC to follow flow.  But, we find retrograde &amp; prograde.</li>
+<li>A: Why do you expect spin?  Local turbulent motions...  at 500 pc, local turbulence comparable to shear.</li>
+<li>Q Keto: If cloud initially forms as Jeans mass by grav frag process, so converging flows isn't really the explanation.</li>
+<li>A: converging flows generated by gravitational collapse are still converging flows.</li>
+<li>Q Klessen: distribution of spins arise naturally (because of curvature?)</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="on-the-characteristic-mass-of-stars-in-stellar-clusters-15-paul-clark">
+<h2>On the characteristic mass of stars in stellar clusters 15': Paul Clark</h2>
+<dl class="docutils">
+<dt>Try to take low density clouds (~100) and collapse them</dt>
+<dd><ul class="first last simple">
+<li>Bate 2008 showed radiation limited fragmentation</li>
+<li>heating/coolring rate strong function of density
++ photoelectric heating dominant</li>
+<li>ISM physics in AREPO</li>
+<li>vary turbulent driving (b=0.3, 0.5, 1)</li>
+<li>take into account shielding</li>
+<li>compressive, weak/strong G0: more small-scale filaments in low-G0 field</li>
+<li>solenoidal: SF takes longer, more shreddy
++ solenoidal vs compressive take very different amts of time to create stars</li>
+<li>difference in mass function at high mass
++ compressive with high G0 forms more massive stars
++ compressive case leaves gaps: more internal heating</li>
+<li>systematically offset from Chabrier IMF: deficit of low-mass stars
++ not forming enough low-mass stars
++ Why? sinks prevent binary formation</li>
+</ul>
+</dd>
+<dt>Q: Is the solenoidal driving less mass to high density?  i.e., is the density distribution still the driver of SF?</dt>
+<dd><ul class="first last simple">
+<li>Q Zinnecker:</li>
+<li>A: isothermal doesn't work (especially at high densities)</li>
+<li>Q What about binaries?</li>
+<li>A: Yes, that's it.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="photoionization-of-the-diffuse-ionised-gas-in-an-mhd-supernova-driven-turbulent-interstellar-medium-jo-barnes-university-of-st-andrews">
+<h2>Photoionization of the diffuse ionised gas in an MHD supernova-driven turbulent Interstellar Medium Jo Barnes (University of St Andrews)</h2>
+<dl class="docutils">
+<dt>1st year phd</dt>
+<dd><ul class="first last simple">
+<li>explaining [N II]/Halpha line ratios, etc.</li>
+<li>scattered light
++ HII region -&gt; dust -&gt; us
++ diffuse gas -&gt; dust -&gt; us</li>
+<li>scattered/total ~ 0.5 at midplane.  at super high latitudes, can be 20% again</li>
+<li>Q: Could low scale height be because SNe are not blown up together?</li>
+<li>A: We use average SN rate, but arms should be enhanced</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="the-molecular-richness-of-diffuse-ism-a-tracer-of-turbulent-dissipation-15-edith-falgarone">
+<h2>The molecular richness of diffuse ISM: a tracer of turbulent dissipation 15': Edith Falgarone</h2>
+<dl class="docutils">
+<dt>Discussing diffuse medium</dt>
+<dd><ul class="first last simple">
+<li>large range in physical scale of clouds</li>
+<li>5 order of magnitude scatter in transfer rate of kinetic energy.
++ No trends with scale.</li>
+<li>All forms of Larson relation fail at scales &lt;0.1 pc</li>
+<li>intermittency... most dissipation occurs in very small volume
++ dissipation occurs on filamentary structures
++ resolve pairs of CO-emitting regions corresponding to the dissipative high velocity shears</li>
+<li>CH+ cation - known for 70 years, but poorly understood
++ highly endothermic formation
++ rapidly destroyed by H2, in ~1yr
++ requires extremely efficient formation rate
++ detected to be far too abundant</li>
+<li>M82 LOS: detected in high latitude cloud!
++ gigantic inverse P-cygni from M82
++ infalling HVC tracer?</li>
+<li>also detected CH+ to another galaxy at high latitude</li>
+<li>Associated with HI (same line shape)</li>
+<li>highly non-equilibrium chemistry</li>
+<li>&quot;TDR&quot; = Turbulence Dissipation Region models</li>
+</ul>
+</dd>
+</dl>
+<p>Q: CH+ seen drastically enhanced in diffuse clouds.  Should we expect gigantic abundance variations in dense molecular clouds too?</p>
+<blockquote>
+<ul class="simple">
+<li>Q CH+ + B-fields?</li>
+<li>Q Frequency of events?</li>
+<li>A: 1% of gas</li>
+</ul>
+</blockquote>
+</div>
+
+  </div><!-- /.entry-content -->
+</section>
+
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</section>
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  var disqus_identifier = '/notes-from-the-ism-pp-conference.html';
+  var disqus_url = 'https://keflavich.github.io/blog/notes-from-the-ism-pp-conference.html';
+  var disqus_title = 'Notes from the ISM-PP conference';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

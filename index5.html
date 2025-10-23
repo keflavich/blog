@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/more-casa-simulation-debugging.html" rel="bookmark" title="Permalink to More CASA simulation & debugging">
+                    More CASA simulation &amp; debugging</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-04-24T22:57:00-06:00"> 2016/04/24 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>(this post written from snowy-ish ALMA; <a class="reference external" href="https://goo.gl/photos/z3fUkCT6VVRzt8EW6">just cloudy at the OSF though</a>)</p>
+<p>(tl; dr version: <tt class="docutils literal">sm.setvp</tt> doesn't work if you have <tt class="docutils literal"><span class="pre">TELESCOP=&quot;ALMA&quot;</span></tt> in
+your header)</p>
+<p>I'm trying to repeat an experiment very similar to
+<a class="reference external" href="|static|/casa_simulating.rst">previous</a>
+<a class="reference external" href="|static|/simulated_imaging.rst">simulation work</a>
+in order to quantify my completeness and largest angular scales
+by injecting synthetic signal into the real UV data.</p>
+<p>However, as you might expect, it doesn't work as it did last time, even
+when I (afaict) copy and paste the code directly.</p>
+<p>Here's the new error:</p>
+<pre class="literal-block">
+2016-04-25 02:57:21 SEVERE  Simulator::createSkyEquation() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2200)        Caught exception: Transformations to/from frame &quot;Undefined&quot; are not possible.
+2016-04-25 02:57:21 SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Failed to create SkyEquation
+Result of predict: False
+</pre>
+<p>It's strange because there is nothing obviously undefined.</p>
+<p>I'm comparing 2 FITS files that should behave identically.
+The good header lacks these keywords that the bad header has:</p>
+<pre class="literal-block">
+['PV2_1',
+ 'PV2_2',
+ 'OBSERVER',
+ 'DATE-OBS',
+ 'OBSRA',
+ 'OBSDEC',
+ 'OBSGEO-X',
+ 'OBSGEO-Y',
+ 'OBSGEO-Z']
+</pre>
+<p>while the good header has these and the bad lacks them:</p>
+<pre class="literal-block">
+['PC03_01',
+ 'PC04_01',
+ 'PC03_02',
+ 'PC04_02',
+ 'PC01_03',
+ 'PC02_03',
+ 'PC03_03',
+ 'PC04_03',
+ 'PC01_04',
+ 'PC02_04',
+ 'PC03_04',
+ 'PC04_04',
+ 'CREATOR',
+ 'INSTRUME',
+ 'BAND',
+ 'PROPOSAL',
+ 'PRTITLE',
+ 'OBSID001',
+ 'OBSID002',
+ 'HISTORY']
+</pre>
+<p>The only significant difference is the <tt class="docutils literal">PC</tt> values, unless CASA
+is doing something with the observatory location information.</p>
+<p>The only difference in common keywords is numerical, which seems
+very unlikely to cause this issue.</p>
+<p>I cannot discern any useful difference between these two CASA .image headers:</p>
+<pre class="literal-block">
+2016-04-25 03:08:55 INFO imhead     ##########################################
+2016-04-25 03:08:55 INFO imhead     ##### Begin Task: imhead             #####
+2016-04-25 03:08:55 INFO imhead     imhead(imagename=&quot;../perseus_synth/perseus_250_to_w51.image&quot;,mode=&quot;summary&quot;,hdkey=&quot;&quot;,hdvalue=&quot;&quot;,verbose=True)
+2016-04-25 03:08:55 INFO ImageAnalysis
+2016-04-25 03:08:55 INFO ImageAnalysis      Image name       : perseus_250_to_w51.image
+2016-04-25 03:08:55 INFO ImageAnalysis      Object name      : perseus 04
+2016-04-25 03:08:55 INFO ImageAnalysis      Image type       : PagedImage
+2016-04-25 03:08:55 INFO ImageAnalysis      Image quantity   : Intensity
+2016-04-25 03:08:55 INFO ImageAnalysis      Pixel mask(s)    : mask0
+2016-04-25 03:08:55 INFO ImageAnalysis      Region(s)        : None
+2016-04-25 03:08:55 INFO ImageAnalysis      Image units      : Jy/pixel
+2016-04-25 03:08:55 INFO ImageAnalysis      Restoring Beam   : 0.465804 arcsec, 0.465804 arcsec, 0 deg
+2016-04-25 03:08:55 INFO ImageAnalysis
+2016-04-25 03:08:55 INFO ImageAnalysis      Direction reference : J2000
+2016-04-25 03:08:55 INFO ImageAnalysis      Spectral  reference : Undefined
+2016-04-25 03:08:55 INFO ImageAnalysis      Velocity  type      : RADIO
+2016-04-25 03:08:55 INFO ImageAnalysis      Rest frequency      : 2.33947e+11 Hz
+2016-04-25 03:08:55 INFO ImageAnalysis      Telescope           : Herschel
+2016-04-25 03:08:55 INFO ImageAnalysis      Observer            : UNKNOWN
+2016-04-25 03:08:55 INFO ImageAnalysis      Date observation    : UNKNOWN
+2016-04-25 03:08:55 INFO ImageAnalysis
+2016-04-25 03:08:55 INFO ImageAnalysis      Axis Coord Type      Name             Proj Shape Tile   Coord value at pixel    Coord incr Units
+2016-04-25 03:08:55 INFO ImageAnalysis      ------------------------------------------------------------------------------------------------
+2016-04-25 03:08:55 INFO ImageAnalysis      0    0     Direction Right Ascension   TAN  2370  158  19:23:41.765  1099.00 -1.552680e-01 arcsec
+2016-04-25 03:08:55 INFO ImageAnalysis      1    0     Direction Declination       TAN  2500  250 +14.30.45.850  1552.00  1.552680e-01 arcsec
+2016-04-25 03:08:55 INFO ImageAnalysis      2    2     Spectral  Frequency                 1    1   2.33947e+11     0.00  1.000000e+09 Hz
+2016-04-25 03:08:55 INFO ImageAnalysis                           Velocity                                     0     0.00 -1.281456e+03 km/s
+2016-04-25 03:08:55 INFO ImageAnalysis      3    1     Stokes    Stokes                    1    1             I
+2016-04-25 03:08:55 INFO imhead     ##### End Task: imhead               #####
+2016-04-25 03:08:55 INFO imhead     ##########################################
+2016-04-25 03:09:07 INFO imhead
+2016-04-25 03:09:07 INFO imhead     ##########################################
+2016-04-25 03:09:07 INFO imhead     ##### Begin Task: imhead             #####
+2016-04-25 03:09:07 INFO imhead     imhead(imagename=&quot;../simulations/simimage_firsttest.image&quot;,mode=&quot;summary&quot;,hdkey=&quot;&quot;,hdvalue=&quot;&quot;,verbose=False)
+2016-04-25 03:09:07 INFO ImageAnalysis
+2016-04-25 03:09:07 INFO ImageAnalysis      Image name       : simimage_firsttest.image
+2016-04-25 03:09:07 INFO ImageAnalysis      Object name      :
+2016-04-25 03:09:07 INFO ImageAnalysis      Image type       : PagedImage
+2016-04-25 03:09:07 INFO ImageAnalysis      Image quantity   : Intensity
+2016-04-25 03:09:07 INFO ImageAnalysis      Pixel mask(s)    : None
+2016-04-25 03:09:07 INFO ImageAnalysis      Region(s)        : None
+2016-04-25 03:09:07 INFO ImageAnalysis      Image units      : Jy/beam
+2016-04-25 03:09:07 INFO ImageAnalysis      Restoring Beam   : 0.21023 arcsec, 0.192666 arcsec, 79.8538 deg
+2016-04-25 03:09:07 INFO ImageAnalysis
+2016-04-25 03:09:07 INFO ImageAnalysis      Direction reference : J2000
+2016-04-25 03:09:07 INFO ImageAnalysis      Spectral  reference : Undefined
+2016-04-25 03:09:07 INFO ImageAnalysis      Velocity  type      : RADIO
+2016-04-25 03:09:07 INFO ImageAnalysis      Rest frequency      : 2.33947e+11 Hz
+2016-04-25 03:09:07 INFO ImageAnalysis      Pointing center     :  19:23:41.629000  +14.30.42.380000
+2016-04-25 03:09:07 INFO ImageAnalysis      Telescope           : ALMA
+2016-04-25 03:09:07 INFO ImageAnalysis      Observer            : keflavich
+2016-04-25 03:09:07 INFO ImageAnalysis      Date observation    : 2015/04/23/09:47:44
+2016-04-25 03:09:07 INFO ImageAnalysis      Telescope position: [2.22514e+06m, -5.44031e+06m, -2.48103e+06m] (ITRF)
+2016-04-25 03:09:07 INFO ImageAnalysis
+2016-04-25 03:09:07 INFO ImageAnalysis      Axis Coord Type      Name             Proj Shape Tile   Coord value at pixel    Coord incr Units
+2016-04-25 03:09:07 INFO ImageAnalysis      ------------------------------------------------------------------------------------------------
+2016-04-25 03:09:07 INFO ImageAnalysis      0    0     Direction Right Ascension   TAN  3072  192  19:23:41.629  1536.00 -5.000000e-02 arcsec
+2016-04-25 03:09:07 INFO ImageAnalysis      1    0     Direction Declination       TAN  3072  192 +14.30.42.380  1536.00  5.000000e-02 arcsec
+2016-04-25 03:09:07 INFO ImageAnalysis      2    1     Stokes    Stokes                    1    1             I
+2016-04-25 03:09:07 INFO ImageAnalysis      3    2     Spectral  Frequency                 1    1   2.33947e+11     0.00  1.000000e+09 Hz
+2016-04-25 03:09:07 INFO ImageAnalysis                           Velocity                                     0     0.00 -1.281456e+03 km/s
+2016-04-25 03:09:07 INFO imhead     ##### End Task: imhead               #####
+2016-04-25 03:09:07 INFO imhead     ##########################################
+</pre>
+<p>if anything, the ALMA file includes <em>extra</em> data. Removing this data has no
+effect.</p>
+<p>The only really substantial difference left is the order of the axes, which
+is <em>not what I put in</em> for the ALMA data: it puts Stokes as 2 instead of 3
+despite the fact that <tt class="docutils literal"><span class="pre">CTYPE4='STOKES'</span></tt> and <tt class="docutils literal"><span class="pre">CTYPE3='FREQ'</span></tt>.</p>
+<p>By doing a round trip FITS-&gt;image-&gt;FITS-&gt;image, I was able to fix the order,
+but that is not the underlying problem, apparently.</p>
+<p>Could the missing pixel mask be at fault?  It doesn't jive at all with the
+error message, so I doubt it.  <tt class="docutils literal">OBSDATE</tt> is not the problem.</p>
+<p>Turns out, the error is that ALMA is the telescope.  I added the header entry:</p>
+<pre class="literal-block">
+ffile[0].header['TELESCOP'] = 'NotReal'
+</pre>
+<p>and it Just Worked.  It is approaching the end of my shift, so I think it is
+now acceptable to say &quot;what kind of !#$&#64;#$!&#64;% up #&#64;$$&#64;% is that?!&quot;.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/which-one-is-real.html" rel="bookmark" title="Permalink to Which one is real?">
+                    Which one is real?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-03-12T10:25:00-07:00"> 2016/03/12 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've &quot;successfully&quot; combined 7m and 12m data, and I've also &quot;successfully&quot;
+processed 12m data.  In both cases, I've self-calibrated the long-baseline 12m
+data.</p>
+<p>The question now is: why are these images so different?  There are features
+in the 12m-only data that are a factor of ~2 brighter than in the 12m+7m data.
+That should not happen.</p>
+<p>This image shows the problem.  7m+12m left, 12m-only right:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/7m12m_vs_12m.png" style="width: 600px;" />
+<p>Note the sharp features on the left and the small tail (filament) toward the
+top right that appear in the 12m but not in the 7m+12m data.</p>
+<p>Which features are real?  How do we decide?</p>
+<p>I really want to believe the 12m-only data, but I am very worried that it is
+artificially enhanced by sidelobes from the e8 filament:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/7m12m_vs_12m_zoomout.png" style="width: 600px;" />
+<p>There is a ~20-sigma feature between e8 and e2 along the e8 filament axis,
+but it is completely absent in the 7m+12m data.  That leads me to believe
+that it is not real, but at such high significance that is very worrisome.
+I'm also concerned by the loss of the compact source at the bottom of the e8
+filament and to the left: these seem unlikely to be affected by the filament.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/clean-has-extreme-sensitivity-to-the-threshold.html" rel="bookmark" title="Permalink to CLEAN has extreme sensitivity to the threshold">
+                    CLEAN has extreme sensitivity to the threshold</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-03-10T10:12:00-07:00"> 2016/03/10 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>CLEAN diverges sometimes.  The point at which divergence begins is very
+difficult to identify and unfortunately it looks like the images get mostly
+better as you slowly approach the toxic threshold:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/tclean_threshold_sensitivity.png" style="width: 600px;" />
+<p>The precise clean command used, with only threshold changing, is:</p>
+<pre class="literal-block">
+2016-03-10 07:49:28     INFO    tclean::::      tclean(vis=&quot;w51_contvis_selfcal_4.ms&quot;,selectdata=True,field=&quot;&quot;,spw=&quot;&quot;,timerange=&quot;&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             uvrange=&quot;&quot;,antenna=&quot;&quot;,scan=&quot;&quot;,observation=&quot;&quot;,intent=&quot;&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             datacolumn=&quot;corrected&quot;,imagename=&quot;selfcal_allspw_selfcal_4ampphase_mfs_tclean_deeper_4mJy&quot;,imsize=[3072, 3072],cell=&quot;0.05arcsec&quot;,phasecenter=&quot;J2000 19:23:41.629000 +14.30.42.38000&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             stokes=&quot;I&quot;,projection=&quot;SIN&quot;,startmodel=&quot;&quot;,specmode=&quot;mfs&quot;,reffreq=&quot;&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             nchan=-1,start=&quot;&quot;,width=&quot;&quot;,outframe=&quot;LSRK&quot;,veltype=&quot;radio&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             restfreq=[],interpolation=&quot;linear&quot;,gridder=&quot;mosaic&quot;,facets=1,wprojplanes=1,
+2016-03-10 07:49:28     INFO    tclean::::+             aterm=True,psterm=False,wbawp=True,conjbeams=True,cfcache=&quot;&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             computepastep=360.0,rotatepastep=360.0,pblimit=0.4,normtype=&quot;flatnoise&quot;,deconvolver=&quot;clark&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             scales=[],nterms=2,restoringbeam=[],outlierfile=&quot;&quot;,weighting=&quot;briggs&quot;,
+2016-03-10 07:49:28     INFO    tclean::::+             robust=-2.0,npixels=0,uvtaper=[],niter=100000,gain=0.1,
+2016-03-10 07:49:28     INFO    tclean::::+             threshold=&quot;4mJy&quot;,cycleniter=-1,cyclefactor=1.0,minpsffraction=0.05,maxpsffraction=0.8,
+2016-03-10 07:49:28     INFO    tclean::::+             interactive=False,mask=&quot;&quot;,overwrite=True,savemodel=&quot;modelcolumn&quot;,calcres=True,
+2016-03-10 07:49:28     INFO    tclean::::+             calcpsf=True,parallel=False)
+</pre>
+<p>It looks like CLEAN needs a different type of threshold to finish on, perhaps
+something requiring each subsequent component to be some value less than the
+previous component.  If each component is forced to be less than the previous
+one, the clean can never diverge, though clean would stop unexpectedly if
+subtracting a component increased the amplitude of some other part of the map
+(i.e., if the next brightest source is sitting in a negative bowl).  Still,
+this might be a rarer occurrence than the divergence that I see all the time,
+which may be related to gridding (given the sharp grid pattern seen in panel 4
+of the linked image).</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/simulated-observations-of-perseus-in-w51.html" rel="bookmark" title="Permalink to Simulated Observations of Perseus in W51">
+                    Simulated Observations of Perseus in W51</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-02-27T10:40:00-07:00"> 2016/02/27 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The W51 and Sgr B2 ALMA mosaics contain ~50 and ~150 pointlike sources,
+respectively.  However, they have pretty miserable high-noise regions
+such that determining completeness is a serious challenge.</p>
+<p>To determine completeness in a means comparable to other observations,
+I have therefore been using the Gould's Belt Survey Perseus data
+as an input to do synthetic observations.</p>
+<p>It turns out this is technically challenging because CASA does some
+<a class="reference external" href="|static|/casa_simulating.rst">strange things</a> when importing files.</p>
+<p>I finally got a <a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/commit/b046ff5c82992ef44a1dbaac303fcc6497511142">version</a>
+working.</p>
+<p>Important details when reading in a FITS file:</p>
+<blockquote>
+<ul>
+<li><p class="first">The header <em>must</em> be fully populated with a 4-dimensional WCS.  If stokes or
+frequency are missing, CASA will choke with uninformative errors such as:</p>
+<p>2016-02-26 11:25:24  SEVERE  Simulator::createSkyEquation() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2200)        Caught exception: (/Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc : 2266) Failed AlwaysAssert spectralIndex&gt;=0
+2016-02-26 11:25:24  SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Failed to create SkyEquation</p>
+<p>and</p>
+<p>2016-02-26 11:27:36  SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Caught exception: (/Users/rpmbuild/gradle/workdir/casasources/release-4_5/casacore/coordinates/Coordinates/CoordinateSystem.cc : 793) Failed AlwaysAssert which &lt; nCoordinates() &amp;&amp; coordinates_p[which]-&gt;type() == Coordinate::STOKES</p>
+</li>
+<li><p class="first">Flux units should be in Jy/beam.  Other flux units <em>may</em> be acceptable (e.g.,
+MJy/sr, Jy/pixel), but their behavior is not entirely predictable.  I did not
+get out the expected values when I used MJy/sr as input, but I did not pursue
+further why this happened.  Using Jy/beam, and ensuring that the units were correctly
+set to Jy/beam in the file (by scaling them in the FITS image before importing),
+I got the expected results.</p>
+</li>
+<li><p class="first">CASA apparently does not read beam information from headers.  You need to include the
+beam information when doing importfits, e.g.:</p>
+<blockquote>
+<dl class="docutils">
+<dt>beam=[&quot;{0}deg&quot;.format(hdr['BMAJ']),</dt>
+<dd><p class="first last">&quot;{0}deg&quot;.format(hdr['BMIN']),
+&quot;{0}deg&quot;.format(hdr['BPA'])]</p>
+</dd>
+</dl>
+</blockquote>
+</li>
+<li><p class="first">CASA will happily read a FITS file into a <tt class="docutils literal">.image</tt> that cannot be used by
+other casa routines.  You will not get an exception until you try a later
+step.</p>
+</li>
+</ul>
+</blockquote>
+<p>Once the FITS image is read into a CASA <tt class="docutils literal">.image</tt>, <em>if</em> it has the CASA-expected
+units and dimensions, you can use <tt class="docutils literal">sm.predict</tt> to fourier transform the data
+and sample it onto the UV grid in your <tt class="docutils literal">.ms</tt> file:</p>
+<pre class="literal-block">
+sm.openfromms(&quot;file.ms&quot;)
+sm.setvp() # &quot;set voltage pattern&quot;: not clear if this is needed
+success = sm.predict(&quot;myfile.image&quot;)
+sm.done()
+sm.close()
+</pre>
+<p>This (seems to) populate the <em>data</em> column, not the model column as I had
+originally expected.  Therefore, be warned!  DO NOT DO THIS TO YOUR ORIGINAL
+DATA!  It will probably overwrite it.</p>
+<p>Once your <tt class="docutils literal">.ms</tt> file is populated, you can clean it as normal.  Some
+examples:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/casa/perseus_in_w51_imaging.png" style="width: 600px;" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/casa-simulation.html" rel="bookmark" title="Permalink to CASA Simulation">
+                    CASA Simulation</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-02-25T10:27:00-07:00"> 2016/02/25 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>More frustration with CASA:</p>
+<blockquote>
+<ul>
+<li><p class="first">If you try to load a FITS image into a CASA .image, beware that it is likely
+to have incorrect units.  Round-tripping between .image and .fits doesn't
+work well, because CASA always assumes that CDELT is in radians even when it
+is explicitly set to be degrees.</p>
+</li>
+<li><p class="first">EDIT: OK, this isn't true in all cases, but if you use <tt class="docutils literal">imhead</tt> to <tt class="docutils literal">put</tt>
+a keyword value, it will assume radians by default.  That can be overcome by explicitly setting the units:</p>
+<blockquote>
+<p>imhead(perseus_casa_image, mode='put', hdkey='CDELT1', hdvalue={'value':hdr['CDELT1'], 'unit':'deg'})</p>
+</blockquote>
+<p>I was able to produce this awkward behavior <em>without</em> imhead as well, though
+I cannot repeat that now.</p>
+</li>
+</ul>
+</blockquote>
+<p>The simulator gives this error message if I try to load an image:</p>
+<blockquote>
+<p>sm.setvp()
+sm.predict(perseus_casa_image)</p>
+<p>2016-02-25 09:26:34 SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Caught exception: TiledShape: #elements in shape and tileShape differ</p>
+</blockquote>
+<p>My best guess is that CASA doesn't understand how to handle 2D images with 3D
+headers.  However, the sensible workaround of expanding the image to 3D does
+not work.</p>
+<p>Re-importing after exporting gets yet another different image.  After
+re-importing an image that was exported to FITS, I get a new error:</p>
+<blockquote>
+Failed AlwaysAssert spectralIndex&gt;=0 2016-02-25 09:37:35</blockquote>
+<p>which is rather strange since the spectral index is a physical quantity.</p>
+<p>There is also the lovely message:</p>
+<blockquote>
+2016-02-25 09:55:27 INFO importfits No usable restoring beam information found.</blockquote>
+<p>for a header that contains these lines:</p>
+<blockquote>
+BMAJ    =   1.293900184840E-04
+BMIN    =   1.293900184840E-04
+BPA     =   0.000000000000E+00</blockquote>
+<p>The image might finally be right, but now I can't find any way to convert it to
+a model.  If I try to <tt class="docutils literal">ft</tt> the model, I get:</p>
+<blockquote>
+2016-02-25 10:54:54 SEVERE  ft::imager::ft() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Imager.cc, line 4488) Exception: (/Users/rpmbuild/gradle/workdir/casasources/release-4_5/casacore/coordinates/Coordinates/CoordinateSystem.cc : 777) Failed AlwaysAssert which &lt; nCoordinates() &amp;&amp; coordinates_p[which]-&gt;type() == Coordinate::SPECTRAL</blockquote>
+<p>which probably means that CASA doesn't know how to turn a single-band continuum
+image into a model for a multi-frequency .ms (which is all .ms's, including
+continuum, in the ALMA world).</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/retrieving-and-selecting-data-in-casa.html" rel="bookmark" title="Permalink to Retrieving and Selecting Data in CASA">
+                    Retrieving and Selecting Data in CASA</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-02-24T13:44:00-07:00"> 2016/02/24 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I learned a few important things at the 7m+12m workshop in Garching:</p>
+<ol class="arabic">
+<li><p class="first"><tt class="docutils literal">clean</tt> treats input models in Jy/beam and Jy/pixel qualitatively (not
+just quantitatively) differently.  Jy/pixel images are taken to be model
+images exactly, where Jy/beam are... somehow interpreted differently, maybe
+as clean component assemblies.  I don't know the details, but this is a
+major caution.</p>
+</li>
+<li><p class="first">The <tt class="docutils literal">tbtool</tt> is not very good for extracting data for plotting.  The flags
+are not guaranteed to be in a sane shape, which will lead to crashes if you
+try <tt class="docutils literal"><span class="pre">tb.getcolumn('FLAG')</span></tt>.  <tt class="docutils literal">ms.msselect</tt>, however, allows you access
+to most of the normal selection routines used in <tt class="docutils literal">clean</tt>, <tt class="docutils literal">split</tt>, etc.
+It is tricky, though, because <tt class="docutils literal">ms.select</tt> does <em>not</em> allow you access to
+the same selection.  Also, while <tt class="docutils literal">spw</tt>-based selection normally allows you
+to select channels, in <tt class="docutils literal">ms.msselect</tt> it does not: instead you must use
+<tt class="docutils literal">ms.selectchannel</tt>.  See <a class="reference external" href="https://github.com/radio-astro-tools/sandbox/blob/master/casa_7m12m_tools/weight_density_uv_plot.py">this example</a>.</p>
+<p>Details about the selection are at this URL, but the documentation is
+incomplete and, in places, incorrect:</p>
+<p><a class="reference external" href="http://www.aoc.nrao.edu/~sbhatnag/misc/msselection/FrequencySelection.html">http://www.aoc.nrao.edu/~sbhatnag/misc/msselection/FrequencySelection.html</a></p>
+<p>(for example, <tt class="docutils literal">chanspec</tt> is not valid in <tt class="docutils literal">msselect</tt>, or at least
+it doesn't do anything)</p>
+</li>
+</ol>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/a-tclean-vs-clean-comparison.html" rel="bookmark" title="Permalink to A tclean vs clean comparison">
+                    A tclean vs clean comparison</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-02-22T11:23:00-07:00"> 2016/02/22 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Comparing tclean to clean with the following parameters:</p>
+<pre class="literal-block">
+clean(vis=vis0, imagename=myimagebase, field=&quot;&quot;, spw='',
+      mode='mfs', outframe='LSRK', interpolation='linear',
+      imagermode='mosaic', multiscale=multiscale, interactive=False,
+      niter=1000, threshold='100mJy', imsize=imsize, minpb=0.5, cell=cell,
+      phasecenter=phasecenter, weighting='briggs', usescratch=True,
+      pbcor=True, robust=-2.0)
+
+tclean(vis=vis0, imagename=myimagebase, field=&quot;&quot;, spw='',
+       outframe='LSRK', interpolation='linear', gridder='mosaic',
+       scales=multiscale, interactive=False, niter=1000,
+       threshold='100mJy', imsize=imsize, mask='auto-pb', specmode='mfs',
+       cell=cell, phasecenter=phasecenter, weighting='briggs', robust=-2.0)
+</pre>
+<p>Note the very bad cleaning instability creeping in in the clean image:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/tclean_vs_clean_7m12m.png" style="width: 600px;" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/casa-selfcal-good-awful.html" rel="bookmark" title="Permalink to CASA Selfcal: Good & Awful">
+                    CASA Selfcal: Good &amp; Awful</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-01-28T09:20:00-07:00"> 2016/01/28 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Self-calibration is necessary for some images to get a decent dynamic range or
+to see anything at all in the images.  So, I did some tests using self-cal on
+the central field of Sgr B2 (<a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m_te/selfcal_centralfield.py">source</a>)
+and it worked great:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/casa/sgrb2_selfcal_good.png" style="width: 600px;" />
+<p>That image is actually from <a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/blob/master/script_12m_te/selfcal_continuum.py">self-calibrating the whole field</a>,
+which also worked great.  Except, it deleted all the flux outside of the bright regions:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/casa/sgrb2_selfcal_bad.png" style="width: 600px;" />
+<p>This is awful.  It is just deleting flux!  I had previously thought that the
+<tt class="docutils literal">applyonly</tt> option would only apply solutions that it actually found, but
+that appears not to bt true.  Instead, it seems that even phase solutions with
+<em>no</em> signal are being applied, which effectively removes everything from the
+image.  I could have understood if this was happening to amplitude
+self-calibration, but I can't understand how it is happening with phase
+self-cal.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/casa-imaging-of-huge-cube.html" rel="bookmark" title="Permalink to CASA imaging of huge cube">
+                    CASA imaging of huge cube</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-01-25T10:09:00-07:00"> 2016/01/25 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Imaging full cubes, i.e. every channel and every pixel, from ALMA data proved
+too much for the first few machines I tried it on, so I then tried splitting
+the cubes into chunks (<a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/script_12m/scriptForImaging_fullcube.py">source</a>).</p>
+<p>For the most part, this works well, but there are some serious problems:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/casa/spectrum_with_badchunk.png" style="width: 600px;" />
+<p>Note the range from 233.8-234 GHz.  It has a continuum level way above the
+rest.  This is utter nonsense, and turns out to be due to some imaging error.
+The first image below shows a &quot;good&quot; chunk of the cube, the second image shows
+a &quot;bad&quot; chunk.</p>
+<img alt="" src="https://keflavich.github.io/blog/images/casa/w51_cube_chunk_compare_good.png" style="width: 600px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/casa/w51_cube_chunk_compare_bad.png" style="width: 600px;" />
+<p>It is clear that the second image was restore using a too-large beam, and this is verified by examining the header:</p>
+<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">badcube</span><span class="o">.</span><span class="n">beam</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">Beam</span><span class="p">:</span> <span class="n">BMAJ</span><span class="o">=</span><span class="mf">1.15963029861</span> <span class="n">arcsec</span> <span class="n">BMIN</span><span class="o">=</span><span class="mf">0.96223282814</span> <span class="n">arcsec</span> <span class="n">BPA</span><span class="o">=-</span><span class="mf">71.0310058594</span> <span class="n">deg</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">goodcube</span><span class="o">.</span><span class="n">beam</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">Beam</span><span class="p">:</span> <span class="n">BMAJ</span><span class="o">=</span><span class="mf">0.408393889665</span> <span class="n">arcsec</span> <span class="n">BMIN</span><span class="o">=</span><span class="mf">0.229679107666</span> <span class="n">arcsec</span> <span class="n">BPA</span><span class="o">=</span><span class="mf">45.966835022</span> <span class="n">deg</span>
+</pre></div>
+<p>I don't yet know what is causing this error.  When I try re-doing the clean
+with <tt class="docutils literal">tclean</tt>, I get the following message, which is a hint:</p>
+<pre class="literal-block">
+2016-01-25 09:13:04     WARN    task_tclean::SIImageStore::getPSFGaussian (file
+/var/rpmbuild/BUILD/casa-prerelease/casa-prerelease-4.5.0/code/synthesis/ImagerObjects/SIImageStore.cc,
+line 1262)      PSF is blank for[C139:P0] [C140:P0] [C141:P0] [C142:P0]
+[C143:P0] [C144:P0] [C145:P0] [C146:P0] [C147:P0] [C148:P0] [C149:P0] [C150:P0]
+[C151:P0] [C152:P0] [C153:P0] [C154:P0] [C155:P0] [C156:P0] [C157:P0] [C158:P0]
+[C159:P0] [C160:P0] [C161:P0] [C162:P0] [C163:P0] [C164:P0] [C165:P0] [C166:P0]
+[C167:P0] [C168:P0] [C169:P0] [C170:P0] [C171:P0] [C172:P0] [C173:P0] [C174:P0]
+[C175:P0] [C176:P0] [C177:P0] [C178:P0] [C179:P0] [C180:P0] [C181:P0] [C182:P0]
+[C183:P0] [C184:P0] [C185:P0] [C186:P0]
+</pre>
+<p>Apparently tclean solves this problem!  Instead of using a single beam for all
+channels, it creates a CASAMBM table in the FITS output and uses different
+beams at each channel.  There must be genuinely bad data (probably an
+atmospheric absorption line) at the specified frequencies.  At least now, that
+will come up more naturally, rather than spiking the data.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/comparing-tclean-parameters.html" rel="bookmark" title="Permalink to Comparing tclean parameters">
+                    Comparing tclean parameters</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-01-14T09:57:00-07:00"> 2016/01/14 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Comparing clean methods with identical data &amp; parameters (as far as possible):
+<a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/script_merge/clean_method_comparison.py">code</a>.</p>
+<p>An example using natural weighting:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/casa/tclean_compare.png" style="width: 600px;" />
+<p>None of the methods are acceptable.  Multiscale is the worst, but hogbom is
+extremely bad: there are major ringing artifacts (stripes parallel to the main
+filament).</p>
+<p>Disturbingly, even though I have given multiple scales, there are clearly no
+non-pointlike scales in any of the model images, including mem, so I think
+there's a major problem with tclean:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/casa/tclean_compare_models.png" style="width: 600px;" />
+<p>I'm re-doing it with uniform weighting, because that's the case I was actually
+interested in.</p>
+<img alt="" src="https://keflavich.github.io/blog/images/casa/tclean_compare_uniform.png" style="width: 600px;" />
+<p>The uniform tests come up with a clear and obvious answer: use clark clean, DO
+NOT use any other methods as they are all unstable.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+            <a href="https://keflavich.github.io/blog/index4.html">&laquo;</a>
+    Page 5 / 51
+        <a href="https://keflavich.github.io/blog/index6.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Adam Ginsburg's blog - Adam</title><link href="https://keflavich.github.io/blog/" rel="alternate"></link><link href="https://keflavich.github.io/blog/feeds/adam.atom.xml" rel="self"></link><id>https://keflavich.github.io/blog/</id><updated>2015-09-14T00:00:00-06:00</updated><entry><title>Installing Miriad</title><link href="https://keflavich.github.io/blog/installing-miriad.html" rel="alternate"></link><published>2015-09-14T00:00:00-06:00</published><updated>2015-09-14T00:00:00-06:00</updated><author><name>Adam &lt;keflavich@gmail.com&gt;</name></author><id>tag:keflavich.github.io,2015-09-14:/blog/installing-miriad.html</id><summary type="html">&lt;p&gt;From Andrew Walsh, a script to install MIRIAD:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;wget&lt;span class="w"&gt; &lt;/span&gt;ftp://ftp.atnf.csiro.au/pub/software/miriad/miriad-common.tar.bz2
+wget&lt;span class="w"&gt; &lt;/span&gt;ftp://ftp.atnf.csiro.au/pub/software/miriad/miriad-linux64.tar.bz2
+bzcat&lt;span class="w"&gt; &lt;/span&gt;miriad-common.tar.bz2&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;tar&lt;span class="w"&gt; &lt;/span&gt;xvf&lt;span class="w"&gt; &lt;/span&gt;-
+bzcat&lt;span class="w"&gt; &lt;/span&gt;miriad-linux64.tar.bz2&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;tar&lt;span class="w"&gt; &lt;/span&gt;xvf&lt;span class="w"&gt; &lt;/span&gt;-
+&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;miriad
+&lt;span class="nb"&gt;export&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;MIR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$PWD&lt;/span&gt;
+&lt;span class="c1"&gt;# define …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;From Andrew Walsh, a script to install MIRIAD:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;wget&lt;span class="w"&gt; &lt;/span&gt;ftp://ftp.atnf.csiro.au/pub/software/miriad/miriad-common.tar.bz2
+wget&lt;span class="w"&gt; &lt;/span&gt;ftp://ftp.atnf.csiro.au/pub/software/miriad/miriad-linux64.tar.bz2
+bzcat&lt;span class="w"&gt; &lt;/span&gt;miriad-common.tar.bz2&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;tar&lt;span class="w"&gt; &lt;/span&gt;xvf&lt;span class="w"&gt; &lt;/span&gt;-
+bzcat&lt;span class="w"&gt; &lt;/span&gt;miriad-linux64.tar.bz2&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;tar&lt;span class="w"&gt; &lt;/span&gt;xvf&lt;span class="w"&gt; &lt;/span&gt;-
+&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;miriad
+&lt;span class="nb"&gt;export&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;MIR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$PWD&lt;/span&gt;
+&lt;span class="c1"&gt;# define the MIR variable in your bashrc&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;export MIR=&lt;/span&gt;&lt;span class="nv"&gt;$MIR&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;~/.bashrc
+sed&lt;span class="w"&gt; &lt;/span&gt;-e&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;s,@MIRROOT@,&lt;/span&gt;&lt;span class="nv"&gt;$MIR&lt;/span&gt;&lt;span class="s2"&gt;,&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;scripts/MIRRC.in&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;MIRRC
+sed&lt;span class="w"&gt; &lt;/span&gt;-e&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;s,@MIRROOT@,&lt;/span&gt;&lt;span class="nv"&gt;$MIR&lt;/span&gt;&lt;span class="s2"&gt;,&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;scripts/MIRRC.sh.in&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;MIRRC.sh
+chmod&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;644&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;MIRRC*
+
+&lt;span class="c1"&gt;# Put these into .bashrc, or call them each time you want to run MIRIAD&lt;/span&gt;
+.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$MIR&lt;/span&gt;/MIRRC.sh
+&lt;span class="nb"&gt;export&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$PATH&lt;/span&gt;:&lt;span class="nv"&gt;$MIRBIN&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</content><category term="misc"></category><category term="miriad"></category></entry><entry><title>Installing astrometry.net in November 2014</title><link href="https://keflavich.github.io/blog/installing-astrometrynet-in-november-2014.html" rel="alternate"></link><published>2014-11-26T09:57:00-07:00</published><updated>2014-11-26T09:57:00-07:00</updated><author><name>Adam</name></author><id>tag:keflavich.github.io,2014-11-26:/blog/installing-astrometrynet-in-november-2014.html</id><summary type="html">&lt;p&gt;Installing astrometry.net is all about navigating dependency hell.&lt;/p&gt;
+&lt;p&gt;Requirements:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;libpng&lt;/li&gt;
+&lt;li&gt;libtiff&lt;/li&gt;
+&lt;li&gt;libjpeg&lt;/li&gt;
+&lt;li&gt;netpbm (requires above 3)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;To install netpbm, a recent version - NOT the stable version - is required,
+which means navigating throught 3-4 layers of links including a sourceforge
+build-my-tarball link.&lt;/p&gt;
+&lt;p&gt;To compile astrometry.net-0.50:&lt;/p&gt;
+&lt;blockquote&gt;
+ARCH_FLAGS=&amp;quot;&amp;quot; make …&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;Installing astrometry.net is all about navigating dependency hell.&lt;/p&gt;
+&lt;p&gt;Requirements:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;libpng&lt;/li&gt;
+&lt;li&gt;libtiff&lt;/li&gt;
+&lt;li&gt;libjpeg&lt;/li&gt;
+&lt;li&gt;netpbm (requires above 3)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;To install netpbm, a recent version - NOT the stable version - is required,
+which means navigating throught 3-4 layers of links including a sourceforge
+build-my-tarball link.&lt;/p&gt;
+&lt;p&gt;To compile astrometry.net-0.50:&lt;/p&gt;
+&lt;blockquote&gt;
+ARCH_FLAGS=&amp;quot;&amp;quot; make -j 8&lt;/blockquote&gt;
+&lt;p&gt;To compile cairo, I had to install pixman (no problem) the setup a PKG_CONFIG_PATH:&lt;/p&gt;
+&lt;blockquote&gt;
+PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./configure&lt;/blockquote&gt;
+</content><category term="misc"></category><category term="install"></category></entry><entry><title>W51 Mapping: Flagging bad data</title><link href="https://keflavich.github.io/blog/w51-mapping-flagging-bad-data.html" rel="alternate"></link><published>2014-01-16T00:00:00-07:00</published><updated>2014-01-16T00:00:00-07:00</updated><author><name>Adam &lt;keflavich@gmail.com&gt;</name></author><id>tag:keflavich.github.io,2014-01-16:/blog/w51-mapping-flagging-bad-data.html</id><summary type="html">&lt;p&gt;In the process of creating W51 data cubes from the GBT mapping data (project
+GBT 10B/019), I've had to deal with a lot of bad data.&lt;/p&gt;
+&lt;p&gt;Some of the bad data comes from misbehaving electronics.  All I can say is that
+they were misbehaving, not how or why - the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the process of creating W51 data cubes from the GBT mapping data (project
+GBT 10B/019), I've had to deal with a lot of bad data.&lt;/p&gt;
+&lt;p&gt;Some of the bad data comes from misbehaving electronics.  All I can say is that
+they were misbehaving, not how or why - the data from one polarizaiton simply
+disagrees with the other polarization and feeds spontaneously and for no
+apparent reason.&lt;/p&gt;
+&lt;p&gt;I've implemented a waterfall diagnostic plot to help examine the data, it is in
+my &lt;a class="reference external" href="https://github.com/keflavich/mpl_plot_templates"&gt;mpl_plot_templates&lt;/a&gt; repository: &lt;a class="reference external" href="https://github.com/keflavich/mpl_plot_templates/blob/master/mpl_plot_templates/imdiagnostics.py"&gt;imdiagnostics.py&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A good waterfall looks something like this:&lt;/p&gt;
+&lt;img alt="" src="https://keflavich.github.io/blog/images/w51/Session17_111to186_D37_F2_data_scrubbed_flagged.png" style="width: 800px;" /&gt;
+&lt;p&gt;The line plots show the average and standard deviation along each axis; the
+right side effectively shows timestream continuum data while the top plots show
+a time-averaged spectrum.  This plot is good in that there are clearly signals
+detected as the scan crosses continuum sources and there is a strong Helium
+Alpha line detected in the average (though there's no way to read that it's
+Helium fromt he data as presented).
+Notably, the noise correlates with the continuum brightness - this is expected;
+higher TSYS leads to higher noise.&lt;/p&gt;
+&lt;img alt="" src="https://keflavich.github.io/blog/images/w51/Session22_10to41_D37_F2_data_scrubbed_flagged.png" style="width: 800px;" /&gt;
+&lt;p&gt;This is an example of a data set with some extremely irritating artifacts.
+There are apparent absorption lines throughout the spectrum: they are not real.
+This is a particularly irritating problem because I had resolved it once in the
+not-too-distant past, but I can't figure out how!!  Most likely, I just removed
+the data from the maps, but that SHOULD be in the code history (git) and is not.&lt;/p&gt;
+</content><category term="misc"></category><category term="W51"></category><category term="GBT"></category></entry><entry><title>There is a "gap" in the dust around Sgr B2</title><link href="https://keflavich.github.io/blog/there-is-a-gap-in-the-dust-around-sgr-b2.html" rel="alternate"></link><published>2013-12-13T00:00:00-07:00</published><updated>2013-12-13T00:00:00-07:00</updated><author><name>Adam &lt;keflavich@gmail.com&gt;</name></author><id>tag:keflavich.github.io,2013-12-13:/blog/there-is-a-gap-in-the-dust-around-sgr-b2.html</id><summary type="html">&lt;p&gt;Sgr B2 is the most massive gas clump in our Galaxy.  It's about 100 pc away
+from Sgr A*, the black hole at the center of the Galaxy.  It is forming stars
+prodigiously, and has extreme properties in many regards.&lt;/p&gt;
+&lt;p&gt;In many physical aspects - mass, luminosity, velocity dispersion, temperature -
+the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Sgr B2 is the most massive gas clump in our Galaxy.  It's about 100 pc away
+from Sgr A*, the black hole at the center of the Galaxy.  It is forming stars
+prodigiously, and has extreme properties in many regards.&lt;/p&gt;
+&lt;p&gt;In many physical aspects - mass, luminosity, velocity dispersion, temperature -
+the Sgr B2 region is similar to &amp;quot;proto-cluster clumps&amp;quot; seen in other galaxies,
+e.g. the Antennae galaxies.&lt;/p&gt;
+&lt;p&gt;There are plenty of mysteries about Sgr B2, including its extraordinarily
+diverse chemistry and its peculiar kinematics.&lt;/p&gt;
+&lt;p&gt;I'm raising a sort of new one.  There appears to be a hole next to Sgr B2,
+towards the southeast in Galactic coordinates.  It appears as a relatively
+empty spot in the dust continuum bands.  It doesn't seem to be filled in
+with anything in particular.&lt;/p&gt;
+&lt;html&gt;
+&lt;div class="output_html rendered_html"&gt;
+
+    &lt;script type="text/javascript"&gt;
+
+      var image_dir='blog/images/sgrb2/'
+
+      var images=new Array(
+                   "TheGap_GLM_00000+0000_mosaic_I2.png",
+                   "TheGap_GLM_00000+0000_mosaic_I4.png",
+                   "TheGap_gcmosaic_24um.png",
+                   "TheGap_igls_l000_blue_cnr_hh.png",
+                   "TheGap_igls_l000_red_cnr_hh.png",
+                   "TheGap_igls_l000_psw_deglitch_hh.png",
+                   "TheGap_igls_l000_pmw_deglitch_hh.png",
+                   "TheGap_SgrB2_350um_gal.png",
+                   "TheGap_gc450_gal.png",
+                   "TheGap_igls_l000_plw_deglitch_hh.png",
+                   "TheGap_gc850_gal.png",
+                   "TheGap_ATLASGAL.1.5_reprojectoverlap9.png",
+                   "TheGap_v2.0_ds2_l001_13pca_map20.png",
+                   //"TheGap_sgrb2_nh311_sum.png",
+                   "TheGap_sgrb2_20cm_12as_gal.png",
+                   "TheGap_20cm_0.png"
+                   )
+      var titles=new Array(
+                   "4.5um",
+                   "8um",
+                   "24um",
+                   "70um",
+                   "160um",
+                   "250um",
+                   "350um Herschel",
+                   "350um SHARC",
+                   "450um",
+                   "500um",
+                   "850um SCUBA",
+                   "870um ATLASGAL",
+                   "1100um",
+                   //"1.3cm NH3",
+                   "20cm",
+                   "20cm (poor resolution)"
+                   )
+
+      function interactUpdate(div){
+         var outputs = div.getElementsByTagName("img");
+         var divoutputs = div.getElementsByTagName("div");
+         var controls = div.getElementsByTagName("input");
+
+         var value = "";
+         for(i=0; i&lt;controls.length; i++){
+           if((controls[i].type == "range") || controls[i].checked){
+             //value = value + controls[i].getAttribute("name") + controls[i].value;
+             value = controls[i].value;
+           }
+         }
+
+         for(i=0; i&lt;outputs.length; i++){
+           var name = outputs[i].getAttribute("name");
+           if(name=="figure"){
+                 outputs[i].src = image_dir+images[value]
+           }
+         }
+
+         for(i=0; i&lt;divoutputs.length; i++){
+           var name = divoutputs[i].getAttribute("name");
+           if(name=="caption"){
+                 divoutputs[i].innerHTML = titles[value];
+           }
+         }
+
+         //for(i=0; i&lt;images.length; i++){
+         //  var name = outputs[i].getAttribute("name");
+         //  if(name == value){
+         //     outputs[i].style.display = 'block';
+         //  } else if(name != "controls"){
+         //     outputs[i].style.display = 'none';
+         //  }
+         //}
+      }
+    &lt;/script&gt;
+    
+    &lt;div&gt;
+      
+    &lt;div name="figure" style="display:block"&gt;
+        &lt;div name="caption"&gt;
+            20cm
+        &lt;/div&gt;
+        &lt;img name="figure" src="blog/images/sgrb2/TheGap_20cm_0.png" height=600px&gt;
+    &lt;/div&gt;
+
+&lt;input type="range" name="figure" min="0" max="14" step="1" value="0" style="width:350px" onchange="interactUpdate(this.parentNode);"&gt;
+&lt;/html&gt;
+&lt;p&gt;Note the slider here: you can view Sgr B2 at any wavelength where I have data.
+The green circle highlights the major deficiency that is evident in all
+dust-containing bands.  There are other &amp;quot;minor&amp;quot; deficiencies elsewhere.&lt;/p&gt;
+&lt;p&gt;It is tricky to interpret this: I don't think the absolute flux densities in
+any of the millimeter observations are perfectly trustworthy because of their
+proximity to the extremely bright Sgr B2 point sources.&lt;/p&gt;
+&lt;p&gt;Additionally, this gap is not perfectly evident in NH3 or CO.  In the HOPS NH3
+maps, there is a relative lack of emission at ~56 km/s - relative to
+neighboring regions; this is actually the peak of the line profile extracted
+from the ellipse!&lt;/p&gt;
+&lt;p&gt;This is in contrast to the central &amp;quot;Gas Hole&amp;quot; which has been noted by others;
+it exists in CO and NH3.  There is almost certainly some NH3 self-absorption
+involved.  The &amp;quot;Gas Hole&amp;quot; coincides with the peak in other gas species and the
+peak in the dust emission, so it really seems to be a different phenomenon,
+having to do with line-of-sight confusion and excitation conditions.&lt;/p&gt;
+&lt;p&gt;The one feature of the &amp;quot;dust gap&amp;quot; that distinguishes this part of Sgr B2 from
+the other regions surrounding it is that 8 micron emission can readily be
+observed here.  A little 24 micron emission is in the gap as well, but not as
+much as the 8 micron.  The 70 micron emission is quite weak, but not really
+deficient.  Perhaps in this region, very small grains are more common than in
+its surroundings?&lt;/p&gt;
+&lt;p&gt;There's a lot more hypothesizing to be done here.&lt;/p&gt;
+</content><category term="misc"></category><category term="python"></category><category term="blogging"></category><category term="meta"></category></entry><entry><title>Blogging from IPython</title><link href="https://keflavich.github.io/blog/blogging-from-ipython.html" rel="alternate"></link><published>2013-09-22T00:00:00-06:00</published><updated>2013-09-22T00:00:00-06:00</updated><author><name>Adam &lt;keflavich@gmail.com&gt;</name></author><id>tag:keflavich.github.io,2013-09-22:/blog/blogging-from-ipython.html</id><summary type="html">&lt;p&gt;[ &lt;a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/keflavich/blog/master/content/BloggingFromIPython.ipynb"&gt;Notebook Form of this
+post&lt;/a&gt;
+]&lt;/p&gt;
+&lt;p&gt;There have been
+&lt;a class="reference external" href="http://jmcarp.github.io/blog/2013/07/07/hello-world/"&gt;many&lt;/a&gt;
+&lt;a class="reference external" href="http://danielfrg.github.io/blog/2013/02/16/blogging-pelican-ipython-notebook/"&gt;other&lt;/a&gt;
+&lt;a class="reference external" href="http://danielfrg.github.io/blog/2013/03/08/pelican-ipython-notebook-plugin/"&gt;posts&lt;/a&gt;
+about blogging in ipython, but they all included more overhead than I
+really wanted to deal with.&lt;/p&gt;
+&lt;p&gt;Instead, I've gone directly to &lt;a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/Carreau/posts/master/06-NBconvert-Doc-Draft.ipynb"&gt;the
+source&lt;/a&gt;
+and used nbconvert in ipython 2.0 to convert my notebooks to rst, then
+put …&lt;/p&gt;</summary><content type="html">&lt;p&gt;[ &lt;a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/keflavich/blog/master/content/BloggingFromIPython.ipynb"&gt;Notebook Form of this
+post&lt;/a&gt;
+]&lt;/p&gt;
+&lt;p&gt;There have been
+&lt;a class="reference external" href="http://jmcarp.github.io/blog/2013/07/07/hello-world/"&gt;many&lt;/a&gt;
+&lt;a class="reference external" href="http://danielfrg.github.io/blog/2013/02/16/blogging-pelican-ipython-notebook/"&gt;other&lt;/a&gt;
+&lt;a class="reference external" href="http://danielfrg.github.io/blog/2013/03/08/pelican-ipython-notebook-plugin/"&gt;posts&lt;/a&gt;
+about blogging in ipython, but they all included more overhead than I
+really wanted to deal with.&lt;/p&gt;
+&lt;p&gt;Instead, I've gone directly to &lt;a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/Carreau/posts/master/06-NBconvert-Doc-Draft.ipynb"&gt;the
+source&lt;/a&gt;
+and used nbconvert in ipython 2.0 to convert my notebooks to rst, then
+put them through pelican.&lt;/p&gt;
+&lt;p&gt;This post outlines my workflow.&lt;/p&gt;
+&lt;p&gt;First, and most inconvenient, it is necessary to head any blog post with
+metadata. I don't have any convenient workflow to deal with that, I just
+write it in by hand in a raw text box (ctrl-m, t) as you can see above.
+&lt;a class="reference external" href="http://danielfrg.github.io/"&gt;Daniel Rodriguez&lt;/a&gt; took a &lt;a class="reference external" href="http://danielfrg.github.io/blog/2013/03/08/pelican-ipython-notebook-plugin/"&gt;different
+approach&lt;/a&gt;
+using the ipython metadata directly and an ipython plugin, but I didn't
+want to have to worry about installing plugins and I am definitely
+worried about breaking notebooks by messing with the
+&lt;a class="reference external" href="https://github.com/ipython/ipython/wiki/IPEP-20%3A-Informal-structure-of-cell-metadata"&gt;metadata&lt;/a&gt;
+as the ipy devs give some fairly &lt;a class="reference external" href="https://gist.github.com/Carreau/4437348"&gt;strict
+warnings&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Next, the ipynb -&amp;gt; rst step is fairly straightforward. I modified the
+rst template because I don't want to see the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;In[#]:&lt;/span&gt;&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;Out[#]:&lt;/span&gt;&lt;/tt&gt;
+prefixes around my code. I also use &lt;tt class="docutils literal"&gt;.. &lt;span class="pre"&gt;code-block::&lt;/span&gt;&lt;/tt&gt; rather than
+&lt;tt class="docutils literal"&gt;.. code::&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;This very simple function below makes sure that my local &lt;tt class="docutils literal"&gt;rst.tbl&lt;/tt&gt;
+file is seen before ipython's. Their templates are in
+&lt;tt class="docutils literal"&gt;IPython/nbconvert/templates&lt;/tt&gt;. Note that you could normally use Jinja2
+templating and &amp;quot;Extend&amp;quot; their template, but I wanted to remove rather
+than extend.&lt;/p&gt;
+&lt;p&gt;[
+&lt;a class="reference external" href="https://github.com/keflavich/blog/blob/master/nbconverter.py"&gt;Source&lt;/a&gt;
+]&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;IPython.nbconvert.exporters&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;RSTExporter&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;export&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nbname&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;outfilename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;exportRST&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RSTExporter&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="c1"&gt;# exclude default paths&lt;/span&gt;
+    &lt;span class="n"&gt;exportRST&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;template_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/Users/adam/repos/blog&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;resources&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;exportRST&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_filename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nbname&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;outfilename&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;outfilename&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nbname&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ipynb&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;rst&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;outfilename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;resources&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I then run the script from the command line:
+&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;~/virtual-ipydev/bin/ipython&lt;/span&gt; ./nbconverter.py content/GenerateCVExample.ipynb&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;I'm using a virtual environment with ipython 2 installed because I'm not
+yet ready to make the jump to the dev version of ipython (though these
+days, with Travis and Jenkins around, it's probably safe to assume the
+dev version won't break anything).&lt;/p&gt;
+&lt;p&gt;With this rst file generated, the only remaining step is
+&lt;a class="reference external" href="http://blog.getpelican.com/"&gt;pelican&lt;/a&gt;, which only requires a
+&lt;tt class="docutils literal"&gt;make github&lt;/tt&gt; command in the blog directory. Installing &amp;amp; setting up
+pelican is reasonably easy, but not the topic of this post.&lt;/p&gt;
+&lt;p&gt;I've made my own &lt;a class="reference external" href="https://github.com/keflavich/pelican-themes/tree/master/mine"&gt;custom pelican
+theme&lt;/a&gt;,
+so I generally need to update the theme before building:&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;pelican-themes&lt;/span&gt; &lt;span class="pre"&gt;--upgrade&lt;/span&gt; &lt;span class="pre"&gt;/Users/adam/repos/pelican-themes/mine&lt;/span&gt; &amp;amp;&amp;amp; make github&lt;/tt&gt;&lt;/p&gt;
+</content><category term="misc"></category><category term="python"></category><category term="blogging"></category><category term="meta"></category></entry><entry><title>Attempts to install astrometry.net (comment on problems-with-index-files-generation)</title><link href="https://keflavich.github.io/blog/attempts-to-install-astrometrynet-comment-on-problems-with-index-files-generation.html" rel="alternate"></link><published>2012-11-04T17:26:00-07:00</published><updated>2012-11-04T17:26:00-07:00</updated><author><name>Adam</name></author><id>tag:keflavich.github.io,2012-11-04:/blog/attempts-to-install-astrometrynet-comment-on-problems-with-index-files-generation.html</id><summary type="html">&lt;p&gt;Some progress in this vein:
+1. installed astrometry.net (but without some graphical extras)
+2. figured out how to create indexes! Finders are ~5x5', so based on
+&lt;a class="reference external" href="http://forum.astrometry.net/index.php?p=/discussion/2/problems-with-index-files-generation/p1"&gt;this post&lt;/a&gt; I want to use ~2-3' healpixes.
+3. I also should be using denser catalogs than the all-sky USNO B1,
+especially for …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Some progress in this vein:
+1. installed astrometry.net (but without some graphical extras)
+2. figured out how to create indexes! Finders are ~5x5', so based on
+&lt;a class="reference external" href="http://forum.astrometry.net/index.php?p=/discussion/2/problems-with-index-files-generation/p1"&gt;this post&lt;/a&gt; I want to use ~2-3' healpixes.
+3. I also should be using denser catalogs than the all-sky USNO B1,
+especially for infrared targets.
+So, here's a sample build command (using a CDS-based FITS table, but
+modified by me using atpy):
+build-index -v -i OMC1_optical_phot_DaRio.fits -o
+OMC1_optical_phot_DaRio_astrometryindex -N 1758&lt;/p&gt;
+</content><category term="misc"></category><category term="comment"></category></entry><entry><title>Non-greedy vim</title><link href="https://keflavich.github.io/blog/non-greedy-vim.html" rel="alternate"></link><published>2008-09-05T01:12:00-06:00</published><updated>2008-09-05T01:12:00-06:00</updated><author><name>Adam</name></author><id>tag:keflavich.github.io,2008-09-05:/blog/non-greedy-vim.html</id><content type="html">&lt;p&gt;To make .* in VIM be non-greedy (i.e. match just &lt;tt class="docutils literal"&gt;&amp;lt;a href=x&amp;gt;&lt;/tt&gt; out of &lt;tt class="docutils literal"&gt;&amp;quot;&amp;lt;a href=x&amp;gt; &amp;lt;/a&amp;gt;&amp;quot;&lt;/tt&gt;), use:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.\{-}
+&lt;/pre&gt;
+</content><category term="misc"></category><category term="googlepost"></category></entry></feed>

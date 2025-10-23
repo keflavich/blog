@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2013/05/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/bgps-point-source-recovery-experiment-23-results.html">BGPS Point Source Recovery - Experiment 23 results</a>
+              </li>
+              <li class="post">
+                  2013/05/16
+                  <br>
+                  <a href="https://keflavich.github.io/blog/bgps-point-source-recovery.html">BGPS Point Source Recovery</a>
+              </li>
+              <li class="post">
+                  2012/12/26
+                  <br>
+                  <a href="https://keflavich.github.io/blog/catalog-vs-image-shift-a-possible-solution-to-the-atlasgal-issue.html">Catalog vs Image shift? A possible solution to the ATLASGAL issue</a>
+              </li>
+              <li class="post">
+                  2012/12/22
+                  <br>
+                  <a href="https://keflavich.github.io/blog/idea-multispectral-eigenimage-decomposition.html">Idea: Multispectral Eigenimage decomposition...</a>
+              </li>
+              <li class="post">
+                  2012/12/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pointing-cross-correlation-yet-again.html">Pointing & Cross-Correlation yet again</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+<h2>Articles in the bgps category</h2>
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/new-coalignment-code.html" rel="bookmark" title="Permalink to New coalignment code">
+                    New coalignment code</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-03-20T15:06:00-06:00"> 2012/03/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>pixshift has been giving me issues for a long, long time. It finally
+came to a head, though, when nothing I did could make l001 &quot;work&quot;. It
+turns out, when you do cross-correlation analysis, you're really only
+interested in the most correlated pixel, NOT the junk around it - the
+junk around it only provides a second-order correction.
+Well, <a class="reference external" href="http://solarmuri.ssl.berkeley.edu/~welsch/public/software/cross_cor_taylor.pro">cross_cor_taylor.pro</a>, a tool from the solar physics
+community, does exactly that. And it works far, far better than my
+hacked-together pixshift code. A lesson I should always take to heart:
+don't rewrite code if it's out there. Of course, if I'd known it was out
+there, I wouldn't have rewritten it....</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/major-error.html" rel="bookmark" title="Permalink to Major Error">
+                    Major Error</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-01-06T23:29:00-07:00"> 2012/01/06 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>This was a big problem:
+<tt class="docutils literal">Rev 472, by ginsbura, <span class="pre">2009-12-15</span> 14:43readall_pc wasn't getting passed mvperjy</tt></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/flow-charts.html" rel="bookmark" title="Permalink to Flow Charts">
+                    Flow Charts</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-12-31T02:53:00-07:00"> 2011/12/31 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Made with <a class="reference external" href="http://code.google.com/p/bgpspipeline/source/browse/bgps_pipeline/documentation/wrap_pipeline_and_log.py">this code</a> and <a class="reference external" href="www.graphviz.org">graphviz</a>.</p>
+<img alt="" src="http://2.bp.blogspot.com/-rbeS36D6fek/Tv55L9HSfVI/AAAAAAAAGrE/VArJAV60nys/s320/pipeline_v1.0.png" />
+<img alt="" src="http://2.bp.blogspot.com/-lI_OWOGIVko/Tv55MIfhcdI/AAAAAAAAGrU/MUiQuiBLqrA/s320/pipeline_v2.0.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/calibration-as-good-as-its-gonna-get.html" rel="bookmark" title="Permalink to Calibration: As good as it's gonna get">
+                    Calibration: As good as it's gonna get</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-12-02T23:25:00-07:00"> 2011/12/02 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://2.bp.blogspot.com/-JLIm1-8V9pc/TtlaRJP2EoI/AAAAAAAAGoA/-gwCmjybJxs/s320/newmottecygx2_bgps_iram_comp_linefits_cross.png" />
+<img alt="" src="http://1.bp.blogspot.com/-FkotaRfI_hk/TtlaR5VW_PI/AAAAAAAAGoM/Hd9yvKq66lU/s320/newmottecygx2_bgpsv2_iram_comp_linefits_cross.png" />
+<img alt="" src="http://4.bp.blogspot.com/-9xlFisqEq38/TtlaSXvv3ZI/AAAAAAAAGoY/uWvlhTeriuY/s320/newmottecygx2_bgps_iram_comp_linefits_cross_dr21.png" />
+<img alt="" src="http://4.bp.blogspot.com/-MGx4yVQpxfU/TtlaS9OB3AI/AAAAAAAAGok/aMz1NHI2G9k/s320/newmottecygx2_bgpsv2_iram_comp_linefits_cross_dr21.png" />
+<p>BGPS vs BGPSv2 in Cyg X</p>
+<img alt="" src="http://1.bp.blogspot.com/-JMPVYUkw0nc/Ttla0-Fqn9I/AAAAAAAAGow/9c0IhC4_qlg/s320/newirdc1_bgps_iram_comp_linefits_cross.png" />
+<img alt="" src="http://4.bp.blogspot.com/-knIt9Yw8FJU/Ttla1XeTfmI/AAAAAAAAGo8/d4bNvhfPf6U/s320/newirdc1_bgpsv2_iram_comp_linefits_cross.png" />
+<p>BGPS vs BGPSv2 in IRDC1 (Rathborne)</p>
+<img alt="" src="http://3.bp.blogspot.com/-Uw9lPIsA758/TtlbgMzryZI/AAAAAAAAGpI/3OcrHYS-8KA/s320/testregl44_bgps_s1200_comp_linefits_1.png" />
+<img alt="" src="http://2.bp.blogspot.com/-ikkojUChsfY/Ttlbg4BnvJI/AAAAAAAAGpU/-SrRpX1GvMw/s320/testregl44_bgpsv2_s1200_comp_linefits_1.png" />
+<img alt="" src="http://1.bp.blogspot.com/-G6PzOBzHmtc/TtlbhbgsEQI/AAAAAAAAGpg/1K630s21FpQ/s320/testregl44_bgps_s1200_comp_linefits_2.png" />
+<img alt="" src="http://3.bp.blogspot.com/-NEnpDAiVatM/Ttlbh7_cTdI/AAAAAAAAGps/FDDMbzdHbBw/s320/testregl44_bgpsv2_s1200_comp_linefits_2.png" />
+<p>BGPS vs BGPSv2 in l=44 (comparison is SIMBA, not MAMBO)</p>
+<img alt="" src="http://1.bp.blogspot.com/-J27n1Y5t4Ug/TtleWSaYxoI/AAAAAAAAGp4/LuPMX5Iv8E0/s320/l44_regions.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/check-to-make-sure-original-fits-werewere-not-for.html" rel="bookmark" title="Permalink to Check to make sure original fits were/were not for...">
+                    Check to make sure original fits were/were not for...</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-11-17T22:57:00-07:00"> 2011/11/17 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Check to make sure original fits were/were not forced through 0,0</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/calibration-offsets-revisited.html" rel="bookmark" title="Permalink to Calibration Offsets Revisited">
+                    Calibration Offsets Revisited</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-11-16T01:05:00-07:00"> 2011/11/16 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The agreement with Motte et al 2007 is now perfect with a vertical
+ADDITIVE offset instead of the annoying multiplicative offset. An
+additive offset can trivially be accounted for by a spatial transfer
+function. As is evident in the difference images, the MAMBO data appears
+to sit on a plateau.</p>
+<img alt="" src="http://2.bp.blogspot.com/-dCeUkoHiAPs/TrwYlSZ2I6I/AAAAAAAAGj8/2FpasBudxPc/s320/newtestregl44_bgps_s1200_comp_linefits_point.png" />
+<img alt="" src="http://2.bp.blogspot.com/-XWWisYSwoiw/TrwYl-E4uQI/AAAAAAAAGkI/Gu5MxohyxZY/s320/newtestregl44_bgpsv2_s1200_comp_linefits_point.png" />
+<img alt="" src="http://3.bp.blogspot.com/-flBRCavDJKM/TrwYmZLzifI/AAAAAAAAGkU/D7K7-aG_ZZE/s320/testregl44_bgps_s1200_comp_origimages_scales1200peak_1.png" />
+<img alt="" src="http://3.bp.blogspot.com/-0i_9U9v37Wc/TrwYm3Ctx4I/AAAAAAAAGkg/xj1xWYI4eLo/s320/testregl44_bgpsv2_s1200_comp_origimages_scales1200peak_1.png" />
+<img alt="" src="http://4.bp.blogspot.com/-Wnys8tmpdnI/TsMFsi04CZI/AAAAAAAAGlc/sXKhoMMDRUM/s320/newirdc1_bgps_iram_comp_linefits_cross.png" />
+<img alt="" src="http://4.bp.blogspot.com/-XWRv2iQr_yM/TsMFtHzCWUI/AAAAAAAAGlo/MVvzvsJEv8s/s320/irdc1_bgps_iram_comp_origimages_scaleirampeak.png" />
+<img alt="" src="http://1.bp.blogspot.com/-2VT-44snbic/TsMFthQNCzI/AAAAAAAAGl0/XJmjYJWlT0A/s320/newirdc1_bgpsv2_iram_comp_linefits_cross.png" />
+<img alt="" src="http://4.bp.blogspot.com/-76VOl5ASlas/TsMFuS2tU7I/AAAAAAAAGmA/1GY0DwzsToo/s320/irdc1_bgpsv2_iram_comp_origimages_scaleirampeak.png" />
+<p>Cygnus X:
+BGPSV1:</p>
+<img alt="" src="http://3.bp.blogspot.com/-Ul21t0ucmOs/TsMGdaRI50I/AAAAAAAAGmM/UhJ_mCKRZ4A/s320/newmottecygx2_bgps_iram_comp_linefits_cross.png" />
+<img alt="" src="http://1.bp.blogspot.com/-d_XSGb63vtk/TsMGd7cMs1I/AAAAAAAAGmY/MTL7mFfH9_I/s320/newmottecygx2_bgps_iram_comp_linefits_cross_2.png" />
+<img alt="" src="http://1.bp.blogspot.com/-CKArUxnvfXc/TsMGeY4yP7I/AAAAAAAAGmk/iaRcDy28-8w/s320/newmottecygx2_bgps_iram_comp_linefits_cross_3.png" />
+<img alt="" src="http://4.bp.blogspot.com/-cNgOGbIFhzc/TsMGe3d7kZI/AAAAAAAAGmw/kn3Y0M18flM/s320/newmottecygx2_bgps_iram_comp_linefits_cross_dr21.png" />
+<p>BGPSV2:</p>
+<img alt="" src="http://4.bp.blogspot.com/-cIZHQxLW7t0/TsMGrpLUTcI/AAAAAAAAGm8/PJfhh_Z1Y44/s320/newmottecygx2_bgpsv2_iram_comp_linefits_cross.png" />
+<img alt="" src="http://4.bp.blogspot.com/-55051oTEK34/TsMGrzJL3eI/AAAAAAAAGnI/pd468xeLBxQ/s320/newmottecygx2_bgpsv2_iram_comp_linefits_cross_2.png" />
+<img alt="" src="http://4.bp.blogspot.com/-f2BTCfMG5Ao/TsMGsTy98yI/AAAAAAAAGnU/6m30n1cgwgQ/s320/newmottecygx2_bgpsv2_iram_comp_linefits_cross_3.png" />
+<img alt="" src="http://1.bp.blogspot.com/-ND8KA8OqHpc/TsMGs5pAo0I/AAAAAAAAGng/kkucv9xfINk/s320/newmottecygx2_bgpsv2_iram_comp_linefits_cross_dr21.png" />
+<img alt="" src="http://4.bp.blogspot.com/-8ovlXgU6EIU/TsMMT0wfZ-I/AAAAAAAAGns/dq5Es6kDmE0/s320/sections.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/bolocat-v1-v2-comparison-with-new-calibration.html" rel="bookmark" title="Permalink to Bolocat v1-v2 comparison with new calibration">
+                    Bolocat v1-v2 comparison with new calibration</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-08-30T21:04:00-06:00"> 2011/08/30 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://2.bp.blogspot.com/-c3_0Rlbv2qM/Tl1P5FhWC8I/AAAAAAAAGdc/oiFxmO7vrUU/s320/total_v1v2_40arcsec_ratio_compare.png" />
+<img alt="" src="http://4.bp.blogspot.com/-Gk60vlSPkWk/Tl1P5c4THoI/AAAAAAAAGdk/E7zdIwtyD3w/s320/total_v1v2_40arcsec_fit_compare.png" />
+<p>I re-examined the Bolocat data on l351 after re-running the pipeline
+with the new calibration curve. The change wasn't all that great. See
+<a class="reference external" href="http://bolocam.blogspot.com/2011/08/bolocat-v1-v2-comparison.html">this post</a> for a brief description of the procedure.
+In the data below, I've fit the residuals as a function of v1.0.2 flux
+density in an aperture (source mask) with a line. The slope of the line
+should ideally be zero - that would indicate a multiplicative offset is
+an acceptable correction.
+Nicely, in the 40&quot; aperture case, I see no reason to exclude the m=0
+case. For the most reliable data - the 13pca - the slope is rather small
+and the &quot;correction factor&quot; is disturbingly close to what we recommended
+(1.5). We have no right to be that lucky...</p>
+<img alt="" src="http://2.bp.blogspot.com/-W08ZvMS3M90/TlwhPW62NQI/AAAAAAAAGc8/8YRm6iyDPO8/s320/l351_40arcsec_residualfit.png" />
+<p>...and so perhaps wer are not. The source mask includes more area and
+therefore is more sensitive to extended flux recovery. The slopes are
+not consistent with 0 - just look at the data above and below 2 Jy to
+see that there is a difference. The multiplicative correction of 1.5 is
+decent for a pretty wide range of flux densities, but is inadequate for
+the brightest sources. This is somewhat interesting... it implies that
+the brightest sources also lie on the highest backgrounds.</p>
+<img alt="" src="http://3.bp.blogspot.com/-GQBE_MjAxt8/TlwhPveClUI/AAAAAAAAGdE/lohBYlJuHwM/s320/l351_sourcemask_residualfit.png" />
+<p>You might note that the brightest source has a smaller correction factor
+in both apertures. It's not clear why that is the case, but I don't
+think it's enough to call it a trend yet - wait for the full 8000-source
+comparison first.
+Why is there so much scatter? Not entirely clear, but the scatter is
+primarily at low S/N.</p>
+<img alt="" src="http://3.bp.blogspot.com/-GPKbsfs9Y8k/Tl1OJE43J3I/AAAAAAAAGdM/pVUx9SClgtc/s320/l351_40arcsec_fit_compare_monochrome.png" />
+<img alt="" src="http://3.bp.blogspot.com/-snhh3Bamwc4/Tl1OJXzOYNI/AAAAAAAAGdU/n-rPxs-ZCtI/s320/l351_40arcsec_ratio_compare_monochrome.png" />
+<p>Here are the same for all of the data reduced up to this point:</p>
+<img alt="" src="http://2.bp.blogspot.com/-oUewyjZc9wU/Tl1QaGPeURI/AAAAAAAAGds/CHx3BtnT9sA/s320/total_v1v2_sourcemask_fit_compare.png" />
+<img alt="" src="http://1.bp.blogspot.com/-n27ucFd82VI/Tl1Qab1kbUI/AAAAAAAAGd0/kwWAceGqo5c/s320/total_v1v2_sourcemask_ratio_compare.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/final-calibration-curves-yeah-sure.html" rel="bookmark" title="Permalink to Final calibration curves (yeah... sure)">
+                    Final calibration curves (yeah... sure)</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-08-26T17:26:00-06:00"> 2011/08/26 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've finished rederiving the calibration curves self-consistently. These
+will now be applied to the data....</p>
+<img alt="" src="http://4.bp.blogspot.com/-Px-hpKGeiK0/TlfXKrZw3mI/AAAAAAAAGcc/mJH4Yes9K1I/s320/planet_dcfluxes_05_v2.0_13pca_ds2_defaults_map20.png" />
+<img alt="" src="http://1.bp.blogspot.com/-n2uTCyFEiqQ/TlfXLCd3twI/AAAAAAAAGck/iDls4F3YpKs/s320/planet_dcfluxes_06_v2.0_13pca_ds2_defaults_map20.png" />
+<img alt="" src="http://3.bp.blogspot.com/-361ND0Pcic0/TlfXLiczcRI/AAAAAAAAGcs/_RnBjVjrsGY/s320/planet_dcfluxes_07_v2.0_13pca_ds2_defaults_map20.png" />
+<img alt="" src="http://1.bp.blogspot.com/-Ui00rWxnoiE/TlfXL-jQw_I/AAAAAAAAGc0/9WZG7srlDok/s320/planet_dcfluxes_09_v2.0_13pca_ds2_defaults_map20.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/v1-vs-v2-calibration-curves.html" rel="bookmark" title="Permalink to V1 vs V2: Calibration Curves">
+                    V1 vs V2: Calibration Curves</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-08-25T17:09:00-06:00"> 2011/08/25 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Why did we find a factor ~1.8 in <a class="reference external" href="http://bolocam.blogspot.com/2011/08/bolocat-v1-v2-comparison.html">the previous post</a>? Well, for
+starters we used a calibration curve that was based off of 'masking' and
+other tricky techniques.
+The calibration curves below are the first ever produced
+self-consistently, i.e. using the EXACT same pipeline with the EXACT
+same parameters as the science data. No hacks were needed to produce
+these<a class="reference external" href="#asterisk&quot;">*</a>. The recovered Volts/Jy are substantially higher than
+BGPSv1 and ALSO higher than the curve used about a year ago in an
+attempt to explain the v1 flux discrepancy.
+Remember that a higher calibration curve means a LOWER recovered flux. I
+haven't finished the check, but odds are pretty good that applying these
+self-consistent cal curves will reduce the v2 data to be about 1.5.</p>
+<img alt="" src="http://4.bp.blogspot.com/-PRU4LQ5f-C4/TlZ9wpeFBeI/AAAAAAAAGb8/jKdJHtIqV40/s320/planet_dcfluxes_05_defaults_ds2_v2.0_13pca_map20.png" />
+<img alt="" src="http://3.bp.blogspot.com/-AIzsETyl69g/TlZ9w50DjBI/AAAAAAAAGcE/h5ggKhH3dO4/s320/planet_dcfluxes_06_defaults_ds2_v2.0_13pca_map20.png" />
+<img alt="" src="http://4.bp.blogspot.com/-BNWD4QQ21Ac/TlZ9xZ5eTkI/AAAAAAAAGcM/QOVbum2jXIo/s320/planet_dcfluxes_07_defaults_ds2_v2.0_13pca_map20.png" />
+<img alt="" src="http://2.bp.blogspot.com/-OucWo74b8VY/TlZ9yFIJYQI/AAAAAAAAGcU/IBMs5YLMlYU/s320/planet_dcfluxes_09_defaults_ds2_v2.0_13pca_map20.png" />
+<p>While no hacks were needed to produce these plots, there were abundant
+problems. There are far fewer data points than there should be. The
+problems are manifold, but mostly have to do with the PCA scaling (I
+think).
+In some cases, the first scan in an observation was wildly variable.
+There looked to be an exponential or similar decay (as has been observed
+in scan turnarounds) at the observation start that took ~3 scans to
+decay to bring all of the bolometers onto a scaleable curve. This is a
+HUGE problem, because the assumption that the dominant signal is
+atmosphere is badly violated in this situation - the signal becomes
+electronics-dominated. The first PCA component is then an ugly
+step-function. With these first scans flagged out, the whole problem
+goes away, but that's a painful manual process. Automating it MAY be
+possible, but also risky.
+In other cases, particularly September 4th 2007, the atmosphere appeared
+to be negligible! While the atmospheric optical depth probably was not,
+if it was extraordinarily stable over the course of ~10 minutes, again
+we experience severe problems. A stable atmosphere means no atmospheric
+variation, which means that ACBOLOS is just noise (plus Uranus signal).
+Ironically, this is very bad for calibration - it means there is no
+common signal on which we can calibrate the bolos' relative
+sensitivities. This problem doesn't seem to affect science data,
+probably because there's no such thing as 45-minute stable atmosphere
+(especially when you're following rising/setting sources). If I REALLY
+need that data, I could snag the relative scalings from a science field
+and apply them to the cal data... honestly that's not a bad idea in
+general... hmm... Well, we'll explore that later if I have time, that
+will take days to implement.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/bolocat-v1-v2-comparison.html" rel="bookmark" title="Permalink to Bolocat v1-v2 comparison">
+                    Bolocat v1-v2 comparison</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-08-23T04:39:00-06:00"> 2011/08/23 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>For this experiment, I ran Bolocat on all of the v1 and v2 images using
+the source masks Erik derived for v1. I then compared the derived fluxes
+using both aperture photometry (as defined in bolocat) and the mask
+sums.</p>
+<p>First, note that the object_photometry code Erik wrote does NOT do
+background subtraction - this is important for understanding
+non-multiplicative offsets between v1 and v2.</p>
+<p>I fit a 2-parameter model (a line) to the v2 vs v1 plots using two
+methods. The simple linear-least-squares method is one we're all
+familiar with, and it gives semi-reasonable results, but is NOT
+statistically robust when there are errors on both axes. The other fit
+method used was Total Least Squares, which is approximately equivalent
+to Principle Component Analysis with 2 vectors. It uses components of
+the singular-value-decomposition to determine the best fit. The fits
+returned by TLS should be more robust, though the additive offsets need
+not be.</p>
+<p>Conclusion: Our factor of 1.5 looks like it was pretty accurate. For 40&quot;
+apertures, the best fit is ~1.56, which is easily within the error bars.
+Luckily, for 40&quot; apertures, there is no apparent need for an additive
+offset (I'm pretty sure the uncertainty on the measured offset is larger
+than the offset, though statistically that is not the case), which would
+complicate things.</p>
+<p>However, for the source mask, there is a greater scaling factor and a
+very substantial offset. This implies that the peaks in v2 are brighter
+by a large factor, but the backgrounds in v2 are actually lower than in
+v1 (though please do check my reasoning here). I'm really not sure what
+to make of the difference between source mask and aperture yet,
+though... there's probably something significant in the source mask
+being forced to pick positive pixels. (and peppered pickles)</p>
+<img alt="" src="http://2.bp.blogspot.com/-9a-O_TQx3Ek/TlMr1f-nmKI/AAAAAAAAGbs/Tp6UY_vwl_s/s320/total_v1v2_40arcsec_fit_compare.png" />
+<img alt="" src="http://2.bp.blogspot.com/-zhLxvflZ-30/TlMr1mWy6kI/AAAAAAAAGb0/GH7xSizIjnk/s320/total_v1v2_sourcemask_fit_compare.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+            <a href="https://keflavich.github.io/blog/category/bgps.html">&laquo;</a>
+    Page 2 / 20
+        <a href="https://keflavich.github.io/blog/category/bgps3.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

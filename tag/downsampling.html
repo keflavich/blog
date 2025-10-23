@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - downsampling</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2011/04/26
+                  <br>
+                  <a href="https://keflavich.github.io/blog/ds1-ds5-comparisons.html">ds1-ds5 comparisons</a>
+              </li>
+              <li class="post">
+                  2011/04/19
+                  <br>
+                  <a href="https://keflavich.github.io/blog/sampling-causes-problems-rd-2.html">Sampling Causes Problems: Rd 2</a>
+              </li>
+              <li class="post">
+                  2011/04/18
+                  <br>
+                  <a href="https://keflavich.github.io/blog/sampling-causes-problems.html">Sampling causes problems</a>
+              </li>
+              <li class="post">
+                  2011/03/30
+                  <br>
+                  <a href="https://keflavich.github.io/blog/progress-but-still-ds1-ds5-issues.html">Progress, but still ds1-ds5 issues</a>
+              </li>
+              <li class="post">
+                  2011/03/28
+                  <br>
+                  <a href="https://keflavich.github.io/blog/trying-to-bootstrap.html">Trying to bootstrap</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/ds1-ds5-comparisons.html" rel="bookmark" title="Permalink to ds1-ds5 comparisons">
+                    ds1-ds5 comparisons</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-04-26T21:54:00-06:00"> 2011/04/26 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm comparing simulated ds1-ds5 to real ds1-ds5 comparison tests.
+In the simulated tests, I compare the recovered map after 20 iterations
+with 13 pca components subtracted to the input map. There are figures
+showing this comparison for ds1 and ds5 images in addition to one
+showing the comparison between ds1 and ds5. The agreement is pretty much
+as good as you could ask for.
+These simulations are the most realistic run yet. They include a
+simulated atmosphere that is perfectly correlated between all bolometers
+excepting gaussian noise, but the relative sensitivity of the bolometers
+is varied.</p>
+<img alt="" src="http://4.bp.blogspot.com/-xZqAo2n84iE/TbcsrsLkkaI/AAAAAAAAGIM/J_4xWIOGoCQ/s320/exp2_varyrelscale_amp1.0E-01_map20_ds1ds5compare.png" />
+<img alt="" src="http://4.bp.blogspot.com/-G7ks6aygM8w/TbcssORKmqI/AAAAAAAAGIU/aFrSrgTEhc4/s320/airy_test_ds1_reconv_arrang45_atmotest_varyrelscale_amp1.0E-01_compare.png" />
+<img alt="" src="http://4.bp.blogspot.com/-MemhZbvFgYw/Tbcssv4s06I/AAAAAAAAGIc/8aSHBsnKHuU/s320/airy_test_ds5_reconv_arrang45_atmotest_amp1.0E-01_compare.png" />
+<p>This is what a 'real' ds1-ds5 comparison looks like. The image shown is
+a &quot;cross-linked&quot; observation of Uranus with downsampling off and on.
+Note that downsampling clearly and blatantly smears the source flux.</p>
+<img alt="" src="http://2.bp.blogspot.com/-UvoCV4PvBcM/TbcstPbA_5I/AAAAAAAAGIk/S1cPsnCGmvc/s320/091219_o15-6_ds5_uranus_indivtest_reconv_ds1ds5compare.png" />
+<p>The same image with &quot;beam location correction&quot; looks no better.</p>
+<img alt="" src="http://2.bp.blogspot.com/-ab27Av_tJB4/Tbcu3Jp0x6I/AAAAAAAAGIs/xUjzxFEVYXI/s320/091219_o15-6_ds5_uranus_indivtest_reconvBL_ds1ds5compare.png" />
+<p>The problem is essentially the same with the individual scan directions:</p>
+<img alt="" src="http://4.bp.blogspot.com/-WwNjh1U-xu0/TbcyTyab16I/AAAAAAAAGI0/oO1fOiY4Bow/s320/091219_o16_ds1_uranus_indivtest_reconv_ds1ds5compare.png" />
+<img alt="" src="http://3.bp.blogspot.com/-k2U0rWMtcH8/TbcyUxfGrfI/AAAAAAAAGI8/ErLepYPyYJE/s320/091219_o15_ds1_uranus_indivtest_reconv_ds1ds5compare.png" />
+<p>What is causing this difference?</p>
+<ul class="simple">
+<li>higher-order corrections to the atmosphere calculation?</li>
+<li>inadequate sampling of the model?</li>
+<li>&quot;pointing&quot; offsets between the model and the data (note that these
+are NOT pointing offsets, but they may be &quot;distortion map&quot; offsets)?</li>
+<li>Other?</li>
+</ul>
+<p>Examining the weights and scales for two individual (real) observations,
+ds1 followed by ds5, is not particularly telling; there is one
+additional outlier bolometer flagged out in the ds1 observation, but
+there is nothing obviously wrong with that bolometer (it may have much
+lower high-frequency noise than others).</p>
+<img alt="" src="http://2.bp.blogspot.com/-FQGo3OPClLw/Tbc5gVqn-1I/AAAAAAAAGJE/RSmGgDcDSK0/s320/091219_o15-6_ds1_uranus_indivtest_reconv091219_o15_raw_ds1.nc_indiv13pca_weights_iter10.png" />
+<img alt="" src="http://1.bp.blogspot.com/-M0u4dlKj5IM/Tbc5g7PQ5YI/AAAAAAAAGJM/njdiKaENlzI/s320/091219_o15-6_ds5_uranus_indivtest_reconv091219_o15_raw_ds5.nc_indiv13pca_weights_iter10.png" />
+<p>The simulations actually have more discrepant weights, but that doesn't
+seem to cause any problems:</p>
+<img alt="" src="http://1.bp.blogspot.com/-pL-VkELw7g4/Tbc7OrD5d6I/AAAAAAAAGJU/zCB9wyF09_g/s320/airy_test_ds1_reconv_arrang45_atmotest_varyrelscale_amp1.0E-01_weights_iter20.png" />
+<img alt="" src="http://4.bp.blogspot.com/-D0GDZ-wq0ZY/Tbc7PIM2pQI/AAAAAAAAGJc/38Edm0ufAs4/s320/airy_test_ds5_reconv_arrang45_atmotest_varyrelscale_amp1.0E-01_weights_iter20.png" />
+<p>The timestreams both have similar artifacts:</p>
+<img alt="" src="http://4.bp.blogspot.com/-S_3X_HkqzF4/Tbc7v7rrs4I/AAAAAAAAGJk/y0Wkwo3JYhg/s320/091219_o15-6_ds1_uranus_indivtest_reconv091219_o15_raw_ds1.nc_indiv13pcatimestream004_plots_10_bolo12.png" />
+<img alt="" src="http://4.bp.blogspot.com/-lg_Z50_vocc/Tbc7wZXRUlI/AAAAAAAAGJs/fcuf9u241QE/s320/091219_o15-6_ds5_uranus_indivtest_reconv091219_o15_raw_ds5.nc_indiv13pcatimestream004_plots_10_bolo12.png" />
+<p>while the simulated versions really don't:</p>
+<img alt="" src="http://1.bp.blogspot.com/-cG1uUEY_N9M/Tbc-ZJtPVzI/AAAAAAAAGJ0/VGcWV0JYtxQ/s320/airy_test_ds1_reconv_arrang45_atmotest_varyrelscale_amp1.0E-01timestream011_plots_20_bolo07.png" />
+<img alt="" src="http://3.bp.blogspot.com/-4KA5jSCQgsY/Tbc-ZhvL_lI/AAAAAAAAGJ8/brh-nGwSses/s320/airy_test_ds5_reconv_arrang45_atmotest_varyrelscale_amp1.0E-01timestream011_plots_20_bolo07.png" />
+<p>This is true even when the relative strength of the atmosphere is
+higher:</p>
+<img alt="" src="http://1.bp.blogspot.com/-2MZXbARZeWo/Tbc-xHG3bOI/AAAAAAAAGKE/yEiYQ8YqqkU/s320/airy_test_ds1_reconv_arrang45_atmotest_varyrelscale_amp1.0E%252B00timestream011_plots_20_bolo07.png" />
+<img alt="" src="http://2.bp.blogspot.com/-Lr1QqlLNc20/Tbc-xhLCH3I/AAAAAAAAGKM/N1GKh-hZZ-Q/s320/airy_test_ds5_reconv_arrang45_atmotest_varyrelscale_amp1.0E%252B00timestream011_plots_20_bolo07.png" />
+<p>I think the most viable candidate is the 'pointing offset' idea, which
+will take a little work to simulate properly...</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/sampling-causes-problems-rd-2.html" rel="bookmark" title="Permalink to Sampling Causes Problems: Rd 2">
+                    Sampling Causes Problems: Rd 2</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-04-19T17:39:00-06:00"> 2011/04/19 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Proof that a well-sampled timestream / gaussian is recovered better than
+a poorly sampled one:</p>
+<img alt="" src="http://3.bp.blogspot.com/-PVt1suBQt3s/Ta3EQqypzAI/AAAAAAAAGG4/ap-3_SKjigI/s320/airy_test_superres_ds1_smallpix_sn100timestream012_plots_16_bolo12.png" />
+<img alt="" src="http://1.bp.blogspot.com/-HMr4DXKBVMY/Ta3GE49GmcI/AAAAAAAAGHA/ULLRUq_IWn8/s320/airy_test_superres_ds1_sn100timestream012_plots_20_bolo12.png" />
+<img alt="" src="http://3.bp.blogspot.com/-ujL_h0j-Gms/Ta3GWwcEttI/AAAAAAAAGHI/4uVLXXXhtqc/s320/airy_test_superres_ds1_smallpix_sn100_compare.png" />
+<img alt="" src="http://4.bp.blogspot.com/-r98h73qcMKY/Ta3GXBKAT3I/AAAAAAAAGHQ/k3y8j427TC0/s320/airy_test_superres_ds1_sn100_compare.png" />
+<p>These aren't really the most convincing, since the flux loss is only
+1-8% depending on how you count. The atmosphere-included ones have
+larger flux loss, which is important to understand... WHY does the added
+noise INCREASE the flux loss?
+Ugh, unfortunately, there is a perfect counter-example. The first image
+shows a timestream in which the input map is sampled by 7.2&quot; pixels,
+which is just shy of nyquist sampling the 1-sigma width of the gaussian
+(but is fine for the FWHM of the gaussian). The second shows 3.6&quot;
+sampling of the same. No improvement. The third, very surprisingly,
+shows significant improvement - but this was an experiment in which the
+relative scales were allowed to vary.</p>
+<img alt="" src="http://4.bp.blogspot.com/-NIwHLJT2SOw/Ta3IAGQA4HI/AAAAAAAAGHY/N3Oju7RHhRE/s320/airy_test_ds1_reconv_arrang45_atmotest_amp1.0E-01timestream011_plots_20_bolo07.png" />
+<img alt="" src="http://4.bp.blogspot.com/-Qo8-kSCFMCc/Ta3IATO7P1I/AAAAAAAAGHg/Jx9ufNhabiE/s320/airy_test_ds1_reconv_arrang45_atmotest_smallpix_amp1.0E-01timestream011_plots_20_bolo07.png" />
+<img alt="" src="http://3.bp.blogspot.com/-6PlqmOsDRFY/Ta3IA00cfBI/AAAAAAAAGHo/t5b2jddw5Lw/s320/airy_test_ds1_reconv_arrang45_atmotest_varyrelscale_amp1.0E-01timestream011_plots_20_bolo07.png" />
+<p>The first two each had one high-weight bolometer rejected, the last had
+12 high-weight bolos rejected. So that's problably the problem....</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/sampling-causes-problems.html" rel="bookmark" title="Permalink to Sampling causes problems">
+                    Sampling causes problems</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-04-18T23:39:00-06:00"> 2011/04/18 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>One of the simplest experiments that can be run is a point-source
+observed in point-scan mode, i.e. with smaller step-sizes. I've done
+this for an Airy disk with noise added in the image plan but not
+atmosphere (some noise is necessary to avoid bizarre artifacts with
+weighting when you have truly zero signal and zero noise). At a S/N of
+500, the noise is pretty minimal, though.
+It turns out for the 'noiseless' images, the PCA cleaning is the
+issue... curiously, it varies significantly with iteration. Is it worth
+trying to debug the PCA cleaning for noiseless timestreams? I mean...
+they really shouldn't have any correlated information anyway.
+There is still an outstanding issue where one bolometer gets scaled to
+be higher than the rest without any apparent reason for doing so.
+It is also clear that we do not nyquist-sample the pixels with the
+timestream. However, that doesn't explain a deficiency observed in the
+ds1 images. Also note that the sidelobes are not picked up at this S/N,
+but that's not too surprising.
+And here is the explanation: The peak is missed by about 10% because of
+finite sampling? Somehow the sampled gaussian nearly uniformly
+underestimates the gaussian... I think this violates theory a bit.....</p>
+<img alt="" src="http://3.bp.blogspot.com/-L2CMkehyV2g/TazJvpj2jjI/AAAAAAAAGGg/_BM0_GgC_x4/s320/airy_test_ds1_reconv_arrang45_atmotest_amp1.0E-01timestream011_plots_20_bolo07.png" />
+<p>Here's the problem shown again:</p>
+<img alt="" src="http://2.bp.blogspot.com/-vvY-1uleKmk/TazKE4Osm_I/AAAAAAAAGGo/n6Nadxi8UM4/s320/airy_test_ds1_reconv_arrang45_atmotest_amp1.0E-01_compare.png" />
+<p>This is a comparison between the input image and a ds1-sampled image
+with perfectly correlated atmospheric noise. So there is something in
+the pipeline that is preventing the peaks from achieving the necessary
+heights.... I wonder if resampling the deconvolved image onto a
+higher-resolution grid, then downsampling afterwards, would fix this?
+Also note that the flux loss increases from 7% to 20% from ds1 to ds5:</p>
+<img alt="" src="http://4.bp.blogspot.com/-hHQBTMME8Ow/TazKuf0gkuI/AAAAAAAAGGw/uQdJw4kc2U8/s320/airy_test_ds5_reconv_arrang45_atmotest_amp1.0E-01_compare.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/progress-but-still-ds1-ds5-issues.html" rel="bookmark" title="Permalink to Progress, but still ds1-ds5 issues">
+                    Progress, but still ds1-ds5 issues</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-03-30T02:47:00-06:00"> 2011/03/30 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>ds1 and ds5 agree pretty well with the recent upgrades to delining and
+deconvolution. However, there are still counterexamples, e.g.
+101208_o13, in which ds5 &lt; ds1:</p>
+<img alt="" src="http://4.bp.blogspot.com/-fIJHF_x5mBI/TZI0cryJfbI/AAAAAAAAGDI/GsNfLRGNZAk/s200/101208_o13_raw_ds1.nc_indiv13pca.png" />
+<img alt="" src="http://2.bp.blogspot.com/-QRhiz8W9RDc/TZI0dGUR4UI/AAAAAAAAGDQ/WC8eLQd6_Z0/s200/101208_o13_raw_ds5.nc_indiv13pca.png" />
+<p>The 'fitted' values agree better than the 'measured' values now that
+NANs are treated properly.
+Spent a few hours today trying to figure out if weighting can explain
+the difference between ds1 and ds5; it appears to make up for most of it
+so I'm doing some more experiments. Why is there so much parameter
+space? Why can't weighting just work? It doesn't....
+also wasted a few hours trying to write a python drizzling algorithm,
+which unfortunately is impossible so I had to resort to an inefficient
+for loop.
+Finally got some minor results. It really looks like there is a trend
+pushing up the recovered flux (i.e. higher volts/Jy) for ds5 over ds1.
+There is a discrepancy between map types for ds1 but not for ds5, which
+is actually backwards from what I would have expected, since ds1 will
+get better-sampled maps.</p>
+<img alt="" src="http://2.bp.blogspot.com/-ARaSL7ZdDmc/TZKRcE01DnI/AAAAAAAAGDY/YMZRpRo53Hw/s320/uranus_dcfluxes_dec2010_nomask_ds1_13pca_fits_map10.png" />
+<img alt="" src="http://3.bp.blogspot.com/-pWtggp0vSP4/TZKRcwZ_SrI/AAAAAAAAGDg/IqVHQSprkL8/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png" />
+<p>Luckily, the difference between peak fitting and &quot;measuring&quot; results in
+very small (insignificant) changes to the calibration curve (recall
+fitting is direct gaussian fitting; 'measuring' is using the
+gaussian-fit width and total flux in an ellipse to infer a peak assuming
+a point source):</p>
+<img alt="" src="http://2.bp.blogspot.com/-E-FDTTj-4Ik/TZKVyUA8zBI/AAAAAAAAGDo/9NGubgLWBvo/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_fits_map10.png" />
+<img alt="" src="http://3.bp.blogspot.com/-GdyxFnmwQ7g/TZKVykSg57I/AAAAAAAAGDw/PPVXtfAxW0s/s320/uranus_dcfluxes_dec2010_nomask_ds5_13pca_map10.png" />
+<p>Since this work has all been done for the 'bootstrapping' observations
+that are supposed to tell us if different map sizes are compatible, I
+have included the map sizes in the diagrams now. However, to really
+understand the ds1/ds5 difference, there are much better data sets,
+which I'm now reprocessing using the new and improved methods.
+(the Whole BGPS is also processing with the new methods in the
+background, though since the methods are being updated live there may be
+more changes and it will have to be re-run.... initial looks at W5 are
+BAD but L030 is GOOD (bordering on amazing))</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/trying-to-bootstrap.html" rel="bookmark" title="Permalink to Trying to bootstrap">
+                    Trying to bootstrap</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-03-28T02:01:00-06:00"> 2011/03/28 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've concluded, based on previous posts
+<a class="reference external" href="http://bolocam.blogspot.com/2011/02/downsampling-why-is-dec-2010-different.html">http://bolocam.blogspot.com/2011/02/downsampling-why-is-dec-2010-different.html</a>,
+<a class="reference external" href="http://bolocam.blogspot.com/2011/03/revisiting-calibration-yet-again.html">http://bolocam.blogspot.com/2011/03/revisiting-calibration-yet-again.html</a>,
+and
+<a class="reference external" href="http://bolocam.blogspot.com/2011/03/workaround-for-individual-maps.html">http://bolocam.blogspot.com/2011/03/workaround-for-individual-maps.html</a>,
+that ds5 is a problem primarily for undersampled images, i.e. those
+taken in the normal mapping mode. This makes bootstrapping a bit tricky.</p>
+<p>There are two options:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>Map Uranus and AFGL 4029 both in Volts and figure out what flux density
+AFGL 4029 must have to lie on that curve</li>
+<li>Map Uranus and compute a calibration curve, apply that calibration curve
+to AFGL 4029, and then compare derived flux densities.</li>
+</ol>
+</blockquote>
+<p>Both have the major problem that the individual AFGL 4029 maps will
+forcibly be undersampled if I use ds5 data (which is normally OK,
+according to the first paragraph). In the second case, it is possible to
+co-add the images and get around the under-sampling issue, while in the
+first case it is not because of the dependence on total loading
+(MEANDC).</p>
+<p>The real problem is that the whole goal of these observations was to
+compare the different observing methods and see if they agree (1x1, 3x1,
+pointing, etc.) since the pointing-style observations were used to
+calibrate the others. But if the 1x1s are just straight-up unreliable,
+how can we do the comparison? I think the co-added AFGL 4029 is the only
+option, but then how do I test if it's correct? It would be really nice
+to have AFGL 4029 observed with both scan types...</p>
+<p>Alright, onto the data. After last week's fix of the bad bolos, I really
+hope ds1 and ds5 agree. However, first glance at the cal curves says
+they don't. ds1 and ds2 agree, but ds5 is different.</p>
+<p>After checking them out with
+<tt class="docutils literal">ds9 <span class="pre">*ds[15]*13pca*_map10.fits</span> <span class="pre">-scale</span> limits <span class="pre">-1</span> 1000 <span class="pre">-log</span> <span class="pre">-cmap</span> hsv <span class="pre">-match</span> colorbars <span class="pre">-match</span> scales <span class="pre">-match</span> frames wcs &amp;</tt>,
+it appears that the _mask_ data is all... wrong, somehow. That's OK, I
+want to discard the mask data anyway, so I'm happy to NOT spend time
+debugging it.</p>
+<p>Even after careful examination showing that the fits look good - and
+noting that the fluxes look pretty much the same - the calibration
+curves still look rather different. Unfortunately I had to spend 3 hours
+debugging IDL plotting commands; I want to show the fits each time and
+save them as postscripts. What does &quot;xyouts&quot; with &quot;/device,/normal&quot; do?
+I thought that should plot x,y text at the coordinates specified in the
+plot window... but no, that is JUST /normalize.</p>
+<p>Anyway, realized that centroid_map treated NANs as zero. Added ERR
+keyword (with a reasonable estimate of the error) in centroid_map to
+ignore NANs. It looks like improper treatment of NANs is responsible for
+a lot of the scatter seen in the calibration plots.</p>
+<p>There is a substantial difference between the &quot;fitted&quot; peak and the
+&quot;measured&quot; peak (the latter computed by taking the sum of the pixels
+divided by the area of the fitted gaussian). It looks like the
+&quot;measured&quot; version is more robust, at first glance. However,
+unfortunately, for 101208_o11, the difference between ds1 and ds5
+exists in both quantities. I will have to examine timestreams now...
+ARGH.</p>
+<p>Well, the timestreams show... that indeed the model is lower in ds1, but
+not why. The &quot;remainder&quot; (new_astro; the stuff that never gets
+incorporated into the model but DOES get incorporated into the map)
+appears to be the same in both. Similarly, there is little to no flux in
+the PCA atmosphere, so it's not simply being cleaned out. Where is the
+flux going or coming from?</p>
+<img alt="" src="http://3.bp.blogspot.com/-6lqGwWn650Q/TY_rgZKA9QI/AAAAAAAAGCI/Iq9O5mnmhl8/s320/101208_o11_ds1_uranus_indivtest_delinetimestream011_plots_20_bolo02.png" />
+<img alt="" src="http://1.bp.blogspot.com/-7uBbEU1tAqM/TY_rgg6Jq9I/AAAAAAAAGCQ/iaGhOSb6gtQ/s320/101208_o11_ds5_uranus_indivtesttimestream011_plots_20_bolo02.png" />
+<img alt="" src="http://1.bp.blogspot.com/-YKdZcNOjm7Q/TY_rg6tcvhI/AAAAAAAAGCY/fr4l8j-v4xI/s320/101208_o11_ds1_uranus_indivtesttimestream011_plots_20_bolo02.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

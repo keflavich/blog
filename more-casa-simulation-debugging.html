@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://keflavich.github.io/blog/more-casa-simulation-debugging.html" rel="bookmark"
+         title="Permalink to More CASA simulation & debugging">More CASA simulation &amp; debugging</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2016-04-24T22:57:00-06:00">
+      2016/04/24
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>(this post written from snowy-ish ALMA; <a class="reference external" href="https://goo.gl/photos/z3fUkCT6VVRzt8EW6">just cloudy at the OSF though</a>)</p>
+<p>(tl; dr version: <tt class="docutils literal">sm.setvp</tt> doesn't work if you have <tt class="docutils literal"><span class="pre">TELESCOP=&quot;ALMA&quot;</span></tt> in
+your header)</p>
+<p>I'm trying to repeat an experiment very similar to
+<a class="reference external" href="|static|/casa_simulating.rst">previous</a>
+<a class="reference external" href="|static|/simulated_imaging.rst">simulation work</a>
+in order to quantify my completeness and largest angular scales
+by injecting synthetic signal into the real UV data.</p>
+<p>However, as you might expect, it doesn't work as it did last time, even
+when I (afaict) copy and paste the code directly.</p>
+<p>Here's the new error:</p>
+<pre class="literal-block">
+2016-04-25 02:57:21 SEVERE  Simulator::createSkyEquation() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2200)        Caught exception: Transformations to/from frame &quot;Undefined&quot; are not possible.
+2016-04-25 02:57:21 SEVERE  Simulator::predict() (file /Users/rpmbuild/gradle/workdir/casasources/release-4_5/code/synthesis/MeasurementEquations/Simulator.cc, line 2118)  Failed to create SkyEquation
+Result of predict: False
+</pre>
+<p>It's strange because there is nothing obviously undefined.</p>
+<p>I'm comparing 2 FITS files that should behave identically.
+The good header lacks these keywords that the bad header has:</p>
+<pre class="literal-block">
+['PV2_1',
+ 'PV2_2',
+ 'OBSERVER',
+ 'DATE-OBS',
+ 'OBSRA',
+ 'OBSDEC',
+ 'OBSGEO-X',
+ 'OBSGEO-Y',
+ 'OBSGEO-Z']
+</pre>
+<p>while the good header has these and the bad lacks them:</p>
+<pre class="literal-block">
+['PC03_01',
+ 'PC04_01',
+ 'PC03_02',
+ 'PC04_02',
+ 'PC01_03',
+ 'PC02_03',
+ 'PC03_03',
+ 'PC04_03',
+ 'PC01_04',
+ 'PC02_04',
+ 'PC03_04',
+ 'PC04_04',
+ 'CREATOR',
+ 'INSTRUME',
+ 'BAND',
+ 'PROPOSAL',
+ 'PRTITLE',
+ 'OBSID001',
+ 'OBSID002',
+ 'HISTORY']
+</pre>
+<p>The only significant difference is the <tt class="docutils literal">PC</tt> values, unless CASA
+is doing something with the observatory location information.</p>
+<p>The only difference in common keywords is numerical, which seems
+very unlikely to cause this issue.</p>
+<p>I cannot discern any useful difference between these two CASA .image headers:</p>
+<pre class="literal-block">
+2016-04-25 03:08:55 INFO imhead     ##########################################
+2016-04-25 03:08:55 INFO imhead     ##### Begin Task: imhead             #####
+2016-04-25 03:08:55 INFO imhead     imhead(imagename=&quot;../perseus_synth/perseus_250_to_w51.image&quot;,mode=&quot;summary&quot;,hdkey=&quot;&quot;,hdvalue=&quot;&quot;,verbose=True)
+2016-04-25 03:08:55 INFO ImageAnalysis
+2016-04-25 03:08:55 INFO ImageAnalysis      Image name       : perseus_250_to_w51.image
+2016-04-25 03:08:55 INFO ImageAnalysis      Object name      : perseus 04
+2016-04-25 03:08:55 INFO ImageAnalysis      Image type       : PagedImage
+2016-04-25 03:08:55 INFO ImageAnalysis      Image quantity   : Intensity
+2016-04-25 03:08:55 INFO ImageAnalysis      Pixel mask(s)    : mask0
+2016-04-25 03:08:55 INFO ImageAnalysis      Region(s)        : None
+2016-04-25 03:08:55 INFO ImageAnalysis      Image units      : Jy/pixel
+2016-04-25 03:08:55 INFO ImageAnalysis      Restoring Beam   : 0.465804 arcsec, 0.465804 arcsec, 0 deg
+2016-04-25 03:08:55 INFO ImageAnalysis
+2016-04-25 03:08:55 INFO ImageAnalysis      Direction reference : J2000
+2016-04-25 03:08:55 INFO ImageAnalysis      Spectral  reference : Undefined
+2016-04-25 03:08:55 INFO ImageAnalysis      Velocity  type      : RADIO
+2016-04-25 03:08:55 INFO ImageAnalysis      Rest frequency      : 2.33947e+11 Hz
+2016-04-25 03:08:55 INFO ImageAnalysis      Telescope           : Herschel
+2016-04-25 03:08:55 INFO ImageAnalysis      Observer            : UNKNOWN
+2016-04-25 03:08:55 INFO ImageAnalysis      Date observation    : UNKNOWN
+2016-04-25 03:08:55 INFO ImageAnalysis
+2016-04-25 03:08:55 INFO ImageAnalysis      Axis Coord Type      Name             Proj Shape Tile   Coord value at pixel    Coord incr Units
+2016-04-25 03:08:55 INFO ImageAnalysis      ------------------------------------------------------------------------------------------------
+2016-04-25 03:08:55 INFO ImageAnalysis      0    0     Direction Right Ascension   TAN  2370  158  19:23:41.765  1099.00 -1.552680e-01 arcsec
+2016-04-25 03:08:55 INFO ImageAnalysis      1    0     Direction Declination       TAN  2500  250 +14.30.45.850  1552.00  1.552680e-01 arcsec
+2016-04-25 03:08:55 INFO ImageAnalysis      2    2     Spectral  Frequency                 1    1   2.33947e+11     0.00  1.000000e+09 Hz
+2016-04-25 03:08:55 INFO ImageAnalysis                           Velocity                                     0     0.00 -1.281456e+03 km/s
+2016-04-25 03:08:55 INFO ImageAnalysis      3    1     Stokes    Stokes                    1    1             I
+2016-04-25 03:08:55 INFO imhead     ##### End Task: imhead               #####
+2016-04-25 03:08:55 INFO imhead     ##########################################
+2016-04-25 03:09:07 INFO imhead
+2016-04-25 03:09:07 INFO imhead     ##########################################
+2016-04-25 03:09:07 INFO imhead     ##### Begin Task: imhead             #####
+2016-04-25 03:09:07 INFO imhead     imhead(imagename=&quot;../simulations/simimage_firsttest.image&quot;,mode=&quot;summary&quot;,hdkey=&quot;&quot;,hdvalue=&quot;&quot;,verbose=False)
+2016-04-25 03:09:07 INFO ImageAnalysis
+2016-04-25 03:09:07 INFO ImageAnalysis      Image name       : simimage_firsttest.image
+2016-04-25 03:09:07 INFO ImageAnalysis      Object name      :
+2016-04-25 03:09:07 INFO ImageAnalysis      Image type       : PagedImage
+2016-04-25 03:09:07 INFO ImageAnalysis      Image quantity   : Intensity
+2016-04-25 03:09:07 INFO ImageAnalysis      Pixel mask(s)    : None
+2016-04-25 03:09:07 INFO ImageAnalysis      Region(s)        : None
+2016-04-25 03:09:07 INFO ImageAnalysis      Image units      : Jy/beam
+2016-04-25 03:09:07 INFO ImageAnalysis      Restoring Beam   : 0.21023 arcsec, 0.192666 arcsec, 79.8538 deg
+2016-04-25 03:09:07 INFO ImageAnalysis
+2016-04-25 03:09:07 INFO ImageAnalysis      Direction reference : J2000
+2016-04-25 03:09:07 INFO ImageAnalysis      Spectral  reference : Undefined
+2016-04-25 03:09:07 INFO ImageAnalysis      Velocity  type      : RADIO
+2016-04-25 03:09:07 INFO ImageAnalysis      Rest frequency      : 2.33947e+11 Hz
+2016-04-25 03:09:07 INFO ImageAnalysis      Pointing center     :  19:23:41.629000  +14.30.42.380000
+2016-04-25 03:09:07 INFO ImageAnalysis      Telescope           : ALMA
+2016-04-25 03:09:07 INFO ImageAnalysis      Observer            : keflavich
+2016-04-25 03:09:07 INFO ImageAnalysis      Date observation    : 2015/04/23/09:47:44
+2016-04-25 03:09:07 INFO ImageAnalysis      Telescope position: [2.22514e+06m, -5.44031e+06m, -2.48103e+06m] (ITRF)
+2016-04-25 03:09:07 INFO ImageAnalysis
+2016-04-25 03:09:07 INFO ImageAnalysis      Axis Coord Type      Name             Proj Shape Tile   Coord value at pixel    Coord incr Units
+2016-04-25 03:09:07 INFO ImageAnalysis      ------------------------------------------------------------------------------------------------
+2016-04-25 03:09:07 INFO ImageAnalysis      0    0     Direction Right Ascension   TAN  3072  192  19:23:41.629  1536.00 -5.000000e-02 arcsec
+2016-04-25 03:09:07 INFO ImageAnalysis      1    0     Direction Declination       TAN  3072  192 +14.30.42.380  1536.00  5.000000e-02 arcsec
+2016-04-25 03:09:07 INFO ImageAnalysis      2    1     Stokes    Stokes                    1    1             I
+2016-04-25 03:09:07 INFO ImageAnalysis      3    2     Spectral  Frequency                 1    1   2.33947e+11     0.00  1.000000e+09 Hz
+2016-04-25 03:09:07 INFO ImageAnalysis                           Velocity                                     0     0.00 -1.281456e+03 km/s
+2016-04-25 03:09:07 INFO imhead     ##### End Task: imhead               #####
+2016-04-25 03:09:07 INFO imhead     ##########################################
+</pre>
+<p>if anything, the ALMA file includes <em>extra</em> data. Removing this data has no
+effect.</p>
+<p>The only really substantial difference left is the order of the axes, which
+is <em>not what I put in</em> for the ALMA data: it puts Stokes as 2 instead of 3
+despite the fact that <tt class="docutils literal"><span class="pre">CTYPE4='STOKES'</span></tt> and <tt class="docutils literal"><span class="pre">CTYPE3='FREQ'</span></tt>.</p>
+<p>By doing a round trip FITS-&gt;image-&gt;FITS-&gt;image, I was able to fix the order,
+but that is not the underlying problem, apparently.</p>
+<p>Could the missing pixel mask be at fault?  It doesn't jive at all with the
+error message, so I doubt it.  <tt class="docutils literal">OBSDATE</tt> is not the problem.</p>
+<p>Turns out, the error is that ALMA is the telescope.  I added the header entry:</p>
+<pre class="literal-block">
+ffile[0].header['TELESCOP'] = 'NotReal'
+</pre>
+<p>and it Just Worked.  It is approaching the end of my shift, so I think it is
+now acceptable to say &quot;what kind of !#$&#64;#$!&#64;% up #&#64;$$&#64;% is that?!&quot;.</p>
+
+  </div><!-- /.entry-content -->
+</section>
+
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</section>
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  var disqus_identifier = '/more-casa-simulation-debugging.html';
+  var disqus_url = 'https://keflavich.github.io/blog/more-casa-simulation-debugging.html';
+  var disqus_title = 'More CASA simulation &amp; debugging';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

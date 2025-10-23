@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - Articles by Adam (adam.g.ginsburg@gmail.com)</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2015/05/07
+                  <br>
+                  <a href="https://keflavich.github.io/blog/my-python-ipython-vim-debugging-workflow.html">My python + ipython + vim debugging workflow</a>
+              </li>
+              <li class="post">
+                  2012/12/26
+                  <br>
+                  <a href="https://keflavich.github.io/blog/catalog-vs-image-shift-a-possible-solution-to-the-atlasgal-issue.html">Catalog vs Image shift? A possible solution to the ATLASGAL issue</a>
+              </li>
+              <li class="post">
+                  2012/12/22
+                  <br>
+                  <a href="https://keflavich.github.io/blog/idea-multispectral-eigenimage-decomposition.html">Idea: Multispectral Eigenimage decomposition...</a>
+              </li>
+              <li class="post">
+                  2012/12/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pointing-cross-correlation-yet-again.html">Pointing & Cross-Correlation yet again</a>
+              </li>
+              <li class="post">
+                  2012/09/08
+                  <br>
+                  <a href="https://keflavich.github.io/blog/cross-correlation-offsets-revisited.html">Cross-Correlation Offsets Revisited</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+<h2>Articles by Adam (adam.g.ginsburg@gmail.com)</h2>
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/43-relative-alignment-and-mosaicing.html" rel="bookmark" title="Permalink to 4.3 Relative Alignment and Mosaicing">
+                    4.3 Relative Alignment and Mosaicing</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-03-04T02:57:00-07:00"> 2009/03/04 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Relative alignment was performed by finding the peak of the
+cross-correlation between images and a pointing master selected from the
+epoch with the best-constrained pointing model for that field. Each
+observation was initially mapped individually, then all observations of
+a given field were cross-correlated with a selected master image of that
+field. The cross-correlation peak was fit with a gaussian and the
+difference between the gaussian peak and the image center was used as
+the pixel offset. The offsets were recorded and written to the
+timestreams. Finally, all observations of a field were merged into a
+single timestream with pointing offsets applied to create the field
+mosaic.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/a-bunch-of-plots.html" rel="bookmark" title="Permalink to a bunch of plots">
+                    a bunch of plots</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-03-03T01:06:00-07:00"> 2009/03/03 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/SayCk8uDT2I/AAAAAAAAEzE/hVCHxfejfxk/s400/noise_per_deg.png" />
+<img alt="" src="http://3.bp.blogspot.com/_lsgW26mWZnU/SayCkyW19KI/AAAAAAAAEy8/Df_SgR-blY4/s400/fillfact_per_deg.png" />
+<img alt="" src="http://1.bp.blogspot.com/_lsgW26mWZnU/SayCk9BDNzI/AAAAAAAAEy0/oBgJX2IWav8/s400/mean_per_deg.png" />
+<img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/SayCksjhWmI/AAAAAAAAEys/vt0ZUY50Uqw/s400/sources_per_deg.png" />
+<p>I wasted a lot of time making these so I figured I might as well waste a
+little space showing them.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/a-new-series-of-problems.html" rel="bookmark" title="Permalink to A new series of problems">
+                    A new series of problems</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-03-03T00:52:00-07:00"> 2009/03/03 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <ol class="arabic simple">
+<li>There are severe (~5 pixel) pointing offsets in the MOSAICs. They are
+caused by IRAF and I can't figure out exactly why.</li>
+<li>Deconvolution has created more artifacts at l=54, 70, 357. I don't
+know how to fix them.</li>
+<li>Either my earlier time estimates were way off, or the mapping has
+gotten slower. It now takes ~120 computer hours (72 real hours) where
+before it was taking closer to 48.</li>
+</ol>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/return-to-deconvolution.html" rel="bookmark" title="Permalink to Return to Deconvolution">
+                    Return to Deconvolution</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-02-23T18:55:00-07:00"> 2009/02/23 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I ran the v0.7 reductions with deconvolution on for 50 iterations. I had
+cut out deconvolution originally because of the funky noise maps, but
+that was partly an error on my part. There is also an issue with bright
+sources being largely left over in the noise maps.
+The deconvolver does MUCH better at filtering out the fuzzy atmospheric
+emission, so I want to use it. It leaves some flux from bright point
+sources behind, though, so I decided to try to make the deconvolution
+kernel smaller to see if that recovers more of the pointlike flux.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/planet-fluxes.html" rel="bookmark" title="Permalink to planet fluxes">
+                    planet fluxes</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-02-06T22:39:00-07:00"> 2009/02/06 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>; ephemerides from the JCMT
+; MARS:
+; June 30 2005: 730.14 Jy UT:53551
+; July 15 2005: 872.83 Jy UT:53566
+; Sept 10 2005: 1941.72 Jy UT:53623
+; June 5 2006: 553.13 Jy UT:53891
+; June 23 2006: 674.14 Jy UT:53544
+; Sept 10 2006: 135.79 Jy UT:53896
+; July 20 2007: 381.18 Jy UT:54301
+; Sept 10 2007: 597.87 Jy UT:54353
+;
+; URANUS:
+; June 30 2005: 43.43 Jy UT:53551
+; July 15 2005: 44.35 Jy UT:53566
+; Sept 10 2005: 45.78 Jy UT:53623
+; June 5 2006: 41.71 Jy UT:53891
+; June 23 2006: 42.96 Jy UT:53544
+; Sept 10 2006: 41.62 Jy UT:53896
+; July 20 2007: 43.90 Jy UT:54301
+; Sept 10 2007: 45.57 Jy UT:54353
+;
+; NEPTUNE:
+; June 30 2005: 17.42 Jy UT:53551
+; July 15 2005: 17.58 Jy UT:53566
+; Sept 10 2005: 17.50 Jy UT:53623
+; June 5 2006: 17.04 Jy UT:53891
+; June 23 2006: 17.33 Jy UT:53544
+; Sept 10 2006: 17.09 Jy UT:53896
+; July 20 2007: 17.59 Jy UT:54301
+; Sept 10 2007: 17.56 Jy UT:54353</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/rant-calc_beam_locations.html" rel="bookmark" title="Permalink to Rant: calc_beam_locations">
+                    Rant: calc_beam_locations</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-02-06T18:24:00-07:00"> 2009/02/06 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>It took me a few days to figure this out, but &quot;calc_beam_locations&quot; is
+about 800 lines of wasted space. It does nothing substantive until line
+335. Everything to that point is parameter parsing. But there doesn't
+need to be any of that crap, really, and it should have been outsourced
+to functions to begin with.
+NCDF files are read to get the rotation angle - JUST as an error check!
+There is no a priori reason to include it.
+All that the code does is read in a centroid file (a list of x,y
+offsets), rotate them, and output them as r,theta,error. Sure, there's a
+bunch of automated outlier rejection etc, but... seriously?! We don't
+have enough observations to hold up the statistics necessary for that to
+begin with! NO ONE would if each observation takes an hour. It's absurd.
+Odd as it is coming from me, manual rejection makes a lot more sense in
+this case.
+Now, I still have to understand WHY the beam locations are rotated by
+the fiducial array angle.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/distortion-mapping-done.html" rel="bookmark" title="Permalink to distortion mapping done?">
+                    distortion mapping done?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-02-02T00:12:00-07:00"> 2009/02/02 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Created 'beam_locations_0707.txt' from uranus_070702_o42 with a few
+contributions from g34.3_070630_o34.
+The rest were created by averaging over all of the beam location files</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/0707-distortion-maps.html" rel="bookmark" title="Permalink to 0707 distortion maps">
+                    0707 distortion maps</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-02-01T20:26:00-07:00"> 2009/02/01 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://2.bp.blogspot.com/_lsgW26mWZnU/SYYFc97uFjI/AAAAAAAAEt0/nxjKDE_KBIA/s400/0707distmaps.png" />
+<p>They're consistent but not very close to each other.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/beam-locations-peak-fluxes.html" rel="bookmark" title="Permalink to beam locations & peak fluxes">
+                    beam locations &amp; peak fluxes</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-02-01T19:50:00-07:00"> 2009/02/01 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The results of my distortion mapping work below. Note that, especially
+for 06, there are a LOT of cases where no beam locations correction
+(noBL) had a higher peak than the distortion corrected map. I have no
+explanation for this yet. More work to come...</p>
+<pre class="literal-block">
+PEAK COMPARISON BL:       5.95824  noBL:       3.09836    uranus_050619_o23 PEAK COMPARISON BL:       3.93725  noBL:       2.85479    uranus_050619_o24 PEAK COMPARISON BL:       15.5613  noBL:       523.035    neptune_050626_o19 PEAK COMPARISON BL:       16.4601  noBL:       16.0038    neptune_050626_o20 PEAK COMPARISON BL:       426.671  noBL:       375.174    mars_050627_o31 PEAK COMPARISON BL:       415.968  noBL:       413.327    mars_050627_o32  PEAK COMPARISON BL:       15.2464  noBL:       33.8593    uranus_050628_o33 PEAK COMPARISON BL:       34.6631  noBL:       35.5086    uranus_050628_o34 PEAK COMPARISON BL:       164.832  noBL:       403.189    uranus_050904_o31 PEAK COMPARISON BL:       216.820  noBL:       425.613    uranus_050904_o32 PEAK COMPARISON BL:       134.972  noBL:       156.196    uranus_050911_ob8 PEAK COMPARISON BL:       11.0957  noBL:       11.1993    neptune_060602_o30 PEAK COMPARISON BL:       12.0000  noBL:       11.0947    neptune_060602_o31 PEAK COMPARISON BL:       2478.20  noBL:       2365.17    mars_060605_ob1 PEAK COMPARISON BL:       2144.68  noBL:       2147.18    mars_060605_ob2  PEAK COMPARISON BL:       17.7354  noBL:       25.7041    uranus_060621_o29 PEAK COMPARISON BL:       18.7889  noBL:       25.6599    uranus_060621_o30 PEAK COMPARISON BL:       28.1957  noBL:       31.1013    uranus_060625_o46 PEAK COMPARISON BL:       23.0236  noBL:       27.8556    uranus_060905_ob6 PEAK COMPARISON BL:       18.8731  noBL:       28.4964    uranus_060906_o12 PEAK COMPARISON BL:       23.3481  noBL:       29.8294    uranus_060908_o13 PEAK COMPARISON BL:       20.6238  noBL:       26.9424    uranus_060909_o12 PEAK COMPARISON BL:       21.1049  noBL:       28.8533    uranus_060910_o12 PEAK COMPARISON BL:       24.0231  noBL:       32.0877    uranus_060914_o10 PEAK COMPARISON BL:       23.2590  noBL:       33.3496    uranus_060914_o11 PEAK COMPARISON BL:       24.0538  noBL:       30.0552    uranus_060919_ob9 PEAK COMPARISON BL:       355.467  noBL:       669.416    g34.3_070630_o34 PEAK COMPARISON BL:       246.803  noBL:       296.252    g34.3_070630_o35 PEAK COMPARISON BL:       724.874  noBL:       807.152    uranus_070702_o42 PEAK COMPARISON BL:       7.60370  noBL:       9.02960    uranus_070912_o27 PEAK COMPARISON BL:       98.8058  noBL:       88.9957    mars_070913_o22 PEAK COMPARISON BL:       82.2708  noBL:       89.3476    mars_070913_o23
+</pre>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/sign-errors.html" rel="bookmark" title="Permalink to sign errors">
+                    sign errors</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-02-01T19:50:00-07:00"> 2009/02/01 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>pinned down the problem. Was a minor sign error in the offsets. Why is
+it that simple sign errors are ALWAYS the hardest things to track down?
+Now, open question: should x,y scaling be free parameters or not? What I
+mean is, when I measure the positions of bolometers on the array using
+the planet map, should I allow the X and Y stretch (the bolometer
+spacing) to change? Should it be a uniform stretch in X and Y or should
+it be allowed to 'distort' too? My opinion is, none of the above: I'm
+measuring their actual positions (in terms of a fixed spacing) and
+therefore stretching or distorting to match the nominal positions is not
+necessary.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+            <a href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom9.html">&laquo;</a>
+    Page 10 / 20
+        <a href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom11.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

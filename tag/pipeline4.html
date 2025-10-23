@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - pipeline</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2011/12/31
+                  <br>
+                  <a href="https://keflavich.github.io/blog/flow-charts.html">Flow Charts</a>
+              </li>
+              <li class="post">
+                  2011/08/05
+                  <br>
+                  <a href="https://keflavich.github.io/blog/spatial-transfer-functions-revisit-4.html">Spatial Transfer Functions, revisit 4</a>
+              </li>
+              <li class="post">
+                  2011/07/10
+                  <br>
+                  <a href="https://keflavich.github.io/blog/minor-ongoing-problems.html">[minor] Ongoing problems...</a>
+              </li>
+              <li class="post">
+                  2011/05/24
+                  <br>
+                  <a href="https://keflavich.github.io/blog/astrophysical-signal-modeling.html">Astrophysical Signal Modeling</a>
+              </li>
+              <li class="post">
+                  2011/05/22
+                  <br>
+                  <a href="https://keflavich.github.io/blog/psf-modeling.html">PSF modeling</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/new-code.html" rel="bookmark" title="Permalink to New code">
+                    New code</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-09-05T21:00:00-06:00"> 2008/09/05 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Done for the day after this (observing tonight)
+two new procedures:</p>
+<pre class="literal-block">
+alignment_offsets_to_ncdf.pro
+calcoeffs_to_ncdf.pro
+</pre>
+<p>they're really easy, very nearly one-liners. Once they've been used
+once, you can just use ncdf_varput_scale
+Modified keyword parameters in do_the_pointing: offsets will always be
+applied unless the keyword 'no_offsets' is passed into the code (or the
+top-level wrapper). Since offsets default to zero, this should be OK.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/pointing-model-success.html" rel="bookmark" title="Permalink to Pointing model success">
+                    Pointing model success</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-09-02T15:11:00-06:00"> 2008/09/02 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>/scratch/adam_work/plots/models_myptgmdl_0707.ps
+Look at the left plots in #1 and #4, and ignore the red lines. The RMS
+is 4.87 in alt, 3.51 in az, using all pointing observations in 0707
+(i.e. not splitting it into part1/part2 or refining heavily). Total is
+6.003&quot;, not bad.
+I'm calling it quits on pointing refinement for the moment; I'm
+satisfied using Meredith's pointing models to get science maps
+co-aligned, then we'll use my model on the PPSes to get the pointing to
+maximum precision.
+Also, in the galactic center, the mapping works happily now. No more
+silly problems with that.
+It's time for a real Next Step. I think that means mapping nearly
+everything. Well, here goes!</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/updates-today.html" rel="bookmark" title="Permalink to Updates today">
+                    Updates today</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-25T23:35:00-06:00"> 2008/08/25 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I updated the FITS header writing pieces of the software today, we
+should now have:
+N_PCA
+ITERNUM
+PPBEAM
+in all new maps.
+I'm mapping all of Cygnus degree-by-degree in RA/Dec and Galactic to try
+to measure offsets... possibly offsets as a function of l/b or ra/dec. I
+should really be doing this with PPSes, though.
+My priority list:</p>
+<ol class="arabic simple">
+<li>find out what's causing bulk offsets</li>
+<li>beat down noise in my pointing models by rejecting bad sources/points
+[has to be done from campus]</li>
+<li>test my personal special pointing models</li>
+<li>make maps!</li>
+<li>figure out the rest of pointing</li>
+</ol>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/some-good-news-some-not-news.html" rel="bookmark" title="Permalink to Some good news, some.... not news.">
+                    Some good news, some.... not news.</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-24T20:09:00-06:00"> 2008/08/24 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've been mapping all weekend. It turns out that if you do 25 mapping
+runs that take ~1hr apiece, that takes ~25 hours. Who knew?
+Whole observation took 3965.3506 sec.
+Whole observation took 3071.1403 sec.
+Whole observation took 4205.3337 sec.
+Whole observation took 7362.5490 sec.
+Whole observation took 9313.6064 sec.
+Whole observation took 3755.2383 sec.
+Whole observation took 3755.8278 sec.
+Whole observation took 3760.7032 sec.
+Whole observation took 3758.5719 sec.
+Whole observation took 3763.1436 sec.
+Whole observation took 3766.0066 sec.
+Whole observation took 3789.5806 sec.
+Whole observation took 3760.9774 sec.
+Whole observation took 3762.7124 sec.
+Whole observation took 3763.1120 sec.
+Whole observation took 3767.1255 sec.
+Whole observation took 3766.9085 sec.
+Whole observation took 3758.5867 sec.
+Whole observation took 3760.2131 sec.
+Whole observation took 3755.8963 sec.
+Whole observation took 3759.9199 sec.
+Whole observation took 3764.4494 sec.
+Whole observation took 3766.9686 sec.
+Whole observation took 3756.5876 sec.
+The good news is that I haven't encountered any crashes. Smooth sailing
+so far.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/on-the-list-for-today.html" rel="bookmark" title="Permalink to On the list for today....">
+                    On the list for today....</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-23T13:42:00-06:00"> 2008/08/23 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Since my gigantic mapping run is still going, I'm going to work
+primarily on developing code for testing the maps, and determining
+important information about the mapper.
+The data paper will require an iteration-to-convergence figure, or at
+least an estimate of degree of convergence.</p>
+<ol class="arabic simple">
+<li>Need to develop code to show iteration-to-convergence<ol class="arabic">
+<li>need it for both NxNpca and ascending/descending</li>
+<li>have to use region files? make some sort of region reader?</li>
+<li>pick demonstration sources</li>
+</ol>
+</li>
+<li>Compare N<sub>pca</sub> results for bright, faint sources</li>
+<li>Compare iterating with/without deconvolution</li>
+<li>Compare median/average/baseline sky subtraction</li>
+<li>Analyze efficiency...</li>
+<li>Try to figure out what's causing huge offsets. Is it Galactic
+Coordinate mapping?</li>
+</ol>
+<pre class="literal-block">
+-bash-3.00$ less /scratch/adam_work/logs/log_082208_domemiter.log | grep WholeWhole observation took 5122.6795 sec.Whole observation took 4774.3424 sec.Whole observation took 2687.7761 sec.Whole observation took 2102.5577 sec.Whole observation took 3247.5344 sec.Whole observation took 5515.2907 sec.Whole observation took 2877.6389 sec.Whole observation took 2757.0235 sec.Whole observation took 1453.0918 sec.Whole observation took 1459.7892 sec.Whole observation took 1381.3762 sec.Whole observation took 1443.1440 sec.Whole observation took 614.39645 sec.Whole observation took 2001.6709 sec.Whole observation took 1817.1512 sec.Whole observation took 1879.1385 sec.
+</pre>
+<p>Note that the longest set there - 5515s = 1.53 hours - was 40
+iterations!</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/task-list.html" rel="bookmark" title="Permalink to Task List">
+                    Task List</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-22T00:29:00-06:00"> 2008/08/22 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>For the moment, I'm going to leave the pointing alone. This leaves us
+(me) with a very long list of things to do before the data release:</p>
+<ol class="arabic simple">
+<li>Determine ideal iterative mapping strategy for low-flux fields</li>
+<li>Determine ideal iterative mapping strategy for fields with bright
+sources</li>
+<li>Optimize at least the following:<ol class="arabic">
+<li>scan flatting (polynomial subtraction)</li>
+<li>PCA subtraction</li>
+<li>Pre-PCA sky subtraction (necessary?)</li>
+<li>Deconvolution/No deconvolution</li>
+</ol>
+</li>
+<li>GENERATE MAPS [top priority, but it can't really happen til after the
+above]</li>
+<li>Assure consistency with catalogs - e.g. Motte, SCUBA, etc.</li>
+<li>Figure out what needs to go into fits header</li>
+<li>Survive semester before comps [lowest priority]</li>
+<li>sleep [oh, right, real lowest priority]</li>
+</ol>
+<p>Sarcasm helps me survive. Almost as much as beer.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/notice-anything-different.html" rel="bookmark" title="Permalink to Notice anything different?">
+                    Notice anything different?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-21T01:08:00-06:00"> 2008/08/21 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>About milkyway? This post is a red herring, but:
+I decided to go ahead and run the mapper on Cygnus, L33, L111, and the
+Galactic Center again. The pointing has gotten to the stage where I'm
+certain I can't do anything more without a stroke of pure brilliance or
+a conversation with someone who hasn't touched a thing - e.g. Jason -
+that suddenly enlightens me.
+In order to fully reproduce Meredith's results, I'd probably have to go
+back through and follow her 'pipeline' process step by step as well, and
+I suspect that, if I had used her method on her RA/Dec maps, I would
+have come up with exactly the same problem I currently see. Therefore, I
+won't do anything about it.
+I think the most appropriate response at this point MAY be to just fit a
+damned polynomial/sine curve in az and include that as part of the
+pointing model, but I can't justify where that comes from. All I know is
+that it's present in Meredith's data as well as my own.
+What's that next step with the PPSes? We need to do that.
+More important, though, is getting some image optimization ready FAST. I
+need to be running this stuff before September! Tonight's run will be a
+test of numbers of PCA components. At the very least, the v0.5 should
+have a consistent set of images even if we cut out the high-flux ones.
+We'll deal with that later.
+For the high flux objects, e.g. g34.3, since we have so much overlapping
+data, a simple average/magical baseline subtraction might be just as if
+not more effective than PCA subtraction, so that's one way around it.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/modifications.html" rel="bookmark" title="Permalink to Modifications">
+                    Modifications</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-19T18:07:00-06:00"> 2008/08/19 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Things that have been changed in the past 24 hours that are very
+significant:</p>
+<ol class="arabic simple">
+<li>In apply_pointing_model, the signs of FAZO and FZAO have been
+swapped. I BELIEVE this is correct but somehow things aren't working
+out still.</li>
+<li>In do_the_pointing I have changed from &quot;eq2hor&quot; and &quot;hor2eq&quot; to
+&quot;my_eq2hor&quot; and &quot;my_hor2eq&quot;. These implement two major changes:<ol class="arabic">
+<li>The LST is passed as a parameter rather than calculated within the
+ASTROLIB code</li>
+<li>The conversion is calculated with BOTH hadec2altaz and getaltaz
+(and similar for the opposite transformation) and compared for
+error checking purposes. If they differ by more than one
+arcsecond, the code will spit out an error message and use
+getaltaz.</li>
+</ol>
+</li>
+</ol>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/more-cleaning-modifications.html" rel="bookmark" title="Permalink to More cleaning modifications">
+                    More cleaning modifications</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-12T17:01:00-06:00"> 2008/08/12 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I had removed sigmadeglitch from deline, now it's permanently gone. I
+think it might be worth exploring re-inserting sigmadeglitch somewhere.
+My higher-order polynomial fit is creating deeper bowls around sources,
+so that's a big problem, but if I use a lower order I get the bad
+streaks. What's the best way to deal with this? I'm thinking perhaps
+only doing the polysub on the second iteration (i.e. after a source
+model has been subtracted).
+Delining runs into some issues now, though, because not all frequencies
+are sampled (?).</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/wow-fft-failure.html" rel="bookmark" title="Permalink to Wow - FFT failure">
+                    Wow - FFT failure</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-12T15:11:00-06:00"> 2008/08/12 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>On my huge Cygnus run, the fft keeps failing in the deline code. It's
+actually pretty impressive, but there are 844604 points in the
+timestream. The prime factorization of 844604 is 2^2 * 211151. This is
+just damned bad luck, because I think an FFT is extremely inefficient
+when it can't factorize. What's the best workaround? ....
+9 AM update: I've rewritten the deliner to work on a scan-by-scan basis.
+It's possible that the delining failed in the past because it was
+essentially removing a constant amplitude at the line frequencies across
+the observation (or combined observations!) which is not likely to be
+true.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+            <a href="https://keflavich.github.io/blog/tag/pipeline3.html">&laquo;</a>
+    Page 4 / 5
+        <a href="https://keflavich.github.io/blog/tag/pipeline5.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

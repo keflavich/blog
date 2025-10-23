@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://keflavich.github.io/blog/python-64-bit.html" rel="bookmark"
+         title="Permalink to Python 64 bit!">Python 64 bit!</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2012-09-20T20:02:00-06:00">
+      2012/09/20
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>I got python 64 bit to compile, but it required a number of tricky
+steps.
+First, this guy has the instructions I followed:
+<a class="reference external" href="http://blog.captnswing.net/2009/04/19/python-mod_wsgi-64bit-mac-os-x-105/">captnswing</a>
+However, it didn't work entirely as advertised. I ran the configure as
+advertised:
+<tt class="docutils literal">./configure <span class="pre">--enable-framework=/Library/Frameworks</span> <span class="pre">\--enable-universalsdk=/</span> \MACOSX_DEPLOYMENT_TARGET=10.5 <span class="pre">\--with-universal-archs=all</span> <span class="pre">\--with-readline-dir=/usr/local</span></tt>
+then the make install, but /usr/local/bin/python pointed to the wrong
+place, so I replaced the symbolic link in my python path with the
+correct one:
+<tt class="docutils literal">sudo rm /Library/Frameworks/Python.framework/Versions/2.6/bin/python sudo ln <span class="pre">-s</span> <span class="pre">/Library/Frameworks/Python.framework/Versions/2.6/bin/python-64</span> /Library/Frameworks/Python.framework/Versions/2.6/bin/python</tt>
+Now python is 64 bit:
+<tt class="docutils literal">eta ~$ python <span class="pre">-c</span> &quot;import sys; print sys.maxint&quot;9223372036854775807</tt>
+I haven't checked whether it works yet though...
+Update: Had to reinstall with gnu readline installed. Also have to
+install PyQt4 and might have to recompile numpy...
+numpy won't compile with python 2.6.2:
+<tt class="docutils literal">C compiler: gcc <span class="pre">-arch</span> i386 <span class="pre">-arch</span> ppc <span class="pre">-arch</span> ppc64 <span class="pre">-arch</span> x86_64 <span class="pre">-isysroot</span> / <span class="pre">-fno-strict-aliasing</span> <span class="pre">-fno-common</span> <span class="pre">-dynamic</span> <span class="pre">-DNDEBUG</span> <span class="pre">-g</span> <span class="pre">-fwrapv</span> <span class="pre">-O3</span> <span class="pre">-Wall</span> <span class="pre">-Wstrict-prototypescompile</span> options: <span class="pre">'-Inumpy/core/include</span> <span class="pre">-Ibuild/src.macosx-10.5-universal-2.6/numpy/core/include/numpy</span> <span class="pre">-Inumpy/core/src</span> <span class="pre">-Inumpy/core/include</span> <span class="pre">-I/Library/Frameworks/Python.framework/Versions/2.6/include/python2.6</span> <span class="pre">-c'gcc:</span> <span class="pre">build/src.macosx-10.5-universal-2.6/numpy/core/src/_sortmodule.cIn</span> file included from numpy/core/include/numpy/ndarrayobject.h:26,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from numpy/core/include/numpy/noprefix.h:7,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from numpy/core/src/_sortmodule.c.src:29:numpy/core/include/numpy/npy_endian.h:33:10: error: #error Unknown CPU: can not set endiannesslipo: can't figure out the architecture type of: <span class="pre">/var/folders/ni/ni+DtdqFGMeSMH13AvkNkU+++TI/-Tmp-//cceaWIvZ.outIn</span> file included from numpy/core/include/numpy/ndarrayobject.h:26,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from numpy/core/include/numpy/noprefix.h:7,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from numpy/core/src/_sortmodule.c.src:29:numpy/core/include/numpy/npy_endian.h:33:10: error: #error Unknown CPU: can not set endiannesslipo: can't figure out the architecture type of: <span class="pre">/var/folders/ni/ni+DtdqFGMeSMH13AvkNkU+++TI/-Tmp-//cceaWIvZ.outerror:</span> Command &quot;gcc <span class="pre">-arch</span> i386 <span class="pre">-arch</span> ppc <span class="pre">-arch</span> ppc64 <span class="pre">-arch</span> x86_64 <span class="pre">-isysroot</span> / <span class="pre">-fno-strict-aliasing</span> <span class="pre">-fno-common</span> <span class="pre">-dynamic</span> <span class="pre">-DNDEBUG</span> <span class="pre">-g</span> <span class="pre">-fwrapv</span> <span class="pre">-O3</span> <span class="pre">-Wall</span> <span class="pre">-Wstrict-prototypes</span> <span class="pre">-Inumpy/core/include</span> <span class="pre">-Ibuild/src.macosx-10.5-universal-2.6/numpy/core/include/numpy</span> <span class="pre">-Inumpy/core/src</span> <span class="pre">-Inumpy/core/include</span> <span class="pre">-I/Library/Frameworks/Python.framework/Versions/2.6/include/python2.6</span> <span class="pre">-c</span> <span class="pre">build/src.macosx-10.5-universal-2.6/numpy/core/src/_sortmodule.c</span> <span class="pre">-o</span> <span class="pre">build/temp.macosx-10.5-universal-2.6/build/src.macosx-10.5-universal-2.6/numpy/core/src/_sortmodule.o&quot;</span> failed with exit status 1</tt>
+That sucks.</p>
+
+  </div><!-- /.entry-content -->
+</section>
+
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</section>
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  var disqus_identifier = '/python-64-bit.html';
+  var disqus_url = 'https://keflavich.github.io/blog/python-64-bit.html';
+  var disqus_title = 'Python 64 bit!';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

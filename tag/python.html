@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - python</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2015/10/09
+                  <br>
+                  <a href="https://keflavich.github.io/blog/sensitivity-plots-using-astroquery-nrao-tool.html">Sensitivity Plots using astroquery NRAO tool</a>
+              </li>
+              <li class="post">
+                  2015/05/07
+                  <br>
+                  <a href="https://keflavich.github.io/blog/my-python-ipython-vim-debugging-workflow.html">My python + ipython + vim debugging workflow</a>
+              </li>
+              <li class="post">
+                  2014/02/19
+                  <br>
+                  <a href="https://keflavich.github.io/blog/python-stack-on-mavericks.html">Python stack on Mavericks</a>
+              </li>
+              <li class="post">
+                  2013/12/13
+                  <br>
+                  <a href="https://keflavich.github.io/blog/there-is-a-gap-in-the-dust-around-sgr-b2.html">There is a "gap" in the dust around Sgr B2</a>
+              </li>
+              <li class="post">
+                  2013/09/24
+                  <br>
+                  <a href="https://keflavich.github.io/blog/position-velocity-diagrams.html">Position-Velocity Diagrams</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/sensitivity-plots-using-astroquery-nrao-tool.html" rel="bookmark" title="Permalink to Sensitivity Plots using astroquery NRAO tool">
+                    Sensitivity Plots using astroquery NRAO tool</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-10-09T14:00:00-06:00"> 2015/10/09 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I wanted to see what the approximate depth achieved by (repeated)
+VLA observations of a few sources was, at least theoretically.
+This is relatively easy to do:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<span class="kn">from</span> <span class="nn">astroquery.nrao</span> <span class="kn">import</span> <span class="n">Nrao</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">Nrao</span><span class="p">()</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">coordinates</span><span class="o">=</span><span class="n">coordinates</span><span class="o">.</span><span class="n">SkyCoord</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="s1">&#39;Sgr B2(M)&#39;</span><span class="p">),</span>
+                      <span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcmin</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">pylab</span> <span class="k">as</span> <span class="nn">pl</span>
+
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;Observing Freq&#39;</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;TOS&#39;</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Observed Frequency (GHz)&quot;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Time-on-Source (s)&quot;</span><span class="p">)</span>
+
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;Observing Freq&#39;</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;TOS&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;Bandwidth&#39;</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Observed Frequency (GHz)&quot;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Relative depth (Hz s)&quot;</span><span class="p">)</span>
+</pre></div>
+<img alt="" src="https://keflavich.github.io/blog/images/TOS_vs_freq.png" style="width: 800px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/depth_vs_freq.png" style="width: 800px;" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/my-python-ipython-vim-debugging-workflow.html" rel="bookmark" title="Permalink to My python + ipython + vim debugging workflow">
+                    My python + ipython + vim debugging workflow</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-05-07T12:00:00-06:00"> 2015/05/07 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>My <a class="reference external" href="http://www.eso.org/~eemselle/CV.html">boss</a> asked a great question at our first weekly <a class="reference external" href="https://github.com/ESO-python/ESOPythonTutorials">ESO-python tutorial</a>
+session: What does a good ipython debugging workflow look like?</p>
+<p>The one advantage I had found in IDL was that <em>everything</em> is a script, which
+means that <em>everything</em> can be debugged in the same way: add a stop statement
+at the relevant line of code.  Of course, that debugging model breaks apart
+badly once you start writing complex programs and using things like common
+blocks.</p>
+<p>In ipython, there is a beautiful debugger that is far more feature-rich than
+the IDL equivalent.  It can be activated simply:</p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pdb</span>
+</pre></div>
+<p>will toggle the interactive ipython debugger.  Then, if you run into a code
+crash, you will be dumped out at an <cite>ipdb&gt;</cite> prompt, with access to a
+fully-functional python prompt in the local namespace / environment of the
+crash point.  You can also move up and down the function hierarchy with the <tt class="docutils literal">u</tt>
+and <tt class="docutils literal">d</tt> commands.</p>
+<p>The existence of the ipdb debugger suggests a natural approach for those
+familiar with IDL debugging: simply add a <tt class="docutils literal">raise</tt> statement wherever you would
+normally have put a <tt class="docutils literal">stop</tt> statement.  There are a few key differences,
+however: in IDL, you could just <tt class="docutils literal">.continue</tt> to run the rest of the code as if
+no stop occurred; in python the same is not possible with the default ipdb.</p>
+<p>However, the <a class="reference external" href="https://pypi.python.org/pypi/ipdb">ipdb</a> package allows the insertion of breakpoints just like in IDL:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ipdb</span><span class="p">;</span> <span class="n">ipdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
+</pre></div>
+<p>From within one of these breakpoints, the <tt class="docutils literal">.continue</tt> command will continue on
+to the next breakpoint, as you might expect.  The <tt class="docutils literal">n</tt> and <tt class="docutils literal">s</tt> commands will go
+to the next line in the code, while <tt class="docutils literal">s</tt> will allow you to drop into called functions (how?)</p>
+<p><a class="reference external" href="http://scipy-lectures.github.io/advanced/debugging/#using-the-python-debugger">Postmortem debugging</a> is also awesome.  If you have run a command and gotten a traceback,
+you can retroactively enter the debugger:</p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">debug</span>
+</pre></div>
+<p>but as with the normal traceback debugger, one cannot <tt class="docutils literal">continue</tt> afterward.</p>
+<div class="section" id="reloading-code">
+<h2>Reloading Code</h2>
+<p>Python code is typically distributed in packages managed with a <tt class="docutils literal">setup.py</tt>
+script.  These are the most convenient way to install, use, and distribute
+code, but they are not ideal for debugging.</p>
+<p>When debugging a normal script, something you could run by invoking</p>
+<div class="highlight"><pre><span></span>python<span class="w"> </span>myfile.py
+</pre></div>
+<p>or</p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">run</span> <span class="n">myfile</span><span class="o">.</span><span class="n">py</span>
+<span class="c1"># in the local namespace</span>
+<span class="o">%</span><span class="n">run</span> <span class="o">-</span><span class="n">i</span> <span class="n">myfile</span><span class="o">.</span><span class="n">py</span>
+<span class="c1"># with the python debugger active:</span>
+<span class="o">%</span><span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="n">myfile</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+<p>can easily be debugged by running it line-by-line.  The <a class="reference external" href="http://ipython.org/ipython-doc/dev/interactive/tutorial.html#running-and-editing">documentation</a>
+can be accessed via the <tt class="docutils literal">%magic</tt> command.</p>
+<p>For debugging &quot;compiled&quot; packages, though, more thought is needed.</p>
+<p>If you are working on your own package, you can use <a class="reference external" href="https://pythonhosted.org/setuptools/setuptools.html#develop-deploy-the-project-source-in-development-mode">setuptools</a> to enable the
+<tt class="docutils literal">python setup.py develop</tt> command, which installs a symbolic link to the
+source code directory - meaning any changes you make are immediately reflected
+in the python source path.  This does <em>not</em> mean that any changes are
+recognized in the local python environment, though!</p>
+<p>If you are in an active <tt class="docutils literal">ipython</tt> session, you need to <tt class="docutils literal">reload</tt> packages to
+see their results.  As far as I know, you can <em>never</em> &quot;reload&quot; the source code
+underlying an already-instantiated class, so you have to remake any class
+instances you want to examine.</p>
+<p>The <tt class="docutils literal">reload</tt> command is tricky to use.  You will only see changes to the source code
+if you import the exact package in which the code is stored.  For example, if you have a file structure like this:</p>
+<div class="highlight"><pre><span></span>mypackage/
+<span class="w">    </span>__init__.py
+<span class="w">    </span>core.py
+</pre></div>
+<p>and you do <tt class="docutils literal">reload(mypackage)</tt>, that will effectively reload only the source
+code in <tt class="docutils literal">__init__.py</tt>.  If the code you want to use is called <tt class="docutils literal">myfunction</tt>
+and it lives in <tt class="docutils literal">core.py</tt>, you can reload that source code by doing
+<tt class="docutils literal">reload(mypackage.core)</tt>.  Reloading <tt class="docutils literal">mypackage</tt> may have no effect.  So
+the key for developing packages is finding the right module to reload!</p>
+<p>IPython has a <a class="reference external" href="http://ipython.org/ipython-doc/dev/interactive/reference.html#dreload">deepreload package</a>
+intended to recursively reload functions; it may work but I had trouble in the
+past.</p>
+</div>
+<div class="section" id="tests">
+<h2>Tests</h2>
+<p>It's generally much better to have a test suite enabled with unit tests for
+each component of your code.  This is the approach adopted by most open-source
+projects and many industrial code developers.</p>
+<p>Tests are invoked with the command <tt class="docutils literal">py.test</tt> with a variety of command
+options.  Among my favorites are <tt class="docutils literal">py.test <span class="pre">--tb=short</span></tt>, which gives a much
+less verbose traceback, <tt class="docutils literal">py.test <span class="pre">--pastebin=failed</span></tt>, which posts any failure
+results to pastebin for easy sharing, <tt class="docutils literal">py.test <span class="pre">-p</span> packagename</tt> (or <tt class="docutils literal">python
+setup.py test <span class="pre">-P</span> packagename</tt> in astropy) to select tests for a specific
+package.  A great deal more options can be found in the <a class="reference external" href="http://pytest.org/latest/">pytest docs</a>.</p>
+<p>A test suite, if properly constructed, can also be run from with in ipython:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">astroquery</span>
+<span class="n">astroquery</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s1">&#39;eso&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="postscript">
+<h2>Postscript</h2>
+<p>Some useful related links:</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://stackoverflow.com/questions/1623039/python-debugging-tips">http://stackoverflow.com/questions/1623039/python-debugging-tips</a></li>
+<li><a class="reference external" href="https://pypi.python.org/pypi/pudb">https://pypi.python.org/pypi/pudb</a></li>
+</ul>
+</blockquote>
+<!-- great picture: http://commons.wikimedia.org/wiki/File:Richard_Hook_and_Eric_Emsellem_at_the_ESO_50th_Anniversary_Gala_Event.jpg -->
+</div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/python-stack-on-mavericks.html" rel="bookmark" title="Permalink to Python stack on Mavericks">
+                    Python stack on Mavericks</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2014-02-19T12:02:00-07:00"> 2014/02/19 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/napattack-adamgginsburggmailcom.html">napattack (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>As you might expect from numerous blog posts and the general difficulty people
+have always experienced upgrading mac OS versions, Mavericks caused some truly
+hideous issues.</p>
+<p>The only really &quot;new&quot; issues specifically for Mavericks relate to app nap.  The
+main solution is minrk's <a class="reference external" href="https://github.com/minrk/appnope">appnope</a>.  Otherwise, command line options like
+<cite>defaults write &lt;app domain name&gt; NSAppSleepDisabled -bool YES</cite> are required
+<a class="reference external" href="http://apple.stackexchange.com/questions/121386/missing-prevent-app-nap-button-on-app">if the button is missing</a> from Mac's Get Info pane.</p>
+<p>I tried installing the <a class="reference external" href="https://store.continuum.io/cshop/anaconda/">conda</a> stack to get python running quickly.  This
+worked to an extremely limited degree: the TkAgg shipped with anaconda links to
+<a class="reference external" href="xquartz.macosforge.org">XQuartz</a>, which is highly undesirable for a number of reasons.  This meant
+that matplotlib plots showed up as X11 plots.  With the Mac OS X backend, the
+windows failed to show up in the Dock and therefore were totally unusable (though
+they did look OK).</p>
+<p>I am still using <a class="reference external" href="https://store.continuum.io/cshop/anaconda/">conda</a> to maintain multiple parallel versions of python for
+testing.  However, I went back to my typical install-from-source approach.</p>
+<p>To get the matplotlib backends to interact nicely with apple, you need to install
+them using the <cite>/Library</cite> version of python</p>
+<div class="highlight"><pre><span></span><span class="c1"># this had to happen sometime early:</span>
+$<span class="w"> </span>xcode-select<span class="w"> </span>--install
+
+$<span class="w"> </span>wget<span class="w"> </span>https://pypi.python.org/pypi/pip#downloads
+$<span class="w"> </span>tar<span class="w"> </span>-xzvf<span class="w"> </span>~/Downloads/pip-1.5.2.tar.gz
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>pip-1.5.2
+$<span class="w"> </span>/Library/Frameworks/Python.framework/Versions/2.7/bin/python<span class="w"> </span>setup.py<span class="w"> </span>install
+$<span class="w"> </span>/Library/Frameworks/Python.framework/Versions/2.7/bin/pip<span class="w"> </span>install<span class="w"> </span>virtualenv
+$<span class="w"> </span><span class="nb">cd</span>
+$<span class="w"> </span>/Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenv<span class="w"> </span>virtual-python
+</pre></div>
+<p>After this, I was surprisingly able to install everything in the python stack
+with no hitches.  Obviously, that could not possibly last.</p>
+<p>While matplotlib and numpy worked fine, scipy had problems.</p>
+<pre class="literal-block">
+ImportError: dlopen(/Users/adam/virtual-python/lib/python2.7/site-packages/scipy/integrate/_odepack.so, 2): Symbol not found: __gfortran_internal_free
+Referenced from: /Users/adam/virtual-python/lib/python2.7/site-packages/scipy/integrate/_odepack.so
+Expected in: flat namespace
+   in /Users/adam/virtual-python/lib/python2.7/site-packages/scipy/integrate/_odepack.so
+</pre>
+<p>This terrible error led me back to re-compiling scipy.  I tried installing with
+<a class="reference external" href="hpc.sourceforge.net">hpc</a> gfortran, but that didn't work at all, first apparently because of linking
+errors in numpy.  When I investigated numpy, I found that the compilers
+apparently don't work at all:</p>
+<pre class="literal-block">
+C compiler: /usr/local/bin/gcc -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -arch i386 -arch x86_64
+...
+RuntimeError: Broken toolchain: cannot link a simple C program
+</pre>
+<p>I had to give up on that, and then googling returned no results at all, which I
+thought was a bit weird.  Scipy seems to want gcc and g++ 4.2, even though
+they're years old.  I had to find those and gfortran-4.2 somehow, but the <a class="reference external" href="r.research.att.com/tools/">old
+site</a> that used to serve them seems to have lost the files!  They had an
+<a class="reference external" href="http://r.research.att.com/tools/gcc-42-5666.3-darwin11.pkg">older version</a>, though, which appears to work.  Scipy is a scary install.</p>
+<div class="section" id="problems-with-xquartz">
+<h2>Problems with XQuartz</h2>
+<p>XQuartz is not well-behaved on Mac OS X 10.9.  First, <a class="reference external" href="https://xquartz.macosforge.org/trac/ticket/661">on retina machines, it
+does not display well</a>.  Second, and much more important, it <a class="reference external" href="http://xquartz.macosforge.org/trac/ticket/797">does not work on
+external monitors</a>.  Apparently this can be worked around by turning off
+&quot;Displays have different spaces&quot;  in Mission Control, but so far that has had
+no effect for me.</p>
+</div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/there-is-a-gap-in-the-dust-around-sgr-b2.html" rel="bookmark" title="Permalink to There is a "gap" in the dust around Sgr B2">
+                    There is a &quot;gap&quot; in the dust around Sgr B2</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-12-13T00:00:00-07:00"> 2013/12/13 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Sgr B2 is the most massive gas clump in our Galaxy.  It's about 100 pc away
+from Sgr A*, the black hole at the center of the Galaxy.  It is forming stars
+prodigiously, and has extreme properties in many regards.</p>
+<p>In many physical aspects - mass, luminosity, velocity dispersion, temperature -
+the Sgr B2 region is similar to &quot;proto-cluster clumps&quot; seen in other galaxies,
+e.g. the Antennae galaxies.</p>
+<p>There are plenty of mysteries about Sgr B2, including its extraordinarily
+diverse chemistry and its peculiar kinematics.</p>
+<p>I'm raising a sort of new one.  There appears to be a hole next to Sgr B2,
+towards the southeast in Galactic coordinates.  It appears as a relatively
+empty spot in the dust continuum bands.  It doesn't seem to be filled in
+with anything in particular.</p>
+<html>
+<div class="output_html rendered_html">
+
+    <script type="text/javascript">
+
+      var image_dir='blog/images/sgrb2/'
+
+      var images=new Array(
+                   "TheGap_GLM_00000+0000_mosaic_I2.png",
+                   "TheGap_GLM_00000+0000_mosaic_I4.png",
+                   "TheGap_gcmosaic_24um.png",
+                   "TheGap_igls_l000_blue_cnr_hh.png",
+                   "TheGap_igls_l000_red_cnr_hh.png",
+                   "TheGap_igls_l000_psw_deglitch_hh.png",
+                   "TheGap_igls_l000_pmw_deglitch_hh.png",
+                   "TheGap_SgrB2_350um_gal.png",
+                   "TheGap_gc450_gal.png",
+                   "TheGap_igls_l000_plw_deglitch_hh.png",
+                   "TheGap_gc850_gal.png",
+                   "TheGap_ATLASGAL.1.5_reprojectoverlap9.png",
+                   "TheGap_v2.0_ds2_l001_13pca_map20.png",
+                   //"TheGap_sgrb2_nh311_sum.png",
+                   "TheGap_sgrb2_20cm_12as_gal.png",
+                   "TheGap_20cm_0.png"
+                   )
+      var titles=new Array(
+                   "4.5um",
+                   "8um",
+                   "24um",
+                   "70um",
+                   "160um",
+                   "250um",
+                   "350um Herschel",
+                   "350um SHARC",
+                   "450um",
+                   "500um",
+                   "850um SCUBA",
+                   "870um ATLASGAL",
+                   "1100um",
+                   //"1.3cm NH3",
+                   "20cm",
+                   "20cm (poor resolution)"
+                   )
+
+      function interactUpdate(div){
+         var outputs = div.getElementsByTagName("img");
+         var divoutputs = div.getElementsByTagName("div");
+         var controls = div.getElementsByTagName("input");
+
+         var value = "";
+         for(i=0; i<controls.length; i++){
+           if((controls[i].type == "range") || controls[i].checked){
+             //value = value + controls[i].getAttribute("name") + controls[i].value;
+             value = controls[i].value;
+           }
+         }
+
+         for(i=0; i<outputs.length; i++){
+           var name = outputs[i].getAttribute("name");
+           if(name=="figure"){
+                 outputs[i].src = image_dir+images[value]
+           }
+         }
+
+         for(i=0; i<divoutputs.length; i++){
+           var name = divoutputs[i].getAttribute("name");
+           if(name=="caption"){
+                 divoutputs[i].innerHTML = titles[value];
+           }
+         }
+
+         //for(i=0; i<images.length; i++){
+         //  var name = outputs[i].getAttribute("name");
+         //  if(name == value){
+         //     outputs[i].style.display = 'block';
+         //  } else if(name != "controls"){
+         //     outputs[i].style.display = 'none';
+         //  }
+         //}
+      }
+    </script>
+    
+    <div>
+      
+    <div name="figure" style="display:block">
+        <div name="caption">
+            20cm
+        </div>
+        <img name="figure" src="blog/images/sgrb2/TheGap_20cm_0.png" height=600px>
+    </div>
+
+<input type="range" name="figure" min="0" max="14" step="1" value="0" style="width:350px" onchange="interactUpdate(this.parentNode);">
+</html>
+<p>Note the slider here: you can view Sgr B2 at any wavelength where I have data.
+The green circle highlights the major deficiency that is evident in all
+dust-containing bands.  There are other &quot;minor&quot; deficiencies elsewhere.</p>
+<p>It is tricky to interpret this: I don't think the absolute flux densities in
+any of the millimeter observations are perfectly trustworthy because of their
+proximity to the extremely bright Sgr B2 point sources.</p>
+<p>Additionally, this gap is not perfectly evident in NH3 or CO.  In the HOPS NH3
+maps, there is a relative lack of emission at ~56 km/s - relative to
+neighboring regions; this is actually the peak of the line profile extracted
+from the ellipse!</p>
+<p>This is in contrast to the central &quot;Gas Hole&quot; which has been noted by others;
+it exists in CO and NH3.  There is almost certainly some NH3 self-absorption
+involved.  The &quot;Gas Hole&quot; coincides with the peak in other gas species and the
+peak in the dust emission, so it really seems to be a different phenomenon,
+having to do with line-of-sight confusion and excitation conditions.</p>
+<p>The one feature of the &quot;dust gap&quot; that distinguishes this part of Sgr B2 from
+the other regions surrounding it is that 8 micron emission can readily be
+observed here.  A little 24 micron emission is in the gap as well, but not as
+much as the 8 micron.  The 70 micron emission is quite weak, but not really
+deficient.  Perhaps in this region, very small grains are more common than in
+its surroundings?</p>
+<p>There's a lot more hypothesizing to be done here.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/position-velocity-diagrams.html" rel="bookmark" title="Permalink to Position-Velocity Diagrams">
+                    Position-Velocity Diagrams</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-09-24T00:00:00-06:00"> 2013/09/24 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>tl;dr version: IPython notebook <a class="reference external" href="http://keflavich.github.io/pvextractor/examples/IRAS05358Slicing.html">here</a>, code <a class="reference external" href="http://keflavich.github.io/pvextractor/">available on github</a></p>
+<div class="section" id="current-state-of-affairs">
+<h2>Current state of affairs</h2>
+<p>Position-velocity diagrams with arbitrary position axes have been a common tool
+for studying spectra for a long time, probably because the &quot;native&quot; format of
+long-slit spectra on CCDs is effectively a position-velocity diagram.</p>
+<p>It's becoming more common now to have data cubes (PPV) than 1D or 2D spectra.
+But PV diagrams still have utility.  Unfortunately, there aren't very good
+tools to produce them.</p>
+<p>There are plenty of tools that can slice along any of the native axes of a data
+cube.  If you take your data cube in RA/Dec space, extracting along lines of
+constant RA or Dec is trivial (<a class="reference external" href="http://star-www.dur.ac.uk/~pdraper/gaia/gaia.html">GAIA</a> can do it natively, but it's easy to
+slice a cube in IDL or python).</p>
+<p>However, if you wanted to slice along lines of constant GLON or GLAT, you'd
+have to reproject the cube to use this approach.  There are nice tools that
+implement cube rotation: CASA has an <a class="reference external" href="http://star-www.dur.ac.uk/~pdraper/gaia/gaia.html">imrebin recipe</a> and STARLINK has a
+rotation tool (though I can't find it now...).</p>
+<p>However, this approach is terribly inefficient if you want slices at multiple
+different angles, and it's outright awful if you want to track a filament.</p>
+</div>
+<div class="section" id="an-alternative-approach">
+<h2>An alternative approach</h2>
+<p>The alternative is to interpolate between pixels along a specified axis.  This
+can be done very efficiently in python using scipy's <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.interpolation.map_coordinates.html">map_coordinates</a>, which
+by default does a cubic-spline interpolation at the specified points.</p>
+<p>I've started to build a tool to extract position-velocity diagrams on this
+basis.  It's fully functional, but doesn't do anything interactive just yet.
+<a class="reference external" href="https://github.com/keflavich/pvextractor">pvextractor</a> is <a class="reference external" href="http://keflavich.github.io/pvextractor/">available on github</a>.</p>
+<p>There is a complete example demonstrating its use <a class="reference external" href="http://keflavich.github.io/pvextractor/examples/IRAS05358Slicing.html">here</a>.</p>
+<p>In short, though, it allows you to describe paths like this:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/paths_i05358.png" style="width: 800px;" />
+<p>and extract them into position-velocity diagrams like this:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/pv_i05358.png" style="width: 800px;" />
+</div>
+<div class="section" id="postscript-figshare">
+<h2>Postscript: Figshare</h2>
+<p>(note: postscript as in &quot;P.S.&quot;, not &quot;.ps&quot;)</p>
+<p>In order to create the example document (<a class="reference external" href="http://keflavich.github.io/pvextractor/examples/IRAS05358Slicing.html">here</a>), I needed a small data cube
+that could easily be downloaded. <a class="reference external" href="theastrodata.org">Dataverse</a> hosts the <a class="reference external" href="http://www.cfa.harvard.edu/COMPLETE/">COMPLETE</a> survey, but
+they make you jump through a javascript hoop to download their data, which
+means that it is not possible to write an easily reproducible script.  Too bad,
+since I would have used them except for this minor interface issue.</p>
+<p>Instead, I've found that <a class="reference external" href="http://figshare.com">figshare</a> has fixed up their interface since I last
+used them.  It was easy enough that I decided to upload my <a class="reference external" href="http://figshare.com/articles/IRAS_05358_3543_Data_Cubes/806315">IRAS 05358+3543
+data cubes</a> and had no trouble at all.  I also posted an update to the <a class="reference external" href="http://arxiv.org/abs/0910.2990">arxiv</a>
+page for the article indictating that the data are freely shared.  I'll do my
+best to share the data for the rest of my papers too, though it will take some
+time and I'll hit data limits for W5 pretty quickly.</p>
+</div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/blogging-from-ipython.html" rel="bookmark" title="Permalink to Blogging from IPython">
+                    Blogging from IPython</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-09-22T00:00:00-06:00"> 2013/09/22 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>[ <a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/keflavich/blog/master/content/BloggingFromIPython.ipynb">Notebook Form of this
+post</a>
+]</p>
+<p>There have been
+<a class="reference external" href="http://jmcarp.github.io/blog/2013/07/07/hello-world/">many</a>
+<a class="reference external" href="http://danielfrg.github.io/blog/2013/02/16/blogging-pelican-ipython-notebook/">other</a>
+<a class="reference external" href="http://danielfrg.github.io/blog/2013/03/08/pelican-ipython-notebook-plugin/">posts</a>
+about blogging in ipython, but they all included more overhead than I
+really wanted to deal with.</p>
+<p>Instead, I've gone directly to <a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/Carreau/posts/master/06-NBconvert-Doc-Draft.ipynb">the
+source</a>
+and used nbconvert in ipython 2.0 to convert my notebooks to rst, then
+put them through pelican.</p>
+<p>This post outlines my workflow.</p>
+<p>First, and most inconvenient, it is necessary to head any blog post with
+metadata. I don't have any convenient workflow to deal with that, I just
+write it in by hand in a raw text box (ctrl-m, t) as you can see above.
+<a class="reference external" href="http://danielfrg.github.io/">Daniel Rodriguez</a> took a <a class="reference external" href="http://danielfrg.github.io/blog/2013/03/08/pelican-ipython-notebook-plugin/">different
+approach</a>
+using the ipython metadata directly and an ipython plugin, but I didn't
+want to have to worry about installing plugins and I am definitely
+worried about breaking notebooks by messing with the
+<a class="reference external" href="https://github.com/ipython/ipython/wiki/IPEP-20%3A-Informal-structure-of-cell-metadata">metadata</a>
+as the ipy devs give some fairly <a class="reference external" href="https://gist.github.com/Carreau/4437348">strict
+warnings</a>.</p>
+<p>Next, the ipynb -&gt; rst step is fairly straightforward. I modified the
+rst template because I don't want to see the <tt class="docutils literal"><span class="pre">In[#]:</span></tt> and <tt class="docutils literal"><span class="pre">Out[#]:</span></tt>
+prefixes around my code. I also use <tt class="docutils literal">.. <span class="pre">code-block::</span></tt> rather than
+<tt class="docutils literal">.. code::</tt>.</p>
+<p>This very simple function below makes sure that my local <tt class="docutils literal">rst.tbl</tt>
+file is seen before ipython's. Their templates are in
+<tt class="docutils literal">IPython/nbconvert/templates</tt>. Note that you could normally use Jinja2
+templating and &quot;Extend&quot; their template, but I wanted to remove rather
+than extend.</p>
+<p>[
+<a class="reference external" href="https://github.com/keflavich/blog/blob/master/nbconverter.py">Source</a>
+]</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.nbconvert.exporters</span> <span class="kn">import</span> <span class="n">RSTExporter</span>
+
+<span class="k">def</span> <span class="nf">export</span><span class="p">(</span><span class="n">nbname</span><span class="p">,</span> <span class="n">outfilename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">exportRST</span> <span class="o">=</span> <span class="n">RSTExporter</span><span class="p">()</span>
+    <span class="c1"># exclude default paths</span>
+    <span class="n">exportRST</span><span class="o">.</span><span class="n">template_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="s1">&#39;/Users/adam/repos/blog&#39;</span><span class="p">]</span>
+
+    <span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="n">resources</span><span class="p">)</span> <span class="o">=</span> <span class="n">exportRST</span><span class="o">.</span><span class="n">from_filename</span><span class="p">(</span><span class="n">nbname</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">outfilename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">outfilename</span> <span class="o">=</span> <span class="n">nbname</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;ipynb&quot;</span><span class="p">,</span><span class="s2">&quot;rst&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfilename</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">body</span><span class="p">,</span><span class="n">resources</span>
+</pre></div>
+<p>I then run the script from the command line:
+<tt class="docutils literal"><span class="pre">~/virtual-ipydev/bin/ipython</span> ./nbconverter.py content/GenerateCVExample.ipynb</tt></p>
+<p>I'm using a virtual environment with ipython 2 installed because I'm not
+yet ready to make the jump to the dev version of ipython (though these
+days, with Travis and Jenkins around, it's probably safe to assume the
+dev version won't break anything).</p>
+<p>With this rst file generated, the only remaining step is
+<a class="reference external" href="http://blog.getpelican.com/">pelican</a>, which only requires a
+<tt class="docutils literal">make github</tt> command in the blog directory. Installing &amp; setting up
+pelican is reasonably easy, but not the topic of this post.</p>
+<p>I've made my own <a class="reference external" href="https://github.com/keflavich/pelican-themes/tree/master/mine">custom pelican
+theme</a>,
+so I generally need to update the theme before building:</p>
+<p><tt class="docutils literal"><span class="pre">pelican-themes</span> <span class="pre">--upgrade</span> <span class="pre">/Users/adam/repos/pelican-themes/mine</span> &amp;&amp; make github</tt></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/generating-a-cv-using-the-ads-labs-api.html" rel="bookmark" title="Permalink to Generating a CV using the ADS Labs API">
+                    Generating a CV using the ADS Labs API</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-09-21T00:00:00-06:00"> 2013/09/21 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <ul class="simple">
+<li>[ <a class="reference external" href="https://github.com/keflavich/generate_cv">Source code related to this
+post</a> ]</li>
+<li>[ <a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/keflavich/generate_cv/master/examples/GenerateCVExample.ipynb">Notebook
+form</a>
+]</li>
+<li>[ <a class="reference external" href="http://www.adamgginsburg.com/cv.htm">CV partly generated from this
+post</a> ]</li>
+</ul>
+<p>At <a class="reference external" href="http://dotastronomy.com/">.astronomy</a> this past week, the keynote
+speaker was <a class="reference external" href="https://www.cfa.harvard.edu/~alberto/">Alberto
+Accomazzi</a>, introducing ADS
+Labs and <a class="reference external" href="http://labs.adsabs.harvard.edu/adsabs/">ADS 2.0</a>, which are
+really quite impressive.</p>
+<p>I was inspired to use ADS Labs to help me auto-generate a nicely
+formatted CV for myself. I used <a class="reference external" href="https://twitter.com/astrowizicist">Andy
+Casey's</a>
+<a class="reference external" href="https://github.com/andycasey/ads-python">ADS-python</a> as a starting
+point: he introduces a useful convention of storing your <a class="reference external" href="https://github.com/adsabs/adsabs-dev-api#signup--access">ADS API
+Key</a>:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">get_dev_key</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; A convenience function for accessing a system-wide ADS Developer&#39;s Key &quot;&quot;&quot;</span>
+
+    <span class="n">ads_dev_key_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/.ads/dev_key&#39;</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ads_dev_key_filename</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ads_dev_key_filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+            <span class="n">dev_key</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">dev_key</span>
+
+    <span class="k">if</span> <span class="s1">&#39;ADS_DEV_KEY&#39;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;ADS_DEV_KEY&#39;</span><span class="p">]</span>
+
+    <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s2">&quot;no ADS API key found in ~/.ads/dev_key&quot;</span><span class="p">)</span>
+</pre></div>
+<p>We'll use <tt class="docutils literal">requests</tt> to send the request to ADS, then <tt class="docutils literal">json</tt> to
+parse the data.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+</pre></div>
+<p>We then query the database using a keyword query (parameter <tt class="docutils literal">q</tt>)
+specifying the author. Other required parameters are the API key
+(<tt class="docutils literal">dev_key</tt>) and a filter to select only astronomy articles. The
+maximum number of rows returned in the API is 200 right now, which I
+have set (the default is 10 or 20).</p>
+<div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;http://adslabs.org/adsabs/api/search/&#39;</span><span class="p">,</span>
+                         <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;q&#39;</span><span class="p">:</span><span class="s1">&#39;author:ginsburg, a&#39;</span><span class="p">,</span>
+                                 <span class="s1">&#39;dev_key&#39;</span><span class="p">:</span><span class="n">get_dev_key</span><span class="p">(),</span>
+                                 <span class="s1">&#39;rows&#39;</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span>
+                                 <span class="s1">&#39;filter&#39;</span><span class="p">:</span><span class="s1">&#39;database:astronomy&#39;</span><span class="p">})</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">J</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="n">J</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+<pre class="literal-block">
+[u'meta', u'results']
+</pre>
+<p>The JSON 'meta' key is just metadata about the query, include the number
+of matches and execution time.</p>
+<div class="highlight"><pre><span></span><span class="n">J</span><span class="p">[</span><span class="s1">&#39;meta&#39;</span><span class="p">]</span>
+</pre></div>
+<pre class="literal-block">
+{u'api-version': u'0.1',
+ u'count': 54,
+ u'hits': 54,
+ u'qtime': 7,
+ u'query': u'author:ginsburg, a'}
+</pre>
+<p>The 'results' key includes what we're actually interested in, under
+another key 'docs'.</p>
+<div class="highlight"><pre><span></span><span class="n">J</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+<pre class="literal-block">
+[u'docs']
+</pre>
+<div class="highlight"><pre><span></span><span class="n">datalist</span> <span class="o">=</span> <span class="n">J</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;docs&#39;</span><span class="p">]</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">datalist</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">datalist</span><span class="p">)</span>
+</pre></div>
+<pre class="literal-block">
+(list, 54)
+</pre>
+<p><tt class="docutils literal">datalist</tt> is a list of the retrieved bibliographic entries.</p>
+<div class="highlight"><pre><span></span><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+<pre class="literal-block">
+[u'bibcode',
+ u'keyword',
+ u'pubdate',
+ u'bibstem',
+ u'property',
+ u'aff',
+ u'author',
+ u'citation_count',
+ u'pub',
+ u'page',
+ u'volume',
+ u'database',
+ u'doi',
+ u'year',
+ u'abstract',
+ u'title',
+ u'identifier',
+ u'issue',
+ u'id']
+</pre>
+<p>At this point, most of the remaining work is building up a nicely
+formatted output. We'll start with a web-specific example, using HTML
+unordered lists.</p>
+<p>In this example, we'll make a list item that creates a hyperlink for the
+author names and uses a reasonably standard bibliographic format:</p>
+<pre class="literal-block">
+Authors Month, Year, Journal
+Title
+</pre>
+<div class="highlight"><pre><span></span><span class="n">fmt</span> <span class="o">=</span> <span class="p">(</span><span class="sa">u</span><span class="s1">&#39;                &#39;</span>
+<span class="sa">u</span><span class="s1">&#39;&lt;li&gt;&lt;a class=&quot;norm&quot; href=&quot;http://adsabs.harvard.edu/abs/</span><span class="si">{adsbibid}</span><span class="s1">&quot;&gt;</span><span class="si">{creator}</span><span class="s1">&lt;/a&gt;&#39;</span>
+<span class="sa">u</span><span class="s1">&#39; </span><span class="si">{month}</span><span class="s1">, &lt;b&gt;</span><span class="si">{year}</span><span class="s1">&lt;/b&gt; </span><span class="si">{journal}</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="sa">u</span><span class="s1">&#39;                &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;</span><span class="si">{titlestring}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+<p>We need to do a little data wrangling to get the individual JSON entries
+into the appropriate format:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">wrangle</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">authorname</span><span class="o">=</span><span class="s1">&#39;Ginsburg&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Create new fields from the input data to insert into the format string &quot;&quot;&quot;</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;pubdate&#39;</span><span class="p">][</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span>
+    <span class="c1"># Generally, the last identifier is the published version,</span>
+    <span class="c1"># while the first is an arXiv identifier</span>
+    <span class="c1"># (data[&#39;identifier&#39;] is a list)</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;adsbibid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;identifier&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1"># data[&#39;title&#39;] &amp; [&#39;pub&#39;] are also lists</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;titlestring&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;journal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;bibstem&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># This trick bolds my name in the list of authors</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;authors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&lt;b&gt;</span><span class="si">{}</span><span class="s1">&lt;/b&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">authorname</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">else</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">]]</span>
+    <span class="c1"># Separate names by semicolons</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;creator&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;authors&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+<p>The return from <tt class="docutils literal">wrangle</tt> is a dict with new keys that match the
+keywords in the format string. The python <tt class="docutils literal">string.format</tt> method will
+nicely ignore any extra keywords that we're uninterested in.</p>
+<div class="highlight"><pre><span></span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">wrangle</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+<pre class="literal-block">
+u'                &lt;li&gt;&lt;a class=&quot;norm&quot; href=&quot;<a class="reference external" href="http://adsabs.harvard.edu/abs/2013ApJ...773..102F">http://adsabs.harvard.edu/abs/2013ApJ...773..102F</a>&quot;&gt;Fallscheer, C.; Reid, M. A.; Di Francesco, J.; Martin, P. G.; Hill, T.; Hennemann, M.; Nguyen-Luong, Q.; Motte, F.; Men'shchikov, A.; Andrxe9, Ph.; Ward-Thompson, D.; Griffin, M.; Kirk, J.; Konyves, V.; Rygl, K. L. J.; Sadavoy, S.; Sauvage, M.; Schneider, N.; Anderson, L. D.; Benedettini, M.; Bernard, J. -P.; Bontemps, S.; &lt;b&gt;Ginsburg, A.&lt;/b&gt;; Molinari, S.; Polychroni, D.; Rivera-Ingraham, A.; Roussel, H.; Testi, L.; White, G.; Williams, J. P.; Wilson, C. D.; Wong, M.; Zavagno, A.&lt;/a&gt; 08, &lt;b&gt;2013&lt;/b&gt; ApJn                &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Herschel Reveals Massive Cold Clumps in NGCxa07538'
+</pre>
+<p>Now to show it in the notebook...</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">IPython.display</span>
+<span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">wrangle</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+</pre></div>
+<p>You can make a complete bibliography by looping over a few entries. The
+ordered list (<tt class="docutils literal">&lt;ol&gt;</tt>) tag makes a numbered list.</p>
+<div class="highlight"><pre><span></span><span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&lt;ol&gt;&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">wrangle</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="n">ii</span><span class="p">]))</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;&lt;/ol&gt;&quot;</span>
+<span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</pre></div>
+<p>If you want to make sure you only include refereed articles, use the
+'property' tag.</p>
+<div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">[</span><span class="s1">&#39;REFEREED&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;property&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span><span class="p">]</span>
+</pre></div>
+<pre class="literal-block">
+[True, False, True, False, False, False, True, True, False, False, False, False, True, True, True, False, False, True, True, False, False, True, True, True, False, False, False, False, True, False, False, True, True, True, True, True, True, False, False, False, False, False, False, True, True, False, False, False, False, False, True, False, False, True]
+</pre>
+<p>And don't forget that you can also include the citation count:</p>
+<div class="highlight"><pre><span></span><span class="nb">print</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;citation_count&#39;</span><span class="p">])</span>
+                <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span>
+                <span class="k">if</span> <span class="s1">&#39;citation_count&#39;</span> <span class="ow">in</span> <span class="n">d</span> <span class="ow">and</span> <span class="s1">&#39;REFEREED&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;property&#39;</span><span class="p">]])</span>
+</pre></div>
+<pre class="literal-block">
+Fallscheer, C. 2013: 0
+Ellsworth-Bowers, Timothy P. 2013: 2
+Smith, Nathan 2013: 0
+Harvey, Paul M. 2013: 2
+Bressert, E. 2012: 10
+Ginsburg, A. 2012: 11
+Bally, John 2012: 0
+Ginsburg, Adam 2011: 5
+Battersby, C. 2011: 22
+Schlingman, Wayne M. 2011: 17
+Ginsburg, Adam 2011: 6
+van Aarle, E. 2011: 12
+Aguirre, James E. 2011: 72
+Bally, John 2010: 36
+Battersby, Cara 2010: 30
+Yan, Chi-Hung 2010: 5
+Bally, J. 2010: 20
+Dunham, Miranda K. 2010: 27
+Rosolowsky, Erik 2010: 80
+Ginsburg, Adam G. 2009: 10
+Rubin, D. 2009: 23
+van de Steene, G. C. 2008: 4
+Golitsyn, G. S. 1985: 4
+</pre>
+<div class="section" id="wishlist">
+<h2>Wishlist</h2>
+<p>There are a few other features that would be nice to add to the CV, but
+some are not yet well-supported.</p>
+<ol class="arabic simple">
+<li>You can get the full name, but right now not the short name
+('bibstem'), of the journal</li>
+<li>The bibtex entry is important for generating tex versions of CVs.
+Currently, it is not possible to completely reproduce one, largely
+because of point #1.</li>
+</ol>
+<p>However, the ADS folks will certainly change this soon. You can find out
+if they have by querying their API settings. If the query below returns
+&quot;True&quot;, then you can access the bibstem.</p>
+<p>UPDATE 9/23/2013: Jay Luker &#64;ADS <a class="reference external" href="https://twitter.com/lbjay/status/382138570632204291">added 'bibstem' to the allowed return
+entries</a></p>
+<div class="highlight"><pre><span></span><span class="n">permissions_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;http://adslabs.org/adsabs/api/settings/&#39;</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;dev_key&#39;</span><span class="p">:</span><span class="n">get_dev_key</span><span class="p">()})</span>
+<span class="n">permissions</span> <span class="o">=</span> <span class="n">permissions_response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="s1">&#39;bibstem&#39;</span> <span class="ow">in</span> <span class="n">permissions</span><span class="p">[</span><span class="s1">&#39;allowed_fields&#39;</span><span class="p">]</span>
+</pre></div>
+<pre class="literal-block">
+True
+</pre>
+<p>In the meantime, you can get most of the way there. We'll create
+&quot;Article&quot; entries for any articles or eprints and ignore abstracts
+(e.g., conference abstracts). I don't have any books, but for others
+that might be useful.</p>
+<p>The approach we'll use is also a good way to reject unwanted articles in
+the HTML bibliography above.</p>
+<div class="highlight"><pre><span></span><span class="n">bibfmt</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;&quot;&quot;@article{{</span><span class="si">{tagname}</span><span class="s2">,</span>
+<span class="s2">abstract={{</span><span class="si">{abstract}</span><span class="s2">}},</span>
+<span class="s2">author={{</span><span class="si">{bibtexauthors}</span><span class="s2">}},</span>
+<span class="s2">month={{</span><span class="si">{month}</span><span class="s2">}},</span>
+<span class="s2">pages={{</span><span class="si">{page}</span><span class="s2">}},</span>
+<span class="s2">title={{</span><span class="si">{titlestring}</span><span class="s2">}},</span>
+<span class="s2">year={{</span><span class="si">{year}</span><span class="s2">}},</span>
+<span class="s2">volume={{</span><span class="si">{volume}</span><span class="s2">}},</span>
+<span class="s2">journal={{</span><span class="se">\\</span><span class="si">{lowercasejournal}</span><span class="s2">}}</span>
+<span class="s2">}}&quot;&quot;&quot;</span>
+</pre></div>
+<p>Of course, it's necessary to wrangle the data again for the appropriate
+author list formatting for bibtex:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">wrangleauthors</span><span class="p">(</span><span class="n">authorlist</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Fit the author list into a bibtex-friendly format.</span>
+<span class="sd">    Not the cleanest hack, since we need to allow for single-name</span>
+<span class="sd">    authors (e.g., astropy collaboration, Planck collaboration, etc.)</span>
+<span class="sd">    The triple braces are needed because TeX uses them&quot;&quot;&quot;</span>
+    <span class="n">splita</span> <span class="o">=</span> <span class="p">[[</span><span class="n">b</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)]</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">authorlist</span><span class="p">]</span>
+    <span class="n">bracketed</span> <span class="o">=</span> <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;{{</span><span class="si">{}</span><span class="s1">}}, </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="s2">&quot;~&quot;</span><span class="p">))</span>
+                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+                 <span class="k">else</span> <span class="sa">u</span><span class="s1">&#39;{{</span><span class="si">{}</span><span class="s1">}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                 <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">splita</span><span class="p">]</span>
+    <span class="k">return</span> <span class="sa">u</span><span class="s2">&quot; and &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">bracketed</span><span class="p">)</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">wrangleauthors</span><span class="p">(</span><span class="n">datalist</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;author&#39;</span><span class="p">])</span>
+</pre></div>
+<pre class="literal-block">
+u&quot;{Fallscheer}, C. and {Reid}, M.~A. and {Di Francesco}, J. and {Martin}, P.~G. and {Hill}, T. and {Hennemann}, M. and {Nguyen-Luong}, Q. and {Motte}, F. and {Men'shchikov}, A. and {Andrxe9}, Ph. and {Ward-Thompson}, D. and {Griffin}, M. and {Kirk}, J. and {Konyves}, V. and {Rygl}, K.~L.~J. and {Sadavoy}, S. and {Sauvage}, M. and {Schneider}, N. and {Anderson}, L.~D. and {Benedettini}, M. and {Bernard}, J.~-P. and {Bontemps}, S. and {Ginsburg}, A. and {Molinari}, S. and {Polychroni}, D. and {Rivera-Ingraham}, A. and {Roussel}, H. and {Testi}, L. and {White}, G. and {Williams}, J.~P. and {Wilson}, C.~D. and {Wong}, M. and {Zavagno}, A.&quot;
+</pre>
+<p>Now we can start looping through, performing checks for article status,
+and making bibentries. We'll use python's <tt class="docutils literal">dateutils.parse</tt> to turn
+month numbers into names</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dateutil.parser</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span><span class="p">:</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;bibtexauthors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wrangleauthors</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">])</span>
+
+    <span class="c1"># pubdates don&#39;t include days, and sometimes don&#39;t include months,</span>
+    <span class="c1"># so we have to be careful</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dateutil</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;pubdate&#39;</span><span class="p">][:</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%B&quot;</span><span class="p">)</span>
+                  <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;pubdate&#39;</span><span class="p">][</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;00&#39;</span>
+                  <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="c1"># To make the standard macros, e.g. \apj, \aa</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;lowercasejournal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;bibstem&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="c1"># list -&gt; string</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;titlestring&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># need to make sure there is something to put in the volume field</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;volume&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;volume&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;volume&#39;</span> <span class="ow">in</span> <span class="n">d</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="c1"># tagname is [First author&#39;s last name][year]</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;tagname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">bibdata</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datalist</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s1">&#39;ARTICLE&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;property&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="s1">&#39;EPRINT&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;property&#39;</span><span class="p">]:</span>
+        <span class="n">bibdata</span> <span class="o">+=</span> <span class="n">bibfmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+</pre></div>
+<p>Now this data can be saved to a bibliography file and parsed by LaTeX.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">codecs</span> <span class="c1"># for writing unicode</span>
+
+<span class="k">with</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;mypapers.bib&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">bibdata</span><span class="p">)</span>
+</pre></div>
+<p>Future work:</p>
+<ul class="simple">
+<li>Verify the bibtex</li>
+<li>Generate the CV LaTeX and compile it</li>
+</ul>
+</div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/another-attempt-to-get-64-bit-python-on-snow-leopard.html" rel="bookmark" title="Permalink to Another attempt to get 64 bit python on Snow Leopard">
+                    Another attempt to get 64 bit python on Snow Leopard</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Sam Skillman posted <a class="reference external" href="http://casa.colorado.edu/~skillman/research_and_codes/files/5426de84108df075adee2e9a5c23d90e-4.html">his attempt to get 64 bit python on snow leopard</a>.
+It worked, but you need to install python with --enable-framework and
+NOT --prefix and NOT --enable-universalSDK. It is 64-bit only, not
+universal: universal causes trouble.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/bash-discoveries-readline-questions.html" rel="bookmark" title="Permalink to BASH discoveries, readline questions">
+                    BASH discoveries, readline questions</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>1. `` shopt -p ``
+Maybe my hostname completion worked and then stopped working because the
+bash option hostcomplete was not set. Duh! Why? I don't know. Anyway,
+`` shopt -s hostcomplete`` solves the problem.
+`` nocaseglob `` is also pretty cool (case insensitive tab completion)
+2. it's really hard to search for readline stuff on google. Can anyone
+explain to me how BASH readline works? I would REALLY like to make bash
+readline work like ipython, in which you can start typing a command and
+hit the 'up' key to search through the history for anything beginning
+with the stuff you've typed up to that point. But I can't even find
+documentation for the ipython readline! Any hints, anyone?
+3. my desktop at work blocks ssh connections. I can ssh into some
+computers and then into it, but not directly into it.
+...as usual, I made a list where not-a-list would have sufficed, and I
+had to add the last thing because a 2-item list is dumb.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/command-line-escape-key.html" rel="bookmark" title="Permalink to command line & escape key">
+                    command line &amp; escape key</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Problem: in both the bash command line and ipython, if I hit escape
+twice, I can never again do history-search-backwards (i.e. when you type
+part of a command and type &quot;up&quot; and reverse-search through your command
+history). Any idea how to fix this?</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 4
+        <a href="https://keflavich.github.io/blog/tag/python2.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - bolocat</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2013/05/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/bgps-point-source-recovery-experiment-23-results.html">BGPS Point Source Recovery - Experiment 23 results</a>
+              </li>
+              <li class="post">
+                  2013/05/16
+                  <br>
+                  <a href="https://keflavich.github.io/blog/bgps-point-source-recovery.html">BGPS Point Source Recovery</a>
+              </li>
+              <li class="post">
+                  2011/08/30
+                  <br>
+                  <a href="https://keflavich.github.io/blog/bolocat-v1-v2-comparison-with-new-calibration.html">Bolocat v1-v2 comparison with new calibration</a>
+              </li>
+              <li class="post">
+                  2011/08/23
+                  <br>
+                  <a href="https://keflavich.github.io/blog/bolocat-v1-v2-comparison.html">Bolocat v1-v2 comparison</a>
+              </li>
+              <li class="post">
+                  2011/07/27
+                  <br>
+                  <a href="https://keflavich.github.io/blog/examining-bolocat.html">Examining bolocat</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/bgps-point-source-recovery-experiment-23-results.html" rel="bookmark" title="Permalink to BGPS Point Source Recovery - Experiment 23 results">
+                    BGPS Point Source Recovery - Experiment 23 results</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-05-20T14:45:00-06:00"> 2013/05/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Experiment 23, run in mid-May 2013, created power-law synthetic astrophysical
+sky maps with added point sources in order to examine the pipeline + bolocat's
+ability to recover point source flux densities accurately.</p>
+<p>For the purpose of the BGPS v2 paper, this data is incorporated into Section
+5.3: the angular transfer function and comparison with other data sets.</p>
+<p>The parameter space explored includes 3 steps in power-spectrum background,
+$\alpha_{ps}=1,1.5,2$, which is the major parameter being explored.  A
+background with $\alpha_{ps}=2$ is approximately what we measure in both HiGal
+and the reproduced regions of the BGPS power-spectrum, so it's probably the
+most realistic, but it is also very bad for the pipeline: most of the power is
+on the largest angular scales.  $\alpha_{ps}=1$, on the other hand,
+beautifully creates point-source-like structures.</p>
+<p>These two images show the results of $\alpha_{ps}=2$ and $\alpha_{ps}=1$
+skies respectively with faint point sources on top.  The point sources are more
+pointy and stick out more in the $\alpha_{ps}=1$ situation, but the
+$\alpha_{ps}=1$ map also looks more generally point-like, so there is greater
+confusion.  If you believe that there are genuine point sources in the 1.1 mm
+maps, the $\alpha_{ps}=1$ would actually be very difficult to deal with since
+many extracted sources would actually be part of the background.</p>
+<img alt="" src="https://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp5.0E-05_sky-2.0_seed00_peak5.0E-03_smooth_withptsrc_label_compare.png" style="width: 800px;" />
+<img alt="" src="https://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp5.0E-05_sky-1.0_seed00_peak5.0E-03_smooth_withptsrc_label_compare.png" style="width: 800px;" />
+<p>We also explored two different sets of source brightnesses, 0.1-1 and 1-10
+Jy/beam, uniformly distributed.  We picked a high source density, 500 in a
+512x512 pixel map, to get decent source extraction statistics - the crowding is
+still fairly low and does not significantly affect the extracted source
+properties (only a few source overlap with others).  The bright sources are
+obviously better-recovered than the faint, with good recovery for all of the
+backgrounds explored.  The faint sources, on the other hand, were fairly
+sensitive to the background.</p>
+<p>The background levels used were $\sim1,2,10$ Jy/beam at the peak for the
+$\alpha=2$ maps (they were lower for the other power-laws, so those will be
+ignored from now on).  As described in the paper, the faint source recovery was
+good for the low peak backgrounds, but recovery was essentially nonexistent for
+the 10 Jy/beam background - point sources were not detected at all.</p>
+<p>Despite the relative simplicity of this experiment, the data took 51 GB of
+storage and took about half a day to run.</p>
+<p>In principle, one would like to examine a range of different source
+distributions (power-law flux distribution, upper/lower limits, sizes) on a
+range of different power-spectrum backgrounds - for the purpose of the v2
+paper, this approach would be thoroughly excessive.  However, I expect Tim will
+be taking this sort of approach for the next paper.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/bgps-point-source-recovery.html" rel="bookmark" title="Permalink to BGPS Point Source Recovery">
+                    BGPS Point Source Recovery</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-05-16T12:21:00-06:00"> 2013/05/16 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In the last couple drafts of the BGPS paper (e.g. <a class="reference external" href="https://github.com/keflavich/bgpsv2/blob/master/v2_draft0515.pdf?raw=true">the May 15, 2013 draft</a>),
+we've included a single simulation demonstrating the flux recovery of the
+Bolocat:</p>
+<img alt="" src="https://raw.github.com/keflavich/bgpsv2/master/figures/in_vs_out_bolocat_FLUX_40.png?login=keflavich&amp;token=8ff3096beef7bf15627a7a6b7363cb49" style="width: 800px;" />
+<img alt="" src="https://raw.github.com/keflavich/bgpsv2/master/figures/in_vs_out_bolocat_FLUX_120.png?login=keflavich&amp;token=2c6e9896c5df6824e9881c94d6af542f" style="width: 800px;" />
+<p>These figures are regarded as very important, as they demonstrate the
+capability of recovering accurate flux density measurements from a realistic
+sky using bolocat.</p>
+<p>However, the above figures show a simulation only for one set of parameters,
+with <span class="math">\(\alpha=1\)</span> in the power-law flux distribution, which unfortunately
+is not realistic according to &quot;Figure 8&quot;:</p>
+<img alt="" src="https://raw.github.com/keflavich/bgpsv2/master/figures/l030_higal_bgps_powerspec_compare.png?login=keflavich&amp;token=fa363ee3e28903c751c2a3c9f2b318a0" style="width: 800px;" />
+<p>So I've started up a new experiment, experiment #23, to examine this problem.</p>
+<p>The problem has a few layers:</p>
+<ol class="arabic simple">
+<li>The reason I used <span class="math">\(\alpha=1\)</span> is that it looks much like a realistic
+BGPS map after processing, in the sense that most of the field is empty
+but there are a few hundred sources in the map.  However, <span class="math">\(\alpha=1\)</span>
+is not a realistic representation of the measured power spectra.</li>
+<li><span class="math">\(\alpha=2\)</span> maps with the previous normalization had a peak value of
+18 Jy, which resulted in heavily signal-dominated output maps that did not
+resemble BGPS maps.</li>
+<li>The normalization is tricky.  One of the key goals of the simulations was to
+test the effect of different atmospheric to astrophysical signal ratios on
+the angular transfer function; in order to accomplish this, it was necessary
+to scale the atmospheric power based on the astrophysical power at its peak
+in fourier space.  i.e., in real timestreams, we can measure the astrophysical
+to atmospheric power ratio, but we have to perform that measurement somewhere
+that the angular transfer function is known to be reliable.  This is done at
+about 1 Hz.</li>
+<li>The normalization is important because of the noise level.  In the
+simulations, we use a fixed noise level of about 30 mJy in the timestreams
+to match our best observations (though it is not difficult to scale this to
+other levels).  This fixed noise level means that, for some normalizations,
+all pixels are statistically significant.  Also, even though the noise level
+is fixed, it will be higher because of intrinsic noise in a power-law
+distributed map.</li>
+<li>The normalizations used in experiment #21, the angular transfer function
+measurement, were selected such that there would be high signal-to-noise at
+all angular scales.  This means that white noise would not be dominant on
+any angular scale, since white noise is equivalent to <span class="math">\(\alpha=0\)</span>.  So
+it wasn't crazy to use these ridiculously high-flux maps, but it is not
+feasible to use the same maps for analysis of point sources.  In maps for
+which we're interested in small-angular-scale features (&lt;100&quot;), we want the
+maps to be primarily noise-dominated with a handful of bright features
+either caused by adding point sources directly or from the local peaks in
+the power-law distributed flux.</li>
+</ol>
+<p>Some notes along the way:</p>
+<blockquote>
+<ul class="simple">
+<li>Using a power-law background, the point-source sensitivity is much worse
+than without a power-law background.   This is intuitive: a 100 mJy source
+on a 200 mJy background (which may easily include power fluctuations on the
+smallest scales of comparable magnitude) is not going to be recovered.</li>
+<li>Doubly important: a 1 Jy source should have <em>peak</em> amplitude 1 Jy, but the
+current method of adding point sources adds them as delta functions that are
+later convolved, conserving the <em>total flux</em> rather than the <em>peak flux</em>.
+This needs to be changed! (has been now)</li>
+</ul>
+</blockquote>
+<p>Here are some examples of what the before/after look like with point sources added.
+The first has bright sources, the second faint sources:</p>
+<img alt="" src="https://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/BGPS_exp23_bright.png" style="width: 800px;" />
+<img alt="" src="https://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/BGPS_exp23_missingsrcs.png" style="width: 800px;" />
+<p>With these new figures, the 40&quot; apertures work fine, but the 120&quot; apertures are
+still utterly junk.  This does not make sense.</p>
+<img alt="" src="https://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_40_testexp23.png" style="width: 800px;" />
+<img alt="" src="https://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_80_testexp23.png" style="width: 800px;" />
+<img alt="" src="https://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_120_testexp23.png" style="width: 800px;" />
+<p>A careful analysis of a single source shows that something is wrong.  Here are some annular extractions
+followed by the image:</p>
+<pre class="literal-block">
+Input Map:
+reg sum npix    mean    median  min         max     var         stddev      rms
+--- --- ----    ----    ------  ---         ---     ---         ------      ---
+1   26.3323 22  1.19692 1.18083 1.10787     1.28825 0.00208826  0.0456975   1.1978
+2   77.8553 74  1.0521  1.047   1.00426     1.123   0.000929507 0.0304878   1.05254
+3   124.868 122 1.02351 1.02869 0.996566    1.04427 0.000260295 0.0161337   1.02363
+
+Output Map:
+reg sum         npix    mean        median      min         max         var         stddev      rms
+--- ---         ----    ----        ------      ---         ---         ---         ------      ---
+1   3.89157     23      0.169199    0.175204    0.086872    0.255151    0.00206254  0.0454152   0.175188
+2   2.06843     74      0.0279517   0.0275116   -0.0695484  0.155258    0.00210834  0.0459167   0.0537554
+3   0.502601    123     0.00408619  0.00629906  -0.121023   0.0834974   0.00143969  0.0379432   0.0381626
+
+Backgrounds:
+Input Map:
+reg  sum      npix  mean      median    min       max      var          stddev     rms
+---  ---      ----  ----      ------    ---       ---      ---          ------     ---
+1    297.054  291   1.0208    1.02293   0.98094   1.05234  0.000313419  0.0177037  1.02096
+3    2538.6   2618  0.969671  0.972413  0.859551  1.12495  0.0015557    0.0394423  0.970473
+
+Output Map:
+reg  sum      npix  mean        median      min        max       var         stddev     rms
+---  ---      ----  ----        ------      ---        ---       ---         ------     ---
+1    1.49461  291   0.00513613  0.00729431  -0.121023  0.133141  0.001586    0.0398247  0.0401545
+3    5.83372  2618  0.00222831  0.00194597  -0.195075  0.181155  0.00211747  0.046016   0.0460699
+
+Bolocat for this source:
+In [200]: fields
+Out[200]: ['FLUX_40', 'FLUX_40_NOBG', 'BG_40', 'FLUX_120', 'FLUX_120_NOBG', 'BG_120']
+
+In [198]: [inp[61][f] for f in fields]
+Out[198]: [0.1896538, 1.3536235, 0.38071653, 0.83893013, 10.77737, 0.42352486]
+
+In [199]: [m20[61][f] for f in fields]
+Out[199]: [0.18015364, 0.18674377, -0.016305592, 0.2868295, 0.29759517, -0.00027596406]
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/annulus_exam.png" style="width: 800px;" />
+<p>With background apertures:</p>
+<img alt="" src="https://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/annulus_exam_bgapers.png" style="width: 800px;" />
+<p>However, note that the background are computed using the <tt class="docutils literal">mmm.pro</tt>
+sky-background estimation procedure over a range <span class="math">\(2r\)</span> to <span class="math">\(4r\)</span>
+(i.e., 40-80&quot; and 120-240&quot; radius for the 40&quot; and 120&quot; diameter apertures).</p>
+<p>The numbers shown by ds9 disagree fairly severely with those from bolocat.
+In particular, it appears that the background estimate returned by <tt class="docutils literal">mmm.pro</tt>
+is off by a factor of 2, in this case giving 0.42 instead of 0.97.  Turns out
+this was due to an indexing error that did not affect the pipeline results in
+any way.</p>
+<p>Out of date analysis:
+Bolocat's flux total in the 120&quot; aperture is 10.77 Jy/beam, background is 0.42
+Jy/beam.  There are 218 pixels.  The resulting flux should be
+(10.77-0.42*218/23.8), but this gives 6.9 instead of the expected 0.84.  Why?</p>
+<p>If we do the same with the ds9 numbers, we get a total of 9.62 Jy/beam,
+background 0.97 Jy/beam average, so: (9.62 - 0.97*218/23.8) = 0.74.
+This is consistent with bolocat, and very very wrong.</p>
+<p>If we take our background to be 1.02 instead of 0.97, we get 0.28 Jy/beam,
+which is exactly the right answer according to the pipeline.  1.02 comes from
+taking a much more local background subtraction from r=40 to r=80 arcsec,
+which isn't really acceptable.  If we go from r=60 to r=120, the disagreement remains
+fairly bad, with f=0.38 Jy/beam, but certainly a lot better.</p>
+<pre class="literal-block">
+Bolocat after the correction:
+In [297]: [m20[61][f] for f in fields]
+Out[297]: [0.18015364, 0.18674377, 0.00578439, 0.25477698, 0.29759517, 0.0041758944]
+
+In [298]: [inp[61][f] for f in fields]
+Out[298]: [0.1896538, 1.3536235, 1.0216572, 0.40137589, 10.77737, 1.0119308]
+</pre>
+<p>This may mean that we'll need to re-do aperture extraction with a tighter
+background region everywhere.  I made the change to <tt class="docutils literal">object_photometry</tt>.</p>
+<p>However, even with the change, even in the best case, <tt class="docutils literal">FLUX_120</tt> appears to
+be totally unreliable.  <tt class="docutils literal">FLUX_80</tt> is acceptable with the change, but only for
+bright sources (for faint sources, &lt;1 Jy, there is no recovery at all - I think this
+must be an issue of the source brightness still not being calculated correctly):</p>
+<img alt="" src="https://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_80_bright_1.0E-05.png" style="width: 800px;" />
+<p>I'll have to continue this analysis tomorrow once the full suite of simulations
+has completed, but I strongly suspect that we'll have to recommend strictly
+against using <tt class="docutils literal">FLUX_120</tt> if the background is expected to be <span class="math">\(\alpha=2\)</span>
+distributed.</p>
+<div class="section" id="day-2">
+<h2>Day 2</h2>
+<p>The simulations have partly completed.  After correcting the error with
+convolved point sources vs.  delta functions, I reset the flux distributions to
+be 0.05 to 1.0 Jy for the &quot;faint&quot; distribution and 0.1 to 50.0 Jy for the
+&quot;bright&quot; distribution (both with power-law distributions <span class="math">\(\alpha=2\)</span>).</p>
+<p>The results can be summarized:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>In the presence of complex background, i.e power-law distributed flux density
+with amplitude comparable to the detected source brightness, only the smallest
+aperture (40&quot;) is reliable (i.e., recovers a flux in the input and
+processed map).</li>
+<li>The recovered flux density has a very high dispersion in the presence of
+high-amplitude power-law flux.  &quot;Very high&quot; = <span class="math">\(\sigma \gtrsim 1\)</span>
+around a mean of 1.</li>
+<li>There is no evident dependence of the maps on the atmospheric properties.
+Therefore, there's no sense in varying the atmospheric properties in the
+simulations.</li>
+</ol>
+</blockquote>
+<p>I decided the simulations needed changing again.  First, there was excessive
+sampling in astro/atmo parameter space; this is not needed (see point 3).  More
+important is the power-law distribution map's peak flux.  Also, it is more
+important to get decent sampling of bright-ish sources than to have a
+&quot;physically accurate&quot; point source distribution; the distribution of sources
+does not affect the recovery, but it does affect the signal-to-noise of the
+recovery <em>measurement</em>.  Please don't ask me to defend this statement; it would
+require another 10 hours of computer time + me time that I really don't want to
+allocate, but I'm confident that it is true.</p>
+<p>The essential conclusion is that, for <span class="math">\(\alpha=2\)</span>, point source recovery
+is only possible if the point source is brighter than the background, which is
+a very intuitive result.  Background annulus subtraction isn't very effective
+at pulling out sources.</p>
+<p>Conclusions:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>These experiments show that source recovery is very poor in the presence of a
+bright power-law background: it is not possible to reliably extract point
+sources from a map filled with power-law distributed emission brighter than or
+comparable to the point sources.</li>
+<li>The 120&quot; apertures aren't really good for anything.</li>
+<li>There is so much source-extraction parameter space out there that any
+further study would really deserve its own paper.</li>
+</ol>
+</blockquote>
+<p>Additional plots of interest:</p>
+<p>40&quot; aperture in the presence of a bright background with faint sources:</p>
+<img alt="" src="https://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_40_faint_5.0E-03.png" style="width: 800px;" />
+<p>Versus the same with a faint background:</p>
+<img alt="" src="https://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_40_faint_1.0E-03.png" style="width: 800px;" />
+<p>Compare these to the 120&quot; equivalents (bright then faint background):</p>
+<img alt="" src="https://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_120_faint_p5.0E-03.png" style="width: 800px;" />
+<img alt="" src="https://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/in_vs_out_bolocat_FLUX_120_faint_p1.0E-03.png" style="width: 800px;" />
+<p>It's fairly easy to see why there are issues with the bright background and the
+120&quot; apertures.  In this image, bright background on the left, faint background
+on the right, with faint sources (0.1-1 Jy).</p>
+<img alt="" src="https://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/faint_vs_bright_background.png" style="width: 800px;" />
+<p>It's more helpful to look at that previous image with the source contours
+superposed.  These images really give a nice feel for what it means to have
+point sources subsumed in <span class="math">\(\alpha=2\)</span> background.</p>
+<img alt="" src="https://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp5.0E-05_sky-2.0_seed00_peak5.0E-03_smooth_withptsrc_label_compare.png" style="width: 800px;" />
+<img alt="" src="https://keflavich.github.io/blog/bgps/images/bgps-point-source-recovery/exp23_faint_ds2_astrosky_arrang45_atmotest_amp3.2E-05_sky-2.0_seed00_peak1.0E-03_smooth_withptsrc_label_compare.png" style="width: 800px;" />
+</div>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script> </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/bolocat-v1-v2-comparison-with-new-calibration.html" rel="bookmark" title="Permalink to Bolocat v1-v2 comparison with new calibration">
+                    Bolocat v1-v2 comparison with new calibration</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-08-30T21:04:00-06:00"> 2011/08/30 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <img alt="" src="http://2.bp.blogspot.com/-c3_0Rlbv2qM/Tl1P5FhWC8I/AAAAAAAAGdc/oiFxmO7vrUU/s320/total_v1v2_40arcsec_ratio_compare.png" />
+<img alt="" src="http://4.bp.blogspot.com/-Gk60vlSPkWk/Tl1P5c4THoI/AAAAAAAAGdk/E7zdIwtyD3w/s320/total_v1v2_40arcsec_fit_compare.png" />
+<p>I re-examined the Bolocat data on l351 after re-running the pipeline
+with the new calibration curve. The change wasn't all that great. See
+<a class="reference external" href="http://bolocam.blogspot.com/2011/08/bolocat-v1-v2-comparison.html">this post</a> for a brief description of the procedure.
+In the data below, I've fit the residuals as a function of v1.0.2 flux
+density in an aperture (source mask) with a line. The slope of the line
+should ideally be zero - that would indicate a multiplicative offset is
+an acceptable correction.
+Nicely, in the 40&quot; aperture case, I see no reason to exclude the m=0
+case. For the most reliable data - the 13pca - the slope is rather small
+and the &quot;correction factor&quot; is disturbingly close to what we recommended
+(1.5). We have no right to be that lucky...</p>
+<img alt="" src="http://2.bp.blogspot.com/-W08ZvMS3M90/TlwhPW62NQI/AAAAAAAAGc8/8YRm6iyDPO8/s320/l351_40arcsec_residualfit.png" />
+<p>...and so perhaps wer are not. The source mask includes more area and
+therefore is more sensitive to extended flux recovery. The slopes are
+not consistent with 0 - just look at the data above and below 2 Jy to
+see that there is a difference. The multiplicative correction of 1.5 is
+decent for a pretty wide range of flux densities, but is inadequate for
+the brightest sources. This is somewhat interesting... it implies that
+the brightest sources also lie on the highest backgrounds.</p>
+<img alt="" src="http://3.bp.blogspot.com/-GQBE_MjAxt8/TlwhPveClUI/AAAAAAAAGdE/lohBYlJuHwM/s320/l351_sourcemask_residualfit.png" />
+<p>You might note that the brightest source has a smaller correction factor
+in both apertures. It's not clear why that is the case, but I don't
+think it's enough to call it a trend yet - wait for the full 8000-source
+comparison first.
+Why is there so much scatter? Not entirely clear, but the scatter is
+primarily at low S/N.</p>
+<img alt="" src="http://3.bp.blogspot.com/-GPKbsfs9Y8k/Tl1OJE43J3I/AAAAAAAAGdM/pVUx9SClgtc/s320/l351_40arcsec_fit_compare_monochrome.png" />
+<img alt="" src="http://3.bp.blogspot.com/-snhh3Bamwc4/Tl1OJXzOYNI/AAAAAAAAGdU/n-rPxs-ZCtI/s320/l351_40arcsec_ratio_compare_monochrome.png" />
+<p>Here are the same for all of the data reduced up to this point:</p>
+<img alt="" src="http://2.bp.blogspot.com/-oUewyjZc9wU/Tl1QaGPeURI/AAAAAAAAGds/CHx3BtnT9sA/s320/total_v1v2_sourcemask_fit_compare.png" />
+<img alt="" src="http://1.bp.blogspot.com/-n27ucFd82VI/Tl1Qab1kbUI/AAAAAAAAGd0/kwWAceGqo5c/s320/total_v1v2_sourcemask_ratio_compare.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/bolocat-v1-v2-comparison.html" rel="bookmark" title="Permalink to Bolocat v1-v2 comparison">
+                    Bolocat v1-v2 comparison</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-08-23T04:39:00-06:00"> 2011/08/23 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>For this experiment, I ran Bolocat on all of the v1 and v2 images using
+the source masks Erik derived for v1. I then compared the derived fluxes
+using both aperture photometry (as defined in bolocat) and the mask
+sums.</p>
+<p>First, note that the object_photometry code Erik wrote does NOT do
+background subtraction - this is important for understanding
+non-multiplicative offsets between v1 and v2.</p>
+<p>I fit a 2-parameter model (a line) to the v2 vs v1 plots using two
+methods. The simple linear-least-squares method is one we're all
+familiar with, and it gives semi-reasonable results, but is NOT
+statistically robust when there are errors on both axes. The other fit
+method used was Total Least Squares, which is approximately equivalent
+to Principle Component Analysis with 2 vectors. It uses components of
+the singular-value-decomposition to determine the best fit. The fits
+returned by TLS should be more robust, though the additive offsets need
+not be.</p>
+<p>Conclusion: Our factor of 1.5 looks like it was pretty accurate. For 40&quot;
+apertures, the best fit is ~1.56, which is easily within the error bars.
+Luckily, for 40&quot; apertures, there is no apparent need for an additive
+offset (I'm pretty sure the uncertainty on the measured offset is larger
+than the offset, though statistically that is not the case), which would
+complicate things.</p>
+<p>However, for the source mask, there is a greater scaling factor and a
+very substantial offset. This implies that the peaks in v2 are brighter
+by a large factor, but the backgrounds in v2 are actually lower than in
+v1 (though please do check my reasoning here). I'm really not sure what
+to make of the difference between source mask and aperture yet,
+though... there's probably something significant in the source mask
+being forced to pick positive pixels. (and peppered pickles)</p>
+<img alt="" src="http://2.bp.blogspot.com/-9a-O_TQx3Ek/TlMr1f-nmKI/AAAAAAAAGbs/Tp6UY_vwl_s/s320/total_v1v2_40arcsec_fit_compare.png" />
+<img alt="" src="http://2.bp.blogspot.com/-zhLxvflZ-30/TlMr1mWy6kI/AAAAAAAAGb0/GH7xSizIjnk/s320/total_v1v2_sourcemask_fit_compare.png" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/examining-bolocat.html" rel="bookmark" title="Permalink to Examining bolocat">
+                    Examining bolocat</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-07-27T22:51:00-06:00"> 2011/07/27 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Just in case we were wondering, the V1 bolocat is completely
+inconsistent with a lognormal distribution, but is perfectly consistent
+(or... at least reasonably consistent...) with a power law distribution.</p>
+<img alt="" src="http://2.bp.blogspot.com/-kKaOXdf9hW4/TjBRmgiNmqI/AAAAAAAAGUI/4H0KJk70F_o/s320/bolocat_flux_cdf.png" />
+<img alt="" src="http://1.bp.blogspot.com/-3T9mrt5U39E/TjBRm5p7inI/AAAAAAAAGUQ/ARP6EKQDYo0/s320/bolocat_flux40_cdf.png" />
+<img alt="" src="http://4.bp.blogspot.com/-ytrgQo5XYEg/TjBRndOQqOI/AAAAAAAAGUY/9g--hpa5X0Y/s320/bolocat_flux80_cdf.png" />
+<img alt="" src="http://3.bp.blogspot.com/-TqVY1B1uGLw/TjBRnt6uLEI/AAAAAAAAGUg/FhXct0wpEio/s320/bolocat_flux120_cdf.png" />
+<p>These plots show power-law fits (red) and lognormal fits (blue) to the
+data (black). It's pretty obvious that the lognormal is a bad fit, but
+in case you're unconvinced, the ks test for the &quot;source flux&quot; has a
+probability 1.6e-7, and it is the highest likelihood by 17 orders of
+magnitude out of the 4 flux types.
+By contrast, the simulations are on average (though not uniformly) more
+consistent with lognormal than powerlaw distributions:</p>
+<img alt="" src="http://2.bp.blogspot.com/-lpOaHHV3e3Q/TjCTzm9RwFI/AAAAAAAAGWI/o57oH5SfdqE/s320/simulations_ksvalues_lognormvspowerlaw.png" />
+<p>Even in those examples where the KS test is slightly more favorable for
+the powerlaw distribution, the lognormal is a pretty good fit, and the
+failure points for the two distributions are in about the same place.
+The smoothness of the lognormal distribution is required to reproduce
+the observed distribution.</p>
+<img alt="" src="http://1.bp.blogspot.com/-8_WCGM_8AjM/TjB2tW_JZeI/AAAAAAAAGU4/SDR1guNcNq0/s320/exp10_ds2_astrosky_arrang45_atmotest_amp1.0E%252B01_sky07_seed00_peak100.00_smooth_bolocat_cdf.png" />
+<p>Note that the first 4 plots are for the whole BGPS survey. What about an
+individual field? For obvious reasons, I choose l30 again.</p>
+<img alt="" src="http://1.bp.blogspot.com/-vHQoJtAe-vU/TjCIiVcRHsI/AAAAAAAAGVo/04fA4WSCnlA/s320/bolocat_flux40_L30_cdf.png" />
+<img alt="" src="http://1.bp.blogspot.com/-kIpe2v9_YpQ/TjCIimC8K2I/AAAAAAAAGVw/-o5GZ7DoLOw/s320/bolocat_flux80_L30_cdf.png" />
+<img alt="" src="http://2.bp.blogspot.com/-Shg66Vp6sUI/TjCIi2HEe4I/AAAAAAAAGV4/na0n21atNsI/s320/bolocat_flux120_L30_cdf.png" />
+<img alt="" src="http://1.bp.blogspot.com/-R2zq58aXXyI/TjCIjeTdjHI/AAAAAAAAGWA/D3xEDRAgY7M/s320/bolocat_flux_L30_cdf.png" />
+<p>This gets to be a little more interesting - apparently the &quot;source flux&quot;
+has a tendency to pick up the power-law distributed background
+structure, since it is consistent with a lognormal (but note that it is
+also consistent with a powerlaw! The ks test doesn't really say
+definitively which is better). Although the fits look bad at high flux,
+note that this is a log-log plot and therefore the difference in
+probability is rather small.
+What does this all indicate? It's not entirely clear whether individual
+fields are genuinely more lognormally-distributed or whether the number
+statistics are just worse. However, even the source flux is consistent
+with a power-law, while many realizations of the simulations are not.
+Therefore, we should perform the next logical test - add point sources
+drawn from a power-law distribution (and a log-normal distribution?) and
+see what bolocat retrieves. We can at least say now that the point
+source contribution cannot be ignored, since there is no power-law
+distribution that can reproduce the observed bolocat flux distribution.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

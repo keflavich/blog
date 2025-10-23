@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - Articles by Adam <keflavich@gmail.com></title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2015/09/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/installing-miriad.html">Installing Miriad</a>
+              </li>
+              <li class="post">
+                  2014/11/26
+                  <br>
+                  <a href="https://keflavich.github.io/blog/installing-astrometrynet-in-november-2014.html">Installing astrometry.net in November 2014</a>
+              </li>
+              <li class="post">
+                  2014/01/16
+                  <br>
+                  <a href="https://keflavich.github.io/blog/w51-mapping-flagging-bad-data.html">W51 Mapping: Flagging bad data</a>
+              </li>
+              <li class="post">
+                  2013/12/13
+                  <br>
+                  <a href="https://keflavich.github.io/blog/there-is-a-gap-in-the-dust-around-sgr-b2.html">There is a "gap" in the dust around Sgr B2</a>
+              </li>
+              <li class="post">
+                  2013/09/22
+                  <br>
+                  <a href="https://keflavich.github.io/blog/blogging-from-ipython.html">Blogging from IPython</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+<h2>Articles by Adam <keflavich@gmail.com></h2>
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/installing-miriad.html" rel="bookmark" title="Permalink to Installing Miriad">
+                    Installing Miriad</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-09-14T00:00:00-06:00"> 2015/09/14 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>From Andrew Walsh, a script to install MIRIAD:</p>
+<div class="highlight"><pre><span></span>wget<span class="w"> </span>ftp://ftp.atnf.csiro.au/pub/software/miriad/miriad-common.tar.bz2
+wget<span class="w"> </span>ftp://ftp.atnf.csiro.au/pub/software/miriad/miriad-linux64.tar.bz2
+bzcat<span class="w"> </span>miriad-common.tar.bz2<span class="w"> </span><span class="p">|</span><span class="w"> </span>tar<span class="w"> </span>xvf<span class="w"> </span>-
+bzcat<span class="w"> </span>miriad-linux64.tar.bz2<span class="w">  </span><span class="p">|</span><span class="w"> </span>tar<span class="w"> </span>xvf<span class="w"> </span>-
+<span class="nb">cd</span><span class="w"> </span>miriad
+<span class="nb">export</span><span class="w"> </span><span class="nv">MIR</span><span class="o">=</span><span class="nv">$PWD</span>
+<span class="c1"># define the MIR variable in your bashrc</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export MIR=</span><span class="nv">$MIR</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+sed<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;s,@MIRROOT@,</span><span class="nv">$MIR</span><span class="s2">,&quot;</span><span class="w"> </span>scripts/MIRRC.in<span class="w"> </span>&gt;<span class="w"> </span>MIRRC
+sed<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;s,@MIRROOT@,</span><span class="nv">$MIR</span><span class="s2">,&quot;</span><span class="w"> </span>scripts/MIRRC.sh.in<span class="w"> </span>&gt;<span class="w"> </span>MIRRC.sh
+chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>MIRRC*
+
+<span class="c1"># Put these into .bashrc, or call them each time you want to run MIRIAD</span>
+.<span class="w"> </span><span class="nv">$MIR</span>/MIRRC.sh
+<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$MIRBIN</span>
+</pre></div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/installing-astrometrynet-in-november-2014.html" rel="bookmark" title="Permalink to Installing astrometry.net in November 2014">
+                    Installing astrometry.net in November 2014</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2014-11-26T09:57:00-07:00"> 2014/11/26 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam.html">Adam</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Installing astrometry.net is all about navigating dependency hell.</p>
+<p>Requirements:</p>
+<blockquote>
+<ul class="simple">
+<li>libpng</li>
+<li>libtiff</li>
+<li>libjpeg</li>
+<li>netpbm (requires above 3)</li>
+</ul>
+</blockquote>
+<p>To install netpbm, a recent version - NOT the stable version - is required,
+which means navigating throught 3-4 layers of links including a sourceforge
+build-my-tarball link.</p>
+<p>To compile astrometry.net-0.50:</p>
+<blockquote>
+ARCH_FLAGS=&quot;&quot; make -j 8</blockquote>
+<p>To compile cairo, I had to install pixman (no problem) the setup a PKG_CONFIG_PATH:</p>
+<blockquote>
+PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./configure</blockquote>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/w51-mapping-flagging-bad-data.html" rel="bookmark" title="Permalink to W51 Mapping: Flagging bad data">
+                    W51 Mapping: Flagging bad data</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2014-01-16T00:00:00-07:00"> 2014/01/16 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In the process of creating W51 data cubes from the GBT mapping data (project
+GBT 10B/019), I've had to deal with a lot of bad data.</p>
+<p>Some of the bad data comes from misbehaving electronics.  All I can say is that
+they were misbehaving, not how or why - the data from one polarizaiton simply
+disagrees with the other polarization and feeds spontaneously and for no
+apparent reason.</p>
+<p>I've implemented a waterfall diagnostic plot to help examine the data, it is in
+my <a class="reference external" href="https://github.com/keflavich/mpl_plot_templates">mpl_plot_templates</a> repository: <a class="reference external" href="https://github.com/keflavich/mpl_plot_templates/blob/master/mpl_plot_templates/imdiagnostics.py">imdiagnostics.py</a>.</p>
+<p>A good waterfall looks something like this:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/Session17_111to186_D37_F2_data_scrubbed_flagged.png" style="width: 800px;" />
+<p>The line plots show the average and standard deviation along each axis; the
+right side effectively shows timestream continuum data while the top plots show
+a time-averaged spectrum.  This plot is good in that there are clearly signals
+detected as the scan crosses continuum sources and there is a strong Helium
+Alpha line detected in the average (though there's no way to read that it's
+Helium fromt he data as presented).
+Notably, the noise correlates with the continuum brightness - this is expected;
+higher TSYS leads to higher noise.</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/Session22_10to41_D37_F2_data_scrubbed_flagged.png" style="width: 800px;" />
+<p>This is an example of a data set with some extremely irritating artifacts.
+There are apparent absorption lines throughout the spectrum: they are not real.
+This is a particularly irritating problem because I had resolved it once in the
+not-too-distant past, but I can't figure out how!!  Most likely, I just removed
+the data from the maps, but that SHOULD be in the code history (git) and is not.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/there-is-a-gap-in-the-dust-around-sgr-b2.html" rel="bookmark" title="Permalink to There is a "gap" in the dust around Sgr B2">
+                    There is a &quot;gap&quot; in the dust around Sgr B2</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-12-13T00:00:00-07:00"> 2013/12/13 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Sgr B2 is the most massive gas clump in our Galaxy.  It's about 100 pc away
+from Sgr A*, the black hole at the center of the Galaxy.  It is forming stars
+prodigiously, and has extreme properties in many regards.</p>
+<p>In many physical aspects - mass, luminosity, velocity dispersion, temperature -
+the Sgr B2 region is similar to &quot;proto-cluster clumps&quot; seen in other galaxies,
+e.g. the Antennae galaxies.</p>
+<p>There are plenty of mysteries about Sgr B2, including its extraordinarily
+diverse chemistry and its peculiar kinematics.</p>
+<p>I'm raising a sort of new one.  There appears to be a hole next to Sgr B2,
+towards the southeast in Galactic coordinates.  It appears as a relatively
+empty spot in the dust continuum bands.  It doesn't seem to be filled in
+with anything in particular.</p>
+<html>
+<div class="output_html rendered_html">
+
+    <script type="text/javascript">
+
+      var image_dir='blog/images/sgrb2/'
+
+      var images=new Array(
+                   "TheGap_GLM_00000+0000_mosaic_I2.png",
+                   "TheGap_GLM_00000+0000_mosaic_I4.png",
+                   "TheGap_gcmosaic_24um.png",
+                   "TheGap_igls_l000_blue_cnr_hh.png",
+                   "TheGap_igls_l000_red_cnr_hh.png",
+                   "TheGap_igls_l000_psw_deglitch_hh.png",
+                   "TheGap_igls_l000_pmw_deglitch_hh.png",
+                   "TheGap_SgrB2_350um_gal.png",
+                   "TheGap_gc450_gal.png",
+                   "TheGap_igls_l000_plw_deglitch_hh.png",
+                   "TheGap_gc850_gal.png",
+                   "TheGap_ATLASGAL.1.5_reprojectoverlap9.png",
+                   "TheGap_v2.0_ds2_l001_13pca_map20.png",
+                   //"TheGap_sgrb2_nh311_sum.png",
+                   "TheGap_sgrb2_20cm_12as_gal.png",
+                   "TheGap_20cm_0.png"
+                   )
+      var titles=new Array(
+                   "4.5um",
+                   "8um",
+                   "24um",
+                   "70um",
+                   "160um",
+                   "250um",
+                   "350um Herschel",
+                   "350um SHARC",
+                   "450um",
+                   "500um",
+                   "850um SCUBA",
+                   "870um ATLASGAL",
+                   "1100um",
+                   //"1.3cm NH3",
+                   "20cm",
+                   "20cm (poor resolution)"
+                   )
+
+      function interactUpdate(div){
+         var outputs = div.getElementsByTagName("img");
+         var divoutputs = div.getElementsByTagName("div");
+         var controls = div.getElementsByTagName("input");
+
+         var value = "";
+         for(i=0; i<controls.length; i++){
+           if((controls[i].type == "range") || controls[i].checked){
+             //value = value + controls[i].getAttribute("name") + controls[i].value;
+             value = controls[i].value;
+           }
+         }
+
+         for(i=0; i<outputs.length; i++){
+           var name = outputs[i].getAttribute("name");
+           if(name=="figure"){
+                 outputs[i].src = image_dir+images[value]
+           }
+         }
+
+         for(i=0; i<divoutputs.length; i++){
+           var name = divoutputs[i].getAttribute("name");
+           if(name=="caption"){
+                 divoutputs[i].innerHTML = titles[value];
+           }
+         }
+
+         //for(i=0; i<images.length; i++){
+         //  var name = outputs[i].getAttribute("name");
+         //  if(name == value){
+         //     outputs[i].style.display = 'block';
+         //  } else if(name != "controls"){
+         //     outputs[i].style.display = 'none';
+         //  }
+         //}
+      }
+    </script>
+    
+    <div>
+      
+    <div name="figure" style="display:block">
+        <div name="caption">
+            20cm
+        </div>
+        <img name="figure" src="blog/images/sgrb2/TheGap_20cm_0.png" height=600px>
+    </div>
+
+<input type="range" name="figure" min="0" max="14" step="1" value="0" style="width:350px" onchange="interactUpdate(this.parentNode);">
+</html>
+<p>Note the slider here: you can view Sgr B2 at any wavelength where I have data.
+The green circle highlights the major deficiency that is evident in all
+dust-containing bands.  There are other &quot;minor&quot; deficiencies elsewhere.</p>
+<p>It is tricky to interpret this: I don't think the absolute flux densities in
+any of the millimeter observations are perfectly trustworthy because of their
+proximity to the extremely bright Sgr B2 point sources.</p>
+<p>Additionally, this gap is not perfectly evident in NH3 or CO.  In the HOPS NH3
+maps, there is a relative lack of emission at ~56 km/s - relative to
+neighboring regions; this is actually the peak of the line profile extracted
+from the ellipse!</p>
+<p>This is in contrast to the central &quot;Gas Hole&quot; which has been noted by others;
+it exists in CO and NH3.  There is almost certainly some NH3 self-absorption
+involved.  The &quot;Gas Hole&quot; coincides with the peak in other gas species and the
+peak in the dust emission, so it really seems to be a different phenomenon,
+having to do with line-of-sight confusion and excitation conditions.</p>
+<p>The one feature of the &quot;dust gap&quot; that distinguishes this part of Sgr B2 from
+the other regions surrounding it is that 8 micron emission can readily be
+observed here.  A little 24 micron emission is in the gap as well, but not as
+much as the 8 micron.  The 70 micron emission is quite weak, but not really
+deficient.  Perhaps in this region, very small grains are more common than in
+its surroundings?</p>
+<p>There's a lot more hypothesizing to be done here.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/blogging-from-ipython.html" rel="bookmark" title="Permalink to Blogging from IPython">
+                    Blogging from IPython</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-09-22T00:00:00-06:00"> 2013/09/22 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam.html">Adam <keflavich@gmail.com></a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>[ <a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/keflavich/blog/master/content/BloggingFromIPython.ipynb">Notebook Form of this
+post</a>
+]</p>
+<p>There have been
+<a class="reference external" href="http://jmcarp.github.io/blog/2013/07/07/hello-world/">many</a>
+<a class="reference external" href="http://danielfrg.github.io/blog/2013/02/16/blogging-pelican-ipython-notebook/">other</a>
+<a class="reference external" href="http://danielfrg.github.io/blog/2013/03/08/pelican-ipython-notebook-plugin/">posts</a>
+about blogging in ipython, but they all included more overhead than I
+really wanted to deal with.</p>
+<p>Instead, I've gone directly to <a class="reference external" href="http://nbviewer.ipython.org/urls/raw.github.com/Carreau/posts/master/06-NBconvert-Doc-Draft.ipynb">the
+source</a>
+and used nbconvert in ipython 2.0 to convert my notebooks to rst, then
+put them through pelican.</p>
+<p>This post outlines my workflow.</p>
+<p>First, and most inconvenient, it is necessary to head any blog post with
+metadata. I don't have any convenient workflow to deal with that, I just
+write it in by hand in a raw text box (ctrl-m, t) as you can see above.
+<a class="reference external" href="http://danielfrg.github.io/">Daniel Rodriguez</a> took a <a class="reference external" href="http://danielfrg.github.io/blog/2013/03/08/pelican-ipython-notebook-plugin/">different
+approach</a>
+using the ipython metadata directly and an ipython plugin, but I didn't
+want to have to worry about installing plugins and I am definitely
+worried about breaking notebooks by messing with the
+<a class="reference external" href="https://github.com/ipython/ipython/wiki/IPEP-20%3A-Informal-structure-of-cell-metadata">metadata</a>
+as the ipy devs give some fairly <a class="reference external" href="https://gist.github.com/Carreau/4437348">strict
+warnings</a>.</p>
+<p>Next, the ipynb -&gt; rst step is fairly straightforward. I modified the
+rst template because I don't want to see the <tt class="docutils literal"><span class="pre">In[#]:</span></tt> and <tt class="docutils literal"><span class="pre">Out[#]:</span></tt>
+prefixes around my code. I also use <tt class="docutils literal">.. <span class="pre">code-block::</span></tt> rather than
+<tt class="docutils literal">.. code::</tt>.</p>
+<p>This very simple function below makes sure that my local <tt class="docutils literal">rst.tbl</tt>
+file is seen before ipython's. Their templates are in
+<tt class="docutils literal">IPython/nbconvert/templates</tt>. Note that you could normally use Jinja2
+templating and &quot;Extend&quot; their template, but I wanted to remove rather
+than extend.</p>
+<p>[
+<a class="reference external" href="https://github.com/keflavich/blog/blob/master/nbconverter.py">Source</a>
+]</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.nbconvert.exporters</span> <span class="kn">import</span> <span class="n">RSTExporter</span>
+
+<span class="k">def</span> <span class="nf">export</span><span class="p">(</span><span class="n">nbname</span><span class="p">,</span> <span class="n">outfilename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">exportRST</span> <span class="o">=</span> <span class="n">RSTExporter</span><span class="p">()</span>
+    <span class="c1"># exclude default paths</span>
+    <span class="n">exportRST</span><span class="o">.</span><span class="n">template_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="s1">&#39;/Users/adam/repos/blog&#39;</span><span class="p">]</span>
+
+    <span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="n">resources</span><span class="p">)</span> <span class="o">=</span> <span class="n">exportRST</span><span class="o">.</span><span class="n">from_filename</span><span class="p">(</span><span class="n">nbname</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">outfilename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">outfilename</span> <span class="o">=</span> <span class="n">nbname</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;ipynb&quot;</span><span class="p">,</span><span class="s2">&quot;rst&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfilename</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">body</span><span class="p">,</span><span class="n">resources</span>
+</pre></div>
+<p>I then run the script from the command line:
+<tt class="docutils literal"><span class="pre">~/virtual-ipydev/bin/ipython</span> ./nbconverter.py content/GenerateCVExample.ipynb</tt></p>
+<p>I'm using a virtual environment with ipython 2 installed because I'm not
+yet ready to make the jump to the dev version of ipython (though these
+days, with Travis and Jenkins around, it's probably safe to assume the
+dev version won't break anything).</p>
+<p>With this rst file generated, the only remaining step is
+<a class="reference external" href="http://blog.getpelican.com/">pelican</a>, which only requires a
+<tt class="docutils literal">make github</tt> command in the blog directory. Installing &amp; setting up
+pelican is reasonably easy, but not the topic of this post.</p>
+<p>I've made my own <a class="reference external" href="https://github.com/keflavich/pelican-themes/tree/master/mine">custom pelican
+theme</a>,
+so I generally need to update the theme before building:</p>
+<p><tt class="docutils literal"><span class="pre">pelican-themes</span> <span class="pre">--upgrade</span> <span class="pre">/Users/adam/repos/pelican-themes/mine</span> &amp;&amp; make github</tt></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/attempts-to-install-astrometrynet-comment-on-problems-with-index-files-generation.html" rel="bookmark" title="Permalink to Attempts to install astrometry.net (comment on problems-with-index-files-generation)">
+                    Attempts to install astrometry.net (comment on problems-with-index-files-generation)</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-11-04T17:26:00-07:00"> 2012/11/04 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam.html">Adam</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Some progress in this vein:
+1. installed astrometry.net (but without some graphical extras)
+2. figured out how to create indexes! Finders are ~5x5', so based on
+<a class="reference external" href="http://forum.astrometry.net/index.php?p=/discussion/2/problems-with-index-files-generation/p1">this post</a> I want to use ~2-3' healpixes.
+3. I also should be using denser catalogs than the all-sky USNO B1,
+especially for infrared targets.
+So, here's a sample build command (using a CDS-based FITS table, but
+modified by me using atpy):
+build-index -v -i OMC1_optical_phot_DaRio.fits -o
+OMC1_optical_phot_DaRio_astrometryindex -N 1758</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/non-greedy-vim.html" rel="bookmark" title="Permalink to Non-greedy vim">
+                    Non-greedy vim</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-09-05T01:12:00-06:00"> 2008/09/05 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam.html">Adam</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>To make .* in VIM be non-greedy (i.e. match just <tt class="docutils literal">&lt;a href=x&gt;</tt> out of <tt class="docutils literal">&quot;&lt;a href=x&gt; &lt;/a&gt;&quot;</tt>), use:</p>
+<pre class="literal-block">
+.\{-}
+</pre>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

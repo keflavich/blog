@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - flagging</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2011/03/24
+                  <br>
+                  <a href="https://keflavich.github.io/blog/a-workaround-for-individual-maps.html">A workaround for individual maps?</a>
+              </li>
+              <li class="post">
+                  2009/01/17
+                  <br>
+                  <a href="https://keflavich.github.io/blog/flagger-images.html">Flagger images</a>
+              </li>
+              <li class="post">
+                  2008/11/22
+                  <br>
+                  <a href="https://keflavich.github.io/blog/flagger.html">flagger</a>
+              </li>
+              <li class="post">
+                  2008/11/19
+                  <br>
+                  <a href="https://keflavich.github.io/blog/mad-flagger.html">MAD flagger</a>
+              </li>
+              <li class="post">
+                  2008/10/08
+                  <br>
+                  <a href="https://keflavich.github.io/blog/flagging.html">flagging</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/a-workaround-for-individual-maps.html" rel="bookmark" title="Permalink to A workaround for individual maps?">
+                    A workaround for individual maps?</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-03-24T00:33:00-06:00"> 2011/03/24 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I closely examined the timestreams of 101208_ob7 as I said I would
+yesterday. Unfortunately, all I can do is describe the symptoms: the
+first deconvolution model looks good, though it isn't quite as wide as
+the true source (this should be OK; it is an iterative method, after
+all). In the second iteration, though, the deconvolution model is even
+smaller and lower amplitude... and it goes on like that.</p>
+<p>Not deconvolving results in a healthy-looking clean map - pretty much
+what you expect and want to see.</p>
+<p>This implies that somehow removing an incomplete deconvolved model leads
+to more of the source being included in the 'atmosphere' than would have
+been included with no model subtraction at all. I'm not sure how this is
+possible. In fact... I'm really quite sure that it is not.
+The workaround is to only add positive changes to the model. This should
+'definitely work' but may be non-convergent and assumes that the model
+never has anything wrong with it at any iteration. I have demonstrated
+that this works nicely for the two Uranus observations I tested on, but
+now I have to run the gamut of tests.... the first (very obvious)
+problem is that the background is now positive, which is dead wrong.
+This workaround is not viable.
+Alright, so what next? I've described the symptoms and that I think they
+can't occur...
+A closer look shows that new_astro is not being incorporated into
+astro_model at the second iteration. Why?
+AHA! Pyflagger + find_all_points reveals the problem!</p>
+<pre class="literal-block">
+Map value: 16.939728   Weighted average: 17.476323   Unweighted Average: 524.573136
+scan,bolo,time:       mapped       astro       flags      weight       scale
+3,  22,  12:     8.380408   13.561113    0.000000    0.025132    1.000000
+4, 124,  23:   822.005327   13.561113    0.000000    0.000038    1.118012
+4,  21,  38:   719.408983   13.561113    0.000000    0.000037    0.946721
+5,  20,   7:     4.470616   13.561113    0.000000    0.013303    1.400000
+5, 119,  23:   882.508303   13.561113    0.000000    0.000033    0.926887
+5, 100,  35:   327.007750   13.561113    0.000000    0.000074    1.184397
+5, 106,  38:   162.562098   13.561113    0.000000    0.000704    0.970000
+6, 116,  27:   779.075640   13.561113    0.000000    0.000033    0.891768
+8, 112,   3:   235.557390   13.561113    0.000000    0.000147    0.947130
+9,   3,  14:   966.721773   13.561113    0.000000    0.000032    1.166292
+9, 109,  41:   139.753656   13.561113    0.000000    0.000753    1.075269
+10, 104,   8:   641.121935   13.561113    0.000000    0.000050    0.927827
+10, 105,  24:     4.323228   13.561113    0.000000    0.032759    0.019022
+10,  32,  36:   847.646990   13.561113    0.000000    0.000034    1.099406
+11,  36,   9:   834.757586   13.561113    0.000000    0.000038    1.184751
+11,  76,  37:   566.851891   13.561113    0.000000    0.000040    1.111000
+12,  77,  13:   834.603090   13.561113    0.000000    0.000034    1.128464
+12,  44,  44:   335.465654   13.561113    0.000000    0.000195    2.165775
+13,  26,  17:    50.423143   13.561113    0.000000    0.004826    0.829932
+13,  75,  29:   724.884676   13.561113    0.000000    0.000042    0.923077
+14,  49,  21:   797.618990   13.561113    0.000000    0.000038    1.091918
+14,  29,  33:   743.856012   13.561113    0.000000    0.000035    1.050360
+15,  33,  13:   660.670099   13.561113    0.000000    0.000031    0.832180
+15,  53,  25:   604.174286   13.561113    0.000000    0.000047    0.889922
+15,  88,  40:     4.626476   13.561113    0.000000    0.008241    0.191489
+17,  64,  20:   778.950533   13.561113    0.000000    0.000037    1.233108
+18,  68,  30:   686.048136   13.561113    0.000000    0.000040    1.387283
+</pre>
+<p>Note that the lowest points have the highest weights. They DEFINITELY
+shouldn't. What's wrong with them?
+Apparently they have NO sensitivity to the sky! What?! There were a
+bunch of bad bolos in Dec2010 that weren't flagged out... I wonder if
+that problem persists to other epochs. Still, why does it only affect
+pointing observations? Looking at the power spectra... the
+large-timescale stuff becomes less dominant when scans are longer, but
+the noisy spectra are still clearly noise-only. How odd.
+Dropped to 112 good bolos from 134. That is much more believable. Have
+to go back and fix Dec09 data too...
+Even after fixing the bad bolos, the model drops with iteration number.
+Why why why?
+Well, looking at deconv_map, I've always returned the truly deconvolved
+version, not the reconvolved... maybe the reconvolved really is better?
+Again, this will have to be extensively tested, but it certainly gets
+rid of the obvious/dominant error that the model kept dropping off.
+However, FINALLY, based on how ridiculously good the reconv-deconvolved
+map looks, I think I'm ready to do the extensive pipeline tests. So,
+10dec_caltest has been started up with all of the new bolo_params
+applied and the changes in place to deconv_map... let's see what
+happens.</p>
+<p>After that runs, I'll have to re-run the fit_and_plot routines</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/flagger-images.html" rel="bookmark" title="Permalink to Flagger images">
+                    Flagger images</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2009-01-17T16:13:00-07:00"> 2009/01/17 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>James requested sample images from the flagger for the methods paper.
+Below are images + description:
+.. image:: <a class="reference external" href="http://3.bp.blogspot.com/_lsgW26mWZnU/SXHsZcqegtI/AAAAAAAAEs4/3PjUtU2IXtQ/s400/sample_waterfall_070911_o15_highFnoisepng.png">http://3.bp.blogspot.com/_lsgW26mWZnU/SXHsZcqegtI/AAAAAAAAEs4/3PjUtU2IXtQ/s400/sample_waterfall_070911_o15_highFnoisepng.png</a>
+This is a &quot;noise-dominated&quot; scan in the sense that the high/low pixels
+are set by noise, not signal. Despite the clear high frequency noise,
+this image actually maps out pretty well - I think the high-noise
+bolometers get downweighted and the high/low pixels probably get clipped
+by my hot pixel rejection procedure.
+.. image:: <a class="reference external" href="http://3.bp.blogspot.com/_lsgW26mWZnU/SXHsY7Rgq3I/AAAAAAAAEsY/0NT8IB26JUo/s400/flagger_marked_source_050708_o15.png">http://3.bp.blogspot.com/_lsgW26mWZnU/SXHsY7Rgq3I/AAAAAAAAEsY/0NT8IB26JUo/s400/flagger_marked_source_050708_o15.png</a>
+An image of the galactic center with a source southeast of center
+identified.
+.. image:: <a class="reference external" href="http://1.bp.blogspot.com/_lsgW26mWZnU/SXHsYyHCEGI/AAAAAAAAEsg/3iwoklY0--0/s400/sample_waterfall_050708_o15_glitchandsources.png">http://1.bp.blogspot.com/_lsgW26mWZnU/SXHsYyHCEGI/AAAAAAAAEsg/3iwoklY0--0/s400/sample_waterfall_050708_o15_glitchandsources.png</a>
+A scan from the GC image above. I forgot to mark the source, I should go
+back and do that. The glitch is obvious.
+.. image:: <a class="reference external" href="http://1.bp.blogspot.com/_lsgW26mWZnU/SXHsZHVZ4OI/AAAAAAAAEso/pOXwGFn7rGg/s400/sample_waterfall_050708_o15_glitchflagged.png">http://1.bp.blogspot.com/_lsgW26mWZnU/SXHsZHVZ4OI/AAAAAAAAEso/pOXwGFn7rGg/s400/sample_waterfall_050708_o15_glitchflagged.png</a>
+I drew a box to flag out the region affected by the glitch.
+.. image:: <a class="reference external" href="http://4.bp.blogspot.com/_lsgW26mWZnU/SXHsZG_MmWI/AAAAAAAAEsw/RA6tqAWMnLM/s400/sample_waterfall_050708_o15_glitchgone.png">http://4.bp.blogspot.com/_lsgW26mWZnU/SXHsZG_MmWI/AAAAAAAAEsw/RA6tqAWMnLM/s400/sample_waterfall_050708_o15_glitchgone.png</a>
+This is what happens when I redraw after flagging out the glitch - the
+colorbar is rescaled and no more glitch.
+.. image:: <a class="reference external" href="http://4.bp.blogspot.com/_lsgW26mWZnU/SXIDILh3hfI/AAAAAAAAEtQ/cMuOhlFO_fA/s400/sample_waterfall_050708_o15_glitchandsources_marked.png">http://4.bp.blogspot.com/_lsgW26mWZnU/SXIDILh3hfI/AAAAAAAAEtQ/cMuOhlFO_fA/s400/sample_waterfall_050708_o15_glitchandsources_marked.png</a>
+Timestream with glitches and sources marked (one pixel in the map is hit
+by 3 different points in this scan).
+.. image:: <a class="reference external" href="http://4.bp.blogspot.com/_lsgW26mWZnU/SXIDH3uIjHI/AAAAAAAAEtI/vijTeEWf_nA/s400/sample_waterfall_050708_o15_glitchandsources_gray.png">http://4.bp.blogspot.com/_lsgW26mWZnU/SXIDH3uIjHI/AAAAAAAAEtI/vijTeEWf_nA/s400/sample_waterfall_050708_o15_glitchandsources_gray.png</a>
+Grayscale version of above (ok, I lied about grayscale being impossible)
+with a different pixel marked.
+.. image:: <a class="reference external" href="http://1.bp.blogspot.com/_lsgW26mWZnU/SXIDHbYLbiI/AAAAAAAAEtA/nSh2rM6GhMc/s400/flagger_marked_source_footprint_050708_o15.png">http://1.bp.blogspot.com/_lsgW26mWZnU/SXIDHbYLbiI/AAAAAAAAEtA/nSh2rM6GhMc/s400/flagger_marked_source_footprint_050708_o15.png</a>
+A zoom-in around the 'kidney bean' source with the Bolocam footprint
+overlaid and a pixel marked. Note that this pixel corresponds to the 3
+points in the color waterfall above.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/flagger.html" rel="bookmark" title="Permalink to flagger">
+                    flagger</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-22T01:37:00-07:00"> 2008/11/22 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Discovered that the flagger causes some pretty serious problems if you
+try to run it on a non-coadd for obvious reasons: there's practically no
+coverage! Individual maps should NOT go through the flagger, so I have
+added a piece of code that turns off the flagger if only one observation
+is being used. That code is in map_iter where the flagger is called.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/mad-flagger.html" rel="bookmark" title="Permalink to MAD flagger">
+                    MAD flagger</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-11-19T04:50:00-07:00"> 2008/11/19 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <pre class="literal-block">
+; The Mad Flagger; Flag based on the median average deviation within a spatial pixelfunction mad_flagger,data,inds,flags,nsig=nsig    t = systime(/sec)    f0 = total(where(flags))    if n_e(nsig) eq 0 then nsig = 3            newflags = flags    mx=max(inds)    vec3=fltarr(mx+1)    h=histogram(inds,reverse_indices=ri,OMIN=om)    for j=0L,n_elements(h)-1 do begin        if ri[j+1] gt ri[j] then begin            v_inds = [ri[ri[j]:ri[j+1]-1]]            if n_e(v_inds) gt 2 then begin                vec = data[v_inds];                vecmad = mad(vec)  ; the MAD is WAY too small!  I ended up rejecting 8% of points!                vecmad = stddev(vec)                vecmed = median(vec,/even)                madreject = where( (vec gt vecmed + nsig*vecmad) or (vec lt vecmed - nsig*vecmad) )                if (n_e(madreject) gt 0 and total(madreject)) gt 0 then begin                    reject_inds = v_inds[madreject]                    newflags[reject_inds] = 1                endif             endif        endif    endfor    print,&quot;MAD flagger took &quot;,strc(systime(/sec)-t),&quot; seconds and flagged &quot;,$        strc(round(total(where(newflags)) - f0)),' points'    return,newflagsend
+</pre>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/flagging.html" rel="bookmark" title="Permalink to flagging">
+                    flagging</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-10-08T04:31:00-06:00"> 2008/10/08 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>most of what's left now is flagging. I updated the flagger,
+flag_manual.pro. Check it out for documentation</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

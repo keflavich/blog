@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - crash</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2013/05/13
+                  <br>
+                  <a href="https://keflavich.github.io/blog/recovering-from-startup-drive-out-of-memory.html">Recovering from "Startup drive out of memory"</a>
+              </li>
+              <li class="post">
+                  2012/09/20
+                  <br>
+                  <a href="https://keflavich.github.io/blog/major-mac-problems.html">Major mac problems</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/recovering-from-startup-drive-out-of-memory.html" rel="bookmark" title="Permalink to Recovering from "Startup drive out of memory"">
+                    Recovering from &quot;Startup drive out of memory&quot;</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2013-05-13T09:26:00-06:00"> 2013/05/13 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>To continue frozen processes, you need to find all sleeping procs and restart them with <tt class="docutils literal">kill <span class="pre">-CONT</span></tt>.</p>
+<p>In principle, this command should do that:</p>
+<p><tt class="docutils literal">ps <span class="pre">-A</span> <span class="pre">-o</span> tpgid,uid,pid,state,flags | awk <span class="pre">'$1!=&quot;0&quot;</span> &amp;&amp; <span class="pre">$2==501</span> &amp;&amp; <span class="pre">$4==&quot;S&quot;</span> &amp;&amp; <span class="pre">$5!=&quot;4000410c&quot;</span> {print &quot;kill <span class="pre">-CONT</span> &quot; $3}' | bash</tt></p>
+<p>Without the flags exclusion, this failed for me on apple's VNC server:
+<tt class="docutils literal">ps <span class="pre">-A</span> <span class="pre">-o</span> tpgid,uid,pid,state,flags | awk <span class="pre">'$2==501</span> &amp;&amp; <span class="pre">$4==&quot;S&quot;</span> &amp;&amp; <span class="pre">$5!=&quot;4000410c&quot;</span> {print &quot;kill <span class="pre">-CONT</span> &quot; $3}' | bash</tt></p>
+<p>This is necessary for recovering mac processes:
+<tt class="docutils literal"><span class="pre">-A</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Display information about other users' processes, including those without controlling terminals.</tt></p>
+<p>The outputs from the <tt class="docutils literal">ps</tt> process are:</p>
+<blockquote>
+<ul class="simple">
+<li>tpgid      control terminal process group ID</li>
+<li>pid        process ID</li>
+<li>uid        effective user ID</li>
+</ul>
+</blockquote>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/major-mac-problems.html" rel="bookmark" title="Permalink to Major mac problems">
+                    Major mac problems</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The errors are, in short:</p>
+<ul class="simple">
+<li>Browser stops responding / starts returning &quot;page not found&quot;
+(indicating a failure of mDNSResponder)</li>
+<li>killing mDNSResponder sometimes brings browser back, but more often
+leads to a partial system freeze (some windows don't respond, can't
+switch between windows except by clicking)</li>
+<li>/var/log/system.log gets flooded with &quot;too many files open&quot; errors.</li>
+<li>somewhere in here the Dock fails</li>
+<li>killing Google Chrome and/or the Dock fails; the process never halts
+(even kill -9 + kill -s SIGCHLD)</li>
+<li>usually one or two crash reports pop up, at least one of which is for
+crash_reporter</li>
+<li>system.log stops getting flooded, but the browser and Dock never
+recover</li>
+</ul>
+<p>The only message in system.log that gives me any hint about what might
+be happening is occasionally a freeze was resolved at the same time as
+this message: Jun 22 19:02:09 eta Quicksilver[93771]: Multiple Scans
+Attempted but it doesn't seem to change the situation if quicksilver is
+open or not. Google has nothing on this issue, either, except for the
+quicksilver source code, so evidently it has not caused problems for
+other people system.log was also being flooded with this message:</p>
+<pre class="literal-block">
+Jun 23 08:57:19 eta postfix/master[99954]: fatal: open /dev/null: Bad file descriptorJun 23 08:57:20 eta com.apple.launchd[1] (org.postfix.master[99954]): Exited with exit code: 1Jun 23 08:57:20 eta com.apple.launchd[1] (org.postfix.master): Throttling respawn: Will start in 9 seconds
+</pre>
+<p>so I disabled my postman:</p>
+<pre class="literal-block">
+Jun 23 08:57:27 eta sudo[99955]: adam : TTY=ttys006 ; PWD=/Users/adam/proposals/alma ; USER=root ; COMMAND=/bin/launchctl unload -w /System/Library/LaunchDaemons/org.postfix.master.plist
+</pre>
+<p>These errors:</p>
+<pre class="literal-block">
+Jun 23 09:06:40 eta Dock[99877]: kCGErrorIllegalArgument: CGSSetWindowTransformAtPlacement: Singular matrix [nan 0.000 0.000 nan]Jun 23 09:06:40 eta com.apple.Dock.agent[99877]: Thu Jun 23 09:06:40 eta.colorado.edu Dock[99877] : kCGErrorIllegalArgument: CGSSetWindowTransformAtPlacement: Singular matrix [nan 0.000 0.000 nan]
+</pre>
+<p>are correlated with opening Chrome windows and/or Chrome's
+crash_inspector</p>
+<pre class="literal-block">
+Jun 23 09:06:09 eta [0x0-0x69e69e].com.google.Chrome[99995]: [99995:24579:485131152128125:ERROR:shared_memory_posix.cc(164)] Creating shared memory in /var/folders/ni/ni+DtdqFGMeSMH13AvkNkU+++TI/-Tmp-/.com.google.chrome.sHcu6r failed: Too many open files in system
+</pre>
+<p>This is the problem that really gets me... I think it's
+crash_inspector's fault.
+But there's definitely more going on here than just Chrome. Trying to
+change default browsers (by opening Safari and opening Preferences) led
+to a partial Dock crash (?!) in which I can alt-tab but can't see the
+Dock. Not clear at all what's going on.... argh.</p>
+</p> </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

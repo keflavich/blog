@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/idl-string-conversion.html" rel="bookmark" title="Permalink to IDL string conversion">
+                    IDL string conversion</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Just a reminder to me:
+to convert an IDL number to a string, use string!
+`` s = string(x,format='(F10.5)')``
+Also, <a class="reference external" href="http://aa.usno.navy.mil/data/docs/JulianDate.php">Julian Date conversion</a></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/idl-syntax-highlighting-in-vim.html" rel="bookmark" title="Permalink to IDL syntax highlighting in VIM">
+                    IDL syntax highlighting in VIM</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've edited my idlang.vim to auto-identify files that start with a
+semicolon.
+Add Line 19:
+`` syn match idlangStatement &quot;^s*;s&quot;``
+Line 61/2 (allow spaces before ;):
+<tt class="docutils literal">syn match&nbsp; idlangComment <span class="pre">&quot;\s*[\;].*$&quot;</span> contains=idlangTodo</tt>
+<a class="reference external" href="http://casa.colorado.edu/~ginsbura/index.htm">AG</a></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/idl-to-python.html" rel="bookmark" title="Permalink to IDL-to-Python">
+                    IDL-to-Python</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>astrobetter started up an <a class="reference external" href="http://www.astrobetter.com/wiki/tiki-index.php?page=Python+Switchers+Guide">idl-to-python guide</a> on their wiki.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/inputrc.html" rel="bookmark" title="Permalink to .inputrc">
+                    .inputrc</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>New unix stuff!
+This is, again, stuff I'd searched for forever but never found the right
+collection of terms. This is what bash readline is REALLY all about.
+if you make an inputrc file, you can get awesome readline capabilities
+(similar to ipython). <a class="reference external" href="http://lifehacker.com/software/command-line/ctrl%252Br-to-search-and-other-terminal-history-tricks-278888.php#c1887277">This post at lifehacker</a> showed me how to do it.
+<a class="reference external" href="http://www.comptechdoc.org/os/linux/howlinuxworks/linux_hlkeyprogs.html">This site</a> has a more complete description of how to use
+readline/inputrc.
+Even better: <a class="reference external" href="http://www.catonmat.net/blog/bash-vi-editing-mode-cheat-sheet/">VI command line editing</a>.
+There's also something called <a class="reference external" href="http://stackoverflow.org/wiki/Inputrc_for_bash_history_completion_using_up/down_arrows">magic space</a> but I don't know what
+purpose it serves all the time... it will replace 'magic' characters
+like !* and !&amp; and !! with whatever command they represent if you hit
+space immediately after typing them (explained better <a class="reference external" href="http://mike.hostetlerhome.com/2006/05/18/neat-bash-tricks/">here</a>).
+Wow. Awesome.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/installing-64-bit-tcltk-on-mac-os-x.html" rel="bookmark" title="Permalink to Installing 64 bit tcl/tk on Mac OS X">
+                    Installing 64 bit tcl/tk on Mac OS X</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Everything is described in this post:
+<a class="reference external" href="http://www.nabble.com/Error-compiling-tk-8.5.7-on-Mac-OS-X-10.5-td23790967.html">http://www.nabble.com/Error-compiling-tk-8.5.7-on-Mac-OS-X-10.5-td23790967.html</a></p>
+<p>But here's a script too:
+<tt class="docutils literal">curl <span class="pre">-O</span> <span class="pre">'http://osdn.dl.sourceforge.net/sourceforge/tcl/t{cl,k}8.5.7-src.tar.gz'for</span> f in <span class="pre">t*8.5.7*.gz;</span> do tar zxf $f; done cd <span class="pre">tcl8.5.7/unix/./configure</span> <span class="pre">--enable-framework</span> <span class="pre">--enable-64-bitcd</span> <span class="pre">tk8.5.7/unix/./configure</span> <span class="pre">--enable-framework</span> <span class="pre">--enable-64-bitmake</span> <span class="pre">-j</span> 4 <span class="pre">-C</span> tcl8.5.7/unix make <span class="pre">-j</span> 4 <span class="pre">-C</span> tk8.5.7/unixsudo make install <span class="pre">-C</span> tcl8.5.7/unix sudo make install <span class="pre">-C</span> tk8.5.7/unix</tt></p>
+<p>Concerns:</p>
+<blockquote>
+<ul class="simple">
+<li>might be necessary to do this in the macosx directory for some reason,
+though Aqua doesn't support 64 bits</li>
+<li>have to recompile python to get _tkinter to work (see <a class="reference external" href="http://buffalothedestroyer.blogspot.com/2009/07/success-64-bit-python-with-64-bit-tcltk.html">a later post</a>)</li>
+</ul>
+</blockquote>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/installing-snow-leopard.html" rel="bookmark" title="Permalink to Installing Snow Leopard">
+                    Installing Snow Leopard</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm going to attempt to install snow leopard today. This post will serve
+as a record of the difficulties I run into.
+Things to install (and ensure they are 64-bit):</p>
+<ul class="simple">
+<li>ipython</li>
+<li>numpy</li>
+<li>scipy</li>
+<li>matplotlib</li>
+<li>stsci-python</li>
+<li>starlink</li>
+<li>gfortran</li>
+<li>latex</li>
+<li>idl (check)</li>
+</ul>
+<p>Things that have happened:</p>
+<ol class="arabic simple">
+<li>Had to restart again (twice) to install additional updates</li>
+<li>My bash command line looked funny - something about bash changed, but
+I don't know what. The fix was easy: commented out some code from
+<a class="reference external" href="http://pseudogreen.org/blog/set_tab_names_in_leopard_terminal.html">http://pseudogreen.org/blog/set_tab_names_in_leopard_terminal.html</a>
+that I had been using to set the tab title</li>
+<li>My locate db broke. Needed repair: <tt class="docutils literal">sudo /usr/libexec/locate.updatedb</tt></li>
+<li>numpy svn failed to build:
+`` python setup.py buildRunning from numpy source directory.non-existing path in 'numpy/distutils': 'site.cfg'F2PY Version 2_8111numpy/core/setup_common.py:86: MismatchCAPIWarning: API mismatch detected, the C API version numbers have to be updated. Current C api version is 4, with checksum 59750b518272c8987f02d66445afd3f1, but recorded checksum for C API version 4 in codegen_dir/cversions.txt is 3d8940bf7b0d2a4e25be4338c14c3c85. If functions were added in the C API, you have to update C_API_VERSION  in numpy/core/setup_common.pyc.  MismatchCAPIWarning)blas_opt_info:  FOUND:    extra_link_args = ['-Wl,-framework', '-Wl,Accelerate']    define_macros = [('NO_ATLAS_INFO', 3)]    extra_compile_args = ['-faltivec', '-I/System/Library/Frameworks/vecLib.framework/Headers']lapack_opt_info:  FOUND:    extra_link_args = ['-Wl,-framework', '-Wl,Accelerate']    define_macros = [('NO_ATLAS_INFO', 3)]    extra_compile_args = ['-faltivec']running buildrunning config_ccunifing config_cc, config, build_clib, build_ext, build commands --compiler optionsrunning config_fcunifing config_fc, config, build_clib, build_ext, build commands --fcompiler optionsrunning build_srcbuild_srcbuilding py_modules sourcesbuilding library &quot;npymath&quot; sourcescustomize NAGFCompilerFound executable /usr/local/bin/f95customize AbsoftFCompilerCould not locate executable f90Found executable /usr/bin/f77absoft: no Fortran 90 compiler foundabsoft: no Fortran 90 compiler foundcustomize IBMFCompilerCould not locate executable xlf90Could not locate executable xlfcustomize IntelFCompilerCould not locate executable ifortCould not locate executable ifccustomize GnuFCompilerFound executable /usr/local/bin/g77gnu: no Fortran 90 compiler foundgnu: no Fortran 90 compiler foundcustomize Gnu95FCompilerFound executable /usr/local/bin/gfortrancustomize Gnu95FCompilercustomize Gnu95FCompiler using configC compiler: gcc -arch i386 -arch ppc -arch ppc64 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.5.sdk -fno-strict-aliasing -fno-common -dynamic -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypescompile options: '-Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/include -I/Library/Frameworks/Python.framework/Versions/2.6/include/python2.6 -c'gcc: _configtest.cgcc _configtest.o -o _configtestld: library not found for -lcrt1.10.5.ocollect2: ld returned 1 exit statusld: library not found for -lcrt1.10.5.ocollect2: ld returned 1 exit statusfailure.removing: _configtest.c _configtest.oTraceback (most recent call last):  File &quot;setup.py&quot;, line 210, in     setup_package()  File &quot;setup.py&quot;, line 203, in setup_package    configuration=configuration )  File &quot;/Users/adam/repos/numpy-svn/numpy/distutils/core.py&quot;, line 186, in setup    return old_setup(<strong>new_attr)  File &quot;/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/core.py&quot;, line 152, in setup    dist.run_commands()  File &quot;/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/dist.py&quot;, line 975, in run_commands    self.run_command(cmd)  File &quot;/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/dist.py&quot;, line 995, in run_command    cmd_obj.run()  File &quot;/Users/adam/repos/numpy-svn/numpy/distutils/command/build.py&quot;, line 37, in run    old_build.run(self)  File &quot;/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/command/build.py&quot;, line 134, in run    self.run_command(cmd_name)  File &quot;/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/cmd.py&quot;, line 333, in run_command    self.distribution.run_command(command)  File &quot;/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/distutils/dist.py&quot;, line 995, in run_command    cmd_obj.run()  File &quot;/Users/adam/repos/numpy-svn/numpy/distutils/command/build_src.py&quot;, line 152, in run    self.build_sources()  File &quot;/Users/adam/repos/numpy-svn/numpy/distutils/command/build_src.py&quot;, line 163, in build_sources    self.build_library_sources(*libname_info)  File &quot;/Users/adam/repos/numpy-svn/numpy/distutils/command/build_src.py&quot;, line 298, in build_library_sources    sources = self.generate_sources(sources, (lib_name, build_info))  File &quot;/Users/adam/repos/numpy-svn/numpy/distutils/command/build_src.py&quot;, line 385, in generate_sources    source = func(extension, build_dir)  File &quot;numpy/core/setup.py&quot;, line 670, in get_mathlib_info    raise RuntimeError(&quot;Broken toolchain: cannot link a simple C program&quot;)RuntimeError: Broken toolchain: cannot link a simple C program``
+**SOLUTION:</strong> Use the Mac OS X 10.6 python (/usr/bin/python). I will do this
+until I run into another problem. Numpy build successfully</li>
+<li>Build/install matplotlib - failed! Completely!</li>
+<li>Acquired gcc/gfortran from <a class="reference external" href="http://hpc.sourceforge.net/">hpc</a></li>
+<li>Followed instructions from <a class="reference external" href="http://blog.hyperjeff.net/?p=160">hyperjeff</a> on fortran install...</li>
+<li>Get rid of numpy 1.2.1:
+`` mv /System/Library/Frameworks/Python.framework/Versions/2.6/Extras/lib/python/numpy /System/Library/Frameworks/Python.framework/Versions/2.6/Extras/lib/python/.not_numpy.bak``</li>
+<li>Try to install scipy. Fail on missing umfpack, follow <a class="reference external" href="http://blog.hyperjeff.net/?p=160">hyperjeff</a>'s
+instructions (but make sure to edit the site.cfg in scipy, not just the one in
+numpy).
+Had to add the following code:
+<tt class="docutils literal">sudo cp AMD/Lib/libamd.a /System/Library/Frameworks/Python.framework/Versions/2.6/libsudo cp UMFPACK/Lib/libumfpack.a /System/Library/Frameworks/Python.framework/Versions/2.6/libsudo cp AMD/Include/amd.h /System/Library/Frameworks/Python.framework/Versions/2.6/includesudo cp UFconfig/UFconfig.h /System/Library/Frameworks/Python.framework/Versions/2.6/includesudo cp <span class="pre">UMFPACK/Include/*.h</span> /System/Library/Frameworks/Python.framework/Versions/2.6/include</tt></li>
+<li>Installed fftw from <a class="reference external" href="http://www.fftw.org/">fftw.org</a> with simple ./configure, make, sudo
+make install - no compiler opts as they killed the install</li>
+<li>Get SoundSource from <a class="reference external" href="http://www.rogueamoeba.com/freebies/">rogueamoeba</a></li>
+<li>Updated <a class="reference external" href="http://www.islayer.com/apps/istatmenus/">istatmenus</a></li>
+</ol>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/iraf-appendprependreplace.html" rel="bookmark" title="Permalink to IRAF append/prepend/replace">
+                    IRAF append/prepend/replace</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>IRAF has special syntax to append/replace, so you can do something like:
+<tt class="docutils literal">imarith *.fits - dark.fits <span class="pre">ds_//*.fits</span></tt>
+...though I can't remember right now how to do replacement etc.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/keynote-text-boxes.html" rel="bookmark" title="Permalink to keynote text boxes">
+                    keynote text boxes</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content">  </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/last-months-observations-in-l111.html" rel="bookmark" title="Permalink to Last month's observations in L111">
+                    Last month's observations in L111</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Mapped sources:
+SH 2-156 [no high resolution observations; covered by 1.2m CO 1-0
+survey]
+SH 2-157 <a class="reference external" href="http://simbad.u-strasbg.fr/cgi-bin/cdsbib4?2003ApJS..149..375S">Yancy CS 5-4</a>, <a class="reference external" href="http://simbad.u-strasbg.fr/cgi-bin/cdsbib4?2004AJ....128.1716A">CO, 13CO 1-0, CS 2-1</a>, HCN &amp; SCUBA too....
+IRAS 23151 (two pointings)
+Unmapped:
+BFS 18 = IRAS 23042+6000 = IRCO 859
+<a class="reference external" href="http://cdsads.u-strasbg.fr/cgi-bin/nph-bib_query?2005AJ....129..330W&amp;db_key=AST&amp;nosetcookie=1">Wu et al</a> mapped this in CO 2-1 and detected no outflows. They used
+the NRAO 12m with a heterodyne array with very high T<sub>sys</sub>
+~700-1100K.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/latex-producing-a-bibliography-and-paper-independently.html" rel="bookmark" title="Permalink to latex: producing a bibliography and paper independently">
+                    latex: producing a bibliography and paper independently</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2012-09-20T20:02:00-06:00"> 2012/09/20 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-keflavichgmailcom.html">Adam (keflavich@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p><a class="reference external" href="http://casa.colorado.edu/~ginsbura/index.htm">AG</a>
+If you want citations to work, but you don't want your bibliography to
+show up, try the following:
+<tt class="docutils literal">latex file.texbibtex file</tt>
+comment out \biblography{} line
+<tt class="docutils literal">latex file.tex</tt>
+If you latex again, it will screw up.
+To make an independent bibliography, remove all text and replace all
+citep/citet/cite commands with \nocite{} in a different document.
+Remember to usepackage{natbib} etc. You may have to copy over the .bbl
+file.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+            <a href="https://keflavich.github.io/blog/index20.html">&laquo;</a>
+    Page 21 / 51
+        <a href="https://keflavich.github.io/blog/index22.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

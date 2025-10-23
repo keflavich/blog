@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://keflavich.github.io/blog/ppvi-talk-4-christoph-federrath.html" rel="bookmark"
+         title="Permalink to PPVI Talk 4: Christoph Federrath">PPVI Talk 4: Christoph Federrath</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2013-07-15T14:30:00-06:00">
+      2013/07/15
+    </abbr>
+    <address class="vcard author">
+      By <a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <div class="section" id="the-star-formation-rate-of-molecular-clouds">
+<h2>THE STAR FORMATION RATE OF MOLECULAR CLOUDS</h2>
+<p>Authors:</p>
+<p>P. Padoan (ICREA &amp; Institute of Cosmos Sciences, University of Barcelona, Spain),
+C. Federrath (School of Mathematical Sciences, Monash University, Australia),
+G. Chabrier (Ecole Normale Superieure de Lyon, France),
+N. Evans (The University of Texas at Austin, United States),
+D. Johnstone (Herzberg Institute of Astrophysics, National Research Council of Canada),
+J. Jorgensen (Star and Planet Formation Center, University of Copenhagen, Denmark),
+C. McKee (University of California, Berkeley, United States),
+A. Nordlund (Niels Bohr Institute &amp; Star and Planet Formation Center, University of Copenhagen)</p>
+<p>We review recent advances in the analytical and numerical modeling of the star
+formation rate in molecular clouds and discuss the available observational
+constraints. We focus on molecular clouds as the fundamental star formation
+sites, rather than on the larger-scale processes that form the clouds and set
+their properties. Molecular clouds are shaped into a complex filamentary
+structure by supersonic turbulence, with only a small fraction of the cloud
+mass channeled into collapsing protostars over a free-fall time of the system.
+In recent years, the physics of supersonic turbulence has been widely explored
+with computer simulations, leading to statistical models of this fragmentation
+process, and to the prediction of the star formation rate as a function of
+fundamental physical parameters of molecular clouds, such as the virial
+parameter, the rms Mach number, the compressive fraction of the turbulence
+forcing, and the ratio of magnetic to gas pressure. Infrared space telescopes,
+as well as ground-based observatories have provided unprecedented probes of the
+filamentary structure of molecular clouds and the location of forming stars
+within them. We may thus be on the verge of a breakthrough in our understanding
+of star formation, and particularly of the star formation rate of molecular
+clouds.</p>
+</div>
+<div class="section" id="content">
+<h2>Content</h2>
+<p>Star Formation Rate from statistics of turbulence</p>
+<p>Drastic differences in SFR, not just because of column density.  (Lada 2010:
+Pipe vs Rho Oph, Rho = 15 Pipe)</p>
+<p>Intro slides:</p>
+<blockquote>
+<ul>
+<li><p class="first">KS relation with local clouds</p>
+</li>
+<li><p class="first">CMF -&gt; IMF (30-70% SFE)</p>
+</li>
+<li><p class="first">Radiation feedback:</p>
+<blockquote>
+<ul class="simple">
+<li>only affects small scales</li>
+<li>affects &gt; 10^8 cm^-3</li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">B-fields</p>
+<ul class="simple">
+<li>reduce fragmentation <em>more effectively</em> than radiation</li>
+<li>drive outflows</li>
+</ul>
+</li>
+<li><p class="first">Outflows &amp; Jets</p>
+<ul class="simple">
+<li>direct: reduce star mass</li>
+<li>indirect - drive turbulence</li>
+<li>triggering SF</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="what-drives-turbulence">
+<h2>What drives turbulence?</h2>
+<blockquote>
+<ul class="simple">
+<li>Jets contribute to turbulence on small scales, but don't feed back effectively on large scales</li>
+<li>Ionization fronts, bubbles?</li>
+<li>SN explosions</li>
+<li>MRI / shear?</li>
+</ul>
+</blockquote>
+<div class="section" id="turbulence">
+<h3>Turbulence</h3>
+<blockquote>
+<ul>
+<li><p class="first">Reynolds &gt; 1000</p>
+</li>
+<li><p class="first">cites da Vinci</p>
+</li>
+<li><p class="first">Supersonic &quot;cascades&quot; to sonic scale</p>
+<blockquote>
+<ul class="simple">
+<li>Kolmogorov -5/3 turbulence is incompressible (subsonic)</li>
+<li>Larson -2 supersonic, shock-dominated</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<div class="section" id="turbulence-in-a-box">
+<h4>Turbulence in a Box</h4>
+<blockquote>
+<ul class="simple">
+<li>Mach numbers 2-50</li>
+<li>&quot;Forcing term&quot; f<ul>
+<li>divergence free vs. compressive turbulence</li>
+<li>compressive -&gt; bigger voids, higher overdensity</li>
+</ul>
+</li>
+<li>Density PDF: lognormal</li>
+<li>Perseus observations: similar Mach numbers, different dispersions: requires changed <em>b</em></li>
+<li>Column vs. Volume density: Brunt</li>
+<li>Kainulainen, starless -&gt; taurus -&gt; IRDCs<ul>
+<li>starless: b=0</li>
+<li>starry: b=0.5</li>
+<li>IRDCs: higher</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="density-pdf-sfr">
+<h2>Density PDF -&gt; SFR</h2>
+<p>All recent theories of SF, SFR are based on an integral over the density PDF.</p>
+<blockquote>
+<ul>
+<li><p class="first">Hennebelle &amp; Chabrier theory: Different free-fall times at different densities, so must be in an integral</p>
+</li>
+<li><p class="first">Cricitical density <span class="math">\(s_{crit}\propto \ln \left(\alpha_{vir}\mathcal{M}^2\right)\)</span></p>
+</li>
+<li><p class="first">SFR depends on alpha_vir, b, and M</p>
+</li>
+<li><p class="first">Dependence on alpha_vir: inversely proportional to SFR, SFR propto alpha_vir^-1/2</p>
+</li>
+<li><p class="first">Dependence on Mach number</p>
+<blockquote>
+<ul class="simple">
+<li>stronger when you consider non-constant t_ff</li>
+<li>SFR larger as gas compressed more</li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">Dependence on <em>b</em>: Compressive is much more star forming</p>
+<ul class="simple">
+<li>compressive drives gas to self-gravitating densities far more rapidly</li>
+</ul>
+</li>
+<li><p class="first">What about magnetic fields?  Add beta</p>
+<ul class="simple">
+<li>B-fields &quot;wash out&quot; structures</li>
+<li>Reduce fragmentation</li>
+</ul>
+</li>
+<li><p class="first">Direct measurement of line-of-sight star counts and gas density</p>
+<ul class="simple">
+<li>1%, 10% SFE examples</li>
+<li>makes a distribution similar to Heiderman plot</li>
+<li>agreement assumes total core-to-star efficiency = 100%</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="conclusions">
+<h2>Conclusions</h2>
+<blockquote>
+<ul class="simple">
+<li>supersonic, magnetized turbulence is important for driving SFR</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="questions">
+<h2>Questions</h2>
+<blockquote>
+<ul class="simple">
+<li>Q: Adam Frank - Abstract vs realistic forcing from, e.g., outflows.  Driving
+sources makes turbulence look different.</li>
+<li>A: These experiments are essential.  Need to find out.</li>
+<li>Q: Fabian Heitsch - How does non-isothermality affect theory?</li>
+<li>A: We are looking only at density ranges where gas is isothermal.  SFR is
+not very dependent on T, but IMF <em>is</em>.</li>
+<li>Q: How do you explain that solenoidal is a better fit, when all drivers are
+compressive?</li>
+<li>A: Don't know. BUT, compression <em>drives</em> solenoidal modes
+[this is possibly interesting - does a single compression event drive a lot of solenoids?]</li>
+<li>Q: What are the effects of field-slippage (non-ideal MHD, ambipolar diffusion)</li>
+<li>A: Not that important....</li>
+<li>Q: Tan - Filaments have ordered B-fields on large scales.  Do you see that in the simulations</li>
+<li>A: Fields are very intermittent, bouncing all over the place. Large scale
+&quot;input&quot; B-fields may be more important for mol. clds</li>
+<li>Q: Solenoidal -&gt; toroidal fields, which squeeze gas.  Do you see squeezing
+(compression) from solenoidal?</li>
+<li>A: &quot;simple&quot; version of B-fields only works for magnetic pressure, not
+magnetic tension.  For subsonic, SFR doesn't work.  Need disordered fields</li>
+<li>Q: Clark? - How do these results compare with Lada's?</li>
+<li>A: Don't know, didn't want the complexity</li>
+</ul>
+</blockquote>
+</div>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+  </div><!-- /.entry-content -->
+</section>
+
+<section>
+<h1>Comments</h1>
+<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</section>
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  var disqus_identifier = '/ppvi-talk-4-christoph-federrath.html';
+  var disqus_url = 'https://keflavich.github.io/blog/ppvi-talk-4-christoph-federrath.html';
+  var disqus_title = 'PPVI Talk 4: Christoph Federrath';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

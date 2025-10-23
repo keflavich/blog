@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog - tclean</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2017/04/26
+                  <br>
+                  <a href="https://keflavich.github.io/blog/a-quick-performance-test-on-casa-cleaning.html">A quick performance test on CASA cleaning</a>
+              </li>
+              <li class="post">
+                  2016/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-tclean-adds-negative-components.html">CASA tclean adds negative components</a>
+              </li>
+              <li class="post">
+                  2016/01/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/comparing-tclean-parameters.html">Comparing tclean parameters</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/a-quick-performance-test-on-casa-cleaning.html" rel="bookmark" title="Permalink to A quick performance test on CASA cleaning">
+                    A quick performance test on CASA cleaning</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2017-04-26T11:03:00-06:00"> 2017/04/26 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I ran some speed tests to compare CASA's speed when imaging single channels vs
+blocks of channels.  The tests were run with savemodel='none' on a lustre node</p>
+<pre class="literal-block">
+'speedtest_nchan1_concat': 249,
+'speedtest_nchan1_individual': 523,
+'speedtest_nchan5_concat': 803,
+'speedtest_nchan5_individual': 916,
+'speedtest_nchan20_concat': 2303,
+'speedtest_nchan20_individual': 2346,
+'speedtest_nchan40_concat': 4010,
+'speedtest_nchan40_individual': 4136,
+'speedtest_nchan80_concat': 8101,
+'speedtest_nchan80_individual': 9298,
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/casa/cube_performance.png" style="width: 600px;" />
+<p>The fit is y = 98x + 237</p>
+<p>So at least until swapping happens, there is no serious advantage or
+disadvantage to running a different # of channels simultaneously.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/casa-tclean-adds-negative-components.html" rel="bookmark" title="Permalink to CASA tclean adds negative components">
+                    CASA tclean adds negative components</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-05-01T10:21:00-06:00"> 2016/05/01 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm trying to examine some of my 7m+12m combined data and have run into yet another
+mysterious behavior of CASA.  <tt class="docutils literal">tclean</tt> is adding negative components in regions with
+exclusively positive emission.</p>
+<p>In this image, the <em>left</em> is the clean image, which doesn't make any sense; it
+looks like it should be a residual image but it is not.  2nd image is the clean
+components (negative!!), 3rd is the residual, 4th is the dirty map.</p>
+<img alt="" src="https://keflavich.github.io/blog/images/casa/bad_cleancomps.png" style="width: 600px;" />
+<p>One tricky thing for this particular image is that the emission is real, BUT it
+is also directly on top of a major sidelobe of the brightest source in the
+region.  Nonetheless, I cannot imagine any way to explain the negative
+component.  I don't really understand when a negative component is added, but
+presumably it ought to happen when the residual has a negative value but also
+the highest amplitude in the map; this obviously never happens here since the
+residual in fact has one of the highest <em>positive</em> amplitudes in the map.</p>
+<p>The imaging parameters seem not to affect this problem. I attempted reducing the
+gain to 0.05 to no avail.  Changing from natural to robust weighting actually
+removed most of the negative components.</p>
+<div class="section" id="failed-combination-of-7m-and-12m-data">
+<h2>Failed combination of 7m and 12m data</h2>
+<p>The above was a tangent.  The real reason I was working on this data set was to
+combine the 7m and 12m spectral data.  The problem I keep seeing is very large,
+smooth blobs that are spatially distinct from the more compact emission.  It's
+as if someone took the two independent cubes (12m and 7m) and just added them
+together; it looks like flux is not being conserved.</p>
+<p>The UV plots, especially weight vs uvdist, look fine.  The 7m antenna are
+downweighted relative to the 7m antennae by a factor ~2.</p>
+<p>One of the bigger problems is that I have a vague - possibly not justified -
+sense that there is a velocity offset of ~1 km/s between the 7m and 12m data.
+If this is the case, there's no wonder the combination isn't working.
+However, it's nearly inconceivable.</p>
+</div>
+<div class="section" id="followup-feb-2017">
+<h2>Followup Feb 2017</h2>
+<p>That vague fear turned out to be entirely justified.  It turned out that the 7m
+and 12m array data sets were not in a common frame, and they were therefore
+offset by something like the Earth's change in velocity between the observation
+dates.  The solution was to cvel the data sets to the LSRK frame prior to
+concatenating them.  While I know I made these changes, I unfortunately can't
+find the specific commit where I made them.</p>
+</div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/comparing-tclean-parameters.html" rel="bookmark" title="Permalink to Comparing tclean parameters">
+                    Comparing tclean parameters</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2016-01-14T09:57:00-07:00"> 2016/01/14 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Comparing clean methods with identical data &amp; parameters (as far as possible):
+<a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S/blob/master/script_merge/clean_method_comparison.py">code</a>.</p>
+<p>An example using natural weighting:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/casa/tclean_compare.png" style="width: 600px;" />
+<p>None of the methods are acceptable.  Multiscale is the worst, but hogbom is
+extremely bad: there are major ringing artifacts (stripes parallel to the main
+filament).</p>
+<p>Disturbingly, even though I have given multiple scales, there are clearly no
+non-pointlike scales in any of the model images, including mem, so I think
+there's a major problem with tclean:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/casa/tclean_compare_models.png" style="width: 600px;" />
+<p>I'm re-doing it with uniform weighting, because that's the case I was actually
+interested in.</p>
+<img alt="" src="https://keflavich.github.io/blog/images/casa/tclean_compare_uniform.png" style="width: 600px;" />
+<p>The uniform tests come up with a clear and obvious answer: use clark clean, DO
+NOT use any other methods as they are all unstable.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 1
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>

@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
+<head>
+    <base href="https://keflavich.github.io/blog">
+        <title>Adam Ginsburg's blog</title>
+        <meta charset="utf-8" />
+        <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
+        <link href="https://keflavich.github.io/blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Categories Atom Feed" />
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+                <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
+                <li><a href="/index.html">Blog Index</a></li>
+                <li><a href="/category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/category/publications.html">Publications</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                <li><a href="/tags.html">Tags</a></li>
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+              <li class="post">
+                  2025/03/15
+                  <br>
+                  <a href="https://keflavich.github.io/blog/pushing-to-a-pull-request.html">Pushing to a pull request</a>
+              </li>
+              <li class="post">
+                  2023/08/11
+                  <br>
+                  <a href="https://keflavich.github.io/blog/editing-metadata-in-measurement-sets.html">Editing metadata in measurement sets</a>
+              </li>
+              <li class="post">
+                  2022/05/06
+                  <br>
+                  <a href="https://keflavich.github.io/blog/casa-mpi-debugging-contd.html">CASA MPI debugging cont'd</a>
+              </li>
+              <li class="post">
+                  2022/05/01
+                  <br>
+                  <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
+              </li>
+              <li class="post">
+                  2022/04/14
+                  <br>
+                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
+              </li>
+        </ul>
+      </li>
+    
+    </ul>
+  </div><!-- end #sidebar -->
+
+  <div id="content">
+<section id="content">
+<h2>Articles in the misc category</h2>
+
+<ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/casa-cross-calibration-application.html" rel="bookmark" title="Permalink to CASA Cross-Calibration Application">
+                    CASA Cross-Calibration Application</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2019-08-22T13:06:00-06:00"> 2019/08/22 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>On several independent occasions, I've had data where the continuum is bright
+enough to self-calibrate, but the lines aren't.  In these cases, I want to apply
+the continuum-derived selfcal solutions to the line data.</p>
+<p>In all of these cases, I have several independent execution blocks that I've
+split and downsampled before combining to make the continuum image.</p>
+<p>I got stuck trying to make this happen, but we reconvened on the topic in early
+2021, and Manuel Fernandez and Roberto Galvan-Madrid and I came up with this
+tool to match spectral windows in a concatenated data set to the appropriate
+windows in the original:
+<a class="reference external" href="https://github.com/ALMA-IMF/reduction/blob/master/misc/applycal_tests.py">https://github.com/ALMA-IMF/reduction/blob/master/misc/applycal_tests.py</a></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/casa-corrupted-measurement-sets.html" rel="bookmark" title="Permalink to CASA corrupted measurement sets">
+                    CASA corrupted measurement sets</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2019-07-23T13:11:00-06:00"> 2019/07/23 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>Over the weekend, I had a huge quantity of ALMA data get corrupted. The
+corruption appears to have been caused by an incorrectly-mounted lustre system
+that had &quot;flock&quot; disabled.  When they re-mounted the filesystem, every
+measurement set I had touched was unreadable.</p>
+<p>Corrupted data sets had messages like this when opened with <tt class="docutils literal">msmd.open</tt>:</p>
+<pre class="literal-block">
+RuntimeError: Exception: Illegal DATA_DESC_ID value 30 found in main table. /lustre/cv/projects/ALMA_IMF/2017.1.01355.L/science_goal.uid___A001_X1296_X211/group.uid___A001_X1296_X212/member.uid___A001_X1296_X217/calibrated/uid___A002_Xcbdb2a_X6e67.ms.split.cal/DATA_DESCRIPTION only has 0 rows (IDs).
+... thrown by void casa::MSChecker::checkReferentialIntegrity() const at File: ../../msvis/MSVis/MSChecker.cc, line: 78
+</pre>
+<p>The solution was to replace all of the <tt class="docutils literal">table.dat</tt> files in the
+<tt class="docutils literal">DATA_DESCRIPTION</tt>, <tt class="docutils literal">POLARIZATION</tt>, <tt class="docutils literal">STATE</tt>, and <tt class="docutils literal">PROCESSOR</tt> folders
+with &quot;backups&quot; from the parent measurement set.  Luckily, all of my data were
+split from other measurement sets that still existed, and they were split with
+<tt class="docutils literal">reindex=False</tt>, which meant that these tables were actually usable.  There's
+no guarantee they would be in general.</p>
+<p>My fix script is this:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getdata</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">ii</span><span class="p">:(</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">)</span> <span class="k">for</span> <span class="n">ii</span><span class="p">,(</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span> <span class="k">if</span> <span class="n">xx</span><span class="o">!=</span><span class="n">yy</span><span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">fix_bad_mses</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">dirpath</span><span class="p">,</span> <span class="n">dirnames</span><span class="p">,</span> <span class="n">filenames</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">dirnames</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">fn</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span> <span class="o">==</span> <span class="s2">&quot;.split.cal&quot;</span><span class="p">:</span>
+                <span class="n">ffn</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span>
+                <span class="n">workingfn</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="s1">&#39;working&#39;</span><span class="p">,</span> <span class="n">fn</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">])</span>
+
+                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">workingfn</span><span class="p">):</span>
+                    <span class="c1">#print(&quot;Working on files {0} and {1}&quot;.format(ffn, workingfn))</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">ffn</span><span class="p">)</span>
+
+                    <span class="k">for</span> <span class="n">dn</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;POLARIZATION&#39;</span><span class="p">,</span> <span class="s1">&#39;PROCESSOR&#39;</span><span class="p">,</span> <span class="s1">&#39;DATA_DESCRIPTION&#39;</span><span class="p">,</span> <span class="s1">&#39;STATE&#39;</span><span class="p">]:</span>
+                        <span class="n">tbpth1</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ffn</span><span class="p">,</span> <span class="n">dn</span><span class="p">,</span> <span class="s1">&#39;table.dat&#39;</span><span class="p">)</span>
+                        <span class="n">tbpth2</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workingfn</span><span class="p">,</span> <span class="n">dn</span><span class="p">,</span> <span class="s1">&#39;table.dat&#39;</span><span class="p">)</span>
+
+                        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">tbpth1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">tbpth2</span><span class="p">):</span>
+                            <span class="n">d1</span> <span class="o">=</span> <span class="n">getdata</span><span class="p">(</span><span class="n">tbpth1</span><span class="p">)</span>
+                            <span class="n">d2</span> <span class="o">=</span> <span class="n">getdata</span><span class="p">(</span><span class="n">tbpth2</span><span class="p">)</span>
+                            <span class="n">delta</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">)</span>
+                            <span class="c1">#print(&quot;Diff from {0} to {1} is {2}&quot;.format(tbpth1, tbpth2, delta))</span>
+
+                            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">delta</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;FIXING: Diff for </span><span class="si">{0}</span><span class="s2"> is </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dn</span><span class="p">,</span> <span class="n">delta</span><span class="p">))</span>
+                                <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">tbpth1</span><span class="p">,</span> <span class="n">tbpth1</span><span class="o">+</span><span class="s2">&quot;.bck&quot;</span><span class="p">)</span>
+                                <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">tbpth2</span><span class="p">,</span> <span class="n">tbpth1</span><span class="p">)</span>
+</pre></div>
+<p>which spewed out a bunch of messages like this:</p>
+<pre class="literal-block">
+FIXING: Diff for POLARIZATION is {24: ('\x00', '\x01'), 1059: ('\x00', '\x01')}
+FIXING: Diff for PROCESSOR is {24: ('\x00', '\x03'), 1078: ('\x00', '\x03')}
+FIXING: Diff for DATA_DESCRIPTION is {24: ('\x00', '\x18'), 772: ('\x00', '\x18')}
+FIXING: Diff for STATE is {24: ('\x00', '\x1d'), 1699: ('\x00', '\x1d')}
+</pre>
+<p>showing that for each bad file, two bytes were flipped.  I don't know how or why.  Notably, though,
+the byte flips that corrupted the data did <em>not</em> change the file modification date - somehow CASA
+hid this operation from the filesystem.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/feo-nondetection-in-orion.html" rel="bookmark" title="Permalink to FeO Nondetection in Orion">
+                    FeO Nondetection in Orion</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2018-10-14T15:09:00-06:00"> 2018/10/14 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I had a Cycle 3 ALMA program <a class="reference external" href="https://almascience.nrao.edu/observing/highest-priority-projects">2015.1.00262.S:
+Digging for rusty bullets at an explosion site</a>
+that aimed to detect <a class="reference external" href="https://en.wikipedia.org/wiki/Iron(II)_oxide">ferrous oxide, FeO</a>
+in the shocked outflows of the Orion nebula.</p>
+<p>I haven't published anything on this data set because it resulted in a fairly
+boring non-detection.  You can find the source code to retrieve and process
+the data from <a class="reference external" href="https://github.com/keflavich/FeO_2015.1.00262.S">here</a>.
+The nondetection is several orders of magnitude deeper than previous
+ones, but to demonstrate this definitively, we need to do some more modeling
+work, which my co-I's and I have decided isn't worth the time, since we're
+all flooded with very exciting new ALMA data that has interesting detections
+in it (see salts soon).</p>
+<p>In brief, we were looking at a location where we know molecules (H2, molecular
+hydrogen) and gas-phase iron (Fe II, as seen in in the [Fe II] 1.64 micron lines)
+are approximately coincident.  The most likely (and broadly accepted)
+explanation is that dust particles are being destroyed (sputtered) in the
+high-velocity ($&gt;30$ km/s, up to about $100-200$ km/s) shocks produced in an
+outflow.  Since iron in the interstellar medium mostly lives in the cores of
+dust grains, we thought it might be released in a molecular form detectable by
+ALMA before being split into an atomic, ionized form.</p>
+<p>Despite having a good location and a sensitive observation, we didn't detect
+any.  It might mean that iron is mostly in a different molecular form, or it
+might mean that when iron gets sputtered out of grains, it never goes into
+a molecular form at all, instead dissociating straight into atomic form.</p>
+<p>There are a few things that, with infinite time, I would do with this data set:</p>
+<ol class="arabic simple">
+<li>Come up with a formal upper limit on the FeO abundance.</li>
+<li>Compare the lines we did detect to the outflows and see if we can better
+constrain their physical conditions</li>
+<li>Catalog the stars and publish the catalog for comparison to other data sets.
+(actually, this is done: <a class="reference external" href="https://github.com/keflavich/FeO_2015.1.00262.S/blob/master/tables/gaussian_fit_table.ipac">this table</a>
+contains Gaussian fits to each of the stars in the continuum image (<a class="reference external" href="https://github.com/keflavich/FeO_2015.1.00262.S/blob/master/analysis/contsource_centroids.py">source</a>).)</li>
+</ol>
+<p>These figure show the apertures we used to extract spectra and search for the
+lines, then the spectra of different species for one of the apertures.  The
+background image is the H2 (orange) + FeII (cyan) + K-band (mostly white) I
+made for my <a class="reference external" href="http://adsabs.harvard.edu/abs/2015A%26A...579A.130B">2015 paper with John Bally</a>.</p>
+<img alt="" src="https://keflavich.github.io/blog/images/feo/aperture_overlays.png" style="width: 600px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/feo/BulletHeads4_alllines.png" style="width: 600px;" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/talks-now-using-revealjs.html" rel="bookmark" title="Permalink to Talks: Now using revealjs">
+                    Talks: Now using revealjs</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2018-07-08T12:37:00-06:00"> 2018/07/08 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I'm attempting to wean myself off of Mac-specific technology, inspired by some
+impending hardware failures (see below), the not-falling cost of not-improving
+hardware, and the lack of budget growth.</p>
+<p>Following a suggestion from <a class="reference external" href="https://github.com/pkgw/">Peter Williams</a>, I'm
+using reveal.js based on <a class="reference external" href="https://github.com/pkgw/htmltalk">Peter's template</a>, which I have previously played with a
+little with mixed success.  The slid.es editor seems nearly fully featured as a
+replacement for keynote, but I quickly dropped it because of its
+subscription-only paid features; the cost-benefit analysis is that Keynote is
+much cheaper than slid.es for someone like me, since Keynote cost
+30 dollars one-time for ~10 years of use, while the minimum usable plan
+for slid.es is 10 dollars/month,
+or 1200 dollars over the same
+period.  If that was the tradeoff I was considering, mac+keynote would be about
+the same as linux+slid.es, since I'd be paying a few thousand dollars for the mac.</p>
+<p>I'm taking the somewhat ridiculous approach of raw HTML/CSS editing with the
+Chrome inspector as my interactive testing tool.  This is a little tedious
+because of the html tagging, but that's honestly not so bad; it lets me do the
+hard work with the keyboard instead of the mouse.  The biggest problem is the
+learning curve of css, but I look at that as skill and knowledge worth having.
+If you don't, this is probably not the approach for you.  I hope, though, that
+some day there is a slid.es-like solution that is reasonably priced.</p>
+<p>Another problem is image editing, which was pretty convenient in keynote, but
+there are plenty of other decent-to-good image editors out there, e.g., gimp,
+preview, etc.  For cropping and opacity, which are most of what you want to do,
+css works and can even be tested interactively in the browser.  But, this
+should also give more motivation to just make the figures presentation-ready in
+the code.</p>
+<p>Anyway, the talks I've created are hosted at github, and they're fully-featured:
+you should be able to just click these links and walk through the talks.</p>
+<p>My &quot;Tracing the Flow&quot; invited talk on High Mass Cluster Formation:
+<a class="reference external" href="https://keflavich.github.io/talks/HighMassClusterFormation_TracingTheFlow2018.html">https://keflavich.github.io/talks/HighMassClusterFormation_TracingTheFlow2018.html</a></p>
+<p>Some slides for a work meeting on the ALMA-IMF project, with a technical bent:
+<a class="reference external" href="https://keflavich.github.io/talks/ALMA_IMF_W51_SgrB2.html">https://keflavich.github.io/talks/ALMA_IMF_W51_SgrB2.html</a></p>
+<p>If you want the pdf version of either of these, add <tt class="docutils literal"><span class="pre">?print_pdf</span></tt> to the end
+of the URL, then use your browser to print and save to pdf.</p>
+<p>Some pictures of the impending failure.  My mac doesn't close any more, and
+the charger cable has frayed severely:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/frayed_adapter.jpg" style="width: 600px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/lappy_wont_close.jpg" style="width: 600px;" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/brief-review-of-cluster-formation-simulations.html" rel="bookmark" title="Permalink to Brief review of cluster formation simulations">
+                    Brief review of cluster formation simulations</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2018-06-18T10:32:00-06:00"> 2018/06/18 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>In preparing for an upcoming talk, I'm taking some notes on cluster formation
+simulations, and I want to keep these notes available &amp; public so others can
+correct anything that's missing.  In particular, I want to note the resolution of
+these simulations.</p>
+<dl class="docutils">
+<dt>First, Jim Dale has several long series of papers on cluster formation simulations:</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://adsabs.harvard.edu/abs/2015NewAR..68....1D">Review Article</a></li>
+<li><a class="reference external" href="http://adsabs.harvard.edu/abs/2012MNRAS.427.2852D">Ionization-induced star formation - IV. Triggering in bound clusters</a></li>
+<li><a class="reference external" href="http://adsabs.harvard.edu/abs/2013MNRAS.431.1062D">Ionization-induced star formation - V. Triggering in partially unbound clusters</a></li>
+<li><a class="reference external" href="http://adsabs.harvard.edu/abs/2018arXiv180404664K">Kim, Kim, Ostriker 2018</a> ~240 Msun</li>
+</ul>
+</dd>
+</dl>
+<p>Unfortunately, I stopped taking notes and started focusing on just the talk, so
+this ended up quite incomplete.  I'm not going to try to archive this any further...</p>
+<p>If you're interested, instead just see my talk: <a class="reference external" href="https://keflavich.github.io/talks/HighMassClusterFormation_TracingTheFlow2018.html">https://keflavich.github.io/talks/HighMassClusterFormation_TracingTheFlow2018.html</a></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/derivation-of-co-column-density.html" rel="bookmark" title="Permalink to Derivation of CO Column Density">
+                    Derivation of CO Column Density</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2018-04-18T11:10:00-06:00"> 2018/04/18 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've regularly had to calculate masses and column densities from CO
+isotopologues, as have many others.  I found a textbooklike derivation in my
+old notes, so I figured I'd publish them.</p>
+<p>I don't have time to nicely format things now, but the code, associated figures,
+and a 3-page tex document with equations are all here:
+<a class="reference external" href="https://github.com/keflavich/co_properties">https://github.com/keflavich/co_properties</a>
+I'm pretty sure this all comes from a homework assignment in 2007 or 2008, so
+it's likely there are errors.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/the-extragalactic-view-of-w51-at-220-and-290-ghz.html" rel="bookmark" title="Permalink to The extragalactic view of W51 at 220 and 290 GHz">
+                    The extragalactic view of W51 at 220 and 290 GHz</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2017-12-01T11:23:00-07:00"> 2017/12/01 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>These are APEX data covering 5.5' x 5.5' centered on W51 Main:
+<a class="reference external" href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/RYEANM">https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/RYEANM</a>
+These are calibrated to T_A* units.  APEX telescope efficiencies can be found
+here: <a class="reference external" href="http://www.apex-telescope.org/telescope/efficiency/">http://www.apex-telescope.org/telescope/efficiency/</a> and are approximately
+0.75 at the observed frequencies.</p>
+<p>W51 is at a distance of 5.1 kpc, so this field of view is equivalent to 8.1 pc, or 1.7&quot; at
+1 Mpc or 0.33&quot; at 5 Mpc.</p>
+<p>The linewidth is 12.7-15.2 km/s (H2CO 4-3, CO 2-1) FWHM averaged over this full field.</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/gaussfit_h2co4-3_velocity.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/gaussfit_12co2-1_velocity.png" style="width: 200px;" />
+<p>Images of the spectra, with some lines identified, are shown here (open them in
+a new tab to see the full resolution).  The baselines aren't great, but it's
+easy to fit a local linear baseline around any of the fairly narrow lines.</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/lineid_avg_W51_12CO_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/lineid_avg_W51_217GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/lineid_avg_W51_218GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/lineid_avg_W51_232GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/lineid_avg_W51_291GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/lineid_avg_W51_293GHz_merge.png" style="width: 200px;" />
+<p>The same images, but not zoomed in the y-direction.  Note that 12CO 2-1 is very
+near the edge of the band; it peaks around 20 K:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/w51/avg_W51_12CO_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/avg_W51_217GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/avg_W51_218GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/avg_W51_232GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/avg_W51_291GHz_merge.png" style="width: 200px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/w51/avg_W51_293GHz_merge.png" style="width: 200px;" />
+<p>Scripts to obtain the data and process them are here:
+<a class="reference external" href="https://github.com/keflavich/W51_APEX_H2CO">https://github.com/keflavich/W51_APEX_H2CO</a></p>
+<p>See the related project by Watanabe et al looking at W51 in the 3mm band:
+<a class="reference external" href="http://adsabs.harvard.edu/abs/2017ApJ...845..116W">http://adsabs.harvard.edu/abs/2017ApJ...845..116W</a></p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/understanding-millimeter-source-counts.html" rel="bookmark" title="Permalink to Understanding Millimeter Source Counts">
+                    Understanding Millimeter Source Counts</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2017-10-07T14:48:00-06:00"> 2017/10/07 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>A few recent projects (<a class="reference external" href="https://github.com/keflavich/W51_ALMA_2013.1.00308.S">ALMA W51</a> and <a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/">ALMA Sgr B2</a>) have raised
+the question: How do we interpret unresolved millimeter sources?</p>
+<p>In the two linked works, I concluded that most of the 1mm and 3mm point sources
+we detected with ALMA at D&gt;5 kpc are protostars with dust envelopes - i.e.,
+they are &quot;Class 0/I&quot;-like sources, but they are generally more luminous (and
+therefore more massive) than their local analogs.</p>
+<p>One of the appeals of the dust continuum, the wavelength range from about 0.5
+to 2 mm, for studying star formation is that we usually assume that the source
+brightness is proportional to the source mass.  For optically thin dust, this
+assumption is pretty good.  The (systematic, unmeasurable) uncertainty is, to
+first order, just the uncertainty in the dust temperature.</p>
+<p>However, protostellar cores - dust cores that contain a YSO or any luminous
+object (whether the luminosity is nuclear or gravitational in nature doesn't
+matter) - violate those assumptions.  First, the dust is not isothermal, so the
+emission is weighted toward the hotter dust that represents less of the total
+mass.  Second, the dust is not necessarily optically thin - a centrally
+concentrated source is likely to have a significant optical depth, particularly
+at the shorter wavelengths.  Third, once the optically thin assumption is
+broken, the source geometry matters; there may be some axes along which the
+source is substantially brighter.</p>
+<p>The <a class="reference external" href="https://almascience.nrao.edu/observing/highest-priority-projects#flyout_2017.1.01355.L">ALMA-IMF program</a>,
+which I am co-leading with Frederique Motte, Patricio Sanhueza, and Fabien Louvet, has the broad goal of
+understanding the formation of the IMF in the Galaxy.  In practice, we will
+measure some form of 1 mm luminosity function.  In the long term, we may be
+able to obtain some additional constraints on the internal temperature
+structures of the sources.  The imminence of this large data set motivates the
+development of a general systematic analysis tool for assessing the
+implications of the mm luminosity function on the underlying mass function.</p>
+<p>In the related <a class="reference external" href="blog/protostellar-mass-functions.html">Protostellar Mass Functions</a> post, I implemented the
+protostellar mass functions described by <a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...716..167M">McKee and Offner</a>.  These functions
+provide the mapping between a stellar mass function and a protostellar mass
+function given some assumed accretion history.  The assumed accretion histories
+for the stars are very simple (in reality, accretion is probably quite
+stochastic), but that's fine since it provides something testable.</p>
+<p>I've then tried to follow up by implementing the next step toward producing
+something comparable to observables as defined in <a class="reference external" href="http://adsabs.harvard.edu/abs/2011ApJ...736...53O">Offner and McKee</a>, but
+unfortunately this is a good deal more challenging.  We need a means to map a
+protostellar mass to a luminosity, and there is no simple one-to-one function
+to do this.</p>
+<div class="section" id="protostellar-evolution-models">
+<h2>Protostellar Evolution Models</h2>
+<p>Several authors have described protostellar evolution models.  They mostly
+refer back to <a class="reference external" href="http://adsabs.harvard.edu/abs/1991ApJ...375..288P">Palla &amp; Stahler I</a> and <a class="reference external" href="Palla&amp;StahlerII">II</a>.  The <a class="reference external" href="Offner+2009">Offner
+&amp; McKee model</a> is based on <a class="reference external" href="http://adsabs.harvard.edu/abs/2004ApJ...603..383T">Tan &amp; McKee 2004</a>.  There is a
+similar model by <a class="reference external" href="http://adsabs.harvard.edu/abs/2009ApJ...691..823H">Hosokawa &amp; Omukai</a>, who have shown that high-mass stars can
+have substantially varying structures (radii -&gt; luminosities) depending on
+their accretion rates.  Mikhail Klassen implemented the <a class="reference external" href="http://adsabs.harvard.edu/abs/2009ApJ...703..131O">Offner+ 2009</a>
+protostellar evolution models <a class="reference external" href="MikhailKlassen">in fortran</a> in <a class="reference external" href="Klassen+2012">this paper</a>, with only slight differences assumed in the polytropic
+parameters and the accretion luminosity (<a class="reference external" href="Offner+2009">Offner+</a> assumed 25%
+of the accretion energy is lost to wind and treated the disk and star accretion
+luminosity separately, according to <a class="reference external" href="http://adsabs.harvard.edu/abs/2012MNRAS.421.2861K">Klassen+ 2012</a>).</p>
+<p>The Klassen implementation is the best immediately available to me.  Both they
+and <a class="reference external" href="http://adsabs.harvard.edu/abs/2011ApJ...736...53O">Offner and McKee</a> compared their results to <a class="reference external" href="http://adsabs.harvard.edu/abs/2009ApJ...691..823H">Hosokawa &amp; Omukai</a>,
+considering the latter to be more accurate, and found &quot;good&quot; agreement (&lt;2x
+disagreement) in the radius as a function of mass.  The same comparison is
+shown below; these figures match <a class="reference external" href="http://adsabs.harvard.edu/abs/2012MNRAS.421.2861K">Klassen+ 2012</a> Figures 1 and 2 (though I
+don't plot exactly the same things).</p>
+<img alt="" src="https://keflavich.github.io/blog/images/Klassen_vs_Hosokawa_model_comparison.png" style="width: 600px;" />
+<p>At least in priniple, these tools give us a mechanism to determine L(M, M_f),
+the luminosity as a function of the current mass and the final mass of a star.
+Alternatively, that can be written as L(t, M_f), the luminosity as a function
+of time and final mass.  However, there is at least one major practical concern:
+the protostellar evolution models have the free variable mdot, not M_f, so
+in order to use these models, we need to populate a 'fully sampled' L(M, M_f) table.
+Offner et al computed such a table, but then used an approximation for
+R(M) - the stellar radius as a function of its mass - for their calculations.</p>
+<!-- There are two types of accretion histories considered by Offner.  First, they -->
+<!-- consider a series of constant (time-independent) accretion histories with mdot -->
+<!-- determined by the final mass.  Second, they consider an accelerating -->
+<!-- (time-dependent) accretion history.  Grids based on the former are easier to build; -->
+<!-- grids based on the latter require modification of the Klassen code. -->
+<p>Following Offner, though, the accretion histories are not constant.  Instead,
+they use a variety of accretion histories: isothermal sphere, turbulent core,
+and competitive accretion.
+To compute the L(M, M_f) tables, we need to run a
+modified version of the Klassen code with a variable accretion history.</p>
+<p>The isothermal sphere case is actually a constant accretion rate, so that one is
+pretty easy.  The turbulent core and competitive accretion models have an accretion
+rate that depends on time or mass.</p>
+<div class="section" id="turbulent-core-protostellar-evolution">
+<h3>Turbulent Core Protostellar Evolution</h3>
+<p>I've implemented the turbulent core accretion history in my <a class="reference external" href="https://github.com/keflavich/protostellar_evolution">fork</a> of Mikhail
+Klassen's repository.  The modification is fairly straightforward: the
+accretion rate is set at each timestep according to Equation 23 of <a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...716..167M">McKee and
+Offner</a> using the numerical constants they computed.  Then, if the stellar
+mass has reached (or exceeds) the target stellar mass, set the accretion rate
+to zero.  The stellar evolution code can then proceed with no further
+accretion.</p>
+<p>I've run this using the default initial conditions, a clump surface density
+$Sigma_{cl} = 0.1$ g cm$^{-2}$.  The results are in the next figure: nearly
+all of the interesting evolution happens before the stars reach 10 Msun.  The
+accretion luminosity is almost always subdominant, at least once anything
+reaches 10 Lsun.  The most massive star seems to shrink below its main sequence
+size prior to reaching the main sequence, which is a little weird.  I'm not
+sure if I trust that.</p>
+<img alt="" src="https://keflavich.github.io/blog/images/Klassen_turbulentcore_model.png" style="width: 600px;" />
+<p>Further exploration of accretion history parameter space is future work.
+I now at least know how to set up the basic models and assemble lookup
+tables for L(mf,t).</p>
+</div>
+</div>
+<div class="section" id="protostellar-sed-models">
+<h2>Protostellar SED Models</h2>
+<p>The next step in computing a millimeter luminosity distribution is to convert
+from stellar luminosity to the reprocessed flux at a given wavelength.  This
+step has an enormous number of free parameters, since the surrounding structure
+may include both a disk and a core whose shapes will both vary.</p>
+<p>There are two large grids of radiative transfer models that have been computed
+for this purpose.  The <a class="reference external" href="https://zenodo.org/record/166732#.WdlXwmK3xcw">Robitaille grid</a> is complete and open, and it should
+cover all stellar masses.  The <a class="reference external" href="http://adsabs.harvard.edu/abs/2017arXiv170808853Z">Zhang+ 2017</a> grid is not yet available, but it
+may be more self-consistent.</p>
+<p>I plan to use the protostellar evolutionary model parameters, i.e., the radius
+and luminosity, to select models from this grid.  However, the Robitaille grid
+uses surface temperature and radius, not luminosity and radius.  So we either
+need to compute the stellar luminosity in the Robitaille models assuming the
+stars are perfect blackbodies, then use the stellar luminosity to select from
+that grid, or we need to compute the stellar surface temperature from
+the evolutionary model.</p>
+<p>Since the Robitaille models cover a large number of parameters, but do so in a
+fairly sparse grid, it is not trivial to map from radius+luminosity to the
+models.  For example, for a $2-3x10^5$ Lsun star with radius 40-50 Rsun,
+there are 860 models in the <tt class="docutils literal">spubhmi</tt> grid, most of which lack flux measurements
+in many apertures.</p>
+<div class="section" id="example-model-selection">
+<h3>Example Model Selection</h3>
+<p>For this example, I'm looking at an mf=10 Msun star at t=0.58 Myr, at which
+point it has m=6.5 Msun.  Its radius at this time is 9.0 Rsun and <em>stellar</em>
+luminosity 1300 Lsun.  This is the line of output from the Klassen model:</p>
+<pre class="literal-block">
+            Time        Stellar_Mass      Accretion_Rate      Stellar_Radius    Polytropic_Index      Deuterium_Mass       Intrinsic_Lum    Total_Luminosity    Stage
+0.1842924478E+14    0.1300261603E+35    0.1404188516E+22    0.6278790980E+12    0.3000000000E+01    0.0000000000E+00    0.5084830934E+37    0.6525577133E+37        4
+</pre>
+<p>I select models within 5% of this one's radius and luminosity:</p>
+<div class="highlight"><pre><span></span><span class="n">lum</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.5084830934E+37</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">erg</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">L_sun</span><span class="p">)</span>
+<span class="n">rad</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.6278790980E+12</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">R_sun</span><span class="p">)</span>
+<span class="n">selpars</span> <span class="o">=</span> <span class="n">pars</span><span class="p">[(</span><span class="n">pars</span><span class="p">[</span><span class="s1">&#39;Luminosity&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">lum</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">0.95</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s1">&#39;Luminosity&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lum</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">1.05</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s1">&#39;star.radius&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="n">rad</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">0.95</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s1">&#39;star.radius&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">rad</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">1.05</span><span class="p">)]</span>
+</pre></div>
+<p>My first attempt at this, with the <tt class="docutils literal">spubhmi</tt> model, resulted in one that has
+no flux in small (4000 AU) aperture, which I don't yet know how to interpret -
+it is certainly possible for such a source, with a non-negligible envelope, to
+exist, and it would certainly produce some flux.</p>
+<p>More lenient parameters are needed:</p>
+<div class="highlight"><pre><span></span><span class="n">lum</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.5084830934E+37</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">erg</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">L_sun</span><span class="p">)</span>
+<span class="n">rad</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.6278790980E+12</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">R_sun</span><span class="p">)</span>
+<span class="n">apnum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">seds</span><span class="o">.</span><span class="n">apertures</span> <span class="o">-</span> <span class="mi">2000</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">au</span><span class="p">))</span>
+<span class="n">wav</span> <span class="o">=</span> <span class="p">(</span><span class="mi">95</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">mm</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">spectral</span><span class="p">())</span>
+<span class="n">wavnum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">seds</span><span class="o">.</span><span class="n">wav</span> <span class="o">-</span> <span class="n">wav</span><span class="p">))</span>
+<span class="n">ok</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">seds</span><span class="o">.</span><span class="n">val</span><span class="p">[:,</span><span class="n">wavnum</span><span class="p">,</span><span class="n">apnum</span><span class="p">])</span>
+<span class="n">selpars</span> <span class="o">=</span> <span class="n">pars</span><span class="p">[(</span><span class="n">pars</span><span class="p">[</span><span class="s1">&#39;Luminosity&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">lum</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">0.9</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s1">&#39;Luminosity&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lum</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">1.10</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s1">&#39;star.radius&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="n">rad</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">0.9</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s1">&#39;star.radius&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">rad</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">1.10</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">ok</span><span class="p">]</span>
+</pre></div>
+<p>This one at least results in some hits.  There are three models with fluxes (at
+Sgr B2, in a 2000 AU radius aperture, at 95 GHz) of 15-25, 155-170, and 55-60 mJy.
+To build a model cluster, we would randomly select one of these models.
+Robitaille notes, however, that some of the models are nonphysical; at the moment,
+we have no way to assess that, so we have to do the selection blindly.  The brightest
+model has a denser envelope and more massive disk.</p>
+<p>We can use this to make a model cluster, but this is a pretty discouraging first model
+given my previous work; this is presently a low-luminosity source that is surprisingly
+intense at 3mm.</p>
+</div>
+</div>
+<div class="section" id="full-workflow">
+<h2>Full Workflow</h2>
+<p>We first create a cluster by sampling from a stellar initial mass function.
+This part is straightforward, at least.</p>
+<p>Then, for each source, we 'rewind' to a specific time and select model parameters
+from the protostellar evolution models described above.  The 'rewind' could be
+from the point at which the stars reach &quot;stage 5&quot;, main sequence, or we could
+select some other criteria.</p>
+<p>Finally, we sample from the Robitaille parameters.  For this first example,
+we just randomly select from some parameters that are within 5-10% of the target
+parameters.  In the longer term, we'll want to be much more accurate
+and find a way to interpolate the Robitaille models onto a &quot;fully sampled&quot; grid
+of the parameter space we're interested in.  The Zhang models are probably
+better to use once they become available since they may have accretion histories
+consistent with those used for the evolutionary model.</p>
+</div>
+<div class="section" id="final-comments">
+<h2>Final comments</h2>
+<p>For the next post, I hope to actually generate some clusters and see what sorts
+of uncertainties we're dealing with.  The above examples suggest they could be
+truly extreme, and perhaps that the Robitaille models will be inadequate for
+this purpose.  We'll see.</p>
+</div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/protostellar-mass-functions.html" rel="bookmark" title="Permalink to Protostellar Mass Functions">
+                    Protostellar Mass Functions</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2017-08-30T15:18:00-06:00"> 2017/08/30 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The stellar <a class="reference external" href="https://en.wikipedia.org/wiki/Initial_mass_function">initial mass function</a> is important for a wide
+variety of astronomical topics, and I'm interested in studying its formation.
+The <a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...716..167M">protostellar mass function</a>, by contrast, is much
+less well-studied, but understanding it can provide important insights into the
+formation of the IMF.  In particular, we assume both for simplicity and because
+of a lack of contrary evidence, that the IMF is uniform in time in space.  In
+other words, given that a star is going to form at some point, it has a
+likelihood to become a star of a given mass described exclusively by the IMF.
+While this assertion is entirely absurd - if you are &quot;about to form&quot; a star in
+a blob of gas that only has 0.1 Msun in a 1 pc radius, it certainly cannot form
+a 100 Msun star - it remains consistent with nearly all observations and is
+therefore used in this time- and space-invariant form.</p>
+<p>It is likely that new studies of stellar populations, e.g., GAIA's observations
+of a huge population of stars with well-determined distances (and therefore
+luminosities), will reveal some variations in the IMF.  However, many studies
+based on evolved stellar populations are subject to ambiguities in the initial
+conditions.  So, it is still quite useful to study those initial conditions
+directly.</p>
+<p>There has not been a huge amount of work on protostellar mass functions.
+<a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...716..167M">McKee and Offner</a> defined the PMF as the distribution of masses of
+protostellar sources that would produce a given IMF.  Their PMFs are therefore
+strongly dependent on the underlying IMF assumed.</p>
+<p>I have implemented the mass functions they defined in <a class="reference external" href="https://github.com/keflavich/imf/blob/master/imf/pmf.py">this code</a>.  The code
+is generalized such that you can input other mass functions.  McKee &amp; Offner
+only used the <a class="reference external" href="http://adsabs.harvard.edu/abs/2005ASSL..327...41C">Chabrier 2005</a> mass function; I include the <a class="reference external" href="http://adsabs.harvard.edu/abs/2001MNRAS.322..231K">Kroupa 2001</a> mass
+function as well for comparison</p>
+<img alt="" src="https://keflavich.github.io/blog/images/steadystate_pmf_chabrier_mmax3.png" style="width: 400px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/steadystate_pmf_kroupa_mmax3.png" style="width: 400px;" />
+<p>The comparison between the Chabrier and Kroupa mass functions is shown above.
+Note that these are somewhat deceptive plots, since they show P(M) vs log(M).
+The plot shows the most likely individual masses by number, but the plots are
+actually quite squished to the left in linear space, such that the most common
+range of stars (the integral of both functions) is closer to the same (~0.2-0.3
+Msun).  The more commonly shown version of these plots is the integral form,
+which has a positive power-law slope in the lowest bin in the Kroupa MF,
+showing the usual peak at 0.3 Msun.  This version of the functions is
+nontrivial to compute, especially for the modified PMFs.</p>
+<p>The mass-weighted versions of these may be more familiar, and they are more
+similar to the P(log M) version used in <a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...716..167M">McKee and Offner</a> and <a class="reference external" href="http://adsabs.harvard.edu/abs/2005ASSL..327...41C">Chabrier 2005</a>:</p>
+<img alt="" src="https://keflavich.github.io/blog/images/steadystate_pmf_chabrier_integral_mmax3.png" style="width: 400px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/steadystate_pmf_kroupa_integral_mmax3.png" style="width: 400px;" />
+<p>The Chabrier version is a near-perfect match to Figure 3 of <a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...716..167M">McKee and
+Offner</a>, with slightly different normalization (and I'm expressing P(M), not
+P(log M); a previous version showed P(log M), but was incorrect).  A notable
+feature of this plot is that it cuts off at 3 Msun.  I want to examine the same
+distribution at higher masses.</p>
+<img alt="" src="https://keflavich.github.io/blog/images/taperedaccretion_pmf_chabrier_mmax3.png" style="width: 400px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/taperedaccretion_pmf_kroupa_mmax3.png" style="width: 400px;" />
+<p>The above plots are the same as before, but with tapered accretion following
+the prescription in <a class="reference external" href="http://adsabs.harvard.edu/abs/2010ApJ...716..167M">McKee and Offner</a>.  The tapering function is apparently
+arbitrary, and picked purely to enforce smoothness (i.e., prevent a possibly
+nonphysical instantaneous shutoff of accretion).</p>
+<div class="section" id="extending-to-higher-masses">
+<h2>Extending to higher masses</h2>
+<p>When we reevaluate the same functions with mmax=120 instead of 3, we can start
+to see the high mass end, which is of course power-law dominated.   In all cases,
+the PMF is dominated by the highest-mass sources, since in all cases they take
+the longest to form.</p>
+<img alt="" src="https://keflavich.github.io/blog/images/steadystate_pmf_chabrier_mmax120.png" style="width: 400px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/steadystate_pmf_kroupa_mmax120.png" style="width: 400px;" />
+<p>The accretion model changes the slope and the overall ratio of high- to
+low-mass stars.</p>
+<p>These are the mass fractions of various MFs:</p>
+<blockquote>
+<ul class="simple">
+<li>Mass fraction for ChabrierIMF M&gt;10 = 0.192</li>
+<li>Mass fraction for ChabrierPMF_2CTC M&gt;10 = 0.334</li>
+<li>Mass fraction for ChabrierPMF_CA M&gt;10 = 0.150</li>
+<li>Mass fraction for ChabrierPMF_IS M&gt;10 = 0.765</li>
+<li>Mass fraction for ChabrierPMF_TC M&gt;10 = 0.288</li>
+<li>Mass fraction for KroupaIMF M&gt;10 = 0.185</li>
+<li>Mass fraction for KroupaPMF_2CTC M&gt;10 = 0.348</li>
+<li>Mass fraction for KroupaPMF_CA M&gt;10 = 0.148</li>
+<li>Mass fraction for KroupaPMF_IS M&gt;10 = 0.781</li>
+<li>Mass fraction for KroupaPMF_TC M&gt;10 = 0.294</li>
+</ul>
+</blockquote>
+<p>The isothermal sphere case is pretty extremely top-heavy, but all except
+competitive accretion result in a more top-heavy MF, which is a fairly neat
+result - it means that simple binning can distinguish between these theories
+(assuming the parametrization is right).  It also means that the SFRs
+inferred from integrating the high-mass end of the mass function (as I have
+done in <a class="reference external" href="https://github.com/keflavich/SgrB2_ALMA_3mm_Mosaic/">my Sgr B2 paper</a>) is subject to a factor of +/-2x uncertainty
+depending on the accretion history if we assume steady state.</p>
+<p>The next step is to extend this to different accretion histories (tapered,
+accelerating) and then possibly different star formation histories.
+I will also create some 'synthetic clusters' using the <a class="reference external" href="https://zenodo.org/record/166732">Robitaille</a>
+and <a class="reference external" href="https://arxiv.org/abs/1708.08853">Zhang</a> models.</p>
+</div>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/a-quick-performance-test-on-casa-cleaning.html" rel="bookmark" title="Permalink to A quick performance test on CASA cleaning">
+                    A quick performance test on CASA cleaning</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2017-04-26T11:03:00-06:00"> 2017/04/26 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I ran some speed tests to compare CASA's speed when imaging single channels vs
+blocks of channels.  The tests were run with savemodel='none' on a lustre node</p>
+<pre class="literal-block">
+'speedtest_nchan1_concat': 249,
+'speedtest_nchan1_individual': 523,
+'speedtest_nchan5_concat': 803,
+'speedtest_nchan5_individual': 916,
+'speedtest_nchan20_concat': 2303,
+'speedtest_nchan20_individual': 2346,
+'speedtest_nchan40_concat': 4010,
+'speedtest_nchan40_individual': 4136,
+'speedtest_nchan80_concat': 8101,
+'speedtest_nchan80_individual': 9298,
+</pre>
+<img alt="" src="https://keflavich.github.io/blog/images/casa/cube_performance.png" style="width: 600px;" />
+<p>The fit is y = 98x + 237</p>
+<p>So at least until swapping happens, there is no serious advantage or
+disadvantage to running a different # of channels simultaneously.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+</ul><!-- /#posts-list -->
+<p class="paginator">
+            <a href="https://keflavich.github.io/blog/category/misc2.html">&laquo;</a>
+    Page 3 / 25
+        <a href="https://keflavich.github.io/blog/category/misc4.html">&raquo;</a>
+</p>
+</section><!-- /#content -->
+  </div>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37306139-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37306139-1');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  var disqus_shortname = 'adamginsburgsblog';
+  (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+</script>
+</body>
+</html>
