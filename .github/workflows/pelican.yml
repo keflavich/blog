@@ -1,41 +1,51 @@
-name: Pelican site CI
+name: Build and deploy blog
+
+# Build the Pelican site on every push/PR to master, and publish the result to
+# the gh-pages branch (which GitHub Pages serves at keflavich.github.io/blog/).
+#
+# The theme is vendored in this repo at ./mine, so there is no external theme
+# checkout, no `pelican-themes --install`, and no custom third-party action --
+# releasing is just a push to master.
 
 on:
-  # Trigger the workflow on push or pull request,
-  # but only for the master branch
   push:
-    branches:
-      - master
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Avoid overlapping deploys racing each other on rapid pushes.
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
 
 jobs:
-  build:
-
+  build-deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/setup-node@v3
-    - run: npm --version
-    - uses: actions/checkout@v2
-      with:
-        submodules: recursive
-    - uses: actions/checkout@v2
-      with:
-        repository: keflavich/blog-theme
-        path: './mine'
-    - run:
-        pip install -r requirements.txt
-    - run:
-        ls -lhd mine
-    - run:
-        pip install pelican
-    - run:
-        pelican-themes --verbose --install mine
-    - run:
-        pelican-themes --list
-    - uses: keflavich/gh-pages-pelican-action@keflavich-v2
-      with:
-        PELICAN_THEME_FOLDER: mine
+      - uses: actions/checkout@v4
 
-      env:
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        PELICAN_THEME_FOLDER: mine
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: pip
+
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Build site (production settings)
+        run: pelican content -s publishconf.py -o output
+
+      # Only publish on pushes to master; pull requests just build as a check.
+      - name: Deploy to gh-pages
+        if: github.event_name != 'pull_request'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
+          publish_branch: gh-pages

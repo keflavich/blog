@@ -1,15 +1,11 @@
-graphviz
-Jinja2
-jinja2-time
-jupyter
-jupyter-client
-jupyter-console
-jupyter-core
-markupsafe==2.0.1
-nbconvert
-nbformat
-notebook
-pandocfilters
+# Build dependencies for the blog.
+#
+# Used by both the GitHub Actions workflow (.github/workflows/pelican.yml) and
+# the local `make html` / `make publish` targets. Kept intentionally lean so
+# builds are fast and reproducible -- the theme is vendored at ./mine and needs
+# no extra packages. Tools used only for *authoring* posts from Jupyter
+# notebooks live in requirements-notebooks.txt.
 pelican==4.7.1
 pelican-render-math
+Markdown
 Pygments
