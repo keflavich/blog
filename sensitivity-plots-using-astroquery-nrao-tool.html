@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
-<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
 <head>
     <base href="https://keflavich.github.io/blog">
+    <link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+    <link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
         <title>Adam Ginsburg's blog</title>
         <meta charset="utf-8" />
         <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
@@ -39,7 +39,7 @@
 </script>
 
 <script type="text/javascript"
-src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 </script>
         
 </head>
@@ -48,16 +48,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 
 
     <header id="banner" class="body" >
-        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-height: 200px;  background-repeat: no-repeat; max-width: 80%;'>
             <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
 
             <nav id="menu"><ul id="menulist">
                 <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
-                <li><a href="/index.html">Blog Index</a></li>
-                <li><a href="/category/bgps.html">BGPS Blog</a></li>
-                <li><a href="/category/publications.html">Publications</a></li>
-                <li><a href="/archives.html">Archives</a></li>
-                <li><a href="/tags.html">Tags</a></li>
+                <li><a href="/blog//index.html">Blog Index</a></li>
+                <li><a href="/blog//category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/blog//category/publications.html">Publications</a></li>
+                <li><a href="/blog//archives.html">Archives</a></li>
+                <li><a href="/blog//tags.html">Tags</a></li>
             </ul></nav><!-- /#menu -->
         </div>
     </header><!-- /#banner -->
@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
       <li>
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
+              <li class="post">
+                  2026/09/03
+                  <br>
+                  <a href="https://keflavich.github.io/blog/homemade-data-portals.html">Homemade Data Portals</a>
+              </li>
               <li class="post">
                   2025/03/15
                   <br>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   2022/05/01
                   <br>
                   <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
-              </li>
-              <li class="post">
-                  2022/04/14
-                  <br>
-                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
               </li>
         </ul>
       </li>
@@ -118,22 +118,22 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
     <p>I wanted to see what the approximate depth achieved by (repeated)
 VLA observations of a few sources was, at least theoretically.
 This is relatively easy to do:</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
-<span class="kn">from</span> <span class="nn">astroquery.nrao</span> <span class="kn">import</span> <span class="n">Nrao</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">Nrao</span><span class="p">()</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">coordinates</span><span class="o">=</span><span class="n">coordinates</span><span class="o">.</span><span class="n">SkyCoord</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="s1">&#39;Sgr B2(M)&#39;</span><span class="p">),</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy</span><span class="w"> </span><span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astroquery.nrao</span><span class="w"> </span><span class="kn">import</span> <span class="n">Nrao</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">Nrao</span><span class="p">()</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">coordinates</span><span class="o">=</span><span class="n">coordinates</span><span class="o">.</span><span class="n">SkyCoord</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="s1">'Sgr B2(M)'</span><span class="p">),</span>
                       <span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcmin</span><span class="p">)</span>
 
-<span class="kn">import</span> <span class="nn">pylab</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pylab</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
 
 <span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;Observing Freq&#39;</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;TOS&#39;</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Observed Frequency (GHz)&quot;</span><span class="p">)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Time-on-Source (s)&quot;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">'Observing Freq'</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s1">'TOS'</span><span class="p">],</span> <span class="s1">'.'</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Observed Frequency (GHz)"</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Time-on-Source (s)"</span><span class="p">)</span>
 
 <span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;Observing Freq&#39;</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;TOS&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;Bandwidth&#39;</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Observed Frequency (GHz)&quot;</span><span class="p">)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Relative depth (Hz s)&quot;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">'Observing Freq'</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s1">'TOS'</span><span class="p">]</span><span class="o">*</span><span class="n">result</span><span class="p">[</span><span class="s1">'Bandwidth'</span><span class="p">],</span> <span class="s1">'.'</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Observed Frequency (GHz)"</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Relative depth (Hz s)"</span><span class="p">)</span>
 </pre></div>
 <img alt="" src="https://keflavich.github.io/blog/images/TOS_vs_freq.png" style="width: 800px;" />
 <img alt="" src="https://keflavich.github.io/blog/images/depth_vs_freq.png" style="width: 800px;" />
@@ -141,10 +141,6 @@ This is relatively easy to do:</p>
   </div><!-- /.entry-content -->
 </section>
 
-<section>
-<h1>Comments</h1>
-<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
-</section>
   </div>
 
     <script type="text/javascript">
@@ -165,6 +161,23 @@ This is relatively easy to do:</p>
     ga('create', 'UA-37306139-1');
     ga('send', 'pageview');
 </script>
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=9280906; 
+var sc_invisible=1; 
+var sc_security="7107d360"; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<!--<noscript><div class="statcounter"><a title="hit counter"
+href="http://statcounter.com/free-hit-counter/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/9280906/0/7107d360/1/"
+alt="hit counter"></a></div></noscript>-->
+<!-- End of StatCounter Code for Default Guide -->
 <script type="text/javascript">
   var disqus_shortname = 'adamginsburgsblog';
   var disqus_identifier = '/sensitivity-plots-using-astroquery-nrao-tool.html';
@@ -172,7 +185,7 @@ This is relatively easy to do:</p>
   var disqus_title = 'Sensitivity Plots using astroquery NRAO tool';
   (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
    })();
 </script>

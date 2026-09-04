@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
-<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
 <head>
     <base href="https://keflavich.github.io/blog">
+    <link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+    <link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
         <title>Adam Ginsburg's blog</title>
         <meta charset="utf-8" />
         <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
@@ -39,7 +39,7 @@
 </script>
 
 <script type="text/javascript"
-src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 </script>
         
 </head>
@@ -48,16 +48,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 
 
     <header id="banner" class="body" >
-        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-height: 200px;  background-repeat: no-repeat; max-width: 80%;'>
             <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
 
             <nav id="menu"><ul id="menulist">
                 <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
-                <li><a href="/index.html">Blog Index</a></li>
-                <li><a href="/category/bgps.html">BGPS Blog</a></li>
-                <li><a href="/category/publications.html">Publications</a></li>
-                <li><a href="/archives.html">Archives</a></li>
-                <li><a href="/tags.html">Tags</a></li>
+                <li><a href="/blog//index.html">Blog Index</a></li>
+                <li><a href="/blog//category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/blog//category/publications.html">Publications</a></li>
+                <li><a href="/blog//archives.html">Archives</a></li>
+                <li><a href="/blog//tags.html">Tags</a></li>
             </ul></nav><!-- /#menu -->
         </div>
     </header><!-- /#banner -->
@@ -103,6 +103,25 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <h2>Articles in the bgps category</h2>
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/centroiding-and-merediths-files.html" rel="bookmark" title="Permalink to Centroiding and Meredith's files">
+                    Centroiding and Meredith's files</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2008-08-13T03:54:00-06:00"> 2008/08/13 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I tried the pointing offset calculations on Meredith's maps and I still
+get an RMS of ~9&quot; in both RA and DEC. Check out the files:
+/scratch/adam_work/plots/models_meredith*
+So... what?</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -360,36 +379,6 @@ Totally messed up (two sets of images many degrees apart):
         <!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="https://keflavich.github.io/blog/looking-back-at-the-old-pipeline.html" rel="bookmark" title="Permalink to Looking back at the old pipeline">
-                    Looking back at the old pipeline</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2008-08-07T16:33:00-06:00"> 2008/08/07 </abbr>
-            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
-        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>I've obviously missed something. So to try to figure out what it is, I'm
-going back to the old pipeline... again...
-in map_ncdf_reading, lines 441-448, there is something curious that
-goes back to a definition-of-variables problem: ddec and dra are ADDED
-to ra and dec to get the new &quot;ra_all&quot; and &quot;dec_all&quot; variables. ddec
-and dra are calculated from eaz and eel: ERROR OFFSETS in Az and El.
-Why? What?!
-I added a new piece of code, correct_eaz_eel.pro. It is extremely
-short, but extremely necessary.</p>
-<pre class="literal-block">
-pro correct_eaz_eel,ra,dec,el,az,eel,eaz,pa    dra=-eaz*cos(!dtor*pa)*cos(!dtor*el)+eel*sin(!dtor*pa)    ddec=eaz*sin(!dtor*pa)*cos(!dtor*el)+eel*cos(!dtor*pa)    dec += ddec/3600.    ra  += dra/3600. / cos(!dtor*dec) / 15.end
-</pre>
-<p>This comes back to the fact that I don't know what ANY of the variables
-in the NCDF header are supposed to be. Why are &quot;error&quot; variables
-actually OFFSET variables, and why didn't anyone know about them?</p>
- </div>
-        <!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
             <a href="https://keflavich.github.io/blog/category/bgps17.html">&laquo;</a>
@@ -417,11 +406,28 @@ actually OFFSET variables, and why didn't anyone know about them?</p>
     ga('create', 'UA-37306139-1');
     ga('send', 'pageview');
 </script>
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=9280906; 
+var sc_invisible=1; 
+var sc_security="7107d360"; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<!--<noscript><div class="statcounter"><a title="hit counter"
+href="http://statcounter.com/free-hit-counter/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/9280906/0/7107d360/1/"
+alt="hit counter"></a></div></noscript>-->
+<!-- End of StatCounter Code for Default Guide -->
 <script type="text/javascript">
   var disqus_shortname = 'adamginsburgsblog';
   (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
    })();
 </script>

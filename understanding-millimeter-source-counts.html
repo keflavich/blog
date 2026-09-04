@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
-<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
 <head>
     <base href="https://keflavich.github.io/blog">
+    <link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+    <link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
         <title>Adam Ginsburg's blog</title>
         <meta charset="utf-8" />
         <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
@@ -39,7 +39,7 @@
 </script>
 
 <script type="text/javascript"
-src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 </script>
         
 </head>
@@ -48,16 +48,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 
 
     <header id="banner" class="body" >
-        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-height: 200px;  background-repeat: no-repeat; max-width: 80%;'>
             <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
 
             <nav id="menu"><ul id="menulist">
                 <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
-                <li><a href="/index.html">Blog Index</a></li>
-                <li><a href="/category/bgps.html">BGPS Blog</a></li>
-                <li><a href="/category/publications.html">Publications</a></li>
-                <li><a href="/archives.html">Archives</a></li>
-                <li><a href="/tags.html">Tags</a></li>
+                <li><a href="/blog//index.html">Blog Index</a></li>
+                <li><a href="/blog//category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/blog//category/publications.html">Publications</a></li>
+                <li><a href="/blog//archives.html">Archives</a></li>
+                <li><a href="/blog//tags.html">Tags</a></li>
             </ul></nav><!-- /#menu -->
         </div>
     </header><!-- /#banner -->
@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
       <li>
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
+              <li class="post">
+                  2026/09/03
+                  <br>
+                  <a href="https://keflavich.github.io/blog/homemade-data-portals.html">Homemade Data Portals</a>
+              </li>
               <li class="post">
                   2025/03/15
                   <br>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   2022/05/01
                   <br>
                   <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
-              </li>
-              <li class="post">
-                  2022/04/14
-                  <br>
-                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
               </li>
         </ul>
       </li>
@@ -250,7 +250,7 @@ luminosity 1300 Lsun.  This is the line of output from the Klassen model:</p>
 <p>I select models within 5% of this one's radius and luminosity:</p>
 <div class="highlight"><pre><span></span><span class="n">lum</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.5084830934E+37</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">erg</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">L_sun</span><span class="p">)</span>
 <span class="n">rad</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.6278790980E+12</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">R_sun</span><span class="p">)</span>
-<span class="n">selpars</span> <span class="o">=</span> <span class="n">pars</span><span class="p">[(</span><span class="n">pars</span><span class="p">[</span><span class="s1">&#39;Luminosity&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">lum</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">0.95</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s1">&#39;Luminosity&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lum</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">1.05</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s1">&#39;star.radius&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="n">rad</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">0.95</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s1">&#39;star.radius&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">rad</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">1.05</span><span class="p">)]</span>
+<span class="n">selpars</span> <span class="o">=</span> <span class="n">pars</span><span class="p">[(</span><span class="n">pars</span><span class="p">[</span><span class="s1">'Luminosity'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">lum</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">0.95</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s1">'Luminosity'</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lum</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">1.05</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s1">'star.radius'</span><span class="p">]</span><span class="o">&gt;</span><span class="n">rad</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">0.95</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s1">'star.radius'</span><span class="p">]</span><span class="o">&lt;</span><span class="n">rad</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">1.05</span><span class="p">)]</span>
 </pre></div>
 <p>My first attempt at this, with the <tt class="docutils literal">spubhmi</tt> model, resulted in one that has
 no flux in small (4000 AU) aperture, which I don't yet know how to interpret -
@@ -263,7 +263,7 @@ exist, and it would certainly produce some flux.</p>
 <span class="n">wav</span> <span class="o">=</span> <span class="p">(</span><span class="mi">95</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">mm</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">spectral</span><span class="p">())</span>
 <span class="n">wavnum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">seds</span><span class="o">.</span><span class="n">wav</span> <span class="o">-</span> <span class="n">wav</span><span class="p">))</span>
 <span class="n">ok</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">seds</span><span class="o">.</span><span class="n">val</span><span class="p">[:,</span><span class="n">wavnum</span><span class="p">,</span><span class="n">apnum</span><span class="p">])</span>
-<span class="n">selpars</span> <span class="o">=</span> <span class="n">pars</span><span class="p">[(</span><span class="n">pars</span><span class="p">[</span><span class="s1">&#39;Luminosity&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">lum</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">0.9</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s1">&#39;Luminosity&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lum</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">1.10</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s1">&#39;star.radius&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="n">rad</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">0.9</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s1">&#39;star.radius&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">rad</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">1.10</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">ok</span><span class="p">]</span>
+<span class="n">selpars</span> <span class="o">=</span> <span class="n">pars</span><span class="p">[(</span><span class="n">pars</span><span class="p">[</span><span class="s1">'Luminosity'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">lum</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">0.9</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s1">'Luminosity'</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lum</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">1.10</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s1">'star.radius'</span><span class="p">]</span><span class="o">&gt;</span><span class="n">rad</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">0.9</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="s1">'star.radius'</span><span class="p">]</span><span class="o">&lt;</span><span class="n">rad</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mf">1.10</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">ok</span><span class="p">]</span>
 </pre></div>
 <p>This one at least results in some hits.  There are three models with fluxes (at
 Sgr B2, in a 2000 AU radius aperture, at 95 GHz) of 15-25, 155-170, and 55-60 mJy.
@@ -303,10 +303,6 @@ this purpose.  We'll see.</p>
   </div><!-- /.entry-content -->
 </section>
 
-<section>
-<h1>Comments</h1>
-<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
-</section>
   </div>
 
     <script type="text/javascript">
@@ -327,6 +323,23 @@ this purpose.  We'll see.</p>
     ga('create', 'UA-37306139-1');
     ga('send', 'pageview');
 </script>
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=9280906; 
+var sc_invisible=1; 
+var sc_security="7107d360"; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<!--<noscript><div class="statcounter"><a title="hit counter"
+href="http://statcounter.com/free-hit-counter/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/9280906/0/7107d360/1/"
+alt="hit counter"></a></div></noscript>-->
+<!-- End of StatCounter Code for Default Guide -->
 <script type="text/javascript">
   var disqus_shortname = 'adamginsburgsblog';
   var disqus_identifier = '/understanding-millimeter-source-counts.html';
@@ -334,7 +347,7 @@ this purpose.  We'll see.</p>
   var disqus_title = 'Understanding Millimeter Source Counts';
   (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
    })();
 </script>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
-<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
 <head>
     <base href="https://keflavich.github.io/blog">
+    <link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+    <link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
         <title>Adam Ginsburg's blog</title>
         <meta charset="utf-8" />
         <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
@@ -38,7 +38,7 @@
 </script>
 
 <script type="text/javascript"
-src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 </script>
         
 </head>
@@ -47,16 +47,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 
 
     <header id="banner" class="body" >
-        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-height: 200px;  background-repeat: no-repeat; max-width: 80%;'>
             <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
 
             <nav id="menu"><ul id="menulist">
                 <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
-                <li><a href="/index.html">Blog Index</a></li>
-                <li><a href="/category/bgps.html">BGPS Blog</a></li>
-                <li><a href="/category/publications.html">Publications</a></li>
-                <li><a href="/archives.html">Archives</a></li>
-                <li><a href="/tags.html">Tags</a></li>
+                <li><a href="/blog//index.html">Blog Index</a></li>
+                <li><a href="/blog//category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/blog//category/publications.html">Publications</a></li>
+                <li><a href="/blog//archives.html">Archives</a></li>
+                <li><a href="/blog//tags.html">Tags</a></li>
             </ul></nav><!-- /#menu -->
         </div>
     </header><!-- /#banner -->
@@ -66,6 +66,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
       <li>
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
+              <li class="post">
+                  2026/09/03
+                  <br>
+                  <a href="https://keflavich.github.io/blog/homemade-data-portals.html">Homemade Data Portals</a>
+              </li>
               <li class="post">
                   2025/03/15
                   <br>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
               </li>
-              <li class="post">
-                  2022/04/14
-                  <br>
-                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,43 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/sensitivity-plots-using-astroquery-nrao-tool.html" rel="bookmark" title="Permalink to Sensitivity Plots using astroquery NRAO tool">
+                    Sensitivity Plots using astroquery NRAO tool</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2015-10-09T14:00:00-06:00"> 2015/10/09 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg-adamgginsburggmailcom.html">Adam Ginsburg (Adam.G.Ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I wanted to see what the approximate depth achieved by (repeated)
+VLA observations of a few sources was, at least theoretically.
+This is relatively easy to do:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy</span><span class="w"> </span><span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astroquery.nrao</span><span class="w"> </span><span class="kn">import</span> <span class="n">Nrao</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">Nrao</span><span class="p">()</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">coordinates</span><span class="o">=</span><span class="n">coordinates</span><span class="o">.</span><span class="n">SkyCoord</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="s1">'Sgr B2(M)'</span><span class="p">),</span>
+                      <span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcmin</span><span class="p">)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pylab</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
+
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">'Observing Freq'</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s1">'TOS'</span><span class="p">],</span> <span class="s1">'.'</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Observed Frequency (GHz)"</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Time-on-Source (s)"</span><span class="p">)</span>
+
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">'Observing Freq'</span><span class="p">]</span><span class="o">/</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s1">'TOS'</span><span class="p">]</span><span class="o">*</span><span class="n">result</span><span class="p">[</span><span class="s1">'Bandwidth'</span><span class="p">],</span> <span class="s1">'.'</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Observed Frequency (GHz)"</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Relative depth (Hz s)"</span><span class="p">)</span>
+</pre></div>
+<img alt="" src="https://keflavich.github.io/blog/images/TOS_vs_freq.png" style="width: 800px;" />
+<img alt="" src="https://keflavich.github.io/blog/images/depth_vs_freq.png" style="width: 800px;" />
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -179,9 +216,9 @@ bzcat<span class="w"> </span>miriad-linux64.tar.bz2<span class="w">  </span><spa
 <span class="nb">cd</span><span class="w"> </span>miriad
 <span class="nb">export</span><span class="w"> </span><span class="nv">MIR</span><span class="o">=</span><span class="nv">$PWD</span>
 <span class="c1"># define the MIR variable in your bashrc</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export MIR=</span><span class="nv">$MIR</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
-sed<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;s,@MIRROOT@,</span><span class="nv">$MIR</span><span class="s2">,&quot;</span><span class="w"> </span>scripts/MIRRC.in<span class="w"> </span>&gt;<span class="w"> </span>MIRRC
-sed<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;s,@MIRROOT@,</span><span class="nv">$MIR</span><span class="s2">,&quot;</span><span class="w"> </span>scripts/MIRRC.sh.in<span class="w"> </span>&gt;<span class="w"> </span>MIRRC.sh
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"export MIR=</span><span class="nv">$MIR</span><span class="s2">"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+sed<span class="w"> </span>-e<span class="w"> </span><span class="s2">"s,@MIRROOT@,</span><span class="nv">$MIR</span><span class="s2">,"</span><span class="w"> </span>scripts/MIRRC.in<span class="w"> </span>&gt;<span class="w"> </span>MIRRC
+sed<span class="w"> </span>-e<span class="w"> </span><span class="s2">"s,@MIRROOT@,</span><span class="nv">$MIR</span><span class="s2">,"</span><span class="w"> </span>scripts/MIRRC.sh.in<span class="w"> </span>&gt;<span class="w"> </span>MIRRC.sh
 chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>MIRRC*
 
 <span class="c1"># Put these into .bashrc, or call them each time you want to run MIRIAD</span>
@@ -225,7 +262,7 @@ normally have put a <tt class="docutils literal">stop</tt> statement.  There are
 however: in IDL, you could just <tt class="docutils literal">.continue</tt> to run the rest of the code as if
 no stop occurred; in python the same is not possible with the default ipdb.</p>
 <p>However, the <a class="reference external" href="https://pypi.python.org/pypi/ipdb">ipdb</a> package allows the insertion of breakpoints just like in IDL:</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ipdb</span><span class="p">;</span> <span class="n">ipdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ipdb</span><span class="p">;</span> <span class="n">ipdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
 </pre></div>
 <p>From within one of these breakpoints, the <tt class="docutils literal">.continue</tt> command will continue on
 to the next breakpoint, as you might expect.  The <tt class="docutils literal">n</tt> and <tt class="docutils literal">s</tt> commands will go
@@ -289,8 +326,8 @@ results to pastebin for easy sharing, <tt class="docutils literal">py.test <span
 setup.py test <span class="pre">-P</span> packagename</tt> in astropy) to select tests for a specific
 package.  A great deal more options can be found in the <a class="reference external" href="http://pytest.org/latest/">pytest docs</a>.</p>
 <p>A test suite, if properly constructed, can also be run from with in ipython:</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">astroquery</span>
-<span class="n">astroquery</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s1">&#39;eso&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">astroquery</span>
+<span class="n">astroquery</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s1">'eso'</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="section" id="postscript">
@@ -488,31 +525,31 @@ the data from the maps, but that SHOULD be in the code history (git) and is not.
         <div class="entry-content"> <p>In order to regrid an image, you need some target reprojection.  The simplest way to acquire such a reprojection
 is by extracting it from another image, e.g. a <a class="reference external" href="casaguides.nrao.edu/index.php?title=FITStoImage">FITS image</a></p>
 <p>(I use <cite>&gt;&gt;&gt;</cite> to indicate the <cite>CASA &lt;#&gt;:</cite> prompt here because it allows you to copy &amp; paste the code into CASA)</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">header</span> <span class="o">=</span> <span class="n">imregrid</span><span class="p">(</span><span class="n">imagename</span><span class="o">=</span><span class="s1">&#39;file.image&#39;</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s1">&#39;get&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">header</span> <span class="o">=</span> <span class="n">imregrid</span><span class="p">(</span><span class="n">imagename</span><span class="o">=</span><span class="s1">'file.image'</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s1">'get'</span><span class="p">)</span>
 </pre></div>
 <p>This header will be a python dictionary with two keys, <cite>csys</cite>, which specifies
 the coordinate system, and <cite>shap</cite>, which gives the shape.</p>
 <p>If you want to write up your own FITS header and you don't have a FITS file
 with those exact coordinates, you can use the <a class="reference external" href="https://github.com/keflavich/casa_tools/blob/master/casa_tools/header_to_template.py#L11">header_to_template</a> convenience
 tool in <a class="reference external" href="https://github.com/keflavich/casa_tools">casa_tools</a>.</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">casa_tools</span> <span class="kn">import</span> <span class="n">header_to_template</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">fits_header</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">Header</span><span class="o">.</span><span class="n">fromtextfile</span><span class="p">(</span><span class="s1">&#39;my_header.hdr&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">casa_tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">header_to_template</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">astropy.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">fits</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">fits_header</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">Header</span><span class="o">.</span><span class="n">fromtextfile</span><span class="p">(</span><span class="s1">'my_header.hdr'</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">header</span> <span class="o">=</span> <span class="n">header_to_template</span><span class="p">(</span><span class="n">fits_header</span><span class="p">)</span>
 </pre></div>
 <p>In order to regrid the file, you then need to pass in the image name and template to imregrid.</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">imregrid</span><span class="p">(</span><span class="n">imagename</span><span class="o">=</span><span class="s1">&#39;file.image&#39;</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">imregrid</span><span class="p">(</span><span class="n">imagename</span><span class="o">=</span><span class="s1">'file.image'</span><span class="p">,</span>
 <span class="o">...</span>          <span class="n">template</span><span class="o">=</span><span class="n">header</span><span class="p">,</span>
-<span class="o">...</span>          <span class="n">output</span><span class="o">=</span><span class="s1">&#39;file_regrid.image&#39;</span><span class="p">)</span>
+<span class="o">...</span>          <span class="n">output</span><span class="o">=</span><span class="s1">'file_regrid.image'</span><span class="p">)</span>
 </pre></div>
 <p>If your input image's header did not include a 'telescope' keyword, CASA will complain:</p>
 <blockquote>
 2013-12-18 16:46:33 SEVERE  imregrid::ImageRegrid::regrid (file /opt/casa/release-4_1_0-release-1/darwin64/include/casacore/images/Images/ImageRegrid.tcc, line 118)        Cannot find the observatory name UNKNOWN in the CASA</blockquote>
 <p>You can add the keyword to the header yourself:</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">imhead</span><span class="p">(</span><span class="s1">&#39;file.image&#39;</span><span class="p">,</span>
-<span class="o">...</span>        <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;put&#39;</span><span class="p">,</span>
-<span class="o">...</span>        <span class="n">hdkey</span><span class="o">=</span><span class="s1">&#39;telescope&#39;</span><span class="p">,</span>
-<span class="o">...</span>        <span class="n">hdvalue</span><span class="o">=</span><span class="s1">&#39;Arecibo&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">imhead</span><span class="p">(</span><span class="s1">'file.image'</span><span class="p">,</span>
+<span class="o">...</span>        <span class="n">mode</span><span class="o">=</span><span class="s1">'put'</span><span class="p">,</span>
+<span class="o">...</span>        <span class="n">hdkey</span><span class="o">=</span><span class="s1">'telescope'</span><span class="p">,</span>
+<span class="o">...</span>        <span class="n">hdvalue</span><span class="o">=</span><span class="s1">'Arecibo'</span><span class="p">)</span>
 </pre></div>
 <div class="section" id="references">
 <h2>References</h2>
@@ -522,178 +559,6 @@ tool in <a class="reference external" href="https://github.com/keflavich/casa_to
 <li><a class="reference external" href="http://casa.nrao.edu/docs/casaref/image.regrid.html">imregrid docs</a></li>
 </ul>
 </blockquote>
-</div>
- </div>
-        <!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="https://keflavich.github.io/blog/converting-a-fits-cube-to-a-casa-image.html" rel="bookmark" title="Permalink to Converting a FITS cube to a CASA Image">
-                    Converting a FITS cube to a CASA Image</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2013-12-18T15:15:00-07:00"> 2013/12/18 </abbr>
-            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-ginsburg.html">Adam Ginsburg <adam.g.ginsburg@gmail.com></a></address>-->
-        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>If you want to perform analysis on a FITS file in CASA, you first need to
-import it into <cite>.image</cite> format.</p>
-<blockquote>
-importfits('file.fits','file.image')</blockquote>
-<p>If this works, great!  You can move on.  CASA will treat NaN values in an image
-as 'masked'.</p>
-<div class="section" id="dealing-with-errors">
-<h2>Dealing with Errors</h2>
-<p>There may be issues with FITS headers.  CASA respects a large number of header
-keys (<a class="reference external" href="http://www.eso.org/projects/alma/arc/tw/pub/External/EUARCCASATutorialJan2012/ImageAnalysis-CASA.pdf">reference</a>).</p>
-<p>There are many ways to edit a FITS header.  One of the most straightforward to
-use is <a class="reference external" href="http://tdc-www.harvard.edu/wcstools/edhead.html">edhead</a>.  Otherwise, one can use CASA's <a class="reference external" href="http://casaguides.nrao.edu/index.php?title=Imhead">imhead</a></p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="14%" />
-<col width="14%" />
-<col width="71%" />
-</colgroup>
-<tbody valign="top">
-<tr><td>CASA Keyword</td>
-<td>FITS keyword</td>
-<td>Description</td>
-</tr>
-<tr><td>beammaj</td>
-<td>BMAJ</td>
-<td>Major&nbsp;axis&nbsp;of&nbsp;the&nbsp;clean&nbsp;beam</td>
-</tr>
-<tr><td>beammin</td>
-<td>BMIN</td>
-<td>Minor&nbsp;axis&nbsp;of&nbsp;the&nbsp;clean&nbsp;beam</td>
-</tr>
-<tr><td>beampa</td>
-<td>BPA</td>
-<td>Position&nbsp;angle&nbsp;of&nbsp;the&nbsp;clean&nbsp;beam</td>
-</tr>
-<tr><td>bunit</td>
-<td>BUNIT</td>
-<td>Brightness&nbsp;unit&nbsp;(K,&nbsp;Jy/beam,&nbsp;etc)</td>
-</tr>
-<tr><td>cdeltn</td>
-<td>CDELTn</td>
-<td>Pixel&nbsp;size,&nbsp;nth&nbsp;axis&nbsp;&nbsp;(max&nbsp;n&nbsp;is&nbsp;4)</td>
-</tr>
-<tr><td>crpixn</td>
-<td>CRPIXn</td>
-<td>Pixel&nbsp;coordinate&nbsp;of&nbsp;reference&nbsp;point,&nbsp;nth&nbsp;axis</td>
-</tr>
-<tr><td>crvaln</td>
-<td>CRVALn</td>
-<td>Pixel&nbsp;location&nbsp;of&nbsp;reference&nbsp;point,&nbsp;nth&nbsp;axis</td>
-</tr>
-<tr><td>ctypen</td>
-<td>CTYPEn</td>
-<td>Axis&nbsp;name,&nbsp;nth&nbsp;axis.  For FITS, this includes the projection</td>
-</tr>
-<tr><td>cunitn</td>
-<td>CUNITn</td>
-<td>Pixel&nbsp;units,&nbsp;nth&nbsp;axis</td>
-</tr>
-<tr><td>datamax</td>
-<td>DATAMAX</td>
-<td>Maximum&nbsp;pixel&nbsp;value&nbsp;in&nbsp;image</td>
-</tr>
-<tr><td>datamin</td>
-<td>DATAMIN</td>
-<td>Minimum&nbsp;pixel&nbsp;value&nbsp;in&nbsp;image</td>
-</tr>
-<tr><td>date-obs</td>
-<td>DATE-OBS</td>
-<td>Date&nbsp;of&nbsp;the&nbsp;observation</td>
-</tr>
-<tr><td>equinox</td>
-<td>EQUINOX</td>
-<td>Reference&nbsp;frame&nbsp;for&nbsp;directional&nbsp;coordinates</td>
-</tr>
-<tr><td>imtype</td>
-<td><ul class="first last simple">
-<li></li>
-</ul>
-</td>
-<td>Image&nbsp;type:&nbsp;intensity,</td>
-</tr>
-<tr><td>minpos</td>
-<td><ul class="first last simple">
-<li></li>
-</ul>
-</td>
-<td>Position&nbsp;of&nbsp;the&nbsp;minimum&nbsp;value&nbsp;(world&nbsp;unit)</td>
-</tr>
-<tr><td>minpixpos</td>
-<td><ul class="first last simple">
-<li></li>
-</ul>
-</td>
-<td>Same&nbsp;in&nbsp;pixel&nbsp;(array)</td>
-</tr>
-<tr><td>maxpos</td>
-<td><ul class="first last simple">
-<li></li>
-</ul>
-</td>
-<td>Position&nbsp;of&nbsp;the&nbsp;maximum&nbsp;value&nbsp;(world&nbsp;unit)</td>
-</tr>
-<tr><td>maxpixpos</td>
-<td><ul class="first last simple">
-<li></li>
-</ul>
-</td>
-<td>Same&nbsp;in&nbsp;pixel&nbsp;(array)</td>
-</tr>
-<tr><td>object</td>
-<td>OBJECT</td>
-<td>Source&nbsp;name</td>
-</tr>
-<tr><td>observer</td>
-<td>OBSERVER</td>
-<td>Observer&nbsp;name</td>
-</tr>
-<tr><td>projection</td>
-<td>CTYPEn</td>
-<td>Image&nbsp;projection&nbsp;('SIN','TAN',&nbsp;or&nbsp;'ZEA')</td>
-</tr>
-<tr><td>reffreqtype</td>
-<td><ul class="first last simple">
-<li></li>
-</ul>
-</td>
-<td>Reference&nbsp;frame&nbsp;for&nbsp;the&nbsp;spectral&nbsp;coordinates</td>
-</tr>
-<tr><td>restfreq</td>
-<td>RESTFREQ</td>
-<td>Rest&nbsp;Frequency</td>
-</tr>
-<tr><td>shape</td>
-<td>NAXISn</td>
-<td>Number&nbsp;of&nbsp;pixels&nbsp;along&nbsp;each&nbsp;axis</td>
-</tr>
-<tr><td>telescope</td>
-<td>TELESCOP</td>
-<td>Telescope&nbsp;name</td>
-</tr>
-</tbody>
-</table>
-<p>What does it mean if you get this sort of error?</p>
-<blockquote>
-CASA &lt;1&gt;: importfits('file.fits','file.image')
-2013-12-18 13:06:18     WARN    importfits::FITSCoordinateUtil::fromFITSHeader  The wcs function failures are too severe to continue ...
-2013-12-18 13:06:18     WARN    importfits::ImageFITSConverterImpl::FITSToImage (file /var/rpmbuild/BUILD/casapy-stable/casapy-stable-42.0.26945/casacore/images/Images/ImageFITSConverter.tcc, line 71)       No proper coordinate system defined in FITS file. Using dummy linear system instead.</blockquote>
-<p>First, go to the <cite>casapy-yyyymmdd-hhmmss.log</cite> file and look at the errors.</p>
-<blockquote>
-2013-12-18 13:06:18     INFO    importfits::FITSCoordinateUtil::fromFITSHeader  celfix incurred the error Inconsistent or unrecognized coordinate axis types
-2013-12-18 13:06:18     INFO    importfits::FITSCoordinateUtil::fromFITSHeader  spcfix incurred the error Inconsistent or unrecognized coordinate axis types
-2013-12-18 13:06:18     INFO    importfits::FITSCoordinateUtil::fromFITSHeader  cylfix incurred the error Inconsistent or unrecognized coordinate axis types</blockquote>
-<p>In my case, the error turned out to be that <cite>CTYPE3</cite> was set to <cite>RADI-LSR</cite>,
-while it should be <cite>VELO-LSR</cite> to be recognized by the CASA system.  The
-velocity convention is, unfortunately, lost.</p>
 </div>
  </div>
         <!-- /.entry-content   not article.summary--> 
@@ -726,11 +591,28 @@ velocity convention is, unfortunately, lost.</p>
     ga('create', 'UA-37306139-1');
     ga('send', 'pageview');
 </script>
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=9280906; 
+var sc_invisible=1; 
+var sc_security="7107d360"; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<!--<noscript><div class="statcounter"><a title="hit counter"
+href="http://statcounter.com/free-hit-counter/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/9280906/0/7107d360/1/"
+alt="hit counter"></a></div></noscript>-->
+<!-- End of StatCounter Code for Default Guide -->
 <script type="text/javascript">
   var disqus_shortname = 'adamginsburgsblog';
   (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
    })();
 </script>

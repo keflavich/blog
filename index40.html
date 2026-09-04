@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
-<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
 <head>
     <base href="https://keflavich.github.io/blog">
+    <link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+    <link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
         <title>Adam Ginsburg's blog</title>
         <meta charset="utf-8" />
         <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
@@ -38,7 +38,7 @@
 </script>
 
 <script type="text/javascript"
-src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 </script>
         
 </head>
@@ -47,16 +47,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 
 
     <header id="banner" class="body" >
-        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-height: 200px;  background-repeat: no-repeat; max-width: 80%;'>
             <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
 
             <nav id="menu"><ul id="menulist">
                 <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
-                <li><a href="/index.html">Blog Index</a></li>
-                <li><a href="/category/bgps.html">BGPS Blog</a></li>
-                <li><a href="/category/publications.html">Publications</a></li>
-                <li><a href="/archives.html">Archives</a></li>
-                <li><a href="/tags.html">Tags</a></li>
+                <li><a href="/blog//index.html">Blog Index</a></li>
+                <li><a href="/blog//category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/blog//category/publications.html">Publications</a></li>
+                <li><a href="/blog//archives.html">Archives</a></li>
+                <li><a href="/blog//tags.html">Tags</a></li>
             </ul></nav><!-- /#menu -->
         </div>
     </header><!-- /#banner -->
@@ -66,6 +66,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
       <li>
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
+              <li class="post">
+                  2026/09/03
+                  <br>
+                  <a href="https://keflavich.github.io/blog/homemade-data-portals.html">Homemade Data Portals</a>
+              </li>
               <li class="post">
                   2025/03/15
                   <br>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   <br>
                   <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
               </li>
-              <li class="post">
-                  2022/04/14
-                  <br>
-                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
-              </li>
         </ul>
       </li>
     
@@ -101,6 +101,62 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/pps-analysis.html" rel="bookmark" title="Permalink to PPS analysis">
+                    PPS analysis</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2010-06-16T18:06:00-06:00"> 2010/06/16 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>I've started looking at PPS fields to see if I can glean any additional
+information about the &quot;flux discrepancy&quot; from them.&nbsp; However, the
+results are, as usual, unenlightening.
+There is no consistent increase in flux when 3 PCA components are used
+instead of 13 PCA components - very plausibly an indication that 13 PCA
+is not too much to subtract because it's only atmosphere.&nbsp; Similarly,
+there is no obvious benefit to using a quadratic sky estimator instead
+of a PCA estimator.
+I'm using aperture photometry (without background subtraction) on
+identical fields to perform these comparisons.&nbsp; I've selected
+(arbitrarily) the l357pps source as my comparison source.&nbsp; The next step
+(ongoing) is to compare to the co-added maps and crosshatched
+large-scale maps of the same field.
+(next step) PPS &lt; single cross-hatched large-scale observation pair &lt;
+13PCA full combined map &lt; 3PCA full combined map.
+Unfortunately, this result implies that the small maps under-recover
+flux, which suggests that the large maps are too bright, which is the
+opposite of what we expect.&nbsp; Additionally, lower noise -&gt; more flux
+recovered?
+When background subtraction is included, the 3PCA and 13PCA fluxes match
+nearly perfectly.
+Despite the failure of this test (PPS &lt; full field), I will do a
+systematic comparison of PPS sources with 0PCA + masking to the large
+fields in the hopes that doing so can provide a legitimate estimate of
+the &quot;scale factor&quot; from treating small and large fields differently.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/bgps-pipeline-published.html" rel="bookmark" title="Permalink to BGPS Pipeline Published">
+                    BGPS Pipeline Published</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2010-06-11T19:59:00-06:00"> 2010/06/11 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>The BGPS pipeline has officially been released on <a class="reference external" href="http://code.google.com/p/bgpspipeline/">Google Code</a>.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -273,72 +329,6 @@ sizes, etc..... there is a LOT of parameter space to cover.</p>
         <!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="https://keflavich.github.io/blog/a-detailed-look-at-l086.html" rel="bookmark" title="Permalink to A detailed look at l086">
-                    A detailed look at l086</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2009-03-04T21:35:00-07:00"> 2009/03/04 </abbr>
-            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
-        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>Despite a slew of alignment errors, it appears that the alignment for
-MOST fields turns out OK using Method 3 of the pixel-shift code; the
-signal to noise is VERY low in a lot of fields.
-070724_o38 does not come up with a good fit, for very good reason -
-there appears to be no signal at all.
-070907_o20 is a problem. The offset was 27 pixels, which is too large,
-but nonetheless correct. I had to institute the plane fitter at an
-earlier stage to get it to work.
-However, the biggest problem: the SCUBA source aligns with 070907_o20
-but not the rest of the maps. So I needed to re-fit everything. That was
-a BIG mistake, we need to check carefully for it in other fields.</p>
- </div>
-        <!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="https://keflavich.github.io/blog/methods-paper-figures-analysis-to-produce.html" rel="bookmark" title="Permalink to Methods Paper: Figures / analysis to produce">
-                    Methods Paper: Figures / analysis to produce</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2009-03-04T03:43:00-07:00"> 2009/03/04 </abbr>
-            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
-        </footer><!-- /.post-info -->
-        <div class="entry-content"> <p>The methods paper needs some justification of the number of PCA
-components used. This will require a map of some field with a range of
-number of PCA components.
-Plan:
-simulate a map of L111 (the most square field) with 0-20 PCA components
-x 21 iterations and a variety of source sizes and plot the recovered
-flux vs. number of PCA components. Ideally, do this with both
-deconvolution and not. Estimated processing time is ~24 hours.
-Also, a plot of flux vs. iteration number will be useful.
-Glitch filtering method has been modified:
-&quot;Glitches are removed by drizzling each bolometer measurement into a
-given pixel using the mapping M[p], but retaining each pixel as an array
-of measurements. Then, measurements exceeding $3\times MAD$ (Median
-Average Deviation) are flagged out in the timestream. In cases where
-there were too few ($&lt;3$) hits per pixel, the pixel was completely
-flagged out. This only occurred for pixels at scan edges.&quot;
-Data flagging:
-Partly covered by deglitching. Many scans were flagged by hand to remove
-overly noisy scans and those that were observed to confuse the iterative
-mapper. Hand flagging is more robust than automated and can remove
-features caused by the filter convolved with the glitch.
-Creation of astrophysical model:
-Not entirely sure what this section entails. Should have a subsection on
-deconvolution though.
-Jackknifing has not generally been done...</p>
- </div>
-        <!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
             <a href="https://keflavich.github.io/blog/index39.html">&laquo;</a>
@@ -366,11 +356,28 @@ Jackknifing has not generally been done...</p>
     ga('create', 'UA-37306139-1');
     ga('send', 'pageview');
 </script>
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=9280906; 
+var sc_invisible=1; 
+var sc_security="7107d360"; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<!--<noscript><div class="statcounter"><a title="hit counter"
+href="http://statcounter.com/free-hit-counter/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/9280906/0/7107d360/1/"
+alt="hit counter"></a></div></noscript>-->
+<!-- End of StatCounter Code for Default Guide -->
 <script type="text/javascript">
   var disqus_shortname = 'adamginsburgsblog';
   (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
    })();
 </script>

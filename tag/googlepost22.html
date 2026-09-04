@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
-<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
 <head>
     <base href="https://keflavich.github.io/blog">
+    <link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+    <link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
         <title>Adam Ginsburg's blog - googlepost</title>
         <meta charset="utf-8" />
         <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
@@ -38,7 +38,7 @@
 </script>
 
 <script type="text/javascript"
-src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 </script>
         
 </head>
@@ -47,16 +47,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 
 
     <header id="banner" class="body" >
-        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-height: 200px;  background-repeat: no-repeat; max-width: 80%;'>
             <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
 
             <nav id="menu"><ul id="menulist">
                 <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
-                <li><a href="/index.html">Blog Index</a></li>
-                <li><a href="/category/bgps.html">BGPS Blog</a></li>
-                <li><a href="/category/publications.html">Publications</a></li>
-                <li><a href="/archives.html">Archives</a></li>
-                <li><a href="/tags.html">Tags</a></li>
+                <li><a href="/blog//index.html">Blog Index</a></li>
+                <li><a href="/blog//category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/blog//category/publications.html">Publications</a></li>
+                <li><a href="/blog//archives.html">Archives</a></li>
+                <li><a href="/blog//tags.html">Tags</a></li>
             </ul></nav><!-- /#menu -->
         </div>
     </header><!-- /#banner -->
@@ -101,6 +101,52 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 <section id="content">
 
 <ul id="post-list">
+    <li><article class="hentry">
+        <header> 
+            <h2 class="entry-title">
+                <a href="https://keflavich.github.io/blog/recovery-as-a-function-of-bolometer-noise.html" rel="bookmark" title="Permalink to Recovery as a function of bolometer noise">
+                    Recovery as a function of bolometer noise</a>
+            </h2> 
+        </header>
+        <footer class="post-info">
+            <abbr class="published" title="2011-05-26T18:47:00-06:00"> 2011/05/26 </abbr>
+            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
+        </footer><!-- /.post-info -->
+        <div class="entry-content"> <p>One clear simulation result comes from varying the amplitude of the
+gaussian noise added to each bolometer's timestream for a fixed
+atmosphere amplitude. The atmosphere amplitude sets the <em>mean</em> value of
+the atmosphere timestream.
+Increased bolometer noise results in decreased recovery of the outer
+rings of the PSF. This is demonstrated in that the peak amplitudes
+remain constant (as long as they are still recovered) while the aperture
+sums (in 100&quot; radius apertures) decrease.
+The simulations were run on a logarithmic spacing from 1e-3 to 1e0. The
+1e0 point is missing because the peak flux wasn't recovered by the
+gaussian fitter. The model maps don't recover the source at all for this
+run, which is worrisome, since it means there is no iterative process
+There is a minor concern that some simulations over-recover the peak at
+high noise, but the effect is at a &lt;1% level so not very worrisome.</p>
+<img alt="" src="http://1.bp.blogspot.com/-H0j13RdCays/Td6QrP78qWI/AAAAAAAAGMI/X-74WUEgYFE/s320/exp6_recovery_vs_bolonoiseRMS.png" />
+<p>From the same set of simulations, I derive the pixel RMS of the map (the
+noise level) derived from a give individual bolometer noise. The
+theoretical expectation would be
+Measured Noise = Input Noise / N(bolometers)
+<em>if</em> the pixel sampling and the timestream sampling were the same (i.e.
+there were exactly sqrt(nbolos) hits per pixel). This is not exactly the
+case, and there are potential additional sources of noise. Nonetheless,
+the naive theory appears to be good enough in this simulation:</p>
+<img alt="" src="http://3.bp.blogspot.com/-ar8f4tdXUkQ/Td6fecs1WoI/AAAAAAAAGMQ/f_PwoxFp4Fo/s320/exp6_measurednoise_vs_bolonoiseRMS.png" />
+<p>You can ignore the green/blue points in this plot; they just show that
+the std. dev. around the source is dominated by the source.
+Additionally, there is a noise floor, probably set by an inability to
+model the point source when the S/N gets to be ~500, preventing
+convergence of the iterator at a level better than 0.2%.
+In short, though, I'm going to use 1/sqrt(nbolos) to determine the
+appropriate input noise level in the astro simulations.</p>
+ </div>
+        <!-- /.entry-content   not article.summary--> 
+    </article></li>
+    <hr width=100%>
     <li><article class="hentry">
         <header> 
             <h2 class="entry-title">
@@ -455,39 +501,6 @@ S/N ~300. The residuals are only at the 1% level out to S/N ~1000.</p>
         <!-- /.entry-content   not article.summary--> 
     </article></li>
     <hr width=100%>
-    <li><article class="hentry">
-        <header> 
-            <h2 class="entry-title">
-                <a href="https://keflavich.github.io/blog/tests-running.html" rel="bookmark" title="Permalink to Tests running">
-                    Tests running</a>
-            </h2> 
-        </header>
-        <footer class="post-info">
-            <abbr class="published" title="2011-04-08T17:48:00-06:00"> 2011/04/08 </abbr>
-            <!--<address class="vcard author"><a class="url fn" href="https://keflavich.github.io/blog/author/adam-adamgginsburggmailcom.html">Adam (adam.g.ginsburg@gmail.com)</a></address>-->
-        </footer><!-- /.post-info -->
-        <div class="entry-content"> <ul class="simple">
-<li>Re-doing December 2010 calibration (remember to check &amp; compare AFGL
-4029)</li>
-<li>Mapping L351 with deconv, reconv, nodeconv</li>
-</ul>
-<p>ARGH something is wrong with l351 pointing! Is the pointing model
-broken? What HAPPENED?!
-OK, on to 4/8/2011 stuff:
-I've done more work on the Memo from a few weeks ago, and now have a
-concrete recommendation that we do some more observing in 2011. Why I
-torture myself so, I do not know....
-Examination of the 2009 tests shows that reconv is by far the superior
-approach for pointing observations as previously noted. Since reconv
-doesn't look bad, but definitely not best, for science, it might be the
-compromise we have to make. nodeconv completely fails for ds5 data, but
-the ds5 data in general are abominable. They drop by 15-20% compared to
-ds1 for Mars. The problem with nodeconv appears to be extremely high
-noise maps.</p>
- </div>
-        <!-- /.entry-content   not article.summary--> 
-    </article></li>
-    <hr width=100%>
 </ul><!-- /#posts-list -->
 <p class="paginator">
             <a href="https://keflavich.github.io/blog/tag/googlepost21.html">&laquo;</a>
@@ -515,11 +528,28 @@ noise maps.</p>
     ga('create', 'UA-37306139-1');
     ga('send', 'pageview');
 </script>
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=9280906; 
+var sc_invisible=1; 
+var sc_security="7107d360"; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<!--<noscript><div class="statcounter"><a title="hit counter"
+href="http://statcounter.com/free-hit-counter/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/9280906/0/7107d360/1/"
+alt="hit counter"></a></div></noscript>-->
+<!-- End of StatCounter Code for Default Guide -->
 <script type="text/javascript">
   var disqus_shortname = 'adamginsburgsblog';
   (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
    })();
 </script>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
-<link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
 <head>
     <base href="https://keflavich.github.io/blog">
+    <link rel="stylesheet" type="text/css" href="https://keflavich.github.io/blog/theme/css/style.css" />
+    <link rel="icon" type="image/gif" href="https://keflavich.github.io/blog/theme/favicon8.ico">
         <title>Adam Ginsburg's blog</title>
         <meta charset="utf-8" />
         <link href="https://keflavich.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Adam Ginsburg's blog Full Atom Feed" />
@@ -39,7 +39,7 @@
 </script>
 
 <script type="text/javascript"
-src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 </script>
         
 </head>
@@ -48,16 +48,16 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 
 
     <header id="banner" class="body" >
-        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-heigt: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+        <div id="header" style='background-image: url("https://keflavich.github.io/blog/images/GC_4096sq_bolo.png"); background-position:left; min-height: 200px;  background-repeat: no-repeat; max-width: 80%;'>
             <h1 style="color: #C4C4C4;"><a class="header" href="https://keflavich.github.io/blog">Adam Ginsburg's blog <strong></strong></a></h1>
 
             <nav id="menu"><ul id="menulist">
                 <li><a href="https://www.adamgginsburg.com">Homepage</a></li>
-                <li><a href="/index.html">Blog Index</a></li>
-                <li><a href="/category/bgps.html">BGPS Blog</a></li>
-                <li><a href="/category/publications.html">Publications</a></li>
-                <li><a href="/archives.html">Archives</a></li>
-                <li><a href="/tags.html">Tags</a></li>
+                <li><a href="/blog//index.html">Blog Index</a></li>
+                <li><a href="/blog//category/bgps.html">BGPS Blog</a></li>
+                <li><a href="/blog//category/publications.html">Publications</a></li>
+                <li><a href="/blog//archives.html">Archives</a></li>
+                <li><a href="/blog//tags.html">Tags</a></li>
             </ul></nav><!-- /#menu -->
         </div>
     </header><!-- /#banner -->
@@ -67,6 +67,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
       <li>
         <h3 id='recent_header'>Recent Posts</h3>
         <ul>
+              <li class="post">
+                  2026/09/03
+                  <br>
+                  <a href="https://keflavich.github.io/blog/homemade-data-portals.html">Homemade Data Portals</a>
+              </li>
               <li class="post">
                   2025/03/15
                   <br>
@@ -86,11 +91,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
                   2022/05/01
                   <br>
                   <a href="https://keflavich.github.io/blog/co2-monitoring-at-conferences-update-in-2022.html">CO2 Monitoring at Conferences: Update in 2022</a>
-              </li>
-              <li class="post">
-                  2022/04/14
-                  <br>
-                  <a href="https://keflavich.github.io/blog/alma-cycle-9-corrupted-zip-fix.html">ALMA Cycle 9 corrupted zip fix</a>
               </li>
         </ul>
       </li>
@@ -117,7 +117,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
   <div class="entry-content">
     <p>For the ACES project, I'm re-running the ALMA pipeline using MPI.</p>
 <p>However, this results in all runs crashing with the following error:</p>
-<div class="highlight"><pre><span></span>2022-04-06 04:22:43 INFO: Executing plotms(vis=&#39;uid___A002_Xf512ae_X2626.ms&#39;, xaxis=&#39;azimuth&#39;, yaxis=&#39;elevation&#39;, spw=&#39;25:0~0,27:0~0,29:0~0,31:0~0,33:0~0,35:0~0&#39;, antenna=&#39;0&amp;&amp;*&#39;, avgchannel=&#39;9000&#39;, avgtime=&#39;10&#39;, coloraxis=&#39;field&#39;, customflaggedsymbol=True, flaggedsymbolshape=&#39;autoscaling&#39;, title=&#39;Elevation vs Azimuth for uid___A002_Xf512ae_X2626.ms&#39;, plotfile=&#39;azel.png&#39;, showgui=False, clearplots=True)
+<div class="highlight"><pre><span></span>2022-04-06 04:22:43 INFO: Executing plotms(vis='uid___A002_Xf512ae_X2626.ms', xaxis='azimuth', yaxis='elevation', spw='25:0~0,27:0~0,29:0~0,31:0~0,33:0~0,35:0~0', antenna='0&amp;&amp;*', avgchannel='9000', avgtime='10', coloraxis='field', customflaggedsymbol=True, flaggedsymbolshape='autoscaling', title='Elevation vs Azimuth for uid___A002_Xf512ae_X2626.ms', plotfile='azel.png', showgui=False, clearplots=True)
 fuse: failed to exec fusermount: No such file or directory
 
 Cannot mount AppImage, please check your FUSE setup.
@@ -137,24 +137,20 @@ but <tt class="docutils literal"><span class="pre">--appimage-extract-and-run</s
 <p>My original hack was to just tell plotms not to run at all, which I accomplished by editing the
 <tt class="docutils literal">plotmstool.py</tt> file (<tt class="docutils literal"><span class="pre">lib/py/lib/python3.6/site-packages/casaplotms/private/plotmstool.py</span></tt>) to
 just skip the <tt class="docutils literal">__launch</tt> command:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">__launch</span><span class="p">(</span> <span class="n">uri</span><span class="o">=</span><span class="kc">None</span> <span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">__launch</span><span class="p">(</span> <span class="n">uri</span><span class="o">=</span><span class="kc">None</span> <span class="p">):</span>
     <span class="k">return</span>
 </pre></div>
 <p>However, in writing this post, I've changed to instead modifying the <tt class="docutils literal">app_path</tt> to this:</p>
-<div class="highlight"><pre><span></span><span class="n">app_path</span> <span class="o">=</span> <span class="s2">&quot;/tmp/casaplotms/squashfs-root/AppRun&quot;</span>
+<div class="highlight"><pre><span></span><span class="n">app_path</span> <span class="o">=</span> <span class="s2">"/tmp/casaplotms/squashfs-root/AppRun"</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">__os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">app_path</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Did not find extracted path </span><span class="si">{</span><span class="n">app_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">app_path</span> <span class="o">=</span> <span class="n">__os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="n">__os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span> <span class="n">__os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">__os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span><span class="s2">&quot;..&quot;</span><span class="p">)</span> <span class="p">),</span> <span class="s1">&#39;__bin__/casaplotms-x86_64.AppImage&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Did not find extracted path </span><span class="si">{</span><span class="n">app_path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">app_path</span> <span class="o">=</span> <span class="n">__os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="n">__os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span> <span class="n">__os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">__os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span><span class="s2">".."</span><span class="p">)</span> <span class="p">),</span> <span class="s1">'__bin__/casaplotms-x86_64.AppImage'</span><span class="p">)</span>
 </pre></div>
 <p>I haven't tried it but I'm slightly hopeful.</p>
 
   </div><!-- /.entry-content -->
 </section>
 
-<section>
-<h1>Comments</h1>
-<div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
-</section>
   </div>
 
     <script type="text/javascript">
@@ -175,6 +171,23 @@ just skip the <tt class="docutils literal">__launch</tt> command:</p>
     ga('create', 'UA-37306139-1');
     ga('send', 'pageview');
 </script>
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=9280906; 
+var sc_invisible=1; 
+var sc_security="7107d360"; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<!--<noscript><div class="statcounter"><a title="hit counter"
+href="http://statcounter.com/free-hit-counter/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/9280906/0/7107d360/1/"
+alt="hit counter"></a></div></noscript>-->
+<!-- End of StatCounter Code for Default Guide -->
 <script type="text/javascript">
   var disqus_shortname = 'adamginsburgsblog';
   var disqus_identifier = '/hacking-plotms-to-let-pipeline-run.html';
@@ -182,7 +195,7 @@ just skip the <tt class="docutils literal">__launch</tt> command:</p>
   var disqus_title = 'Hacking plotms to let pipeline run';
   (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
    })();
 </script>
