@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}">
+<head>
+    <base href="{{ SITEURL }}">
+    <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/style.css" />
+    <link rel="icon" type="image/gif" href="{{ SITEURL }}/theme/favicon8.ico">
+        {% block head %}
+        <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+        <meta charset="utf-8" />
+        {% if FEED_ALL_ATOM %}
+        <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
+        {% endif %}
+        {% if FEED_ALL_RSS %}
+        <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Full RSS Feed" />
+        {% endif %}
+        {% if FEED_ATOM %}
+        <link href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
+        {% endif %}
+        {% if FEED_RSS %}
+        <link href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
+        {% endif %}
+        {% if CATEGORY_FEED_ATOM and category %}
+        <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(slug=category.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Categories Atom Feed" />
+        {% endif %}
+        {% if CATEGORY_FEED_RSS and category %}
+        <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_RSS|format(slug=category.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Categories RSS Feed" />
+        {% endif %}
+        {% if TAG_FEED_ATOM and tag %}
+        <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_ATOM|format(tag.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Tags Atom Feed" />
+        {% endif %}
+        {% if TAG_FEED_RSS and tag %}
+        <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_RSS|format(tag.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Tags RSS Feed" />
+        {% endif %}
+        {% endblock head %}
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    styles: {
+    ".MathJax .mo, .MathJax .mi": {color: "inherit !important"}},
+    'div.typeset': { 'text-align': 'left'}
+    },
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],processEscapes: true}
+    });
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js"]
+    }
+    MathJax.Hub.Register.StartupHook("HTML-CSS Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax["HTML-CSS"].FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+    MathJax.Hub.Register.StartupHook("SVG Jax Ready",function () {
+    var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;
+    VARIANT["normal"].fonts.unshift("MathJax_SansSerif");
+    VARIANT["bold"].fonts.unshift("MathJax_SansSerif-bold");
+    VARIANT["italic"].fonts.unshift("MathJax_SansSerif-italic");
+    VARIANT["-tex-mathit"].fonts.unshift("MathJax_SansSerif-italic");
+    });
+</script>
+
+<script type="text/javascript"
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+        
+</head>
+
+<body id="base" class="home">
+
+
+    <header id="banner" class="body" >
+        <div id="header" style='background-image: url("{{ SITEURL }}/{{ BGIMAGE }}"); background-position:left; min-height: 200px;  background-repeat: no-repeat; max-width: 80%;'>
+            <h1 style="color: #C4C4C4;"><a class="header" href="{{ SITEURL }}">{{ SITENAME }} <strong>{{ SITESUBTITLE }}</strong></a></h1>
+
+            <nav id="menu"><ul id="menulist">
+            {% for title, link in MENUITEMS %}
+                <li><a href="{{ link }}">{{ title }}</a></li>
+            {% endfor %}
+            {% if DISPLAY_PAGES_ON_MENU %}
+              {% for p in PAGES %}
+                <li{% if p == page %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
+              {% endfor %}
+            {% else %}
+              {% if not SUPPRESS_CATEGORIES_ON_MENU %}
+                  {% for cat, null in categories %}
+                    <li{% if cat == category %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+                  {% endfor %}
+              {% endif %}
+            {% endif %}
+            </ul></nav><!-- /#menu -->
+        </div>
+    </header><!-- /#banner -->
+
+ {% if SHOW_SIDEBAR %}
+  <div id="sidebar">
+    <ul>
+  	{% if DISPLAY_PAGES_ON_MENU %}
+	<li>
+	    <h3>Pages</h3>
+	    <ul>
+            {% for page in PAGES %}
+                <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a></li>
+            {% endfor %}
+	    </ul>
+	</li>
+        {% endif %}
+  	{% if not SUPPRESS_CATEGORIES_ON_MENU %}
+	<li>
+            <h3>Categories</h3>
+            <ul>
+	        {% for cat, null in categories %}
+		     <li {% if cat == category %}class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+	        {% endfor %}
+	    </ul>
+	</li>
+        {% endif %}
+        {% if LINKS %}
+	<li>
+		<h3>Blogroll</h3>
+		<ul>
+		{% for name, link in LINKS %}
+                    <li><a href="{{ link }}">{{ name }}</a></li>
+                {% endfor %}
+		</ul>
+	</li>
+	{% endif %}
+	{% if SOCIAL %}
+        <li>
+                <h3>Social</h3>
+                <ul>
+                    {% if FEED_ATOM %}
+                    <li><a href="{{ SITEURL }}/{{ FEED_ATOM }}" rel="alternate">Atom feed</a></li>
+                    {% endif %}
+                    {% if FEED_RSS %}
+                    <li><a href="{{ SITEURL }}/{{ FEED_RSS }}" rel="alternate">Flux Rss</a></li>
+                    {% endif %}
+                {% for name, link in SOCIAL %}
+                    <li><a href="{{ link }}">{{ name }}</a></li>
+                {% endfor %}
+                </ul>
+        </li><!-- /.social -->
+        {% endif %}
+  	{% if tags and SHOW_TAGS %}
+        <li>
+            <h3>Tags</h3>
+            <ul>
+            {% for tag, articles in tags %}
+                    <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></li>
+            {% endfor %}
+            </ul>
+        </li>
+    {% endif %}
+    {% if SHOW_RECENT %}
+      <li>
+        <h3 id='recent_header'>Recent Posts</h3>
+        <ul>
+            {% for article in articles[:5] %}
+              <li class="post">
+                  {{ article.locale_date }}
+                  <br>
+                  <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title|striptags }}</a>
+              </li>
+            {% endfor %}
+        </ul>
+      </li>
+    {% endif %}
+    
+    </ul>
+  </div><!-- end #sidebar -->
+ {% endif %}
+
+  <div id="content">
+        {% block content %}
+        {% endblock %}
+  </div>
+
+{% include '_includes/after_footer.html' %}
+</body>
+</html>
+

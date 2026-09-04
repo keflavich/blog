@@ -28,12 +28,9 @@ SOCIAL=()
 
 DEFAULT_PAGINATION = 10
 
-#THEME='bootstrap2' # sneakyidea is default
-#THEME='waterspill-en' 
-#THEME='simple_editable' 
-#THEME='mine'
-#THEME=os.path.expanduser('~/repos/pelican-themes/mine')
-THEME='./mine'
+# The theme is vendored in this repo at ./mine -- no external checkout or
+# `pelican-themes --install` step is required. Edit it in place and commit.
+THEME = './mine'
 
 STATIC_PATHS = ['images','bgps/images','iau303/images','images/sgrb2']
 
@@ -64,6 +61,11 @@ PLUGIN_PATHS = []#os.path.expanduser('~/repos/pelican-plugins')]
 PLUGINS = ["render_math"]
 
 USE_FOLDER_AS_CATEGORY = True
+
+# Recent docutils releases enforce a per-line length limit (default 10000)
+# that rejects a few older posts containing very long lines (e.g. embedded
+# data/tables). Raise it so the historical content keeps building unchanged.
+DOCUTILS_SETTINGS = {'line_length_limit': 1000000}
 
 DISQUS_SITENAME = "adamginsburgsblog"
 GOOGLE_ANALYTICS = 'UA-37306139-1'
